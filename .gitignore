@@ -1,0 +1,4 @@
+# Do not push the flaskenv directory onto git
+/flaskenv
+
+
