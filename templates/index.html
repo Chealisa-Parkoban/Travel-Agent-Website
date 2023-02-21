@@ -14,6 +14,7 @@
     <link type="text/css" href="{{ url_for('static', filename='/assets/css/theme.css') }}" rel="stylesheet">
     <!-- Demo CSS - No need to use these in your project -->
     <link type="text/css" href="/static/css/demo.css" rel="stylesheet">
+{% block head %}{% endblock %}
 
 </head>
 
@@ -23,7 +24,7 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-transparent navbar-dark bg-dark py-4">
     <div class="container">
-        <a class="navbar-brand" href="./"><strong>Boomerang</strong> UI Kit</a>
+        <a class="navbar-brand" href="./"><strong>Digital Beans</strong> Traveling</a>
         <button class="navbar-toggler" type="button" data-action="offcanvas-open" data-target="#navbar_main"
                 aria-controls="navbar_main" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -39,7 +40,7 @@
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
                     <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
                         <a class="dropdown-item" href="./pages/homepage.html">Homepage</a>
-                        <a class="dropdown-item" href="./pages/about.html">About us</a>
+                        <a class="dropdown-item" href="{{url_for("about")}}">About us</a>
                         <a class="dropdown-item" href="./pages/sign-in.html">Sign in</a>
                         <a class="dropdown-item" href="./pages/contact.html">Contact</a>
                     </div>
@@ -76,7 +77,8 @@
     </div>
 </nav>
 <!-- Navbar -->
-
+    {% block body %}
+    {% endblock %}
     <main class="main">
       <section class="spotlight parallax bg-cover bg-size--cover" data-spotlight="fullscreen" style="background-image: url('/static/images/backgrounds/img-1.jpg')">
         <span class="mask bg-primary alpha-7"></span>
@@ -88,10 +90,10 @@
                   <div class="text-center mt-5">
                     <img src="/static/images/brand/icon.png" style="width: 200px;" class="img-fluid animated" data-animation-in="jackInTheBox" data-animation-delay="1000">
                     <h2 class="heading display-4 font-weight-400 text-white mt-5 animated" data-animation-in="fadeInUp" data-animation-delay="2000">
-                      <span class="font-weight-700">Boomerang</span> UI Kit
+                      <span class="font-weight-700">Digital Beans</span> Traveling
                     </h2>
                     <p class="lead text-white mt-3 lh-180 c-white animated" data-animation-in="fadeInUp" data-animation-delay="2500">
-                      Free HTML UI Kit based on the well known Bootstrap 4 Framework brought to you by <strong class="text-white">Webpixels</strong>
+                      Based on the intelligent recommendation system, plan a reasonable tour route for you <strong class="text-white">Online</strong>
                     </p>
                   </div>
                 </div>
@@ -2092,6 +2094,7 @@
         </div>
       </section>
     </main>
+
 
     <footer class="pt-5 pb-3 footer  footer-dark bg-tertiary">
       <div class="container">

@@ -22,6 +22,16 @@ def idnex():  # put application's code here
     logger.info('Entered the HOME page')
     return render_template("index.html")
 
+@app.route('/about')
+def about():
+    logger.info('Entered the ABOUT page')
+    return render_template("about.html")
+
+@app.route('/customer_login')
+def customer_login():
+    logger.info('Entered the CUSTOMER LOGIN page')
+    return render_template("customer_login.html")
+
 
 if __name__ == '__main__':
     logger.info('The Website Starts Running!')
