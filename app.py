@@ -18,7 +18,7 @@ logger.addHandler(ch)
 
 
 @app.route('/')
-def idnex():  # put application's code here
+def index():  # put application's code here
     logger.info('Entered the HOME page')
     return render_template("index.html")
 
