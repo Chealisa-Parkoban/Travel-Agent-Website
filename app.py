@@ -27,10 +27,10 @@ def about():
     logger.info('Entered the ABOUT page')
     return render_template("about.html")
 
-@app.route('/customer_login')
+@app.route('/sign-in')
 def customer_login():
     logger.info('Entered the CUSTOMER LOGIN page')
-    return render_template("customer_login.html")
+    return render_template("sign-in.html")
 
 
 if __name__ == '__main__':
