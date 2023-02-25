@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, render_template
 import logging
 
@@ -11,7 +13,8 @@ app.secret_key = 'BxeE3wJcjYi6yA7y1bjBJ1IAs0'
 # -------------------------------------create a logger------------------------------------------
 logger = logging.getLogger(__name__)  # create a logger
 logger.setLevel(logging.INFO)  # show messages above info level
-fh = logging.FileHandler('../log')  # log file handler
+basedir = os.path.abspath(os.path.dirname(__file__))  # get the base directory
+fh = logging.FileHandler(os.path.join(basedir, 'logs/travelAgent.log'))  # log file handler
 ch = logging.StreamHandler()  # input stream handler
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')  # set a formatter
 
