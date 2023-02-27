@@ -76,16 +76,31 @@
                     <img src="../static/images/brand/icon.png" style="width: 50px;">
                     <h4 class="heading h3 text-white pt-3 pb-5">Welcome back,<br>
                       login to your account.</h4>
-                    <form class="form-primary">
+
+                    <form action="" method="post" novalidate class="form-primary">
+                    {{ form.csrf_token }}
                       <div class="form-group">
-                        <input type="email" class="form-control" id="input_email" placeholder="Your email">
+                        {{ form.username }} <!-- the input box for user to type username -->
+                        {{ form.username.label }} <!-- the hint -->
+
+                        {% for error in form.username.errors %} <!-- report error in red to user when get error from backend -->
+                            <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+{#                        <input type="email" class="form-control" id="input_email" placeholder="Your email">#}
                       </div>
                       <div class="form-group">
-                        <input type="password" class="form-control" id="input_password" placeholder="Password">
+                        {{ form.password }} <!-- the input box for user to type password -->
+                        {{ form.password.label }} <!-- the hint -->
+
+                        {% for error in form.password.errors %} <!-- report error in red to user when get error from backend -->
+                        <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+{#                        <input type="password" class="form-control" id="input_password" placeholder="Password">#}
                       </div>
                       <div class="text-right mt-4"><a href="#" class="text-white">Forgot password?</a></div>
                       <button type="submit" class="btn btn-block btn-lg bg-white mt-4">Sign in</button>
                     </form>
+
                   </div>
                 </div>
               </div>

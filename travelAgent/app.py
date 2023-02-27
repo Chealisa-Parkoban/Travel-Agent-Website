@@ -1,14 +1,15 @@
 import os
-
 from flask import Flask, render_template
 import logging
-
 from flask_login import LoginManager
-
 from travelAgent.models import User
+from travelAgent.views import login
 
 app = Flask(__name__)  # create an app instance
 app.secret_key = 'BxeE3wJcjYi6yA7y1bjBJ1IAs0'
+
+# -------------------------------------register blueprints------------------------------------------
+app.register_blueprint(login.login)
 
 # -------------------------------------create a logger------------------------------------------
 logger = logging.getLogger(__name__)  # create a logger
@@ -46,9 +47,7 @@ def customer_login():
     return render_template("sign-in.html")
 
 
-@login_manager.user_loader
-def load_user(userid):
-    return User.get(userid)
+
 
 
 if __name__ == '__main__':
