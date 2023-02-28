@@ -2,14 +2,15 @@ import os
 from flask import Flask, render_template
 import logging
 from flask_login import LoginManager
-from travelAgent.models import User
-from travelAgent.views import login
+from travelAgent.models import Users
+from travelAgent.views.login_handler import login_blueprint
+
 
 app = Flask(__name__)  # create an app instance
 app.secret_key = 'BxeE3wJcjYi6yA7y1bjBJ1IAs0'
 
 # -------------------------------------register blueprints------------------------------------------
-app.register_blueprint(login.login)
+app.register_blueprint(login_blueprint)
 
 # -------------------------------------create a logger------------------------------------------
 logger = logging.getLogger(__name__)  # create a logger
@@ -24,10 +25,6 @@ ch.setFormatter(formatter)
 
 logger.addHandler(fh)
 logger.addHandler(ch)
-
-# -------------------------------------login/logout------------------------------------------
-login_manager = LoginManager()
-login_manager.init_app(app)
 
 
 
