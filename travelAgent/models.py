@@ -12,12 +12,13 @@ from travelAgent import db
 
 # This model stores user's information
 
-class Users(db.Model):
+class User(db.Model):
+    # extend_existing = True
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
     username = db.Column(db.String(64), index=True, unique=True, nullable=False)  # username is String and unique
     email = db.Column(db.String(120), index=True, unique=True)  # user's email must be unique
-    password_hash = db.Column(db.String(128), nullable=False)  # User's password must be hash
+    password_hash = db.Column(db.String(128))  # User's password must be hash
     # website = db.Column(db.String(128))
     # title = db.Column(db.String(120))
     gender = db.Column(db.String(120))
@@ -40,4 +41,5 @@ class Users(db.Model):
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
+
 

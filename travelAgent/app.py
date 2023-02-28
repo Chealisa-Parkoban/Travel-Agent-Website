@@ -1,13 +1,10 @@
 import os
 from flask import Flask, render_template
 import logging
-from flask_login import LoginManager
-from travelAgent.models import Users
+
+from travelAgent import db
+from travelAgent import app
 from travelAgent.views.login_handler import login_blueprint
-
-
-app = Flask(__name__)  # create an app instance
-app.secret_key = 'BxeE3wJcjYi6yA7y1bjBJ1IAs0'
 
 # -------------------------------------register blueprints------------------------------------------
 app.register_blueprint(login_blueprint)
@@ -27,23 +24,22 @@ logger.addHandler(fh)
 logger.addHandler(ch)
 
 
-
 @app.route('/')
 def index():  # put application's code here
     logger.info('Entered the HOME page')
     return render_template("index.html")
+
 
 @app.route('/about')
 def about():
     logger.info('Entered the ABOUT page')
     return render_template("about.html")
 
-@app.route('/sign-in')
-def customer_login():
-    logger.info('Entered the CUSTOMER LOGIN page')
-    return render_template("sign-in.html")
 
-
+# @app.route('/sign-in')
+# def customer_login():
+#     logger.info('Entered the CUSTOMER LOGIN page')
+#     return render_template("sign-in.html")
 
 
 

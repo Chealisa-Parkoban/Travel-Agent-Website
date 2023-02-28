@@ -31,7 +31,7 @@
               <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
                 <a class="dropdown-item" href="{{ url_for("index") }}">Homepage</a>
                 <a class="dropdown-item" href="{{ url_for("about") }}">About us</a>
-                <a class="dropdown-item" href="{{ url_for("customer_login") }}">Sign in</a>
+                <a class="dropdown-item" href={{url_for('login.login')}}>Sign in</a>
                 <a class="dropdown-item" href="contact.html">Contact</a>
               </div>
             </li>
@@ -77,25 +77,36 @@
                     <h4 class="heading h3 text-white pt-3 pb-5">Welcome back,<br>
                       login to your account.</h4>
 
+
+{##}
+{#                  <form action="" method="post" novalidate class="form-primary">#}
+{##}
+{#                      <div class="form-group">#}
+{#                        <input type="email" class="form-control" id="input_email" placeholder="Your email">#}
+{#                      </div>#}
+{##}
+{#                      <div class="form-group">#}
+{#                        <input type="password" class="form-control" id="input_password" placeholder="Password">#}
+{#                      </div>#}
+{##}
+{#                      <div class="text-right mt-4"><a href="#" class="text-white">Forgot password?</a></div>#}
+{#                      <button type="submit" class="btn btn-block btn-lg bg-white mt-4">Sign in</button>#}
+{#                    </form>#}
+
                     <form action="" method="post" novalidate class="form-primary">
                     {{ form.csrf_token }}
                       <div class="form-group">
-                        {{ form.username }} <!-- the input box for user to type username -->
-                        {{ form.username.label }} <!-- the hint -->
-
+                      <input type="text" class="form-control" id="input_email" placeholder="Username" {{ form.username }} <!-- the input box for user to type username -->
                         {% for error in form.username.errors %} <!-- report error in red to user when get error from backend -->
-                            <span style="color: red;">[{{ error }}]</span>
+                            <span style="color: #fff200;">[{{ error }}]</span>
                         {% endfor %}
-{#                        <input type="email" class="form-control" id="input_email" placeholder="Your email">#}
                       </div>
-                      <div class="form-group">
-                        {{ form.password }} <!-- the input box for user to type password -->
-                        {{ form.password.label }} <!-- the hint -->
 
+                      <div class="form-group">
+                        <input type="password" class="form-control" id="input_password" placeholder="Password" {{ form.password }} <!-- the input box for user to type password -->
                         {% for error in form.password.errors %} <!-- report error in red to user when get error from backend -->
-                        <span style="color: red;">[{{ error }}]</span>
+                            <span style="color: #fff200;">[{{ error }}]</span>
                         {% endfor %}
-{#                        <input type="password" class="form-control" id="input_password" placeholder="Password">#}
                       </div>
                       <div class="text-right mt-4"><a href="#" class="text-white">Forgot password?</a></div>
                       <button type="submit" class="btn btn-block btn-lg bg-white mt-4">Sign in</button>
