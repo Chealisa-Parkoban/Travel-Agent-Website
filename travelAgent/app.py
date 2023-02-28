@@ -36,11 +36,19 @@ def about():
     return render_template("about.html")
 
 
+@app.route('/register')
+def register():
+    logger.info('Entered the REGISTER page')
+    return render_template("customer_register.html")
+
 # @app.route('/sign-in')
 # def customer_login():
 #     logger.info('Entered the CUSTOMER LOGIN page')
 #     return render_template("sign-in.html")
-
+@app.route('/contactUs')
+def contact_us():
+    logger.info('Entered the CONTACT page')
+    return render_template("contact.html")
 
 
 if __name__ == '__main__':
