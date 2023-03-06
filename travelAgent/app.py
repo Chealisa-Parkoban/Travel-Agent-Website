@@ -50,6 +50,11 @@ def contact_us():
     logger.info('Entered the CONTACT page')
     return render_template("contact.html")
 
+@app.route('/homepage')
+def homepage():
+    logger.info('Entered the HOME page')
+    return render_template("homepage.html")
+
 
 if __name__ == '__main__':
     logger.info('The Website Starts Running!')
