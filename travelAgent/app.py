@@ -1,6 +1,11 @@
 import os
 from flask import Flask, render_template
 import logging
+import http.client
+import hashlib
+import urllib
+import random
+import json
 
 from travelAgent import db
 from travelAgent import app
@@ -55,7 +60,50 @@ def homepage():
     logger.info('Entered the HOME page')
     return render_template("homepage.html")
 
+# 翻译功能 (auto - 英)
+def translate(q):
+
+    # 百度appid和密钥需要通过注册百度【翻译开放平台】账号后获得
+    appid = '20230228001579285'  # 填写你的appid
+    secretKey = 'i_i50GKeYlqZOVY7Q8HS'  # 填写你的密钥
+
+    httpClient = None
+    myurl = '/api/trans/vip/translate'
+
+    fromLang = 'auto'  # 原文语种
+    toLang = 'en'  # 译文语种
+    salt = random.randint(32768, 65536)
+    sign = appid + q + str(salt) + secretKey
+    sign = hashlib.md5(sign.encode()).hexdigest()
+    myurl = myurl + '?appid=' + appid + '&q=' + urllib.parse.quote(
+        q) + '&from=' + fromLang + '&to=' + toLang + '&salt=' + str(
+        salt) + '&sign=' + sign
+
+    try:
+        httpClient = http.client.HTTPConnection('api.fanyi.baidu.com')
+        httpClient.request('GET', myurl)
+
+        # response是HTTPResponse对象
+        response = httpClient.getresponse()
+        result_all = response.read().decode("utf-8")
+        result = json.loads(result_all)
+        # print('翻译：：')
+        print(result)
+        # print(type(result))
+        re = result['trans_result'][0]['dst']
+        print(re)
+
+    except Exception as e:
+        print(e)
+    finally:
+        if httpClient:
+            httpClient.close()
+
 
 if __name__ == '__main__':
+
+    # q = "how are you"
+    # result = translate(q)  # 百度翻译
     logger.info('The Website Starts Running!')
     app.run(debug=True, port=5000)
+
