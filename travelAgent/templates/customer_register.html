@@ -44,8 +44,8 @@
                     <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
                         <a class="dropdown-item" href="{{ url_for("index") }}">Homepage</a>
                         <a class="dropdown-item" href="{{ url_for("about") }}">About us</a>
-                        <a class="dropdown-item" href="{{ url_for('login.login') }}">Sign in</a>
-                        <a class="dropdown-item" href="{{ url_for('register') }}">Register</a>
+                        <a class="dropdown-item" href="{{ url_for('account.login') }}">Sign in</a>
+                        <a class="dropdown-item" href="{{ url_for('account.sign_up') }}">Register</a>
                         <a class="dropdown-item" href="{{ url_for('contact_us') }}">Contact</a>
                     </div>
                 </li>
@@ -116,43 +116,73 @@
                                 {#                    </form>#}
 
                                 <form action="" method="post" novalidate class="form-primary">
+                                    {{ form.csrf_token }}
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Username</label>
                                         <input type="text" class="form-control" id="register_username"
-                                               placeholder="Username">
+                                               placeholder="Username" name="username" {{ form.username }}
+
                                         <!-- the input box for user to type username -->
+                                        {% for error in form.username.errors %}
+                                            <!-- report error in red to user when get error from backend -->
+                                            <span style="color: #fff200;">[{{ error }}]</span>
+                                        {% endfor %}
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Email</label>
                                         <input type="email" class="form-control" id="register_email"
-                                               placeholder="Email" name="email">
-                                        <!-- the input box for user to type username -->
+                                               placeholder="Email" name="email" {{ form.email }}
+                                        {% for error in form.email.errors %}
+                                            <!-- report error in red to user when get error from backend -->
+                                            <span style="color: #fff200;">[{{ error }}]</span>
+                                        {% endfor %}
+
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Verification Code</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" name="captcha"
-                                                   id="verification_code">
+{#                                            <input type="text" class="form-control" name="captcha"#}
+{#                                                   id="verification_code" placeholder="Verification Code" #}
+                                            <div  background-color="rgba(0,0,0,0.5)" type="text" class="form-control" name="captcha"
+                                                   id="verification_code" placeholder="Verification Code" >
+                                            {{ form.email_verification_code }}
+                                            </div>
+
                                             <div class="input-group-append">
                                                 <button class="btn btn-block btn-secondary" type="button"
                                                         id="captcha-btn">Get Verification Code
                                                 </button>
                                             </div>
                                         </div>
+                                        {% for error in form.email_verification_code.errors %}
+                                            <!-- report error in red to user when get error from backend -->
+                                            <span style="color: #fff200;">[{{ error }}]</span>
+                                        {% endfor %}
                                     </div>
 
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Password</label>
                                         <input type="password" class="form-control" id="input_password"
-                                               placeholder="Password"> <!-- the input box for user to type password -->
+                                               placeholder="Password" {{ form.password }}
+                                        {% for error in form.password.errors %}
+                                            <!-- report error in red to user when get error from backend -->
+                                            <span style="color: #fff200;">[{{ error }}]</span>
+                                        {% endfor %}
+                                        <!-- the input box for user to type password -->
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Retype Password</label>
                                         <input type="password" class="form-control" id="input_password"
-                                               placeholder="Password"> <!-- the input box for user to type password -->
+                                               placeholder="Password" {{ form.confirm_password }}
+                                        {% for error in form.confirm_password.errors %}
+                                            <!-- report error in red to user when get error from backend -->
+                                            <span style="color: #fff200;">[{{ error }}]</span>
+                                        {% endfor %}
+                                        <!-- the input box for user to type password -->
                                     </div>
                                     {#                      <div class="text-right mt-4"><a href="#" class="text-white">Forgot password?</a></div>#}
-                                    <button type="submit" class="btn btn-block btn-lg bg-white mt-4">Register Now!
+                                    <button type="submit" class="btn btn-block btn-lg bg-white mt-4" >
+                                        Register Now!
                                     </button>
                                 </form>
 

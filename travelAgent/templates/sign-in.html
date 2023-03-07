@@ -34,8 +34,8 @@
                     <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
                         <a class="dropdown-item" href="{{ url_for("index") }}">Homepage</a>
                         <a class="dropdown-item" href="{{ url_for("about") }}">About us</a>
-                        <a class="dropdown-item" href="{{ url_for('login.login') }}">Sign in</a>
-                        <a class="dropdown-item" href="{{ url_for('register') }}">Register</a>
+                        <a class="dropdown-item" href="{{ url_for('account.login') }}">Sign in</a>
+                        <a class="dropdown-item" href="{{ url_for('account.sign_up') }}">Register</a>
                         <a class="dropdown-item" href="{{ url_for('contact_us') }}">Contact</a>
                     </div>
                 </li>
@@ -108,7 +108,7 @@
                                     {{ form.csrf_token }}
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">User name</label>
-                                        <input type="text" class="form-control" id="input_email" placeholder="Username">
+                                        <input type="text" class="form-control" id="input_email" placeholder="Username" {{ form.username }}
                                         <!-- the input box for user to type username -->
                                         {% for error in form.username.errors %}
                                             <!-- report error in red to user when get error from backend -->
@@ -119,7 +119,8 @@
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Password</label>
                                         <input type="password" class="form-control" id="input_password"
-                                               placeholder="Password"><!-- the input box for user to type password -->
+                                               placeholder="Password" {{ form.password }}<!-- the input box for user to type password -->
+
                                         {% for error in form.password.errors %}
                                             <!-- report error in red to user when get error from backend -->
                                             <span style="color: #fff200;">[{{ error }}]</span>

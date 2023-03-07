@@ -16,3 +16,56 @@ class LoginForm(FlaskForm):
     # remember_me = BooleanField('REMEMBER ME')
     # submit the form
     submit = SubmitField('')
+
+
+# form for sign up page
+class SignupForm(FlaskForm):
+    """Sign up for a user account."""
+    username = StringField(
+        'USERNAME',
+        validators=
+        [
+            # validate the username, the length must longer than 4 characters
+            # if the data is not valid, then shows the error message
+            Length(min=4, message='Minimum username of four characters.'),
+            DataRequired()
+        ]
+    )
+
+    email = StringField(
+        'EMAIL',
+        validators=
+        [
+            # the format of the email address must be xxx@xxx.xx
+            Email(message='Not a valid email address.'),
+            DataRequired()
+        ]
+    )
+
+    email_verification_code = StringField(
+        'VERIFICATION CODE',
+        validators=
+        [
+            DataRequired()
+        ]
+    )
+
+    password = PasswordField(
+        'PASSWORD',
+        validators=
+        [
+            Length(min=4, message='Minimum password of four characters.'),
+            DataRequired(message="Please enter a password."),
+        ]
+    )
+    confirm_password = PasswordField(
+        'REENTER PASSWORD',
+        validators=
+        [
+            EqualTo('password', message='Passwords must match.'),
+            DataRequired(message="Please reenter the password.")
+        ]
+    )
+
+    # recaptcha = RecaptchaField()
+    submit = SubmitField('')
