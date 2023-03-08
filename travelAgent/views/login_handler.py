@@ -118,7 +118,7 @@ def get_captcha():
         message = Message(
             subject="【Digital Beans】Verification Code",
             recipients=[email],
-            body=f"【Digital Beans】您的注册验证码是：{captcha}。请不要告诉任何人哦！"
+            body=f"【Digital Beans】Your verification code：{captcha}。Please do not tell anyone else！",
         )
         mail.send(message)
         captcha_model = EmailCaptchaModel.query.filter_by(email=email).first()
