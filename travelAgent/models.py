@@ -12,8 +12,9 @@ from travelAgent import db
 
 # This model stores user's information
 
-class User(db.Model):
-    # extend_existing = True
+class UserModel(db.Model):
+    __tablename__ = "Users"
+    __table_args__ = {'extend_existing': True}
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
     username = db.Column(db.String(64), index=True, unique=True, nullable=False)  # username is String and unique
@@ -41,6 +42,16 @@ class User(db.Model):
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
+
+
+
+class EmailCaptchaModel(db.Model):
+    __tablename__ = "email_captcha"
+    __table_args__ = {'extend_existing': True}
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    email = db.Column(db.String(100), nullable=False, unique=True)
+    captcha = db.Column(db.String(10), nullable=True)
+    create_time = db.Column(db.DateTime, default=datetime.now())
 
 
 class Staff(db.Model):

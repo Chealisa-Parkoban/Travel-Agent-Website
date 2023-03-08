@@ -1,6 +1,8 @@
+import wtforms
 from flask_wtf import FlaskForm, RecaptchaField
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, DateField, SelectField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, URL
+from models import EmailCaptchaModel, UserModel
 
 
 # Using FlaskForm to collect data from user
@@ -69,3 +71,20 @@ class SignupForm(FlaskForm):
 
     # recaptcha = RecaptchaField()
     submit = SubmitField('')
+
+    def validate_captcha(self, field):
+        captcha = field.data
+        email = self.email.data
+        captcha_model = EmailCaptchaModel.query.filter_by(email=email).first()
+        if not captcha_model or captcha_model.captcha.lower() == captcha.lower():
+            # 首先这个email是否存在其次这个email对应的captcha是不是和user输入的captcha一样
+            raise wtforms.ValidationError("邮箱验证码错误！")
+
+    def validate_email(self, field):
+        email = field.data
+        user_model = UserModel.query.filter_by(email=email).first()
+        if user_model:
+            raise wtforms.ValidationError("邮箱已经存在！")
+
+
+

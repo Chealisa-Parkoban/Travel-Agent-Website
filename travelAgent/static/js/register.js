@@ -10,7 +10,8 @@ function bindCaptchaBtnClick(){
         }
         // 通过js发送网络请求，ajax，异步js和xml
         $.ajax({
-            url: "/user/captcha",
+            url: "/captcha",
+            // url: "../views/login_handler/captcha",
             method: "POST",
             data: {
                 "email": email

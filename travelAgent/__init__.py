@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_mail import Mail
 
 import travelAgent.config
 from travelAgent.config import Config
@@ -14,6 +15,7 @@ app.config.from_object(Config)
 # create database for the app
 
 db = SQLAlchemy(app)
+mail = Mail(app)
 
 # Very important!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # from travelAgent import app, models
