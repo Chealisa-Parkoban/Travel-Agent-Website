@@ -104,16 +104,18 @@
                                 {#                      <button type="submit" class="btn btn-block btn-lg bg-white mt-4">Sign in</button>#}
                                 {#                    </form>#}
 
-                                <form action="{{ url_for('account.login') }}" method="post" novalidate class="form-primary">
+                                <form action="{{ url_for('account.login') }}" method="post" novalidate
+                                      class="form-primary">
                                     {{ form.csrf_token }}
                                     {% if message != null %}
-                                        <script type="text/javascript" >
+                                        <script type="text/javascript">
                                             alert("Wrong username or password!")
                                         </script>
                                     {% endif %}
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">User name</label>
-                                        <input type="text" class="form-control" id="input_email" placeholder="Username" name="username">
+                                        <input type="text" class="form-control" id="input_email" placeholder="Username"
+                                               name="username">
                                         <!-- the input box for user to type username -->
                                         {% for error in form.username.errors %}
                                             <!-- report error in red to user when get error from backend -->
@@ -124,16 +126,25 @@
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Password</label>
                                         <input type="password" class="form-control" id="input_password"
-                                               placeholder="Password" name="password"> <!-- the input box for user to type password -->
+                                               placeholder="Password" name="password">
+                                        <!-- the input box for user to type password -->
 
                                         {% for error in form.password.errors %}
                                             <!-- report error in red to user when get error from backend -->
                                             <span style="color: #fff200;">[{{ error }}]</span>
                                         {% endfor %}
                                     </div>
+                                    <div class="form-check text-left mt-4">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                                               checked>
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                            Remember me
+                                        </label>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-block btn-lg bg-white mt-4">Sign in</button>
                                     <div class="text-right mt-4"><a href="#" class="text-white">Forgot password?</a>
                                     </div>
-                                    <button type="submit" class="btn btn-block btn-lg bg-white mt-4">Sign in</button>
                                 </form>
 
                             </div>
