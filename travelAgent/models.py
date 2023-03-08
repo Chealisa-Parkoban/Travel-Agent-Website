@@ -12,8 +12,8 @@ from travelAgent import db
 
 # This model stores user's information
 
-class UserModel(db.Model):
-    __tablename__ = "Users"
+class User(db.Model):
+    __tablename__ = "user"
     __table_args__ = {'extend_existing': True}
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
@@ -55,7 +55,7 @@ class EmailCaptchaModel(db.Model):
 
 
 class Staff(db.Model):
-    # extend_existing = True
+    __table_args__ = {'extend_existing': True}
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
     username = db.Column(db.String(64), index=True, unique=True, nullable=False)  # username is String and unique
@@ -81,13 +81,14 @@ class Staff(db.Model):
 
 
 class Destination(db.Model):
-    # extend_existing = True
+    __table_args__ = {'extend_existing': True}
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
     name = db.Column(db.String(64), index=True, unique=True, nullable=False)  # name is String
 
 
 class Attraction(db.Model):
+    __table_args__ = {'extend_existing': True}
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
     name = db.Column(db.String(64), index=True, unique=True, nullable=False)  # name is String
@@ -98,6 +99,7 @@ class Attraction(db.Model):
 
 
 class Accommodation(db.Model):
+    __table_args__ = {'extend_existing': True}
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
     name = db.Column(db.String(64), index=True, unique=True, nullable=False)  # name is String
@@ -107,6 +109,7 @@ class Accommodation(db.Model):
 
 
 class Traffic(db.Model):
+    __table_args__ = {'extend_existing': True}
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
     name = db.Column(db.String(64), index=True, unique=True, nullable=False)  # name is String
@@ -120,6 +123,7 @@ class Traffic(db.Model):
 
 # Including traffic and accommodation type
 class Type(db.Model):
+    __table_args__ = {'extend_existing': True}
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
     name = db.Column(db.String(64), index=True, unique=True, nullable=False)  # name is String
@@ -129,6 +133,7 @@ class Type(db.Model):
 # Update this table as we add attractions, accommodations, and transportation,
 # adding the appropriate ids
 class Atom(db.Model):
+    __table_args__ = {'extend_existing': True}
     # id is the primary key
     id = db.Column(db.INTEGER, primary_key=True, nullable=False)
     # 0:attraction 1:accommodation 2:traffic
@@ -136,6 +141,7 @@ class Atom(db.Model):
 
 
 class Booking(db.Model):
+    __table_args__ = {'extend_existing': True}
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
     user_id = db.Column(db.INTEGER, db.ForeignKey('user.id'))
@@ -147,6 +153,7 @@ class Booking(db.Model):
 
 
 class Comment(db.Model):
+    __table_args__ = {'extend_existing': True}
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
     user_id = db.Column(db.INTEGER, db.ForeignKey('user.id'))

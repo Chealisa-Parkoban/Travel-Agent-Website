@@ -2,7 +2,7 @@ import wtforms
 from flask_wtf import FlaskForm, RecaptchaField
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, DateField, SelectField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, URL
-from models import EmailCaptchaModel, UserModel
+from models import EmailCaptchaModel, User
 
 
 # Using FlaskForm to collect data from user
@@ -82,7 +82,7 @@ class SignupForm(FlaskForm):
 
     def validate_email(self, field):
         email = field.data
-        user_model = UserModel.query.filter_by(email=email).first()
+        user_model = User.query.filter_by(email=email).first()
         if user_model:
             raise wtforms.ValidationError("邮箱已经存在！")
 

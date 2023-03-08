@@ -4,20 +4,20 @@ from datetime import datetime
 
 import flask
 from flask import Blueprint, request, redirect, url_for, abort, flash, render_template, jsonify
-from flask_login import LoginManager, UserMixin, login_user, logout_user
+from flask_login import LoginManager, UserMixin, login_user, logout_user, current_user
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_mail import Mail, Message
 
 from travelAgent import app, db, mail
 from travelAgent.forms import LoginForm, SignupForm
 
-from travelAgent.models import UserModel, EmailCaptchaModel
+from travelAgent.models import User, EmailCaptchaModel
 
 login_manager = LoginManager()
 login_manager.init_app(app)
 
 login_blueprint = Blueprint(name="account", import_name=__name__)
-current_user = flask.login.current_user
+current_user = current_user
 
 
 class my_user(UserMixin):
@@ -51,7 +51,7 @@ def login():
         if form.validate_on_submit():
             username = form.username.data
             password = form.password.data
-            users = UserModel.query.all()
+            users = User.query.all()
 
             for u in users:
                 # if username-password pair exists in the database, login successfully
@@ -92,7 +92,7 @@ def sign_up():
 
             # session['userExist'] = 'false'
             # store user's information into database
-            u1 = UserModel(username=newname, email=email, password_hash=password_hash)
+            u1 = User(username=newname, email=email, password_hash=password_hash)
             db.session.add(u1)
             db.session.commit()
             app.logger.info('User \'' + newname + '\' has successfully signed up')
@@ -116,7 +116,7 @@ def get_captcha():
     captcha = "".join(random.sample(captcha_source, 6))
     if email:
         message = Message(
-            subject="邮箱测试",
+            subject="【Digital Beans】Verification Code",
             recipients=[email],
             body=f"【Digital Beans】您的注册验证码是：{captcha}。请不要告诉任何人哦！"
         )
