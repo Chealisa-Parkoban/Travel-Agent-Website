@@ -190,13 +190,13 @@ class Combination(db.Model):
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
     # max: 7 days
-    day1 = db.Column(db.INTEGER, db.ForeignKey('Day.id'))
-    day2 = db.Column(db.INTEGER, db.ForeignKey('Day.id'))
-    day3 = db.Column(db.INTEGER, db.ForeignKey('Day.id'))
-    day4 = db.Column(db.INTEGER, db.ForeignKey('Day.id'))
-    day5 = db.Column(db.INTEGER, db.ForeignKey('Day.id'))
-    day6 = db.Column(db.INTEGER, db.ForeignKey('Day.id'))
-    day7 = db.Column(db.INTEGER, db.ForeignKey('Day.id'))
+    day1 = db.Column(db.INTEGER, db.ForeignKey('day.id'))
+    day2 = db.Column(db.INTEGER, db.ForeignKey('day.id'))
+    day3 = db.Column(db.INTEGER, db.ForeignKey('day.id'))
+    day4 = db.Column(db.INTEGER, db.ForeignKey('day.id'))
+    day5 = db.Column(db.INTEGER, db.ForeignKey('day.id'))
+    day6 = db.Column(db.INTEGER, db.ForeignKey('day.id'))
+    day7 = db.Column(db.INTEGER, db.ForeignKey('day.id'))
     length = db.Column(db.INTEGER, nullable=False)
 
 
@@ -308,7 +308,7 @@ class ReplyC(db.Model):
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
     user_id = db.Column(db.INTEGER, db.ForeignKey('user.id'))
-    comment_id = db.Column(db.INTEGER, db.ForeignKey('commentC.id'))
+    comment_id = db.Column(db.INTEGER, db.ForeignKey('comment_c.id'))
     content = db.Column(db.String(240))
     time = db.Column(db.String(120))
 
@@ -319,7 +319,7 @@ class ReplyA(db.Model):
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
     user_id = db.Column(db.INTEGER, db.ForeignKey('user.id'))
-    comment_id = db.Column(db.INTEGER, db.ForeignKey('commentA.id'))
+    comment_id = db.Column(db.INTEGER, db.ForeignKey('comment_a.id'))
     content = db.Column(db.String(240))
     time = db.Column(db.String(120))
 
@@ -330,6 +330,6 @@ class ReplyH(db.Model):
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
     user_id = db.Column(db.INTEGER, db.ForeignKey('user.id'))
-    comment_id = db.Column(db.INTEGER, db.ForeignKey('commentH.id'))
+    comment_id = db.Column(db.INTEGER, db.ForeignKey('comment_h.id'))
     content = db.Column(db.String(240))
     time = db.Column(db.String(120))
