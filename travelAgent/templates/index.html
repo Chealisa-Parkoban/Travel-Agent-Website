@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}{% endblock %}Welcome to Digital Beans</title>
     <!--    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
     <!--    <meta name="description"-->
     <!--          content="Probably the most complete UI kit out there. Multiple functionalities and controls added,  extended color palette and beautiful typography, designed as its own extended version of Bootstrap at  the highest level of quality.                             ">-->
@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800|Roboto:400,500,700" rel="stylesheet">
     <!-- Theme CSS -->
     <link type="text/css" href="../static/css/theme.css" rel="stylesheet">
-{#    <link type="text/css" href="{{ url_for('static', filename='/assets/css/theme.css') }}" rel="stylesheet">#}
+    {#    <link type="text/css" href="{{ url_for('static', filename='/assets/css/theme.css') }}" rel="stylesheet">#}
     <!-- Demo CSS - No need to use these in your project -->
     <link type="text/css" href="../static/css/demo.css" rel="stylesheet">
 
@@ -36,28 +36,30 @@
         <div class="navbar-collapse offcanvas-collapse" id="navbar_main">
             <ul class="navbar-nav ml-auto align-items-lg-center">
                 <h6 class="dropdown-header font-weight-600 d-lg-none px-0">Menu</h6>
-                <li class="nav-item active">
-                    <a class="nav-link" href="./index.html">Overview</a>
+                {#                <li class="nav-item active">#}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for("index") }}">Overview</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbar_main_dropdown_1" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
                     <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
-                        <a class="dropdown-item" href="{{ url_for("index") }}">Homepage</a>
+                        <a class="dropdown-item" href="{{ url_for("homepage") }}">Homepage</a>
                         <a class="dropdown-item" href="{{ url_for("about") }}">About us</a>
-                        <a class="dropdown-item" href="{{ url_for("customer_login") }}">Sign in</a>
-                        <a class="dropdown-item" href="contact.html">Contact</a>
+                        <a class="dropdown-item" href="{{ url_for('account.login') }}">Sign in</a>
+                        <a class="dropdown-item" href="{{ url_for('account.sign_up') }}">Register</a>
+                        <a class="dropdown-item" href="{{ url_for('contact_us') }}">Contact</a>
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./docs/introduction.html">Docs</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://github.com/webpixels/boomerang-ui-kit/archive/master.zip" target="_blank"
-                       class="nav-link d-lg-none">Download Free</a>
-                    <a href="https://github.com/webpixels/boomerang-ui-kit/archive/master.zip" target="_blank"
-                       class="btn btn-sm bg-white d-none d-lg-inline-flex">Download Free</a>
-                </li>
+                {#                <li class="nav-item">#}
+                {#                    <a class="nav-link" href="./docs/introduction.html">Docs</a>#}
+                {#                </li>#}
+{#                <li class="nav-item">#}
+{#                    <a href="https://github.com/webpixels/boomerang-ui-kit/archive/master.zip" target="_blank"#}
+{#                       class="nav-link d-lg-none">Download Free</a>#}
+{#                    <a href="https://github.com/webpixels/boomerang-ui-kit/archive/master.zip" target="_blank"#}
+{#                       class="btn btn-sm bg-white d-none d-lg-inline-flex">Download Free</a>#}
+{#                </li>#}
                 <div class="dropdown-divider d-lg-none my-4"></div>
                 <h6 class="dropdown-header font-weight-600 d-lg-none px-0">Social Media</h6>
                 <li class="nav-item">

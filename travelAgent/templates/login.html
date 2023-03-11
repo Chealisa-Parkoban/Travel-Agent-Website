@@ -6,7 +6,7 @@
     <meta name="description"
           content="Probably the most complete UI kit out there. Multiple functionalities and controls added,  extended color palette and beautiful typography, designed as its own extended version of Bootstrap at  the highest level of quality.                             ">
     <meta name="author" content="Webpixels">
-    <title>Contact us</title>
+    <title>Sign in</title>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800|Roboto:400,500,700" rel="stylesheet">
     <!-- Theme CSS -->
@@ -15,7 +15,7 @@
     <link type="text/css" href="../static/css/demo.css" rel="stylesheet">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-transparent navbar-light bg-white py-4">
+<nav class="navbar navbar-expand-lg navbar-transparent navbar-dark bg-dark py-4">
     <div class="container">
         <a class="navbar-brand" href=""><strong>Digital Beans</strong> Traveling</a>
         <button class="navbar-toggler" type="button" data-action="offcanvas-open" data-target="#navbar_main"
@@ -34,19 +34,19 @@
                     <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
                         <a class="dropdown-item" href="{{ url_for("index") }}">Homepage</a>
                         <a class="dropdown-item" href="{{ url_for("about") }}">About us</a>
-                        <a class="dropdown-item" href="{{ url_for('login.login') }}">Sign in</a>
-                        <a class="dropdown-item" href="{{ url_for('register') }}">Register</a>
+                        <a class="dropdown-item" href="{{ url_for('account.login') }}">Sign in</a>
+                        <a class="dropdown-item" href="{{ url_for('account.sign_up') }}">Register</a>
                         <a class="dropdown-item" href="{{ url_for('contact_us') }}">Contact</a>
                     </div>
                 </li>
-                {#                <li class="nav-item">#}
-                {#                    <a class="nav-link" href="../docs/introduction.html">Docs</a>#}
-                {#                </li>#}
+                {#            <li class="nav-item">#}
+                {#              <a class="nav-link" href="../docs/introduction.html">Docs</a>#}
+                {#            </li>#}
                 <li class="nav-item">
                     <a href="https://github.com/webpixels/boomerang-ui-kit/archive/master.zip" target="_blank"
                        class="nav-link d-lg-none">Download Free</a>
                     <a href="https://github.com/webpixels/boomerang-ui-kit/archive/master.zip" target="_blank"
-                       class="btn btn-sm btn-primary d-none d-lg-inline-flex">Download Free</a>
+                       class="btn btn-sm bg-white d-none d-lg-inline-flex">Download Free</a>
                 </li>
                 <div class="dropdown-divider d-lg-none my-4"></div>
                 <h6 class="dropdown-header font-weight-600 d-lg-none px-0">Social Media</h6>
@@ -71,129 +71,85 @@
     </div>
 </nav>
 <main class="main">
-    <section class="slice slice-xl">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-7">
-                    <div class="text-center pt-lg-md">
-                        <h2 class="heading h1 mb-4">
-                            Wanna work together?
-                        </h2>
-                        <p class="lead lh-180">
-                            We are a professional digital agency providing premium themes, UI/UX design and web apps
-                            that you will simply love.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="slice bg-tertiary bg-cover bg-size--cover"
+    <section class="py-xl bg-cover bg-size--cover"
              style="background-image: url('../static/images/backgrounds/img-1.jpg')">
-        <span class="mask bg-tertiary alpha-9"></span>
-        <div class="container">
-            <div class="row cols-xs-space cols-sm-space cols-md-space">
-                <div class="col-lg-6">
-                    <div class="card bg-dark alpha-container text-white border-0 overflow-hidden">
-                        <a href="#" target="_blank">
-                            <div class="card-img-bg"
-                                 style="background-image: url('../static/images/prv/city-1.jpg');"></div>
-                            <span class="mask bg-dark alpha-5 alpha-4--hover"></span>
-                            <div class="card-body px-5 py-5">
-                                <div style="min-height: 300px;">
-                                    <h3 class="heading h1 text-white mb-3">New York Office</h3>
-                                    <p class="mt-4 mb-1 h5 text-white lh-180">
-                                        E: newyork@company.com
-                                    </p>
-                                    <p class="mb-1 h5 text-white lh-180">
-                                        T: 0755.222.333
-                                    </p>
-                                </div>
-                                <span href="#" class="text-white text-uppercase font-weight-500">
-                      See on map
-                      <i class="fas fa-arrow-right ml-2"></i>
-                    </span>
+        <span class="mask bg-primary alpha-6"></span>
+        <div class="container d-flex align-items-center no-padding">
+            <div class="col">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="card bg-primary text-white">
+                            <div class="card-body">
+                                <button type="button" class="btn btn-primary btn-nobg btn-zoom--hover mb-5">
+                                    <span class="btn-inner--icon"><i class="fas fa-arrow-left"></i></span>
+                                </button>
+                                <span class="clearfix"></span>
+                                <img src="../static/images/brand/icon.png" style="width: 50px;">
+                                <h4 class="heading h3 text-white pt-3 pb-5">Welcome back,<br>
+                                    login to your account.</h4>
+
+
+                                {##}
+                                {#                  <form action="" method="post" novalidate class="form-primary">#}
+                                {##}
+                                {#                      <div class="form-group">#}
+                                {#                        <input type="email" class="form-control" id="input_email" placeholder="Your email">#}
+                                {#                      </div>#}
+                                {##}
+                                {#                      <div class="form-group">#}
+                                {#                        <input type="password" class="form-control" id="input_password" placeholder="Password">#}
+                                {#                      </div>#}
+                                {##}
+                                {#                      <div class="text-right mt-4"><a href="#" class="text-white">Forgot password?</a></div>#}
+                                {#                      <button type="submit" class="btn btn-block btn-lg bg-white mt-4">Sign in</button>#}
+                                {#                    </form>#}
+
+                                <form action="{{ url_for('account.login') }}" method="post" novalidate
+                                      class="form-primary">
+                                    {{ form.csrf_token }}
+                                    {% if message != null %}
+                                        <script type="text/javascript">
+                                            alert("Wrong username or password!")
+                                        </script>
+                                    {% endif %}
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">User name</label>
+                                        <input type="text" class="form-control" id="input_email" placeholder="Username"
+                                               name="username">
+                                        <!-- the input box for user to type username -->
+                                        {% for error in form.username.errors %}
+                                            <!-- report error in red to user when get error from backend -->
+                                            <span style="color: #fff200;">[{{ error }}]</span>
+                                        {% endfor %}
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Password</label>
+                                        <input type="password" class="form-control" id="input_password"
+                                               placeholder="Password" name="password">
+                                        <!-- the input box for user to type password -->
+
+                                        {% for error in form.password.errors %}
+                                            <!-- report error in red to user when get error from backend -->
+                                            <span style="color: #fff200;">[{{ error }}]</span>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="form-check text-left mt-4">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                                               checked>
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                            Remember me
+                                        </label>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-block btn-lg bg-white mt-4">Sign in</button>
+                                    <div class="text-right mt-4"><a href="#" class="text-white">Forgot password?</a>
+                                    </div>
+                                </form>
+
                             </div>
-                        </a>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="card bg-dark alpha-container text-white border-0 overflow-hidden">
-                        <a href="#" target="_blank">
-                            <div class="card-img-bg"
-                                 style="background-image: url('../static/images/prv/city-2.jpg');"></div>
-                            <span class="mask bg-dark alpha-5 alpha-4--hover"></span>
-                            <div class="card-body px-5 py-5">
-                                <div style="min-height: 300px;">
-                                    <h3 class="heading h1 text-white mb-3">New York Office</h3>
-                                    <p class="mt-4 mb-1 h5 text-white lh-180">
-                                        E: newyork@company.com
-                                    </p>
-                                    <p class="mb-1 h5 text-white lh-180">
-                                        T: 0755.222.333
-                                    </p>
-                                </div>
-                                <span href="#" class="text-white text-uppercase font-weight-500">
-                      See on map
-                      <i class="fas fa-arrow-right ml-2"></i>
-                    </span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="slice slice-lg">
-        <div class="container">
-            <div class="row align-items-center cols-xs-space cols-sm-space cols-md-space">
-                <div class="col-lg-6">
-                    <h3 class="heading h3 mb-4">Send us a message</h3>
-                    <form>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Name" type="text">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Email address" type="email">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <textarea class="form-control" rows="5" placeholder="Your message"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-4">
-                            <button type="submit" class="btn btn-primary px-4">
-                                Send message
-                            </button>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-lg-5 ml-lg-auto">
-                    <h3 class="heading heading-3 strong-300">
-                        150 Southeast Pidgeon Meadow
-                        <br>
-                        Claflin Terrace, 305458
-                    </h3>
-                    <p class="lead mt-4 mb-4">
-                        E: <a href="#">support@webpixels.io</a>
-                        <br>
-                        T: 0755.222.333
-                    </p>
-                    <p class="">
-                        Probably the most complete UI kit out there. Multiple functionalities and controls added,
-                        extended color palette and beautiful typography, designed as its own extended version of
-                        Bootstrap at the highest level of quality.
-                    </p>
                 </div>
             </div>
         </div>

@@ -1,23 +1,39 @@
-import os
-
-# Find the absolute path that this file (config.py) lives
-basedir = os.path.abspath(os.path.dirname(__file__))
-
 
 class Config(object):
-    # Get secret key from teh computer, if not found using a random string that can be never guessed
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'fsuidvnaliewhbqbvbqi'
 
-    # recaptcha key from Google
-    # Used to verify that it is a robotic operation at the time of registration
-    RECAPTCHA_PUBLIC_KEY = '6LfcGYMiAAAAAF0xYtR-31AbVwL-nIB8b-CXbZNc'
-    RECAPTCHA_PRIVATE_KEY = '6LfcGYMiAAAAAHRo-w4lCiI7Ow5pqv7WWxGUmYdQ'
+    user = 'root'
+    password = 'cyw081902'
+    host = 'localhost'
+    port = '3306'
+    database = 'travelAgent'
 
-    # If there are an environment variable called 'DATABASE_URL', then use it.
-    # If not, use the string to find the default database.
-    # If the default database is not found, create it.
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, 'brainmaker.db')
-
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://' + user + ':' + password + '@localhost:' + port + '/' + database
+    SQLALCHEMY_COMMIT_ON_TEARDOWN = True
     # SQLALCHEMY_BINDS = True
-    # Do not track all the modifications
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+    # user = 'debian-sys-maint'
+    # password = 'tBhcNDnb3ieforAr'
+    # host = 'localhost'
+    # port = '3306'
+    # database = 'travelAgent'
+    #
+    # SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://' + user + ':' + password + '@localhost:' + port + '/' + database
+    # SQLALCHEMY_COMMIT_ON_TEARDOWN = True
+    # # SQLALCHEMY_BINDS = True
+    # SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+    # 邮箱配置
+    # 用自己邮箱qq邮箱
+    MAIL_SERVER = "smtp.163.com"
+    MAIL_PORT = 465
+    MAIL_USE_TLS = False
+    MAIL_USE_SSL = True
+    MAIL_DEBUG = True
+    # MAIL_USERNAME = "3089691062@qq.com"
+    MAIL_USERNAME = "15210087572@163.com"
+    # MAIL_PASSWORD = "gmcpykwckboaddje"
+    # MAIL_PASSWORD = 'ohumgeihybrgddfi'
+    MAIL_PASSWORD = 'PLZEDVYDFBXRXJJX'
+    # MAIL_DEFAULT_SENDER = "3089691062@qq.com"
+    MAIL_DEFAULT_SENDER = "15210087572@163.com"
