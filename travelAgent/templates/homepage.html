@@ -13,729 +13,737 @@
     <link type="text/css" href="../static/css/theme.css" rel="stylesheet">
     <!-- Demo CSS - No need to use these in your project -->
     <link type="text/css" href="../static/css/demo.css" rel="stylesheet">
+    <link type="text/css" href="../static/css/docs4.6.css" rel="stylesheet">
+    <link type="text/css" href="../static/css/index.css" rel="stylesheet">
+    <link type="text/css" href="../static/css/style.css" rel="stylesheet">
+
+    {% block head %}{% endblock %}
+
 </head>
-<body style="background-color: #9fcdff">
-<!--
-{#    <nav class="navbar navbar-expand-lg navbar-transparent navbar-dark bg-dark py-4">#}
-{#      <div class="container">#}
-{#        <a class="navbar-brand" href=""><strong>Boomerang</strong> UI Kit</a>#}
-{#        <button class="navbar-toggler" type="button" data-action="offcanvas-open" data-target="#navbar_main" aria-controls="navbar_main" aria-expanded="false" aria-label="Toggle navigation">#}
-{#          <span class="navbar-toggler-icon"></span>#}
-{#        </button>#}
-{#        <div class="navbar-collapse offcanvas-collapse" id="navbar_main">#}
-{#          <ul class="navbar-nav ml-auto align-items-lg-center">#}
-{#            <h6 class="dropdown-header font-weight-600 d-lg-none px-0">Menu</h6>#}
-{#            <li class="nav-item ">#}
-{#              <a class="nav-link" href="index.html">Overview</a>#}
-{#            </li>#}
-{#            <li class="nav-item dropdown">#}
-{#              <a class="nav-link dropdown-toggle" href="#" id="navbar_main_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>#}
-{#              <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">#}
-{#                <a class="dropdown-item" href="homepage.html">Homepage</a>#}
-{#                <a class="dropdown-item" href="about.html">About us</a>#}
-{#                <a class="dropdown-item" href="{{url_for('login.login')}}">Sign in</a>#}
-{#                <a class="dropdown-item" href="contact.html">Contact</a>#}
-{#              </div>#}
-{#            </li>#}
-{#            <li class="nav-item">#}
-{#              <a class="nav-link" href="../docs/introduction.html">Docs</a>#}
-{#            </li>#}
-{#            <li class="nav-item">#}
-{#              <a href="https://github.com/webpixels/boomerang-ui-kit/archive/master.zip" target="_blank" class="nav-link d-lg-none">Download Free</a>#}
-{#              <a href="https://github.com/webpixels/boomerang-ui-kit/archive/master.zip" target="_blank" class="btn btn-sm bg-white d-none d-lg-inline-flex">Download Free</a>#}
-{#            </li>#}
-{#            <div class="dropdown-divider d-lg-none my-4"></div>#}
-{#            <h6 class="dropdown-header font-weight-600 d-lg-none px-0">Social Media</h6>#}
-{#            <li class="nav-item">#}
-{#              <a class="nav-link nav-link-icon" href="https://instagram.com/webpixelsofficial/" target="_blank"><i class="fab fa-instagram"></i><span class="ml-2 d-lg-none">Instagram</span></a>#}
-{#            </li>#}
-{#            <li class="nav-item">#}
-{#              <a class="nav-link nav-link-icon" href="https://web.facebook.com/webpixels" target="_blank"><i class="fab fa-facebook"></i><span class="ml-2 d-lg-none">Facebook</span></a>#}
-{#            </li>#}
-{#            <li class="nav-item">#}
-{#              <a class="nav-link nav-link-icon" href="https://dribbble.com/webpixels" target="_blank"><i class="fab fa-dribbble"></i><span class="ml-2 d-lg-none">Dribbble</span></a>#}
-{#            </li>#}
-{#            <li class="nav-item">#}
-{#              <a class="nav-link nav-link-icon" href="https://github.com/webpixels" target="_blank"><i class="fab fa-github"></i><span class="ml-2 d-lg-none">Github</span></a>#}
-{#            </li>#}
-{#          </ul>#}
-{#        </div>#}
-{#      </div>#}
-{#    </nav>#}
-{#    <main class="main">#}
-{#      <section class="spotlight bg-cover bg-size--cover" style="background-image: url('../assets/images/backgrounds/img-1.jpg')">#}
-{#        <span class="mask bg-primary alpha-7"></span>#}
-{#        <div class="spotlight-holder py-sm pt-lg-lg">#}
-{#          <div class="container d-flex align-items-center">#}
-{#            <div class="row cols-xs-space cols-sm-space cols-md-space align-items-center justify-content-around">#}
-{#              <div class="col-lg-5 text-center">#}
-{#                <h2 class="heading h1 text-white strong-400">#}
-{#                  Want to take your project to the next level?#}
-{#                </h2>#}
-{#                <p class="lead text-white mt-4">#}
-{#                  We put all the experience and know-how in thi product so we can offer you the best product we have ever built.#}
-{#                </p>#}
-{#                <a href="#" target="_blank" class="btn bg-white mt-4">#}
-{#                  Learn more#}
-{#                </a>#}
-{#              </div>#}
-{#              <div class="col-lg-5">#}
-{#                <div class="position-relative">#}
-{#                  <img src="../static/images/slider/iphone.png" class="img-center img-fluid rounded">#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
-{#          </div>#}
-{#        </div>#}
-{#      </section>#}
-{#      <section class="py-5 bg-lighter border-top border-bottom" id="scrollToSection">#}
-{#        <div class="container">#}
-{#          <div class="d-flex align-items-center justify-content-center">#}
-{#            <a href="#" class="btn btn-danger btn-icon-only btn-zoom--hover rounded-circle">#}
-{#              <span class="btn-inner--icon"><i class="fas fa-heart"></i></span>#}
-{#            </a>#}
-{#            <span class="heading h4 ml-3 mb-0">Build professional and modern looking websites in no time.</span>#}
-{#          </div>#}
-{#        </div>#}
-{#      </section>#}
-{#      <section class="slice slice-lg" data-delimiter="1">#}
-{#        <div class="container">#}
-{#          <div class="row cols-xs-space cols-sm-space align-items-center">#}
-{#            <div class="col-md-6">#}
-{#              <img src="../static/images/prv/img-1-1000x900.jpg" class="img-center img-fluid rounded z-depth-3">#}
-{#            </div>#}
-{#            <div class="col-md-6 col-lg-5 ml-lg-auto">#}
-{#              <div class="pr-md-4">#}
-{#                <h3 class="heading h3">#}
-{#                  All the features you need for a professional website#}
-{#                </h3>#}
-{#                <p class="lead text-gray mt-4">With Boomerang UI you get components and examples, including tons of variables that will help you customize this theme with ease.#}
-{#                </p>#}
-{#              </div>#}
-{#            </div>#}
-{#          </div>#}
-{#        </div>#}
-{#      </section>#}
-{#      <section class="slice slice-lg" data-delimiter="1">#}
-{#        <div class="container">#}
-{#          <div class="mb-md text-center">#}
-{#            <h3 class="heading h3">With <i class="fas fa-heart text-danger px-2"></i> from the Webpixels team</h3>#}
-{#            <div class="fluid-paragraph text-center mt-4">#}
-{#              <p class="lead lh-180">Working with the most used framework in the world, Bootstrap, we want to extend its functionality and user interface possibilities so you can get even close to the final product, which is your website.</p>#}
-{#            </div>#}
-{#          </div>#}
-{#          <div class="row cols-xs-space cols-sm-space cols-md-space">#}
-{#            <div class="col-lg-4">#}
-{#              <div class="card">#}
-{#                <img src="../static/images/prv/team-1.jpg" class="card-img-top">#}
-{#                <div class="card-body text-center">#}
-{#                  <h3 class="heading h5 mb-1">#}
-{#                    <span class="d-block">Alexis Enache</span>#}
-{#                    <small class="text-muted">Founder and Web Developer</small>#}
-{#                  </h3>#}
-{#                  <p class="mt-2">Creator of Boomerang, developer at Webpixels.</p>#}
-{#                  <a href="https://instagram.com/extrabright" target="_blank" class="btn btn-sm btn-primary">View on Instagram</a>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
-{#            <div class="col-lg-4">#}
-{#              <div class="card">#}
-{#                <img src="../static/images/prv/team-2.jpg" class="card-img-top">#}
-{#                <div class="card-body text-center">#}
-{#                  <h3 class="heading h5 mb-1">#}
-{#                    <span class="d-block">David Wally</span>#}
-{#                    <small class="text-muted">UI/UX Designer</small>#}
-{#                  </h3>#}
-{#                  <p class="mt-2">Design at Webpixels, creator of Boomerang.</p>#}
-{#                  <a href="https://instagram.com/extrabright" target="_blank" class="btn btn-sm btn-primary">View on Instagram</a>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
-{#            <div class="col-lg-4">#}
-{#              <div class="card">#}
-{#                <img src="../static/images/prv/team-3.jpg" class="card-img-top">#}
-{#                <div class="card-body text-center">#}
-{#                  <h3 class="heading h5 mb-1">#}
-{#                    <span class="d-block">Cliff Simon</span>#}
-{#                    <small class="text-muted">Front-End Developer</small>#}
-{#                  </h3>#}
-{#                  <p class="mt-2">Clean code developer, creator of Boomerang</p>#}
-{#                  <a href="https://instagram.com/extrabright" target="_blank" class="btn btn-sm btn-primary">View on Instagram</a>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
-{#          </div>#}
-{#        </div>#}
-{#      </section>#}
-{#      <section class="slice slice-xl" data-delimiter="1">#}
-{#        <div class="container">#}
-{#          <div class="row cols-xs-space cols-sm-space align-items-center">#}
-{#            <div class="col-md-6 order-md-2 ml-lg-auto">#}
-{#              <img src="../static/images/prv/img-2-1000x900.jpg" class="img-center img-fluid rounded z-depth-3">#}
-{#            </div>#}
-{#            <div class="col-md-6 col-lg-5 order-md-1">#}
-{#              <div class="pr-md-4">#}
-{#                <h3 class="heading h3">#}
-{#                  Documentation and tooling#}
-{#                </h3>#}
-{#                <p class="lead text-gray mt-4">Every component and plugin is thoroughly documented with live examples and code blocks for easier use and customization—just like Bootstrap itself. Not comfortable diving that deep? No worries, you can get started by double clicking index.html!</p>#}
-{#              </div>#}
-{#            </div>#}
-{#          </div>#}
-{#        </div>#}
-{#      </section>#}
-{#      <section class="slice slice-lg" data-delimiter="1">#}
-{#        <div class="container">#}
-{#          <div class="px-4">#}
-{#            <div class="row justify-content-center cols-xs-space cols-sm-space cols-md-space">#}
-{#              <div class="col-lg-7">#}
-{#                <div class="text-center">#}
-{#                  <h1 class="heading h3">#}
-{#                    Curious about what you get in the FREE version?#}
-{#                  </h1>#}
-{#                  <p class="lead lh-180 mt-4">#}
-{#                    One thing is for sure. You will be impressed of how much you receive with this free version of Boomerang UI. We offer more than any other UI kit has offered before. This is our way of showing that we are here to deliver, day by day, for a better web experience.#}
-{#                  </p>#}
-{#                  <div class="btn-container mt-5">#}
-{#                    <a href="#" class="btn btn-primary">#}
-{#                      Download FREE#}
-{#                    </a>#}
-{#                    <a href="#" class="btn btn-link">See all features</a>#}
-{#                  </div>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
-{#          </div>#}
-{#        </div>#}
-{#      </section>#}
-{#      <section class="slice slice-xl pb-5">#}
-{#        <div class="container">#}
-{#          <div class="row align-items-center mb-lg-lg">#}
-{#            <div class="col-lg-4">#}
-{#              <div class="mb-lg mb-lg-0 text-center text-lg-left">#}
-{#                <h3 class="heading h3">Free page examples</h3>#}
-{#                <p class="mt-3">Now it's much easier to build web pages starting from this nice examples.</p>#}
-{#              </div>#}
-{#            </div>#}
-{#            <div class="col-lg-8">#}
-{#              <div class="row">#}
-{#                <div class="col-md-6">#}
-{#                  <div class="card bg-lighter mb-lg mb-lg-0">#}
-{#                    <div class="px-3">#}
-{#                      <img class="card-img z-depth-2" src="../static/images/prv/screen-homepage.jpg" style="margin-top: -30px;" alt="Homapage">#}
-{#                    </div>#}
-{#                    <div class="card-body">#}
-{#                      <h5 class="card-title mb-2">Homepage</h5>#}
-{#                      <p class="card-text ">More than you need to create a beautiful landing page.</p>#}
-{#                    </div>#}
-{#                  </div>#}
-{#                </div>#}
-{#                <div class="col-md-6">#}
-{#                  <div class="card bg-lighter mb-lg mb-lg-0">#}
-{#                    <div class="px-3">#}
-{#                      <img class="card-img z-depth-2" src="../static/images/prv/screen-about.jpg" style="margin-top: -30px;" alt="Homapage">#}
-{#                    </div>#}
-{#                    <div class="card-body">#}
-{#                      <h5 class="card-title mb-2">About us</h5>#}
-{#                      <p class="card-text">All the features for a complete company description.</p>#}
-{#                    </div>#}
-{#                  </div>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
-{#          </div>#}
-{#          <div class="row">#}
-{#            <div class="col-md-4">#}
-{#              <div class="card bg-lighter mb-lg mb-lg-0">#}
-{#                <div class="px-3">#}
-{#                  <img class="card-img z-depth-2" src="../static/images/prv/screen-cover.jpg" style="margin-top: -30px;" alt="Homapage">#}
-{#                </div>#}
-{#                <div class="card-body">#}
-{#                  <h5 class="card-title mb-2">Cover</h5>#}
-{#                  <p class="card-text">A one-page template for building simple and beautiful home pages.</p>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
-{#            <div class="col-md-4">#}
-{#              <div class="card bg-lighter mb-lg mb-lg-0">#}
-{#                <div class="px-3">#}
-{#                  <img class="card-img z-depth-2" src="../static/images/prv/screen-contact.jpg" style="margin-top: -30px;" alt="Homapage">#}
-{#                </div>#}
-{#                <div class="card-body">#}
-{#                  <h5 class="card-title mb-2">Contact</h5>#}
-{#                  <p class="card-text">List your company information next to a nice contact form.</p>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
-{#            <div class="col-md-4">#}
-{#              <div class="card bg-lighter mb-lg mb-lg-0">#}
-{#                <div class="px-3">#}
-{#                  <img class="card-img z-depth-2" src="../static/images/prv/screen-login.jpg" style="margin-top: -30px;" alt="Homapage">#}
-{#                </div>#}
-{#                <div class="card-body">#}
-{#                  <h5 class="card-title mb-2">Sign in</h5>#}
-{#                  <p class="card-text">Custom form layout and design for a simple sign in form.</p>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
-{#          </div>#}
-{#        </div>#}
-{#      </section>#}
-{#      <section class="slice slice-lg">#}
-{#        <div class="container">#}
-{#          <div class="mb-md text-center">#}
-{#            <h3 class="heading h3">The main features of Boomerang UI</h3>#}
-{#            <div class="fluid-paragraph text-center mt-4">#}
-{#              <p class="lead lh-180">You get all Bootstrap components fully customized. Besides, you receive another 5 plugins out of the box and ready to use. <a href="../docs/plugins.html">See the complete list</a></p>#}
-{#            </div>#}
-{#          </div>#}
-{#          <div class="row-wrapper">#}
-{#            <div class="row cols-xs-space cols-sm-space cols-md-space">#}
-{#              <div class="col-md-6">#}
-{#                <div class="card bg-primary">#}
-{#                  <div class="card-body py-5">#}
-{#                    <div class="d-flex align-items-start">#}
-{#                      <div class="icon text-primary">#}
-{#                        <i class="fab fa-twitter text-white"></i>#}
-{#                      </div>#}
-{#                      <div class="icon-text">#}
-{#                        <h3 class="heading text-white h4">Latest Bootstrap framework <small>(v4.0.0)</small></h3>#}
-{#                        <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>#}
-{#                      </div>#}
-{#                    </div>#}
-{#                  </div>#}
-{#                </div>#}
-{#              </div>#}
-{#              <div class="col-md-6">#}
-{#                <div class="card">#}
-{#                  <div class="card-body py-5">#}
-{#                    <div class="d-flex align-items-start">#}
-{#                      <div class="icon text-primary">#}
-{#                        <i class="fab fa-sass"></i>#}
-{#                      </div>#}
-{#                      <div class="icon-text">#}
-{#                        <h3 class="heading h4">Built with Sass <small>(included)</small></h3>#}
-{#                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>#}
-{#                      </div>#}
-{#                    </div>#}
-{#                  </div>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
-{#            <div class="row cols-xs-space cols-sm-space cols-md-space">#}
-{#              <div class="col-md-6">#}
-{#                <div class="card bg-primary">#}
-{#                  <div class="card-body py-5">#}
-{#                    <div class="d-flex align-items-start">#}
-{#                      <div class="icon text-primary">#}
-{#                        <i class="fas fa-th-large text-white"></i>#}
-{#                      </div>#}
-{#                      <div class="icon-text">#}
-{#                        <h3 class="heading text-white h4">50 customized components</h3>#}
-{#                        <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>#}
-{#                      </div>#}
-{#                    </div>#}
-{#                  </div>#}
-{#                </div>#}
-{#              </div>#}
-{#              <div class="col-md-6">#}
-{#                <div class="card">#}
-{#                  <div class="card-body py-5">#}
-{#                    <div class="d-flex align-items-start">#}
-{#                      <div class="icon text-primary">#}
-{#                        <i class="fas fa-tint"></i>#}
-{#                      </div>#}
-{#                      <div class="icon-text">#}
-{#                        <h3 class="heading h4">Extended color palette</h3>#}
-{#                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>#}
-{#                      </div>#}
-{#                    </div>#}
-{#                  </div>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
-{#          </div>#}
-{#        </div>#}
-{#      </section>#}
-{#      <section class="slice slice-lg bg-cover bg-size--cover" style="background: url('../assets/images/backgrounds/img-2.jpg') center center;">#}
-{#        <div class="mask bg-dark alpha-7"></div>#}
-{#        <div class="container">#}
-{#          <div class="row">#}
-{#            <div class="col-lg-6 ml-lg-auto">#}
-{#              <div class="card py-5 px-4 z-depth-3">#}
-{#                <div class="card-body">#}
-{#                  <h2 class="heading h2">#}
-{#                    <strong>Design</strong> is thinking made visual.#}
-{#                  </h2>#}
-{#                  <p class="lead lh-180 mt-4">#}
-{#                    Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna. Ut enim ad minim veniam quis nostrud exercitation.#}
-{#                  </p>#}
-{#                  <div class="btn-container mt-5">#}
-{#                    <a href="#" class="btn btn-lg btn-primary px-5">Our mission</a>#}
-{#                  </div>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
-{#          </div>#}
-{#        </div>#}
-{#      </section>#}
-{#      <section class="slice slice-lg" data-delimiter="1">#}
-{#        <div class="container">#}
-{#          <div class="mb-md text-center">#}
-{#            <h3 class="heading h3">Complete list of included features</h3>#}
-{#            <div class="fluid-paragraph text-center mt-4">#}
-{#              <p class="lead lh-180">You get all Bootstrap components fully customized. Besides, you receive another 5 plugins out of the box and ready to use.</p>#}
-{#            </div>#}
-{#          </div>#}
-{#          <div class="row-wrapper">#}
-{#            <div class="row cols-xs-space cols-sm-space cols-md-space">#}
-{#              <div class="col-lg-4">#}
-{#                <div class="">#}
-{#                  <div class="icon text-primary mb-3">#}
-{#                    <i class="fas fa-expand"></i>#}
-{#                  </div>#}
-{#                  <h5 class="heading h5">Responsive design</h5>#}
-{#                  <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>#}
-{#                </div>#}
-{#              </div>#}
-{#              <div class="col-lg-4">#}
-{#                <div class="">#}
-{#                  <div class="icon text-primary mb-3">#}
-{#                    <i class="fas fa-code"></i>#}
-{#                  </div>#}
-{#                  <h5 class="heading h5">Clever markup</h5>#}
-{#                  <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>#}
-{#                </div>#}
-{#              </div>#}
-{#              <div class="col-lg-4">#}
-{#                <div class="">#}
-{#                  <div class="icon text-primary mb-3">#}
-{#                    <i class="fas fa-question-circle"></i>#}
-{#                  </div>#}
-{#                  <h5 class="heading h5">Technical support</h5>#}
-{#                  <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
-{#            <div class="row cols-xs-space cols-sm-space cols-md-space">#}
-{#              <div class="col-lg-4">#}
-{#                <div class="">#}
-{#                  <div class="icon text-primary mb-3">#}
-{#                    <i class="fas fa-file-alt"></i>#}
-{#                  </div>#}
-{#                  <h5 class="heading h4">5 page examples</h5>#}
-{#                  <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>#}
-{#                </div>#}
-{#              </div>#}
-{#              <div class="col-lg-4">#}
-{#                <div class="">#}
-{#                  <div class="icon text-primary mb-3">#}
-{#                    <i class="fas fa-puzzle-piece"></i>#}
-{#                  </div>#}
-{#                  <h5 class="heading h4">5 customized plugins</h5>#}
-{#                  <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>#}
-{#                </div>#}
-{#              </div>#}
-{#              <div class="col-lg-4">#}
-{#                <div class="">#}
-{#                  <div class="icon text-primary mb-3">#}
-{#                    <i class="fas fa-th"></i>#}
-{#                  </div>#}
-{#                  <h5 class="heading h4">50+ components</h5>#}
-{#                  <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
-{#            <div class="row cols-xs-space cols-sm-space cols-md-space">#}
-{#              <div class="col-lg-4">#}
-{#                <div class="">#}
-{#                  <div class="icon text-primary mb-3">#}
-{#                    <i class="fas fa-tint"></i>#}
-{#                  </div>#}
-{#                  <h5 class="heading h4">Unlimited colors</h5>#}
-{#                  <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>#}
-{#                </div>#}
-{#              </div>#}
-{#              <div class="col-lg-4">#}
-{#                <div class="">#}
-{#                  <div class="icon text-primary mb-3">#}
-{#                    <i class="fas fa-font"></i>#}
-{#                  </div>#}
-{#                  <h5 class="heading h4">Custom fonts</h5>#}
-{#                  <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>#}
-{#                </div>#}
-{#              </div>#}
-{#              <div class="col-lg-4">#}
-{#                <div class="">#}
-{#                  <div class="icon text-primary mb-3">#}
-{#                    <i class="fab fa-sass"></i>#}
-{#                  </div>#}
-{#                  <h5 class="heading h4">Enhanced forms</h5>#}
-{#                  <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
-{#            <div class="row cols-xs-space cols-sm-space cols-md-space">#}
-{#              <div class="col-lg-4">#}
-{#                <div class="">#}
-{#                  <div class="icon text-primary mb-3">#}
-{#                    <i class="fab fa-twitter"></i>#}
-{#                  </div>#}
-{#                  <h5 class="heading h4">Bootstrap 4</h5>#}
-{#                  <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>#}
-{#                </div>#}
-{#              </div>#}
-{#              <div class="col-lg-4">#}
-{#                <div class="">#}
-{#                  <div class="icon text-primary mb-3">#}
-{#                    <i class="fas fa-moon"></i>#}
-{#                  </div>#}
-{#                  <h5 class="heading h4">Font Awesome 5</h5>#}
-{#                  <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>#}
-{#                </div>#}
-{#              </div>#}
-{#              <div class="col-lg-4">#}
-{#                <div class="">#}
-{#                  <div class="icon text-primary mb-3">#}
-{#                    <i class="fab fa-sass"></i>#}
-{#                  </div>#}
-{#                  <h5 class="heading h4">Built with Sass</h5>#}
-{#                  <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
-{#            <div class="row cols-xs-space cols-sm-space cols-md-space">#}
-{#              <div class="col-lg-4">#}
-{#                <div class="">#}
-{#                  <div class="icon text-primary mb-3">#}
-{#                    <i class="fas fa-caret-square-down"></i>#}
-{#                  </div>#}
-{#                  <h5 class="heading h4">Selectpicker</h5>#}
-{#                  <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>#}
-{#                </div>#}
-{#              </div>#}
-{#              <div class="col-lg-4">#}
-{#                <div class="">#}
-{#                  <div class="icon text-primary mb-3">#}
-{#                    <i class="fas fa-tags"></i>#}
-{#                  </div>#}
-{#                  <h5 class="heading h4">Tags input</h5>#}
-{#                  <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>#}
-{#                </div>#}
-{#              </div>#}
-{#              <div class="col-lg-4">#}
-{#                <div class="">#}
-{#                  <div class="icon text-primary mb-3">#}
-{#                    <i class="fas fa-keyboard"></i>#}
-{#                  </div>#}
-{#                  <h5 class="heading h4">Input masks</h5>#}
-{#                  <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
-{#            <div class="row cols-xs-space cols-sm-space cols-md-space">#}
-{#              <div class="col-lg-4">#}
-{#                <div class="">#}
-{#                  <div class="icon text-primary mb-3">#}
-{#                    <i class="fas fa-sliders-h"></i>#}
-{#                  </div>#}
-{#                  <h5 class="heading h4">Range sliders</h5>#}
-{#                  <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>#}
-{#                </div>#}
-{#              </div>#}
-{#              <div class="col-lg-4">#}
-{#                <div class="">#}
-{#                  <div class="icon text-primary mb-3">#}
-{#                    <i class="fab fa-css3-alt"></i>#}
-{#                  </div>#}
-{#                  <h5 class="heading h4">CSS animations</h5>#}
-{#                  <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
-{#          </div>#}
-{#        </div>#}
-{#      </section>#}
-{#      <section class="slice slice-lg">#}
-{#        <div class="container">#}
-{#          <div class="mb-md text-center">#}
-{#            <h3 class="heading h3">Free updates and support</h3>#}
-{#          </div>#}
-{#          <div class="row cols-xs-space cols-sm-space cols-md-space">#}
-{#            <div class="col-lg-4">#}
-{#              <div class="card border-0">#}
-{#                <img class="rounded z-depth-3 img-fluid" src="../static/images/prv/img-3-800x600.jpg" alt="Image description">#}
-{#                <div class="pt-4">#}
-{#                  <h5 class="card-title">Free updates</h5>#}
-{#                  <p class="card-text">Each theme comes with updates for the life of the theme. This means you'll never pay for any bug-fixes and compatibility upgrades for your theme, ever.</p>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
-{#            <div class="col-lg-4">#}
-{#              <div class="card border-0">#}
-{#                <img class="rounded z-depth-3 img-fluid" src="../static/images/prv/img-2-800x600.jpg" alt="Image description">#}
-{#                <div class="pt-4">#}
-{#                  <h5 class="card-title">Licenses</h5>#}
-{#                  <p class="card-text">All our themes have three simple licenses. Free, Multiple and Exteneded Use license are availabled and you can learn more <a href="#">here</a>.</p>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
-{#            <div class="col-lg-4">#}
-{#              <div class="card border-0">#}
-{#                <img class="rounded z-depth-3 img-fluid" src="../static/images/prv/img-1-800x600.jpg" alt="Image description">#}
-{#                <div class="pt-4">#}
-{#                  <h5 class="card-title">Technical support</h5>#}
-{#                  <p class="card-text">We're here to help with your Boomerang UI questions. Shoot us an email at support@webpixels.io and we'll get back to you ASAP.</p>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
-{#          </div>#}
-{#        </div>#}
-{#      </section>#}
-{#      <section class="slice">#}
-{#        <div class="container">#}
-{#          <div class="mb-md text-center">#}
-{#            <h3 class="heading h2">Trusted by over <span class="text-primary">4000</span> clients</h3>#}
-{#            <div class="fluid-paragraph mt-3">#}
-{#              <p class="lead">Start building fast, beautiful and modern looking websites in no time using our theme.</p>#}
-{#            </div>#}
-{#          </div>#}
-{#          <div class="row cols-xs-space cols-sm-space cols-md-space">#}
-{#            <div class="col-md-2 col-6">#}
-{#              <div class="px-4 py-4 border rounded">#}
-{#                <img src="../static/images/prv/client-1.png" class="img-fluid">#}
-{#              </div>#}
-{#            </div>#}
-{#            <div class="col-md-2 col-6">#}
-{#              <div class="px-4 py-4 border rounded">#}
-{#                <img src="../static/images/prv/client-2.png" class="img-fluid">#}
-{#              </div>#}
-{#            </div>#}
-{#            <div class="col-md-2 col-6">#}
-{#              <div class="px-4 py-4 border rounded">#}
-{#                <img src="../static/images/prv/client-3.png" class="img-fluid">#}
-{#              </div>#}
-{#            </div>#}
-{#            <div class="col-md-2 col-6">#}
-{#              <div class="px-4 py-4 border rounded">#}
-{#                <img src="../static/images/prv/client-4.png" class="img-fluid">#}
-{#              </div>#}
-{#            </div>#}
-{#            <div class="col-md-2 col-6">#}
-{#              <div class="px-4 py-4 border rounded">#}
-{#                <img src="../static/images/prv/client-5.png" class="img-fluid">#}
-{#              </div>#}
-{#            </div>#}
-{#            <div class="col-md-2 col-6">#}
-{#              <div class="px-4 py-4 border rounded">#}
-{#                <img src="../static/images/prv/client-6.png" class="img-fluid">#}
-{#              </div>#}
-{#            </div>#}
-{#          </div>#}
-{#        </div>#}
-{#      </section>#}
-{#    </main>#} -->
+
+{#<body style="background: linear-gradient(to bottom, #288cff, #9fcdff, #ffffff) no-repeat fixed center center;">#}
+<body>
 <!-- navbar start -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded">
+{% block body %}
+    <header>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded">
 
 
-    <a class="navbar-brand" href="#">Digital Beans</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_example_1"
-            aria-controls="navbar_example_1" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbar_example_1">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbar_1_dropdown_1" role="button"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
-                    <a class="dropdown-item" href="{{ url_for("index") }}">Overview</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
-                    aria-controls="offcanvasExample">
-                help
+            <a class="navbar-brand" href="#">Digital Beans</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_example_1"
+                    aria-controls="navbar_example_1" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
             </button>
-            <li class="nav-item">
-                <a class="nav-link nav-link-icon" href="#"><i class="fas fa-cogs"></i></a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link nav-link-icon" href="#" id="navbar_1_dropdown_2" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false"><i class="fas fa-bell"></i></a>
-                <div class="dropdown-menu dropdown-menu-right dropdown-menu-xl py-0">
-                    <div class="py-3 px-3">
-                        <h5 class="heading h6 mb-0">Notifications</h5>
+            <div class="collapse navbar-collapse" id="navbar_example_1">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbar_1_dropdown_1" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                        <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
+                            <a class="dropdown-item" href="{{ url_for("index") }}">Overview</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Disabled</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasExample"
+                            aria-controls="offcanvasExample">
+                        help
+                    </button>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-icon" href="#"><i class="fas fa-cogs"></i></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link nav-link-icon" href="#" id="navbar_1_dropdown_2" role="button"
+                           data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false"><i class="fas fa-bell"></i></a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-xl py-0">
+                            <div class="py-3 px-3">
+                                <h5 class="heading h6 mb-0">Notifications</h5>
+                            </div>
+                            <div class="list-group">
+                                <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
+                                    <div class="list-group-img">
+                                        <span class="avatar bg-purple">JD</span>
+                                    </div>
+                                    <div class="list-group-content">
+                                        <div class="list-group-heading">Johnyy Depp <small>10:05 PM</small></div>
+                                        <p class="text-sm">Lorem ipsum dolor sit amet consectetur adipiscing eiusmod
+                                            tempor</p>
+                                    </div>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
+                                    <div class="list-group-img">
+                                        <span class="avatar bg-pink">TC</span>
+                                    </div>
+                                    <div class="list-group-content">
+                                        <div class="list-group-heading">Tom Cruise <small>10:05 PM</small></div>
+                                        <p class="text-sm">Lorem ipsum dolor sit amet consectetur adipiscing eiusmod
+                                            tempor</p>
+                                    </div>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
+                                    <div class="list-group-img">
+                                        <span class="avatar bg-blue">WS</span>
+                                    </div>
+                                    <div class="list-group-content">
+                                        <div class="list-group-heading">Will Smith <small>10:05 PM</small></div>
+                                        <p class="text-sm">Lorem ipsum dolor sit amet consectetur adipiscing eiusmod
+                                            tempor</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="py-3 text-center">
+                                <a href="#" class="link link-sm link--style-3">View all notifications</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link nav-link-icon" href="#" id="navbar_1_dropdown_3" role="button"
+                           data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i></a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <h6 class="dropdown-header">User menu</h6>
+                            <a class="dropdown-item" href="#">
+                                <span class="float-right badge badge-primary">4</span>
+                                <i class="fas fa-envelope text-primary"></i>Messages
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-cog text-primary"></i>Settings
+                            </a>
+                            <div class="dropdown-divider" role="presentation"></div>
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-sign-out-alt text-primary"></i>Sign out
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+{% endblock %}
+<div class="container-fluid">
+    <div class="row flex-xl-nowrap">
+        <div class="col-md-3 col-xl-2 bd-sidebar">
+            <form role="search" class="bd-search d-flex align-items-center">
+                <span class="algolia-autocomplete"
+                      style="position: relative; display: inline-block; direction: ltr;"><input type="search"
+                                                                                                class="form-control ds-input"
+                                                                                                id="search-input"
+                                                                                                placeholder="Search..."
+                                                                                                aria-label="Search for..."
+                                                                                                autocomplete="off"
+                                                                                                data-docs-version="4.6"
+                                                                                                spellcheck="false"
+                                                                                                role="combobox"
+                                                                                                aria-autocomplete="list"
+                                                                                                aria-expanded="false"
+                                                                                                aria-owns="algolia-autocomplete-listbox-0"
+                                                                                                dir="auto"
+                                                                                                style="position: relative; vertical-align: top;"><pre
+                        aria-hidden="true"
+                        style="position: absolute; visibility: hidden; white-space: pre; font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, &quot;Liberation Sans&quot;, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;; font-size: 16px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: normal; text-indent: 0px; text-rendering: auto; text-transform: none;"></pre><span
+                        class="ds-dropdown-menu" role="listbox" id="algolia-autocomplete-listbox-0"
+                        style="position: absolute; top: 100%; z-index: 100; display: none; left: 0px; right: auto;"><div
+                        class="ds-dataset-1"></div></span></span>
+                <button class="btn bd-search-docs-toggle d-md-none p-0 ml-3" type="button" data-toggle="collapse"
+                        data-target="#bd-docs-nav" aria-controls="bd-docs-nav" aria-expanded="false"
+                        aria-label="Toggle docs navigation">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" role="img"
+                         focusable="false"><title>Menu</title>
+                        <path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"
+                              d="M4 7h22M4 15h22M4 23h22"></path>
+                    </svg>
+                </button>
+            </form>
+            <div class="collapse d-md-block row" id="bd-docs-nav">
+                <nav class="bd-links" aria-label="Main navigation">
+
+                    <div class="bd-toc-item">
+                        <a class="bd-toc-link" href="/docs/4.6/getting-started/introduction/">
+                            Getting started （可以后续点击这里进入教程）
+                        </a>
                     </div>
-                    <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
-                            <div class="list-group-img">
-                                <span class="avatar bg-purple">JD</span>
-                            </div>
-                            <div class="list-group-content">
-                                <div class="list-group-heading">Johnyy Depp <small>10:05 PM</small></div>
-                                <p class="text-sm">Lorem ipsum dolor sit amet consectetur adipiscing eiusmod tempor</p>
-                            </div>
+                    <hr>
+                    <div class="bd-toc-item">
+                        <a class="bd-toc-link" href="/docs/4.6/layout/overview/">
+                            Layout
                         </a>
-                        <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
-                            <div class="list-group-img">
-                                <span class="avatar bg-pink">TC</span>
-                            </div>
-                            <div class="list-group-content">
-                                <div class="list-group-heading">Tom Cruise <small>10:05 PM</small></div>
-                                <p class="text-sm">Lorem ipsum dolor sit amet consectetur adipiscing eiusmod tempor</p>
-                            </div>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
-                            <div class="list-group-img">
-                                <span class="avatar bg-blue">WS</span>
-                            </div>
-                            <div class="list-group-content">
-                                <div class="list-group-heading">Will Smith <small>10:05 PM</small></div>
-                                <p class="text-sm">Lorem ipsum dolor sit amet consectetur adipiscing eiusmod tempor</p>
-                            </div>
+                        <ul class="nav bd-sidenav">
+                            <li>
+                                <a href="/docs/4.6/layout/overview/">Overview （主页）</a>
+                            </li>
+                            <li class="active bd-sidenav-active">
+                                <a href="/docs/4.6/layout/grid/">Grid</a>
+                            </li>
+                            <li>
+                                <a href="/docs/4.6/layout/utilities-for-layout/">Utilities for layout</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <hr>
+
+                    <div class="bd-toc-item">
+                        <a class="bd-toc-link" href="/docs/4.6/content/reboot/">
+                            Places and interests
                         </a>
                     </div>
-                    <div class="py-3 text-center">
-                        <a href="#" class="link link-sm link--style-3">View all notifications</a>
+                    <hr>
+                    <div class="bd-toc-item ">
+                        <a class="bd-toc-link" href="/docs/4.6/components/alerts/">
+                            Transportation
+                        </a>
+                        <ul class="nav bd-sidenav">
+                            <li>
+                                <a href="/docs/4.6/layout/overview/">Flights</a>
+                            </li>
+                            <li>
+                                <a href="/docs/4.6/layout/utilities-for-layout/">Train</a>
+                            </li>
+                            <li>
+                                <a href="/docs/4.6/layout/utilities-for-layout/">ship</a>
+                            </li>
+                            <li class="active bd-sidenav-active">
+                                <a href="/docs/4.6/layout/grid/">Public transport</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <hr>
+                    <div class="bd-toc-item">
+                        <a class="bd-toc-link" href="/docs/4.6/utilities/borders/">
+                            Hotels
+                        </a>
+                    </div>
+                    <hr>
+                    <div class="bd-toc-item">
+                        <a class="bd-toc-link" href="/docs/4.6/extend/approach/">
+                            Food
+                        </a>
+                    </div>
+                    <hr>
+                    <div class="bd-toc-item">
+                        <a class="bd-toc-link" href="/docs/4.6/migration/">
+                            Shopping
+                        </a>
+                    </div>
+                    <hr>
+                    <div class="bd-toc-item">
+                        <a class="bd-toc-link" href="/docs/4.6/about/overview/">
+                            Entertainment
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <nav class="d-none d-xl-block col-xl-2 bd-toc" aria-label="Secondary navigation">
+            <nav id="TableOfContents">
+                <ul>
+                    <li><a href="#how-it-works">How it works （具体内容尚未修改）</a></li>
+                    <li><a href="#grid-options">Grid options</a></li>
+                    <li><a href="#auto-layout-columns">Auto-layout columns</a>
+                        <ul>
+                            <li><a href="#equal-width">Equal-width</a></li>
+                            <li><a href="#equal-width-multi-line">Equal-width multi-line</a></li>
+                            <li><a href="#setting-one-column-width">Setting one column width</a></li>
+                            <li><a href="#variable-width-content">Variable width content</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#responsive-classes">Responsive classes</a>
+                        <ul>
+                            <li><a href="#all-breakpoints">All breakpoints</a></li>
+                            <li><a href="#stacked-to-horizontal">Stacked to horizontal</a></li>
+                            <li><a href="#mix-and-match">Mix and match</a></li>
+                            <li><a href="#gutters">Gutters</a></li>
+                            <li><a href="#row-columns">Row columns</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#alignment">Alignment</a>
+                        <ul>
+                            <li><a href="#vertical-alignment">Vertical alignment</a></li>
+                            <li><a href="#horizontal-alignment">Horizontal alignment</a></li>
+                            <li><a href="#no-gutters">No gutters</a></li>
+                            <li><a href="#column-wrapping">Column wrapping</a></li>
+                            <li><a href="#column-breaks">Column breaks</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#reordering">Reordering</a>
+                        <ul>
+                            <li><a href="#order-classes">Order classes</a></li>
+                            <li><a href="#offsetting-columns">Offsetting columns</a>
+                                <ul>
+                                    <li><a href="#offset-classes">Offset classes</a></li>
+                                    <li><a href="#margin-utilities">Margin utilities</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="#nesting">Nesting</a></li>
+                    <li><a href="#sass-mixins">Sass mixins</a>
+                        <ul>
+                            <li><a href="#variables">Variables</a></li>
+                            <li><a href="#mixins">Mixins</a></li>
+                            <li><a href="#example-usage">Example usage</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#customizing-the-grid">Customizing the grid</a>
+                        <ul>
+                            <li><a href="#columns-and-gutters">Columns and gutters</a></li>
+                            <li><a href="#grid-tiers">Grid tiers</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </nav>
+        <main class="col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
+            <div class="container">
+                <div class="products">
+                    <div class="container-fliud">
+                        <div class="row products_row_1">
+
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="product-grid">
+                                    <div class="card alert-shadow" style="width: 18rem; border-radius: 20px;">
+                                        <div class="product-image" style="margin: 5% 5% 5% 5%">
+                                            <a href="#" class="image">
+                                                <img class="pic-1" src="../static/images/sample_pic/guilin.png">
+                                                <img class="pic-2" src="../static/images/sample_pic/guilin.png">
+                                            </a>
+                                            <span class="product-sale-label">New</span>
+                                            <div class="product-button-group">
+                                                <a href="#" onclick="PleaseLogin()" class="add-to-wishlist">Buy Now!</a>
+                                                <a href="#" onclick="PleaseLogin()" class="quick-view">Shopping Cart</a>
+                                            </div>
+                                        </div>
+                                        <div class="product-content">
+                                            <h3 class="title"><a href="#" onclick="PleaseLogin()">Gui Lin</a>
+                                            </h3>
+                                            <div class="price">$2000.00</div>
+                                            <a href="#" class="add-to-cart">Detail</a>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="card-text">Some quick example text to build on the card title
+                                                and
+                                                make up
+                                                the bulk of the card's content.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="product-grid">
+                                    <div class="card alert-shadow" style="width: 18rem; border-radius: 20px;">
+                                        <div class="product-image" style="margin: 5% 5% 5% 5%">
+                                            <a href="#" class="image">
+                                                <img class="pic-1" src="../static/images/sample_pic/juzizhou.png">
+                                                <img class="pic-2" src="../static/images/sample_pic/juzizhou.png">
+                                            </a>
+                                            <span class="product-sale-label">New</span>
+                                            <div class="product-button-group">
+                                                <a href="#" class="add-to-wishlist">Buy Now!</a>
+                                                <a href="#" class="quick-view">Shopping Cart</a>
+                                            </div>
+                                        </div>
+                                        <div class="product-content">
+                                            <h3 class="title"><a href="#">Ju Zi Zhou Tou</a></h3>
+                                            <div class="price">$1599.00</div>
+                                            <a href="#" class="add-to-cart">Detail</a>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="card-text">Some quick example text to build on the card title
+                                                and
+                                                make up
+                                                the bulk of the card's content.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="product-grid">
+                                    <div class="card alert-shadow" style="width: 18rem; border-radius: 20px;">
+                                        <div class="product-image" style="margin: 5% 5% 5% 5%">
+                                            <a href="#" class="image">
+                                                <img class="pic-1" src="../static/images/sample_pic/tengwangge.png">
+                                                <img class="pic-2" src="../static/images/sample_pic/tengwangge.png">
+                                            </a>
+                                            <span class="product-sale-label">New</span>
+                                            <div class="product-button-group">
+                                                <a href="#" class="add-to-wishlist">Buy Now!</a>
+                                                <a href="#" class="quick-view">Shopping Cart</a>
+                                            </div>
+                                        </div>
+                                        <div class="product-content">
+                                            <h3 class="title"><a href="#">Teng Wang Ge</a></h3>
+                                            <div class="price">$3099.00</div>
+                                            <a href="#" class="add-to-cart">Detail</a>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="card-text">Some quick example text to build on the card title
+                                                and
+                                                make up
+                                                the bulk of the card's content.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="product-grid">
+                                    <div class="card alert-shadow" style="width: 18rem; border-radius: 20px;">
+                                        <div class="product-image" style="margin: 5% 5% 5% 5%">
+                                            <a href="#" onclick="PleaseLogin()" class="image">
+                                                <img class="pic-1" src="../static/images/sample_pic/xian.png">
+                                                <img class="pic-2" src="../static/images/sample_pic/xian.png">
+                                            </a>
+                                            <span class="product-sale-label">New</span>
+                                            <div class="product-button-group">
+                                                <a href="#" onclick="PleaseLogin()"
+                                                   class="add-to-wishlist">Buy Now!</a>
+                                                <a href="#" onclick="PleaseLogin()"
+                                                   class="quick-view">Shopping Cart</a>
+                                            </div>
+                                        </div>
+                                        <div class="product-content">
+                                            <h3 class="title"><a href="#" onclick="PleaseLogin()">Xi An</a></h3>
+                                            <div class="price">$5099.00</div>
+                                            <a href="#" onclick="PleaseLogin()"
+                                               class="add-to-cart">Detail</a>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="card-text">Some quick example text to build on the card title
+                                                and
+                                                make up
+                                                the bulk of the card's content.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="product-grid">
+                                    <div class="card alert-shadow" style="width: 18rem; border-radius: 20px;">
+                                        <div class="product-image" style="margin: 5% 5% 5% 5%">
+                                            <a href="#" onclick="PleaseLogin()" class="image">
+                                                <img class="pic-1" src="../static/images/sample_pic/xiangxi.png">
+                                                <img class="pic-2" src="../static/images/sample_pic/xiangxi.png">
+                                            </a>
+                                            <span class="product-sale-label">New</span>
+                                            <div class="product-button-group">
+                                                <a href="#" onclick="PleaseLogin()"
+                                                   class="add-to-wishlist">Buy Now!</a>
+                                                <a href="#" onclick="PleaseLogin()"
+                                                   class="quick-view">Shopping Cart</a>
+                                            </div>
+                                        </div>
+                                        <div class="product-content">
+                                            <h3 class="title"><a href="#" onclick="PleaseLogin()">Xiang Xi</a></h3>
+                                            <div class="price">$5099.00</div>
+                                            <a href="#" onclick="PleaseLogin()"
+                                               class="add-to-cart">Detail</a>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="card-text">Some quick example text to build on the card title
+                                                and
+                                                make up
+                                                the bulk of the card's content.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="product-grid">
+                                    <div class="card alert-shadow" style="width: 18rem; border-radius: 20px;">
+                                        <div class="product-image" style="margin: 5% 5% 5% 5%">
+                                            <a href="#" onclick="PleaseLogin()" class="image">
+                                                <img class="pic-1"
+                                                     src="../static/images/sample_pic/yuelushuyuan.png">
+                                                <img class="pic-2"
+                                                     src="../static/images/sample_pic/yuelushuyuan.png">
+                                            </a>
+                                            <span class="product-sale-label">New</span>
+                                            <div class="product-button-group">
+                                                <a href="#" onclick="PleaseLogin()"
+                                                   class="add-to-wishlist">Buy Now!</a>
+                                                <a href="#" onclick="PleaseLogin()"
+                                                   class="quick-view">Shopping Cart</a>
+                                            </div>
+                                        </div>
+                                        <div class="product-content">
+                                            <h3 class="title"><a href="#" onclick="PleaseLogin()">Yue Lu Shu Yuan</a></h3>
+                                            <div class="price">$5099.00</div>
+                                            <a href="#" onclick="PleaseLogin()"
+                                               class="add-to-cart">Detail</a>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="card-text">Some quick example text to build on the card title
+                                                and
+                                                make up
+                                                the bulk of the card's content.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="product-grid">
+                                    <div class="card alert-shadow" style="width: 18rem; border-radius: 20px;">
+                                        <div class="product-image" style="margin: 5% 5% 5% 5%">
+                                            <a href="#" onclick="PleaseLogin()" class="image">
+                                                <img class="pic-1"
+                                                     src="../static/images/sample_pic/zhangjiajie.png">
+                                                <img class="pic-2"
+                                                     src="../static/images/sample_pic/zhangjiajie.png">
+                                            </a>
+                                            <span class="product-sale-label">New</span>
+                                            <div class="product-button-group">
+                                                <a href="#" onclick="PleaseLogin()"
+                                                   class="add-to-wishlist">Buy Now!</a>
+                                                <a href="#" onclick="PleaseLogin()"
+                                                   class="quick-view">Shopping Cart</a>
+                                            </div>
+                                        </div>
+                                        <div class="product-content">
+                                            <h3 class="title"><a href="#" onclick="PleaseLogin()">Zhang Jia Jie</a></h3>
+                                            <div class="price">$5099.00</div>
+                                            <a href="#" onclick="PleaseLogin()"
+                                               class="add-to-cart">Detail</a>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="card-text">Some quick example text to build on the card title
+                                                and
+                                                make up
+                                                the bulk of the card's content.</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            {#                            <div class="card" style="width: 18rem;">#}
+                            {#                                <img src="..." class="card-img-top" alt="...">#}
+                            {#                                <div class="card-body">#}
+                            {#                                    <p class="card-text">Some quick example text to build on the card title and make up#}
+                            {#                                        the bulk of the card's content.</p>#}
+                            {#                                </div>#}
+                            {#                            </div>#}
+
+                        </div>
                     </div>
                 </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link nav-link-icon" href="#" id="navbar_1_dropdown_3" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i></a>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <h6 class="dropdown-header">User menu</h6>
-                    <a class="dropdown-item" href="#">
-                        <span class="float-right badge badge-primary">4</span>
-                        <i class="fas fa-envelope text-primary"></i>Messages
-                    </a>
-                    <a class="dropdown-item" href="#">
-                        <i class="fas fa-cog text-primary"></i>Settings
-                    </a>
-                    <div class="dropdown-divider" role="presentation"></div>
-                    <a class="dropdown-item" href="#">
-                        <i class="fas fa-sign-out-alt text-primary"></i>Sign out
-                    </a>
-                </div>
-            </li>
-        </ul>
+            </div>
+        </main>
     </div>
-</nav>
+
+</div>
+<!--
+{#<body style="background-color: #9fcdff">#}
+
+{#<main role="main">#}
+{##}
+{#    <div id="myCarousel" class="carousel slide" data-ride="carousel">#}
+{#        <ol class="carousel-indicators">#}
+{#            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>#}
+{#            <li data-target="#myCarousel" data-slide-to="1"></li>#}
+{#            <li data-target="#myCarousel" data-slide-to="2"></li>#}
+{#        </ol>#}
+{#        <div class="carousel-inner">#}
+{#            <div class="carousel-item active">#}
+{#                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img"#}
+{#                     aria-label=" :  " preserveAspectRatio="xMidYMid slice" focusable="false"><title></title>#}
+{#                    <rect width="100%" height="100%" fill="#777"/>#}
+{#                    <text x="50%" y="50%" fill="#777" dy=".3em"></text>#}
+{#                </svg>#}
+{##}
+{#                <div class="container">#}
+{#                    <div class="carousel-caption text-left">#}
+{#                        <h1>Example headline.</h1>#}
+{#                        <p>Some representative placeholder content for the first slide of the carousel.</p>#}
+{#                        <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="carousel-item">#}
+{#                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img"#}
+{#                     aria-label=" :  " preserveAspectRatio="xMidYMid slice" focusable="false"><title></title>#}
+{#                    <rect width="100%" height="100%" fill="#777"/>#}
+{#                    <text x="50%" y="50%" fill="#777" dy=".3em"></text>#}
+{#                </svg>#}
+{##}
+{#                <div class="container">#}
+{#                    <div class="carousel-caption">#}
+{#                        <h1>Another example headline.</h1>#}
+{#                        <p>Some representative placeholder content for the second slide of the carousel.</p>#}
+{#                        <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="carousel-item">#}
+{#                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img"#}
+{#                     aria-label=" :  " preserveAspectRatio="xMidYMid slice" focusable="false"><title></title>#}
+{#                    <rect width="100%" height="100%" fill="#777"/>#}
+{#                    <text x="50%" y="50%" fill="#777" dy=".3em"></text>#}
+{#                </svg>#}
+{##}
+{#                <div class="container">#}
+{#                    <div class="carousel-caption text-right">#}
+{#                        <h1>One more for good measure.</h1>#}
+{#                        <p>Some representative placeholder content for the third slide of this carousel.</p>#}
+{#                        <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <button class="carousel-control-prev" type="button" data-target="#myCarousel" data-slide="prev">#}
+{#            <span class="carousel-control-prev-icon" aria-hidden="true"></span>#}
+{#            <span class="sr-only">Previous</span>#}
+{#        </button>#}
+{#        <button class="carousel-control-next" type="button" data-target="#myCarousel" data-slide="next">#}
+{#            <span class="carousel-control-next-icon" aria-hidden="true"></span>#}
+{#            <span class="sr-only">Next</span>#}
+{#        </button>#}
+{#    </div>#}
+{##}
+{##}
+{#    <!-- Marketing messaging and featurettes#}
+{#    ================================================== -->#}
+{#    <!-- Wrap the rest of the page in another container to center all the content. -->#}
+{##}
+{#    <div class="container marketing">#}
+{##}
+{#        <!-- Three columns of text below the carousel -->#}
+{#        <div class="row">#}
+{#            <div class="col-lg-4">#}
+{#                <svg class="bd-placeholder-img rounded-circle" width="140" height="140"#}
+{#                     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140"#}
+{#                     preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>#}
+{#                    <rect width="100%" height="100%" fill="#777"/>#}
+{#                    <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>#}
+{#                </svg>#}
+{##}
+{#                <h2>Heading</h2>#}
+{#                <p>Some representative placeholder content for the three columns of text below the carousel. This is the#}
+{#                    first column.</p>#}
+{#                <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>#}
+{#            </div><!-- /.col-lg-4 -->#}
+{#            <div class="col-lg-4">#}
+{#                <svg class="bd-placeholder-img rounded-circle" width="140" height="140"#}
+{#                     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140"#}
+{#                     preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>#}
+{#                    <rect width="100%" height="100%" fill="#777"/>#}
+{#                    <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>#}
+{#                </svg>#}
+{##}
+{#                <h2>Heading</h2>#}
+{#                <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second#}
+{#                    column.</p>#}
+{#                <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>#}
+{#            </div><!-- /.col-lg-4 -->#}
+{#            <div class="col-lg-4">#}
+{#                <svg class="bd-placeholder-img rounded-circle" width="140" height="140"#}
+{#                     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140"#}
+{#                     preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>#}
+{#                    <rect width="100%" height="100%" fill="#777"/>#}
+{#                    <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>#}
+{#                </svg>#}
+{##}
+{#                <h2>Heading</h2>#}
+{#                <p>And lastly this, the third column of representative placeholder content.</p>#}
+{#                <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>#}
+{#            </div><!-- /.col-lg-4 -->#}
+{#        </div><!-- /.row -->#}
+{##}
+{##}
+{#        <!-- START THE FEATURETTES -->#}
+{##}
+{#        <hr class="featurette-divider">#}
+{##}
+{#        <div class="row featurette">#}
+{#            <div class="col-md-7">#}
+{#                <h2 class="featurette-heading">First featurette heading. <span#}
+{#                        class="text-muted">It’ll blow your mind.</span></h2>#}
+{#                <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting#}
+{#                    prose here.</p>#}
+{#            </div>#}
+{#            <div class="col-md-5">#}
+{#                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"#}
+{#                     height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"#}
+{#                     preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>#}
+{#                    <rect width="100%" height="100%" fill="#eee"/>#}
+{#                    <text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>#}
+{#                </svg>#}
+{##}
+{#            </div>#}
+{#        </div>#}
+{##}
+{#        <hr class="featurette-divider">#}
+{##}
+{#        <div class="row featurette">#}
+{#            <div class="col-md-7 order-md-2">#}
+{#                <h2 class="featurette-heading">Oh yeah, it’s that good. <span#}
+{#                        class="text-muted">See for yourself.</span></h2>#}
+{#                <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how#}
+{#                    this layout would work with some actual real-world content in place.</p>#}
+{#            </div>#}
+{#            <div class="col-md-5 order-md-1">#}
+{#                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"#}
+{#                     height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"#}
+{#                     preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>#}
+{#                    <rect width="100%" height="100%" fill="#eee"/>#}
+{#                    <text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>#}
+{#                </svg>#}
+{##}
+{#            </div>#}
+{#        </div>#}
+{##}
+{#        <hr class="featurette-divider">#}
+{##}
+{#        <div class="row featurette">#}
+{#            <div class="col-md-7">#}
+{#                <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>#}
+{#                <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really#}
+{#                    intended to be actually read, simply here to give you a better view of what this would look like#}
+{#                    with some actual content. Your content.</p>#}
+{#            </div>#}
+{#            <div class="col-md-5">#}
+{#                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"#}
+{#                     height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"#}
+{#                     preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>#}
+{#                    <rect width="100%" height="100%" fill="#eee"/>#}
+{#                    <text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>#}
+{#                </svg>#}
+{##}
+{#            </div>#}
+{#        </div>#}
+{##}
+{#        <hr class="featurette-divider">#}
+{##}
+{#        <!-- /END THE FEATURETTES -->#}
+{##}
+{#    </div><!-- /.container -->#}
+{##}
+{##}
+{#    <!-- FOOTER -->#}
+{#    <footer class="container">#}
+{#        <p class="float-right"><a href="#">Back to top</a></p>#}
+{#        <p>&copy; 2017-2022 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>#}
+{#    </footer>#}
+{#</main>#}
+-->
 {#<div class="row">#}
 {#    <div class="col-3"></div>#}
 {#    <div class="col-6">#}
@@ -801,41 +809,234 @@
 {#    </div>#}
 {##}
 {#</div>#}
-    <div class=" text-center">
-        <div class="row align-items-start">
-            <div class="col">
-                One of three columns
-            </div>
-            <div class="col">
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="../static/images/backgrounds/img-1.jpg" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="../static/images/backgrounds/img-2.jpg" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="../static/images/backgrounds/img-3.jpg" class="d-block w-100" alt="...">
-                        </div>
+<!--
+<div class=" text-center">
+    <div class="row align-items-start">
+        <div class="col">
+            One of three columns
+        </div>
+        <div class="col">
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="../static/images/backgrounds/img-1.jpg" class="d-block w-100" alt="...">
                     </div>
-                    <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls"
-                            data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-target="#carouselExampleControls"
-                            data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </button>
+                    <div class="carousel-item">
+                        <img src="../static/images/backgrounds/img-2.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../static/images/backgrounds/img-3.jpg" class="d-block w-100" alt="...">
+                    </div>
                 </div>
-            </div>
-            <div class="col">
-                One of three columns
+                <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls"
+                        data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-target="#carouselExampleControls"
+                        data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </button>
             </div>
         </div>
+        <div class="col">
+            One of three columns
+        </div>
     </div>
+</div>
+-->
+<!--
+{#<div class="container">#}
+{#    <!--#}
+{#  <header class="blog-header py-3">#}
+{#    <div class="row flex-nowrap justify-content-between align-items-center">#}
+{#      <div class="col-4 pt-1">#}
+{#        <a class="text-muted" href="#">Subscribe</a>#}
+{#      </div>#}
+{#      <div class="col-4 text-center">#}
+{#        <a class="blog-header-logo text-dark" href="#">Large</a>#}
+{#      </div>#}
+{#      <div class="col-4 d-flex justify-content-end align-items-center">#}
+{#        <a class="text-muted" href="#" aria-label="Search">#}
+{#          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24" focusable="false"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>#}
+{#        </a>#}
+{#        <a class="btn btn-sm btn-outline-secondary" href="#">Sign up</a>#}
+{#      </div>#}
+{#    </div>#}
+{#  </header>#}
+{##}
+{#  <div class="nav-scroller py-1 mb-2">#}
+{#    <nav class="nav d-flex justify-content-between">#}
+{#      <a class="p-2 text-muted" href="#">World</a>#}
+{#      <a class="p-2 text-muted" href="#">U.S.</a>#}
+{#      <a class="p-2 text-muted" href="#">Technology</a>#}
+{#      <a class="p-2 text-muted" href="#">Design</a>#}
+{#      <a class="p-2 text-muted" href="#">Culture</a>#}
+{#      <a class="p-2 text-muted" href="#">Business</a>#}
+{#      <a class="p-2 text-muted" href="#">Politics</a>#}
+{#      <a class="p-2 text-muted" href="#">Opinion</a>#}
+{#      <a class="p-2 text-muted" href="#">Science</a>#}
+{#      <a class="p-2 text-muted" href="#">Health</a>#}
+{#      <a class="p-2 text-muted" href="#">Style</a>#}
+{#      <a class="p-2 text-muted" href="#">Travel</a>#}
+{#    </nav>#}
+{#  </div>#}
+{#    -->#}
+{##}
+{#  <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark" style="background-image: url('../static/images/backgrounds/img-1.jpg')">#}
+{#    <div class="col-md-6 px-0">#}
+{#      <h1 class="display-4 font-italic">Title of a longer featured blog post</h1>#}
+{#      <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what’s most interesting in this post’s contents.</p>#}
+{#      <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Continue reading...</a></p>#}
+{#    </div>#}
+{#  </div>#}
+{##}
+{#  <div class="row mb-2">#}
+{#    <div class="col-md-6">#}
+{#      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">#}
+{#        <div class="col p-4 d-flex flex-column position-static">#}
+{#          <strong class="d-inline-block mb-2 text-primary">World</strong>#}
+{#          <h3 class="mb-0">Featured post</h3>#}
+{#          <div class="mb-1 text-muted">Nov 12</div>#}
+{#          <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>#}
+{#          <a href="#" class="stretched-link">Continue reading</a>#}
+{#        </div>#}
+{#        <div class="col-auto d-none d-lg-block">#}
+{#          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>#}
+{##}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{#    <div class="col-md-6">#}
+{#      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">#}
+{#        <div class="col p-4 d-flex flex-column position-static">#}
+{#          <strong class="d-inline-block mb-2 text-success">Design</strong>#}
+{#          <h3 class="mb-0">Post title</h3>#}
+{#          <div class="mb-1 text-muted">Nov 11</div>#}
+{#          <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>#}
+{#          <a href="#" class="stretched-link">Continue reading</a>#}
+{#        </div>#}
+{#        <div class="col-auto d-none d-lg-block">#}
+{#          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>#}
+{##}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
+{#</div>#}
+{##}
+{##}
+{#<main role="main" class="container">#}
+{#  <div class="row">#}
+{#    <div class="col-md-8 blog-main">#}
+{#      <h3 class="pb-4 mb-4 font-italic border-bottom">#}
+{#        From the Firehose#}
+{#      </h3>#}
+{##}
+{#      <div class="blog-post">#}
+{#        <h2 class="blog-post-title">Sample blog post</h2>#}
+{#        <p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p>#}
+{##}
+{#        <p>This blog post shows a few different types of content that’s supported and styled with Bootstrap. Basic typography, images, and code are all supported.</p>#}
+{#        <hr>#}
+{#        <p>Yeah, she dances to her own beat. Oh, no. You could've been the greatest. 'Cause, baby, <a href="#">you're a firework</a>. Maybe a reason why all the doors are closed. Open up your heart and just let it begin. So très chic, yeah, she's a classic.</p>#}
+{#        <blockquote>#}
+{#          <p>Bikinis, zucchinis, Martinis, no weenies. I know there will be sacrifice but that's the price. <strong>This is how we do it</strong>. I'm not sticking around to watch you go down. You think you're so rock and roll, but you're really just a joke. I know one spark will shock the world, yeah yeah. Can't replace you with a million rings.</p>#}
+{#        </blockquote>#}
+{#        <p>Trying to connect the dots, don't know what to tell my boss. Before you met me I was alright but things were kinda heavy. You just gotta ignite the light and let it shine. Glitter all over the room <em>pink flamingos</em> in the pool. </p>#}
+{#        <h2>Heading</h2>#}
+{#        <p>Suiting up for my crowning battle. If you only knew what the future holds. Bring the beat back. Peach-pink lips, yeah, everybody stares.</p>#}
+{#        <h3>Sub-heading</h3>#}
+{#        <p>You give a hundred reasons why, and you say you're really gonna try. Straight stuntin' yeah we do it like that. Calling out my name. ‘Cause I, I’m capable of anything.</p>#}
+{#        <pre><code>Example code block</code></pre>#}
+{#        <p>Before you met me I was alright but things were kinda heavy. You just gotta ignite the light and let it shine.</p>#}
+{#        <h3>Sub-heading</h3>#}
+{#        <p>You got the finest architecture. Passport stamps, she's cosmopolitan. Fine, fresh, fierce, we got it on lock. Never planned that one day I'd be losing you. She eats your heart out.</p>#}
+{#        <ul>#}
+{#          <li>Got a motel and built a fort out of sheets.</li>#}
+{#          <li>Your kiss is cosmic, every move is magic.</li>#}
+{#          <li>Suiting up for my crowning battle.</li>#}
+{#        </ul>#}
+{#        <p>Takes you miles high, so high, 'cause she’s got that one international smile.</p>#}
+{#        <ol>#}
+{#          <li>Scared to rock the boat and make a mess.</li>#}
+{#          <li>I could have rewrite your addiction.</li>#}
+{#          <li>I know you get me so I let my walls come down.</li>#}
+{#        </ol>#}
+{#        <p>After a hurricane comes a rainbow.</p>#}
+{#      </div><!-- /.blog-post -->#}
+{##}
+{#      <div class="blog-post">#}
+{#        <h2 class="blog-post-title">Another blog post</h2>#}
+{#        <p class="blog-post-meta">December 23, 2013 by <a href="#">Jacob</a></p>#}
+{##}
+{#        <p>I am ready for the road less traveled. Already <a href="#">brushing off the dust</a>. Yeah, you're lucky if you're on her plane. I used to bite my tongue and hold my breath. Uh, She’s a beast. I call her Karma (come back). Black ray-bans, you know she's with the band. I can't sleep let's run away and don't ever look back, don't ever look back.</p>#}
+{#        <blockquote>#}
+{#          <p>Growing fast into a <strong>bolt of lightning</strong>. Be careful Try not to lead her on</p>#}
+{#        </blockquote>#}
+{#        <p>I'm intrigued, for a peek, heard it's fascinating. Oh oh! Wanna be a victim ready for abduction. She's got that international smile, oh yeah, she's got that one international smile. Do you ever feel, feel so paper thin. I’m gon’ put her in a coma. Sun-kissed skin so hot we'll melt your popsicle.</p>#}
+{#        <p>This is transcendental, on another level, boy, you're my lucky star.</p>#}
+{#      </div><!-- /.blog-post -->#}
+{##}
+{#      <div class="blog-post">#}
+{#        <h2 class="blog-post-title">New feature</h2>#}
+{#        <p class="blog-post-meta">December 14, 2013 by <a href="#">Chris</a></p>#}
+{##}
+{#        <p>From Tokyo to Mexico, to Rio. Yeah, you take me to utopia. I'm walking on air. We'd make out in your Mustang to Radiohead. I mean the ones, I mean like she's the one. Sun-kissed skin so hot we'll melt your popsicle. Slow cooking pancakes for my boy, still up, still fresh as a Daisy.</p>#}
+{#        <ul>#}
+{#          <li>I hope you got a healthy appetite.</li>#}
+{#          <li>You're never gonna be unsatisfied.</li>#}
+{#          <li>Got a motel and built a fort out of sheets.</li>#}
+{#        </ul>#}
+{#        <p>Don't need apologies. Boy, you're an alien your touch so foreign, it's <em>supernatural</em>, extraterrestrial. Talk about our future like we had a clue. I can feel a phoenix inside of me.</p>#}
+{#      </div><!-- /.blog-post -->#}
+{##}
+{#      <nav class="blog-pagination">#}
+{#        <a class="btn btn-outline-primary" href="#">Older</a>#}
+{#        <a class="btn btn-outline-secondary disabled">Newer</a>#}
+{#      </nav>#}
+{##}
+{#    </div><!-- /.blog-main -->#}
+{##}
+{#    <aside class="col-md-4 blog-sidebar">#}
+{#      <div class="p-4 mb-3 bg-light rounded">#}
+{#        <h4 class="font-italic">About</h4>#}
+{#        <p class="mb-0">Saw you downtown singing the Blues. Watch you circle the drain. Why don't you let me stop by? Heavy is the head that <em>wears the crown</em>. Yes, we make angels cry, raining down on earth from up above.</p>#}
+{#      </div>#}
+{##}
+{#      <div class="p-4">#}
+{#        <h4 class="font-italic">Archives</h4>#}
+{#        <ol class="list-unstyled mb-0">#}
+{#          <li><a href="#">March 2014</a></li>#}
+{#          <li><a href="#">February 2014</a></li>#}
+{#          <li><a href="#">January 2014</a></li>#}
+{#          <li><a href="#">December 2013</a></li>#}
+{#          <li><a href="#">November 2013</a></li>#}
+{#          <li><a href="#">October 2013</a></li>#}
+{#          <li><a href="#">September 2013</a></li>#}
+{#          <li><a href="#">August 2013</a></li>#}
+{#          <li><a href="#">July 2013</a></li>#}
+{#          <li><a href="#">June 2013</a></li>#}
+{#          <li><a href="#">May 2013</a></li>#}
+{#          <li><a href="#">April 2013</a></li>#}
+{#        </ol>#}
+{#      </div>#}
+{##}
+{#      <div class="p-4">#}
+{#        <h4 class="font-italic">Elsewhere</h4>#}
+{#        <ol class="list-unstyled">#}
+{#          <li><a href="#">GitHub</a></li>#}
+{#          <li><a href="#">Twitter</a></li>#}
+{#          <li><a href="#">Facebook</a></li>#}
+{#        </ol>#}
+{#      </div>#}
+{#    </aside><!-- /.blog-sidebar -->#}
+{##}
+{#  </div><!-- /.row -->#}
+{##}
+{#</main><!-- /.container -->#}
+-->
 
 <!-- Navbar end -->
 <!-- main content -->
@@ -939,6 +1140,7 @@
     </div>
   </footer>
   -->
+
 <!-- Core -->
 <script src="../static/vendor/jquery/jquery.min.js"></script>
 <script src="../static/vendor/popper/popper.min.js"></script>
