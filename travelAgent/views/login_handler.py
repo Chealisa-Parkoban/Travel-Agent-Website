@@ -119,12 +119,9 @@ def get_captcha():
         return jsonify({"code": 200})
     else:
         # code: 40 客户端错误
-        return jsonify({"code": 400, "message": "请先传递邮箱"})
+        return jsonify({"code": 400, "message": "Please enter your email address"})
 
 
 @login_manager.user_loader
 def load_user(id):
     return User.get(int(id))
-
-# def load_user(userid):
-#     return User.get(userid)
