@@ -46,10 +46,12 @@ def contact_us():
     logger.info('Entered the CONTACT page')
     return render_template("contact.html")
 
+
 @app.route('/homepage')
 def homepage():
     logger.info('Entered the HOME page')
     return render_template("homepage.html")
+
 
 # 翻译功能 (auto - 英)
 def translate(q):

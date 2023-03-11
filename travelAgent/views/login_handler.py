@@ -75,6 +75,7 @@ def logout():
 
 @login_blueprint.route('/sign_up', methods=['GET', 'POST'])
 def sign_up():
+    # GET, POST
     app.logger.info('Entered SIGN UP page')
     form = SignupForm(request.form)
 
