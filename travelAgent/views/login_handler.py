@@ -21,50 +21,31 @@ login_blueprint = Blueprint(name="account", import_name=__name__)
 
 @login_blueprint.route('/login', methods=['GET', 'POST'])
 def login():
-    print(current_user, 'login')
-    print(current_user._get_current_object(), 'login2')
-
     global emsg
     app.logger.info('Entered LOGIN page')
     form = LoginForm(request.form)
     if request.method == 'GET':
         return render_template('login.html', form=form)
     else:
-    # if True:
         if form.validate_on_submit():
             username = form.username.data
             password = form.password.data
+            remember_me = form.remember_me.data
 
             user = User.get_by_username(username)
             if user is None:
                 emsg = "Username not exist!"
             else:
                 if user.verify_password(password):
-                    login_user(user)
-
-                    print(current_user, 'loginin')
-
+                    login_user(user, remember=remember_me)
                     emsg = "Login successfully!"
                     app.logger.info('User \'' + username + '\' has successfully logged into the website')
-                    return redirect(url_for("account.login"))
+                    return redirect(url_for("index"))
                 else:
                     emsg = "Wrong password!"
+                    app.logger.error('Login failed: Wrong username or password')
 
         return render_template('login.html', form=form, message=emsg)
-
-            # for u in users:
-                # if username-password pair exists in the database, login successfully
-                # if u.username == username and check_password_hash(u.password_hash, password):
-                    # login_user(my_user(u.username, u.password_hash, u.id))
-                    # print(type(u))
-                    # login_user(u)
-                    # print(u.is_authenticated, 'login')
-                    # app.logger.info('User \'' + u.username + '\' has successfully logged into the website')
-                    # return redirect(url_for("index"))
-
-            # app.logger.error('Login failed: Wrong username or password')
-            # return render_template('login.html', form=form, message='Wrong username or password!')
-        # return render_template('login.html', form=form)
 
 
 @login_blueprint.route('/logout', methods=['GET', 'POST'])
@@ -141,5 +122,8 @@ def get_captcha():
 
 
 @login_manager.user_loader
-def load_user(userid):
-    return User.get(userid)
+def load_user(id):
+    return User.get(int(id))
+
+# def load_user(userid):
+#     return User.get(userid)

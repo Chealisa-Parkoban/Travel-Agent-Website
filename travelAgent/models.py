@@ -71,7 +71,7 @@ class User(UserMixin, db.Model):
 
     @classmethod
     def get(cls, userid):
-        pass
+        return User.query.filter_by(id=userid).first()
 
     def get_by_username(username):
         return User.query.filter_by(username=username).first()

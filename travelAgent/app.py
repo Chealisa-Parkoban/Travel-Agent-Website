@@ -1,7 +1,7 @@
 import os
 import this
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import logging
 import http.client
 import hashlib
@@ -35,9 +35,7 @@ logger.addHandler(ch)
 @app.route('/')
 def index():  # put application's code here
     logger.info('Entered the HOME page')
-    print(current_user, 'home,,')
     if current_user.is_authenticated:
-        print(current_user.username + 'home')
         return render_template("index.html", current_user=current_user)
     return render_template("index.html", current_user=None, username=None)
 
