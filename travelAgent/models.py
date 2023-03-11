@@ -1,6 +1,8 @@
 from datetime import datetime
 
+from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
+import cryptography
 
 from travelAgent import db
 
@@ -12,8 +14,9 @@ from travelAgent import db
 
 # This model stores user's information
 
-class User(db.Model):
-    # extend_existing = True
+class User(UserMixin, db.Model):
+    __tablename__ = "user"
+    __table_args__ = {'extend_existing': True}
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
     username = db.Column(db.String(64), index=True, unique=True, nullable=False)  # username is String and unique
@@ -24,6 +27,15 @@ class User(db.Model):
     gender = db.Column(db.String(120))
     birthday = db.Column(db.INTEGER)
     avatar_url = db.Column(db.String(120))
+    active = db.Column(db.Boolean, default=True)
+
+
+    def __init__(self, username, email, password, active=True):
+        # self.id = id
+        self.username = username
+        self.email = email
+        self.password = password
+        self.active = active
 
     # protect the string
     @property
@@ -36,15 +48,47 @@ class User(db.Model):
         self.password_hash = generate_password_hash(password)
 
     # Verify password
-    def verity_password(self, password):
-        check_password_hash(self.password_hash, password)
+    def verify_password(self, password):
+        return check_password_hash(self.password_hash, password)
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
 
+    def get_id(self):
+        return self.id
+
+    def is_active(self):
+        return self.active
+
+    def is_authenticated(self):
+        return True
+
+    def is_anonymous(self):
+        return False
+
+    def get_auth_token(self):
+        return
+
+    @classmethod
+    def get(cls, userid):
+        return User.query.filter_by(id=userid).first()
+
+    def get_by_username(username):
+        return User.query.filter_by(username=username).first()
+
+
+
+class EmailCaptchaModel(db.Model):
+    __tablename__ = "email_captcha"
+    __table_args__ = {'extend_existing': True}
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    email = db.Column(db.String(100), nullable=False, unique=True)
+    captcha = db.Column(db.String(10), nullable=True)
+    create_time = db.Column(db.DateTime, default=datetime.now())
+
 
 class Staff(db.Model):
-    # extend_existing = True
+    __table_args__ = {'extend_existing': True}
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
     username = db.Column(db.String(64), index=True, unique=True, nullable=False)  # username is String and unique
@@ -70,13 +114,14 @@ class Staff(db.Model):
 
 
 class Destination(db.Model):
-    # extend_existing = True
+    __table_args__ = {'extend_existing': True}
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
     name = db.Column(db.String(64), index=True, unique=True, nullable=False)  # name is String
 
 
 class Attraction(db.Model):
+    __table_args__ = {'extend_existing': True}
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
     name = db.Column(db.String(64), index=True, unique=True, nullable=False)  # name is String
@@ -90,6 +135,7 @@ class Attraction(db.Model):
 
 
 class Accommodation(db.Model):
+    __table_args__ = {'extend_existing': True}
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
     name = db.Column(db.String(64), index=True, unique=True, nullable=False)  # name is String
@@ -99,6 +145,7 @@ class Accommodation(db.Model):
 
 
 class Traffic(db.Model):
+    __table_args__ = {'extend_existing': True}
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
     name = db.Column(db.String(64), index=True, unique=True, nullable=False)  # name is String
@@ -112,6 +159,7 @@ class Traffic(db.Model):
 
 # Including traffic and accommodation type // can be deleted
 class Type(db.Model):
+    __table_args__ = {'extend_existing': True}
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
     name = db.Column(db.String(64), index=True, unique=True, nullable=False)  # name is String
