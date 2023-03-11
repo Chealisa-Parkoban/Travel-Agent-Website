@@ -1,4 +1,6 @@
 import os
+import this
+
 from flask import Flask, render_template
 import logging
 import http.client
@@ -7,9 +9,10 @@ import urllib
 import random
 import json
 
+import travelAgent
 from travelAgent import db
 from travelAgent import app
-from travelAgent.views.login_handler import login_blueprint
+from travelAgent.views.login_handler import login_blueprint, current_user
 
 # -------------------------------------register blueprints------------------------------------------
 app.register_blueprint(login_blueprint)
@@ -32,7 +35,11 @@ logger.addHandler(ch)
 @app.route('/')
 def index():  # put application's code here
     logger.info('Entered the HOME page')
-    return render_template("index.html")
+    print(current_user, 'home,,')
+    if current_user.is_authenticated:
+        print(current_user.username + 'home')
+        return render_template("index.html", current_user=current_user)
+    return render_template("index.html", current_user=None, username=None)
 
 
 @app.route('/about')

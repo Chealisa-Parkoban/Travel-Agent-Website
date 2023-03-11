@@ -3,10 +3,9 @@ import string
 from datetime import datetime
 
 import flask
-from flask import Blueprint, request, redirect, url_for, abort, flash, render_template, jsonify
-from flask_login import LoginManager, UserMixin, login_user, logout_user, current_user
-from werkzeug.security import check_password_hash, generate_password_hash
-from flask_mail import Mail, Message
+from flask import Blueprint, request, redirect, url_for, flash, render_template, jsonify
+from flask_login import LoginManager, login_user, logout_user, current_user, login_required
+from flask_mail import Message
 
 from travelAgent import app, db, mail
 from travelAgent.forms import LoginForm, SignupForm
@@ -16,59 +15,62 @@ from travelAgent.models import User, EmailCaptchaModel
 login_manager = LoginManager()
 login_manager.init_app(app)
 
+
 login_blueprint = Blueprint(name="account", import_name=__name__)
-current_user = current_user
-
-
-class my_user(UserMixin):
-    def __init__(self , username , password , id , active=True):
-        self.id = id
-        self.username = username
-        self.password = password
-        self.active = active
-
-    def get_id(self):
-        return self.id
-
-    def is_active(self):
-        return self.active
-
-    def get_auth_token(self):
-        return
-
-    @classmethod
-    def get(cls, userid):
-        pass
 
 
 @login_blueprint.route('/login', methods=['GET', 'POST'])
 def login():
+    print(current_user, 'login')
+    print(current_user._get_current_object(), 'login2')
+
+    global emsg
     app.logger.info('Entered LOGIN page')
     form = LoginForm(request.form)
     if request.method == 'GET':
         return render_template('login.html', form=form)
     else:
+    # if True:
         if form.validate_on_submit():
             username = form.username.data
             password = form.password.data
-            users = User.query.all()
 
-            for u in users:
+            user = User.get_by_username(username)
+            if user is None:
+                emsg = "Username not exist!"
+            else:
+                if user.verify_password(password):
+                    login_user(user)
+
+                    print(current_user, 'loginin')
+
+                    emsg = "Login successfully!"
+                    app.logger.info('User \'' + username + '\' has successfully logged into the website')
+                    return redirect(url_for("account.login"))
+                else:
+                    emsg = "Wrong password!"
+
+        return render_template('login.html', form=form, message=emsg)
+
+            # for u in users:
                 # if username-password pair exists in the database, login successfully
-                if u.username == username and check_password_hash(u.password_hash, password):
-                    login_user(my_user(u.username, u.password_hash, u.id))
-                    app.logger.info('User \'' + u.username + '\' has successfully logged into the website')
-                    return redirect(url_for("index"))
+                # if u.username == username and check_password_hash(u.password_hash, password):
+                    # login_user(my_user(u.username, u.password_hash, u.id))
+                    # print(type(u))
+                    # login_user(u)
+                    # print(u.is_authenticated, 'login')
+                    # app.logger.info('User \'' + u.username + '\' has successfully logged into the website')
+                    # return redirect(url_for("index"))
 
-            app.logger.error('Login failed: Wrong username or password')
-            return render_template('login.html', form=form, message='Wrong username or password!')
-        return render_template('login.html', form=form)
+            # app.logger.error('Login failed: Wrong username or password')
+            # return render_template('login.html', form=form, message='Wrong username or password!')
+        # return render_template('login.html', form=form)
 
 
 @login_blueprint.route('/logout', methods=['GET', 'POST'])
+@login_required
 def logout():
     logout_user()
-
     app.logger.info('The user has logged out')
     return redirect(url_for("index"))
 
@@ -76,6 +78,7 @@ def logout():
 @login_blueprint.route('/sign_up', methods=['GET', 'POST'])
 def sign_up():
     app.logger.info('Entered SIGN UP page')
+
     form = SignupForm(request.form)
 
     if request.method == 'GET':
@@ -88,11 +91,10 @@ def sign_up():
             email = form.email.data
             # captcha = form.email_verification_code.data
             password = form.password.data
-            password_hash = generate_password_hash(password)
 
             # session['userExist'] = 'false'
             # store user's information into database
-            u1 = User(username=newname, email=email, password_hash=password_hash)
+            u1 = User(newname, email, password)
             db.session.add(u1)
             db.session.commit()
             app.logger.info('User \'' + newname + '\' has successfully signed up')
@@ -137,6 +139,7 @@ def get_captcha():
         # code: 40 客户端错误
         return jsonify({"code": 400, "message": "请先传递邮箱"})
 
+
 @login_manager.user_loader
 def load_user(userid):
-    return my_user.get(userid)
+    return User.get(userid)

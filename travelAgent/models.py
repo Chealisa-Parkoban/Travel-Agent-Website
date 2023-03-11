@@ -1,6 +1,8 @@
 from datetime import datetime
 
+from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
+import cryptography
 
 from travelAgent import db
 
@@ -12,7 +14,7 @@ from travelAgent import db
 
 # This model stores user's information
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     __tablename__ = "user"
     __table_args__ = {'extend_existing': True}
     # id is the primary key and it increments automatically
@@ -25,6 +27,15 @@ class User(db.Model):
     gender = db.Column(db.String(120))
     birthday = db.Column(db.INTEGER)
     avatar_url = db.Column(db.String(120))
+    active = db.Column(db.Boolean, default=True)
+
+
+    def __init__(self, username, email, password, active=True):
+        # self.id = id
+        self.username = username
+        self.email = email
+        self.password = password
+        self.active = active
 
     # protect the string
     @property
@@ -37,11 +48,33 @@ class User(db.Model):
         self.password_hash = generate_password_hash(password)
 
     # Verify password
-    def verity_password(self, password):
-        check_password_hash(self.password_hash, password)
+    def verify_password(self, password):
+        return check_password_hash(self.password_hash, password)
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
+
+    def get_id(self):
+        return self.id
+
+    def is_active(self):
+        return self.active
+
+    def is_authenticated(self):
+        return True
+
+    def is_anonymous(self):
+        return False
+
+    def get_auth_token(self):
+        return
+
+    @classmethod
+    def get(cls, userid):
+        pass
+
+    def get_by_username(username):
+        return User.query.filter_by(username=username).first()
 
 
 
