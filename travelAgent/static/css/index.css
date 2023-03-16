@@ -1,0 +1,228 @@
+/* This is the display of products*/
+
+/* The Title of every product page */
+.com_title {
+    margin: auto; /*Setting the layout*/
+}
+
+.com_line {
+    border-bottom: black 1px solid;
+    width: 50px; /*Setting the layout*/
+    height: 18px;
+    /*margin-left:50px;*/
+}
+
+/* 产品展示*/
+.products {
+    margin: 15px auto; /*Setting the layout*/
+    text-align: center;
+}
+
+.pro_p {
+    font: italic 14px "Source Han Sans CN Regular"; /*Setting the font */
+    text-align: center;
+}
+
+.products {
+    padding: 50px 0; /*Setting the layout*/
+    /*background: linear-gradient(to right, #dde0ec, #a5b8ec);*/
+    background: #fff;
+    /*background-image: url("/static/img/light_bg.png");*/
+}
+
+.products_head {
+    margin: 15px auto; /*Setting the layout*/
+    text-align: center;
+    padding: 50px 0; /*Setting the layout*/
+    /*background: linear-gradient(to right, #dde0ec, #a5b8ec);*/
+    /*background: #fff;*/
+    background-image: url("/static/img/light_bg.png");
+}
+
+.index {
+    background-image: url("/static/img/light_bg.png") !important;
+}
+
+.product-grid {
+    font-family: 'Source Sans Pro', sans-serif; /*Setting the font */
+}
+
+.product-grid .product-image {
+    position: relative;
+    overflow: hidden; /*Setting the layout*/
+}
+
+.product-grid .product-image a.image {
+    /*height: 8rem;*/
+    display: block; /*Setting the layout*/
+}
+
+.product-grid .product-image img {
+    width: 100%; /*Setting the layout*/
+    height: auto;
+}
+
+.product-image .pic-1 {
+    backface-visibility: hidden; /*Setting the image*/
+    transition: all .5s ease 0s;
+}
+
+.product-grid .product-image:hover .pic-1 {
+    opacity: 0; /*Setting the image*/
+    transform: translateX(-50%);
+}
+
+.product-image .pic-2 {
+    width: 100%; /*Setting the layout*/
+    height: 100%;
+    backface-visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transition: all .5s ease 0s; /*Setting the image*/
+}
+
+.product-grid .product-image:hover .pic-2 {
+    opacity: 1;
+    left: 0; /*Setting the image*/
+}
+
+.product-grid .product-sale-label {
+    color: #fff; /*Setting the color*/
+    background: #6aaafa;
+    font-size: 13px; /*Setting the font */
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border-radius: 3px 10px 10px 3px;
+    position: absolute;
+    top: 10px;
+    left: 10px; /*Setting the layout*/
+}
+
+.product-grid .product-button-group {
+    font-size: 0;; /*Setting the font */
+    width: 100%;
+    opacity: 0;
+    transform: perspective(600px) translateY(15px) rotateX(90deg);
+    transform-origin: bottom center;
+    position: absolute; /*Setting the layout*/
+    bottom: 15px;
+    left: 0;
+    transition: all 0.3s ease 0.1s; /*Setting the layout*/
+}
+
+.product-grid:hover .product-button-group {
+    opacity: 1;
+    transform: translateY(0) rotateX(0); /*Setting the hover*/
+}
+
+.product-grid .product-button-group a {
+    color: #fff; /*Setting the color*/
+    background: #066be9;
+    font-size: 12px; /*Setting the font */
+    font-weight: 600;
+    text-transform: capitalize;
+    text-align: center;
+    width: calc(50% - 4px); /*Setting the layout*/
+    padding: 10px 5px;
+    margin: 0 2px;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    display: inline-block;
+    transition: all 0.3s ease 0s; /*Setting the layout*/
+}
+
+.product-grid .product-button-group a:hover {
+    background-color: black; /*Setting the background color to black*/
+}
+
+.product-grid .product-content {
+    padding: 12px 0 0; /*Setting the layout*/
+    position: relative;
+}
+
+.product-grid .title {
+    font-size: 20px; /*Setting the font */
+    font-weight: 500;
+    text-transform: capitalize;
+    margin: 0 0 5px; /*Setting the layout*/
+}
+
+.product-grid .title a {
+    color: #161616; /*Setting the color*/
+    transition: all 0.5s ease;
+}
+
+.product-grid .title a:hover {
+    color: #b79b6c; /*Setting the color*/
+}
+
+.product-grid .price {
+    color: #b79b6c; /*Setting the color*/
+    font-size: 18px; /*Setting the font */
+    font-weight: 600;
+}
+
+.product-grid .price span {
+    color: #999; /*Setting the color*/
+    font-size: 17px; /*Setting the font */
+    font-weight: 500;
+    text-decoration: line-through;
+    margin-right: 2px; /*Setting the layout*/
+}
+
+.product-grid:hover .price {
+    opacity: 0; /*Setting the opacity*/
+}
+
+.product-grid .add-to-cart {
+    color: #333; /*Setting the color*/
+    font-size: 16px; /*Setting the font */
+    font-weight: 600;
+    opacity: 0;
+    position: absolute;
+    bottom: -5px; /*Setting the layout*/
+    left: 0;
+    transition: all 0.3s linear 0s;
+}
+
+.product-grid {
+    margin-bottom: 30px; /*Setting the layout*/
+}
+
+.product-grid .add-to-cart:hover {
+    color: #b79b6c; /*Setting the color*/
+    text-decoration: underline; /*Setting the font */
+}
+
+.product-grid:hover .add-to-cart {
+    opacity: 1;
+    bottom: 2px; /*Setting the layout*/
+}
+
+@media screen and (max-width: 990px) {
+    .product-grid {
+        margin: 0 0 30px; /*Setting the layout*/
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

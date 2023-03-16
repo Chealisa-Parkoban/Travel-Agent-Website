@@ -1,0 +1,323 @@
+/*This is the CSS of index page*/
+/*-- header --*/
+html,body {
+	font-family: 'Open Sans', sans-serif; /*Setting the font form*/
+	background:#FFF;/*Setting the background*/
+	/*background-image: url("/static/img/light_bg2.png") !important;*/
+	font-size:100%;/*Setting the size of font*/
+}
+/*-- header --*/
+/*.head-bg{*/
+/*	background:url(/static/img/index_bg1.png) no-repeat 0px 0px;!*Setting the background*!*/
+/*	background-size: cover;!*Setting the background size*!*/
+/*	position: relative;!*Setting the position to relative*!*/
+/*}*/
+
+/*-- header --*/
+.head-bg{
+	background-size: cover;/*Setting the background size*/
+	position: relative;/*Setting the position to relative*/
+}
+.fillWidth {
+    width: 100%;
+    height: 100%;
+    object-fit:fill;
+  }
+.head-bg2{
+	position: absolute;/*Setting the background*/
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	width: inherit;
+	height: inherit;
+	line-height: 50px;
+	text-align: center;
+	background: rgba(225,225,225,0.3);/*Setting the background color and transparency */
+}
+.border{
+	background: #7189C9;/*Setting the background*/
+	height: 1px;
+}
+.top-nav ul{
+	padding: 1em 0 0 0;
+	margin: 0; /*Setting the layout*/
+	text-align: center;
+}
+.top-nav ul li{
+	display:inline-block;
+	margin:0 1.5em; /*Setting the layout*/
+}
+.top-nav ul li a{
+	color:#FFF;/*Setting the color*/
+	font-size:16px;/*Setting the size of font*/
+	text-decoration:none;
+}
+.top-nav ul li a:hover{
+	color:#3EB5F1;/*Setting the color*/
+	transition:.5s all;
+	-webkit-transition:.5s all;
+	-moz-transition:.5s all;
+	-o-transition:.5s all;
+	-ms-transition:.5s all;/*Setting the layout*/
+}
+.banner-info {
+	text-align: center;
+	padding: 6em 0 12em 0;/*Setting the layout*/
+}
+.banner-top ul{
+	padding:0;/*Setting the layout*/
+	margin:0;
+}
+.banner-top ul li{
+	display:inline-block;
+}
+
+.top {
+	width: 25%; /*Setting the layout*/
+	margin: 0 auto;/*Setting the layout*/
+	height: 2px;
+}
+.banner-top {
+	padding-bottom: 2em;/*Setting the layout*/
+}
+.banner-middle h2{
+	color:#FFF;/*Setting the color*/
+	font-size: 54px;/*Setting the font size*/
+	margin: 1em 0 0 0;/*Setting the layout*/
+}
+.banner-middle h2 span{
+	font-weight: 700;
+}
+.banner-middle p{
+	color: #FFF;/*Setting the color*/
+	font-size: 20px;
+	width: 76%;
+	font-weight: 300;/*Setting the font size*/
+	line-height: 1.8em;
+	margin: 2em auto;/*Setting the layout*/
+}
+.bottom{
+	width: 43%;
+	margin:0 auto;/*Setting the layout*/
+}
+.banner-bottom {
+	padding: 4em 0 0 0;/*Setting the layout*/
+}
+.banner-bottom ul {
+	padding: 0;/*Setting the layout*/
+	margin: 0;
+}
+.banner-bottom ul li{
+	display:inline-block;
+	margin: 0 .5em;/*Setting the layout*/
+}
+.banner-bottom ul li a {
+	border: solid 1px #FFF;
+	padding: .5em 3em;
+	color: #FFF;/*Setting the color*/
+	font-size: 16px;/*Setting the size of font*/
+	border-radius: 22px;
+	-webkit-border-radius: 22px;/*Setting the layout*/
+	-moz-border-radius: 22px;
+	/*-o-border-radius: 22px;*/
+	/*-ms-border-radius: 22px;*/
+}
+.banner-bottom ul li a:hover{
+	background:#FFF;
+	color:#000;/*Setting the color*/
+	text-decoration:none;
+	transition:.5s all;
+	-webkit-transition:.5s all;/*Setting the layout*/
+	-moz-transition:.5s all;
+	-o-transition:.5s all;
+	-ms-transition:.5s all;
+}
+/*-- about --*/
+.about{
+	text-align:center;/*Setting the layout*/
+	padding: 6em 0;
+}
+.about h3{
+	color: #3B3B3B;/*Setting the color*/
+	font-size: 30px;/*Setting the size of font*/
+	margin: 0;
+	font-weight: 700;
+}
+.line{
+	width: 7%;
+	margin: 1em auto;/*Setting the layout*/
+	background: #1D6887;
+}
+.about p{
+	font-size: 18px;/*Setting the size of font*/
+	color: #626262;/*Setting the color*/
+	width: 73%;
+	margin: 2em auto;/*Setting the layout*/
+	line-height: 2em;
+}
+.about p span{
+	font-weight:700;
+}
+/*-- plan --*/
+.plan{
+	background:url(/static/img/plan-bg.jpg) no-repeat 0px 0px;
+	background-size:cover;
+	text-align:center;/*Setting the layout*/
+	padding: 6em 0;
+}
+.plan h3{
+	color: #3B3B3B;/*Setting the color*/
+	font-size: 30px;/*Setting the size of font*/
+	margin: 0;/*Setting the layout*/
+	font-weight: 700;
+}
+.plan-grid{
+	width: 32.9%;/*Setting the layout*/
+	float: left;
+}
+.plan-grids {
+	margin: 6em 0 1em 0;/*Setting the layout*/
+}
+.plan-grid-top h4{
+	color: #FFF;/*Setting the color*/
+	background: #50B09B;
+	font-family: 'PT Sans', sans-serif;
+	margin: 0;
+	font-size: 40px;/*Setting the size of font*/
+	padding: 1em 0;/*Setting the layout*/
+}
+.plan-grid-top h4 span{
+	font-family: 'PT Sans', sans-serif;
+	font-size: 30px;/*Setting the size of font*/
+}
+.plan-grid-bottom{
+	background:#F7F7F7;
+	padding: 1.5em;
+	background: #F7F7F7;
+	padding: 1em;/*Setting the layout*/
+	border: solid 1px #DCDCDC;
+	border-bottom: solid 2px #DCDCDC;
+}
+.plan-grid-bottom ul{
+	padding: 1em 0 1.5em 0;
+	margin:0;/*Setting the layout*/
+}
+.plan-grid-bottom ul li{
+	display:inline-block;
+	color:#3B3B3B;/*Setting the color*/
+	font-size:16px;/*Setting the size of font*/
+}
+.plan-grid-bottom ul li.left{
+	float:left;
+}
+.plan-grid-bottom ul li.right{
+	float:right;
+}
+.plan-grid-bottom ul li span{
+	color:#3EB5F1;/*Setting the color*/
+}
+.gray-border{
+	background: #C4C4C4;
+	height: 1px;
+	margin-bottom: 3em;/*Setting the layout*/
+}
+.plan-grid-bottom p{
+	color: #555555;/*Setting the color*/
+	font-size: 16px;/*Setting the size of font*/
+	font-weight: 700;
+	margin: 1em 0;/*Setting the layout*/
+	text-align: left;
+}
+.plan-grid-bottom span{
+	font-weight: 400;
+}
+.plan-button {
+	text-align: center;
+	padding: 1em 0 0 0;/*Setting the layout*/
+}
+.plan-button a {
+	color: #FFF;/*Setting the color*/
+	font-size: 18px;/*Setting the size of font*/
+	font-weight: 600;
+	padding: 0.8em;
+	background: #3EB5F1;
+	display: block;
+}
+.plan-button a:hover{
+	color:#FFF;/*Setting the color*/
+	text-decoration:none;
+	transition: .5s all;
+	-webkit-transition: .5s all;
+	-moz-transition: .5s all;
+	-o-transition: .5s all;
+	-ms-transition: .5s all;/*Setting the layout*/
+}
+.plan-grid.middle {
+	margin: 0 .5em;/*Setting the layout*/
+}
+.sky-blue h4{
+	background: #3EB5F1;
+}
+.blue h4{
+	background: #4D67AC;
+}
+.red a{
+	background: #D24A43;
+}
+.plan-grid:hover {
+	cursor:pointer;
+	transform: scale(1.1);
+	transition: .5s all;
+	-webkit-transition: .5s all;
+	-moz-transition: .5s all;
+	-o-transition: .5s all;/*Setting the layout*/
+	-ms-transition: .5s all;
+}
+/*-- program --*/
+.program{
+	padding:6em 0;/*Setting the layout*/
+	text-align:center;
+}
+.program-grids {
+	width: 96%;/*Setting the layout*/
+	text-align: left;
+}
+.program-grid h4 a{
+	color: #3B3B3B;/*Setting the color*/
+	font-size: 27px;/*Setting the size of font*/
+	font-weight: 700;
+	margin: 0;/*Setting the layout*/
+	text-decoration:none;
+	text-transform: uppercase;
+	line-height: 1.5em;
+}
+.program-grid label{
+	color: #D0D0D0;/*Setting the color*/
+	font-weight: 400;
+	font-size: 14px;/*Setting the size of font*/
+	font-style: italic;
+	margin: 1.5em 0;/*Setting the layout*/
+}
+.program-grid p{
+	font-size: 16px;/*Setting the size of font*/
+	color: #3B3B3B;/*Setting the color*/
+	margin: 0;/*Setting the layout*/
+	font-weight: 600;
+}
+.program-grid p a{
+	color:#2C728F;/*Setting the color*/
+	text-decoration:none;
+}
+.right-grid{
+	width:90%;/*Setting the layout*/
+}
+iframe {
+	width: 100%;/*Setting the layout*/
+	min-height: 300px;
+}
+
+
+
+
+/*****************************************************/
