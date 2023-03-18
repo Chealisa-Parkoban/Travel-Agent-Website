@@ -57,6 +57,11 @@ def homepage():
     logger.info('Entered the HOME page')
     return render_template("homepage.html")
 
+@app.route('/travelRoutesDetail')
+def travel_routes_detail():
+    logger.info('Entered the TRAVEL ROUTE DETAIL page')
+    return render_template("travelRoutesDetail.html")
+
 
 # 翻译功能 (auto - 英)
 def translate(q):

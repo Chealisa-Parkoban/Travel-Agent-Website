@@ -1,142 +1,42 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description"
-          content="Probably the most complete UI kit out there. Multiple functionalities and controls added,  extended color palette and beautiful typography, designed as its own extended version of Bootstrap at  the highest level of quality.                             ">
-    <meta name="author" content="Webpixels">
-    <title>Homepage</title>
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800|Roboto:400,500,700" rel="stylesheet">
-    <!-- Theme CSS -->
-    <link type="text/css" href="../static/css/theme.css" rel="stylesheet">
-    <!-- Demo CSS - No need to use these in your project -->
-    <link type="text/css" href="../static/css/demo.css" rel="stylesheet">
-    <link type="text/css" href="../static/css/docs4.6.css" rel="stylesheet">
-    <link type="text/css" href="../static/css/index.css" rel="stylesheet">
-    <link type="text/css" href="../static/css/style.css" rel="stylesheet">
+{#<!DOCTYPE html>#}
+{#<html>#}
+{#<head>#}
+{#    <meta charset="utf-8">#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">#}
+{#    <meta name="description"#}
+{#          content="Probably the most complete UI kit out there. Multiple functionalities and controls added,  extended color palette and beautiful typography, designed as its own extended version of Bootstrap at  the highest level of quality.                             ">#}
+{#    <meta name="author" content="Webpixels">#}
+{#    <title>Homepage</title>#}
+{#    <title>{% block title %}{% endblock %}Homepage</title>#}
+{#    <!-- Fonts -->#}
+{#    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800|Roboto:400,500,700" rel="stylesheet">#}
+{#    <!-- Theme CSS -->#}
+{#    <link type="text/css" href="../static/css/theme.css" rel="stylesheet">#}
+{#    <!-- Demo CSS - No need to use these in your project -->#}
+{#    <link type="text/css" href="../static/css/demo.css" rel="stylesheet">#}
+{#    <link type="text/css" href="../static/css/docs4.6.css" rel="stylesheet">#}
+{#    <link type="text/css" href="../static/css/index.css" rel="stylesheet">#}
+{#    <link type="text/css" href="../static/css/style.css" rel="stylesheet">#}
+{##}
+{#    {% block head %}{% endblock %}#}
+{##}
+{#</head>#}
+{% extends "base.html" %}
+{% block title %}
+    Homepage
+{% endblock %}
 
-    {% block head %}{% endblock %}
-
-</head>
-
+{% block head %}
+{% endblock %}
 {#<body style="background: linear-gradient(to bottom, #288cff, #9fcdff, #ffffff) no-repeat fixed center center;">#}
 <body>
 <!-- navbar start -->
-{% block body %}
-    <header class="sticky-top">
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="#">Digital Beans</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_example_1"
-                    aria-controls="navbar_example_1" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbar_example_1">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbar_1_dropdown_1" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                        <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
-                            <a class="dropdown-item" href="{{ url_for("index") }}">Overview</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#">Disabled</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav ml-auto">
-                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
-                            data-bs-target="#offcanvasExample"
-                            aria-controls="offcanvasExample">
-                        help
-                    </button>
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-icon" href="#"><i class="fas fa-cogs"></i></a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link nav-link-icon" href="#" id="navbar_1_dropdown_2" role="button"
-                           data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false"><i class="fas fa-bell"></i></a>
-                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-xl py-0">
-                            <div class="py-3 px-3">
-                                <h5 class="heading h6 mb-0">Notifications</h5>
-                            </div>
-                            <div class="list-group">
-                                <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
-                                    <div class="list-group-img">
-                                        <span class="avatar bg-purple">JD</span>
-                                    </div>
-                                    <div class="list-group-content">
-                                        <div class="list-group-heading">Johnyy Depp <small>10:05 PM</small></div>
-                                        <p class="text-sm">Lorem ipsum dolor sit amet consectetur adipiscing eiusmod
-                                            tempor</p>
-                                    </div>
-                                </a>
-                                <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
-                                    <div class="list-group-img">
-                                        <span class="avatar bg-pink">TC</span>
-                                    </div>
-                                    <div class="list-group-content">
-                                        <div class="list-group-heading">Tom Cruise <small>10:05 PM</small></div>
-                                        <p class="text-sm">Lorem ipsum dolor sit amet consectetur adipiscing eiusmod
-                                            tempor</p>
-                                    </div>
-                                </a>
-                                <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
-                                    <div class="list-group-img">
-                                        <span class="avatar bg-blue">WS</span>
-                                    </div>
-                                    <div class="list-group-content">
-                                        <div class="list-group-heading">Will Smith <small>10:05 PM</small></div>
-                                        <p class="text-sm">Lorem ipsum dolor sit amet consectetur adipiscing eiusmod
-                                            tempor</p>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="py-3 text-center">
-                                <a href="#" class="link link-sm link--style-3">View all notifications</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link nav-link-icon" href="#" id="navbar_1_dropdown_3" role="button"
-                           data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i></a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <h6 class="dropdown-header">User menu</h6>
-                            <a class="dropdown-item" href="#">
-                                <span class="float-right badge badge-primary">4</span>
-                                <i class="fas fa-envelope text-primary"></i>Messages
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-cog text-primary"></i>Settings
-                            </a>
-                            <div class="dropdown-divider" role="presentation"></div>
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-sign-out-alt text-primary"></i>Sign out
-                            </a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-{% endblock %}
-<div class="container-fluid">
-    <div class="row flex-xl-nowrap">
-        <div class="col-md-3 col-xl-2 bd-sidebar">
-            <form role="search" class="bd-search d-flex align-items-center">
+{% block body %}
+    <div class="container-fluid">
+        <div class="row flex-xl-nowrap">
+            <div class="col-md-3 col-xl-2 bd-sidebar">
+                <form role="search" class="bd-search d-flex align-items-center">
                 <span class="algolia-autocomplete"
                       style="position: relative; display: inline-block; direction: ltr;"><input type="search"
                                                                                                 class="form-control ds-input"
@@ -157,1366 +57,837 @@
                         class="ds-dropdown-menu" role="listbox" id="algolia-autocomplete-listbox-0"
                         style="position: absolute; top: 100%; z-index: 100; display: none; left: 0px; right: auto;"><div
                         class="ds-dataset-1"></div></span></span>
-                <button class="btn bd-search-docs-toggle d-md-none p-0 ml-3" type="button" data-toggle="collapse"
-                        data-target="#bd-docs-nav" aria-controls="bd-docs-nav" aria-expanded="false"
-                        aria-label="Toggle docs navigation">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" role="img"
-                         focusable="false"><title>Menu</title>
-                        <path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"
-                              d="M4 7h22M4 15h22M4 23h22"></path>
-                    </svg>
-                </button>
-            </form>
-            <div class="collapse d-md-block row" id="bd-docs-nav">
-                <nav class="bd-links" aria-label="Main navigation">
+                    <button class="btn bd-search-docs-toggle d-md-none p-0 ml-3" type="button" data-toggle="collapse"
+                            data-target="#bd-docs-nav" aria-controls="bd-docs-nav" aria-expanded="false"
+                            aria-label="Toggle docs navigation">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" role="img"
+                             focusable="false"><title>Menu</title>
+                            <path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"
+                                  d="M4 7h22M4 15h22M4 23h22"></path>
+                        </svg>
+                    </button>
+                </form>
+                <div class="collapse d-md-block row" id="bd-docs-nav">
+                    <nav class="bd-links" aria-label="Main navigation">
 
-                    <div class="bd-toc-item">
-                        <a class="bd-toc-link" href="/docs/4.6/getting-started/introduction/">
-                            Getting started （可以后续点击这里进入教程）
-                        </a>
-                    </div>
-                    <hr>
-                    <div class="bd-toc-item">
-                        <a class="bd-toc-link" href="/docs/4.6/layout/overview/">
-                            Layout
-                        </a>
-                        <ul class="nav bd-sidenav">
-                            <li>
-                                <a href="/docs/4.6/layout/overview/">Overview （主页）</a>
-                            </li>
-                            <li class="active bd-sidenav-active">
-                                <a href="/docs/4.6/layout/grid/">Grid</a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.6/layout/utilities-for-layout/">Utilities for layout</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <hr>
+                        <div class="bd-toc-item">
+                            <a class="bd-toc-link" href="/docs/4.6/getting-started/introduction/">
+                                Getting started （可以后续点击这里进入教程）
+                            </a>
+                        </div>
+                        <hr>
+                        <div class="bd-toc-item">
+                            <a class="bd-toc-link" href="/docs/4.6/layout/overview/">
+                                Layout
+                            </a>
+                            <ul class="nav bd-sidenav">
+                                <li>
+                                    <a href="/docs/4.6/layout/overview/">Overview （主页）</a>
+                                </li>
+                                <li class="active bd-sidenav-active">
+                                    <a href="/docs/4.6/layout/grid/">Grid</a>
+                                </li>
+                                <li>
+                                    <a href="/docs/4.6/layout/utilities-for-layout/">Utilities for layout</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <hr>
 
-                    <div class="bd-toc-item">
-                        <a class="bd-toc-link" href="/docs/4.6/content/reboot/">
-                            Places and interests
-                        </a>
-                    </div>
-                    <hr>
-                    <div class="bd-toc-item ">
-                        <a class="bd-toc-link" href="/docs/4.6/components/alerts/">
-                            Transportation
-                        </a>
-                        <ul class="nav bd-sidenav">
-                            <li>
-                                <a href="/docs/4.6/layout/overview/">Flights</a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.6/layout/utilities-for-layout/">Train</a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.6/layout/utilities-for-layout/">ship</a>
-                            </li>
-                            <li class="active bd-sidenav-active">
-                                <a href="/docs/4.6/layout/grid/">Public transport</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <hr>
-                    <div class="bd-toc-item">
-                        <a class="bd-toc-link" href="/docs/4.6/utilities/borders/">
-                            Hotels
-                        </a>
-                    </div>
-                    <hr>
-                    <div class="bd-toc-item">
-                        <a class="bd-toc-link" href="/docs/4.6/extend/approach/">
-                            Food
-                        </a>
-                    </div>
-                    <hr>
-                    <div class="bd-toc-item">
-                        <a class="bd-toc-link" href="/docs/4.6/migration/">
-                            Shopping
-                        </a>
-                    </div>
-                    <hr>
-                    <div class="bd-toc-item">
-                        <a class="bd-toc-link" href="/docs/4.6/about/overview/">
-                            Entertainment
-                        </a>
-                    </div>
+                        <div class="bd-toc-item">
+                            <a class="bd-toc-link" href="/docs/4.6/content/reboot/">
+                                Places and interests
+                            </a>
+                        </div>
+                        <hr>
+                        <div class="bd-toc-item ">
+                            <a class="bd-toc-link" href="/docs/4.6/components/alerts/">
+                                Transportation
+                            </a>
+                            <ul class="nav bd-sidenav">
+                                <li>
+                                    <a href="/docs/4.6/layout/overview/">Flights</a>
+                                </li>
+                                <li>
+                                    <a href="/docs/4.6/layout/utilities-for-layout/">Train</a>
+                                </li>
+                                <li>
+                                    <a href="/docs/4.6/layout/utilities-for-layout/">ship</a>
+                                </li>
+                                <li class="active bd-sidenav-active">
+                                    <a href="/docs/4.6/layout/grid/">Public transport</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <hr>
+                        <div class="bd-toc-item">
+                            <a class="bd-toc-link" href="/docs/4.6/utilities/borders/">
+                                Hotels
+                            </a>
+                        </div>
+                        <hr>
+                        <div class="bd-toc-item">
+                            <a class="bd-toc-link" href="/docs/4.6/extend/approach/">
+                                Food
+                            </a>
+                        </div>
+                        <hr>
+                        <div class="bd-toc-item">
+                            <a class="bd-toc-link" href="/docs/4.6/migration/">
+                                Shopping
+                            </a>
+                        </div>
+                        <hr>
+                        <div class="bd-toc-item">
+                            <a class="bd-toc-link" href="/docs/4.6/about/overview/">
+                                Entertainment
+                            </a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="d-none d-xl-block col-xl-2 bd-toc" aria-label="Secondary navigation">
+                <nav id="TableOfContents">
+                    <ul>
+                        <li><a href="#how-it-works">How it works （具体内容尚未修改）</a></li>
+                        <li><a href="#grid-options">Grid options</a></li>
+                        <li><a href="#auto-layout-columns">Auto-layout columns</a>
+                            <ul>
+                                <li><a href="#equal-width">Equal-width</a></li>
+                                <li><a href="#equal-width-multi-line">Equal-width multi-line</a></li>
+                                <li><a href="#setting-one-column-width">Setting one column width</a></li>
+                                <li><a href="#variable-width-content">Variable width content</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#responsive-classes">Responsive classes</a>
+                            <ul>
+                                <li><a href="#all-breakpoints">All breakpoints</a></li>
+                                <li><a href="#stacked-to-horizontal">Stacked to horizontal</a></li>
+                                <li><a href="#mix-and-match">Mix and match</a></li>
+                                <li><a href="#gutters">Gutters</a></li>
+                                <li><a href="#row-columns">Row columns</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#alignment">Alignment</a>
+                            <ul>
+                                <li><a href="#vertical-alignment">Vertical alignment</a></li>
+                                <li><a href="#horizontal-alignment">Horizontal alignment</a></li>
+                                <li><a href="#no-gutters">No gutters</a></li>
+                                <li><a href="#column-wrapping">Column wrapping</a></li>
+                                <li><a href="#column-breaks">Column breaks</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#reordering">Reordering</a>
+                            <ul>
+                                <li><a href="#order-classes">Order classes</a></li>
+                                <li><a href="#offsetting-columns">Offsetting columns</a>
+                                    <ul>
+                                        <li><a href="#offset-classes">Offset classes</a></li>
+                                        <li><a href="#margin-utilities">Margin utilities</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="#nesting">Nesting</a></li>
+                        <li><a href="#sass-mixins">Sass mixins</a>
+                            <ul>
+                                <li><a href="#variables">Variables</a></li>
+                                <li><a href="#mixins">Mixins</a></li>
+                                <li><a href="#example-usage">Example usage</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#customizing-the-grid">Customizing the grid</a>
+                            <ul>
+                                <li><a href="#columns-and-gutters">Columns and gutters</a></li>
+                                <li><a href="#grid-tiers">Grid tiers</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                 </nav>
-            </div>
-        </div>
-
-        <nav class="d-none d-xl-block col-xl-2 bd-toc" aria-label="Secondary navigation">
-            <nav id="TableOfContents">
-                <ul>
-                    <li><a href="#how-it-works">How it works （具体内容尚未修改）</a></li>
-                    <li><a href="#grid-options">Grid options</a></li>
-                    <li><a href="#auto-layout-columns">Auto-layout columns</a>
-                        <ul>
-                            <li><a href="#equal-width">Equal-width</a></li>
-                            <li><a href="#equal-width-multi-line">Equal-width multi-line</a></li>
-                            <li><a href="#setting-one-column-width">Setting one column width</a></li>
-                            <li><a href="#variable-width-content">Variable width content</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#responsive-classes">Responsive classes</a>
-                        <ul>
-                            <li><a href="#all-breakpoints">All breakpoints</a></li>
-                            <li><a href="#stacked-to-horizontal">Stacked to horizontal</a></li>
-                            <li><a href="#mix-and-match">Mix and match</a></li>
-                            <li><a href="#gutters">Gutters</a></li>
-                            <li><a href="#row-columns">Row columns</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#alignment">Alignment</a>
-                        <ul>
-                            <li><a href="#vertical-alignment">Vertical alignment</a></li>
-                            <li><a href="#horizontal-alignment">Horizontal alignment</a></li>
-                            <li><a href="#no-gutters">No gutters</a></li>
-                            <li><a href="#column-wrapping">Column wrapping</a></li>
-                            <li><a href="#column-breaks">Column breaks</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#reordering">Reordering</a>
-                        <ul>
-                            <li><a href="#order-classes">Order classes</a></li>
-                            <li><a href="#offsetting-columns">Offsetting columns</a>
-                                <ul>
-                                    <li><a href="#offset-classes">Offset classes</a></li>
-                                    <li><a href="#margin-utilities">Margin utilities</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a href="#nesting">Nesting</a></li>
-                    <li><a href="#sass-mixins">Sass mixins</a>
-                        <ul>
-                            <li><a href="#variables">Variables</a></li>
-                            <li><a href="#mixins">Mixins</a></li>
-                            <li><a href="#example-usage">Example usage</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#customizing-the-grid">Customizing the grid</a>
-                        <ul>
-                            <li><a href="#columns-and-gutters">Columns and gutters</a></li>
-                            <li><a href="#grid-tiers">Grid tiers</a></li>
-                        </ul>
-                    </li>
-                </ul>
             </nav>
-        </nav>
 
-        <main class="col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
-              <div class="album py-5 bg-white">
-    <div class="container">
+            <main class="col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
+                <div class="album py-5 bg-white">
+                    <div class="container">
 
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-{#            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>#}
-            <img src="../static/images/sample_pic/guilin.png" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="">
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-{#            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>#}
-            <img src="../static/images/sample_pic/juzizhou.png" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="">
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-{#            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>#}
-            <img src="../static/images/sample_pic/tengwangge.png" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="">
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    {#            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>#}
+                                    <img src="../static/images/sample_pic/guilin.png"
+                                         class="bd-placeholder-img card-img-top" width="100%" height="225" alt="">
+                                    <div class="card-body">
+                                        <p class="card-text">This is a wider card with supporting text below as a
+                                            natural
+                                            lead-in to additional content. This content is a little bit longer.</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-outline-secondary"><a
+                                                        href="{{ url_for("travel_routes_detail") }}">View</a></button>
+                                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit
+                                                </button>
+                                            </div>
+                                            <small class="text-muted">9 mins</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    {#            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>#}
+                                    <img src="../static/images/sample_pic/juzizhou.png"
+                                         class="bd-placeholder-img card-img-top" width="100%" height="225" alt="">
+                                    <div class="card-body">
+                                        <p class="card-text">This is a wider card with supporting text below as a
+                                            natural
+                                            lead-in to additional content. This content is a little bit longer.</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-outline-secondary">View
+                                                </button>
+                                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit
+                                                </button>
+                                            </div>
+                                            <small class="text-muted">9 mins</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    {#            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>#}
+                                    <img src="../static/images/sample_pic/tengwangge.png"
+                                         class="bd-placeholder-img card-img-top" width="100%" height="225" alt="">
+                                    <div class="card-body">
+                                        <p class="card-text">This is a wider card with supporting text below as a
+                                            natural
+                                            lead-in to additional content. This content is a little bit longer.</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-outline-secondary">View
+                                                </button>
+                                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit
+                                                </button>
+                                            </div>
+                                            <small class="text-muted">9 mins</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-{#            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>#}
-            <img src="../static/images/sample_pic/xian.png" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="">
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-{#            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>#}
-            <img src="../static/images/sample_pic/xiangxi.png" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="">
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-{#            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>#}
-            <img src="../static/images/sample_pic/yuelushuyuan.png" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="">
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    {#            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>#}
+                                    <img src="../static/images/sample_pic/xian.png"
+                                         class="bd-placeholder-img card-img-top"
+                                         width="100%" height="225" alt="">
+                                    <div class="card-body">
+                                        <p class="card-text">This is a wider card with supporting text below as a
+                                            natural
+                                            lead-in to additional content. This content is a little bit longer.</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-outline-secondary">View
+                                                </button>
+                                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit
+                                                </button>
+                                            </div>
+                                            <small class="text-muted">9 mins</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    {#            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>#}
+                                    <img src="../static/images/sample_pic/xiangxi.png"
+                                         class="bd-placeholder-img card-img-top" width="100%" height="225" alt="">
+                                    <div class="card-body">
+                                        <p class="card-text">This is a wider card with supporting text below as a
+                                            natural
+                                            lead-in to additional content. This content is a little bit longer.</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-outline-secondary">View
+                                                </button>
+                                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit
+                                                </button>
+                                            </div>
+                                            <small class="text-muted">9 mins</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    {#            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>#}
+                                    <img src="../static/images/sample_pic/yuelushuyuan.png"
+                                         class="bd-placeholder-img card-img-top" width="100%" height="225" alt="">
+                                    <div class="card-body">
+                                        <p class="card-text">This is a wider card with supporting text below as a
+                                            natural
+                                            lead-in to additional content. This content is a little bit longer.</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-outline-secondary">View
+                                                </button>
+                                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit
+                                                </button>
+                                            </div>
+                                            <small class="text-muted">9 mins</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                                         xmlns="http://www.w3.org/2000/svg" role="img"
+                                         aria-label="Placeholder: Thumbnail"
+                                         preserveAspectRatio="xMidYMid slice" focusable="false"><title>
+                                        Placeholder</title>
+                                        <rect width="100%" height="100%" fill="#55595c"/>
+                                        <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                                    </svg>
 
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-{#            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>#}
-            <img src="../static/images/sample_pic/zhangjiajie.png" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="">
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                                    <div class="card-body">
+                                        <p class="card-text">This is a wider card with supporting text below as a
+                                            natural
+                                            lead-in to additional content. This content is a little bit longer.</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-outline-secondary">View
+                                                </button>
+                                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit
+                                                </button>
+                                            </div>
+                                            <small class="text-muted">9 mins</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    {#            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>#}
+                                    <img src="../static/images/sample_pic/zhangjiajie.png"
+                                         class="bd-placeholder-img card-img-top" width="100%" height="225" alt="">
+                                    <div class="card-body">
+                                        <p class="card-text">This is a wider card with supporting text below as a
+                                            natural
+                                            lead-in to additional content. This content is a little bit longer.</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-outline-secondary">View
+                                                </button>
+                                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit
+                                                </button>
+                                            </div>
+                                            <small class="text-muted">9 mins</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                                         xmlns="http://www.w3.org/2000/svg" role="img"
+                                         aria-label="Placeholder: Thumbnail"
+                                         preserveAspectRatio="xMidYMid slice" focusable="false"><title>
+                                        Placeholder</title>
+                                        <rect width="100%" height="100%" fill="#55595c"/>
+                                        <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                                    </svg>
 
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-        </main>
-
-{#        <main class="col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">#}
-{#            <div class="container">#}
-{#                <div class="products">#}
-{#                    <div class="container-fuild">#}
-{#                        <div class="row products_row_1">#}
-{#                            <!--#}
-{#                                                        <div class="col-md-3 col-sm-6 col-xs-12">#}
-{#                                                            <div class="product-grid">#}
-{#                                                                <div class="card alert-shadow" style="width: 18rem; border-radius: 20px;">#}
-{#                                                                    <div class="product-image" style="margin: 5% 5% 5% 5%">#}
-{#                                                                        <a href="#" class="image">#}
-{#                                                                            <img class="pic-1" src="../static/images/sample_pic/guilin.png">#}
-{#                                                                            <img class="pic-2" src="../static/images/sample_pic/guilin.png">#}
-{#                                                                        </a>#}
-{#                                                                        <span class="product-sale-label">New</span>#}
-{#                                                                        <div class="product-button-group">#}
-{#                                                                            <a href="#" onclick="PleaseLogin()" class="add-to-wishlist">Buy Now!</a>#}
-{#                                                                            <a href="#" onclick="PleaseLogin()" class="quick-view">Shopping Cart</a>#}
-{#                                                                        </div>#}
-{#                                                                    </div>#}
-{#                                                                    <div class="product-content">#}
-{#                                                                        <h3 class="title"><a href="#" onclick="PleaseLogin()">Gui Lin</a>#}
-{#                                                                        </h3>#}
-{#                                                                        <div class="price">$2000.00</div>#}
-{#                                                                        <a href="#" class="add-to-cart">Detail</a>#}
-{#                                                                    </div>#}
-{#                                                                    <div class="card-body">#}
-{#                                                                        <p class="card-text">Some quick example text to build on the card title#}
-{#                                                                            and#}
-{#                                                                            make up#}
-{#                                                                            the bulk of the card's content.</p>#}
-{#                                                                    </div>#}
-{#                                                                </div>#}
-{#                                                            </div>#}
-{#                                                        </div>#}
-{##}
-{#                                                        <div class="col-md-3 col-sm-6 col-xs-12">#}
-{#                                                            <div class="product-grid">#}
-{#                                                                <div class="card alert-shadow" style="width: 18rem; border-radius: 20px;">#}
-{#                                                                    <div class="product-image" style="margin: 5% 5% 5% 5%">#}
-{#                                                                        <a href="#" class="image">#}
-{#                                                                            <img class="pic-1" src="../static/images/sample_pic/juzizhou.png">#}
-{#                                                                            <img class="pic-2" src="../static/images/sample_pic/juzizhou.png">#}
-{#                                                                        </a>#}
-{#                                                                        <span class="product-sale-label">New</span>#}
-{#                                                                        <div class="product-button-group">#}
-{#                                                                            <a href="#" class="add-to-wishlist">Buy Now!</a>#}
-{#                                                                            <a href="#" class="quick-view">Shopping Cart</a>#}
-{#                                                                        </div>#}
-{#                                                                    </div>#}
-{#                                                                    <div class="product-content">#}
-{#                                                                        <h3 class="title"><a href="#">Ju Zi Zhou Tou</a></h3>#}
-{#                                                                        <div class="price">$1599.00</div>#}
-{#                                                                        <a href="#" class="add-to-cart">Detail</a>#}
-{#                                                                    </div>#}
-{#                                                                    <div class="card-body">#}
-{#                                                                        <p class="card-text">Some quick example text to build on the card title#}
-{#                                                                            and#}
-{#                                                                            make up#}
-{#                                                                            the bulk of the card's content.</p>#}
-{#                                                                    </div>#}
-{#                                                                </div>#}
-{#                                                            </div>#}
-{#                                                        </div>#}
-{##}
-{#                                                        <div class="col-md-3 col-sm-6 col-xs-12">#}
-{#                                                            <div class="product-grid">#}
-{#                                                                <div class="card alert-shadow" style="width: 18rem; border-radius: 20px;">#}
-{#                                                                    <div class="product-image" style="margin: 5% 5% 5% 5%">#}
-{#                                                                        <a href="#" class="image">#}
-{#                                                                            <img class="pic-1" src="../static/images/sample_pic/tengwangge.png">#}
-{#                                                                            <img class="pic-2" src="../static/images/sample_pic/tengwangge.png">#}
-{#                                                                        </a>#}
-{#                                                                        <span class="product-sale-label">New</span>#}
-{#                                                                        <div class="product-button-group">#}
-{#                                                                            <a href="#" class="add-to-wishlist">Buy Now!</a>#}
-{#                                                                            <a href="#" class="quick-view">Shopping Cart</a>#}
-{#                                                                        </div>#}
-{#                                                                    </div>#}
-{#                                                                    <div class="product-content">#}
-{#                                                                        <h3 class="title"><a href="#">Teng Wang Ge</a></h3>#}
-{#                                                                        <div class="price">$3099.00</div>#}
-{#                                                                        <a href="#" class="add-to-cart">Detail</a>#}
-{#                                                                    </div>#}
-{#                                                                    <div class="card-body">#}
-{#                                                                        <p class="card-text">Some quick example text to build on the card title#}
-{#                                                                            and#}
-{#                                                                            make up#}
-{#                                                                            the bulk of the card's content.</p>#}
-{#                                                                    </div>#}
-{#                                                                </div>#}
-{#                                                            </div>#}
-{#                                                        </div>#}
-{##}
-{#                                                        <div class="col-md-3 col-sm-6 col-xs-12">#}
-{#                                                            <div class="product-grid">#}
-{#                                                                <div class="card alert-shadow" style="width: 18rem; border-radius: 20px;">#}
-{#                                                                    <div class="product-image" style="margin: 5% 5% 5% 5%">#}
-{#                                                                        <a href="#" onclick="PleaseLogin()" class="image">#}
-{#                                                                            <img class="pic-1" src="../static/images/sample_pic/xian.png">#}
-{#                                                                            <img class="pic-2" src="../static/images/sample_pic/xian.png">#}
-{#                                                                        </a>#}
-{#                                                                        <span class="product-sale-label">New</span>#}
-{#                                                                        <div class="product-button-group">#}
-{#                                                                            <a href="#" onclick="PleaseLogin()"#}
-{#                                                                               class="add-to-wishlist">Buy Now!</a>#}
-{#                                                                            <a href="#" onclick="PleaseLogin()"#}
-{#                                                                               class="quick-view">Shopping Cart</a>#}
-{#                                                                        </div>#}
-{#                                                                    </div>#}
-{#                                                                    <div class="product-content">#}
-{#                                                                        <h3 class="title"><a href="#" onclick="PleaseLogin()">Xi An</a></h3>#}
-{#                                                                        <div class="price">$5099.00</div>#}
-{#                                                                        <a href="#" onclick="PleaseLogin()"#}
-{#                                                                           class="add-to-cart">Detail</a>#}
-{#                                                                    </div>#}
-{#                                                                    <div class="card-body">#}
-{#                                                                        <p class="card-text">Some quick example text to build on the card title#}
-{#                                                                            and#}
-{#                                                                            make up#}
-{#                                                                            the bulk of the card's content.</p>#}
-{#                                                                    </div>#}
-{#                                                                </div>#}
-{#                                                            </div>#}
-{#                                                        </div>#}
-{##}
-{#                                                        <div class="col-md-3 col-sm-6 col-xs-12">#}
-{#                                                            <div class="product-grid">#}
-{#                                                                <div class="card alert-shadow" style="width: 18rem; border-radius: 20px;">#}
-{#                                                                    <div class="product-image" style="margin: 5% 5% 5% 5%">#}
-{#                                                                        <a href="#" onclick="PleaseLogin()" class="image">#}
-{#                                                                            <img class="pic-1" src="../static/images/sample_pic/xiangxi.png">#}
-{#                                                                            <img class="pic-2" src="../static/images/sample_pic/xiangxi.png">#}
-{#                                                                        </a>#}
-{#                                                                        <span class="product-sale-label">New</span>#}
-{#                                                                        <div class="product-button-group">#}
-{#                                                                            <a href="#" onclick="PleaseLogin()"#}
-{#                                                                               class="add-to-wishlist">Buy Now!</a>#}
-{#                                                                            <a href="#" onclick="PleaseLogin()"#}
-{#                                                                               class="quick-view">Shopping Cart</a>#}
-{#                                                                        </div>#}
-{#                                                                    </div>#}
-{#                                                                    <div class="product-content">#}
-{#                                                                        <h3 class="title"><a href="#" onclick="PleaseLogin()">Xiang Xi</a></h3>#}
-{#                                                                        <div class="price">$5099.00</div>#}
-{#                                                                        <a href="#" onclick="PleaseLogin()"#}
-{#                                                                           class="add-to-cart">Detail</a>#}
-{#                                                                    </div>#}
-{#                                                                    <div class="card-body">#}
-{#                                                                        <p class="card-text">Some quick example text to build on the card title#}
-{#                                                                            and#}
-{#                                                                            make up#}
-{#                                                                            the bulk of the card's content.</p>#}
-{#                                                                    </div>#}
-{#                                                                </div>#}
-{#                                                            </div>#}
-{#                                                        </div>#}
-{##}
-{#                                                        <div class="col-md-3 col-sm-6 col-xs-12">#}
-{#                                                            <div class="product-grid">#}
-{#                                                                <div class="card alert-shadow" style="width: 18rem; border-radius: 20px;">#}
-{#                                                                    <div class="product-image" style="margin: 5% 5% 5% 5%">#}
-{#                                                                        <a href="#" onclick="PleaseLogin()" class="image">#}
-{#                                                                            <img class="pic-1"#}
-{#                                                                                 src="../static/images/sample_pic/yuelushuyuan.png">#}
-{#                                                                            <img class="pic-2"#}
-{#                                                                                 src="../static/images/sample_pic/yuelushuyuan.png">#}
-{#                                                                        </a>#}
-{#                                                                        <span class="product-sale-label">New</span>#}
-{#                                                                        <div class="product-button-group">#}
-{#                                                                            <a href="#" onclick="PleaseLogin()"#}
-{#                                                                               class="add-to-wishlist">Buy Now!</a>#}
-{#                                                                            <a href="#" onclick="PleaseLogin()"#}
-{#                                                                               class="quick-view">Shopping Cart</a>#}
-{#                                                                        </div>#}
-{#                                                                    </div>#}
-{#                                                                    <div class="product-content">#}
-{#                                                                        <h3 class="title"><a href="#" onclick="PleaseLogin()">Yue Lu Shu Yuan</a></h3>#}
-{#                                                                        <div class="price">$5099.00</div>#}
-{#                                                                        <a href="#" onclick="PleaseLogin()"#}
-{#                                                                           class="add-to-cart">Detail</a>#}
-{#                                                                    </div>#}
-{#                                                                    <div class="card-body">#}
-{#                                                                        <p class="card-text">Some quick example text to build on the card title#}
-{#                                                                            and#}
-{#                                                                            make up#}
-{#                                                                            the bulk of the card's content.</p>#}
-{#                                                                    </div>#}
-{#                                                                </div>#}
-{#                                                            </div>#}
-{#                                                        </div>#}
-{##}
-{#                                                        <div class="col-md-3 col-sm-6 col-xs-12">#}
-{#                                                            <div class="product-grid">#}
-{#                                                                <div class="card alert-shadow" style="width: 18rem; border-radius: 20px;">#}
-{#                                                                    <div class="product-image" style="margin: 5% 5% 5% 5%">#}
-{#                                                                        <a href="#" onclick="PleaseLogin()" class="image">#}
-{#                                                                            <img class="pic-1"#}
-{#                                                                                 src="../static/images/sample_pic/zhangjiajie.png">#}
-{#                                                                            <img class="pic-2"#}
-{#                                                                                 src="../static/images/sample_pic/zhangjiajie.png">#}
-{#                                                                        </a>#}
-{#                                                                        <span class="product-sale-label">New</span>#}
-{#                                                                        <div class="product-button-group">#}
-{#                                                                            <a href="#" onclick="PleaseLogin()"#}
-{#                                                                               class="add-to-wishlist">Buy Now!</a>#}
-{#                                                                            <a href="#" onclick="PleaseLogin()"#}
-{#                                                                               class="quick-view">Shopping Cart</a>#}
-{#                                                                        </div>#}
-{#                                                                    </div>#}
-{#                                                                    <div class="product-content">#}
-{#                                                                        <h3 class="title"><a href="#" onclick="PleaseLogin()">Zhang Jia Jie</a></h3>#}
-{#                                                                        <div class="price">$5099.00</div>#}
-{#                                                                        <a href="#" onclick="PleaseLogin()"#}
-{#                                                                           class="add-to-cart">Detail</a>#}
-{#                                                                    </div>#}
-{#                                                                    <div class="card-body">#}
-{#                                                                        <p class="card-text">Some quick example text to build on the card title#}
-{#                                                                            and#}
-{#                                                                            make up#}
-{#                                                                            the bulk of the card's content.</p>#}
-{#                                                                    </div>#}
-{#                                                                </div>#}
-{##}
-{#                                                            </div>#}
-{#                                                        </div>#}
-{##}
-{#                                                        -->#}
-{#                            <div class="col-md-3 col-sm-6 col-xs-12">#}
-{#                                <div class="product-grid">#}
-{#                                    <div class="card alert-shadow" style="border-radius: 20px;">#}
-{#                                        <div class="product-image" style="margin: 5% 5% 5% 5%">#}
-{#                                            <a href="#" class="image">#}
-{#                                                <img class="pic-1" src="../static/images/sample_pic/guilin.png">#}
-{#                                                <img class="pic-2" src="../static/images/sample_pic/guilin.png">#}
-{#                                            </a>#}
-{#                                            <span class="product-sale-label">New</span>#}
-{#                                            <div class="product-button-group">#}
-{#                                                <a href="#" onclick="PleaseLogin()" class="add-to-wishlist">Buy Now!</a>#}
-{#                                                <a href="#" onclick="PleaseLogin()" class="quick-view">Shopping Cart</a>#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                        <div class="product-content">#}
-{#                                            <h3 class="title"><a href="#" onclick="PleaseLogin()">Gui Lin</a>#}
-{#                                            </h3>#}
-{#                                            <div class="price">$2000.00</div>#}
-{#                                            <a href="#" class="add-to-cart">Detail</a>#}
-{#                                        </div>#}
-{#                                        <div class="card-body">#}
-{#                                            <p class="card-text">Some quick example text to build on the card title#}
-{#                                                the bulk of the card's content.</p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{##}
-{#                            <div class="col-md-3 col-sm-6 col-xs-12">#}
-{#                                <div class="product-grid">#}
-{#                                    <div class="card alert-shadow" style="border-radius: 20px;">#}
-{#                                        <div class="product-image" style="margin: 5% 5% 5% 5%">#}
-{#                                            <a href="#" class="image">#}
-{#                                                <img class="pic-1" src="../static/images/sample_pic/juzizhou.png">#}
-{#                                                <img class="pic-2" src="../static/images/sample_pic/juzizhou.png">#}
-{#                                            </a>#}
-{#                                            <span class="product-sale-label">New</span>#}
-{#                                            <div class="product-button-group">#}
-{#                                                <a href="#" class="add-to-wishlist">Buy Now!</a>#}
-{#                                                <a href="#" class="quick-view">Shopping Cart</a>#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                        <div class="product-content">#}
-{#                                            <h3 class="title"><a href="#">Ju Zi Zhou Tou</a></h3>#}
-{#                                            <div class="price">$1599.00</div>#}
-{#                                            <a href="#" class="add-to-cart">Detail</a>#}
-{#                                        </div>#}
-{#                                        <div class="card-body">#}
-{#                                            <p class="card-text">Some quick example text to build on the card title#}
-{#                                                and#}
-{#                                                make up#}
-{#                                                the bulk of the card's content.</p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{##}
-{#                            <div class="col-md-3 col-sm-6 col-xs-12">#}
-{#                                <div class="product-grid">#}
-{#                                    <div class="card alert-shadow" style="border-radius: 20px;">#}
-{#                                        <div class="product-image" style="margin: 5% 5% 5% 5%">#}
-{#                                            <a href="#" class="image">#}
-{#                                                <img class="pic-1" src="../static/images/sample_pic/tengwangge.png">#}
-{#                                                <img class="pic-2" src="../static/images/sample_pic/tengwangge.png">#}
-{#                                            </a>#}
-{#                                            <span class="product-sale-label">New</span>#}
-{#                                            <div class="product-button-group">#}
-{#                                                <a href="#" class="add-to-wishlist">Buy Now!</a>#}
-{#                                                <a href="#" class="quick-view">Shopping Cart</a>#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                        <div class="product-content">#}
-{#                                            <h3 class="title"><a href="#">Teng Wang Ge</a></h3>#}
-{#                                            <div class="price">$3099.00</div>#}
-{#                                            <a href="#" class="add-to-cart">Detail</a>#}
-{#                                        </div>#}
-{#                                        <div class="card-body">#}
-{#                                            <p class="card-text">Some quick example text to build on the card title#}
-{#                                                and#}
-{#                                                make up#}
-{#                                                the bulk of the card's content.</p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{##}
-{#                            <div class="col-md-3 col-sm-6 col-xs-12">#}
-{#                                <div class="product-grid">#}
-{#                                    <div class="card alert-shadow" style="border-radius: 20px;">#}
-{#                                        <div class="product-image" style="margin: 5% 5% 5% 5%">#}
-{#                                            <a href="#" onclick="PleaseLogin()" class="image">#}
-{#                                                <img class="pic-1" src="../static/images/sample_pic/xian.png">#}
-{#                                                <img class="pic-2" src="../static/images/sample_pic/xian.png">#}
-{#                                            </a>#}
-{#                                            <span class="product-sale-label">New</span>#}
-{#                                            <div class="product-button-group">#}
-{#                                                <a href="#" onclick="PleaseLogin()"#}
-{#                                                   class="add-to-wishlist">Buy Now!</a>#}
-{#                                                <a href="#" onclick="PleaseLogin()"#}
-{#                                                   class="quick-view">Shopping Cart</a>#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                        <div class="product-content">#}
-{#                                            <h3 class="title"><a href="#" onclick="PleaseLogin()">Xi An</a></h3>#}
-{#                                            <div class="price">$5099.00</div>#}
-{#                                            <a href="#" onclick="PleaseLogin()"#}
-{#                                               class="add-to-cart">Detail</a>#}
-{#                                        </div>#}
-{#                                        <div class="card-body">#}
-{#                                            <p class="card-text">Some quick example text to build on the card title#}
-{#                                                and#}
-{#                                                make up#}
-{#                                                the bulk of the card's content.</p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{##}
-{#                            <div class="col-md-3 col-sm-6 col-xs-12">#}
-{#                                <div class="product-grid">#}
-{#                                    <div class="card alert-shadow" style="border-radius: 20px;">#}
-{#                                        <div class="product-image" style="margin: 5% 5% 5% 5%">#}
-{#                                            <a href="#" onclick="PleaseLogin()" class="image">#}
-{#                                                <img class="pic-1" src="../static/images/sample_pic/xiangxi.png">#}
-{#                                                <img class="pic-2" src="../static/images/sample_pic/xiangxi.png">#}
-{#                                            </a>#}
-{#                                            <span class="product-sale-label">New</span>#}
-{#                                            <div class="product-button-group">#}
-{#                                                <a href="#" onclick="PleaseLogin()"#}
-{#                                                   class="add-to-wishlist">Buy Now!</a>#}
-{#                                                <a href="#" onclick="PleaseLogin()"#}
-{#                                                   class="quick-view">Shopping Cart</a>#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                        <div class="product-content">#}
-{#                                            <h3 class="title"><a href="#" onclick="PleaseLogin()">Xiang Xi</a></h3>#}
-{#                                            <div class="price">$5099.00</div>#}
-{#                                            <a href="#" onclick="PleaseLogin()"#}
-{#                                               class="add-to-cart">Detail</a>#}
-{#                                        </div>#}
-{#                                        <div class="card-body">#}
-{#                                            <p class="card-text">Some quick example text to build on the card title#}
-{#                                                and#}
-{#                                                make up#}
-{#                                                the bulk of the card's content.</p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{##}
-{#                            <div class="col-md-3 col-sm-6 col-xs-12">#}
-{#                                <div class="product-grid">#}
-{#                                    <div class="card alert-shadow" style="border-radius: 20px;">#}
-{#                                        <div class="product-image" style="margin: 5% 5% 5% 5%">#}
-{#                                            <a href="#" onclick="PleaseLogin()" class="image">#}
-{#                                                <img class="pic-1"#}
-{#                                                     src="../static/images/sample_pic/yuelushuyuan.png">#}
-{#                                                <img class="pic-2"#}
-{#                                                     src="../static/images/sample_pic/yuelushuyuan.png">#}
-{#                                            </a>#}
-{#                                            <span class="product-sale-label">New</span>#}
-{#                                            <div class="product-button-group">#}
-{#                                                <a href="#" onclick="PleaseLogin()"#}
-{#                                                   class="add-to-wishlist">Buy Now!</a>#}
-{#                                                <a href="#" onclick="PleaseLogin()"#}
-{#                                                   class="quick-view">Shopping Cart</a>#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                        <div class="product-content">#}
-{#                                            <h3 class="title"><a href="#" onclick="PleaseLogin()">Yue Lu Shu Yuan</a>#}
-{#                                            </h3>#}
-{#                                            <div class="price">$5099.00</div>#}
-{#                                            <a href="#" onclick="PleaseLogin()"#}
-{#                                               class="add-to-cart">Detail</a>#}
-{#                                        </div>#}
-{#                                        <div class="card-body">#}
-{#                                            <p class="card-text">Some quick example text to build on the card title#}
-{#                                                and#}
-{#                                                make up#}
-{#                                                the bulk of the card's content.</p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{##}
-{#                            <div class="col-md-3 col-sm-6 col-xs-12">#}
-{#                                <div class="product-grid">#}
-{#                                    <div class="card alert-shadow" style="border-radius: 20px;">#}
-{#                                        <div class="product-image" style="margin: 5% 5% 5% 5%">#}
-{#                                            <a href="#" onclick="PleaseLogin()" class="image">#}
-{#                                                <img class="pic-1"#}
-{#                                                     src="../static/images/sample_pic/zhangjiajie.png">#}
-{#                                                <img class="pic-2"#}
-{#                                                     src="../static/images/sample_pic/zhangjiajie.png">#}
-{#                                            </a>#}
-{#                                            <span class="product-sale-label">New</span>#}
-{#                                            <div class="product-button-group">#}
-{#                                                <a href="#" onclick="PleaseLogin()"#}
-{#                                                   class="add-to-wishlist">Buy Now!</a>#}
-{#                                                <a href="#" onclick="PleaseLogin()"#}
-{#                                                   class="quick-view">Shopping Cart</a>#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                        <div class="product-content">#}
-{#                                            <h3 class="title"><a href="#" onclick="PleaseLogin()">Zhang Jia Jie</a></h3>#}
-{#                                            <div class="price">$5099.00</div>#}
-{#                                            <a href="#" onclick="PleaseLogin()"#}
-{#                                               class="add-to-cart">Detail</a>#}
-{#                                        </div>#}
-{#                                        <div class="card-body">#}
-{#                                            <p class="card-text">Some quick example text to build on the card title#}
-{#                                                and#}
-{#                                                make up#}
-{#                                                the bulk of the card's content.</p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{##}
-{#                                </div>#}
-{#                            </div>#}
-{##}
-                            {#                            <div class="card" style="width: 18rem;">#}
-                            {#                                <img src="..." class="card-img-top" alt="...">#}
-                            {#                                <div class="card-body">#}
-                            {#                                    <p class="card-text">Some quick example text to build on the card title and make up#}
-                            {#                                        the bulk of the card's content.</p>#}
-                            {#                                </div>#}
-                            {#                            </div>#}
-{##}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </main>#}
-    </div>
-
-</div>
-<!--
-{#<body style="background-color: #9fcdff">#}
-
-{#<main role="main">#}
-{##}
-{#    <div id="myCarousel" class="carousel slide" data-ride="carousel">#}
-{#        <ol class="carousel-indicators">#}
-{#            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>#}
-{#            <li data-target="#myCarousel" data-slide-to="1"></li>#}
-{#            <li data-target="#myCarousel" data-slide-to="2"></li>#}
-{#        </ol>#}
-{#        <div class="carousel-inner">#}
-{#            <div class="carousel-item active">#}
-{#                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img"#}
-{#                     aria-label=" :  " preserveAspectRatio="xMidYMid slice" focusable="false"><title></title>#}
-{#                    <rect width="100%" height="100%" fill="#777"/>#}
-{#                    <text x="50%" y="50%" fill="#777" dy=".3em"></text>#}
-{#                </svg>#}
-{##}
-{#                <div class="container">#}
-{#                    <div class="carousel-caption text-left">#}
-{#                        <h1>Example headline.</h1>#}
-{#                        <p>Some representative placeholder content for the first slide of the carousel.</p>#}
-{#                        <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#            <div class="carousel-item">#}
-{#                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img"#}
-{#                     aria-label=" :  " preserveAspectRatio="xMidYMid slice" focusable="false"><title></title>#}
-{#                    <rect width="100%" height="100%" fill="#777"/>#}
-{#                    <text x="50%" y="50%" fill="#777" dy=".3em"></text>#}
-{#                </svg>#}
-{##}
-{#                <div class="container">#}
-{#                    <div class="carousel-caption">#}
-{#                        <h1>Another example headline.</h1>#}
-{#                        <p>Some representative placeholder content for the second slide of the carousel.</p>#}
-{#                        <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#            <div class="carousel-item">#}
-{#                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img"#}
-{#                     aria-label=" :  " preserveAspectRatio="xMidYMid slice" focusable="false"><title></title>#}
-{#                    <rect width="100%" height="100%" fill="#777"/>#}
-{#                    <text x="50%" y="50%" fill="#777" dy=".3em"></text>#}
-{#                </svg>#}
-{##}
-{#                <div class="container">#}
-{#                    <div class="carousel-caption text-right">#}
-{#                        <h1>One more for good measure.</h1>#}
-{#                        <p>Some representative placeholder content for the third slide of this carousel.</p>#}
-{#                        <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#        <button class="carousel-control-prev" type="button" data-target="#myCarousel" data-slide="prev">#}
-{#            <span class="carousel-control-prev-icon" aria-hidden="true"></span>#}
-{#            <span class="sr-only">Previous</span>#}
-{#        </button>#}
-{#        <button class="carousel-control-next" type="button" data-target="#myCarousel" data-slide="next">#}
-{#            <span class="carousel-control-next-icon" aria-hidden="true"></span>#}
-{#            <span class="sr-only">Next</span>#}
-{#        </button>#}
-{#    </div>#}
-{##}
-{##}
-{#    <!-- Marketing messaging and featurettes#}
-{#    ================================================== -->#}
-{#    <!-- Wrap the rest of the page in another container to center all the content. -->#}
-{##}
-{#    <div class="container marketing">#}
-{##}
-{#        <!-- Three columns of text below the carousel -->#}
-{#        <div class="row">#}
-{#            <div class="col-lg-4">#}
-{#                <svg class="bd-placeholder-img rounded-circle" width="140" height="140"#}
-{#                     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140"#}
-{#                     preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>#}
-{#                    <rect width="100%" height="100%" fill="#777"/>#}
-{#                    <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>#}
-{#                </svg>#}
-{##}
-{#                <h2>Heading</h2>#}
-{#                <p>Some representative placeholder content for the three columns of text below the carousel. This is the#}
-{#                    first column.</p>#}
-{#                <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>#}
-{#            </div><!-- /.col-lg-4 -->#}
-{#            <div class="col-lg-4">#}
-{#                <svg class="bd-placeholder-img rounded-circle" width="140" height="140"#}
-{#                     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140"#}
-{#                     preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>#}
-{#                    <rect width="100%" height="100%" fill="#777"/>#}
-{#                    <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>#}
-{#                </svg>#}
-{##}
-{#                <h2>Heading</h2>#}
-{#                <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second#}
-{#                    column.</p>#}
-{#                <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>#}
-{#            </div><!-- /.col-lg-4 -->#}
-{#            <div class="col-lg-4">#}
-{#                <svg class="bd-placeholder-img rounded-circle" width="140" height="140"#}
-{#                     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140"#}
-{#                     preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>#}
-{#                    <rect width="100%" height="100%" fill="#777"/>#}
-{#                    <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>#}
-{#                </svg>#}
-{##}
-{#                <h2>Heading</h2>#}
-{#                <p>And lastly this, the third column of representative placeholder content.</p>#}
-{#                <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>#}
-{#            </div><!-- /.col-lg-4 -->#}
-{#        </div><!-- /.row -->#}
-{##}
-{##}
-{#        <!-- START THE FEATURETTES -->#}
-{##}
-{#        <hr class="featurette-divider">#}
-{##}
-{#        <div class="row featurette">#}
-{#            <div class="col-md-7">#}
-{#                <h2 class="featurette-heading">First featurette heading. <span#}
-{#                        class="text-muted">It’ll blow your mind.</span></h2>#}
-{#                <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting#}
-{#                    prose here.</p>#}
-{#            </div>#}
-{#            <div class="col-md-5">#}
-{#                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"#}
-{#                     height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"#}
-{#                     preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>#}
-{#                    <rect width="100%" height="100%" fill="#eee"/>#}
-{#                    <text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>#}
-{#                </svg>#}
-{##}
-{#            </div>#}
-{#        </div>#}
-{##}
-{#        <hr class="featurette-divider">#}
-{##}
-{#        <div class="row featurette">#}
-{#            <div class="col-md-7 order-md-2">#}
-{#                <h2 class="featurette-heading">Oh yeah, it’s that good. <span#}
-{#                        class="text-muted">See for yourself.</span></h2>#}
-{#                <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how#}
-{#                    this layout would work with some actual real-world content in place.</p>#}
-{#            </div>#}
-{#            <div class="col-md-5 order-md-1">#}
-{#                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"#}
-{#                     height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"#}
-{#                     preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>#}
-{#                    <rect width="100%" height="100%" fill="#eee"/>#}
-{#                    <text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>#}
-{#                </svg>#}
-{##}
-{#            </div>#}
-{#        </div>#}
-{##}
-{#        <hr class="featurette-divider">#}
-{##}
-{#        <div class="row featurette">#}
-{#            <div class="col-md-7">#}
-{#                <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>#}
-{#                <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really#}
-{#                    intended to be actually read, simply here to give you a better view of what this would look like#}
-{#                    with some actual content. Your content.</p>#}
-{#            </div>#}
-{#            <div class="col-md-5">#}
-{#                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"#}
-{#                     height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"#}
-{#                     preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>#}
-{#                    <rect width="100%" height="100%" fill="#eee"/>#}
-{#                    <text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>#}
-{#                </svg>#}
-{##}
-{#            </div>#}
-{#        </div>#}
-{##}
-{#        <hr class="featurette-divider">#}
-{##}
-{#        <!-- /END THE FEATURETTES -->#}
-{##}
-{#    </div><!-- /.container -->#}
-{##}
-{##}
-{#    <!-- FOOTER -->#}
-{#    <footer class="container">#}
-{#        <p class="float-right"><a href="#">Back to top</a></p>#}
-{#        <p>&copy; 2017-2022 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>#}
-{#    </footer>#}
-{#</main>#}
--->
-{#<div class="row">#}
-{#    <div class="col-3"></div>#}
-{#    <div class="col-6">#}
-{#        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">#}
-{#            <div class="carousel-inner">#}
-{#                <div class="carousel-item active">#}
-{#                    <img src="../static/images/backgrounds/img-1.jpg" class="d-block w-100" alt="...">#}
-{#                </div>#}
-{#                <div class="carousel-item">#}
-{#                    <img src="..." class="d-block w-100" alt="...">#}
-{#                </div>#}
-{#                <div class="carousel-item">#}
-{#                    <img src="..." class="d-block w-100" alt="...">#}
-{#                </div>#}
-{#            </div>#}
-{#            <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls"#}
-{#                    data-slide="prev">#}
-{#                <span class="carousel-control-prev-icon" aria-hidden="true"></span>#}
-{#                <span class="sr-only">Previous</span>#}
-{#            </button>#}
-{#            <button class="carousel-control-next" type="button" data-target="#carouselExampleControls"#}
-{#                    data-slide="next">#}
-{#                <span class="carousel-control-next-icon" aria-hidden="true"></span>#}
-{#                <span class="sr-only">Next</span>#}
-{#            </button>#}
-{#        </div>#}
-{#    </div>#}
-{#    <div class="col-3"></div>#}
-{#</div>#}
-{#<div class="container text-center">#}
-{#    <div class="row">#}
-{#        <div class="col">#}
-{#            Column#}
-{#        </div>#}
-{#        <div class="col">#}
-{#            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">#}
-{#                <div class="carousel-inner">#}
-{#                    <div class="carousel-item active">#}
-{#                        <img src="../static/images/backgrounds/img-1.jpg" class="d-block w-100" alt="...">#}
-{#                    </div>#}
-{#                    <div class="carousel-item">#}
-{#                        <img src="..." class="d-block w-100" alt="...">#}
-{#                    </div>#}
-{#                    <div class="carousel-item">#}
-{#                        <img src="..." class="d-block w-100" alt="...">#}
-{#                    </div>#}
-{#                </div>#}
-{#                <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls"#}
-{#                        data-slide="prev">#}
-{#                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>#}
-{#                    <span class="sr-only">Previous</span>#}
-{#                </button>#}
-{#                <button class="carousel-control-next" type="button" data-target="#carouselExampleControls"#}
-{#                        data-slide="next">#}
-{#                    <span class="carousel-control-next-icon" aria-hidden="true"></span>#}
-{#                    <span class="sr-only">Next</span>#}
-{#                </button>#}
-{#            </div>#}
-{#        </div>#}
-{#        <div class="col">#}
-{#            Column#}
-{#        </div>#}
-{#    </div>#}
-{##}
-{#</div>#}
-<!--
-<div class=" text-center">
-    <div class="row align-items-start">
-        <div class="col">
-            One of three columns
-        </div>
-        <div class="col">
-            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="../static/images/backgrounds/img-1.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../static/images/backgrounds/img-2.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../static/images/backgrounds/img-3.jpg" class="d-block w-100" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">This is a wider card with supporting text below as a
+                                            natural
+                                            lead-in to additional content. This content is a little bit longer.</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-outline-secondary">View
+                                                </button>
+                                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit
+                                                </button>
+                                            </div>
+                                            <small class="text-muted">9 mins</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls"
-                        data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-target="#carouselExampleControls"
-                        data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </button>
-            </div>
-        </div>
-        <div class="col">
-            One of three columns
-        </div>
-    </div>
-</div>
--->
-<!--
-{#<div class="container">#}
-{#    <!--#}
-{#  <header class="blog-header py-3">#}
-{#    <div class="row flex-nowrap justify-content-between align-items-center">#}
-{#      <div class="col-4 pt-1">#}
-{#        <a class="text-muted" href="#">Subscribe</a>#}
-{#      </div>#}
-{#      <div class="col-4 text-center">#}
-{#        <a class="blog-header-logo text-dark" href="#">Large</a>#}
-{#      </div>#}
-{#      <div class="col-4 d-flex justify-content-end align-items-center">#}
-{#        <a class="text-muted" href="#" aria-label="Search">#}
-{#          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24" focusable="false"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>#}
-{#        </a>#}
-{#        <a class="btn btn-sm btn-outline-secondary" href="#">Sign up</a>#}
-{#      </div>#}
-{#    </div>#}
-{#  </header>#}
-{##}
-{#  <div class="nav-scroller py-1 mb-2">#}
-{#    <nav class="nav d-flex justify-content-between">#}
-{#      <a class="p-2 text-muted" href="#">World</a>#}
-{#      <a class="p-2 text-muted" href="#">U.S.</a>#}
-{#      <a class="p-2 text-muted" href="#">Technology</a>#}
-{#      <a class="p-2 text-muted" href="#">Design</a>#}
-{#      <a class="p-2 text-muted" href="#">Culture</a>#}
-{#      <a class="p-2 text-muted" href="#">Business</a>#}
-{#      <a class="p-2 text-muted" href="#">Politics</a>#}
-{#      <a class="p-2 text-muted" href="#">Opinion</a>#}
-{#      <a class="p-2 text-muted" href="#">Science</a>#}
-{#      <a class="p-2 text-muted" href="#">Health</a>#}
-{#      <a class="p-2 text-muted" href="#">Style</a>#}
-{#      <a class="p-2 text-muted" href="#">Travel</a>#}
-{#    </nav>#}
-{#  </div>#}
-{#    -->#}
-{##}
-{#  <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark" style="background-image: url('../static/images/backgrounds/img-1.jpg')">#}
-{#    <div class="col-md-6 px-0">#}
-{#      <h1 class="display-4 font-italic">Title of a longer featured blog post</h1>#}
-{#      <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what’s most interesting in this post’s contents.</p>#}
-{#      <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Continue reading...</a></p>#}
-{#    </div>#}
-{#  </div>#}
-{##}
-{#  <div class="row mb-2">#}
-{#    <div class="col-md-6">#}
-{#      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">#}
-{#        <div class="col p-4 d-flex flex-column position-static">#}
-{#          <strong class="d-inline-block mb-2 text-primary">World</strong>#}
-{#          <h3 class="mb-0">Featured post</h3>#}
-{#          <div class="mb-1 text-muted">Nov 12</div>#}
-{#          <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>#}
-{#          <a href="#" class="stretched-link">Continue reading</a>#}
-{#        </div>#}
-{#        <div class="col-auto d-none d-lg-block">#}
-{#          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>#}
-{##}
-{#        </div>#}
-{#      </div>#}
-{#    </div>#}
-{#    <div class="col-md-6">#}
-{#      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">#}
-{#        <div class="col p-4 d-flex flex-column position-static">#}
-{#          <strong class="d-inline-block mb-2 text-success">Design</strong>#}
-{#          <h3 class="mb-0">Post title</h3>#}
-{#          <div class="mb-1 text-muted">Nov 11</div>#}
-{#          <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>#}
-{#          <a href="#" class="stretched-link">Continue reading</a>#}
-{#        </div>#}
-{#        <div class="col-auto d-none d-lg-block">#}
-{#          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>#}
-{##}
-{#        </div>#}
-{#      </div>#}
-{#    </div>#}
-{#  </div>#}
-{#</div>#}
-{##}
-{##}
-{#<main role="main" class="container">#}
-{#  <div class="row">#}
-{#    <div class="col-md-8 blog-main">#}
-{#      <h3 class="pb-4 mb-4 font-italic border-bottom">#}
-{#        From the Firehose#}
-{#      </h3>#}
-{##}
-{#      <div class="blog-post">#}
-{#        <h2 class="blog-post-title">Sample blog post</h2>#}
-{#        <p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p>#}
-{##}
-{#        <p>This blog post shows a few different types of content that’s supported and styled with Bootstrap. Basic typography, images, and code are all supported.</p>#}
-{#        <hr>#}
-{#        <p>Yeah, she dances to her own beat. Oh, no. You could've been the greatest. 'Cause, baby, <a href="#">you're a firework</a>. Maybe a reason why all the doors are closed. Open up your heart and just let it begin. So très chic, yeah, she's a classic.</p>#}
-{#        <blockquote>#}
-{#          <p>Bikinis, zucchinis, Martinis, no weenies. I know there will be sacrifice but that's the price. <strong>This is how we do it</strong>. I'm not sticking around to watch you go down. You think you're so rock and roll, but you're really just a joke. I know one spark will shock the world, yeah yeah. Can't replace you with a million rings.</p>#}
-{#        </blockquote>#}
-{#        <p>Trying to connect the dots, don't know what to tell my boss. Before you met me I was alright but things were kinda heavy. You just gotta ignite the light and let it shine. Glitter all over the room <em>pink flamingos</em> in the pool. </p>#}
-{#        <h2>Heading</h2>#}
-{#        <p>Suiting up for my crowning battle. If you only knew what the future holds. Bring the beat back. Peach-pink lips, yeah, everybody stares.</p>#}
-{#        <h3>Sub-heading</h3>#}
-{#        <p>You give a hundred reasons why, and you say you're really gonna try. Straight stuntin' yeah we do it like that. Calling out my name. ‘Cause I, I’m capable of anything.</p>#}
-{#        <pre><code>Example code block</code></pre>#}
-{#        <p>Before you met me I was alright but things were kinda heavy. You just gotta ignite the light and let it shine.</p>#}
-{#        <h3>Sub-heading</h3>#}
-{#        <p>You got the finest architecture. Passport stamps, she's cosmopolitan. Fine, fresh, fierce, we got it on lock. Never planned that one day I'd be losing you. She eats your heart out.</p>#}
-{#        <ul>#}
-{#          <li>Got a motel and built a fort out of sheets.</li>#}
-{#          <li>Your kiss is cosmic, every move is magic.</li>#}
-{#          <li>Suiting up for my crowning battle.</li>#}
-{#        </ul>#}
-{#        <p>Takes you miles high, so high, 'cause she’s got that one international smile.</p>#}
-{#        <ol>#}
-{#          <li>Scared to rock the boat and make a mess.</li>#}
-{#          <li>I could have rewrite your addiction.</li>#}
-{#          <li>I know you get me so I let my walls come down.</li>#}
-{#        </ol>#}
-{#        <p>After a hurricane comes a rainbow.</p>#}
-{#      </div><!-- /.blog-post -->#}
-{##}
-{#      <div class="blog-post">#}
-{#        <h2 class="blog-post-title">Another blog post</h2>#}
-{#        <p class="blog-post-meta">December 23, 2013 by <a href="#">Jacob</a></p>#}
-{##}
-{#        <p>I am ready for the road less traveled. Already <a href="#">brushing off the dust</a>. Yeah, you're lucky if you're on her plane. I used to bite my tongue and hold my breath. Uh, She’s a beast. I call her Karma (come back). Black ray-bans, you know she's with the band. I can't sleep let's run away and don't ever look back, don't ever look back.</p>#}
-{#        <blockquote>#}
-{#          <p>Growing fast into a <strong>bolt of lightning</strong>. Be careful Try not to lead her on</p>#}
-{#        </blockquote>#}
-{#        <p>I'm intrigued, for a peek, heard it's fascinating. Oh oh! Wanna be a victim ready for abduction. She's got that international smile, oh yeah, she's got that one international smile. Do you ever feel, feel so paper thin. I’m gon’ put her in a coma. Sun-kissed skin so hot we'll melt your popsicle.</p>#}
-{#        <p>This is transcendental, on another level, boy, you're my lucky star.</p>#}
-{#      </div><!-- /.blog-post -->#}
-{##}
-{#      <div class="blog-post">#}
-{#        <h2 class="blog-post-title">New feature</h2>#}
-{#        <p class="blog-post-meta">December 14, 2013 by <a href="#">Chris</a></p>#}
-{##}
-{#        <p>From Tokyo to Mexico, to Rio. Yeah, you take me to utopia. I'm walking on air. We'd make out in your Mustang to Radiohead. I mean the ones, I mean like she's the one. Sun-kissed skin so hot we'll melt your popsicle. Slow cooking pancakes for my boy, still up, still fresh as a Daisy.</p>#}
-{#        <ul>#}
-{#          <li>I hope you got a healthy appetite.</li>#}
-{#          <li>You're never gonna be unsatisfied.</li>#}
-{#          <li>Got a motel and built a fort out of sheets.</li>#}
-{#        </ul>#}
-{#        <p>Don't need apologies. Boy, you're an alien your touch so foreign, it's <em>supernatural</em>, extraterrestrial. Talk about our future like we had a clue. I can feel a phoenix inside of me.</p>#}
-{#      </div><!-- /.blog-post -->#}
-{##}
-{#      <nav class="blog-pagination">#}
-{#        <a class="btn btn-outline-primary" href="#">Older</a>#}
-{#        <a class="btn btn-outline-secondary disabled">Newer</a>#}
-{#      </nav>#}
-{##}
-{#    </div><!-- /.blog-main -->#}
-{##}
-{#    <aside class="col-md-4 blog-sidebar">#}
-{#      <div class="p-4 mb-3 bg-light rounded">#}
-{#        <h4 class="font-italic">About</h4>#}
-{#        <p class="mb-0">Saw you downtown singing the Blues. Watch you circle the drain. Why don't you let me stop by? Heavy is the head that <em>wears the crown</em>. Yes, we make angels cry, raining down on earth from up above.</p>#}
-{#      </div>#}
-{##}
-{#      <div class="p-4">#}
-{#        <h4 class="font-italic">Archives</h4>#}
-{#        <ol class="list-unstyled mb-0">#}
-{#          <li><a href="#">March 2014</a></li>#}
-{#          <li><a href="#">February 2014</a></li>#}
-{#          <li><a href="#">January 2014</a></li>#}
-{#          <li><a href="#">December 2013</a></li>#}
-{#          <li><a href="#">November 2013</a></li>#}
-{#          <li><a href="#">October 2013</a></li>#}
-{#          <li><a href="#">September 2013</a></li>#}
-{#          <li><a href="#">August 2013</a></li>#}
-{#          <li><a href="#">July 2013</a></li>#}
-{#          <li><a href="#">June 2013</a></li>#}
-{#          <li><a href="#">May 2013</a></li>#}
-{#          <li><a href="#">April 2013</a></li>#}
-{#        </ol>#}
-{#      </div>#}
-{##}
-{#      <div class="p-4">#}
-{#        <h4 class="font-italic">Elsewhere</h4>#}
-{#        <ol class="list-unstyled">#}
-{#          <li><a href="#">GitHub</a></li>#}
-{#          <li><a href="#">Twitter</a></li>#}
-{#          <li><a href="#">Facebook</a></li>#}
-{#        </ol>#}
-{#      </div>#}
-{#    </aside><!-- /.blog-sidebar -->#}
-{##}
-{#  </div><!-- /.row -->#}
-{##}
-{#</main><!-- /.container -->#}
--->
+            </main>
 
-<!-- Navbar end -->
-<!-- main content -->
-{#<main>#}
-{#    <section class="slice slice-lg">#}
-{#        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">#}
-{#            <div class="carousel-inner">#}
-{#                <div class="carousel-item active">#}
-{#                    <img src="../static/images/backgrounds/img-1.jpg" class="d-block w-100" alt="...">#}
-{#                </div>#}
-{#                <div class="carousel-item">#}
-{#                    <img src="..." class="d-block w-100" alt="...">#}
-{#                </div>#}
-{#                <div class="carousel-item">#}
-{#                    <img src="..." class="d-block w-100" alt="...">#}
-{#                </div>#}
-{#            </div>#}
-{#            <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls"#}
-{#                    data-slide="prev">#}
-{#                <span class="carousel-control-prev-icon" aria-hidden="true"></span>#}
-{#                <span class="sr-only">Previous</span>#}
-{#            </button>#}
-{#            <button class="carousel-control-next" type="button" data-target="#carouselExampleControls"#}
-{#                    data-slide="next">#}
-{#                <span class="carousel-control-next-icon" aria-hidden="true"></span>#}
-{#                <span class="sr-only">Next</span>#}
-{#            </button>#}
-{#        </div>#}
-{#    </section>#}
-{#</main>#}
-<!-- end of main content -->
-<!--
-  <footer class="pt-5 pb-3 footer  footer-dark bg-tertiary">
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-md-4">
-          <div class="pr-lg-5">
-            <h1 class="heading h6 text-uppercase font-weight-700 mb-3"><strong>Boomerang</strong> UI Kit</h1>
-            <p>Boomerang is a high quality UI Kit built on top of the well known Bootstrap 4 Framework. This theme was designed as its own extended version of Bootstrap with multiple functionalities and controls added, extended color palette and beautiful typography.</p>
-          </div>
+            {#        <main class="col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">#}
+            {#            <div class="container">#}
+            {#                <div class="products">#}
+            {#                    <div class="container-fuild">#}
+            {#                        <div class="row products_row_1">#}
+            {#                            <!--#}
+            {#                                                        <div class="col-md-3 col-sm-6 col-xs-12">#}
+            {#                                                            <div class="product-grid">#}
+            {#                                                                <div class="card alert-shadow" style="width: 18rem; border-radius: 20px;">#}
+            {#                                                                    <div class="product-image" style="margin: 5% 5% 5% 5%">#}
+            {#                                                                        <a href="#" class="image">#}
+            {#                                                                            <img class="pic-1" src="../static/images/sample_pic/guilin.png">#}
+            {#                                                                            <img class="pic-2" src="../static/images/sample_pic/guilin.png">#}
+            {#                                                                        </a>#}
+            {#                                                                        <span class="product-sale-label">New</span>#}
+            {#                                                                        <div class="product-button-group">#}
+            {#                                                                            <a href="#" onclick="PleaseLogin()" class="add-to-wishlist">Buy Now!</a>#}
+            {#                                                                            <a href="#" onclick="PleaseLogin()" class="quick-view">Shopping Cart</a>#}
+            {#                                                                        </div>#}
+            {#                                                                    </div>#}
+            {#                                                                    <div class="product-content">#}
+            {#                                                                        <h3 class="title"><a href="#" onclick="PleaseLogin()">Gui Lin</a>#}
+            {#                                                                        </h3>#}
+            {#                                                                        <div class="price">$2000.00</div>#}
+            {#                                                                        <a href="#" class="add-to-cart">Detail</a>#}
+            {#                                                                    </div>#}
+            {#                                                                    <div class="card-body">#}
+            {#                                                                        <p class="card-text">Some quick example text to build on the card title#}
+            {#                                                                            and#}
+            {#                                                                            make up#}
+            {#                                                                            the bulk of the card's content.</p>#}
+            {#                                                                    </div>#}
+            {#                                                                </div>#}
+            {#                                                            </div>#}
+            {#                                                        </div>#}
+            {##}
+            {#                                                        <div class="col-md-3 col-sm-6 col-xs-12">#}
+            {#                                                            <div class="product-grid">#}
+            {#                                                                <div class="card alert-shadow" style="width: 18rem; border-radius: 20px;">#}
+            {#                                                                    <div class="product-image" style="margin: 5% 5% 5% 5%">#}
+            {#                                                                        <a href="#" class="image">#}
+            {#                                                                            <img class="pic-1" src="../static/images/sample_pic/juzizhou.png">#}
+            {#                                                                            <img class="pic-2" src="../static/images/sample_pic/juzizhou.png">#}
+            {#                                                                        </a>#}
+            {#                                                                        <span class="product-sale-label">New</span>#}
+            {#                                                                        <div class="product-button-group">#}
+            {#                                                                            <a href="#" class="add-to-wishlist">Buy Now!</a>#}
+            {#                                                                            <a href="#" class="quick-view">Shopping Cart</a>#}
+            {#                                                                        </div>#}
+            {#                                                                    </div>#}
+            {#                                                                    <div class="product-content">#}
+            {#                                                                        <h3 class="title"><a href="#">Ju Zi Zhou Tou</a></h3>#}
+            {#                                                                        <div class="price">$1599.00</div>#}
+            {#                                                                        <a href="#" class="add-to-cart">Detail</a>#}
+            {#                                                                    </div>#}
+            {#                                                                    <div class="card-body">#}
+            {#                                                                        <p class="card-text">Some quick example text to build on the card title#}
+            {#                                                                            and#}
+            {#                                                                            make up#}
+            {#                                                                            the bulk of the card's content.</p>#}
+            {#                                                                    </div>#}
+            {#                                                                </div>#}
+            {#                                                            </div>#}
+            {#                                                        </div>#}
+            {##}
+            {#                                                        <div class="col-md-3 col-sm-6 col-xs-12">#}
+            {#                                                            <div class="product-grid">#}
+            {#                                                                <div class="card alert-shadow" style="width: 18rem; border-radius: 20px;">#}
+            {#                                                                    <div class="product-image" style="margin: 5% 5% 5% 5%">#}
+            {#                                                                        <a href="#" class="image">#}
+            {#                                                                            <img class="pic-1" src="../static/images/sample_pic/tengwangge.png">#}
+            {#                                                                            <img class="pic-2" src="../static/images/sample_pic/tengwangge.png">#}
+            {#                                                                        </a>#}
+            {#                                                                        <span class="product-sale-label">New</span>#}
+            {#                                                                        <div class="product-button-group">#}
+            {#                                                                            <a href="#" class="add-to-wishlist">Buy Now!</a>#}
+            {#                                                                            <a href="#" class="quick-view">Shopping Cart</a>#}
+            {#                                                                        </div>#}
+            {#                                                                    </div>#}
+            {#                                                                    <div class="product-content">#}
+            {#                                                                        <h3 class="title"><a href="#">Teng Wang Ge</a></h3>#}
+            {#                                                                        <div class="price">$3099.00</div>#}
+            {#                                                                        <a href="#" class="add-to-cart">Detail</a>#}
+            {#                                                                    </div>#}
+            {#                                                                    <div class="card-body">#}
+            {#                                                                        <p class="card-text">Some quick example text to build on the card title#}
+            {#                                                                            and#}
+            {#                                                                            make up#}
+            {#                                                                            the bulk of the card's content.</p>#}
+            {#                                                                    </div>#}
+            {#                                                                </div>#}
+            {#                                                            </div>#}
+            {#                                                        </div>#}
+            {##}
+            {#                                                        <div class="col-md-3 col-sm-6 col-xs-12">#}
+            {#                                                            <div class="product-grid">#}
+            {#                                                                <div class="card alert-shadow" style="width: 18rem; border-radius: 20px;">#}
+            {#                                                                    <div class="product-image" style="margin: 5% 5% 5% 5%">#}
+            {#                                                                        <a href="#" onclick="PleaseLogin()" class="image">#}
+            {#                                                                            <img class="pic-1" src="../static/images/sample_pic/xian.png">#}
+            {#                                                                            <img class="pic-2" src="../static/images/sample_pic/xian.png">#}
+            {#                                                                        </a>#}
+            {#                                                                        <span class="product-sale-label">New</span>#}
+            {#                                                                        <div class="product-button-group">#}
+            {#                                                                            <a href="#" onclick="PleaseLogin()"#}
+            {#                                                                               class="add-to-wishlist">Buy Now!</a>#}
+            {#                                                                            <a href="#" onclick="PleaseLogin()"#}
+            {#                                                                               class="quick-view">Shopping Cart</a>#}
+            {#                                                                        </div>#}
+            {#                                                                    </div>#}
+            {#                                                                    <div class="product-content">#}
+            {#                                                                        <h3 class="title"><a href="#" onclick="PleaseLogin()">Xi An</a></h3>#}
+            {#                                                                        <div class="price">$5099.00</div>#}
+            {#                                                                        <a href="#" onclick="PleaseLogin()"#}
+            {#                                                                           class="add-to-cart">Detail</a>#}
+            {#                                                                    </div>#}
+            {#                                                                    <div class="card-body">#}
+            {#                                                                        <p class="card-text">Some quick example text to build on the card title#}
+            {#                                                                            and#}
+            {#                                                                            make up#}
+            {#                                                                            the bulk of the card's content.</p>#}
+            {#                                                                    </div>#}
+            {#                                                                </div>#}
+            {#                                                            </div>#}
+            {#                                                        </div>#}
+            {##}
+            {#                                                        <div class="col-md-3 col-sm-6 col-xs-12">#}
+            {#                                                            <div class="product-grid">#}
+            {#                                                                <div class="card alert-shadow" style="width: 18rem; border-radius: 20px;">#}
+            {#                                                                    <div class="product-image" style="margin: 5% 5% 5% 5%">#}
+            {#                                                                        <a href="#" onclick="PleaseLogin()" class="image">#}
+            {#                                                                            <img class="pic-1" src="../static/images/sample_pic/xiangxi.png">#}
+            {#                                                                            <img class="pic-2" src="../static/images/sample_pic/xiangxi.png">#}
+            {#                                                                        </a>#}
+            {#                                                                        <span class="product-sale-label">New</span>#}
+            {#                                                                        <div class="product-button-group">#}
+            {#                                                                            <a href="#" onclick="PleaseLogin()"#}
+            {#                                                                               class="add-to-wishlist">Buy Now!</a>#}
+            {#                                                                            <a href="#" onclick="PleaseLogin()"#}
+            {#                                                                               class="quick-view">Shopping Cart</a>#}
+            {#                                                                        </div>#}
+            {#                                                                    </div>#}
+            {#                                                                    <div class="product-content">#}
+            {#                                                                        <h3 class="title"><a href="#" onclick="PleaseLogin()">Xiang Xi</a></h3>#}
+            {#                                                                        <div class="price">$5099.00</div>#}
+            {#                                                                        <a href="#" onclick="PleaseLogin()"#}
+            {#                                                                           class="add-to-cart">Detail</a>#}
+            {#                                                                    </div>#}
+            {#                                                                    <div class="card-body">#}
+            {#                                                                        <p class="card-text">Some quick example text to build on the card title#}
+            {#                                                                            and#}
+            {#                                                                            make up#}
+            {#                                                                            the bulk of the card's content.</p>#}
+            {#                                                                    </div>#}
+            {#                                                                </div>#}
+            {#                                                            </div>#}
+            {#                                                        </div>#}
+            {##}
+            {#                                                        <div class="col-md-3 col-sm-6 col-xs-12">#}
+            {#                                                            <div class="product-grid">#}
+            {#                                                                <div class="card alert-shadow" style="width: 18rem; border-radius: 20px;">#}
+            {#                                                                    <div class="product-image" style="margin: 5% 5% 5% 5%">#}
+            {#                                                                        <a href="#" onclick="PleaseLogin()" class="image">#}
+            {#                                                                            <img class="pic-1"#}
+            {#                                                                                 src="../static/images/sample_pic/yuelushuyuan.png">#}
+            {#                                                                            <img class="pic-2"#}
+            {#                                                                                 src="../static/images/sample_pic/yuelushuyuan.png">#}
+            {#                                                                        </a>#}
+            {#                                                                        <span class="product-sale-label">New</span>#}
+            {#                                                                        <div class="product-button-group">#}
+            {#                                                                            <a href="#" onclick="PleaseLogin()"#}
+            {#                                                                               class="add-to-wishlist">Buy Now!</a>#}
+            {#                                                                            <a href="#" onclick="PleaseLogin()"#}
+            {#                                                                               class="quick-view">Shopping Cart</a>#}
+            {#                                                                        </div>#}
+            {#                                                                    </div>#}
+            {#                                                                    <div class="product-content">#}
+            {#                                                                        <h3 class="title"><a href="#" onclick="PleaseLogin()">Yue Lu Shu Yuan</a></h3>#}
+            {#                                                                        <div class="price">$5099.00</div>#}
+            {#                                                                        <a href="#" onclick="PleaseLogin()"#}
+            {#                                                                           class="add-to-cart">Detail</a>#}
+            {#                                                                    </div>#}
+            {#                                                                    <div class="card-body">#}
+            {#                                                                        <p class="card-text">Some quick example text to build on the card title#}
+            {#                                                                            and#}
+            {#                                                                            make up#}
+            {#                                                                            the bulk of the card's content.</p>#}
+            {#                                                                    </div>#}
+            {#                                                                </div>#}
+            {#                                                            </div>#}
+            {#                                                        </div>#}
+            {##}
+            {#                                                        <div class="col-md-3 col-sm-6 col-xs-12">#}
+            {#                                                            <div class="product-grid">#}
+            {#                                                                <div class="card alert-shadow" style="width: 18rem; border-radius: 20px;">#}
+            {#                                                                    <div class="product-image" style="margin: 5% 5% 5% 5%">#}
+            {#                                                                        <a href="#" onclick="PleaseLogin()" class="image">#}
+            {#                                                                            <img class="pic-1"#}
+            {#                                                                                 src="../static/images/sample_pic/zhangjiajie.png">#}
+            {#                                                                            <img class="pic-2"#}
+            {#                                                                                 src="../static/images/sample_pic/zhangjiajie.png">#}
+            {#                                                                        </a>#}
+            {#                                                                        <span class="product-sale-label">New</span>#}
+            {#                                                                        <div class="product-button-group">#}
+            {#                                                                            <a href="#" onclick="PleaseLogin()"#}
+            {#                                                                               class="add-to-wishlist">Buy Now!</a>#}
+            {#                                                                            <a href="#" onclick="PleaseLogin()"#}
+            {#                                                                               class="quick-view">Shopping Cart</a>#}
+            {#                                                                        </div>#}
+            {#                                                                    </div>#}
+            {#                                                                    <div class="product-content">#}
+            {#                                                                        <h3 class="title"><a href="#" onclick="PleaseLogin()">Zhang Jia Jie</a></h3>#}
+            {#                                                                        <div class="price">$5099.00</div>#}
+            {#                                                                        <a href="#" onclick="PleaseLogin()"#}
+            {#                                                                           class="add-to-cart">Detail</a>#}
+            {#                                                                    </div>#}
+            {#                                                                    <div class="card-body">#}
+            {#                                                                        <p class="card-text">Some quick example text to build on the card title#}
+            {#                                                                            and#}
+            {#                                                                            make up#}
+            {#                                                                            the bulk of the card's content.</p>#}
+            {#                                                                    </div>#}
+            {#                                                                </div>#}
+            {##}
+            {#                                                            </div>#}
+            {#                                                        </div>#}
+            {##}
+            {#                                                        -->#}
+            {#                            <div class="col-md-3 col-sm-6 col-xs-12">#}
+            {#                                <div class="product-grid">#}
+            {#                                    <div class="card alert-shadow" style="border-radius: 20px;">#}
+            {#                                        <div class="product-image" style="margin: 5% 5% 5% 5%">#}
+            {#                                            <a href="#" class="image">#}
+            {#                                                <img class="pic-1" src="../static/images/sample_pic/guilin.png">#}
+            {#                                                <img class="pic-2" src="../static/images/sample_pic/guilin.png">#}
+            {#                                            </a>#}
+            {#                                            <span class="product-sale-label">New</span>#}
+            {#                                            <div class="product-button-group">#}
+            {#                                                <a href="#" onclick="PleaseLogin()" class="add-to-wishlist">Buy Now!</a>#}
+            {#                                                <a href="#" onclick="PleaseLogin()" class="quick-view">Shopping Cart</a>#}
+            {#                                            </div>#}
+            {#                                        </div>#}
+            {#                                        <div class="product-content">#}
+            {#                                            <h3 class="title"><a href="#" onclick="PleaseLogin()">Gui Lin</a>#}
+            {#                                            </h3>#}
+            {#                                            <div class="price">$2000.00</div>#}
+            {#                                            <a href="#" class="add-to-cart">Detail</a>#}
+            {#                                        </div>#}
+            {#                                        <div class="card-body">#}
+            {#                                            <p class="card-text">Some quick example text to build on the card title#}
+            {#                                                the bulk of the card's content.</p>#}
+            {#                                        </div>#}
+            {#                                    </div>#}
+            {#                                </div>#}
+            {#                            </div>#}
+            {##}
+            {#                            <div class="col-md-3 col-sm-6 col-xs-12">#}
+            {#                                <div class="product-grid">#}
+            {#                                    <div class="card alert-shadow" style="border-radius: 20px;">#}
+            {#                                        <div class="product-image" style="margin: 5% 5% 5% 5%">#}
+            {#                                            <a href="#" class="image">#}
+            {#                                                <img class="pic-1" src="../static/images/sample_pic/juzizhou.png">#}
+            {#                                                <img class="pic-2" src="../static/images/sample_pic/juzizhou.png">#}
+            {#                                            </a>#}
+            {#                                            <span class="product-sale-label">New</span>#}
+            {#                                            <div class="product-button-group">#}
+            {#                                                <a href="#" class="add-to-wishlist">Buy Now!</a>#}
+            {#                                                <a href="#" class="quick-view">Shopping Cart</a>#}
+            {#                                            </div>#}
+            {#                                        </div>#}
+            {#                                        <div class="product-content">#}
+            {#                                            <h3 class="title"><a href="#">Ju Zi Zhou Tou</a></h3>#}
+            {#                                            <div class="price">$1599.00</div>#}
+            {#                                            <a href="#" class="add-to-cart">Detail</a>#}
+            {#                                        </div>#}
+            {#                                        <div class="card-body">#}
+            {#                                            <p class="card-text">Some quick example text to build on the card title#}
+            {#                                                and#}
+            {#                                                make up#}
+            {#                                                the bulk of the card's content.</p>#}
+            {#                                        </div>#}
+            {#                                    </div>#}
+            {#                                </div>#}
+            {#                            </div>#}
+            {##}
+            {#                            <div class="col-md-3 col-sm-6 col-xs-12">#}
+            {#                                <div class="product-grid">#}
+            {#                                    <div class="card alert-shadow" style="border-radius: 20px;">#}
+            {#                                        <div class="product-image" style="margin: 5% 5% 5% 5%">#}
+            {#                                            <a href="#" class="image">#}
+            {#                                                <img class="pic-1" src="../static/images/sample_pic/tengwangge.png">#}
+            {#                                                <img class="pic-2" src="../static/images/sample_pic/tengwangge.png">#}
+            {#                                            </a>#}
+            {#                                            <span class="product-sale-label">New</span>#}
+            {#                                            <div class="product-button-group">#}
+            {#                                                <a href="#" class="add-to-wishlist">Buy Now!</a>#}
+            {#                                                <a href="#" class="quick-view">Shopping Cart</a>#}
+            {#                                            </div>#}
+            {#                                        </div>#}
+            {#                                        <div class="product-content">#}
+            {#                                            <h3 class="title"><a href="#">Teng Wang Ge</a></h3>#}
+            {#                                            <div class="price">$3099.00</div>#}
+            {#                                            <a href="#" class="add-to-cart">Detail</a>#}
+            {#                                        </div>#}
+            {#                                        <div class="card-body">#}
+            {#                                            <p class="card-text">Some quick example text to build on the card title#}
+            {#                                                and#}
+            {#                                                make up#}
+            {#                                                the bulk of the card's content.</p>#}
+            {#                                        </div>#}
+            {#                                    </div>#}
+            {#                                </div>#}
+            {#                            </div>#}
+            {##}
+            {#                            <div class="col-md-3 col-sm-6 col-xs-12">#}
+            {#                                <div class="product-grid">#}
+            {#                                    <div class="card alert-shadow" style="border-radius: 20px;">#}
+            {#                                        <div class="product-image" style="margin: 5% 5% 5% 5%">#}
+            {#                                            <a href="#" onclick="PleaseLogin()" class="image">#}
+            {#                                                <img class="pic-1" src="../static/images/sample_pic/xian.png">#}
+            {#                                                <img class="pic-2" src="../static/images/sample_pic/xian.png">#}
+            {#                                            </a>#}
+            {#                                            <span class="product-sale-label">New</span>#}
+            {#                                            <div class="product-button-group">#}
+            {#                                                <a href="#" onclick="PleaseLogin()"#}
+            {#                                                   class="add-to-wishlist">Buy Now!</a>#}
+            {#                                                <a href="#" onclick="PleaseLogin()"#}
+            {#                                                   class="quick-view">Shopping Cart</a>#}
+            {#                                            </div>#}
+            {#                                        </div>#}
+            {#                                        <div class="product-content">#}
+            {#                                            <h3 class="title"><a href="#" onclick="PleaseLogin()">Xi An</a></h3>#}
+            {#                                            <div class="price">$5099.00</div>#}
+            {#                                            <a href="#" onclick="PleaseLogin()"#}
+            {#                                               class="add-to-cart">Detail</a>#}
+            {#                                        </div>#}
+            {#                                        <div class="card-body">#}
+            {#                                            <p class="card-text">Some quick example text to build on the card title#}
+            {#                                                and#}
+            {#                                                make up#}
+            {#                                                the bulk of the card's content.</p>#}
+            {#                                        </div>#}
+            {#                                    </div>#}
+            {#                                </div>#}
+            {#                            </div>#}
+            {##}
+            {#                            <div class="col-md-3 col-sm-6 col-xs-12">#}
+            {#                                <div class="product-grid">#}
+            {#                                    <div class="card alert-shadow" style="border-radius: 20px;">#}
+            {#                                        <div class="product-image" style="margin: 5% 5% 5% 5%">#}
+            {#                                            <a href="#" onclick="PleaseLogin()" class="image">#}
+            {#                                                <img class="pic-1" src="../static/images/sample_pic/xiangxi.png">#}
+            {#                                                <img class="pic-2" src="../static/images/sample_pic/xiangxi.png">#}
+            {#                                            </a>#}
+            {#                                            <span class="product-sale-label">New</span>#}
+            {#                                            <div class="product-button-group">#}
+            {#                                                <a href="#" onclick="PleaseLogin()"#}
+            {#                                                   class="add-to-wishlist">Buy Now!</a>#}
+            {#                                                <a href="#" onclick="PleaseLogin()"#}
+            {#                                                   class="quick-view">Shopping Cart</a>#}
+            {#                                            </div>#}
+            {#                                        </div>#}
+            {#                                        <div class="product-content">#}
+            {#                                            <h3 class="title"><a href="#" onclick="PleaseLogin()">Xiang Xi</a></h3>#}
+            {#                                            <div class="price">$5099.00</div>#}
+            {#                                            <a href="#" onclick="PleaseLogin()"#}
+            {#                                               class="add-to-cart">Detail</a>#}
+            {#                                        </div>#}
+            {#                                        <div class="card-body">#}
+            {#                                            <p class="card-text">Some quick example text to build on the card title#}
+            {#                                                and#}
+            {#                                                make up#}
+            {#                                                the bulk of the card's content.</p>#}
+            {#                                        </div>#}
+            {#                                    </div>#}
+            {#                                </div>#}
+            {#                            </div>#}
+            {##}
+            {#                            <div class="col-md-3 col-sm-6 col-xs-12">#}
+            {#                                <div class="product-grid">#}
+            {#                                    <div class="card alert-shadow" style="border-radius: 20px;">#}
+            {#                                        <div class="product-image" style="margin: 5% 5% 5% 5%">#}
+            {#                                            <a href="#" onclick="PleaseLogin()" class="image">#}
+            {#                                                <img class="pic-1"#}
+            {#                                                     src="../static/images/sample_pic/yuelushuyuan.png">#}
+            {#                                                <img class="pic-2"#}
+            {#                                                     src="../static/images/sample_pic/yuelushuyuan.png">#}
+            {#                                            </a>#}
+            {#                                            <span class="product-sale-label">New</span>#}
+            {#                                            <div class="product-button-group">#}
+            {#                                                <a href="#" onclick="PleaseLogin()"#}
+            {#                                                   class="add-to-wishlist">Buy Now!</a>#}
+            {#                                                <a href="#" onclick="PleaseLogin()"#}
+            {#                                                   class="quick-view">Shopping Cart</a>#}
+            {#                                            </div>#}
+            {#                                        </div>#}
+            {#                                        <div class="product-content">#}
+            {#                                            <h3 class="title"><a href="#" onclick="PleaseLogin()">Yue Lu Shu Yuan</a>#}
+            {#                                            </h3>#}
+            {#                                            <div class="price">$5099.00</div>#}
+            {#                                            <a href="#" onclick="PleaseLogin()"#}
+            {#                                               class="add-to-cart">Detail</a>#}
+            {#                                        </div>#}
+            {#                                        <div class="card-body">#}
+            {#                                            <p class="card-text">Some quick example text to build on the card title#}
+            {#                                                and#}
+            {#                                                make up#}
+            {#                                                the bulk of the card's content.</p>#}
+            {#                                        </div>#}
+            {#                                    </div>#}
+            {#                                </div>#}
+            {#                            </div>#}
+            {##}
+            {#                            <div class="col-md-3 col-sm-6 col-xs-12">#}
+            {#                                <div class="product-grid">#}
+            {#                                    <div class="card alert-shadow" style="border-radius: 20px;">#}
+            {#                                        <div class="product-image" style="margin: 5% 5% 5% 5%">#}
+            {#                                            <a href="#" onclick="PleaseLogin()" class="image">#}
+            {#                                                <img class="pic-1"#}
+            {#                                                     src="../static/images/sample_pic/zhangjiajie.png">#}
+            {#                                                <img class="pic-2"#}
+            {#                                                     src="../static/images/sample_pic/zhangjiajie.png">#}
+            {#                                            </a>#}
+            {#                                            <span class="product-sale-label">New</span>#}
+            {#                                            <div class="product-button-group">#}
+            {#                                                <a href="#" onclick="PleaseLogin()"#}
+            {#                                                   class="add-to-wishlist">Buy Now!</a>#}
+            {#                                                <a href="#" onclick="PleaseLogin()"#}
+            {#                                                   class="quick-view">Shopping Cart</a>#}
+            {#                                            </div>#}
+            {#                                        </div>#}
+            {#                                        <div class="product-content">#}
+            {#                                            <h3 class="title"><a href="#" onclick="PleaseLogin()">Zhang Jia Jie</a></h3>#}
+            {#                                            <div class="price">$5099.00</div>#}
+            {#                                            <a href="#" onclick="PleaseLogin()"#}
+            {#                                               class="add-to-cart">Detail</a>#}
+            {#                                        </div>#}
+            {#                                        <div class="card-body">#}
+            {#                                            <p class="card-text">Some quick example text to build on the card title#}
+            {#                                                and#}
+            {#                                                make up#}
+            {#                                                the bulk of the card's content.</p>#}
+            {#                                        </div>#}
+            {#                                    </div>#}
+            {##}
+            {#                                </div>#}
+            {#                            </div>#}
+            {##}
+            {#                            <div class="card" style="width: 18rem;">#}
+            {#                                <img src="..." class="card-img-top" alt="...">#}
+            {#                                <div class="card-body">#}
+            {#                                    <p class="card-text">Some quick example text to build on the card title and make up#}
+            {#                                        the bulk of the card's content.</p>#}
+            {#                                </div>#}
+            {#                            </div>#}
+            {##}
+            {#                        </div>#}
+            {#                    </div>#}
+            {#                </div>#}
+            {#            </div>#}
+            {#        </main>#}
         </div>
-        <div class="col-6 col-md">
-          <h5 class="heading h6 text-uppercase font-weight-700 mb-3">Features</h5>
-          <ul class="list-unstyled text-small">
-            <li><a class="text-muted" href="#">Cool stuff</a></li>
-            <li><a class="text-muted" href="#">Random feature</a></li>
-            <li><a class="text-muted" href="#">Team feature</a></li>
-            <li><a class="text-muted" href="#">Stuff for developers</a></li>
-            <li><a class="text-muted" href="#">Another one</a></li>
-            <li><a class="text-muted" href="#">Last time</a></li>
-          </ul>
-        </div>
-        <div class="col-6 col-md">
-          <h5 class="heading h6 text-uppercase font-weight-700 mb-3">Solutions</h5>
-          <ul class="list-unstyled text-small">
-            <li><a class="text-muted" href="#">Resource</a></li>
-            <li><a class="text-muted" href="#">Resource name</a></li>
-            <li><a class="text-muted" href="#">Another resource</a></li>
-            <li><a class="text-muted" href="#">Final resource</a></li>
-          </ul>
-        </div>
-        <div class="col-6 col-md">
-          <h5 class="heading h6 text-uppercase font-weight-700 mb-3">Resources</h5>
-          <ul class="list-unstyled text-small">
-            <li><a class="text-muted" href="#">Business</a></li>
-            <li><a class="text-muted" href="#">Education</a></li>
-            <li><a class="text-muted" href="#">Government</a></li>
-            <li><a class="text-muted" href="#">Gaming</a></li>
-          </ul>
-        </div>
-        <div class="col-6 col-md">
-          <h5 class="heading h6 text-uppercase font-weight-700 mb-3">About</h5>
-          <ul class="list-unstyled text-small">
-            <li><a class="text-muted" href="#">Team</a></li>
-            <li><a class="text-muted" href="#">Locations</a></li>
-            <li><a class="text-muted" href="#">Privacy</a></li>
-            <li><a class="text-muted" href="#">Terms</a></li>
-          </ul>
-        </div>
-      </div>
-      <hr>
-      <div class="d-flex align-items-center">
-        <span class="">
-          &copy; 2018 <a href="https://webpixels.io/" class="footer-link" target="_blank">Webpixels</a>. All rights reserved.
-        </span>
-        <ul class="nav ml-lg-auto">
-          <li class="nav-item">
-            <a class="nav-link active" href="https://instagram.com/webpixelsofficial" target="_blank"><i class="fab fa-instagram"></i></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://facebook.com/webpixels" target="_blank"><i class="fab fa-facebook"></i></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://github.com/webpixels" target="_blank"><i class="fab fa-github"></i></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://dribbble.com/webpixels" target="_blank"><i class="fab fa-dribbble"></i></a>
-          </li>
-        </ul>
-      </div>
+
     </div>
-  </footer>
-  -->
+
+{% endblock %}
+
 
 <!-- Core -->
 <script src="../static/vendor/jquery/jquery.min.js"></script>
