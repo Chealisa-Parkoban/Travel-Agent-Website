@@ -31,21 +31,37 @@ def login():
             username = form.username.data
             password = form.password.data
             remember_me = form.remember_me.data
+            is_admin = form.is_admin.data
 
             user = User.get_by_username(username)
             if user is None:
                 emsg = "Username not exist!"
+                return render_template('login.html', form=form, message=emsg)
             else:
                 if user.verify_password(password):
-                    login_user(user, remember=remember_me)
-                    emsg = "Login successfully!"
-                    app.logger.info('User \'' + username + '\' has successfully logged into the website')
-                    return redirect(url_for("index"))
+                    if user.isAdmin() & is_admin:
+                        login_user(user, remember=remember_me)
+                        emsg = "Administrator login successfully!"
+                        app.logger.info('Administrator \'' + username + '\' has successfully logged into the website')
+                        return redirect(url_for("index"))
+                    elif user.isAdmin() & (not is_admin):
+                        emsg = "You are not a customer!"
+                        app.logger.error('Login failed: You are not a customer!')
+                        return render_template('login.html', form=form, message=emsg)
+                    elif (not user.isAdmin()) & is_admin:
+                        emsg = "You are not an administrator!"
+                        app.logger.error('Login failed: You are not an administrator!')
+                        return render_template('login.html', form=form, message=emsg)
+                    else:
+                        login_user(user, remember=remember_me)
+                        emsg = "Login successfully!"
+                        app.logger.info('User \'' + username + '\' has successfully logged into the website')
+                        return redirect(url_for("index"))
                 else:
                     emsg = "Wrong password!"
                     app.logger.error('Login failed: Wrong username or password')
 
-        return render_template('login.html', form=form, message=emsg)
+        return render_template('login.html', form=form)
 
 
 @login_blueprint.route('/logout', methods=['GET', 'POST'])

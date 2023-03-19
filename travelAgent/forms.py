@@ -17,6 +17,8 @@ class LoginForm(FlaskForm):
     password = PasswordField('PASSWORD', validators=[DataRequired()])
     # choose to remember the info or not
     remember_me = BooleanField('REMEMBER ME')
+    # admin
+    is_admin = BooleanField('ADMIN')
     # submit the form
     submit = SubmitField('')
 
@@ -86,6 +88,23 @@ class SignupForm(FlaskForm):
         user_model = User.query.filter_by(email=email).first()
         if user_model:
             raise wtforms.ValidationError("邮箱已经存在！")
+
+
+class CommentForm(FlaskForm):
+    """Form for users to add/update a comment."""
+    comment = StringField(
+        'COMMENT',
+        validators=
+        [
+            DataRequired()
+        ]
+    )
+    submit = SubmitField('')
+
+    def validate_comment(self, field):
+        comment = field.data
+        if len(comment) > 500:
+            raise wtforms.ValidationError("Comment is too long.")
 
 
 

@@ -28,14 +28,15 @@ class User(UserMixin, db.Model):
     birthday = db.Column(db.INTEGER)
     avatar_url = db.Column(db.String(120))
     active = db.Column(db.Boolean, default=True)
+    is_admin = db.Column(db.Boolean, default=False)
 
-
-    def __init__(self, username, email, password, active=True):
+    def __init__(self, username, email, password, is_admin, active=True):
         # self.id = id
         self.username = username
         self.email = email
         self.password = password
         self.active = active
+        self.is_admin = is_admin
 
     # protect the string
     @property
@@ -76,6 +77,8 @@ class User(UserMixin, db.Model):
     def get_by_username(username):
         return User.query.filter_by(username=username).first()
 
+    def isAdmin(self):
+        return self.is_admin
 
 
 class EmailCaptchaModel(db.Model):
@@ -200,7 +203,6 @@ class Combination(db.Model):
     length = db.Column(db.INTEGER, nullable=False)
 
 
-
 # combination record, staff can operate and store data in this table
 class RecordC(db.Model):
     __table_args__ = {'extend_existing': True}
@@ -245,6 +247,14 @@ class RecordH(db.Model):
     status = db.Column(db.String(120))
 
 
+class SimpleComment(db.Model):
+    __table_args__ = {'extend_existing': True}
+    # id is the primary key and it increments automatically
+    id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
+    username = db.Column(db.String(240))
+    content = db.Column(db.String(240))
+    time = db.Column(db.String(120))
+
 # Comments on combination
 class CommentC(db.Model):
     __table_args__ = {'extend_existing': True}
@@ -259,7 +269,7 @@ class CommentC(db.Model):
     image = db.Column(db.String(120))
     time = db.Column(db.String(120))
     # the number of this post to be replied
-    count = db.Column(db.INTEGER, default = 0)
+    count = db.Column(db.INTEGER, default=0)
 
     reply_id = db.Column(db.INTEGER, db.ForeignKey('user.id'))  # can be nullable
     # Whether this comment is a reply to the user
@@ -282,7 +292,7 @@ class CommentA(db.Model):
     image = db.Column(db.String(120))
     time = db.Column(db.String(120))
     # the number of this post to be replied
-    count = db.Column(db.INTEGER, default = 0)
+    count = db.Column(db.INTEGER, default=0)
 
 
 # Comments on hotel (accommodation
@@ -299,7 +309,7 @@ class CommentH(db.Model):
     image = db.Column(db.String(120))
     time = db.Column(db.String(120))
     # the number of this post to be replied
-    count = db.Column(db.INTEGER, default = 0)
+    count = db.Column(db.INTEGER, default=0)
 
 
 # Users reply on comments of combination

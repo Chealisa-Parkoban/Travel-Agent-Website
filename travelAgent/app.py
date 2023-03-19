@@ -1,7 +1,8 @@
 import os
 import this
+import time
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash, redirect, url_for
 import logging
 import http.client
 import hashlib
@@ -12,6 +13,8 @@ import json
 import travelAgent
 from travelAgent import db
 from travelAgent import app
+from travelAgent.forms import CommentForm
+from travelAgent.models import CommentC, SimpleComment
 from travelAgent.views.login_handler import login_blueprint, current_user
 
 # -------------------------------------register blueprints------------------------------------------
@@ -52,15 +55,23 @@ def contact_us():
     return render_template("contact.html")
 
 
-@app.route('/homepage')
+@app.route('/homepage', methods=['GET', 'POST'])
 def homepage():
     logger.info('Entered the HOME page')
     return render_template("homepage.html")
 
-@app.route('/travelRoutesDetail')
+
+@app.route('/travelRoutesDetail', methods=['GET', 'POST'])
 def travel_routes_detail():
+    print(SimpleComment.query.all())
     logger.info('Entered the TRAVEL ROUTE DETAIL page')
-    return render_template("travelRoutesDetail.html")
+    comment_form = CommentForm(request.form)
+    if comment_form.validate_on_submit():
+        comment = SimpleComment(username=current_user.username, content=comment_form.comment.data, time=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+        db.session.add(comment)
+        flash('已评论')
+        return redirect(url_for('travel_routes_detail'))
+    return render_template("travelRoutesDetail.html", current_user=current_user, comment_form=comment_form, comments=SimpleComment.query.all())
 
 
 # 翻译功能 (auto - 英)
