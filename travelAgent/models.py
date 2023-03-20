@@ -101,7 +101,10 @@ class Target(db.Model):
     __table_args__ = {'extend_existing': True}
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
-
+    name = db.Column(db.String(64), index=True, unique=True, nullable=False)  # name is String
+    destination_id = db.Column(db.INTEGER, db.ForeignKey('destination.id'))
+    image = db.Column(db.String(120))
+    intro = db.Column(db.String(240))
     start_time = db.Column(db.String(120))
     end_time = db.Column(db.String(120))
     price = db.Column(db.INTEGER)
@@ -194,6 +197,7 @@ class RecordC(db.Model):
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
     user_id = db.Column(db.INTEGER, db.ForeignKey('user.id'))
     combination_id = db.Column(db.INTEGER, db.ForeignKey('combination.id'))
+    time = db.Column(db.String(120))
     status = db.Column(db.String(120))
 
 # personal record of attraction, traffic, and accommodation, customer can operate and store data in this table
@@ -203,7 +207,7 @@ class Record(db.Model):
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
     user_id = db.Column(db.INTEGER, db.ForeignKey('user.id'))
     target_id = db.Column(db.INTEGER, db.ForeignKey('target.id'))
-    date = db.Column(db.String(120))
+    time = db.Column(db.String(120))
     status = db.Column(db.String(120))
 
 # personal record of attraction, customer can operate and store data in this table
