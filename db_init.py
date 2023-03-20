@@ -1,4 +1,4 @@
-from travelAgent.models import User, SimpleComment, Staff, Destination, Attraction, Accommodation, Traffic, Type, Day, Combination, ReplyA, ReplyC, ReplyH, RecordA, RecordC, RecordH, RecordT, CommentC, CommentA, CommentH, EmailCaptchaModel
+from travelAgent.models import User, SimpleComment, Staff, Destination, Target, Day, Combination, Reply, ReplyC,Record, RecordC, CommentC, Comment, EmailCaptchaModel
 # from travelAgent.models import User
 from travelAgent import db
 from travelAgent import app

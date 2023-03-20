@@ -123,49 +123,59 @@ class Destination(db.Model):
     name = db.Column(db.String(64), index=True, unique=True, nullable=False)  # name is String
 
 
-class Attraction(db.Model):
+class Target(db.Model):
     __table_args__ = {'extend_existing': True}
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
-    name = db.Column(db.String(64), index=True, unique=True, nullable=False)  # name is String
-    destination_id = db.Column(db.INTEGER, db.ForeignKey('destination.id'))
-    image = db.Column(db.String(120))
-    intro = db.Column(db.String(240))
-    # various period are different which has different id
+
     start_time = db.Column(db.String(120))
     end_time = db.Column(db.String(120))
     price = db.Column(db.INTEGER)
 
 
-class Accommodation(db.Model):
-    __table_args__ = {'extend_existing': True}
-    # id is the primary key and it increments automatically
-    id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
-    name = db.Column(db.String(64), index=True, unique=True, nullable=False)  # name is String
-    destination_id = db.Column(db.INTEGER, db.ForeignKey('destination.id'))
-    type_id = db.Column(db.INTEGER, db.ForeignKey('type.id'))
-    price = db.Column(db.INTEGER)
-
-
-class Traffic(db.Model):
-    __table_args__ = {'extend_existing': True}
-    # id is the primary key and it increments automatically
-    id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
-    name = db.Column(db.String(64), index=True, unique=True, nullable=False)  # name is String
-    origin_id = db.Column(db.INTEGER, db.ForeignKey('destination.id'))
-    destination_id = db.Column(db.INTEGER, db.ForeignKey('destination.id'))
-    type_id = db.Column(db.INTEGER, db.ForeignKey('type.id'))
-    start_time = db.Column(db.String(120))
-    end_time = db.Column(db.String(120))
-    price = db.Column(db.INTEGER)
+# class Attraction(db.Model):
+#     __table_args__ = {'extend_existing': True}
+#     # id is the primary key and it increments automatically
+#     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
+#     name = db.Column(db.String(64), index=True, unique=True, nullable=False)  # name is String
+#     destination_id = db.Column(db.INTEGER, db.ForeignKey('destination.id'))
+#     image = db.Column(db.String(120))
+#     intro = db.Column(db.String(240))
+#     # various period are different which has different id
+#     start_time = db.Column(db.String(120))
+#     end_time = db.Column(db.String(120))
+#     price = db.Column(db.INTEGER)
+#
+#
+# class Accommodation(db.Model):
+#     __table_args__ = {'extend_existing': True}
+#     # id is the primary key and it increments automatically
+#     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
+#     name = db.Column(db.String(64), index=True, unique=True, nullable=False)  # name is String
+#     destination_id = db.Column(db.INTEGER, db.ForeignKey('destination.id'))
+#     type_id = db.Column(db.INTEGER, db.ForeignKey('type.id'))
+#     price = db.Column(db.INTEGER)
+#
+#
+# class Traffic(db.Model):
+#     __table_args__ = {'extend_existing': True}
+#     # id is the primary key and it increments automatically
+#     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
+#     name = db.Column(db.String(64), index=True, unique=True, nullable=False)  # name is String
+#     origin_id = db.Column(db.INTEGER, db.ForeignKey('destination.id'))
+#     destination_id = db.Column(db.INTEGER, db.ForeignKey('destination.id'))
+#     type_id = db.Column(db.INTEGER, db.ForeignKey('type.id'))
+#     start_time = db.Column(db.String(120))
+#     end_time = db.Column(db.String(120))
+#     price = db.Column(db.INTEGER)
 
 
 # Including traffic and accommodation type // can be deleted
-class Type(db.Model):
-    __table_args__ = {'extend_existing': True}
-    # id is the primary key and it increments automatically
-    id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
-    name = db.Column(db.String(64), index=True, unique=True, nullable=False)  # name is String
+# class Type(db.Model):
+#     __table_args__ = {'extend_existing': True}
+#     # id is the primary key and it increments automatically
+#     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
+#     name = db.Column(db.String(64), index=True, unique=True, nullable=False)  # name is String
 
 
 # Elements that can be reserved
@@ -183,9 +193,9 @@ class Day(db.Model):
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
     destination_id = db.Column(db.INTEGER, db.ForeignKey('destination.id'))
-    attraction_id = db.Column(db.INTEGER, db.ForeignKey('attraction.id'))
-    accommodation_id = db.Column(db.INTEGER, db.ForeignKey('accommodation.id'))
-    traffic_id = db.Column(db.INTEGER, db.ForeignKey('traffic.id'))
+    attraction_id = db.Column(db.INTEGER, db.ForeignKey('target.id'))
+    accommodation_id = db.Column(db.INTEGER, db.ForeignKey('target.id'))
+    traffic_id = db.Column(db.INTEGER, db.ForeignKey('target.id'))
 
 
 class Combination(db.Model):
@@ -212,39 +222,48 @@ class RecordC(db.Model):
     combination_id = db.Column(db.INTEGER, db.ForeignKey('combination.id'))
     status = db.Column(db.String(120))
 
-
-# personal record of attraction, customer can operate and store data in this table
-class RecordA(db.Model):
+# personal record of attraction, traffic, and accommodation, customer can operate and store data in this table
+class Record(db.Model):
     __table_args__ = {'extend_existing': True}
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
     user_id = db.Column(db.INTEGER, db.ForeignKey('user.id'))
-    attraction_id = db.Column(db.INTEGER, db.ForeignKey('attraction.id'))
+    target_id = db.Column(db.INTEGER, db.ForeignKey('target.id'))
     date = db.Column(db.String(120))
     status = db.Column(db.String(120))
+
+# personal record of attraction, customer can operate and store data in this table
+# class RecordA(db.Model):
+#     __table_args__ = {'extend_existing': True}
+#     # id is the primary key and it increments automatically
+#     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
+#     user_id = db.Column(db.INTEGER, db.ForeignKey('user.id'))
+#     attraction_id = db.Column(db.INTEGER, db.ForeignKey('attraction.id'))
+#     date = db.Column(db.String(120))
+#     status = db.Column(db.String(120))
 
 
 # personal record of traffic, customer can operate and store data in this table
-class RecordT(db.Model):
-    __table_args__ = {'extend_existing': True}
-    # id is the primary key and it increments automatically
-    id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
-    user_id = db.Column(db.INTEGER, db.ForeignKey('user.id'))
-    traffic_id = db.Column(db.INTEGER, db.ForeignKey('traffic.id'))
-    start_date = db.Column(db.String(120))
-    end_date = db.Column(db.String(120))
-    status = db.Column(db.String(120))
-
-
-# personal record of hotel(accommodation), customer can operate and store data in this table
-class RecordH(db.Model):
-    __table_args__ = {'extend_existing': True}
-    # id is the primary key and it increments automatically
-    id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
-    user_id = db.Column(db.INTEGER, db.ForeignKey('user.id'))
-    accommodation_id = db.Column(db.INTEGER, db.ForeignKey('accommodation.id'))
-    date = db.Column(db.String(120))
-    status = db.Column(db.String(120))
+# class RecordT(db.Model):
+#     __table_args__ = {'extend_existing': True}
+#     # id is the primary key and it increments automatically
+#     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
+#     user_id = db.Column(db.INTEGER, db.ForeignKey('user.id'))
+#     traffic_id = db.Column(db.INTEGER, db.ForeignKey('traffic.id'))
+#     start_date = db.Column(db.String(120))
+#     end_date = db.Column(db.String(120))
+#     status = db.Column(db.String(120))
+#
+#
+# # personal record of hotel(accommodation), customer can operate and store data in this table
+# class RecordH(db.Model):
+#     __table_args__ = {'extend_existing': True}
+#     # id is the primary key and it increments automatically
+#     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
+#     user_id = db.Column(db.INTEGER, db.ForeignKey('user.id'))
+#     accommodation_id = db.Column(db.INTEGER, db.ForeignKey('accommodation.id'))
+#     date = db.Column(db.String(120))
+#     status = db.Column(db.String(120))
 
 
 class SimpleComment(db.Model):
@@ -267,6 +286,7 @@ class CommentC(db.Model):
     content = db.Column(db.String(240))
     # image if necessary
     image = db.Column(db.String(120))
+    # construct time
     time = db.Column(db.String(120))
     # the number of this post to be replied
     count = db.Column(db.INTEGER, default=0)
@@ -278,13 +298,13 @@ class CommentC(db.Model):
     time2 = db.Column(db.String(120))
 
 
-# Comments on attraction
-class CommentA(db.Model):
+# Comments on attraction, traffic, and accommodation
+class Comment(db.Model):
     __table_args__ = {'extend_existing': True}
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
     user_id = db.Column(db.INTEGER, db.ForeignKey('user.id'))
-    attraction_id = db.Column(db.INTEGER, db.ForeignKey('attraction.id'))
+    target_id = db.Column(db.INTEGER, db.ForeignKey('target.id'))
     # score: 0-5
     score = db.Column(db.INTEGER, nullable=False)
     content = db.Column(db.String(240))
@@ -296,20 +316,20 @@ class CommentA(db.Model):
 
 
 # Comments on hotel (accommodation
-class CommentH(db.Model):
-    __table_args__ = {'extend_existing': True}
-    # id is the primary key and it increments automatically
-    id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
-    user_id = db.Column(db.INTEGER, db.ForeignKey('user.id'))
-    accommodation_id = db.Column(db.INTEGER, db.ForeignKey('accommodation.id'))
-    # score: 0-5
-    score = db.Column(db.INTEGER, nullable=False)
-    content = db.Column(db.String(240))
-    # image if necessary
-    image = db.Column(db.String(120))
-    time = db.Column(db.String(120))
-    # the number of this post to be replied
-    count = db.Column(db.INTEGER, default=0)
+# class CommentH(db.Model):
+#     __table_args__ = {'extend_existing': True}
+#     # id is the primary key and it increments automatically
+#     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
+#     user_id = db.Column(db.INTEGER, db.ForeignKey('user.id'))
+#     accommodation_id = db.Column(db.INTEGER, db.ForeignKey('accommodation.id'))
+#     # score: 0-5
+#     score = db.Column(db.INTEGER, nullable=False)
+#     content = db.Column(db.String(240))
+#     # image if necessary
+#     image = db.Column(db.String(120))
+#     time = db.Column(db.String(120))
+#     # the number of this post to be replied
+#     count = db.Column(db.INTEGER, default=0)
 
 
 # Users reply on comments of combination
@@ -323,23 +343,23 @@ class ReplyC(db.Model):
     time = db.Column(db.String(120))
 
 
-# Users reply on comments of attraction
-class ReplyA(db.Model):
+# Users reply on comments of attraction, traffic, and accommodation
+class Reply(db.Model):
     __table_args__ = {'extend_existing': True}
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
     user_id = db.Column(db.INTEGER, db.ForeignKey('user.id'))
-    comment_id = db.Column(db.INTEGER, db.ForeignKey('comment_a.id'))
+    comment_id = db.Column(db.INTEGER, db.ForeignKey('comment.id'))
     content = db.Column(db.String(240))
     time = db.Column(db.String(120))
 
 
 # Users reply on comments of hotel (accommodation
-class ReplyH(db.Model):
-    __table_args__ = {'extend_existing': True}
-    # id is the primary key and it increments automatically
-    id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
-    user_id = db.Column(db.INTEGER, db.ForeignKey('user.id'))
-    comment_id = db.Column(db.INTEGER, db.ForeignKey('comment_h.id'))
-    content = db.Column(db.String(240))
-    time = db.Column(db.String(120))
+# class ReplyH(db.Model):
+#     __table_args__ = {'extend_existing': True}
+#     # id is the primary key and it increments automatically
+#     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
+#     user_id = db.Column(db.INTEGER, db.ForeignKey('user.id'))
+#     comment_id = db.Column(db.INTEGER, db.ForeignKey('comment_h.id'))
+#     content = db.Column(db.String(240))
+#     time = db.Column(db.String(120))
