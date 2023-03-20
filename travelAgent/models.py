@@ -263,13 +263,13 @@ class CommentC(db.Model):
     # construct time
     time = db.Column(db.String(120))
     # the number of this post to be replied
-    count = db.Column(db.INTEGER, default=0)
+    # count = db.Column(db.INTEGER, default=0)
 
-    reply_id = db.Column(db.INTEGER, db.ForeignKey('user.id'))  # can be nullable
-    # Whether this comment is a reply to the user
-    # 0: no 1:yes
-    reply_status = db.Column(db.INTEGER, default=0)
-    time2 = db.Column(db.String(120))
+    # reply_id = db.Column(db.INTEGER, db.ForeignKey('user.id'))  # can be nullable
+    # # Whether this comment is a reply to the user
+    # # 0: no 1:yes
+    # reply_status = db.Column(db.INTEGER, default=0)
+    # time2 = db.Column(db.String(120))
 
 
 # Comments on attraction, traffic, and accommodation
@@ -286,7 +286,7 @@ class Comment(db.Model):
     image = db.Column(db.String(120))
     time = db.Column(db.String(120))
     # the number of this post to be replied
-    count = db.Column(db.INTEGER, default=0)
+    # count = db.Column(db.INTEGER, default=0)
 
 
 # Comments on hotel (accommodation
