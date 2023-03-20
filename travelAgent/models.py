@@ -90,32 +90,6 @@ class EmailCaptchaModel(db.Model):
     create_time = db.Column(db.DateTime, default=datetime.now())
 
 
-class Staff(db.Model):
-    __table_args__ = {'extend_existing': True}
-    # id is the primary key and it increments automatically
-    id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
-    username = db.Column(db.String(64), index=True, unique=True, nullable=False)  # username is String and unique
-    email = db.Column(db.String(120), index=True, unique=True)  # user's email must be unique
-    password_hash = db.Column(db.String(128))  # User's password must be hash+
-    level = db.Column(db.INTEGER, default=0)
-
-    @property
-    def password(self):
-        raise ArithmeticError("password can not be shown")
-
-    # Encrypted passwords
-    @password.setter
-    def password(self, password):
-        self.password_hash = generate_password_hash(password)
-
-    # Verify password
-    def verity_password(self, password):
-        check_password_hash(self.password_hash, password)
-
-    def __repr__(self):
-        return '<Staff {}>'.format(self.username)
-
-
 class Destination(db.Model):
     __table_args__ = {'extend_existing': True}
     # id is the primary key and it increments automatically
