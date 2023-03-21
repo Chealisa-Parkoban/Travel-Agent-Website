@@ -1,6 +1,6 @@
 import wtforms
 from flask_wtf import FlaskForm, RecaptchaField
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, DateField, SelectField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, DateField, SelectField, IntegerField, FileField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, URL
 from models import EmailCaptchaModel, User
 
@@ -99,6 +99,13 @@ class CommentForm(FlaskForm):
             DataRequired()
         ]
     )
+    score = IntegerField(
+        'SCORE',
+        validators =
+        [
+            DataRequired()
+        ]
+    )
     submit = SubmitField('')
 
     def validate_comment(self, field):
@@ -108,3 +115,8 @@ class CommentForm(FlaskForm):
 
 
 
+class ImageForm(FlaskForm):
+    img = FileField(
+        'IMAGE',
+        # validators=[FileAllowed(['jpg', 'png', 'jpeg', 'jfif'])]
+    )

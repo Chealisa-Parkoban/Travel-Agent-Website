@@ -132,13 +132,22 @@
 
         {% if current_user.is_authenticated %}
         <div class="row justify-content-between">
-        <form action="{{ url_for('travel_routes_detail') }}" method="post" novalidate class="form-primary">
+        <form action="{{ url_for('travel_routes_detail') }}" method="post" novalidate class="form-primary", enctype="multipart/form-data">
             {{ comment_form.csrf_token }}
             <div class="pr-3">
                 <label>Comment: </label>
                 <br>
                 <textarea name="comment" style="width:400%; height: 100px"></textarea>
                 <br>
+                <input type="number" name="score"
+                    min="0"
+                    max="5"
+                    step="1"
+                    value="5"
+                >
+                <img src="#" alt="" id="img">
+                <input id="file_upload" name="img" type="file" onclick="showImg()" />
+
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
             </form>
@@ -225,4 +234,7 @@
             </div>
         </div>
     </div>
+
 {% endblock %}
+
+<script type="text/javascript" src="../static/js/add.js"></script>
