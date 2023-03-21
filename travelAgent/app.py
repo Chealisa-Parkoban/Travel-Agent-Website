@@ -1,7 +1,6 @@
 import os
 import this
 import time
-
 from flask import Flask, render_template, request, flash, redirect, url_for
 import logging
 import http.client
@@ -9,13 +8,15 @@ import hashlib
 import urllib
 import random
 import json
+import datetime
 
 import travelAgent
 from travelAgent import db
 from travelAgent import app
-from travelAgent.forms import CommentForm
-from travelAgent.models import CommentC, SimpleComment
+from travelAgent.forms import CommentForm, ImageForm
+from travelAgent.models import CommentC, Comment
 from travelAgent.views.login_handler import login_blueprint, current_user
+from travelAgent.views.number import Random_str
 
 # -------------------------------------register blueprints------------------------------------------
 app.register_blueprint(login_blueprint)
@@ -63,15 +64,45 @@ def homepage():
 
 @app.route('/travelRoutesDetail', methods=['GET', 'POST'])
 def travel_routes_detail():
-    print(SimpleComment.query.all())
+    # Create a unique id for the commodity
+    id = Random_str().create_uuid()
+    print(Comment.query.all())
     logger.info('Entered the TRAVEL ROUTE DETAIL page')
     comment_form = CommentForm(request.form)
-    if comment_form.validate_on_submit():
-        comment = SimpleComment(username=current_user.username, content=comment_form.comment.data, time=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+    image_form = ImageForm(request.files)
+    # logger.info('777777777777777')
+    # logger.info(image_form.img.data.filename)
+
+    # logger.info(request.files.getlist('img'))
+    if comment_form.validate_on_submit() :
+        logger.info('777777777777777')
+        logger.info(basedir)
+
+        # Images storage path
+        file_dir = os.path.join(basedir, "static/upload/")
+        logger.info('888888888')
+        logger.info(file_dir)
+        # Getting the data transferred from the front end
+        files = request.files.getlist('img')  # Gets the value of myfiles from ajax, of type list
+        path = ""
+
+        for img in files:
+            # Extract the suffix of the uploaded image and
+            # Name the image after the commodity id and store it in the specific path
+            fname = img.filename
+            logger.info('9999999999999999')
+            logger.info(fname)
+            ext = fname.rsplit('.', 1)[1]
+            new_filename = id + '.' + ext
+            img.save(os.path.join(file_dir, new_filename))
+            path = "../static/upload/" + new_filename
+        comment = Comment(user_id=current_user.id, target_id=1,score = comment_form.score.data, content=comment_form.comment.data,image = path, time=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+        # comment = SimpleComment(username=current_user.username, content=comment_form.comment.data, time=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
         db.session.add(comment)
         flash('已评论')
         return redirect(url_for('travel_routes_detail'))
-    return render_template("travelRoutesDetail.html", current_user=current_user, comment_form=comment_form, comments=SimpleComment.query.all())
+
+    return render_template("travelRoutesDetail.html", current_user=current_user, comment_form=comment_form, comments=Comment.query.all())
 
 
 # 翻译功能 (auto - 英)
