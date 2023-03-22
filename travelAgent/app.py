@@ -57,6 +57,11 @@ def homepage():
     logger.info('Entered the HOME page')
     return render_template("homepage.html")
 
+@app.route('/homepage2')
+def homepage2():
+    logger.info('Entered the HOME page')
+    return render_template("homepage2.html")
+
 @app.route('/travelRoutesDetail')
 def travel_routes_detail():
     logger.info('Entered the TRAVEL ROUTE DETAIL page')

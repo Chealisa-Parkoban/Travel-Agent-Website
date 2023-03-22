@@ -16,6 +16,8 @@
     <link type="text/css" href="../static/css/docs4.6.css" rel="stylesheet">
     <link type="text/css" href="../static/css/index.css" rel="stylesheet">
     <link type="text/css" href="../static/css/style.css" rel="stylesheet">
+
+
     <title>{% block title %}{% endblock %}</title>
     {% block head %} {% endblock %}
 </head>
@@ -51,11 +53,15 @@
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
-                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvasExample"
-                        aria-controls="offcanvasExample">
-                    help
-                </button>
+{#                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"#}
+{#                        data-bs-target="#offcanvasExample"#}
+{#                        aria-controls="offcanvasExample">#}
+{#                    help#}
+{#                </button>#}
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Help</a>
+                </li>
+
                 <li class="nav-item">
                     <a class="nav-link nav-link-icon" href="#"><i class="fas fa-cogs"></i></a>
                 </li>
@@ -127,9 +133,9 @@
         </div>
     </nav>
 </header>
-<div class="container-fluid">
+{#<div class="container-fluid">#}
     {% block body %}{% endblock %}
-</div>
+{#</div>#}
 <footer class="pt-5 pb-3 footer  footer-dark bg-tertiary">
     <div class="container">
         <div class="row">
