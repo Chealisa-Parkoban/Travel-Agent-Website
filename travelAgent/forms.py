@@ -1,6 +1,6 @@
 import wtforms
 from flask_wtf import FlaskForm, RecaptchaField
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, DateField, SelectField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, DateField, SelectField, IntegerField, FileField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, URL
 from models import EmailCaptchaModel, User
 
@@ -17,6 +17,8 @@ class LoginForm(FlaskForm):
     password = PasswordField('PASSWORD', validators=[DataRequired()])
     # choose to remember the info or not
     remember_me = BooleanField('REMEMBER ME')
+    # admin
+    is_admin = BooleanField('ADMIN')
     # submit the form
     submit = SubmitField('')
 
@@ -88,4 +90,33 @@ class SignupForm(FlaskForm):
             raise wtforms.ValidationError("邮箱已经存在！")
 
 
+class CommentForm(FlaskForm):
+    """Form for users to add/update a comment."""
+    comment = StringField(
+        'COMMENT',
+        validators=
+        [
+            DataRequired()
+        ]
+    )
+    score = IntegerField(
+        'SCORE',
+        validators =
+        [
+            DataRequired()
+        ]
+    )
+    submit = SubmitField('')
 
+    def validate_comment(self, field):
+        comment = field.data
+        if len(comment) > 500:
+            raise wtforms.ValidationError("Comment is too long.")
+
+
+
+class ImageForm(FlaskForm):
+    img = FileField(
+        'IMAGE',
+        # validators=[FileAllowed(['jpg', 'png', 'jpeg', 'jfif'])]
+    )

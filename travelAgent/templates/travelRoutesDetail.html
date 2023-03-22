@@ -115,56 +115,79 @@
             <div class="col-md-8">
                 <h2 class="font-weight-bold spanborder"><span>Posts from other visitors</span></h2>
                 <hr>
+
+                {% for comment in comments %}
                 <div class="mb-3 d-flex justify-content-between">
                     <div class="pr-3">
-                        <h2 class="mb-1 h4 font-weight-bold">
-                            <a class="text-dark" href="./article.html">Nearly 200 Great Barrier Reef coral species also
-                                live in the deep sea</a>
-                        </h2>
-                        <p>
-                            There are more coral species lurking in the deep ocean that previously thought.
-                        </p>
+                        <p>{{ comment.content }}</p>
                         <div class="card-text text-muted small">
-                            Jake Bittle in SCIENCE
+                            {{ comment.username }}
                         </div>
-                        <small class="text-muted">Dec 12 &middot; 5 min read</small>
+                        <small class="text-muted">{{ comment.time }}</small>
                     </div>
                     <img height="20" src="../static/images/icons/heart-regular.svg" alt="some text"/>
                 </div>
-                <div class="mb-3 d-flex justify-content-between">
-                    <div class="pr-3">
-                        <h2 class="mb-1 h4 font-weight-bold">
-                            <a class="text-dark" href="./article.html">East Antarctica's glaciers are stirring</a>
-                        </h2>
-                        <p>
-                            Nasa says it has detected the first signs of significant melting in a swathe of glaciers in
-                            East Antarctica.
-                        </p>
-                        <div class="card-text text-muted small">
-                            Jake Bittle in SCIENCE
-                        </div>
-                        <small class="text-muted">Dec 12 &middot; 5 min read</small>
-                    </div>
-                    <img height="20" src="../static/images/icons/heart-regular.svg" alt="some text"/>
-                </div>
-                <div class="mb-3 d-flex justify-content-between">
-                    <div class="pr-3">
-                        <h2 class="mb-1 h4 font-weight-bold">
-                            <a class="text-dark" href="./article.html">50 years ago, armadillos hinted that DNA wasn’t
-                                destiny</a>
-                        </h2>
-                        <p>
-                            Nasa says it has detected the first signs of significant melting in a swathe of glaciers in
-                            East Antarctica.
-                        </p>
-                        <div class="card-text text-muted small">
-                            Jake Bittle in SCIENCE
-                        </div>
-                        <small class="text-muted">Dec 12 &middot; 5 min read</small>
-                    </div>
-                    <img height="20" src="../static/images/icons/heart-regular.svg" alt="some text"/>
-                </div>
+                {% endfor %}
             </div>
+        </div>
+
+        {% if current_user.is_authenticated %}
+        <div class="row justify-content-between">
+        <form action="{{ url_for('travel_routes_detail') }}" method="post" novalidate class="form-primary", enctype="multipart/form-data">
+            {{ comment_form.csrf_token }}
+            <div class="pr-3">
+                <label>Comment: </label>
+                <br>
+                <textarea name="comment" style="width:400%; height: 100px"></textarea>
+                <br>
+                <input type="number" name="score"
+                    min="0"
+                    max="5"
+                    step="1"
+                    value="5"
+                >
+                <img src="#" alt="" id="img">
+                <input id="file_upload" name="img" type="file" onclick="showImg()" />
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            </form>
+        </div>
+        {% endif %}
+{#                <div class="mb-3 d-flex justify-content-between">#}
+{#                    <div class="pr-3">#}
+{#                        <h2 class="mb-1 h4 font-weight-bold">#}
+{#                            <a class="text-dark" href="./article.html">East Antarctica's glaciers are stirring</a>#}
+{#                        </h2>#}
+{#                        <p>#}
+{#                            Nasa says it has detected the first signs of significant melting in a swathe of glaciers in#}
+{#                            East Antarctica.#}
+{#                        </p>#}
+{#                        <div class="card-text text-muted small">#}
+{#                            Jake Bittle in SCIENCE#}
+{#                        </div>#}
+{#                        <small class="text-muted">Dec 12 &middot; 5 min read</small>#}
+{#                    </div>#}
+{#                    <img height="20" src="../static/images/icons/heart-regular.svg" alt="some text"/>#}
+{#                </div>#}
+{#                <div class="mb-3 d-flex justify-content-between">#}
+{#                    <div class="pr-3">#}
+{#                        <h2 class="mb-1 h4 font-weight-bold">#}
+{#                            <a class="text-dark" href="./article.html">50 years ago, armadillos hinted that DNA wasn’t#}
+{#                                destiny</a>#}
+{#                        </h2>#}
+{#                        <p>#}
+{#                            Nasa says it has detected the first signs of significant melting in a swathe of glaciers in#}
+{#                            East Antarctica.#}
+{#                        </p>#}
+{#                        <div class="card-text text-muted small">#}
+{#                            Jake Bittle in SCIENCE#}
+{#                        </div>#}
+{#                        <small class="text-muted">Dec 12 &middot; 5 min read</small>#}
+{#                    </div>#}
+{#                    <img height="20" src="../static/images/icons/heart-regular.svg" alt="some text"/>#}
+{#                </div>#}
+{#            </div>#}
             <div class="col-md-4 pl-4">
                 <h5 class="font-weight-bold spanborder"><span>Popular</span></h5>
                 <ol class="list-featured">
@@ -212,5 +235,8 @@
             </div>
         </div>
     </div>
+
     </div>
 {% endblock %}
+
+<script type="text/javascript" src="../static/js/add.js"></script>

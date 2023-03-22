@@ -736,7 +736,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        /*
 	        If external fonts are used in a <img> placeholder rendered with SVG, Holder falls back to canvas.
 
-	        This is done because Firefox and Chrome disallow embedded SVGs from referencing external assets.
+	        This is done because Firefox and Chrome disallow embedded SVGs from referencing external background_assets.
 	        The workaround is either to change the placeholder tag from <img> to <object> or to use the canvas renderer.
 	        */
 	        theme.font = flags.font;
