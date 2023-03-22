@@ -1,6 +1,7 @@
 import os
 import this
 import time
+
 from flask import Flask, render_template, request, flash, redirect, url_for
 import logging
 import http.client
@@ -14,12 +15,14 @@ import travelAgent
 from travelAgent import db
 from travelAgent import app
 from travelAgent.forms import CommentForm, ImageForm
-from travelAgent.models import CommentC, Comment
+from travelAgent.models import CommentC, Comment, Combination, Destination, Day, Target
 from travelAgent.views.login_handler import login_blueprint, current_user
 from travelAgent.views.number import Random_str
+from travelAgent.views.manage_contents import content_blueprint
 
 # -------------------------------------register blueprints------------------------------------------
 app.register_blueprint(login_blueprint)
+app.register_blueprint(content_blueprint)
 
 # -------------------------------------create a logger------------------------------------------
 logger = logging.getLogger(__name__)  # create a logger
@@ -60,6 +63,12 @@ def contact_us():
 def homepage():
     logger.info('Entered the HOME page')
     return render_template("homepage.html")
+
+
+@app.route('/admin')
+def admin():
+    return render_template("./background/index.html")
+
 
 
 @app.route('/travelRoutesDetail', methods=['GET', 'POST'])
