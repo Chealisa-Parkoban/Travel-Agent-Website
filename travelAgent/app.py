@@ -66,6 +66,12 @@ def homepage():
     return render_template("homepage.html", Sets=Sets)
 
 
+@app.route('/homepage2', methods=['GET', 'POST'])
+def homepage2():
+    logger.info('Entered the HOME page')
+    return render_template("homepage2.html")
+
+
 @app.route('/admin')
 def admin():
     return render_template("./background/index.html")
