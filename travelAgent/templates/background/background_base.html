@@ -32,7 +32,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html"><i class="fa fa-gear"></i> <strong>HYBRID</strong></a>
+                <a class="navbar-brand" href="dashboard.html"><i class="fa fa-gear"></i> <strong>HYBRID</strong></a>
             </div>
 
             <ul class="nav navbar-top-links navbar-right">
@@ -251,25 +251,25 @@
                 <ul class="nav" id="main-menu">
 
                     <li>
-                        <a class="active-menu" href="index.html"><i class="fa fa-dashboard"></i> Dashboard</a>
+                        <a href="{{ url_for("background.dashboard") }}" id="base-dashboard"><i class="fa fa-dashboard"></i> Dashboard</a>
                     </li>
 
                     <li>
-                        <a href="{{ url_for("contents.contents") }}"><i class="fa fa-edit"></i> Contents </a>
+                        <a href="{{ url_for("background.contents") }}" id="base-content"><i class="fa fa-edit"></i> Contents </a>
                     </li>
 
                     <li>
-                        <a href="ui-elements.html"><i class="fa fa-desktop"></i> UI Elements</a>
+                        <a href=""><i class="fa fa-desktop"></i> UI Elements</a>
                     </li>
 					<li>
-                        <a href="chart.html"><i class="fa fa-bar-chart-o"></i> Charts</a>
+                        <a href=""><i class="fa fa-bar-chart-o"></i> Charts</a>
                     </li>
                     <li>
-                        <a href="tab-panel.html"><i class="fa fa-qrcode"></i> Tabs & Panels</a>
+                        <a href=""><i class="fa fa-qrcode"></i> Tabs & Panels</a>
                     </li>
 
                     <li>
-                        <a href="table.html"><i class="fa fa-table"></i> Responsive Tables</a>
+                        <a href=""><i class="fa fa-table"></i> Responsive Tables</a>
                     </li>
 
 

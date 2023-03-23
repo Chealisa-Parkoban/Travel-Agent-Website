@@ -18,11 +18,11 @@ from travelAgent.forms import CommentForm, ImageForm
 from travelAgent.models import CommentC, Comment, Combination, Destination, Day, Target
 from travelAgent.views.login_handler import login_blueprint, current_user
 from travelAgent.views.number import Random_str
-from travelAgent.views.manage_contents import content_blueprint
+from travelAgent.views.background import background_blueprint
 
 # -------------------------------------register blueprints------------------------------------------
 app.register_blueprint(login_blueprint)
-app.register_blueprint(content_blueprint)
+app.register_blueprint(background_blueprint)
 
 # -------------------------------------create a logger------------------------------------------
 logger = logging.getLogger(__name__)  # create a logger
@@ -74,7 +74,7 @@ def homepage2():
 
 @app.route('/admin')
 def admin():
-    return render_template("./background/index.html")
+    return render_template("./background/dashboard.html")
 
 
 
