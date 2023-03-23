@@ -242,7 +242,7 @@ def showSetDetails(ID):
 
 
 if __name__ == '__main__':
-    showSetDetails(1)
+    # showSetDetails(1)
     logger.info('The Website Starts Running!')
-    # app.run(debug=True, port=5000)
+    app.run(debug=True, port=5000)
 
