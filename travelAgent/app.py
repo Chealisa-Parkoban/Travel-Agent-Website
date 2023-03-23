@@ -77,6 +77,21 @@ def admin():
     return render_template("./background/dashboard.html")
 
 
+# @app.route('/staff')
+# def staff():
+#     return render_template("./staff_site/base.html")
+#
+#
+# @app.route('/staff1')
+# def staff1():
+#     return render_template("./staff_site/pages/index/index.html")
+#
+#
+# @app.route('/staff2')
+# def staff2():
+#     print("sdfasdf")
+#     return render_template("./staff_site/pages/ui-features/buttons.html")
+
 
 @app.route('/travelRoutesDetail', methods=['GET', 'POST'])
 def travel_routes_detail():
