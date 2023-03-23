@@ -137,6 +137,7 @@ class Combination(db.Model):
     day6 = db.Column(db.INTEGER, db.ForeignKey('day.id'))
     day7 = db.Column(db.INTEGER, db.ForeignKey('day.id'))
     intro = db.Column(db.String(240))
+    price = db.Column(db.INTEGER)
     length = db.Column(db.INTEGER, nullable=False)
 
 
