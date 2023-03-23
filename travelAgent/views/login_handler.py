@@ -92,7 +92,7 @@ def sign_up():
 
             # session['userExist'] = 'false'
             # store user's information into database
-            u1 = User(newname, email, password)
+            u1 = User(newname, email, password, is_admin=False)
             db.session.add(u1)
             db.session.commit()
             app.logger.info('User \'' + newname + '\' has successfully signed up')
