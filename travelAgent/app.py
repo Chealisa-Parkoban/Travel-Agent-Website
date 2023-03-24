@@ -19,9 +19,11 @@ from travelAgent.models import CommentC, Comment, Combination, Destination, Day,
 from travelAgent.views.login_handler import login_blueprint, current_user
 from travelAgent.views.number import Random_str
 from travelAgent.views.background import background_blueprint
+from travelAgent.views.staff_site import staff_blueprint
 
 # -------------------------------------register blueprints------------------------------------------
 app.register_blueprint(login_blueprint)
+app.register_blueprint(staff_blueprint)
 app.register_blueprint(background_blueprint)
 
 # -------------------------------------create a logger------------------------------------------
