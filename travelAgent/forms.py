@@ -108,11 +108,11 @@ class CommentForm(FlaskForm):
     )
     submit = SubmitField('')
 
+
     def validate_comment(self, field):
         comment = field.data
         if len(comment) > 500:
             raise wtforms.ValidationError("Comment is too long.")
-
 
 
 class ImageForm(FlaskForm):
@@ -120,3 +120,12 @@ class ImageForm(FlaskForm):
         'IMAGE',
         # validators=[FileAllowed(['jpg', 'png', 'jpeg', 'jfif'])]
     )
+
+
+class day_trip_from(FlaskForm):
+    # Validator here requires user must have input data
+    # username is String
+    # date = DateField('DATE', format='%Y-%m-%d', validators=[DataRequired()])
+    username = StringField('USERNAME', validators=[Length(min=4), DataRequired()])
+    # submit the form
+    submit = SubmitField('')
