@@ -73,8 +73,8 @@ def homepage():
 @app.route('/homepage2', methods=['GET', 'POST'])
 def homepage2():
     logger.info('Entered the HOME page')
-    Sets = Combination.query.all()
-    return render_template("homepage2.html", Sets=Sets)
+    # Sets = Combination.query.all() , Sets=Sets
+    return render_template("homepage2.html")
 
 
 @app.route('/admin')
@@ -105,7 +105,7 @@ def travel_routes_detail():
 
     # Create a unique id for the image
     id = Random_str().create_uuid()
-    print(Comment.query.all())
+    print(CommentC.query.all())
     logger.info('Entered the TRAVEL ROUTE DETAIL page')
     comment_form = CommentForm(request.form)
     image_form = ImageForm(request.files)
@@ -132,14 +132,14 @@ def travel_routes_detail():
                     path = "../static/upload/" + new_filename
     
             # default: like=0 path=""
-            comment = Comment(user_id=current_user.id, target_id=1,score = comment_form.score.data, content=comment_form.comment.data,image = path, time=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+            comment = CommentC(user_id=current_user.id, combination_id=1,score = comment_form.score.data, content=comment_form.comment.data,image = path, time=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
             db.session.add(comment)
             flash('已评论')
             return redirect(url_for('travel_routes_detail'))
     
-        return render_template("travelRoutesDetail.html", current_user=current_user, comment_form=comment_form, comments=Comment.query.all())
+        return render_template("travelRoutesDetail.html", current_user=current_user, comment_form=comment_form, comments=CommentC.query.all())
     if request.method == 'GET':
-        comments = Comment.query.all()
+        comments = CommentC.query.all()
         return render_template("travelRoutesDetail.html", comments=comments, comment_form=comment_form)
 
 
