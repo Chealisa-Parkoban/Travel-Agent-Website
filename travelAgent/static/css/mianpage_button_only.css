@@ -1,0 +1,24 @@
+.button{
+    background-color: transparent;
+    /*margin-top: 100px;*/
+    padding: 0.625rem 1.25rem;
+    color: white;
+    border: 2px solid white;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 0.125rem;
+    font-size: 1.5rem;
+}
+
+.button:hover{
+    border-radius: 8px; /* round border */
+    color: white; /* text color when hover*/
+    background: #a4c2f4;
+    box-shadow: 0 0 5px 0 #a4c2f4, /* looks like button glows */
+                0 0 25px 0 #a4c2f4,
+                0 0 50px 0 #a4c2f4,
+                0 0 100px 0 #a4c2f4;
+    transition: all 1s linear; /* slow motion */
+}
