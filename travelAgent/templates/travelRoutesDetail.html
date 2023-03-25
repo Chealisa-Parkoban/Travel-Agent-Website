@@ -19,224 +19,276 @@
           integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <!-- Main CSS -->
     <link href="../static/css/main.css" rel="stylesheet"/>
+
 {% endblock %}
 {% block body %}
     <div class="container-fluid">
-    <hr>
-    <div class="container">
-        <div class="jumbotron jumbotron-fluid mb-3 pt-0 pb-0 bg-lightblue position-relative">
-            <div class="pl-4 pr-0 h-100 tofront">
+        <hr>
+        <div class="container">
+            <div class="jumbotron jumbotron-fluid mb-3 pt-0 pb-0 bg-lightblue position-relative">
+                <div class="pl-4 pr-0 h-100 tofront">
+                    <div class="row justify-content-between">
+                        <div class="col-md-6 pt-6 pb-6 align-self-center">
+                            <h1 class="secondfont mb-3 font-weight-bold">Gui Lin is a beautiful place which is located
+                                in
+                                the
+                                south of China where a lot of lake abstract visitors</h1>
+                            <p class="mb-3">
+                                Beautifully crafted with the latest technologies, SASS & Bootstrap 4.1.3, Mundana is the
+                                perfect design for your professional blog. Homepage, post article and category layouts
+                                available.
+                            </p>
+                            <a href="./article.html" class="btn btn-info">Book Now!</a>
+                        </div>
+                        <div class="col-md-6 d-none d-md-block pr-0"
+                             style="background-size:cover;background-image:url(../static/images/sample_pic/guilin.png);"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container pt-4 pb-4">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card border-0 mb-4 box-shadow h-xl-300">
+                        <div style="background-image: url(../static/images/sample_pic/guilin2.png); height: 150px;    background-size: cover;    background-repeat: no-repeat;"></div>
+                        <div class="card-body px-0 pb-0 d-flex flex-column align-items-start">
+                            <h2 class="h4 font-weight-bold">
+                                <a class="text-dark" href="./article.html">Brain Stimulation Relieves Depression
+                                    Symptoms</a>
+                            </h2>
+                            <p class="card-text">
+                                Researchers have found an effective target in the brain for electrical stimulation to
+                                improve mood in people suffering from depression.
+                            </p>
+                            <div>
+                                <small class="d-block"><a class="text-muted" href="./author.html">Favid Rick</a></small>
+                                <small class="text-muted">Dec 12 &middot; 5 min read</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="flex-md-row mb-4 box-shadow h-xl-300">
+                        <div class="mb-3 d-flex align-items-center">
+                            <img height="40" src="../static/images/icons/location-dot-solid.svg">
+                            <div class="pl-3">
+                                <h2 class="mb-2 h6 font-weight-bold">
+                                    <a class="text-dark" href="./article.html">Nasa's IceSat space laser makes height
+                                        maps
+                                        of Earth</a>
+                                </h2>
+                                <div class="card-text text-muted small">
+                                    Jake Bittle in LOVE/HATE
+                                </div>
+                                <small class="text-muted">Dec 12 &middot; 5 min read</small>
+                            </div>
+                        </div>
+                        <div class="mb-3 d-flex align-items-center">
+                            <img height="40" src="../static/images/icons/location-dot-solid.svg">
+                            <div class="pl-3">
+                                <h2 class="mb-2 h6 font-weight-bold">
+                                    <a class="text-dark" href="./article.html">Underwater museum brings hope to Lake
+                                        Titicaca</a>
+                                </h2>
+                                <div class="card-text text-muted small">
+                                    Jake Bittle in LOVE/HATE
+                                </div>
+                                <small class="text-muted">Dec 12 &middot; 5 min read</small>
+                            </div>
+                        </div>
+                        <div class="mb-3 d-flex align-items-center">
+                            <img height="40" src="../static/images/icons/location-dot-solid.svg">
+                            <div class="pl-3">
+                                <h2 class="mb-2 h6 font-weight-bold">
+                                    <a class="text-dark" href="./article.html">Sun-skimming probe starts calling
+                                        home</a>
+                                </h2>
+                                <div class="card-text text-muted small">
+                                    Jake Bittle in LOVE/HATE
+                                </div>
+                                <small class="text-muted">Dec 12 &middot; 5 min read</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-md-8">
+                    <h2 class="font-weight-bold spanborder"><span>Posts from other visitors</span></h2>
+                    <hr style="border: solid">
+
+                    {% for comment in comments %}
+                        {#                        <div class="mb-3 d-flex justify-content-between">#}
+                        {#                            <div class="pr-3">#}
+                        {#                                <p>{{ comment.content }}</p>#}
+                        {#                                <div class="card-text text-muted small">#}
+                        {#                                    {{ comment.username }}#}
+                        {#                                </div>#}
+                        {#                                <small class="text-muted"> {{ comment.time }}</small>#}
+                        {#                            </div>#}
+                        {#                            <img height="20" src="../static/images/icons/heart-regular.svg" alt="some text"/>#}
+                        {#                        </div>#}
+                        <div class="card mb-5 shadow-sm" style="border-radius: 15px;">
+                            <div class="card-body p-4">
+                                <h3 class="mb-3">{{ comment.content }}</h3>
+                                <p class="small mb-0"><i class="far fa-star fa-lg"></i> <span class="mx-2">|</span>
+                                    Created by
+                                    <strong>{{ comment.username }}</strong> {{ comment.time }}</p>
+                                <hr class="my-4">
+                                <div class="d-flex justify-content-start align-items-center">
+                                    <p class="mb-0 text-uppercase"><i class="fas fa-cog me-2"></i> <span
+                                            class="text-muted small">settings</span></p>
+                                    <p class="mb-0 text-uppercase"><i class="fas fa-link ms-4 me-2"></i> <span
+                                            class="text-muted small">program link</span></p>
+                                    <p class="mb-0 text-uppercase"><i class="fas fa-ellipsis-h ms-4 me-2"></i> <span
+                                            class="text-muted small">program link</span>
+                                        <span class="ms-3 me-4">|</span></p>
+                                    <a href="#!">
+                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-2.webp"
+                                             alt="avatar"
+                                             class="img-fluid rounded-circle me-3" width="35">
+                                    </a>
+                                    <button type="button" class="btn btn-outline-dark btn-sm btn-floating">
+                                        <i class="fas fa-plus"></i>Reply
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <hr style="border: solid">
+                </div>
+            </div>
+
+
+            <hr>
+
+        </div>
+        <div class="container">
+            {% if current_user.is_authenticated %}
                 <div class="row justify-content-between">
-                    <div class="col-md-6 pt-6 pb-6 align-self-center">
-                        <h1 class="secondfont mb-3 font-weight-bold">Gui Lin is a beautiful place which is located in
-                            the
-                            south of China where a lot of lake abstract visitors</h1>
-                        <p class="mb-3">
-                            Beautifully crafted with the latest technologies, SASS & Bootstrap 4.1.3, Mundana is the
-                            perfect design for your professional blog. Homepage, post article and category layouts
-                            available.
-                        </p>
-                        <a href="./article.html" class="btn btn-info">Book Now!</a>
-                    </div>
-                    <div class="col-md-6 d-none d-md-block pr-0"
-                         style="background-size:cover;background-image:url(../static/images/sample_pic/guilin.png);"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container pt-4 pb-4">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="card border-0 mb-4 box-shadow h-xl-300">
-                    <div style="background-image: url(../static/images/sample_pic/guilin2.png); height: 150px;    background-size: cover;    background-repeat: no-repeat;"></div>
-                    <div class="card-body px-0 pb-0 d-flex flex-column align-items-start">
-                        <h2 class="h4 font-weight-bold">
-                            <a class="text-dark" href="./article.html">Brain Stimulation Relieves Depression
-                                Symptoms</a>
-                        </h2>
-                        <p class="card-text">
-                            Researchers have found an effective target in the brain for electrical stimulation to
-                            improve mood in people suffering from depression.
-                        </p>
-                        <div>
-                            <small class="d-block"><a class="text-muted" href="./author.html">Favid Rick</a></small>
-                            <small class="text-muted">Dec 12 &middot; 5 min read</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="flex-md-row mb-4 box-shadow h-xl-300">
-                    <div class="mb-3 d-flex align-items-center">
-                        <img height="40" src="../static/images/icons/location-dot-solid.svg">
-                        <div class="pl-3">
-                            <h2 class="mb-2 h6 font-weight-bold">
-                                <a class="text-dark" href="./article.html">Nasa's IceSat space laser makes height maps
-                                    of Earth</a>
-                            </h2>
-                            <div class="card-text text-muted small">
-                                Jake Bittle in LOVE/HATE
+                <div class="col-md-8">
+                    <form action="{{ url_for('travel_routes_detail') }}" method="post" novalidate class="form-primary" ,
+                          enctype="multipart/form-data">
+                        {{ comment_form.csrf_token }}
+
+                        {#                        <div class="container">#}
+                        {#                            <h1>Bootstrap Multi-purpose Editor</h1>#}
+                        {#                            <form>#}
+                        {#                                <div class="form-group">#}
+                        {#                                    <label for="editor">Editor</label>#}
+                        {#                                    <div id="editor" contenteditable="true"></div>#}
+                        {#                                </div>#}
+                        {#                                <div class="form-group">#}
+                        {#                                    <label for="image">Image URL</label>#}
+                        {#                                    <input type="text" class="form-control" id="image" placeholder="Enter image URL">#}
+                        {#                                </div>#}
+                        {#                                <div class="form-group">#}
+                        {#                                    <label for="video">Video URL</label>#}
+                        {#                                    <input type="text" class="form-control" id="video" placeholder="Enter video URL">#}
+                        {#                                </div>#}
+                        {#                                <button type="submit" class="btn btn-primary">Submit</button>#}
+                        {#                            </form>#}
+                        {#                        </div>#}
+
+                        <div class="container">
+
+                            <div class="card text-center" style="object-fit: cover; width: 100%">
+                                <div class="card-header">Comments:</div>
+                                <div class="card-body">
+                                    {#                                    <h5 class="card-title">Special title treatment</h5>#}
+                                    {#                                    <p class="card-text">With supporting text below as a natural lead-in to additional#}
+                                    {#                                        content.</p>#}
+                                    {#                                    <a href="#" class="btn btn-primary">Button</a>#}
+                                    <textarea style="object-fit: cover; width: 100%" name="comment"></textarea>
+                                    <div>
+                                        <input type="number" name="score"
+                                               min="0"
+                                               max="5"
+                                               step="1"
+                                               value="5">
+                                        <img src="#" alt="" id="img">
+                                        <input id="file_upload" name="img" type="file" onclick="showImg()"/>
+                                    </div>
+                                </div>
+                                <div class="card-footer text-muted">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
                             </div>
-                            <small class="text-muted">Dec 12 &middot; 5 min read</small>
+
+
+                            {#                            <label>Comment: </label>#}
+                            {#                            <br>#}
+                            {#                            <textarea class="shadow" name="comment"></textarea>#}
+                            {#                            <br>#}
+                            {#                            <input type="number" name="score"#}
+                            {#                                   min="0"#}
+                            {#                                   max="5"#}
+                            {#                                   step="1"#}
+                            {#                                   value="5">#}
+                            {#                            <img src="#" alt="" id="img">#}
+                            {#                            <input id="file_upload" name="img" type="file" onclick="showImg()"/>#}
+                            {##}
+                            {#                            <button type="submit" class="btn btn-primary">Submit</button>#}
                         </div>
-                    </div>
-                    <div class="mb-3 d-flex align-items-center">
-                        <img height="40" src="../static/images/icons/location-dot-solid.svg">
-                        <div class="pl-3">
-                            <h2 class="mb-2 h6 font-weight-bold">
-                                <a class="text-dark" href="./article.html">Underwater museum brings hope to Lake
-                                    Titicaca</a>
-                            </h2>
-                            <div class="card-text text-muted small">
-                                Jake Bittle in LOVE/HATE
-                            </div>
-                            <small class="text-muted">Dec 12 &middot; 5 min read</small>
-                        </div>
-                    </div>
-                    <div class="mb-3 d-flex align-items-center">
-                        <img height="40" src="../static/images/icons/location-dot-solid.svg">
-                        <div class="pl-3">
-                            <h2 class="mb-2 h6 font-weight-bold">
-                                <a class="text-dark" href="./article.html">Sun-skimming probe starts calling home</a>
-                            </h2>
-                            <div class="card-text text-muted small">
-                                Jake Bittle in LOVE/HATE
-                            </div>
-                            <small class="text-muted">Dec 12 &middot; 5 min read</small>
-                        </div>
-                    </div>
+                    </form>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row justify-content-between">
-            <div class="col-md-8">
-                <h2 class="font-weight-bold spanborder"><span>Posts from other visitors</span></h2>
-                <hr>
-
-                {% for comment in comments %}
-                <div class="mb-3 d-flex justify-content-between">
-                    <div class="pr-3">
-                        <p>{{ comment.content }}</p>
-                        <div class="card-text text-muted small">
-                            {{ comment.username }}
-                        </div>
-                        <small class="text-muted"> {{ comment.time }}</small>
-                    </div>
-                    <img height="20" src="../static/images/icons/heart-regular.svg" alt="some text"/>
                 </div>
-                {% endfor %}
-            </div>
-        </div>
-
-        {% if current_user.is_authenticated %}
-        <div class="row justify-content-between">
-        <form action="{{ url_for('travel_routes_detail') }}" method="post" novalidate class="form-primary", enctype="multipart/form-data">
-            {{ comment_form.csrf_token }}
-            <div class="pr-3">
-                <label>Comment: </label>
-                <br>
-                <textarea name="comment" style="width:400%; height: 100px"></textarea>
-                <br>
-                <input type="number" name="score"
-                    min="0"
-                    max="5"
-                    step="1"
-                    value="5"
-                >
-                <img src="#" alt="" id="img">
-                <input id="file_upload" name="img" type="file" onclick="showImg()" />
-
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-            </form>
-        </div>
-        {% endif %}
-{#                <div class="mb-3 d-flex justify-content-between">#}
-{#                    <div class="pr-3">#}
-{#                        <h2 class="mb-1 h4 font-weight-bold">#}
-{#                            <a class="text-dark" href="./article.html">East Antarctica's glaciers are stirring</a>#}
-{#                        </h2>#}
-{#                        <p>#}
-{#                            Nasa says it has detected the first signs of significant melting in a swathe of glaciers in#}
-{#                            East Antarctica.#}
-{#                        </p>#}
-{#                        <div class="card-text text-muted small">#}
-{#                            Jake Bittle in SCIENCE#}
-{#                        </div>#}
-{#                        <small class="text-muted">Dec 12 &middot; 5 min read</small>#}
-{#                    </div>#}
-{#                    <img height="20" src="../static/images/icons/heart-regular.svg" alt="some text"/>#}
-{#                </div>#}
-{#                <div class="mb-3 d-flex justify-content-between">#}
-{#                    <div class="pr-3">#}
-{#                        <h2 class="mb-1 h4 font-weight-bold">#}
-{#                            <a class="text-dark" href="./article.html">50 years ago, armadillos hinted that DNA wasn’t#}
-{#                                destiny</a>#}
-{#                        </h2>#}
-{#                        <p>#}
-{#                            Nasa says it has detected the first signs of significant melting in a swathe of glaciers in#}
-{#                            East Antarctica.#}
-{#                        </p>#}
-{#                        <div class="card-text text-muted small">#}
-{#                            Jake Bittle in SCIENCE#}
-{#                        </div>#}
-{#                        <small class="text-muted">Dec 12 &middot; 5 min read</small>#}
-{#                    </div>#}
-{#                    <img height="20" src="../static/images/icons/heart-regular.svg" alt="some text"/>#}
-{#                </div>#}
-{#            </div>#}
-            <div class="col-md-4 pl-4">
-                <h5 class="font-weight-bold spanborder"><span>Popular</span></h5>
-                <ol class="list-featured">
-                    <li>
-				<span>
-				<h6 class="font-weight-bold">
-				<a href="./article.html" class="text-dark">Did Supernovae Kill Off Large Ocean Animals?</a>
-				</h6>
-				<p class="text-muted">
-					Jake Bittle in SCIENCE
-				</p>
-				</span>
-                    </li>
-                    <li>
-				<span>
-				<h6 class="font-weight-bold">
-				<a href="./article.html" class="text-dark">Humans Reversing Climate Clock: 50 Million Years</a>
-				</h6>
-				<p class="text-muted">
-					Jake Bittle in SCIENCE
-				</p>
-				</span>
-                    </li>
-                    <li>
-				<span>
-				<h6 class="font-weight-bold">
-				<a href="./article.html" class="text-dark">Unprecedented Views of the Birth of Planets</a>
-				</h6>
-				<p class="text-muted">
-					Jake Bittle in SCIENCE
-				</p>
-				</span>
-                    </li>
-                    <li>
-				<span>
-				<h6 class="font-weight-bold">
-				<a href="./article.html" class="text-dark">Effective New Target for Mood-Boosting Brain Stimulation Found</a>
-				</h6>
-				<p class="text-muted">
-					Jake Bittle in SCIENCE
-				</p>
-				</span>
-                    </li>
-                </ol>
-            </div>
+            {% endif %}
         </div>
     </div>
 
-    </div>
 {% endblock %}
 
 <script type="text/javascript" src="../static/js/add.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+{#<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>#}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#editor').summernote({
+            height: 300, // 设置高度
+            toolbar: [
+                // 剪切、复制、粘贴
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ],
+            callbacks: {
+                // 确保表单数据在提交之前更新编辑器的值
+                onChange: function (contents, $editable) {
+                    $('#editor').html(contents);
+                }
+            }
+        });
+
+        // 处理图片和视频链接
+        $('form').submit(function (event) {
+            event.preventDefault(); // 阻止默认表单提交行为
+
+            // 处理图片
+            var image = $('#image').val();
+            if (image) {
+                var imgTag = '<img src="' + image + '">';
+                $('#editor').summernote('insertNode', $(imgTag)[0]);
+                $('#image').val(''); // 清空输入框
+            }
+
+            // 处理视频
+            var video = $('#video').val();
+            if (video) {
+                var videoTag = '<iframe width="560" height="315" src="' + video + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+                $('#editor').summernote('insertNode', $(videoTag)[0]);
+                $('#video').val(''); // 清空输入框
+            }
+
+            // 提交表单
+            $('form').submit();
+        });
+    });
+</script>

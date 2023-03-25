@@ -1,13 +1,12 @@
-
 {% extends "base.html" %}
 {% block title %}
     Homepage2
 {% endblock %}
 
 {% block head %}
-    <link href="../static/css/bootstrap2.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="../static/css/style2.css" rel="stylesheet" type="text/css" media="all" />
-       <!-- Fonts -->
+    <link href="../static/css/bootstrap2.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="../static/css/style2.css" rel="stylesheet" type="text/css" media="all"/>
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800|Roboto:400,500,700" rel="stylesheet">
     <!-- Theme CSS -->
     <link type="text/css" href="../static/css/theme.css" rel="stylesheet">
@@ -70,119 +69,59 @@
                     </div>
                     <div class="clearfix"></div>
                 </div>
+
+
+                <div>
+                    <dialog id="myFirstDialog" style="width:50%;background-color:#F4FFEF;border:1px dotted black;">
+                        <p><q>I am so clever that sometimes I don't understand a single word of what I am saying.
+                        </q> - <cite>Oscar Wilde</cite></p>
+                        <button class="btn btn-primary" id="hide">Close</button>
+                    </dialog>
+                    <button class="btn btn-primary" id="show">Show Dialog</button>
+                </div>
+                <!-- JavaScript to provide the "Show/Close" functionality -->
+                <script type="text/JavaScript">
+                    // hide the dialog box when the page loads
+                    document.getElementById('myFirstDialog').style.display = 'none';
+                    (function () {
+                        const dialog = document.getElementById('myFirstDialog');
+                        document.getElementById('show').onclick = function () {
+                            dialog.style.display = "block";
+                        };
+                        document.getElementById('hide').onclick = function () {
+                            dialog.style.display = "none";
+                        };
+                    })();
+                </script>
+
             </div>
         </div>
     </div>
 
+    {#    <div>#}
+    {#        <dialog id="myFirstDialog" style="width:50%;background-color:#F4FFEF;border:1px dotted black;">#}
+    {#            <p><q>I am so clever that sometimes I don't understand a single word of what I am saying.#}
+    {#            </q> - <cite>Oscar Wilde</cite></p>#}
+    {#            <button id="hide">Close</button>#}
+    {#        </dialog>#}
+    {#        <button id="show">Show Dialog</button>#}
+    {#    </div>#}
+    {##}
+    {#    <!-- JavaScript to provide the "Show/Close" functionality -->#}
+    {#    <script type="text/JavaScript">#}
+    {#        // hide the dialog box when the page loads#}
+    {#        document.getElementById('myFirstDialog').style.display = 'none';#}
+    {#        (function () {#}
+    {#            const dialog = document.getElementById('myFirstDialog');#}
+    {#            document.getElementById('show').onclick = function () {#}
+    {#                dialog.show();#}
+    {#            };#}
+    {#            document.getElementById('hide').onclick = function () {#}
+    {#                dialog.close();#}
+    {#            };#}
+    {#        })();#}
+    {#    </script>#}
 
-<!--    <div class="promotions">-->
-<!--        <div class="container">-->
-<!--            <h2 class="tittle">Top Trip Guide</h2>-->
-<!--            <span>Best Travel Packages Available</span>-->
-<!--            <div class="promotion-grids">-->
-<!--                <div class="col-md-4 promation-grid">-->
-<!--                    <img src="../static/images/sample_pic/guilin.png" class="img-responsive" alt=""/>-->
-<!--                    <div class="prom-text">-->
-<!--                        <h4>Cuba</h4>-->
-<!--                        <div class="prom-bottom">-->
-<!--                            <div class="prom-left">-->
-<!--                                <h5> America </h5>-->
-<!--                            </div>-->
-<!--                            <div class="prom-right">-->
-<!--                            <h5>  Luxury  </h5>-->
-<!--                            </div>-->
-<!--                            <div class="clearfix"></div>-->
-<!--                        </div>-->
-<!--                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut efficitur ante. Donec dapibus dictum scelerisque. Maecenas semper erat et justo porta auctor nec lobortis elit.</p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-md-4 promation-grid">-->
-<!--                    <img src="../static/images/sample_pic/guilin.png" class="img-responsive" alt=""/>-->
-<!--                    <div class="prom-text">-->
-<!--                        <h4>Berlin</h4>-->
-<!--                        <div class="prom-bottom">-->
-<!--                            <div class="prom-left">-->
-<!--                                <h5> Europe </h5>-->
-<!--                            </div>-->
-<!--                            <div class="prom-right">-->
-<!--                            <h5>  Relax  </h5>-->
-<!--                            </div>-->
-<!--                            <div class="clearfix"></div>-->
-<!--                        </div>-->
-<!--                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut efficitur ante. Donec dapibus dictum scelerisque. Maecenas semper erat et justo porta auctor nec lobortis elit.</p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-md-4 promation-grid">-->
-<!--                    <img src="../static/images/sample_pic/guilin.png" class="img-responsive" alt=""/>-->
-<!--                    <div class="prom-text">-->
-<!--                        <h4>Dubai</h4>-->
-<!--                        <div class="prom-bottom">-->
-<!--                            <div class="prom-left">-->
-<!--                                <h5> Asia </h5>-->
-<!--                            </div>-->
-<!--                            <div class="prom-right">-->
-<!--                            <h5>  Luxury  </h5>-->
-<!--                            </div>-->
-<!--                            <div class="clearfix"></div>-->
-<!--                        </div>-->
-<!--                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut efficitur ante. Donec dapibus dictum scelerisque. Maecenas semper erat et justo porta auctor nec lobortis elit.</p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="clearfix"></div>-->
-<!--            </div>-->
-<!--            <div class="promotion-grids">-->
-<!--                <div class="col-md-4 promation-grid">-->
-<!--                    <img src="../static/images/sample_pic/guilin.png" class="img-responsive" alt=""/>-->
-<!--                    <div class="prom-text">-->
-<!--                        <h4>Rome</h4>-->
-<!--                        <div class="prom-bottom">-->
-<!--                            <div class="prom-left">-->
-<!--                                <h5> Europe </h5>-->
-<!--                            </div>-->
-<!--                            <div class="prom-right">-->
-<!--                            <h5>  Luxury  </h5>-->
-<!--                            </div>-->
-<!--                            <div class="clearfix"></div>-->
-<!--                        </div>-->
-<!--                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut efficitur ante. Donec dapibus dictum scelerisque. Maecenas semper erat et justo porta auctor nec lobortis elit.</p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-md-4 promation-grid">-->
-<!--                    <img src="../static/images/sample_pic/guilin.png" class="img-responsive" alt=""/>-->
-<!--                    <div class="prom-text">-->
-<!--                        <h4>Shanghai</h4>-->
-<!--                        <div class="prom-bottom">-->
-<!--                            <div class="prom-left">-->
-<!--                                <h5>  Asia </h5>-->
-<!--                            </div>-->
-<!--                            <div class="prom-right">-->
-<!--                            <h5>  Relax  </h5>-->
-<!--                            </div>-->
-<!--                            <div class="clearfix"></div>-->
-<!--                        </div>-->
-<!--                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut efficitur ante. Donec dapibus dictum scelerisque. Maecenas semper erat et justo porta auctor nec lobortis elit.</p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-md-4 promation-grid">-->
-<!--                    <img src="../static/images/sample_pic/guilin.png" class="img-responsive" alt=""/>-->
-<!--                    <div class="prom-text">-->
-<!--                        <h4>London</h4>-->
-<!--                        <div class="prom-bottom">-->
-<!--                            <div class="prom-left">-->
-<!--                                <h5> Europe </h5>-->
-<!--                            </div>-->
-<!--                            <div class="prom-right">-->
-<!--                            <h5>  Relax  </h5>-->
-<!--                            </div>-->
-<!--                            <div class="clearfix"></div>-->
-<!--                        </div>-->
-<!--                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut efficitur ante. Donec dapibus dictum scelerisque. Maecenas semper erat et justo porta auctor nec lobortis elit.</p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="clearfix"></div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
 
     <div class="promotions">
         <div class="container">
@@ -194,7 +133,7 @@
                     <div class="col-md-4 promation-grid">
                         <img src="../static/images/sample_pic/guilin.png" class="img-responsive" alt=""/>
                         <div class="prom-text">
-                            <h4>{{set.name}}</h4>
+                            <h4><a href="{{ url_for("travel_route_detail.showSetDetails", set_id=set.id) }}">{{set.name}}</a></h4>
                             <div class="prom-bottom">
                                 <div class="prom-left">
                                     <h5> Days : {{set.length}} </h5>
@@ -208,9 +147,122 @@
                         </div>
                     </div>
                 {% endfor %}
+                <div class="col-md-4 promation-grid">
+                    <img src="../static/images/sample_pic/guilin.png" class="img-responsive" alt=""/>
+                    <div class="prom-text">
+                        <h4><a href="{{ url_for("travel_routes_detail") }}">Cuba</a></h4>
+                        <div class="prom-bottom">
+                            <div class="prom-left">
+                                <h5> America </h5>
+                            </div>
+                            <div class="prom-right">
+                                <h5> Luxury </h5>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut efficitur ante. Donec
+                            dapibus dictum scelerisque. Maecenas semper erat et justo porta auctor nec lobortis
+                            elit.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 promation-grid">
+                    <img src="../static/images/sample_pic/guilin.png" class="img-responsive" alt=""/>
+                    <div class="prom-text">
+                        <h4>Berlin</h4>
+                        <div class="prom-bottom">
+                            <div class="prom-left">
+                                <h5> Europe </h5>
+                            </div>
+                            <div class="prom-right">
+                                <h5> Relax </h5>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut efficitur ante. Donec
+                            dapibus dictum scelerisque. Maecenas semper erat et justo porta auctor nec lobortis
+                            elit.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 promation-grid">
+                    <img src="../static/images/sample_pic/guilin.png" class="img-responsive" alt=""/>
+                    <div class="prom-text">
+                        <h4>Dubai</h4>
+                        <div class="prom-bottom">
+                            <div class="prom-left">
+                                <h5> Asia </h5>
+                            </div>
+                            <div class="prom-right">
+                                <h5> Luxury </h5>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut efficitur ante. Donec
+                            dapibus dictum scelerisque. Maecenas semper erat et justo porta auctor nec lobortis
+                            elit.</p>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="promotion-grids">
+                <div class="col-md-4 promation-grid">
+                    <img src="../static/images/sample_pic/guilin.png" class="img-responsive" alt=""/>
+                    <div class="prom-text">
+                        <h4>Rome</h4>
+                        <div class="prom-bottom">
+                            <div class="prom-left">
+                                <h5> Europe </h5>
+                            </div>
+                            <div class="prom-right">
+                                <h5> Luxury </h5>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut efficitur ante. Donec
+                            dapibus dictum scelerisque. Maecenas semper erat et justo porta auctor nec lobortis
+                            elit.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 promation-grid">
+                    <img src="../static/images/sample_pic/guilin.png" class="img-responsive" alt=""/>
+                    <div class="prom-text">
+                        <h4>Shanghai</h4>
+                        <div class="prom-bottom">
+                            <div class="prom-left">
+                                <h5> Asia </h5>
+                            </div>
+                            <div class="prom-right">
+                                <h5> Relax </h5>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut efficitur ante. Donec
+                            dapibus dictum scelerisque. Maecenas semper erat et justo porta auctor nec lobortis
+                            elit.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 promation-grid">
+                    <img src="../static/images/sample_pic/guilin.png" class="img-responsive" alt=""/>
+                    <div class="prom-text">
+                        <h4>London</h4>
+                        <div class="prom-bottom">
+                            <div class="prom-left">
+                                <h5> Europe </h5>
+                            </div>
+                            <div class="prom-right">
+                                <h5> Relax </h5>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut efficitur ante. Donec
+                            dapibus dictum scelerisque. Maecenas semper erat et justo porta auctor nec lobortis
+                            elit.</p>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
             </div>
         </div>
     </div>
+
 
 {% endblock %}
 

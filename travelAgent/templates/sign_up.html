@@ -99,7 +99,19 @@
                                         <!-- the input box for user to type username -->
                                         {% for error in form.username.errors %}
                                             <!-- report error in red to user when get error from backend -->
-                                            <span style="color: #fff200;">[{{ error }}]</span>
+                                            {#                                            <div class="modal-danger">[{{ error }}]</div>#}
+                                            {#                                            <div class="alert alert-warning shadow-lg" role="alert">#}
+                                            {#                                                {{ error }}#}
+                                            {#                                            </div>#}
+                                            <div class="alert alert-danger" role="alert">
+                                                <img height="20"
+                                                     src="../static/images/icons/circle-exclamation-solid.svg"
+                                                     alt="some text"/> {{ error }}
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                            </div>
                                         {% endfor %}
                                     </div>
                                     <div class="form-group">
@@ -108,7 +120,16 @@
                                                placeholder="Email" name="email">
                                         {% for error in form.email.errors %}
                                             <!-- report error in red to user when get error from backend -->
-                                            <span style="color: #fff200;">[{{ error }}]</span>
+                                            {#                                            <span style="color: #fff200;">[{{ error }}]</span>#}
+                                            <div class="alert alert-danger" role="alert">
+                                                <img height="20"
+                                                     src="../static/images/icons/circle-exclamation-solid.svg"
+                                                     alt="some text"/> {{ error }}
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                            </div>
                                         {% endfor %}
 
                                     </div>
@@ -128,7 +149,16 @@
                                         </div>
                                         {% for error in form.email_verification_code.errors %}
                                             <!-- report error in red to user when get error from backend -->
-                                            <span style="color: #fff200;">[{{ error }}]</span>
+                                            {#                                            <span style="color: #fff200;">[{{ error }}]</span>#}
+                                            <div class="alert alert-danger" role="alert">
+                                                <img height="20"
+                                                     src="../static/images/icons/circle-exclamation-solid.svg"
+                                                     alt="some text"/> {{ error }}
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                            </div>
                                         {% endfor %}
                                     </div>
 
@@ -138,7 +168,16 @@
                                                placeholder="Password" name="password">
                                         {% for error in form.password.errors %}
                                             <!-- report error in red to user when get error from backend -->
-                                            <span style="color: #fff200;">[{{ error }}]</span>
+                                            {#                                            <span style="color: #fff200;">[{{ error }}]</span>#}
+                                            <div class="alert alert-danger" role="alert">
+                                                <img height="20"
+                                                     src="../static/images/icons/circle-exclamation-solid.svg"
+                                                     alt="some text"/> {{ error }}
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                            </div>
                                         {% endfor %}
                                         <!-- the input box for user to type password -->
                                     </div>
@@ -148,7 +187,16 @@
                                                placeholder="Password" name="confirm_password">
                                         {% for error in form.confirm_password.errors %}
                                             <!-- report error in red to user when get error from backend -->
-                                            <span style="color: #fff200;">[{{ error }}]</span>
+                                            {#                                            <span style="color: #fff200;">[{{ error }}]</span>#}
+                                            <div class="alert alert-danger" role="alert">
+                                                <img height="20"
+                                                     src="../static/images/icons/circle-exclamation-solid.svg"
+                                                     alt="some text"/> {{ error }}
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                            </div>
                                         {% endfor %}
                                         <!-- the input box for user to type password -->
                                     </div>
