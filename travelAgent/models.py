@@ -105,6 +105,8 @@ class Target(db.Model):
     destination_id = db.Column(db.INTEGER, db.ForeignKey('destination.id'))
     image = db.Column(db.String(120))
     intro = db.Column(db.String(240))
+    # time of duration
+    length = db.Column(db.String(240))
     # including 3 types:
     # attraction: 0,
     # accommodation: 1,
@@ -152,8 +154,16 @@ class RecordC(db.Model):
     time = db.Column(db.String(120))
     # This scheduled start and end time
     start_time = db.Column(db.String(120))
-    end_time = db.Column(db.String(120))
+    # end_time = db.Column(db.String(120))
+    # the number of reserved persons
+    num = db.Column(db.INTEGER, nullable=False, default=1)
+    # the reservation person's name
+    name = db.Column(db.String(64))
+    # the reservation person's cell phone number
+    tel = db.Column(db.String(64))
     status = db.Column(db.String(120))
+
+
 
 # personal record of attraction, traffic, and accommodation, customer can operate and store data in this table
 class Record(db.Model):
@@ -166,7 +176,13 @@ class Record(db.Model):
     time = db.Column(db.String(120))
     # This scheduled start and end time
     start_time = db.Column(db.String(120))
-    end_time = db.Column(db.String(120))
+    # end_time = db.Column(db.String(120))
+    # the number of reserved persons
+    num = db.Column(db.INTEGER,nullable=False, default =1)
+    # the reservation person's name
+    name = db.Column(db.String(64))
+    # the reservation person's cell phone number
+    tel = db.Column(db.String(64))
     status = db.Column(db.String(120))
 
 
