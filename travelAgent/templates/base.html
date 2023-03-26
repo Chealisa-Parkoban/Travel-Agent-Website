@@ -34,7 +34,8 @@
 <body>
 <header class="sticky-top">
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+<!--    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">-->
         <a class="navbar-brand" href="#">Digital Beans</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_example_1"
                 aria-controls="navbar_example_1" aria-expanded="false" aria-label="Toggle navigation">
@@ -137,7 +138,7 @@
                             <i class="fas fa-shopping-cart text-primary"></i>Orders
                             <herf></herf>
                         </a>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="{{ url_for("favourites") }}">
                             <i class="fas fa-star text-primary"></i>Favourites
                         </a>
                         <div class="dropdown-divider" role="presentation"></div>
@@ -153,7 +154,7 @@
 {#<div class="container-fluid">#}
     {% block body %}{% endblock %}
 {#</div>#}
-<footer class="pt-5 pb-3 footer  footer-dark bg-tertiary">
+<footer class="pt-5 pb-3 footer footer-dark bg-tertiary">
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-4">
