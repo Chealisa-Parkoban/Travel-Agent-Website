@@ -133,3 +133,10 @@ class DayTripForm(FlaskForm):
 
     # submit the form
     submit = SubmitField('')
+
+
+class PlanForm(FlaskForm):
+    name = StringField('name', validators=[DataRequired()])
+    intro = StringField('name', validators=[DataRequired()])
+    price = IntegerField('price', validators=[DataRequired()])
+    submit = SubmitField('')

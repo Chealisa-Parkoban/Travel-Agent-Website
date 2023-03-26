@@ -142,6 +142,19 @@ class Combination(db.Model):
     price = db.Column(db.INTEGER)
     length = db.Column(db.INTEGER, nullable=False)
 
+    def __init__(self, name, intro, price, length, day1, day2, day3, day4, day5, day6, day7):
+        self.name = name
+        self.day1 = day1
+        self.day2 = day2
+        self.day3 = day3
+        self.day4 = day4
+        self.day5 = day5
+        self.day6 = day6
+        self.day7 = day7
+        self.intro = intro
+        self.price = price
+        self.length = length
+
 
 # combination record, staff can operate and store data in this table
 class RecordC(db.Model):

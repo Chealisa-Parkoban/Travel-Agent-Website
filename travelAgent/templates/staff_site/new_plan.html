@@ -46,7 +46,7 @@
                   </p>
                   <form action="{{ url_for('staff_site.add_new_day') }}" method="post" novalidate
                         class="forms-sample" id="day_trip_form">
-                      {{ form.csrf_token }}
+                      {{ day_form.csrf_token }}
                     <div class="form-group">
                       <label for="Destination">Destination</label>
                       <select class="form-control" id="Destination" name="destination">
@@ -88,23 +88,38 @@
               </div>
             </div>
           </div>
-          <h3>Introduction</h3>
+
+          <form action="{{url_for('staff_site.submit_plan')}}" method="post" novalidate>
+          {{ plan_form.csrf_token }}
+
+          <h5>Plan Name</h5>
+          <label>
+            <input name="name">
+          </label>
+
+          <h5>Introduction</h5>
           <label style="width: 90%">
             <textarea name="intro" style="width: 100%"> </textarea>
           </label>
-          <h3>price</h3>
+
+          <h5>price</h5>
           <label style="margin-bottom: 1%">
             <input type="number" name="price">
           </label>
           <br>
           <div style="display:flex;justify-content: center; align-items:center;">
             <a href="{{url_for("staff_site.clear_draft")}}">
-              <input type="button" class="btn btn-primary me-2" name="save draft" value="Clear All" >
+              <input type="button" class="btn btn-primary me-2" name="clear_all" value="Clear All" >
             </a>
             <a>
-              <input type="button" class="btn btn-primary me-2" name="submit" value="Submit">
+              <input type="button" class="btn btn-primary me-2" name="save_draft" value="Save Draft">
+            </a>
+            <a href="{{url_for("staff_site.submit_plan")}}">
+              <input type="submit" class="btn btn-primary me-2" name="submit" value="Add Plan">
             </a>
           </div>
+
+            </form>
 
 
         </div>
