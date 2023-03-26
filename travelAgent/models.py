@@ -105,6 +105,8 @@ class Target(db.Model):
     destination_id = db.Column(db.INTEGER, db.ForeignKey('destination.id'))
     image = db.Column(db.String(120))
     intro = db.Column(db.String(240))
+    # time of duration
+    length = db.Column(db.String(240))
     # including 3 types:
     # attraction: 0,
     # accommodation: 1,
@@ -140,6 +142,19 @@ class Combination(db.Model):
     price = db.Column(db.INTEGER)
     length = db.Column(db.INTEGER, nullable=False)
 
+    def __init__(self, name, intro, price, length, day1, day2, day3, day4, day5, day6, day7):
+        self.name = name
+        self.day1 = day1
+        self.day2 = day2
+        self.day3 = day3
+        self.day4 = day4
+        self.day5 = day5
+        self.day6 = day6
+        self.day7 = day7
+        self.intro = intro
+        self.price = price
+        self.length = length
+
 
 # combination record, staff can operate and store data in this table
 class RecordC(db.Model):
@@ -152,8 +167,16 @@ class RecordC(db.Model):
     time = db.Column(db.String(120))
     # This scheduled start and end time
     start_time = db.Column(db.String(120))
-    end_time = db.Column(db.String(120))
+    # end_time = db.Column(db.String(120))
+    # the number of reserved persons
+    num = db.Column(db.INTEGER, nullable=False, default=1)
+    # the reservation person's name
+    name = db.Column(db.String(64))
+    # the reservation person's cell phone number
+    tel = db.Column(db.String(64))
     status = db.Column(db.String(120))
+
+
 
 # personal record of attraction, traffic, and accommodation, customer can operate and store data in this table
 class Record(db.Model):
@@ -166,7 +189,13 @@ class Record(db.Model):
     time = db.Column(db.String(120))
     # This scheduled start and end time
     start_time = db.Column(db.String(120))
-    end_time = db.Column(db.String(120))
+    # end_time = db.Column(db.String(120))
+    # the number of reserved persons
+    num = db.Column(db.INTEGER,nullable=False, default =1)
+    # the reservation person's name
+    name = db.Column(db.String(64))
+    # the reservation person's cell phone number
+    tel = db.Column(db.String(64))
     status = db.Column(db.String(120))
 
 

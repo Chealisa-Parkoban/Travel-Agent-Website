@@ -1,22 +1,27 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import LoginManager, login_user, current_user, logout_user
 
-from travelAgent import app
-from travelAgent.forms import LoginForm
-from travelAgent.models import User
+from travelAgent import app, db
+from travelAgent.forms import LoginForm, DayTripForm, PlanForm
+from travelAgent.models import User, Destination, Target, Day, Combination
+from travelAgent.views.login_handler import login_manager
 
 staff_blueprint = Blueprint(name="staff_site", import_name=__name__)
+
+day_trip_draft = []
+save_draft = False
 
 
 @staff_blueprint.route('/staff/index', methods=['GET', 'POST'])
 def index():
-    if current_user.is_authenticated:
-        return render_template('./staff_site/pages/index/index.html')
-    return redirect(url_for("staff_site.login"))
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    return render_template('./staff_site/index.html')
 
 
 @staff_blueprint.route('/staff', methods=['GET', 'POST'])
 def login():
+    print('login')
     global emsg
     app.logger.info('Entered STAFF LOGIN page')
     form = LoginForm(request.form)
@@ -31,11 +36,11 @@ def login():
             user = User.get_by_username(username)
             if user is None:
                 emsg = "Username not exist!"
-                return render_template('./staff_site/pages/samples/login.html', form=form, message=emsg)
+                return redirect(url_for("staff_site.login", form=form, message=emsg))
             elif not user.isAdmin():
                 emsg = "You are not a staff!"
                 app.logger.error('Login failed: You are not a staff!')
-                return render_template('./staff_site/pages/samples/login.html', form=form, message=emsg)
+                return redirect(url_for("staff_site.login", form=form, message=emsg))
             else:
                 if user.verify_password(password):
                     login_user(user, remember=remember_me)
@@ -51,9 +56,98 @@ def login():
 
 @staff_blueprint.route('/staff/logout', methods=['GET', 'POST'])
 def logout():
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
     logout_user()
     return redirect(url_for("staff_site.login"))
 
-@staff_blueprint.route('/staff/dashboard', methods=['GET', 'POST'])
-def dashboard():
-    return render_template('./background/dashboard.html')
+
+@staff_blueprint.route('/staff/contents', methods=['GET', 'POST'])
+def contents():
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    return render_template('./staff_site/contents.html')
+
+
+@staff_blueprint.route('/staff/contents/new_plan', methods=['GET', 'POST'])
+def new_plan():
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+
+    day_form = DayTripForm(request.form)
+    plan_form = PlanForm(request.form)
+    destinations = Destination.query.all()
+    attractions = Target.query.filter_by(type="0").all()
+    accommodations = Target.query.filter_by(type="1").all()
+    traffics = Target.query.filter_by(type="2").all()
+
+    return render_template('./staff_site/new_plan.html', day_form=day_form, plan_form=plan_form, days=day_trip_draft,
+                           destinations=destinations, attractions=attractions,
+                           accommodations=accommodations, traffics=traffics)
+
+
+@staff_blueprint.route('/staff/contents/add', methods=['GET', 'POST'])
+def add_new_day():
+    form = DayTripForm(request.form)
+    if form.validate_on_submit():
+        destination = form.destination.data
+        attraction = form.attraction.data
+        accommodation = form.accommodation.data
+        traffic = form.traffic.data
+        if day_trip_draft.__len__() < 7:
+            day_num = day_trip_draft.__len__() + 1
+            day_trip_draft.append([day_num, destination, attraction, accommodation, traffic])
+    return redirect(url_for("staff_site.new_plan"))
+
+
+@staff_blueprint.route('/staff/contents/get_day_num', methods=['GET', 'POST'])
+def get_day_num():
+    return str(day_trip_draft.__len__())
+
+
+@staff_blueprint.route('/staff/contents/clear', methods=['GET', 'POST'])
+def clear_draft():
+    day_trip_draft.clear()
+    return redirect(url_for("staff_site.new_plan"))
+
+
+@staff_blueprint.route('/staff/contents/submit_plan', methods=['GET', 'POST'])
+def submit_plan():
+    name = request.form.get('name')
+    intro = request.form.get('intro')
+    price = request.form.get('price')
+    length = day_trip_draft.__len__()
+    print(name, intro, price, length)
+    days = []
+
+    for day in day_trip_draft:
+        destination_id = Destination.query.filter_by(name=day[1]).first().id
+        attraction_id = Target.query.filter_by(name=day[2]).first().id
+        accommodation_id = Target.query.filter_by(name=day[3]).first().id
+        traffic_id = Target.query.filter_by(name=day[4]).first().id
+
+        day = Day(destination_id=destination_id, attraction_id=attraction_id, accommodation_id=accommodation_id, traffic_id=traffic_id)
+        days.append(day)
+        db.session.add(day)
+    db.session.commit()
+
+    for i in range(0, 7-len(days)):
+        days.append(None)
+
+    days_id = []
+    for day in days:
+        if day is not None:
+            days_id.append(day.id)
+        else:
+            days_id.append(None)
+
+    combination = Combination(name, intro, price, length, days_id[0], days_id[1], days_id[2], days_id[3], days_id[4], days_id[5], days_id[6])
+    db.session.add(combination)
+    db.session.commit()
+    day_trip_draft.clear()
+    return redirect(url_for("staff_site.contents"))
+
+
+@login_manager.user_loader
+def load_user(id):
+    return User.get(int(id))

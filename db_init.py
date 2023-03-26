@@ -19,13 +19,23 @@ with app.app_context():
     db.session.commit()
 
     # 暂定 0 为attraction，1 为accommodation， 2 为traffic
-    tar1 = Target(id=1, name='故宫', destination_id=1, image='', intro='故宫的简介', type='0', price=20)
+    tar1 = Target(id=1, name='故宫', destination_id=1, image='', intro='故宫的简介', type='0', price=0)
     tar2 = Target(id=2, name='家', destination_id=1, image='', intro='家的位置', type='1', price=100)
     tar3 = Target(id=3, name='公交车', destination_id=1, image='', intro='公交车的号码', type='2', price=2)
     tar4 = Target(id=4, name='长城', destination_id=1, image='', intro='长城的简介', type='0', price=10)
-    tar5 = Target(id=5, name='酒店', destination_id=1, image='', intro='酒店的简介', type='1', price=300)
+    tar5 = Target(id=5, name='格林豪泰', destination_id=1, image='', intro='格林豪泰大酒店', type='1', price=300)
     tar6 = Target(id=6, name='地铁', destination_id=1, image='', intro='地铁的线路', type='2', price=6)
-    db.session.add_all([tar1, tar2, tar3, tar4, tar5, tar6])
+
+    tar7 = Target(id=7, name='八达岭', destination_id=1, image='', intro='香山八达岭', type='0', price=6)
+    tar8 = Target(id=8, name='环球影城', destination_id=1, image='', intro='北京环球影城度假区', type='0', price=330)
+
+    tar9 = Target(id=9, name='飞机', destination_id=1, image='', intro='波音737-800', type='2', price=2200)
+    tar10 = Target(id=10, name='打车', destination_id=1, image='', intro='嘀嘀打车', type='2', price=40)
+
+    tar11 = Target(id=11, name='希尔顿', destination_id=1, image='', intro='波音737-800', type='1', price=1200)
+    tar12 = Target(id=12, name='丽思卡尔顿', destination_id=1, image='', intro='北京丽思卡尔顿大酒店', type='1', price=3000)
+
+    db.session.add_all([tar1, tar2, tar3, tar4, tar5, tar6, tar7, tar8, tar9, tar10, tar11, tar12])
     db.session.commit()
 
     day1 = Day(id=1, destination_id=1, attraction_id=1, accommodation_id=2, traffic_id=3)
@@ -33,13 +43,13 @@ with app.app_context():
     db.session.add_all([day1, day2])
     db.session.commit()
 
-    com1 = Combination(id=1, name='test1——Combination', day1=1, day2=1, day3=2, day4=2, day5=2, day6=1, day7=2,
+    com1 = Combination(name='test1——Combination', day1=1, day2=1, day3=2, day4=2, day5=2, day6=1, day7=2,
                        intro='test1_introduction', price=2000, length=7)
-    com2 = Combination(id=2, name='test2——Combination', day1=1, day2=1, day3=2, day4=2, day5=2, day6=1, day7=2,
+    com2 = Combination(name='test2——Combination', day1=1, day2=1, day3=2, day4=2, day5=2, day6=1, day7=2,
                        intro='test2_introduction', price=3000, length=7)
-    com3 = Combination(id=3, name='test3——Combination', day1=1, day2=1, day3=2, day4=2, day5=2, day6=1, day7=2,
+    com3 = Combination(name='test3——Combination', day1=1, day2=1, day3=2, day4=2, day5=2, day6=1, day7=2,
                        intro='test3_introduction', price=5000, length=7)
-    com4 = Combination(id=4, name='test4——Combination', day1=1, day2=1, day3=2, day4=2, day5=2, day6=1, day7=2,
+    com4 = Combination(name='test4——Combination', day1=1, day2=1, day3=2, day4=2, day5=2, day6=1, day7=2,
                        intro='test4_introduction', price=4000, length=7)
     db.session.add_all([com1, com2, com3, com4])
     db.session.commit()

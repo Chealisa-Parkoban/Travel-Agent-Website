@@ -89,20 +89,6 @@
                                     login to your account.</h4>
 
 
-                                {##}
-                                {#                  <form action="" method="post" novalidate class="form-primary">#}
-                                {##}
-                                {#                      <div class="form-group">#}
-                                {#                        <input type="email" class="form-control" id="input_email" placeholder="Your email">#}
-                                {#                      </div>#}
-                                {##}
-                                {#                      <div class="form-group">#}
-                                {#                        <input type="password" class="form-control" id="input_password" placeholder="Password">#}
-                                {#                      </div>#}
-                                {##}
-                                {#                      <div class="text-right mt-4"><a href="#" class="text-white">Forgot password?</a></div>#}
-                                {#                      <button type="submit" class="btn btn-block btn-lg bg-white mt-4">Sign in</button>#}
-                                {#                    </form>#}
 
                                 <form action="{{ url_for('account.login') }}" method="post" novalidate
                                       class="form-primary">
@@ -114,7 +100,7 @@
                                         </script>
                                     {% endif %}
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">User name</label>
+                                        <label for="input_email">User name</label>
                                         <input type="text" class="form-control" id="input_email" placeholder="Username"
                                                name="username">
                                         <!-- the input box for user to type username -->
@@ -125,7 +111,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Password</label>
+                                        <label for="input_password">Password</label>
                                         <input type="password" class="form-control" id="input_password"
                                                placeholder="Password" name="password">
                                         <!-- the input box for user to type password -->
