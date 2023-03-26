@@ -3,11 +3,12 @@
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
+          <h3 style="margin: 0 0 2% 2%">Create a New Travel Plan</h3>
           <div class="row" id="row">
             {% for day in days %}
-            <div class="col-md-6 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
+            <div class="col-md-6 grid-margin stretch-card" >
+              <div class="card" >
+                <div class="card-body" style="margin: 0 3% 0 3%;">
                   <h4 class="card-title">Day {{day[0]}}</h4>
                   <p class="card-description">
                     Day trip information
@@ -32,7 +33,6 @@
                       <button class="btn btn-light">Delete</button>
                   </form>
 
-                    <script type="text/javascript" src="../../static/staff_site_static/add_new_day.js"></script>
                 </div>
               </div>
             </div>
@@ -40,7 +40,7 @@
             <div class="col-md-6 grid-margin stretch-card" id="card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Day Trip</h4>
+                  <h4 class="card-title">New Day-Trip Draft</h4>
                   <p class="card-description">
                     Complete the trip information
                   </p>
@@ -88,6 +88,25 @@
               </div>
             </div>
           </div>
+          <h3>Introduction</h3>
+          <label style="width: 90%">
+            <textarea name="intro" style="width: 100%"> </textarea>
+          </label>
+          <h3>price</h3>
+          <label style="margin-bottom: 1%">
+            <input type="number" name="price">
+          </label>
+          <br>
+          <div style="display:flex;justify-content: center; align-items:center;">
+            <a href="{{url_for("staff_site.clear_draft")}}">
+              <input type="button" class="btn btn-primary me-2" name="save draft" value="Clear All" >
+            </a>
+            <a>
+              <input type="button" class="btn btn-primary me-2" name="submit" value="Submit">
+            </a>
+          </div>
+
+
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:../../partials/_footer.html -->

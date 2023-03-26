@@ -3,12 +3,13 @@ from flask_login import LoginManager, login_user, current_user, logout_user
 
 from travelAgent import app
 from travelAgent.forms import LoginForm, DayTripForm
-from travelAgent.models import User, Destination, Target
+from travelAgent.models import User, Destination, Target, Day
 from travelAgent.views.login_handler import login_manager
 
 staff_blueprint = Blueprint(name="staff_site", import_name=__name__)
 
 day_trip_draft = []
+save_draft = False
 
 
 @staff_blueprint.route('/staff/index', methods=['GET', 'POST'])
@@ -70,7 +71,6 @@ def contents():
 
 @staff_blueprint.route('/staff/contents/new_plan', methods=['GET', 'POST'])
 def new_plan():
-    print(day_trip_draft)
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
 
@@ -93,8 +93,9 @@ def add_new_day():
         attraction = form.attraction.data
         accommodation = form.accommodation.data
         traffic = form.traffic.data
-        day_num = day_trip_draft.__len__() + 1
-        day_trip_draft.append([day_num, destination, attraction, accommodation, traffic])
+        if day_trip_draft.__len__() < 7:
+            day_num = day_trip_draft.__len__() + 1
+            day_trip_draft.append([day_num, destination, attraction, accommodation, traffic])
     return redirect(url_for("staff_site.new_plan"))
 
 
@@ -102,6 +103,18 @@ def add_new_day():
 def get_day_num():
     return str(day_trip_draft.__len__())
 
+
+@staff_blueprint.route('/staff/contents/clear', methods=['GET', 'POST'])
+def clear_draft():
+    day_trip_draft.clear()
+    return redirect(url_for("staff_site.new_plan"))
+
+
+@staff_blueprint.route('/staff/contents/submit_plan', methods=['GET', 'POST'])
+def submit_plan():
+    # for day in day_trip_draft:
+    #     day = Day(day[0], day[1], day[2], day[3], day[4])
+    return redirect(url_for("staff_site.new_plan"))
 
 @login_manager.user_loader
 def load_user(id):
