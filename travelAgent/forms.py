@@ -122,10 +122,14 @@ class ImageForm(FlaskForm):
     )
 
 
-class day_trip_from(FlaskForm):
+class DayTripForm(FlaskForm):
     # Validator here requires user must have input data
     # username is String
     # date = DateField('DATE', format='%Y-%m-%d', validators=[DataRequired()])
-    username = StringField('USERNAME', validators=[Length(min=4), DataRequired()])
+    destination = StringField('destination', validators=[DataRequired()])
+    attraction = StringField('attraction', validators=[DataRequired()])
+    accommodation = StringField('accommodation', validators=[DataRequired()])
+    traffic = StringField('traffic', validators=[DataRequired()])
+
     # submit the form
     submit = SubmitField('')

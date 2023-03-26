@@ -2,26 +2,25 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import LoginManager, login_user, current_user, logout_user
 
 from travelAgent import app
-from travelAgent.forms import LoginForm
-from travelAgent.models import User
+from travelAgent.forms import LoginForm, DayTripForm
+from travelAgent.models import User, Destination, Target
 from travelAgent.views.login_handler import login_manager
 
 staff_blueprint = Blueprint(name="staff_site", import_name=__name__)
 
-
-def check_login():
-    if not current_user.is_authenticated:
-        return redirect(url_for("staff_site.login"))
+day_trip_draft = []
 
 
 @staff_blueprint.route('/staff/index', methods=['GET', 'POST'])
 def index():
-    check_login()
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
     return render_template('./staff_site/index.html')
 
 
 @staff_blueprint.route('/staff', methods=['GET', 'POST'])
 def login():
+    print('login')
     global emsg
     app.logger.info('Entered STAFF LOGIN page')
     form = LoginForm(request.form)
@@ -56,22 +55,52 @@ def login():
 
 @staff_blueprint.route('/staff/logout', methods=['GET', 'POST'])
 def logout():
-    check_login()
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
     logout_user()
     return redirect(url_for("staff_site.login"))
 
 
 @staff_blueprint.route('/staff/contents', methods=['GET', 'POST'])
 def contents():
-    check_login()
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
     return render_template('./staff_site/contents.html')
 
 
 @staff_blueprint.route('/staff/contents/new_plan', methods=['GET', 'POST'])
 def new_plan():
-    check_login()
-    print("new_plan")
-    return render_template('./staff_site/new_plan.html')
+    print(day_trip_draft)
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+
+    form = DayTripForm(request.form)
+    destinations = Destination.query.all()
+    attractions = Target.query.filter_by(type="0").all()
+    accommodations = Target.query.filter_by(type="1").all()
+    traffics = Target.query.filter_by(type="2").all()
+
+    return render_template('./staff_site/new_plan.html', form=form, days=day_trip_draft,
+                           destinations=destinations, attractions=attractions,
+                           accommodations=accommodations, traffics=traffics)
+
+
+@staff_blueprint.route('/staff/contents/add', methods=['GET', 'POST'])
+def add_new_day():
+    form = DayTripForm(request.form)
+    if form.validate_on_submit():
+        destination = form.destination.data
+        attraction = form.attraction.data
+        accommodation = form.accommodation.data
+        traffic = form.traffic.data
+        day_num = day_trip_draft.__len__() + 1
+        day_trip_draft.append([day_num, destination, attraction, accommodation, traffic])
+    return redirect(url_for("staff_site.new_plan"))
+
+
+@staff_blueprint.route('/staff/contents/get_day_num', methods=['GET', 'POST'])
+def get_day_num():
+    return str(day_trip_draft.__len__())
 
 
 @login_manager.user_loader

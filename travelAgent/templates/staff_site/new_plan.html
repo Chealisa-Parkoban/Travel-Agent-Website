@@ -4,6 +4,39 @@
       <div class="main-panel">
         <div class="content-wrapper">
           <div class="row" id="row">
+            {% for day in days %}
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Day {{day[0]}}</h4>
+                  <p class="card-description">
+                    Day trip information
+                  </p>
+                  <form class="forms-sample">
+                    <div class="form-group">
+                      <label for="Destination">Destination</label>
+                      <h4 style="color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%">{{day[1]}}</h4>
+                    </div>
+                    <div class="form-group">
+                      <label for="Attraction">Attraction</label>
+                      <h4 style="color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%">{{day[2]}}</h4>
+                    </div>
+                    <div class="form-group">
+                      <label for="Accommodation">Accommodation</label>
+                      <h4 style="color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%">{{day[3]}}</h4>
+                    </div>
+                    <div class="form-group">
+                      <label for="Traffic">Traffic</label>
+                      <h4 style="color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%">{{day[4]}}</h4>
+                    </div>
+                      <button class="btn btn-light">Delete</button>
+                  </form>
+
+                    <script type="text/javascript" src="../../static/staff_site_static/add_new_day.js"></script>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
             <div class="col-md-6 grid-margin stretch-card" id="card">
               <div class="card">
                 <div class="card-body">
@@ -11,49 +44,46 @@
                   <p class="card-description">
                     Complete the trip information
                   </p>
-                  <form class="forms-sample" id="day_trip_form">
+                  <form action="{{ url_for('staff_site.add_new_day') }}" method="post" novalidate
+                        class="forms-sample" id="day_trip_form">
+                      {{ form.csrf_token }}
                     <div class="form-group">
                       <label for="Destination">Destination</label>
                       <select class="form-control" id="Destination" name="destination">
-                         <option>1</option>
-                         <option>2</option>
-                         <option>3</option>
-                         <option>4</option>
+                          {% for destination in destinations %}
+                          <option>{{destination.name}}</option>
+                          {% endfor %}
                       </select>
                     </div>
                     <div class="form-group">
                       <label for="Attraction">Attraction</label>
                       <select class="form-control" id="Attraction" name="attraction">
-                         <option>1</option>
-                         <option>2</option>
-                         <option>3</option>
-                         <option>4</option>
+                         {% for attraction in attractions %}
+                          <option>{{attraction.name}}</option>
+                          {% endfor %}
                       </select>
                     </div>
                     <div class="form-group">
                       <label for="Accommodation">Accommodation</label>
                       <select class="form-control" id="Accommodation" name="accommodation">
-                         <option>1</option>
-                         <option>2</option>
-                         <option>3</option>
-                         <option>4</option>
+                         {% for accommodation in accommodations %}
+                          <option>{{accommodation.name}}</option>
+                          {% endfor %}
                       </select>
                     </div>
                     <div class="form-group">
                       <label for="Traffic">Traffic</label>
                       <select class="form-control" id="Traffic" name="traffic">
-                         <option>1</option>
-                         <option>2</option>
-                         <option>3</option>
-                         <option>4</option>
+                         {% for traffic in traffics %}
+                          <option>{{traffic.name}}</option>
+                          {% endfor %}
                       </select>
                     </div>
 
-                    <button type="button" class="btn btn-primary me-2" onclick="addRow()">Add</button>
-                    <button class="btn btn-light">Delete</button>
+                    <button name='submit' type="submit" class="btn btn-primary me-2" id="add">Add</button>
+<!--                    <button class="btn btn-light">Delete</button>-->
                   </form>
 
-                    <script type="text/javascript" src="../../static/staff_site_static/add_new_day.js"></script>
                 </div>
               </div>
             </div>
