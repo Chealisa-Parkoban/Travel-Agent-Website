@@ -111,30 +111,30 @@
             </div>
           </div>
 
-          <div class="col-md-6 grid-margin stretch-card" >
+          <div class="col-md-6 grid-margin stretch-card" style="width: 100%">
               <div class="card" >
-                <div class="card-body" style="margin: 0 3% 0 3%;">
+                <div class="card-body" style="margin: 0 1% 0 1%;">
                   <form action="{{url_for('staff_site.submit_plan')}}" method="post" novalidate>
                   {{ plan_form.csrf_token }}
 
-                  <div class="form-group">
-                    <h5>Plan Name</h5>
-                    <label>
-                      <input name="name">
+                  <div class="form-group"style="margin-bottom: 0">
+                    <p>Plan Name</p>
+                    <label style="width: 100%">
+                      <input class="form-control" name="name">
                     </label>
                   </div>
 
-                  <div class="form-group">
-                  <h5>Introduction</h5>
-                  <label style="width: 90%">
-                    <textarea name="intro" style="width: 100%"> </textarea>
+                  <div class="form-group" style="margin-bottom: 0">
+                  <p>Introduction</p>
+                  <label style="width: 100%">
+                    <input class="form-control" name="intro" style="width: 100%"/>
                   </label>
                   </div>
 
-                  <div class="form-group">
-                  <h5>price</h5>
+                  <div class="form-group" style="margin-bottom: 0">
+                  <p>Price</p>
                   <label style="margin-bottom: 1%">
-                    <input type="number" name="price">
+                    <input class="form-control" type="number" name="price">
                   </label>
                   </div>
 
@@ -142,7 +142,6 @@
               </div>
             </div>
 
-          <br>
           <div style="display:flex;justify-content: center; align-items:center;">
             <a href="{{url_for("staff_site.clear_draft")}}">
               <input type="button" class="btn btn-primary me-2" name="clear_all" value="Clear All" >
@@ -156,11 +155,6 @@
           </div>
 
             </form>
-
-
-
-
-
 
 
         </div>

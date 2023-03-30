@@ -77,10 +77,6 @@ def homepage2():
     return render_template("homepage2.html")
 
 
-@app.route('/admin')
-def admin():
-    return render_template("./background/dashboard.html")
-
 @app.route('/profile')
 def profile():
     return render_template("profile.html")
@@ -90,25 +86,11 @@ def favourites():
     logger.info('Entered the FAVOURITES page')
     return render_template("favourites.html")
 
+
 @app.route('/order_list')
 def order_list():
     logger.info('Entered the order_list page')
     return render_template("order_list.html")
-
-# @app.route('/staff')
-# def staff():
-#     return render_template("./staff_site/base.html")
-#
-#
-# @app.route('/staff1')
-# def staff1():
-#     return render_template("./staff_site/pages/index/index.html")
-#
-#
-# @app.route('/staff2')
-# def staff2():
-#     print("sdfasdf")
-#     return render_template("./staff_site/pages/ui-features/buttons.html")
 
 
 @app.route('/travelRoutesDetail', methods=['GET', 'POST'])
