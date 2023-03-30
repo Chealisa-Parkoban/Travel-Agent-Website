@@ -4,7 +4,59 @@
       <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
-            <a href="{{ url_for("staff_site.new_plan") }}" >
+              <div class="col-lg-6 grid-margin stretch-card" style="width: 100%">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">All Plans</h4>
+                  <p class="card-description">
+                    All travel plans in <code>Digital Beans</code>
+                  </p>
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>Plan ID</th>
+                          <th>Plan Name</th>
+                          <th>Duration</th>
+                          <th>Price</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                      {% for plan in plans %}
+                        <tr onclick="showPlans()">
+                          <td>{{plan.id}}</td>
+                          <td>{{plan.name}}</td>
+                          <td>{{plan.length}} days</td>
+                          <td><label class="badge badge-danger">¥ {{plan.price}}</label></td>
+                        </tr>
+                      <script>
+                        let plan_id = {{ plan.id }};
+                        function showPlans(){
+                          $.get({
+                            url: '/staff/contents/plan_detail',
+                            type: 'GET',
+                            data: ({plan_id : plan_id}),
+                            success: function (data) {
+                              console.log(data)
+                            }
+                          })
+                          // let plan = {{ plan }};
+                          // console.log(plan);
+                          // url = "./plan_detail.html?plan="+plan;
+                          // window.location.href = url;
+                        }
+                      </script>
+                      {% endfor %}
+
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a href="{{ url_for('staff_site.new_plan') }}" >
               <input  type="button" class="btn btn-primary me-2" style="width: fit-content" value="ADD A NEW PLAN"  />
             </a>
           </div>

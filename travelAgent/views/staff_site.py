@@ -51,7 +51,7 @@ def login():
             emsg = "Wrong password!"
             app.logger.error('Login failed: Wrong username or password')
 
-    return render_template('./staff_site/pages/samples/../templates/staff_site/pages/login.html', form=form)
+    return render_template('./staff_site/pages/login.html', form=form)
 
 
 @staff_blueprint.route('/staff/logout', methods=['GET', 'POST'])
@@ -66,7 +66,8 @@ def logout():
 def contents():
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
-    return render_template('./staff_site/contents.html')
+    plans = Combination.query.all()
+    return render_template('./staff_site/contents.html', plans=plans)
 
 
 @staff_blueprint.route('/staff/contents/new_plan', methods=['GET', 'POST'])
@@ -164,6 +165,18 @@ def delete_day():
     print(day_trip_draft)
     return "ok"
     # return redirect(url_for("staff_site.new_plan"))
+
+
+@staff_blueprint.route('/staff/contents/plan_detail', methods=['GET', 'POST'])
+def plan_detail():
+    plan_id = request.args.get("plan_id")
+    plan = Combination.query.filter_by(id=plan_id).first()
+    days = []
+    for i in range(0, plan.length):
+        days.append(plan.get_day(i+1))
+    print("okok")
+    return render_template('./staff_site/plan_detail.html', plan=plan, days=days)
+
 
 
 @login_manager.user_loader

@@ -80,6 +80,9 @@ class User(UserMixin, db.Model):
     def isAdmin(self):
         return self.is_admin
 
+    def get_username(self):
+        return self.username
+
 
 class EmailCaptchaModel(db.Model):
     __tablename__ = "email_captcha"
@@ -155,6 +158,24 @@ class Combination(db.Model):
         self.price = price
         self.length = length
 
+    def get_days(self):
+        days = []
+        if self.day1:
+            days.append(self.day1)
+        if self.day2:
+            days.append(self.day2)
+        if self.day3:
+            days.append(self.day3)
+        if self.day4:
+            days.append(self.day4)
+        if self.day5:
+            days.append(self.day5)
+        if self.day6:
+            days.append(self.day6)
+        if self.day7:
+            days.append(self.day7)
+        return days
+
 
 # combination record, staff can operate and store data in this table
 class RecordC(db.Model):
@@ -225,6 +246,7 @@ class CommentC(db.Model):
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
     user_id = db.Column(db.INTEGER, db.ForeignKey('user.id'))
+    username = db.Column(db.String(120))
     combination_id = db.Column(db.INTEGER, db.ForeignKey('combination.id'))
     # score: 0-5
     score = db.Column(db.INTEGER, nullable=False)

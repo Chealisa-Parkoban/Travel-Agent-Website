@@ -18,14 +18,12 @@ from travelAgent.forms import CommentForm, ImageForm
 from travelAgent.models import CommentC, Comment, Combination, Destination, Day, Target
 from travelAgent.views.login_handler import login_blueprint, current_user
 from travelAgent.views.number import Random_str
-from travelAgent.views.background import background_blueprint
 from travelAgent.views.staff_site import staff_blueprint
 from travelAgent.views.detail import detail_blueprint
 
 # -------------------------------------register blueprints------------------------------------------
 app.register_blueprint(login_blueprint)
 app.register_blueprint(staff_blueprint)
-app.register_blueprint(background_blueprint)
 app.register_blueprint(detail_blueprint)
 
 # -------------------------------------create a logger------------------------------------------
@@ -125,7 +123,7 @@ def travel_routes_detail():
                     path = "../static/upload/" + new_filename
     
             # default: like=0 path=""
-            comment = CommentC(user_id=current_user.id, combination_id=1,score = comment_form.score.data, content=comment_form.comment.data,image = path, time=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+            comment = CommentC(user_id=current_user.id, username=current_user.get_username(), combination_id=1,score=comment_form.score.data, content=comment_form.comment.data,image = path, time=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
             db.session.add(comment)
             flash('已评论')
             return redirect(url_for('travel_routes_detail'))

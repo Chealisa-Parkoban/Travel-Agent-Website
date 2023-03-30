@@ -121,16 +121,7 @@
                     <hr style="border: solid">
 
                     {% for comment in comments %}
-                        {#                        <div class="mb-3 d-flex justify-content-between">#}
-                        {#                            <div class="pr-3">#}
-                        {#                                <p>{{ comment.content }}</p>#}
-                        {#                                <div class="card-text text-muted small">#}
-                        {#                                    {{ comment.username }}#}
-                        {#                                </div>#}
-                        {#                                <small class="text-muted"> {{ comment.time }}</small>#}
-                        {#                            </div>#}
-                        {#                            <img height="20" src="../static/images/icons/heart-regular.svg" alt="some text"/>#}
-                        {#                        </div>#}
+
                         <div class="card mb-5 shadow-sm" style="border-radius: 15px;">
                             <div class="card-body p-4">
                                 <h3 class="mb-3">{{ comment.content }}</h3>
