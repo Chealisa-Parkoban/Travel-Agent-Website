@@ -44,12 +44,12 @@ with app.app_context():
     db.session.commit()
 
     com1 = Combination(name='test1——Combination', day1=1, day2=1, day3=2, day4=2, day5=2, day6=1, day7=2,
-                       intro='test1_introduction', price=2000, length=7)
+                       intro='test1_introduction', price=2000, length=7, image='')
     com2 = Combination(name='test2——Combination', day1=1, day2=1, day3=2, day4=2, day5=2, day6=1, day7=2,
-                       intro='test2_introduction', price=3000, length=7)
+                       intro='test2_introduction', price=3000, length=7, image='')
     com3 = Combination(name='test3——Combination', day1=1, day2=1, day3=2, day4=2, day5=2, day6=1, day7=2,
-                       intro='test3_introduction', price=5000, length=7)
+                       intro='test3_introduction', price=5000, length=7, image='')
     com4 = Combination(name='test4——Combination', day1=1, day2=1, day3=2, day4=2, day5=2, day6=1, day7=2,
-                       intro='test4_introduction', price=4000, length=7)
+                       intro='test4_introduction', price=4000, length=7, image='')
     db.session.add_all([com1, com2, com3, com4])
     db.session.commit()

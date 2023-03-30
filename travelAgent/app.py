@@ -21,12 +21,14 @@ from travelAgent.views.number import Random_str
 from travelAgent.views.background import background_blueprint
 from travelAgent.views.staff_site import staff_blueprint
 from travelAgent.views.detail import detail_blueprint
+from travelAgent.views.favorite import favorite_blueprint
 
 # -------------------------------------register blueprints------------------------------------------
 app.register_blueprint(login_blueprint)
 app.register_blueprint(staff_blueprint)
 app.register_blueprint(background_blueprint)
 app.register_blueprint(detail_blueprint)
+app.register_blueprint(favorite_blueprint)
 
 # -------------------------------------create a logger------------------------------------------
 logger = logging.getLogger(__name__)  # create a logger
@@ -84,6 +86,17 @@ def admin():
 @app.route('/profile')
 def profile():
     return render_template("profile.html")
+
+@app.route('/favourites')
+def favourites():
+    logger.info('Entered the FAVOURITES page')
+    return render_template("favourites.html")
+
+@app.route('/order_list')
+def order_list():
+    logger.info('Entered the order_list page')
+    return render_template("order_list.html")
+
 # @app.route('/staff')
 # def staff():
 #     return render_template("./staff_site/base.html")

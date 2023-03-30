@@ -121,22 +121,42 @@
                     <hr style="border: solid">
 
                     {% for comment in comments %}
-                        {#                        <div class="mb-3 d-flex justify-content-between">#}
-                        {#                            <div class="pr-3">#}
-                        {#                                <p>{{ comment.content }}</p>#}
-                        {#                                <div class="card-text text-muted small">#}
-                        {#                                    {{ comment.username }}#}
-                        {#                                </div>#}
-                        {#                                <small class="text-muted"> {{ comment.time }}</small>#}
-                        {#                            </div>#}
-                        {#                            <img height="20" src="../static/images/icons/heart-regular.svg" alt="some text"/>#}
-                        {#                        </div>#}
+
                         <div class="card mb-5 shadow-sm" style="border-radius: 15px;">
                             <div class="card-body p-4">
-                                <h3 class="mb-3">{{ comment.content }}</h3>
+
+                                <h4 class="mb-3">
+                                    {% if comment.score  == 5 %}
+                                        <p> ⭐⭐⭐⭐⭐ </p>
+                                    {% elif comment.score  == 4 %}
+                                        <p> ⭐⭐⭐⭐ </p>
+                                    {% elif comment.score  == 3 %}
+                                        <p> ⭐⭐⭐ </p>
+                                    {% elif comment.score  == 2 %}
+                                        <p> ⭐⭐ </p>
+                                    {% elif comment.score  == 1 %}
+                                        <p> ⭐ </p>
+                                {% endif %}
+
+                                </h4>
+                                <h4 class="mb-3">{{ comment.content }}</h4>
                                 <p class="small mb-0"><i class="far fa-star fa-lg"></i> <span class="mx-2">|</span>
                                     Created by
-                                    <strong>{{ comment.username }}</strong> {{ comment.time }}</p>
+                                    <strong>{{ comment.username }}</strong> {{ comment.time }}
+                                </p>
+
+                                <img src= {{comment.image}} alt="" id="img" style="width: 30%">
+<!--                                <script>-->
+<!--                                    function changeSrc(){-->
+<!--                                        var mys = document.getElementById("img");-->
+<!--                                        mys.src = comment.setAttribute("src",comment.path);-->
+<!--                                        return comment.path-->
+<!--                                    }-->
+
+
+<!--                                </script>-->
+
+
                                 <hr class="my-4">
                                 <div class="d-flex justify-content-start align-items-center">
                                     <p class="mb-0 text-uppercase"><i class="fas fa-cog me-2"></i> <span
@@ -209,7 +229,7 @@
                                                max="5"
                                                step="1"
                                                value="5">
-                                        <img src="#" alt="" id="img">
+                                        <img src="../static/images/sample_pic/guilin.png" alt="" id="img">
                                         <input id="file_upload" name="img" type="file" onclick="showImg()"/>
                                     </div>
                                 </div>

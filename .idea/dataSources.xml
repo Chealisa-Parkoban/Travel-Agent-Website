@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="travelAgent@localhost" uuid="cacaaea8-97a3-41c8-b13c-cd8c3cf971ff">
-      <driver-ref>mysql.8</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/travelAgent</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="travelAgent" uuid="5beb03f9-01c1-42a0-8532-7f7721484751">
+    <data-source source="LOCAL" name="travelAgent" uuid="a880b0f5-0d7b-4471-9e9a-38997ff78481">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:D:\Study\大三下\课设2\comp3030j_spring_2022-2023_group_3\travelAgent\travelAgent.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:D:\Filesss\3030J\comp3030j_spring_2022-2023_group_3\travelAgent\travelAgent.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
       <libraries>
         <library>

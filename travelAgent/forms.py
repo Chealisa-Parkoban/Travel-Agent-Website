@@ -106,6 +106,7 @@ class CommentForm(FlaskForm):
             DataRequired()
         ]
     )
+
     submit = SubmitField('')
 
 
@@ -140,3 +141,8 @@ class PlanForm(FlaskForm):
     intro = StringField('name', validators=[DataRequired()])
     price = IntegerField('price', validators=[DataRequired()])
     submit = SubmitField('')
+
+
+class FavoriteForm(FlaskForm):
+    name = StringField('name', validators=[DataRequired()])
+    intro = StringField('name', validators=[DataRequired()])

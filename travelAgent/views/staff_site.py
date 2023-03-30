@@ -1,3 +1,5 @@
+import os
+import uuid
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import LoginManager, login_user, current_user, logout_user
 
@@ -6,6 +8,7 @@ from travelAgent.forms import LoginForm, DayTripForm, PlanForm
 from travelAgent.models import User, Destination, Target, Day, Combination
 from travelAgent.views.login_handler import login_manager
 
+from config import basedir
 staff_blueprint = Blueprint(name="staff_site", import_name=__name__)
 
 day_trip_draft = []
@@ -120,6 +123,29 @@ def submit_plan():
     print(name, intro, price, length)
     days = []
 
+    uid = uuid.uuid1()
+    # Images storage path
+    file_dir = os.path.join(basedir, "static/upload/")
+    # Getting the data transferred from the front end
+    files = request.files.getlist('img')  # Gets the value of myfiles from ajax, of type list
+    path = ""
+
+    for img in files:
+        # Extract the suffix of the uploaded image and
+        # Name the image after the commodity id and store it in the specific path
+        check = img.content_type
+        # check if upload image
+        if str(check) != 'application/octet-stream':
+            fname = img.filename
+            ext = fname.rsplit('.', 1)[1]
+            new_filename = uid.hex + '.' + ext
+            img.save(os.path.join(file_dir, new_filename))
+            path = "../static/upload/" + new_filename
+
+    # default: like=0 path=""
+    print("777777777777777")
+    print(path)
+
     for day in day_trip_draft:
         destination_id = Destination.query.filter_by(name=day[1]).first().id
         attraction_id = Target.query.filter_by(name=day[2]).first().id
@@ -141,7 +167,7 @@ def submit_plan():
         else:
             days_id.append(None)
 
-    combination = Combination(name, intro, price, length, days_id[0], days_id[1], days_id[2], days_id[3], days_id[4], days_id[5], days_id[6])
+    combination = Combination(name, intro, price, length, path, days_id[0], days_id[1], days_id[2], days_id[3], days_id[4], days_id[5], days_id[6])
     db.session.add(combination)
     db.session.commit()
     day_trip_draft.clear()
