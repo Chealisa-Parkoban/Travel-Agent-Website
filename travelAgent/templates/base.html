@@ -38,6 +38,7 @@
 <body>
 <header class="sticky-top">
 
+    {% block navigation %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
 <!--    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">-->
         <a class="navbar-brand" href="#">Digital Beans</a>
@@ -68,11 +69,6 @@
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
-{#                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"#}
-{#                        data-bs-target="#offcanvasExample"#}
-{#                        aria-controls="offcanvasExample">#}
-{#                    help#}
-{#                </button>#}
                 <li class="nav-item">
                     <a class="nav-link" href="#">Help</a>
                 </li>
@@ -155,9 +151,11 @@
         </div>
     </nav>
 </header>
-{#<div class="container-fluid">#}
-    {% block body %}{% endblock %}
-{#</div>#}
+    {% endblock %}
+
+{% block body %}{% endblock %}
+
+<!--{% block footer %}-->
 <footer class="pt-5 pb-3 footer footer-dark bg-tertiary">
     <div class="container">
         <div class="row">
@@ -236,6 +234,9 @@
         </div>
     </div>
 </footer>
+<!--{% endblock %}-->
+
+
 
 <!-- Core -->
 <script src="../static/vendor/jquery/jquery.min.js"></script>
