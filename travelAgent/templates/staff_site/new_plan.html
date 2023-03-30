@@ -3,42 +3,9 @@
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
+
           <h3 style="margin: 0 0 2% 2%">Create a New Travel Plan</h3>
-          <div class="col-md-6 grid-margin stretch-card" style="width: 100%">
-              <div class="card" >
-                <div class="card-body" style="margin: 0 1% 0 1%;">
-                  <form action="{{url_for('staff_site.submit_plan')}}" method="post" novalidate>
-                  {{ plan_form.csrf_token }}
 
-                  <div class="form-group"style="margin-bottom: 0">
-                    <p>Plan Name</p>
-                    <label style="width: 100%">
-                      <input class="form-control" name="name">
-                    </label>
-                  </div>
-
-                  <div class="form-group" style="margin-bottom: 0">
-                  <p>Introduction</p>
-                  <label style="width: 100%">
-                    <input class="form-control" name="intro" style="width: 100%"/>
-                  </label>
-                  </div>
-
-                  <div>
-                    <input id="file_upload" name="img" type="file" onclick="showImg()"/>
-                  </div>
-
-                  <div class="form-group" style="margin-bottom: 0">
-                  <p>Price</p>
-                  <label style="margin-bottom: 1%">
-                    <input class="form-control" type="number" name="price">
-                  </label>
-                  </div>
-                  </form>
-
-                 </div>
-              </div>
-            </div>
           <div class="row" id="row">
             {% for day in days %}
             <div class="col-md-6 grid-margin stretch-card" >
@@ -147,10 +114,43 @@
           </div>
 
 
-
-
           <form action="{{url_for('staff_site.submit_plan')}}" method="post" novalidate>
                   {{ plan_form.csrf_token }}
+          <div class="col-md-6 grid-margin stretch-card" style="width: 100%">
+              <div class="card" >
+                <div class="card-body" style="margin: 0 1% 0 1%;">
+
+
+                  <div class="form-group"style="margin-bottom: 0">
+                    <p>Plan Name</p>
+                    <label style="width: 100%">
+                      <input class="form-control" name="name">
+                    </label>
+                  </div>
+
+                  <div class="form-group" style="margin-bottom: 0">
+                  <p>Introduction</p>
+                  <label style="width: 100%">
+                    <input class="form-control" name="intro" style="width: 100%"/>
+                  </label>
+                  </div>
+
+                  <div>
+                    <input id="file_upload" name="img" type="file" onclick="showImg()"/>
+                  </div>
+
+                  <div class="form-group" style="margin-bottom: 0">
+                  <p>Price</p>
+                  <label style="margin-bottom: 1%">
+                    <input class="form-control" type="number" name="price">
+                  </label>
+                  </div>
+
+
+                 </div>
+              </div>
+            </div>
+
           <div style="display:flex;justify-content: center; align-items:center;">
             <a href="{{url_for("staff_site.clear_draft")}}">
               <input type="button" class="btn btn-primary me-2" name="clear_all" value="Clear All" >
@@ -162,8 +162,7 @@
               <input type="submit" class="btn btn-primary me-2" name="submit" value="Add Plan">
             </a>
           </div>
-
-            </form>
+          </form>
 
 
         </div>

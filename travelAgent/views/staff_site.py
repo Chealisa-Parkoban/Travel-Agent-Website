@@ -171,12 +171,17 @@ def delete_day():
 def plan_detail():
     plan_id = request.args.get("plan_id")
     plan = Combination.query.filter_by(id=plan_id).first()
-    days = []
-    for i in range(0, plan.length):
-        days.append(plan.get_day(i+1))
+    days = plan.get_days()
     print("okok")
-    return render_template('./staff_site/plan_detail.html', plan=plan, days=days)
+    view_plan(plan,days)
+    return 'ok'
+    # return render_template('./staff_site/plan_detail.html', plan=plan, days=days, plan_form=PlanForm(), day_form=DayTripForm())
 
+
+@staff_blueprint.route('/staff/contents/view_plan', methods=['GET', 'POST'])
+def view_plan(plan, days):
+    return render_template('./staff_site/plan_detail.html', plan=plan, days=days, plan_form=PlanForm(),
+                           day_form=DayTripForm())
 
 
 @login_manager.user_loader
