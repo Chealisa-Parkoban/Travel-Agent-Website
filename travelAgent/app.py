@@ -84,6 +84,17 @@ def admin():
 @app.route('/profile')
 def profile():
     return render_template("profile.html")
+
+@app.route('/favourites')
+def favourites():
+    logger.info('Entered the FAVOURITES page')
+    return render_template("favourites.html")
+
+@app.route('/order_list')
+def order_list():
+    logger.info('Entered the order_list page')
+    return render_template("order_list.html")
+
 # @app.route('/staff')
 # def staff():
 #     return render_template("./staff_site/base.html")
