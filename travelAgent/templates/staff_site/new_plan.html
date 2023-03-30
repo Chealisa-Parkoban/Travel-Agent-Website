@@ -30,13 +30,35 @@
                       <label for="Traffic">Traffic</label>
                       <h4 style="color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%">{{day[4]}}</h4>
                     </div>
-                      <button class="btn btn-light">Delete</button>
+                      <button class="btn btn-light" onclick="delete_day()">Delete</button>
                   </form>
-
+                  <script>
+                    var day = {{ day|tojson() }}
+                    console.log(day[0])
+                    var day_id = day[0]
+                    function delete_day(){
+                      console.log(day_id)
+                      $.get({
+                        url: '/staff/contents/delete_day',
+                        type: 'GET',
+                        data: JSON.stringify(day_id),
+                        // data: JSON.stringify({
+                        //   day_id: day_id
+                        // }),
+                        success: function (data) {
+                          console.log(data)
+                          window.location.reload()
+                        }
+                      })
+                    }
+                  </script>
+<!--                  <script src="../../static/staff_site_static/new_plan.js"></script>-->
                 </div>
               </div>
             </div>
+
             {% endfor %}
+
             <div class="col-md-6 grid-margin stretch-card" id="card">
               <div class="card">
                 <div class="card-body">
@@ -89,23 +111,37 @@
             </div>
           </div>
 
-          <form action="{{url_for('staff_site.submit_plan')}}" method="post" novalidate>
-          {{ plan_form.csrf_token }}
+          <div class="col-md-6 grid-margin stretch-card" >
+              <div class="card" >
+                <div class="card-body" style="margin: 0 3% 0 3%;">
+                  <form action="{{url_for('staff_site.submit_plan')}}" method="post" novalidate>
+                  {{ plan_form.csrf_token }}
 
-          <h5>Plan Name</h5>
-          <label>
-            <input name="name">
-          </label>
+                  <div class="form-group">
+                    <h5>Plan Name</h5>
+                    <label>
+                      <input name="name">
+                    </label>
+                  </div>
 
-          <h5>Introduction</h5>
-          <label style="width: 90%">
-            <textarea name="intro" style="width: 100%"> </textarea>
-          </label>
+                  <div class="form-group">
+                  <h5>Introduction</h5>
+                  <label style="width: 90%">
+                    <textarea name="intro" style="width: 100%"> </textarea>
+                  </label>
+                  </div>
 
-          <h5>price</h5>
-          <label style="margin-bottom: 1%">
-            <input type="number" name="price">
-          </label>
+                  <div class="form-group">
+                  <h5>price</h5>
+                  <label style="margin-bottom: 1%">
+                    <input type="number" name="price">
+                  </label>
+                  </div>
+
+                 </div>
+              </div>
+            </div>
+
           <br>
           <div style="display:flex;justify-content: center; align-items:center;">
             <a href="{{url_for("staff_site.clear_draft")}}">
@@ -120,6 +156,11 @@
           </div>
 
             </form>
+
+
+
+
+
 
 
         </div>

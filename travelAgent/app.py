@@ -267,6 +267,9 @@ def showSetDetails(ID):
                            day7_attraction=day7_attraction, day7_accommodation=day7_accommodation, day7_traffic=day7_traffic)
 
 
+@app.route('/test', methods=['GET', 'POST'])
+def test():
+    print('test')
 
 if __name__ == '__main__':
     # showSetDetails(1)

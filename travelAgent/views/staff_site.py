@@ -26,7 +26,7 @@ def login():
     app.logger.info('Entered STAFF LOGIN page')
     form = LoginForm(request.form)
     if request.method == 'GET':
-        return render_template('./staff_site/pages/samples/login.html', form=form)
+        return render_template('./staff_site/pages/login.html', form=form)
     else:
         if form.validate_on_submit():
             username = form.username.data
@@ -51,7 +51,7 @@ def login():
             emsg = "Wrong password!"
             app.logger.error('Login failed: Wrong username or password')
 
-    return render_template('./staff_site/pages/samples/login.html', form=form)
+    return render_template('./staff_site/pages/samples/../templates/staff_site/pages/login.html', form=form)
 
 
 @staff_blueprint.route('/staff/logout', methods=['GET', 'POST'])
@@ -146,6 +146,24 @@ def submit_plan():
     db.session.commit()
     day_trip_draft.clear()
     return redirect(url_for("staff_site.contents"))
+
+
+@staff_blueprint.route('/staff/contents/delete_day', methods=['GET', 'POST'])
+def delete_day():
+    # print(request.args.get("day_id"), "delete")
+    # data = request.args.get("day_id")
+    json = request.json
+    print(json)
+    print("ddd")
+    data = request.get_json()
+    day_id = data['day_id']
+    print(day_id, "delete")
+
+    # age = data['age']
+    day_trip_draft.pop(int(day_id)-1)
+    print(day_trip_draft)
+    return "ok"
+    # return redirect(url_for("staff_site.new_plan"))
 
 
 @login_manager.user_loader

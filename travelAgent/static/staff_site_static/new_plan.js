@@ -1,3 +1,17 @@
+// function delete_day(day_num){
+//     console.log("day_num");
+//     console.log(day_num);
+//     $.get({
+//         url:"/test",
+//         contentType: "GET",
+//         data:{"day_num" : day_num},
+//         success:function(){
+//         },
+//         error:function(){
+//         }
+//     });
+// }
+
 function addRow()
 {
 // var table2="table";
