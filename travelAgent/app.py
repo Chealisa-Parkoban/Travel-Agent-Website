@@ -18,7 +18,6 @@ from travelAgent.forms import CommentForm, ImageForm
 from travelAgent.models import CommentC, Comment, Combination, Destination, Day, Target
 from travelAgent.views.login_handler import login_blueprint, current_user
 from travelAgent.views.number import Random_str
-from travelAgent.views.background import background_blueprint
 from travelAgent.views.staff_site import staff_blueprint
 from travelAgent.views.detail import detail_blueprint
 from travelAgent.views.favorite import favorite_blueprint
@@ -26,7 +25,6 @@ from travelAgent.views.favorite import favorite_blueprint
 # -------------------------------------register blueprints------------------------------------------
 app.register_blueprint(login_blueprint)
 app.register_blueprint(staff_blueprint)
-app.register_blueprint(background_blueprint)
 app.register_blueprint(detail_blueprint)
 app.register_blueprint(favorite_blueprint)
 
@@ -79,13 +77,10 @@ def homepage2():
     return render_template("homepage2.html")
 
 
-@app.route('/admin')
-def admin():
-    return render_template("./background/dashboard.html")
-
 @app.route('/profile')
 def profile():
     return render_template("profile.html")
+
 
 @app.route('/favourites')
 def favourites():
@@ -145,7 +140,7 @@ def travel_routes_detail():
                     path = "../static/upload/" + new_filename
     
             # default: like=0 path=""
-            comment = CommentC(user_id=current_user.id, combination_id=1,score = comment_form.score.data, content=comment_form.comment.data,image = path, time=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+            comment = CommentC(user_id=current_user.id, username=current_user.get_username(), combination_id=1,score=comment_form.score.data, content=comment_form.comment.data,image = path, time=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
             db.session.add(comment)
             flash('已评论')
             return redirect(url_for('travel_routes_detail'))
@@ -278,6 +273,7 @@ def showSetDetails(ID):
                            day5_attraction=day5_attraction, day5_accommodation=day5_accommodation, day5_traffic=day5_traffic,
                            day6_attraction=day6_attraction, day6_accommodation=day6_accommodation, day6_traffic=day6_traffic,
                            day7_attraction=day7_attraction, day7_accommodation=day7_accommodation, day7_traffic=day7_traffic)
+
 
 
 

@@ -22,7 +22,6 @@ from travelAgent.forms import CommentForm, ImageForm
 from travelAgent.models import CommentC, Comment, Combination, Destination, Day, Target
 from travelAgent.views.login_handler import login_blueprint, current_user
 from travelAgent.views.number import Random_str
-from travelAgent.views.background import background_blueprint
 
 
 @detail_blueprint.route("/showSetDetail/<set_id>")

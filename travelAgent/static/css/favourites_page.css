@@ -10929,16 +10929,22 @@ p.lead {
   #sideNav {
     padding-left: 0;
     padding-right: 0;
-    padding-top: 25vh;
+    /*padding-top: 0;*/
+    /*padding-bottom: 0;*/
+    /*margin: auto 0 auto 0;*/
+    /*top: 50%;*/
     text-align: center;
     position: fixed;
-    top: 75px;
+    top: 0;
     left: 0;
     display: flex;
     flex-direction: column;
     width: 17rem;
     height: 100vh;
     z-index: 1;
+    justify-content: center;
+    align-items:center;
+    ;
   }
   #sideNav .navbar-brand {
     display: flex;

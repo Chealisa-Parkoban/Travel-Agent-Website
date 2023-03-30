@@ -40,59 +40,55 @@
               </div>
             </div>
           <div class="row" id="row">
-            {% for day in days %}
-            <div class="col-md-6 grid-margin stretch-card" >
-              <div class="card" >
-                <div class="card-body" style="margin: 0 3% 0 3%;">
-                  <h4 class="card-title">Day {{day[0]}}</h4>
-                  <p class="card-description">
-                    Day trip information
-                  </p>
-                  <form class="forms-sample">
-                    <div class="form-group">
-                      <label for="Destination">Destination</label>
-                      <h4 style="color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%">{{day[1]}}</h4>
-                    </div>
-                    <div class="form-group">
-                      <label for="Attraction">Attraction</label>
-                      <h4 style="color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%">{{day[2]}}</h4>
-                    </div>
-                    <div class="form-group">
-                      <label for="Accommodation">Accommodation</label>
-                      <h4 style="color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%">{{day[3]}}</h4>
-                    </div>
-                    <div class="form-group">
-                      <label for="Traffic">Traffic</label>
-                      <h4 style="color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%">{{day[4]}}</h4>
-                    </div>
-                      <button class="btn btn-light" onclick="delete_day()">Delete</button>
-                  </form>
-                  <script>
-                    var day = {{ day|tojson() }}
-                    console.log(day[0])
-                    var day_id = day[0]
-                    function delete_day(){
-                      console.log(day_id)
-                      $.get({
-                        url: '/staff/contents/delete_day',
-                        type: 'GET',
-                        data: JSON.stringify(day_id),
-                        // data: JSON.stringify({
-                        //   day_id: day_id
-                        // }),
-                        success: function (data) {
-                          console.log(data)
-                          window.location.reload()
-                        }
-                      })
-                    }
-                  </script>
-<!--                  <script src="../../static/staff_site_static/new_plan.js"></script>-->
-                </div>
-              </div>
-            </div>
 
-            {% endfor %}
+
+            <script>
+              $(function(){
+                 getData1();
+              });
+              function getData1(){
+                  var name = $.query.get("plan");
+                  var i = 0
+                  for( day in name){
+                    i++;
+                    var box=document.getElementById("row");
+                    var div="<div class=\"col-md-6 grid-margin stretch-card\" >\n" +
+                            "              <div class=\"card\" >\n" +
+                            "                <div class=\"card-body\" style=\"margin: 0 3% 0 3%;\">\n" +
+                            "                  <h4 class=\"card-title\">Day {{ i }} </h4>\n" +
+                            "                  <p class=\"card-description\">\n" +
+                            "                    Day trip information\n" +
+                            "                  </p>\n" +
+                            "                  <form class=\"forms-sample\">\n" +
+                            "                    <div class=\"form-group\">\n" +
+                            "                      <label for=\"Destination\">Destination</label>\n" +
+                            "                      <h4 style=\"color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%\">{{day.destination}}</h4>\n" +
+                            "                    </div>\n" +
+                            "                    <div class=\"form-group\">\n" +
+                            "                      <label for=\"Attraction\">Attraction</label>\n" +
+                            "                      <h4 style=\"color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%\">{{day[2]}}</h4>\n" +
+                            "                    </div>\n" +
+                            "                    <div class=\"form-group\">\n" +
+                            "                      <label for=\"Accommodation\">Accommodation</label>\n" +
+                            "                      <h4 style=\"color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%\">{{day[3]}}</h4>\n" +
+                            "                    </div>\n" +
+                            "                    <div class=\"form-group\">\n" +
+                            "                      <label for=\"Traffic\">Traffic</label>\n" +
+                            "                      <h4 style=\"color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%\">{{day[4]}}</h4>\n" +
+                            "                    </div>\n" +
+                            "                      <button class=\"btn btn-light\" onclick=\"delete_day()\">Delete</button>\n" +
+                            "                  </form>\n" +
+                            "                </div>\n" +
+                            "              </div>\n" +
+                            "            </div>";
+                    box.insertAdjacentHTML("beforeed",div);
+
+                  }
+              }
+            </script>
+
+
+
 
             <div class="col-md-6 grid-margin stretch-card" id="card">
               <div class="card">
@@ -150,26 +146,6 @@
 
 
           <form action="{{url_for('staff_site.submit_plan')}}" method="post" novalidate>
-          {{ plan_form.csrf_token }}
-
-          <h5>Plan Name</h5>
-          <label>
-            <input name="name">
-          </label>
-
-          <h5>Introduction</h5>
-          <label style="width: 90%">
-            <textarea name="intro" style="width: 100%"> </textarea>
-          </label>
-
-          <h5>price</h5>
-          <label style="margin-bottom: 1%">
-            <input type="number" name="price">
-          </label>
-            <img src="#" alt="" id="img">
-            <br>
-            <input id="file_upload" name="img" type="file" onclick="showImg()"/>
-          <br>
                   {{ plan_form.csrf_token }}
           <div style="display:flex;justify-content: center; align-items:center;">
             <a href="{{url_for("staff_site.clear_draft")}}">

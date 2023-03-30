@@ -11,8 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800|Roboto:400,500,700" rel="stylesheet">
     <!-- Theme CSS -->
     <link type="text/css" href="../static/css/theme.css" rel="stylesheet">
-    {#    <link type="text/css" href="{{ url_for('static', filename='/background_assets/css/theme.css') }}" rel="stylesheet">#}
-    <!-- Demo CSS - No need to use these in your project -->
+       <!-- Demo CSS - No need to use these in your project -->
     <link type="text/css" href="../static/css/demo.css" rel="stylesheet">
 
     <link href="../static/fontawesome-free-6.3.0-web/css/fontawesome.css" rel="stylesheet">
@@ -73,7 +72,7 @@
                 <h6 class="dropdown-header font-weight-600 d-lg-none px-0">Menu</h6>
                 {#                <li class="nav-item active">#}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for("index") }}">Overview</a>
+                    <a class="nav-link" href="{{ url_for('index') }}">Overview</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbar_main_dropdown_1" role="button"
@@ -81,9 +80,9 @@
                     <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
 
                         {%  if not current_user.is_authenticated %}
-                        <a class="dropdown-item" href="{{ url_for("homepage") }}">Homepage</a>
-                        <a class="dropdown-item" href="{{ url_for("homepage2") }}">Hoempage2</a>
-                        <a class="dropdown-item" href="{{ url_for("about") }}">About us</a>
+                        <a class="dropdown-item" href="{{ url_for('homepage') }}">Homepage</a>
+                        <a class="dropdown-item" href="{{ url_for('homepage2') }}">Hoempage2</a>
+                        <a class="dropdown-item" href="{{ url_for('about') }}">About us</a>
                         <a class="dropdown-item" href="{{ url_for('account.login') }}">Sign in</a>
                         <a class="dropdown-item" href="{{ url_for('account.sign_up') }}">Register</a>
                         {% else %}
@@ -1072,7 +1071,7 @@
 {#                            <h2 class="heading h3 mb-0">Dropdown</h2>#}
 {#                        </div>#}
 {#                        <div class="col-4 text-right">#}
-{#                            <a href="docs/dropdowns.html" class="btn btn-sm btn-primary">Open in Docs</a>#}
+{#                            <a href="" class="btn btn-sm btn-primary">Open in Docs</a>#}
 {#                        </div>#}
 {#                    </div>#}
 {#                    <p class="mb-5">Can this UI kit get any better? We guess so. Check out these cool dropdowns where we#}

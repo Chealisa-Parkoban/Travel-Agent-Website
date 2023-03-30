@@ -29,7 +29,7 @@ def login():
     app.logger.info('Entered STAFF LOGIN page')
     form = LoginForm(request.form)
     if request.method == 'GET':
-        return render_template('./staff_site/pages/samples/login.html', form=form)
+        return render_template('./staff_site/pages/login.html', form=form)
     else:
         if form.validate_on_submit():
             username = form.username.data
@@ -54,7 +54,7 @@ def login():
             emsg = "Wrong password!"
             app.logger.error('Login failed: Wrong username or password')
 
-    return render_template('./staff_site/pages/samples/login.html', form=form)
+    return render_template('./staff_site/pages/login.html', form=form)
 
 
 @staff_blueprint.route('/staff/logout', methods=['GET', 'POST'])
@@ -69,7 +69,8 @@ def logout():
 def contents():
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
-    return render_template('./staff_site/contents.html')
+    plans = Combination.query.all()
+    return render_template('./staff_site/contents.html', plans=plans)
 
 
 @staff_blueprint.route('/staff/contents/new_plan', methods=['GET', 'POST'])
@@ -172,6 +173,36 @@ def submit_plan():
     db.session.commit()
     day_trip_draft.clear()
     return redirect(url_for("staff_site.contents"))
+
+
+@staff_blueprint.route('/staff/contents/delete_day', methods=['GET', 'POST'])
+def delete_day():
+    # print(request.args.get("day_id"), "delete")
+    # data = request.args.get("day_id")
+    json = request.json
+    print(json)
+    print("ddd")
+    data = request.get_json()
+    day_id = data['day_id']
+    print(day_id, "delete")
+
+    # age = data['age']
+    day_trip_draft.pop(int(day_id)-1)
+    print(day_trip_draft)
+    return "ok"
+    # return redirect(url_for("staff_site.new_plan"))
+
+
+@staff_blueprint.route('/staff/contents/plan_detail', methods=['GET', 'POST'])
+def plan_detail():
+    plan_id = request.args.get("plan_id")
+    plan = Combination.query.filter_by(id=plan_id).first()
+    days = []
+    for i in range(0, plan.length):
+        days.append(plan.get_day(i+1))
+    print("okok")
+    return render_template('./staff_site/plan_detail.html', plan=plan, days=days)
+
 
 
 @login_manager.user_loader

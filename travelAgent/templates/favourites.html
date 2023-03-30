@@ -10,6 +10,19 @@
     <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
 
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800|Roboto:400,500,700" rel="stylesheet">
+    <!-- Theme CSS -->
+    <link type="text/css" href="../static/css/theme.css" rel="stylesheet">
+
+<!--    <link type="text/css" href="../static/css/base.css" rel="stylesheet">-->
+
+    <!-- Demo CSS - No need to use these in your project -->
+    <link type="text/css" href="../static/css/demo.css" rel="stylesheet">
+    <link type="text/css" href="../static/css/docs4.6.css" rel="stylesheet">
+    <link type="text/css" href="../static/css/index.css" rel="stylesheet">
+    <link type="text/css" href="../static/css/style.css" rel="stylesheet">
+
     <style>
         /*#sideNav {*/
         /*  position: fixed;*/
@@ -33,22 +46,46 @@
 
 {% block body %}
 
-    <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top navbar-collapse" id="sideNav">
-        <ul class="navbar-nav flex-column">
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#All">All</a></li>
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#Travel packages">Travel packages</a></li>
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#Fly ticket">Fly ticket</a></li>
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#Hotel">Hotel</a></li>
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#Attraction tickets">Attraction tickets</a></li>
-          </ul>
-    </nav>
+    {% block navigation %}
+    {{ super() }}
+
+    <div style="float: bottom; ">
+        <!-- Navigation-->
+
+        <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary navbar-collapse" id="sideNav">
+
+            <button class="navbar-toggler" type="button" data-toggle="dropdown" data-target="#navbar_example_2"
+                    aria-controls="navbar_example_2" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa-solid fa-filter" style="color: #88979d;"></i>
+            </button>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_example_1"
+                    aria-controls="navbar_example_1" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbar_example_2" style="margin: auto">
+                <ul class="navbar-nav flex-column">
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#All">All</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#Travel packages">Travel packages</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#Fly ticket">Fly ticket</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#Hotel">Hotel</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#Attraction tickets">Attraction tickets</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    {% endblock %}
 
     <!-- Page Content-->
     <div class="container-fluid p-0">
+
+
+
         <!-- All-->
         <section class="resume-section" id="All">
             <div class="container mt-4">
+
                 <div class="row">
 
                     <h2 class="mb-5">All</h2>
@@ -364,10 +401,15 @@
         </section>
 
     </div>
+
+{% block footer %}
+{% endblock %}
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
 <!--    <script src="js/scripts.js"></script>-->
+
+
 
 
 {% endblock %}
