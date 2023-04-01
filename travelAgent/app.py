@@ -21,12 +21,16 @@ from travelAgent.views.number import Random_str
 from travelAgent.views.staff_site import staff_blueprint
 from travelAgent.views.detail import detail_blueprint
 from travelAgent.views.favorite import favorite_blueprint
+from travelAgent.views.booking import booking_blueprint
+
 
 # -------------------------------------register blueprints------------------------------------------
 app.register_blueprint(login_blueprint)
 app.register_blueprint(staff_blueprint)
 app.register_blueprint(detail_blueprint)
 app.register_blueprint(favorite_blueprint)
+app.register_blueprint(booking_blueprint)
+
 
 # -------------------------------------create a logger------------------------------------------
 logger = logging.getLogger(__name__)  # create a logger
