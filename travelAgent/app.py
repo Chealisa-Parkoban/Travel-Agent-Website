@@ -71,14 +71,16 @@ def contact_us():
 def homepage():
     logger.info('Entered the HOME page')
     Sets = Combination.query.all()
+    print("homepage")
     return render_template("homepage.html", Sets=Sets)
 
 
 @app.route('/homepage2', methods=['GET', 'POST'])
 def homepage2():
     logger.info('Entered the HOME page')
-    # Sets = Combination.query.all() , Sets=Sets
-    return render_template("homepage2.html")
+    Sets = Combination.query.all()
+    print("homepage2")
+    return render_template("homepage2.html", Sets=Sets)
 
 @app.route('/book', methods=['GET', 'POST'])
 def book():
@@ -196,84 +198,6 @@ def translate(q):
             httpClient.close()
 
 
-def showSetDetails(ID):
-    set = db.session.query(Combination).filter(Combination.id == ID).first()
-
-    day1_id = set.day1
-    print(day1_id)
-
-    day1 = db.session.query(Day).filter(Day.id == day1_id).first()
-    day1_att_id = day1.attraction_id
-    day1_acc_id = day1.accommodation_id
-    day1_tra_id = day1.traffic_id
-    day1_attraction = db.session.query(Target).filter(Target.id == day1_att_id).first()
-    day1_accommodation = db.session.query(Target).filter(Target.id == day1_acc_id).first()
-    day1_traffic = db.session.query(Target).filter(Target.id == day1_tra_id).first()
-
-    # day2的各种数据
-    day2_id = set.day2
-    day2 = db.session.query(Day).filter(Day.id == day2_id).first()
-    day2_att_id = day2.attraction_id
-    day2_acc_id = day2.accommodation_id
-    day2_tra_id = day2.traffic_id
-    day2_attraction = db.session.query(Target).filter(Target.id == day2_att_id).first()
-    day2_accommodation = db.session.query(Target).filter(Target.id == day2_acc_id).first()
-    day2_traffic = db.session.query(Target).filter(Target.id == day2_tra_id).first()
-
-    # day3的各种数据
-    day3_id = set.day3
-    day3 = db.session.query(Day).filter(Day.id == day3_id).first()
-    day3_att_id = day3.attraction_id
-    day3_acc_id = day3.accommodation_id
-    day3_tra_id = day3.traffic_id
-    day3_attraction = db.session.query(Target).filter(Target.id == day3_att_id).first()
-    day3_accommodation = db.session.query(Target).filter(Target.id == day3_acc_id).first()
-    day3_traffic = db.session.query(Target).filter(Target.id == day3_tra_id).first()
-
-    day4_id = set.day4
-    day4 = db.session.query(Day).filter(Day.id == day4_id).first()
-    day4_att_id = day4.attraction_id
-    day4_acc_id = day4.accommodation_id
-    day4_tra_id = day4.traffic_id
-    day4_attraction = db.session.query(Target).filter(Target.id == day4_att_id).first()
-    day4_accommodation = db.session.query(Target).filter(Target.id == day4_acc_id).first()
-    day4_traffic = db.session.query(Target).filter(Target.id == day4_tra_id).first()
-
-    day5_id = set.day5
-    day5 = db.session.query(Day).filter(Day.id == day5_id).first()
-    day5_att_id = day5.attraction_id
-    day5_acc_id = day5.accommodation_id
-    day5_tra_id = day5.traffic_id
-    day5_attraction = db.session.query(Target).filter(Target.id == day5_att_id).first()
-    day5_accommodation = db.session.query(Target).filter(Target.id == day5_acc_id).first()
-    day5_traffic = db.session.query(Target).filter(Target.id == day5_tra_id).first()
-
-    day6_id = set.day6
-    day6 = db.session.query(Day).filter(Day.id == day6_id).first()
-    day6_att_id = day6.attraction_id
-    day6_acc_id = day6.accommodation_id
-    day6_tra_id = day6.traffic_id
-    day6_attraction = db.session.query(Target).filter(Target.id == day6_att_id).first()
-    day6_accommodation = db.session.query(Target).filter(Target.id == day6_acc_id).first()
-    day6_traffic = db.session.query(Target).filter(Target.id == day6_tra_id).first()
-
-    day7_id = set.day7
-    day7 = db.session.query(Day).filter(Day.id == day7_id).first()
-    day7_att_id = day7.attraction_id
-    day7_acc_id = day7.accommodation_id
-    day7_tra_id = day7.traffic_id
-    day7_attraction = db.session.query(Target).filter(Target.id == day7_att_id).first()
-    day7_accommodation = db.session.query(Target).filter(Target.id == day7_acc_id).first()
-    day7_traffic = db.session.query(Target).filter(Target.id == day7_tra_id).first()
-
-    # 细节界面
-    return render_template("test.html", day1_attraction=day1_attraction, day1_accommodation=day1_accommodation, day1_traffic=day1_traffic,
-                           day2_attraction=day2_attraction, day2_accommodation=day2_accommodation, day2_traffic=day2_traffic,
-                           day3_attraction=day3_attraction, day3_accommodation=day3_accommodation, day3_traffic=day3_traffic,
-                           day4_attraction=day4_attraction, day4_accommodation=day4_accommodation, day4_traffic=day4_traffic,
-                           day5_attraction=day5_attraction, day5_accommodation=day5_accommodation, day5_traffic=day5_traffic,
-                           day6_attraction=day6_attraction, day6_accommodation=day6_accommodation, day6_traffic=day6_traffic,
-                           day7_attraction=day7_attraction, day7_accommodation=day7_accommodation, day7_traffic=day7_traffic)
 
 
 
