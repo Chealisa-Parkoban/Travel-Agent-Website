@@ -181,6 +181,7 @@ class Combination(db.Model):
 
 # combination record, staff can operate and store data in this table
 class RecordC(db.Model):
+    __tablename__ = "record_c"
     __table_args__ = {'extend_existing': True}
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
@@ -244,6 +245,7 @@ class Collect(db.Model):
 
 # Comments on combination
 class CommentC(db.Model):
+    __tablename__ = "comment_c"
     __table_args__ = {'extend_existing': True}
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)

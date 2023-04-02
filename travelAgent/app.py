@@ -80,6 +80,10 @@ def homepage2():
     # Sets = Combination.query.all() , Sets=Sets
     return render_template("homepage2.html")
 
+@app.route('/book', methods=['GET', 'POST'])
+def book():
+    logger.info('Entered the BOOK page')
+    return render_template("book.html")
 
 @app.route('/profile')
 def profile():
@@ -114,23 +118,21 @@ def order_list():
 
 @app.route('/travelRoutesDetail', methods=['GET', 'POST'])
 def travel_routes_detail():
-
     # Create a unique id for the image
     id = Random_str().create_uuid()
-    print(CommentC.query.all())
+    # print(CommentC.query.all())
     logger.info('Entered the TRAVEL ROUTE DETAIL page')
     comment_form = CommentForm(request.form)
     image_form = ImageForm(request.files)
     if request.method == 'POST':
-        if comment_form.validate_on_submit() :
-    
+        if comment_form.validate_on_submit():
+
             # Images storage path
             file_dir = os.path.join(basedir, "static/upload/")
             # Getting the data transferred from the front end
             files = request.files.getlist('img')  # Gets the value of myfiles from ajax, of type list
             path = ""
-    
-    
+
             for img in files:
                 # Extract the suffix of the uploaded image and
                 # Name the image after the commodity id and store it in the specific path
@@ -142,7 +144,7 @@ def travel_routes_detail():
                     new_filename = id + '.' + ext
                     img.save(os.path.join(file_dir, new_filename))
                     path = "../static/upload/" + new_filename
-    
+
             # default: like=0 path=""
             comment = CommentC(user_id=current_user.id, username=current_user.get_username(), combination_id=1,score=comment_form.score.data, content=comment_form.comment.data,image = path, time=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
             db.session.add(comment)
@@ -157,7 +159,6 @@ def travel_routes_detail():
 
 # 翻译功能 (auto - 英)
 def translate(q):
-
     # 百度appid和密钥需要通过注册百度【翻译开放平台】账号后获得
     appid = '20230228001579285'  # 填写你的appid
     secretKey = 'i_i50GKeYlqZOVY7Q8HS'  # 填写你的密钥
@@ -196,12 +197,10 @@ def translate(q):
 
 
 def showSetDetails(ID):
-
     set = db.session.query(Combination).filter(Combination.id == ID).first()
 
     day1_id = set.day1
     print(day1_id)
-
 
     day1 = db.session.query(Day).filter(Day.id == day1_id).first()
     day1_att_id = day1.attraction_id
@@ -210,7 +209,6 @@ def showSetDetails(ID):
     day1_attraction = db.session.query(Target).filter(Target.id == day1_att_id).first()
     day1_accommodation = db.session.query(Target).filter(Target.id == day1_acc_id).first()
     day1_traffic = db.session.query(Target).filter(Target.id == day1_tra_id).first()
-
 
     # day2的各种数据
     day2_id = set.day2
@@ -221,7 +219,6 @@ def showSetDetails(ID):
     day2_attraction = db.session.query(Target).filter(Target.id == day2_att_id).first()
     day2_accommodation = db.session.query(Target).filter(Target.id == day2_acc_id).first()
     day2_traffic = db.session.query(Target).filter(Target.id == day2_tra_id).first()
-
 
     # day3的各种数据
     day3_id = set.day3
@@ -285,4 +282,3 @@ if __name__ == '__main__':
     # showSetDetails(1)
     logger.info('The Website Starts Running!')
     app.run(debug=True, port=5000)
-
