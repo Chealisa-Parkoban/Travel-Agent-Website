@@ -42,11 +42,11 @@
     .button:hover{
         border-radius: 8px; /* round border */
         color: white; /* text color when hover*/
-        background: #a4c2f4;
-        box-shadow: 0 0 5px 0 #a4c2f4, /* looks like button glows */
-                    0 0 25px 0 #a4c2f4,
-                    0 0 50px 0 #a4c2f4,
-                    0 0 100px 0 #a4c2f4;
+        background: rgba(233, 253, 255, 0.7);
+        box-shadow: 0 0 5px 0 rgba(233, 253, 255, 0.7), /* looks like button glows */
+                    0 0 25px 0 rgba(233, 253, 255, 0.7),
+                    0 0 50px 0 rgba(233, 253, 255, 0.7),
+                    0 0 100px 0 rgba(233, 253, 255, 0.7);
         transition: all 1s linear; /* slow motion */
     }
 
@@ -95,8 +95,8 @@
                         <a class="dropdown-item" href="{{ url_for('account.sign_up') }}">Register</a>
                         {% else %}
                         <a class="dropdown-item" href="">Hi, {{ current_user.username }}</a>
-                        <a class="dropdown-item" href="{{ url_for("homepage") }}">Homepage</a>
-                        <a class="dropdown-item" href="{{ url_for("about") }}">About us</a>
+                        <a class="dropdown-item" href="{{ url_for('homepage') }}">Homepage</a>
+                        <a class="dropdown-item" href="{{ url_for('about') }}">About us</a>
                         <a class="dropdown-item" href="{{ url_for('account.logout') }}">Logout</a>
                         {% endif %}
                         <a class="dropdown-item" href="{{ url_for('contact_us') }}">Contact</a>
@@ -114,19 +114,19 @@
                 <div class="dropdown-divider d-lg-none my-4"></div>
                 <h6 class="dropdown-header font-weight-600 d-lg-none px-0">Social Media</h6>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon" href="https://instagram.com/webpixelsofficial/" target="_blank"><i
+                    <a class="nav-link nav-link-icon" href="https://instagram.com/" target="_blank"><i
                             class="fab fa-instagram"></i><span class="ml-2 d-lg-none">Instagram</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon" href="https://web.facebook.com/webpixels" target="_blank"><i
+                    <a class="nav-link nav-link-icon" href="https://web.facebook.com/s" target="_blank"><i
                             class="fab fa-facebook"></i><span class="ml-2 d-lg-none">Facebook</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon" href="https://dribbble.com/webpixels" target="_blank"><i
+                    <a class="nav-link nav-link-icon" href="https://dribbble.com/" target="_blank"><i
                             class="fab fa-dribbble"></i><span class="ml-2 d-lg-none">Dribbble</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon" href="https://github.com/webpixels" target="_blank"><i
+                    <a class="nav-link nav-link-icon" href="https://github.com/" target="_blank"><i
                             class="fab fa-github"></i><span class="ml-2 d-lg-none">Github</span></a>
                 </li>
             </ul>
@@ -184,7 +184,7 @@
                                 <div class="d-flex align-items-start">
                                     <div class="icon icon-lg">
                                         {#                                        <i class="fab fa-twitter text-white"></i>#}
-                                        <i class="fa-solid fa-landmark"></i>
+                                        <i class="fa-solid fa-landmark" style="color: white"></i>
                                         {#                                        <img src="../static/images/icons/plane.png" alt="plane" height="100%" width="100%">#}
                                     </div>
                                     <div class="icon-text">
@@ -223,7 +223,7 @@
                                 <div class="d-flex align-items-start">
                                     <div class="icon icon-lg">
                                         {#                                        <i class="fas fa-th-large text-white"></i>#}
-                                        <i class="fa-solid fa-car-side"></i>
+                                        <i class="fa-solid fa-car-side" style="color: white"></i>
                                     </div>
                                     <div class="icon-text">
                                         <h3 class="heading text-white h4">Provide convenient transportation</h3>
