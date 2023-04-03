@@ -108,12 +108,13 @@ div#bs-example-navbar2-collapse-1 {
     padding: 0px 0px;
 }
 .banner-section {
-  background-image: url("../images/backgrounds/bg.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 100vh;
-  text-align: center;
+  /*background-image: url("../images/backgrounds/bg.jpeg");*/
+    background-image: url('../images/backgrounds/img-1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    text-align: center;
 }
 .tlinks{text-indent:-9999px;height:0;line-height:0;font-size:0;overflow:hidden;}
 .banner-grids {
