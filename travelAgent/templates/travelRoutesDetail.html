@@ -40,7 +40,7 @@
                             <button class="btn btn-info" id="show"><a href="{{ url_for("booking.addBooking", combination_id = combination_id) }}">Book Now!</a></button>
                         </div>
                         <div class="col-md-6 d-none d-md-block pr-0"
-                             style="background-size:cover;background-image:url(../static/images/sample_pic/guilin.png);"></div>
+                             style="background-size:cover;background-image:url({{ set.image }});"></div>
                     </div>
                 </div>
             </div>
