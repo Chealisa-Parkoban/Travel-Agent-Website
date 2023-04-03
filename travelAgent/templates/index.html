@@ -81,7 +81,7 @@
 
                         {%  if not current_user.is_authenticated %}
                         <a class="dropdown-item" href="{{ url_for('homepage') }}">Homepage</a>
-                        <a class="dropdown-item" href="{{ url_for('homepage2') }}">Hoempage2</a>
+{#                        <a class="dropdown-item" href="{{ url_for('homepage2') }}">Hoempage2</a>#}
                         <a class="dropdown-item" href="{{ url_for('about') }}">About us</a>
                         <a class="dropdown-item" href="{{ url_for('account.login') }}">Sign in</a>
                         <a class="dropdown-item" href="{{ url_for('account.sign_up') }}">Register</a>
@@ -154,7 +154,7 @@
                                 <br/><br/><br/>
 
 <!--                                主页按钮，跳转到homepage-->
-                                <a class="button" href="{{ url_for('homepage2') }}"> START </a>
+                                <a class="button" href="{{ url_for('homepage') }}"> START </a>
 
                             </div>
                         </div>

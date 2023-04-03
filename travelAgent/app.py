@@ -71,16 +71,16 @@ def contact_us():
 def homepage():
     logger.info('Entered the HOME page')
     Sets = Combination.query.all()
-    print("homepage")
-    return render_template("homepage.html", Sets=Sets)
-
-
-@app.route('/homepage2', methods=['GET', 'POST'])
-def homepage2():
-    logger.info('Entered the HOME page')
-    Sets = Combination.query.all()
     print("homepage2")
     return render_template("homepage2.html", Sets=Sets)
+
+
+# @app.route('/homepage2', methods=['GET', 'POST'])
+# def homepage2():
+#     logger.info('Entered the HOME page')
+#     Sets = Combination.query.all()
+#     print("homepage2")
+#     return render_template("homepage2.html", Sets=Sets)
 
 @app.route('/book', methods=['GET', 'POST'])
 def book():
