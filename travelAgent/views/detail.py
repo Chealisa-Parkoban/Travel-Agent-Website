@@ -19,7 +19,7 @@ import travelAgent
 from travelAgent import db
 from travelAgent import app
 from travelAgent.forms import CommentForm, ImageForm
-from travelAgent.models import CommentC, Comment, Combination, Destination, Day, Target
+from travelAgent.models import CommentC, Comment, Combination, Destination, Day, Target, RecordC
 from travelAgent.views.login_handler import login_blueprint, current_user
 from travelAgent.views.number import Random_str
 
@@ -438,3 +438,423 @@ def showSetDetails(set_id):
 
     return render_template("travelRoutesDetail.html", length=length, set=set, combination_id=ID,
                                accomodations=accomodations, attractions=attractions, traffic=traffic)
+
+
+# 展示booking细节的函数
+@detail_blueprint.route("/showBookingDetail/<booking_id>")
+def showBookingDetail(booking_id):
+    booking = db.session.query(RecordC).filter(RecordC.id == booking_id).first()
+    combination_id = booking.combination_id
+
+    combination = db.session.query(Combination).filter(Combination.id == combination_id).first()
+    length = combination.length
+
+    attractions=[]
+    accomodations=[]
+    traffic=[]
+
+
+
+    if length == 1:
+        day1_id = set.day1
+        day1 = db.session.query(Day).filter(Day.id == day1_id).first()
+        day1_att_id = day1.attraction_id
+        day1_acc_id = day1.accommodation_id
+        day1_tra_id = day1.traffic_id
+        day1_attraction = db.session.query(Target).filter(Target.id == day1_att_id).first()
+        day1_accommodation = db.session.query(Target).filter(Target.id == day1_acc_id).first()
+        day1_traffic = db.session.query(Target).filter(Target.id == day1_tra_id).first()
+
+        attractions.append(day1_attraction)
+
+
+        accomodations.append(day1_accommodation)
+
+
+        traffic.append(day1_traffic)
+
+
+    elif length == 2:
+        day1_id = set.day1
+        day1 = db.session.query(Day).filter(Day.id == day1_id).first()
+        day1_att_id = day1.attraction_id
+        day1_acc_id = day1.accommodation_id
+        day1_tra_id = day1.traffic_id
+        day1_attraction = db.session.query(Target).filter(Target.id == day1_att_id).first()
+        day1_accommodation = db.session.query(Target).filter(Target.id == day1_acc_id).first()
+        day1_traffic = db.session.query(Target).filter(Target.id == day1_tra_id).first()
+
+        # day2的各种数据
+        day2_id = set.day2
+        day2 = db.session.query(Day).filter(Day.id == day2_id).first()
+        day2_att_id = day2.attraction_id
+        day2_acc_id = day2.accommodation_id
+        day2_tra_id = day2.traffic_id
+        day2_attraction = db.session.query(Target).filter(Target.id == day2_att_id).first()
+        day2_accommodation = db.session.query(Target).filter(Target.id == day2_acc_id).first()
+        day2_traffic = db.session.query(Target).filter(Target.id == day2_tra_id).first()
+
+        attractions.append(day1_attraction)
+        attractions.append(day2_attraction)
+
+
+        accomodations.append(day1_accommodation)
+        accomodations.append(day2_accommodation)
+
+
+        traffic.append(day1_traffic)
+        traffic.append(day2_traffic)
+
+
+    elif length == 3:
+        day1_id = set.day1
+        day1 = db.session.query(Day).filter(Day.id == day1_id).first()
+        day1_att_id = day1.attraction_id
+        day1_acc_id = day1.accommodation_id
+        day1_tra_id = day1.traffic_id
+        day1_attraction = db.session.query(Target).filter(Target.id == day1_att_id).first()
+        day1_accommodation = db.session.query(Target).filter(Target.id == day1_acc_id).first()
+        day1_traffic = db.session.query(Target).filter(Target.id == day1_tra_id).first()
+
+        # day2的各种数据
+        day2_id = set.day2
+        day2 = db.session.query(Day).filter(Day.id == day2_id).first()
+        day2_att_id = day2.attraction_id
+        day2_acc_id = day2.accommodation_id
+        day2_tra_id = day2.traffic_id
+        day2_attraction = db.session.query(Target).filter(Target.id == day2_att_id).first()
+        day2_accommodation = db.session.query(Target).filter(Target.id == day2_acc_id).first()
+        day2_traffic = db.session.query(Target).filter(Target.id == day2_tra_id).first()
+
+        # day3的各种数据
+        day3_id = set.day3
+        day3 = db.session.query(Day).filter(Day.id == day3_id).first()
+        day3_att_id = day3.attraction_id
+        day3_acc_id = day3.accommodation_id
+        day3_tra_id = day3.traffic_id
+        day3_attraction = db.session.query(Target).filter(Target.id == day3_att_id).first()
+        day3_accommodation = db.session.query(Target).filter(Target.id == day3_acc_id).first()
+        day3_traffic = db.session.query(Target).filter(Target.id == day3_tra_id).first()
+
+        attractions.append(day1_attraction)
+        attractions.append(day2_attraction)
+        attractions.append(day3_attraction)
+
+        accomodations.append(day1_accommodation)
+        accomodations.append(day2_accommodation)
+        accomodations.append(day3_accommodation)
+
+        traffic.append(day1_traffic)
+        traffic.append(day2_traffic)
+        traffic.append(day3_traffic)
+
+
+    elif length == 4:
+        day1_id = set.day1
+        day1 = db.session.query(Day).filter(Day.id == day1_id).first()
+        day1_att_id = day1.attraction_id
+        day1_acc_id = day1.accommodation_id
+        day1_tra_id = day1.traffic_id
+        day1_attraction = db.session.query(Target).filter(Target.id == day1_att_id).first()
+        day1_accommodation = db.session.query(Target).filter(Target.id == day1_acc_id).first()
+        day1_traffic = db.session.query(Target).filter(Target.id == day1_tra_id).first()
+
+        # day2的各种数据
+        day2_id = set.day2
+        day2 = db.session.query(Day).filter(Day.id == day2_id).first()
+        day2_att_id = day2.attraction_id
+        day2_acc_id = day2.accommodation_id
+        day2_tra_id = day2.traffic_id
+        day2_attraction = db.session.query(Target).filter(Target.id == day2_att_id).first()
+        day2_accommodation = db.session.query(Target).filter(Target.id == day2_acc_id).first()
+        day2_traffic = db.session.query(Target).filter(Target.id == day2_tra_id).first()
+
+        # day3的各种数据
+        day3_id = set.day3
+        day3 = db.session.query(Day).filter(Day.id == day3_id).first()
+        day3_att_id = day3.attraction_id
+        day3_acc_id = day3.accommodation_id
+        day3_tra_id = day3.traffic_id
+        day3_attraction = db.session.query(Target).filter(Target.id == day3_att_id).first()
+        day3_accommodation = db.session.query(Target).filter(Target.id == day3_acc_id).first()
+        day3_traffic = db.session.query(Target).filter(Target.id == day3_tra_id).first()
+
+        day4_id = set.day4
+        day4 = db.session.query(Day).filter(Day.id == day4_id).first()
+        day4_att_id = day4.attraction_id
+        day4_acc_id = day4.accommodation_id
+        day4_tra_id = day4.traffic_id
+        day4_attraction = db.session.query(Target).filter(Target.id == day4_att_id).first()
+        day4_accommodation = db.session.query(Target).filter(Target.id == day4_acc_id).first()
+        day4_traffic = db.session.query(Target).filter(Target.id == day4_tra_id).first()
+
+        attractions.append(day1_attraction)
+        attractions.append(day2_attraction)
+        attractions.append(day3_attraction)
+        attractions.append(day4_attraction)
+
+
+        accomodations.append(day1_accommodation)
+        accomodations.append(day2_accommodation)
+        accomodations.append(day3_accommodation)
+        accomodations.append(day4_accommodation)
+
+
+        traffic.append(day1_traffic)
+        traffic.append(day2_traffic)
+        traffic.append(day3_traffic)
+        traffic.append(day4_traffic)
+
+    elif length == 5:
+
+        day1_id = set.day1
+        day1 = db.session.query(Day).filter(Day.id == day1_id).first()
+        day1_att_id = day1.attraction_id
+        day1_acc_id = day1.accommodation_id
+        day1_tra_id = day1.traffic_id
+        day1_attraction = db.session.query(Target).filter(Target.id == day1_att_id).first()
+        day1_accommodation = db.session.query(Target).filter(Target.id == day1_acc_id).first()
+        day1_traffic = db.session.query(Target).filter(Target.id == day1_tra_id).first()
+
+        # day2的各种数据
+        day2_id = set.day2
+        day2 = db.session.query(Day).filter(Day.id == day2_id).first()
+        day2_att_id = day2.attraction_id
+        day2_acc_id = day2.accommodation_id
+        day2_tra_id = day2.traffic_id
+        day2_attraction = db.session.query(Target).filter(Target.id == day2_att_id).first()
+        day2_accommodation = db.session.query(Target).filter(Target.id == day2_acc_id).first()
+        day2_traffic = db.session.query(Target).filter(Target.id == day2_tra_id).first()
+
+        # day3的各种数据
+        day3_id = set.day3
+        day3 = db.session.query(Day).filter(Day.id == day3_id).first()
+        day3_att_id = day3.attraction_id
+        day3_acc_id = day3.accommodation_id
+        day3_tra_id = day3.traffic_id
+        day3_attraction = db.session.query(Target).filter(Target.id == day3_att_id).first()
+        day3_accommodation = db.session.query(Target).filter(Target.id == day3_acc_id).first()
+        day3_traffic = db.session.query(Target).filter(Target.id == day3_tra_id).first()
+
+        day4_id = set.day4
+        day4 = db.session.query(Day).filter(Day.id == day4_id).first()
+        day4_att_id = day4.attraction_id
+        day4_acc_id = day4.accommodation_id
+        day4_tra_id = day4.traffic_id
+        day4_attraction = db.session.query(Target).filter(Target.id == day4_att_id).first()
+        day4_accommodation = db.session.query(Target).filter(Target.id == day4_acc_id).first()
+        day4_traffic = db.session.query(Target).filter(Target.id == day4_tra_id).first()
+
+        day5_id = set.day5
+        day5 = db.session.query(Day).filter(Day.id == day5_id).first()
+        day5_att_id = day5.attraction_id
+        day5_acc_id = day5.accommodation_id
+        day5_tra_id = day5.traffic_id
+        day5_attraction = db.session.query(Target).filter(Target.id == day5_att_id).first()
+        day5_accommodation = db.session.query(Target).filter(Target.id == day5_acc_id).first()
+        day5_traffic = db.session.query(Target).filter(Target.id == day5_tra_id).first()
+
+        attractions.append(day1_attraction)
+        attractions.append(day2_attraction)
+        attractions.append(day3_attraction)
+        attractions.append(day4_attraction)
+        attractions.append(day5_attraction)
+
+
+        accomodations.append(day1_accommodation)
+        accomodations.append(day2_accommodation)
+        accomodations.append(day3_accommodation)
+        accomodations.append(day4_accommodation)
+        accomodations.append(day5_accommodation)
+
+        traffic.append(day1_traffic)
+        traffic.append(day2_traffic)
+        traffic.append(day3_traffic)
+        traffic.append(day4_traffic)
+        traffic.append(day5_traffic)
+
+
+
+
+    elif length == 6:
+
+        day1_id = set.day1
+        day1 = db.session.query(Day).filter(Day.id == day1_id).first()
+        day1_att_id = day1.attraction_id
+        day1_acc_id = day1.accommodation_id
+        day1_tra_id = day1.traffic_id
+        day1_attraction = db.session.query(Target).filter(Target.id == day1_att_id).first()
+        day1_accommodation = db.session.query(Target).filter(Target.id == day1_acc_id).first()
+        day1_traffic = db.session.query(Target).filter(Target.id == day1_tra_id).first()
+
+        # day2的各种数据
+        day2_id = set.day2
+        day2 = db.session.query(Day).filter(Day.id == day2_id).first()
+        day2_att_id = day2.attraction_id
+        day2_acc_id = day2.accommodation_id
+        day2_tra_id = day2.traffic_id
+        day2_attraction = db.session.query(Target).filter(Target.id == day2_att_id).first()
+        day2_accommodation = db.session.query(Target).filter(Target.id == day2_acc_id).first()
+        day2_traffic = db.session.query(Target).filter(Target.id == day2_tra_id).first()
+
+        # day3的各种数据
+        day3_id = set.day3
+        day3 = db.session.query(Day).filter(Day.id == day3_id).first()
+        day3_att_id = day3.attraction_id
+        day3_acc_id = day3.accommodation_id
+        day3_tra_id = day3.traffic_id
+        day3_attraction = db.session.query(Target).filter(Target.id == day3_att_id).first()
+        day3_accommodation = db.session.query(Target).filter(Target.id == day3_acc_id).first()
+        day3_traffic = db.session.query(Target).filter(Target.id == day3_tra_id).first()
+
+        day4_id = set.day4
+        day4 = db.session.query(Day).filter(Day.id == day4_id).first()
+        day4_att_id = day4.attraction_id
+        day4_acc_id = day4.accommodation_id
+        day4_tra_id = day4.traffic_id
+        day4_attraction = db.session.query(Target).filter(Target.id == day4_att_id).first()
+        day4_accommodation = db.session.query(Target).filter(Target.id == day4_acc_id).first()
+        day4_traffic = db.session.query(Target).filter(Target.id == day4_tra_id).first()
+
+        day5_id = set.day5
+        day5 = db.session.query(Day).filter(Day.id == day5_id).first()
+        day5_att_id = day5.attraction_id
+        day5_acc_id = day5.accommodation_id
+        day5_tra_id = day5.traffic_id
+        day5_attraction = db.session.query(Target).filter(Target.id == day5_att_id).first()
+        day5_accommodation = db.session.query(Target).filter(Target.id == day5_acc_id).first()
+        day5_traffic = db.session.query(Target).filter(Target.id == day5_tra_id).first()
+
+        day6_id = set.day6
+        day6 = db.session.query(Day).filter(Day.id == day6_id).first()
+        day6_att_id = day6.attraction_id
+        day6_acc_id = day6.accommodation_id
+        day6_tra_id = day6.traffic_id
+        day6_attraction = db.session.query(Target).filter(Target.id == day6_att_id).first()
+        day6_accommodation = db.session.query(Target).filter(Target.id == day6_acc_id).first()
+        day6_traffic = db.session.query(Target).filter(Target.id == day6_tra_id).first()
+
+        attractions.append(day1_attraction)
+        attractions.append(day2_attraction)
+        attractions.append(day3_attraction)
+        attractions.append(day4_attraction)
+        attractions.append(day5_attraction)
+        attractions.append(day6_attraction)
+
+        accomodations.append(day1_accommodation)
+        accomodations.append(day2_accommodation)
+        accomodations.append(day3_accommodation)
+        accomodations.append(day4_accommodation)
+        accomodations.append(day5_accommodation)
+        accomodations.append(day6_accommodation)
+
+        traffic.append(day1_traffic)
+        traffic.append(day2_traffic)
+        traffic.append(day3_traffic)
+        traffic.append(day4_traffic)
+        traffic.append(day5_traffic)
+        traffic.append(day6_traffic)
+
+
+    else:
+
+        print("else!!!")
+
+        day1_id = set.day1
+        day1 = db.session.query(Day).filter(Day.id == day1_id).first()
+        day1_att_id = day1.attraction_id
+        day1_acc_id = day1.accommodation_id
+        day1_tra_id = day1.traffic_id
+        day1_attraction = db.session.query(Target).filter(Target.id == day1_att_id).first()
+        day1_accommodation = db.session.query(Target).filter(Target.id == day1_acc_id).first()
+        day1_traffic = db.session.query(Target).filter(Target.id == day1_tra_id).first()
+
+
+        # day2的各种数据
+        day2_id = set.day2
+        day2 = db.session.query(Day).filter(Day.id == day2_id).first()
+        day2_att_id = day2.attraction_id
+        day2_acc_id = day2.accommodation_id
+        day2_tra_id = day2.traffic_id
+        day2_attraction = db.session.query(Target).filter(Target.id == day2_att_id).first()
+        day2_accommodation = db.session.query(Target).filter(Target.id == day2_acc_id).first()
+        day2_traffic = db.session.query(Target).filter(Target.id == day2_tra_id).first()
+
+
+        # day3的各种数据
+        day3_id = set.day3
+        day3 = db.session.query(Day).filter(Day.id == day3_id).first()
+        day3_att_id = day3.attraction_id
+        day3_acc_id = day3.accommodation_id
+        day3_tra_id = day3.traffic_id
+        day3_attraction = db.session.query(Target).filter(Target.id == day3_att_id).first()
+        day3_accommodation = db.session.query(Target).filter(Target.id == day3_acc_id).first()
+        day3_traffic = db.session.query(Target).filter(Target.id == day3_tra_id).first()
+
+        day4_id = set.day4
+        day4 = db.session.query(Day).filter(Day.id == day4_id).first()
+        day4_att_id = day4.attraction_id
+        day4_acc_id = day4.accommodation_id
+        day4_tra_id = day4.traffic_id
+        day4_attraction = db.session.query(Target).filter(Target.id == day4_att_id).first()
+        day4_accommodation = db.session.query(Target).filter(Target.id == day4_acc_id).first()
+        day4_traffic = db.session.query(Target).filter(Target.id == day4_tra_id).first()
+
+        day5_id = set.day5
+        day5 = db.session.query(Day).filter(Day.id == day5_id).first()
+        day5_att_id = day5.attraction_id
+        day5_acc_id = day5.accommodation_id
+        day5_tra_id = day5.traffic_id
+        day5_attraction = db.session.query(Target).filter(Target.id == day5_att_id).first()
+        day5_accommodation = db.session.query(Target).filter(Target.id == day5_acc_id).first()
+        day5_traffic = db.session.query(Target).filter(Target.id == day5_tra_id).first()
+
+        day6_id = set.day6
+        day6 = db.session.query(Day).filter(Day.id == day6_id).first()
+        day6_att_id = day6.attraction_id
+        day6_acc_id = day6.accommodation_id
+        day6_tra_id = day6.traffic_id
+        day6_attraction = db.session.query(Target).filter(Target.id == day6_att_id).first()
+        day6_accommodation = db.session.query(Target).filter(Target.id == day6_acc_id).first()
+        day6_traffic = db.session.query(Target).filter(Target.id == day6_tra_id).first()
+
+        day7_id = set.day7
+        day7 = db.session.query(Day).filter(Day.id == day7_id).first()
+        day7_att_id = day7.attraction_id
+        day7_acc_id = day7.accommodation_id
+        day7_tra_id = day7.traffic_id
+        day7_attraction = db.session.query(Target).filter(Target.id == day7_att_id).first()
+        day7_accommodation = db.session.query(Target).filter(Target.id == day7_acc_id).first()
+        day7_traffic = db.session.query(Target).filter(Target.id == day7_tra_id).first()
+
+        attractions.append(day1_attraction)
+        attractions.append(day2_attraction)
+        attractions.append(day3_attraction)
+        attractions.append(day4_attraction)
+        attractions.append(day5_attraction)
+        attractions.append(day6_attraction)
+        attractions.append(day7_attraction)
+
+        accomodations.append(day1_accommodation)
+        accomodations.append(day2_accommodation)
+        accomodations.append(day3_accommodation)
+        accomodations.append(day4_accommodation)
+        accomodations.append(day5_accommodation)
+        accomodations.append(day6_accommodation)
+        accomodations.append(day7_accommodation)
+
+        traffic.append(day1_traffic)
+        traffic.append(day2_traffic)
+        traffic.append(day3_traffic)
+        traffic.append(day4_traffic)
+        traffic.append(day5_traffic)
+        traffic.append(day6_traffic)
+        traffic.append(day7_traffic)
+
+
+
+    return render_template("", length=length, combination=combination, booking=booking,
+                               accomodations=accomodations, attractions=attractions, traffic=traffic)
+
+
+
