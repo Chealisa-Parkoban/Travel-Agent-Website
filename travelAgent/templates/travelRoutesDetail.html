@@ -73,14 +73,16 @@
                             <img height="40" src="../static/images/icons/location-dot-solid.svg">
                             <div class="pl-3">
                                 <h2 class="mb-2 h6 font-weight-bold">
-                                    <a class="text-dark" href="./article.html">Nasa's IceSat space laser makes height
-                                        maps
-                                        of Earth</a>
+                                {% for i in range(0,accomodations|length) %}
+                                    <a class="text-dark" href="./article.html">
+                                        {{accomodations[i].name}}
+                                    </a>
+                                {% endfor %}
                                 </h2>
                                 <div class="card-text text-muted small">
                                     Jake Bittle in LOVE/HATE
                                 </div>
-                                <small class="text-muted">Dec 12 &middot; 5 min read</small>
+                                <small class="text-muted">Dec 12 &middot; 5 min read</small>accomodations
                             </div>
                         </div>
 {#                        {% endfor %}#}

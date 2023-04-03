@@ -32,6 +32,11 @@ def showSetDetails(set_id):
     ID = set_id
     length = set.length
     print(length)
+    attractions=[]
+    accomodations=[]
+    traffic=[]
+
+
 
     if length == 1:
         day1_id = set.day1
@@ -42,8 +47,16 @@ def showSetDetails(set_id):
         day1_attraction = db.session.query(Target).filter(Target.id == day1_att_id).first()
         day1_accommodation = db.session.query(Target).filter(Target.id == day1_acc_id).first()
         day1_traffic = db.session.query(Target).filter(Target.id == day1_tra_id).first()
-        return render_template("travelRoutesDetail.html", set=set, combination_id=ID, day1_attraction=day1_attraction,
-                               day1_accommodation=day1_accommodation, day1_traffic=day1_traffic)
+
+        attractions.append(day1_attraction)
+
+
+        accomodations.append(day1_accommodation)
+
+
+        traffic.append(day1_traffic)
+
+
     elif length == 2:
         day1_id = set.day1
         day1 = db.session.query(Day).filter(Day.id == day1_id).first()
@@ -64,10 +77,17 @@ def showSetDetails(set_id):
         day2_accommodation = db.session.query(Target).filter(Target.id == day2_acc_id).first()
         day2_traffic = db.session.query(Target).filter(Target.id == day2_tra_id).first()
 
-        return render_template("travelRoutesDetail.html", set=set, combination_id=ID, day1_attraction=day1_attraction,
-                               day1_accommodation=day1_accommodation, day1_traffic=day1_traffic,
-                               day2_attraction=day2_attraction, day2_accommodation=day2_accommodation,
-                               day2_traffic=day2_traffic)
+        attractions.append(day1_attraction)
+        attractions.append(day2_attraction)
+
+
+        accomodations.append(day1_accommodation)
+        accomodations.append(day2_accommodation)
+
+
+        traffic.append(day1_traffic)
+        traffic.append(day2_traffic)
+
 
     elif length == 3:
         day1_id = set.day1
@@ -99,12 +119,18 @@ def showSetDetails(set_id):
         day3_accommodation = db.session.query(Target).filter(Target.id == day3_acc_id).first()
         day3_traffic = db.session.query(Target).filter(Target.id == day3_tra_id).first()
 
-        return render_template("travelRoutesDetail.html", set=set, combination_id=ID, day1_attraction=day1_attraction,
-                               day1_accommodation=day1_accommodation, day1_traffic=day1_traffic,
-                               day2_attraction=day2_attraction, day2_accommodation=day2_accommodation,
-                               day2_traffic=day2_traffic,
-                               day3_attraction=day3_attraction, day3_accommodation=day3_accommodation,
-                               day3_traffic=day3_traffic)
+        attractions.append(day1_attraction)
+        attractions.append(day2_attraction)
+        attractions.append(day3_attraction)
+
+        accomodations.append(day1_accommodation)
+        accomodations.append(day2_accommodation)
+        accomodations.append(day3_accommodation)
+
+        traffic.append(day1_traffic)
+        traffic.append(day2_traffic)
+        traffic.append(day3_traffic)
+
 
     elif length == 4:
         day1_id = set.day1
@@ -145,14 +171,22 @@ def showSetDetails(set_id):
         day4_accommodation = db.session.query(Target).filter(Target.id == day4_acc_id).first()
         day4_traffic = db.session.query(Target).filter(Target.id == day4_tra_id).first()
 
-        return render_template("travelRoutesDetail.html", set=set, combination_id=ID, day1_attraction=day1_attraction,
-                               day1_accommodation=day1_accommodation, day1_traffic=day1_traffic,
-                               day2_attraction=day2_attraction, day2_accommodation=day2_accommodation,
-                               day2_traffic=day2_traffic,
-                               day3_attraction=day3_attraction, day3_accommodation=day3_accommodation,
-                               day3_traffic=day3_traffic,
-                               day4_attraction=day4_attraction, day4_accommodation=day4_accommodation,
-                               day4_traffic=day4_traffic)
+        attractions.append(day1_attraction)
+        attractions.append(day2_attraction)
+        attractions.append(day3_attraction)
+        attractions.append(day4_attraction)
+
+
+        accomodations.append(day1_accommodation)
+        accomodations.append(day2_accommodation)
+        accomodations.append(day3_accommodation)
+        accomodations.append(day4_accommodation)
+
+
+        traffic.append(day1_traffic)
+        traffic.append(day2_traffic)
+        traffic.append(day3_traffic)
+        traffic.append(day4_traffic)
 
     elif length == 5:
 
@@ -203,16 +237,25 @@ def showSetDetails(set_id):
         day5_accommodation = db.session.query(Target).filter(Target.id == day5_acc_id).first()
         day5_traffic = db.session.query(Target).filter(Target.id == day5_tra_id).first()
 
-        return render_template("travelRoutesDetail.html", set=set, combination_id=ID, day1_attraction=day1_attraction,
-                               day1_accommodation=day1_accommodation, day1_traffic=day1_traffic,
-                               day2_attraction=day2_attraction, day2_accommodation=day2_accommodation,
-                               day2_traffic=day2_traffic,
-                               day3_attraction=day3_attraction, day3_accommodation=day3_accommodation,
-                               day3_traffic=day3_traffic,
-                               day4_attraction=day4_attraction, day4_accommodation=day4_accommodation,
-                               day4_traffic=day4_traffic,
-                               day5_attraction=day5_attraction, day5_accommodation=day5_accommodation,
-                               day5_traffic=day5_traffic)
+        attractions.append(day1_attraction)
+        attractions.append(day2_attraction)
+        attractions.append(day3_attraction)
+        attractions.append(day4_attraction)
+        attractions.append(day5_attraction)
+
+
+        accomodations.append(day1_accommodation)
+        accomodations.append(day2_accommodation)
+        accomodations.append(day3_accommodation)
+        accomodations.append(day4_accommodation)
+        accomodations.append(day5_accommodation)
+
+        traffic.append(day1_traffic)
+        traffic.append(day2_traffic)
+        traffic.append(day3_traffic)
+        traffic.append(day4_traffic)
+        traffic.append(day5_traffic)
+
 
 
 
@@ -274,18 +317,27 @@ def showSetDetails(set_id):
         day6_accommodation = db.session.query(Target).filter(Target.id == day6_acc_id).first()
         day6_traffic = db.session.query(Target).filter(Target.id == day6_tra_id).first()
 
-        return render_template("travelRoutesDetail.html", set=set, combination_id=ID, day1_attraction=day1_attraction,
-                               day1_accommodation=day1_accommodation, day1_traffic=day1_traffic,
-                               day2_attraction=day2_attraction, day2_accommodation=day2_accommodation,
-                               day2_traffic=day2_traffic,
-                               day3_attraction=day3_attraction, day3_accommodation=day3_accommodation,
-                               day3_traffic=day3_traffic,
-                               day4_attraction=day4_attraction, day4_accommodation=day4_accommodation,
-                               day4_traffic=day4_traffic,
-                               day5_attraction=day5_attraction, day5_accommodation=day5_accommodation,
-                               day5_traffic=day5_traffic,
-                               day6_attraction=day6_attraction, day6_accommodation=day6_accommodation,
-                               day6_traffic=day6_traffic)
+        attractions.append(day1_attraction)
+        attractions.append(day2_attraction)
+        attractions.append(day3_attraction)
+        attractions.append(day4_attraction)
+        attractions.append(day5_attraction)
+        attractions.append(day6_attraction)
+
+        accomodations.append(day1_accommodation)
+        accomodations.append(day2_accommodation)
+        accomodations.append(day3_accommodation)
+        accomodations.append(day4_accommodation)
+        accomodations.append(day5_accommodation)
+        accomodations.append(day6_accommodation)
+
+        traffic.append(day1_traffic)
+        traffic.append(day2_traffic)
+        traffic.append(day3_traffic)
+        traffic.append(day4_traffic)
+        traffic.append(day5_traffic)
+        traffic.append(day6_traffic)
+
 
     else:
 
@@ -358,13 +410,31 @@ def showSetDetails(set_id):
         day7_accommodation = db.session.query(Target).filter(Target.id == day7_acc_id).first()
         day7_traffic = db.session.query(Target).filter(Target.id == day7_tra_id).first()
 
-        print(day7_traffic.intro)
+        attractions.append(day1_attraction)
+        attractions.append(day2_attraction)
+        attractions.append(day3_attraction)
+        attractions.append(day4_attraction)
+        attractions.append(day5_attraction)
+        attractions.append(day6_attraction)
+        attractions.append(day7_attraction)
 
-        # 细节界面
-        return render_template("travelRoutesDetail.html", set=set, combination_id=ID, day1_attraction=day1_attraction, day1_accommodation=day1_accommodation, day1_traffic=day1_traffic,
-                               day2_attraction=day2_attraction, day2_accommodation=day2_accommodation, day2_traffic=day2_traffic,
-                               day3_attraction=day3_attraction, day3_accommodation=day3_accommodation, day3_traffic=day3_traffic,
-                               day4_attraction=day4_attraction, day4_accommodation=day4_accommodation, day4_traffic=day4_traffic,
-                               day5_attraction=day5_attraction, day5_accommodation=day5_accommodation, day5_traffic=day5_traffic,
-                               day6_attraction=day6_attraction, day6_accommodation=day6_accommodation, day6_traffic=day6_traffic,
-                               day7_attraction=day7_attraction, day7_accommodation=day7_accommodation, day7_traffic=day7_traffic)
+        accomodations.append(day1_accommodation)
+        accomodations.append(day2_accommodation)
+        accomodations.append(day3_accommodation)
+        accomodations.append(day4_accommodation)
+        accomodations.append(day5_accommodation)
+        accomodations.append(day6_accommodation)
+        accomodations.append(day7_accommodation)
+
+        traffic.append(day1_traffic)
+        traffic.append(day2_traffic)
+        traffic.append(day3_traffic)
+        traffic.append(day4_traffic)
+        traffic.append(day5_traffic)
+        traffic.append(day6_traffic)
+        traffic.append(day7_traffic)
+
+
+
+    return render_template("travelRoutesDetail.html", length=length, set=set, combination_id=ID,
+                               accomodations=accomodations, attractions=attractions, traffic=traffic)
