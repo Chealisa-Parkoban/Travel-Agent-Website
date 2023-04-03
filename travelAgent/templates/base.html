@@ -41,7 +41,7 @@
     {% block navigation %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
 <!--    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">-->
-        <a class="navbar-brand" href="#">Digital Beans</a>
+        <a class="navbar-brand" href="{{ url_for('homepage') }}">Digital Beans</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_example_1"
                 aria-controls="navbar_example_1" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -49,7 +49,7 @@
         <div class="collapse navbar-collapse" id="navbar_example_1">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item ">
-                    <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{{ url_for('homepage') }}">Home<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Link</a>
@@ -64,9 +64,9 @@
                         <a class="dropdown-item" href="#">Something else here</a>
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link disabled" href="#">Disabled</a>-->
+<!--                </li>-->
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
@@ -132,7 +132,7 @@
                             <i class="fas fa-envelope text-primary"></i>Messages
                         </a>
                         <a class="dropdown-item" href="{{ url_for("profile") }}">
-                            <i class="fas fa-user-circle text-primary"></i>profile
+                            <i class="fas fa-user-circle text-primary"></i>Profile
                         </a>
                         <a class="dropdown-item" href="{{ url_for("order_list") }}">
                             <i class="fas fa-archive text-primary"></i>Orders
