@@ -37,7 +37,7 @@
                                 available.
                             </p>
                             {#                            <a href="./article.html" class="btn btn-info">Book Now!</a>#}
-                            <button class="btn btn-info" id="show"><a href="{{ url_for("booking.addBooking") }}">Book Now!</a></button>
+                            <button class="btn btn-info" id="show"><a href="{{ url_for("booking.addBooking", combination_id = combination_id) }}">Book Now!</a></button>
                         </div>
                         <div class="col-md-6 d-none d-md-block pr-0"
                              style="background-size:cover;background-image:url(../static/images/sample_pic/guilin.png);"></div>
@@ -68,6 +68,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="flex-md-row mb-4 box-shadow h-xl-300">
+{#                        {% for single_set in set %}#}
                         <div class="mb-3 d-flex align-items-center">
                             <img height="40" src="../static/images/icons/location-dot-solid.svg">
                             <div class="pl-3">
@@ -82,6 +83,7 @@
                                 <small class="text-muted">Dec 12 &middot; 5 min read</small>
                             </div>
                         </div>
+{#                        {% endfor %}#}
                         <div class="mb-3 d-flex align-items-center">
                             <img height="40" src="../static/images/icons/location-dot-solid.svg">
                             <div class="pl-3">
@@ -190,9 +192,9 @@
                 <div class="row justify-content-between">
                     <div class="col-md-8">
                         <form action="{{ url_for('travel_routes_detail') }}" method="post" novalidate
-                              class="form-primary" ,
+                              class="form-primary"
                               enctype="multipart/form-data">
-                            {{ comment_form.csrf_token }}
+{#                            {{ comment_form.csrf_token }}#}
 
                             {#                        <div class="container">#}
                             {#                            <h1>Bootstrap Multi-purpose Editor</h1>#}

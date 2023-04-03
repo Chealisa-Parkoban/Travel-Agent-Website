@@ -29,7 +29,7 @@ def showSetDetails(set_id):
     print("调用showdetail函数了！")
 
     set = db.session.query(Combination).filter(Combination.id == set_id).first()
-
+    ID = set_id
     length = set.length
     print(length)
 
@@ -42,7 +42,7 @@ def showSetDetails(set_id):
         day1_attraction = db.session.query(Target).filter(Target.id == day1_att_id).first()
         day1_accommodation = db.session.query(Target).filter(Target.id == day1_acc_id).first()
         day1_traffic = db.session.query(Target).filter(Target.id == day1_tra_id).first()
-        return render_template("travelRoutesDetail.html", set=set, day1_attraction=day1_attraction,
+        return render_template("travelRoutesDetail.html", set=set, combination_id=ID, day1_attraction=day1_attraction,
                                day1_accommodation=day1_accommodation, day1_traffic=day1_traffic)
     elif length == 2:
         day1_id = set.day1
@@ -64,7 +64,7 @@ def showSetDetails(set_id):
         day2_accommodation = db.session.query(Target).filter(Target.id == day2_acc_id).first()
         day2_traffic = db.session.query(Target).filter(Target.id == day2_tra_id).first()
 
-        return render_template("travelRoutesDetail.html", set=set, day1_attraction=day1_attraction,
+        return render_template("travelRoutesDetail.html", set=set, combination_id=ID, day1_attraction=day1_attraction,
                                day1_accommodation=day1_accommodation, day1_traffic=day1_traffic,
                                day2_attraction=day2_attraction, day2_accommodation=day2_accommodation,
                                day2_traffic=day2_traffic)
@@ -99,7 +99,7 @@ def showSetDetails(set_id):
         day3_accommodation = db.session.query(Target).filter(Target.id == day3_acc_id).first()
         day3_traffic = db.session.query(Target).filter(Target.id == day3_tra_id).first()
 
-        return render_template("travelRoutesDetail.html", set=set, day1_attraction=day1_attraction,
+        return render_template("travelRoutesDetail.html", set=set, combination_id=ID, day1_attraction=day1_attraction,
                                day1_accommodation=day1_accommodation, day1_traffic=day1_traffic,
                                day2_attraction=day2_attraction, day2_accommodation=day2_accommodation,
                                day2_traffic=day2_traffic,
@@ -145,7 +145,7 @@ def showSetDetails(set_id):
         day4_accommodation = db.session.query(Target).filter(Target.id == day4_acc_id).first()
         day4_traffic = db.session.query(Target).filter(Target.id == day4_tra_id).first()
 
-        return render_template("travelRoutesDetail.html", set=set, day1_attraction=day1_attraction,
+        return render_template("travelRoutesDetail.html", set=set, combination_id=ID, day1_attraction=day1_attraction,
                                day1_accommodation=day1_accommodation, day1_traffic=day1_traffic,
                                day2_attraction=day2_attraction, day2_accommodation=day2_accommodation,
                                day2_traffic=day2_traffic,
@@ -203,7 +203,7 @@ def showSetDetails(set_id):
         day5_accommodation = db.session.query(Target).filter(Target.id == day5_acc_id).first()
         day5_traffic = db.session.query(Target).filter(Target.id == day5_tra_id).first()
 
-        return render_template("travelRoutesDetail.html", set=set, day1_attraction=day1_attraction,
+        return render_template("travelRoutesDetail.html", set=set, combination_id=ID, day1_attraction=day1_attraction,
                                day1_accommodation=day1_accommodation, day1_traffic=day1_traffic,
                                day2_attraction=day2_attraction, day2_accommodation=day2_accommodation,
                                day2_traffic=day2_traffic,
@@ -274,7 +274,7 @@ def showSetDetails(set_id):
         day6_accommodation = db.session.query(Target).filter(Target.id == day6_acc_id).first()
         day6_traffic = db.session.query(Target).filter(Target.id == day6_tra_id).first()
 
-        return render_template("travelRoutesDetail.html", set=set, day1_attraction=day1_attraction,
+        return render_template("travelRoutesDetail.html", set=set, combination_id=ID, day1_attraction=day1_attraction,
                                day1_accommodation=day1_accommodation, day1_traffic=day1_traffic,
                                day2_attraction=day2_attraction, day2_accommodation=day2_accommodation,
                                day2_traffic=day2_traffic,
@@ -361,7 +361,7 @@ def showSetDetails(set_id):
         print(day7_traffic.intro)
 
         # 细节界面
-        return render_template("travelRoutesDetail.html", set=set, day1_attraction=day1_attraction, day1_accommodation=day1_accommodation, day1_traffic=day1_traffic,
+        return render_template("travelRoutesDetail.html", set=set, combination_id=ID, day1_attraction=day1_attraction, day1_accommodation=day1_accommodation, day1_traffic=day1_traffic,
                                day2_attraction=day2_attraction, day2_accommodation=day2_accommodation, day2_traffic=day2_traffic,
                                day3_attraction=day3_attraction, day3_accommodation=day3_accommodation, day3_traffic=day3_traffic,
                                day4_attraction=day4_attraction, day4_accommodation=day4_accommodation, day4_traffic=day4_traffic,

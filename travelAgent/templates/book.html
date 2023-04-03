@@ -35,7 +35,7 @@
                     </div>
                     <div class="col-md-7 col-md-pull-7">
                         <div class="booking-form">
-                            <form action="{{ url_for('booking.addBooking') }}" method="post">
+                            <form action="{{ url_for('booking.addBooking', combination_id=combination_id) }}" method="post">
                                 {{ form.csrf_token }}
                                 <div class="form-group">
                                     <span class="form-label">Your Name</span>
@@ -113,8 +113,7 @@
                                             alert("Your order has been submitted successfully!");
                                         }
                                     </script>
-                                    <button type="submit" class="submit-btn" onclick="submitSuccessfully()">Submit Your Order</button>
-                                    <button type="submit" class="btn btn-block btn-lg bg-white mt-4">Submit Your Order</button>
+                                    <button type="submit" class="btn btn-primary btn-block btn-lg mt-4" onclick="submitSuccessfully()">Submit Your Order</button>
                                 </div>
                             </form>
                         </div>
