@@ -69,49 +69,55 @@
                 <div class="col-lg-6">
                     <div class="flex-md-row mb-4 box-shadow h-xl-300">
 {#                        {% for single_set in set %}#}
+                        {% for i in range(0,accomodations|length) %}
                         <div class="mb-3 d-flex align-items-center">
+
                             <img height="40" src="../static/images/icons/location-dot-solid.svg">
                             <div class="pl-3">
                                 <h2 class="mb-2 h6 font-weight-bold">
-                                {% for i in range(0,accomodations|length) %}
+
                                     <a class="text-dark" href="./article.html">
-                                        {{accomodations[i].name}}
+                                        The {{ i }} day
+                                        <div class="text-cyan">{{accomodations[i].name}}</div>
+
                                     </a>
-                                {% endfor %}
+
                                 </h2>
                                 <div class="card-text text-muted small">
                                     Jake Bittle in LOVE/HATE
                                 </div>
                                 <small class="text-muted">Dec 12 &middot; 5 min read</small>accomodations
                             </div>
+
                         </div>
+                        {% endfor %}
 {#                        {% endfor %}#}
-                        <div class="mb-3 d-flex align-items-center">
-                            <img height="40" src="../static/images/icons/location-dot-solid.svg">
-                            <div class="pl-3">
-                                <h2 class="mb-2 h6 font-weight-bold">
-                                    <a class="text-dark" href="./article.html">Underwater museum brings hope to Lake
-                                        Titicaca</a>
-                                </h2>
-                                <div class="card-text text-muted small">
-                                    Jake Bittle in LOVE/HATE
-                                </div>
-                                <small class="text-muted">Dec 12 &middot; 5 min read</small>
-                            </div>
-                        </div>
-                        <div class="mb-3 d-flex align-items-center">
-                            <img height="40" src="../static/images/icons/location-dot-solid.svg">
-                            <div class="pl-3">
-                                <h2 class="mb-2 h6 font-weight-bold">
-                                    <a class="text-dark" href="./article.html">Sun-skimming probe starts calling
-                                        home</a>
-                                </h2>
-                                <div class="card-text text-muted small">
-                                    Jake Bittle in LOVE/HATE
-                                </div>
-                                <small class="text-muted">Dec 12 &middot; 5 min read</small>
-                            </div>
-                        </div>
+{#                        <div class="mb-3 d-flex align-items-center">#}
+{#                            <img height="40" src="../static/images/icons/location-dot-solid.svg">#}
+{#                            <div class="pl-3">#}
+{#                                <h2 class="mb-2 h6 font-weight-bold">#}
+{#                                    <a class="text-dark" href="./article.html">Underwater museum brings hope to Lake#}
+{#                                        Titicaca</a>#}
+{#                                </h2>#}
+{#                                <div class="card-text text-muted small">#}
+{#                                    Jake Bittle in LOVE/HATE#}
+{#                                </div>#}
+{#                                <small class="text-muted">Dec 12 &middot; 5 min read</small>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="mb-3 d-flex align-items-center">#}
+{#                            <img height="40" src="../static/images/icons/location-dot-solid.svg">#}
+{#                            <div class="pl-3">#}
+{#                                <h2 class="mb-2 h6 font-weight-bold">#}
+{#                                    <a class="text-dark" href="./article.html">Sun-skimming probe starts calling#}
+{#                                        home</a>#}
+{#                                </h2>#}
+{#                                <div class="card-text text-muted small">#}
+{#                                    Jake Bittle in LOVE/HATE#}
+{#                                </div>#}
+{#                                <small class="text-muted">Dec 12 &middot; 5 min read</small>#}
+{#                            </div>#}
+{#                        </div>#}
                     </div>
                 </div>
             </div>
