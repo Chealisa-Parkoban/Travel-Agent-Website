@@ -2,7 +2,7 @@ import os
 import this
 import time
 
-from flask import Flask, render_template, request, flash, redirect, url_for
+from flask import Flask, render_template, request, flash, redirect, url_for, session
 import logging
 import http.client
 import hashlib
@@ -20,7 +20,8 @@ from travelAgent.models import CommentC, Comment, Combination, Destination, Day,
 from travelAgent.views.login_handler import login_blueprint, current_user
 from travelAgent.views.number import Random_str
 from travelAgent.views.staff_site import staff_blueprint
-from travelAgent.views.detail import detail_blueprint
+from travelAgent.views.detail import detail_blueprint, showSetDetails
+from travelAgent.views.search import search_blueprint
 from travelAgent.views.favorite import favorite_blueprint
 from travelAgent.views.booking import booking_blueprint
 
@@ -29,6 +30,7 @@ from travelAgent.views.booking import booking_blueprint
 app.register_blueprint(login_blueprint)
 app.register_blueprint(staff_blueprint)
 app.register_blueprint(detail_blueprint)
+app.register_blueprint(search_blueprint)
 app.register_blueprint(favorite_blueprint)
 app.register_blueprint(booking_blueprint)
 
@@ -46,6 +48,7 @@ ch.setFormatter(formatter)
 
 logger.addHandler(fh)
 logger.addHandler(ch)
+global setID
 
 
 @app.route('/')
@@ -108,23 +111,23 @@ def profile():
         price = []
         image = []
 
-        for book in bookings:
-            combination_id = book.combination_id
-            print(combination_id)
-            combination = db.session.query(Combination).filter(Combination.id == combination_id).first()
-            name.append(combination.name)
-            introduction.append(combination.intro)
-            price.append(combination.price)
-            image.append(combination.image)
+    for book in bookings:
+        combination_id = book.combination_id
+        print(combination_id)
+        combination = db.session.query(Combination).filter(Combination.id == combination_id).first()
+        name.append(combination.name)
+        introduction.append(combination.intro)
+        price.append(combination.price)
+        image.append(combination.image)
 
-        # context = {
-        #     "name" : name,
-        #     "introduction" : introduction,
-        #     "price" : price,
-        #     "image" : image
-        # }
-        return render_template("profile.html", user=user, book=book, bookings=bookings,
-                               name=name, introduction=introduction, price=price, image=image)
+    # context = {
+    #     "name" : name,
+    #     "introduction" : introduction,
+    #     "price" : price,
+    #     "image" : image
+    # }
+    return render_template("profile.html", user=user, book=book, bookings=bookings,
+                           name=name, introduction=introduction, price=price, image=image)
 
 
 @app.route('/favourites')
@@ -136,6 +139,18 @@ def favourites():
 def order_list():
     logger.info('Entered the order_list page')
     return render_template("order_list.html")
+
+@app.route('/transport_setID', methods=['GET', 'POST'])
+def transport_setID():
+    print("调用transport_setID函数了！")
+    set_id = str(request.form.get('set_id'))
+    print(set_id)
+    session["set_id"] = set_id
+    print("set id = ")
+    print(set_id)
+    return showSetDetails()
+
+
 
 # @app.route('/staff')
 # def staff():
@@ -231,6 +246,10 @@ def translate(q):
     finally:
         if httpClient:
             httpClient.close()
+
+
+
+
 
 
 if __name__ == '__main__':

@@ -1,15 +1,15 @@
 from flask import Blueprint
 
-from travelAgent.app import logger
+# from travelAgent.app import logger
 from travelAgent.config import basedir
 
-detail_blueprint = Blueprint(name="travel_route_detail", import_name=__name__)
+detail_blueprint = Blueprint(name="details", import_name=__name__)
 
 import os
 import this
 import time
 
-from flask import Flask, render_template, request, flash, redirect, url_for
+from flask import Flask, render_template, request, flash, redirect, url_for, session
 import logging
 import http.client
 import hashlib
@@ -30,8 +30,9 @@ global set_id
 
 @detail_blueprint.route("/showSetDetails")
 def showSetDetails():
-
     print("调用showdetail函数了！")
+    set_id = session.get("set_id")
+    print(set_id)
 
     set = db.session.query(Combination).filter(Combination.id == set_id).first()
     ID = set_id
@@ -430,14 +431,22 @@ def showSetDetails():
         traffic.append(day6_traffic)
         traffic.append(day7_traffic)
 
+
+    print("ok1")
+
     # Create a unique id for the image
     id = Random_str().create_uuid()
     # print(CommentC.query.all())
-    logger.info('Entered the TRAVEL ROUTE DETAIL page')
+    # logger.info('Entered the TRAVEL ROUTE DETAIL page')
     comment_form = CommentForm(request.form)
     image_form = ImageForm(request.files)
     if request.method == 'POST':
+
+        print("ok2")
+
         if comment_form.validate_on_submit():
+
+            print("ok3")
 
             # Images storage path
             file_dir = os.path.join(basedir, "static/upload/")
@@ -463,7 +472,10 @@ def showSetDetails():
                                time=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
             db.session.add(comment)
             flash('已评论')
-            return redirect(url_for('showSetDetails', ID=ID))
+            # return redirect(url_for('showSetDetails', ID=ID))
+            return redirect(url_for('showSetDetails'))
+
+        print("ok4")
 
         return render_template("travelRoutesDetail.html", current_user=current_user, comment_form=comment_form,
                                comments=CommentC.query.all(), length=length, set=set, combination_id=ID,
@@ -489,8 +501,6 @@ def showBookingDetail(booking_id):
     attractions=[]
     accomodations=[]
     traffic=[]
-
-
 
     if length == 1:
         day1_id = set.day1

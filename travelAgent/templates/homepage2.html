@@ -1,32 +1,29 @@
 {% extends "base.html" %}
 {% block title %}
-    Homepage2
+Homepage2
 {% endblock %}
 
 {% block head %}
-    <link href="../static/css/bootstrap2.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="../static/css/style2.css" rel="stylesheet" type="text/css" media="all"/>
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800|Roboto:400,500,700" rel="stylesheet">
-    <!-- Theme CSS -->
-    <link type="text/css" href="../static/css/theme.css" rel="stylesheet">
-    <!-- Demo CSS - No need to use these in your project -->
-    <link type="text/css" href="../static/css/demo.css" rel="stylesheet">
-    <link type="text/css" href="../static/css/docs4.6.css" rel="stylesheet">
-    <link type="text/css" href="../static/css/index.css" rel="stylesheet">
-    <link type="text/css" href="../static/css/style.css" rel="stylesheet">
-    <link type="text/css" href="../static/css/book.css" rel="stylesheet">
-    <style>
-        .banner-heder{
-            {#position: absolute;#}
-            {#top: 50%;#}
-            {#left: 50%;#}
-            transform: translate(0%, -50%);
-            {#text-align: center;#}
-            color: #fff;
-            {#z-index: 1000;#}
-        }
-    </style>
+<link href="../static/css/bootstrap2.css" rel="stylesheet" type="text/css" media="all"/>
+<link href="../static/css/style2.css" rel="stylesheet" type="text/css" media="all"/>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800|Roboto:400,500,700" rel="stylesheet">
+<!-- Theme CSS -->
+<link type="text/css" href="../static/css/theme.css" rel="stylesheet">
+<!-- Demo CSS - No need to use these in your project -->
+<link type="text/css" href="../static/css/demo.css" rel="stylesheet">
+<link type="text/css" href="../static/css/docs4.6.css" rel="stylesheet">
+<link type="text/css" href="../static/css/index.css" rel="stylesheet">
+<link type="text/css" href="../static/css/style.css" rel="stylesheet">
+<link type="text/css" href="../static/css/book.css" rel="stylesheet">
+<script src="../static/js/ID.js"></script>
+<style>
+    .banner-heder {
+
+        transform: translate(0%, -50%);
+        color: #fff;
+    }
+</style>
 {% endblock %}
 
 <body>
@@ -34,220 +31,94 @@
 
 {% block body %}
 
-    <span class="mask bg-primary alpha-7" style="opacity: 0.6; background-color: #FFFFFF;"></span>
-    <div class="banner-section">
+<span class="mask bg-primary alpha-7" style="opacity: 0.6; background-color: #FFFFFF;"></span>
+<div class="banner-section">
+    <div class="container">
         <div class="container">
-            <div class="container" >
-                <div class="banner-heder">
-                    <h3>We Plan Your Trip<span>Best Available Choice in Town</span></h3>
-                </div>
-                <div class="banner-grids">
-                    <div class="col-md-2 banner-grid">
-                        <select class="sel">
-                            <option value="">Location</option>
-                            <option value="">Czech Republic</option>
-                            <option value="">France</option>
-                            <option value="">Germany</option>
-                            <option value="">Italy</option>
-                        </select>
-                    </div>
-                    <div class="col-md-2 banner-grid">
-                        <select class="sel">
-                            <option value="">Hotel</option>
-                            <option value="">Hilton</option>
-                            <option value="">Holiday Inn</option>
-                            <option value="">Sheraton</option>
-                        </select>
-                    </div>
-                    <div class="col-md-2 banner-grid">
-                        <select class="sel">
-                            <option value="">Type</option>
-                            <option value="">Group</option>
-                            <option value="">Trip</option>
-                        </select>
-                    </div>
-                    <div class="col-md-2 banner-grid">
-                        <select class="sel">
-                            <option value="">Select price</option>
-                            <option value="">$100</option>
-                            <option value="">$500</option>
-                            <option value="">$700</option>
-                            <option value="">$4500</option>
-                        </select>
-                    </div>
-                    <div class="col-md-4 search">
-                        <form action="#" method="post">
-                            <input type="submit" value="Check Availability">
-                        </form>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-
-
-{#                <div class="card shadow-lg">#}
-{#                    <dialog class="container" id="myFirstDialog">#}
-{#                        <div id="booking" class="section">#}
-{#                            <div class="section-center">#}
-{#                                <div class="container">#}
-{#                                    <div class="row">#}
-{#                                        <div class="col-md-7 col-md-push-5">#}
-{#                                            <div class="booking-cta">#}
-{#                                                <h1>Make your reservation</h1>#}
-{#                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi#}
-{#                                                    facere, soluta magnam consectetur molestias itaque#}
-{#                                                    ad sint fugit architecto incidunt iste culpa perspiciatis possimus#}
-{#                                                    voluptates aliquid consequuntur cumque quasi.#}
-{#                                                    Perspiciatis.#}
-{#                                                </p>#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                        <div class="col-md-4 col-md-pull-7">#}
-{#                                            <div class="booking-form">#}
-{#                                                <form>#}
-{#                                                    <div class="form-group">#}
-{#                                                        <span class="form-label">Your Destination</span>#}
-{#                                                        <input class="form-control" type="text"#}
-{#                                                               placeholder="Enter a destination or hotel name">#}
-{#                                                    </div>#}
-{#                                                    <div class="row">#}
-{#                                                        <div class="col-sm-6">#}
-{#                                                            <div class="form-group">#}
-{#                                                                <span class="form-label">Check In</span>#}
-{#                                                                <input class="form-control" type="date" required>#}
-{#                                                            </div>#}
-{#                                                        </div>#}
-{#                                                        <div class="col-sm-6">#}
-{#                                                            <div class="form-group">#}
-{#                                                                <span class="form-label">Check out</span>#}
-{#                                                                <input class="form-control" type="date" required>#}
-{#                                                            </div>#}
-{#                                                        </div>#}
-{#                                                    </div>#}
-{#                                                    <div class="row">#}
-{#                                                        <div class="col-sm-4">#}
-{#                                                            <div class="form-group">#}
-{#                                                                <span class="form-label">Rooms</span>#}
-{#                                                                <select class="form-control">#}
-{#                                                                    <option>1</option>#}
-{#                                                                    <option>2</option>#}
-{#                                                                    <option>3</option>#}
-{#                                                                </select>#}
-{#                                                                <span class="select-arrow"></span>#}
-{#                                                            </div>#}
-{#                                                        </div>#}
-{#                                                        <div class="col-sm-4">#}
-{#                                                            <div class="form-group">#}
-{#                                                                <span class="form-label">Adults</span>#}
-{#                                                                <select class="form-control">#}
-{#                                                                    <option>1</option>#}
-{#                                                                    <option>2</option>#}
-{#                                                                    <option>3</option>#}
-{#                                                                </select>#}
-{#                                                                <span class="select-arrow"></span>#}
-{#                                                            </div>#}
-{#                                                        </div>#}
-{#                                                        <div class="col-sm-4">#}
-{#                                                            <div class="form-group">#}
-{#                                                                <span class="form-label">Children</span>#}
-{#                                                                <select class="form-control">#}
-{#                                                                    <option>0</option>#}
-{#                                                                    <option>1</option>#}
-{#                                                                    <option>2</option>#}
-{#                                                                </select>#}
-{#                                                                <span class="select-arrow"></span>#}
-{#                                                            </div>#}
-{#                                                        </div>#}
-{#                                                    </div>#}
-{#                                                    <div class="form-btn">#}
-{#                                                        <button class="submit-btn">Check availability</button>#}
-{#                                                    </div>#}
-{#                                                </form>#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                        <button class="btn btn-primary" id="hide">Close</button>#}
-{#                    </dialog>#}
-{#                    <button class="btn btn-primary" id="show">Show Dialog</button>#}
-{#                </div>#}
-{#                <!-- JavaScript to provide the "Show/Close" functionality -->#}
-{#                <script type="text/JavaScript">#}
-{#                    // hide the dialog box when the page loads#}
-{#                    document.getElementById('myFirstDialog').style.display = 'none';#}
-{#                    (function () {#}
-{#                        const dialog = document.getElementById('myFirstDialog');#}
-{#                        document.getElementById('show').onclick = function () {#}
-{#                            dialog.style.display = "block";#}
-{#                        };#}
-{#                        document.getElementById('hide').onclick = function () {#}
-{#                            dialog.style.display = "none";#}
-{#                        };#}
-{#                    })();#}
-{#                </script>#}
-{#                    </dialog>#}
+            <div class="banner-heder">
+                <h3>We Plan Your Trip<span>Best Available Choice in Town</span></h3>
             </div>
-        </div>
-    </div>
-
-    {#    <div>#}
-    {#        <dialog id="myFirstDialog" style="width:50%;background-color:#F4FFEF;border:1px dotted black;">#}
-    {#            <p><q>I am so clever that sometimes I don't understand a single word of what I am saying.#}
-    {#            </q> - <cite>Oscar Wilde</cite></p>#}
-    {#            <button id="hide">Close</button>#}
-    {#        </dialog>#}
-    {#        <button id="show">Show Dialog</button>#}
-    {#    </div>#}
-    {##}
-    {#    <!-- JavaScript to provide the "Show/Close" functionality -->#}
-    {#    <script type="text/JavaScript">#}
-    {#        // hide the dialog box when the page loads#}
-    {#        document.getElementById('myFirstDialog').style.display = 'none';#}
-    {#        (function () {#}
-    {#            const dialog = document.getElementById('myFirstDialog');#}
-    {#            document.getElementById('show').onclick = function () {#}
-    {#                dialog.show();#}
-    {#            };#}
-    {#            document.getElementById('hide').onclick = function () {#}
-    {#                dialog.close();#}
-    {#            };#}
-    {#        })();#}
-    {#    </script>#}
-
-
-    <div class="promotions">
-        <div class="container">
-            <h2 class="tittle">Top Trip Guide</h2>
-            <span>Best Travel Packages Available</span>
-            <div class="promotion-grids">
-                <!--                开始渲染全部Sets          -->
-                {% for set in Sets %}
-                    <a href="{{ url_for("travel_route_detail.showSetDetails", set_id=set.id) }}">
-                        <div class="col-md-4 promation-grid">
-<!--{#                            <img src="../static/images/sample_pic/the_north_Europe.png" class="img-responsive" alt="" />#}-->
-                            <img src="{{ set.image }}" class="img-responsive" alt="" onerror="javascript:this.src='../static/images/sample_pic/the_north_Europe.png/'"/>
-                            <div class="prom-text">
-                                <h4> {{ set.name }}</h4>
-                                <div class="prom-bottom">
-                                    <div class="prom-left">
-                                        <h5> Days : {{ set.length }} </h5>
-                                    </div>
-                                    <div class="prom-right">
-                                        <h5> $ {{ set.price }} </h5>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <p>{{ set.intro }}</p>
-                            </div>
-                        </div>
-                    </a>
-                {% endfor %}
-
+            <div class="banner-grids">
+                <div class="col-md-2 banner-grid">
+                    <select class="sel">
+                        <option value="">Location</option>
+                        <option value="">Czech Republic</option>
+                        <option value="">France</option>
+                        <option value="">Germany</option>
+                        <option value="">Italy</option>
+                    </select>
+                </div>
+                <div class="col-md-2 banner-grid">
+                    <select class="sel">
+                        <option value="">Hotel</option>
+                        <option value="">Hilton</option>
+                        <option value="">Holiday Inn</option>
+                        <option value="">Sheraton</option>
+                    </select>
+                </div>
+                <div class="col-md-2 banner-grid">
+                    <select class="sel">
+                        <option value="">Type</option>
+                        <option value="">Group</option>
+                        <option value="">Trip</option>
+                    </select>
+                </div>
+                <div class="col-md-2 banner-grid">
+                    <select class="sel">
+                        <option value="">Select price</option>
+                        <option value="">$100</option>
+                        <option value="">$500</option>
+                        <option value="">$700</option>
+                        <option value="">$4500</option>
+                    </select>
+                </div>
+                <div class="col-md-4 search">
+                    <form action="#" method="post">
+                        <input type="submit" value="Check Availability">
+                    </form>
+                </div>
                 <div class="clearfix"></div>
             </div>
+
+
         </div>
     </div>
+</div>
+
+
+<div class="promotions">
+    <div class="container">
+        <h2 class="tittle">Top Trip Guide</h2>
+        <span>Best Travel Packages Available</span>
+        <div class="promotion-grids">
+            <!--                开始渲染全部Sets          -->
+            {% for set in Sets %}
+            <a set_id={{set.id}} onclick="setID(this)">
+                <div class="col-md-4 promation-grid">
+                    <!--{#                            <img src="../static/images/sample_pic/the_north_Europe.png" class="img-responsive" alt="" />#}-->
+                    <img src="{{ set.image }}" class="img-responsive" alt=""
+                         onerror="javascript:this.src='../static/images/sample_pic/the_north_Europe.png/'"/>
+                    <div class="prom-text">
+                        <h4> {{ set.name }}</h4>
+                        <div class="prom-bottom">
+                            <div class="prom-left">
+                                <h5> Days : {{ set.length }} </h5>
+                            </div>
+                            <div class="prom-right">
+                                <h5> $ {{ set.price }} </h5>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <p>{{ set.intro }}</p>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
 
 
 {% endblock %}
@@ -265,7 +136,10 @@
 <script src="../static/vendor/input-mask/input-mask.min.js"></script>
 <script src="../static/vendor/nouislider/js/nouislider.min.js"></script>
 <script src="../static/vendor/textarea-autosize/textarea-autosize.min.js"></script>
+<script src="../static/cookie.js"></script>
 <!-- Theme JS -->
 <script src="../static/js/theme.js"></script>
+
 </body>
+
 </html>
