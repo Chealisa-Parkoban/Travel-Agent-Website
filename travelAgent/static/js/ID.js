@@ -10,7 +10,7 @@ function setID(el) {
         },//提交的数据
         success: function (res) {
             console.log("传送set id数据成功");
-
+            location.href="/showSetDetails";
         },
         error: function () {
             alert("向后台传输set id数据出错");
