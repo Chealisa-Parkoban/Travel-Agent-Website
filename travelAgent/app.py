@@ -90,36 +90,40 @@ def book():
 
 @app.route('/profile')
 def profile():
-    customer_id = current_user.id
-    print(customer_id)
-    # 传递user的个人信息
-    user = db.session.query(User).filter(User.id == customer_id).first()
-    # 传输个人的booking记录
-    book = db.session.query(RecordC).filter(RecordC.user_id == customer_id).first()
-    bookings = db.session.query(RecordC).filter(RecordC.user_id == customer_id).all()
-    # combination中的信息
-    name = []
-    introduction = []
-    price = []
-    image = []
 
-    for book in bookings:
-        combination_id = book.combination_id
-        print(combination_id)
-        combination = db.session.query(Combination).filter(Combination.id == combination_id).first()
-        name.append(combination.name)
-        introduction.append(combination.intro)
-        price.append(combination.price)
-        image.append(combination.image)
+    if not current_user.is_authenticated:
+        return redirect(url_for('account.login'))
+    else:
+        customer_id = current_user.id
+        # 传递user的个人信息
+        user = db.session.query(User).filter(User.id == customer_id).first()
+        # 传输个人的booking记录
+        book = db.session.query(RecordC).filter(RecordC.user_id == customer_id).first()
+        bookings = db.session.query(RecordC).filter(RecordC.user_id == customer_id).all()
+        # combination中的信息
 
-    # context = {
-    #     "name" : name,
-    #     "introduction" : introduction,
-    #     "price" : price,
-    #     "image" : image
-    # }
-    return render_template("profile.html", user=user, book=book, bookings=bookings,
-                           name=name, introduction=introduction, price=price, image=image)
+        name = []
+        introduction = []
+        price = []
+        image = []
+
+        for book in bookings:
+            combination_id = book.combination_id
+            print(combination_id)
+            combination = db.session.query(Combination).filter(Combination.id == combination_id).first()
+            name.append(combination.name)
+            introduction.append(combination.intro)
+            price.append(combination.price)
+            image.append(combination.image)
+
+        # context = {
+        #     "name" : name,
+        #     "introduction" : introduction,
+        #     "price" : price,
+        #     "image" : image
+        # }
+        return render_template("profile.html", user=user, book=book, bookings=bookings,
+                               name=name, introduction=introduction, price=price, image=image)
 
 
 @app.route('/favourites')
@@ -226,10 +230,6 @@ def translate(q):
     finally:
         if httpClient:
             httpClient.close()
-
-
-
-
 
 
 if __name__ == '__main__':

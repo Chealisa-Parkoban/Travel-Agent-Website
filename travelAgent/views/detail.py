@@ -852,7 +852,6 @@ def showBookingDetail(booking_id):
         traffic.append(day7_traffic)
 
 
-
     return render_template("", length=length, combination=combination, booking=booking,
                                accomodations=accomodations, attractions=attractions, traffic=traffic)
 
