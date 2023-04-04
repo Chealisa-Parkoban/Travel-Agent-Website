@@ -1,5 +1,8 @@
 from flask import Blueprint
 
+from travelAgent.app import logger
+from travelAgent.config import basedir
+
 detail_blueprint = Blueprint(name="travel_route_detail", import_name=__name__)
 
 import os
@@ -23,9 +26,11 @@ from travelAgent.models import CommentC, Comment, Combination, Destination, Day,
 from travelAgent.views.login_handler import login_blueprint, current_user
 from travelAgent.views.number import Random_str
 
+global set_id
 
-@detail_blueprint.route("/showSetDetail/<set_id>")
-def showSetDetails(set_id):
+@detail_blueprint.route("/showSetDetails")
+def showSetDetails():
+
     print("调用showdetail函数了！")
 
     set = db.session.query(Combination).filter(Combination.id == set_id).first()
@@ -35,8 +40,6 @@ def showSetDetails(set_id):
     attractions=[]
     accomodations=[]
     traffic=[]
-
-
 
     if length == 1:
         day1_id = set.day1
@@ -55,7 +58,6 @@ def showSetDetails(set_id):
 
 
         traffic.append(day1_traffic)
-
 
     elif length == 2:
         day1_id = set.day1
@@ -87,7 +89,6 @@ def showSetDetails(set_id):
 
         traffic.append(day1_traffic)
         traffic.append(day2_traffic)
-
 
     elif length == 3:
         day1_id = set.day1
@@ -130,7 +131,6 @@ def showSetDetails(set_id):
         traffic.append(day1_traffic)
         traffic.append(day2_traffic)
         traffic.append(day3_traffic)
-
 
     elif length == 4:
         day1_id = set.day1
@@ -256,9 +256,6 @@ def showSetDetails(set_id):
         traffic.append(day4_traffic)
         traffic.append(day5_traffic)
 
-
-
-
     elif length == 6:
 
         day1_id = set.day1
@@ -337,7 +334,6 @@ def showSetDetails(set_id):
         traffic.append(day4_traffic)
         traffic.append(day5_traffic)
         traffic.append(day6_traffic)
-
 
     else:
 
@@ -434,7 +430,48 @@ def showSetDetails(set_id):
         traffic.append(day6_traffic)
         traffic.append(day7_traffic)
 
+    # Create a unique id for the image
+    id = Random_str().create_uuid()
+    # print(CommentC.query.all())
+    logger.info('Entered the TRAVEL ROUTE DETAIL page')
+    comment_form = CommentForm(request.form)
+    image_form = ImageForm(request.files)
+    if request.method == 'POST':
+        if comment_form.validate_on_submit():
 
+            # Images storage path
+            file_dir = os.path.join(basedir, "static/upload/")
+            # Getting the data transferred from the front end
+            files = request.files.getlist('img')  # Gets the value of myfiles from ajax, of type list
+            path = ""
+
+            for img in files:
+                # Extract the suffix of the uploaded image and
+                # Name the image after the commodity id and store it in the specific path
+                check = img.content_type
+                # check if upload image
+                if str(check) != 'application/octet-stream':
+                    fname = img.filename
+                    ext = fname.rsplit('.', 1)[1]
+                    new_filename = id + '.' + ext
+                    img.save(os.path.join(file_dir, new_filename))
+                    path = "../static/upload/" + new_filename
+
+            # default: like=0 path=""
+            comment = CommentC(user_id=current_user.id, username=current_user.get_username(), combination_id=1,
+                               score=comment_form.score.data, content=comment_form.comment.data, image=path,
+                               time=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+            db.session.add(comment)
+            flash('已评论')
+            return redirect(url_for('showSetDetails', ID=ID))
+
+        return render_template("travelRoutesDetail.html", current_user=current_user, comment_form=comment_form,
+                               comments=CommentC.query.all(), length=length, set=set, combination_id=ID,
+                               accomodations=accomodations, attractions=attractions, traffic=traffic)
+    if request.method == 'GET':
+        comments = CommentC.query.all()
+        return render_template("travelRoutesDetail.html", comments=comments, comment_form=comment_form, length=length, set=set, combination_id=ID,
+                               accomodations=accomodations, attractions=attractions, traffic=traffic)
 
     return render_template("travelRoutesDetail.html", length=length, set=set, combination_id=ID,
                                accomodations=accomodations, attractions=attractions, traffic=traffic)

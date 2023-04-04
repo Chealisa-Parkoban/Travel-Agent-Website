@@ -199,7 +199,9 @@
             {% if current_user.is_authenticated %}
                 <div class="row justify-content-between">
                     <div class="col-md-8">
-                        <form action="{{ url_for('travel_routes_detail') }}" method="post" novalidate
+<!--                        <form action="{{ url_for('travel_routes_detail') }}" method="post" novalidate-->
+                        <form action="{{ url_for("travel_route_detail.showSetDetails", set_id=set.id) }}" method="post" novalidate
+
                               class="form-primary"
                               enctype="multipart/form-data">
 {#                            {{ comment_form.csrf_token }}#}

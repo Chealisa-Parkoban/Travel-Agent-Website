@@ -88,6 +88,7 @@ def book():
     logger.info('Entered the BOOK page')
     return render_template("book.html")
 
+
 @app.route('/profile')
 def profile():
 

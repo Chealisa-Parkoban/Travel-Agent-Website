@@ -8,7 +8,7 @@ from travelAgent.forms import LoginForm, DayTripForm, PlanForm
 from travelAgent.models import User, Destination, Target, Day, Combination
 from travelAgent.views.login_handler import login_manager
 
-from config import basedir
+from travelAgent.config import basedir
 staff_blueprint = Blueprint(name="staff_site", import_name=__name__)
 
 day_trip_draft = []
