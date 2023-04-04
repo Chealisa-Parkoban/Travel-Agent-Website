@@ -18,14 +18,28 @@
     <link type="text/css" href="../static/css/book.css" rel="stylesheet">
     <script src="../static/js/ID.js"></script>
     <style>
-        .banner-heder{
-            {#position: absolute;#}
-            {#top: 50%;#}
-            {#left: 50%;#}
+        .banner-heder {
+            /*position: absolute;*/
+            /*top: 50%;*/
+            /*left: 50%;*/
             transform: translate(0%, -50%);
-            {#text-align: center;#}
+            /*
+
+
+
+        {#text-align: center;#}    */
             color: #fff;
-            {#z-index: 1000;#}
+            /*
+
+
+
+        {#z-index: 1000;#}    */
+        }
+        .form-btn {
+            /*position: absolute;*/
+            /*top: 50%;*/
+            /*left: 50%;*/
+            transform: translate(0%, 40%);
         }
     </style>
 {% endblock %}
@@ -38,91 +52,113 @@
     <span class="mask bg-primary alpha-7" style="opacity: 0.6; background-color: #FFFFFF;"></span>
     <div class="banner-section">
         <div class="container">
-            <div class="container" >
+            <div class="container">
                 <div class="banner-heder">
                     <h3>We Plan Your Trip<span>Best Available Choice in Town</span></h3>
                 </div>
-                <div class="banner-grids">
-                    <div class="col-md-2 banner-grid">
-                        <select class="sel">
-                            <option value="">Location</option>
-                            <option value="">Czech Republic</option>
-                            <option value="">France</option>
-                            <option value="">Germany</option>
-                            <option value="">Italy</option>
-                        </select>
-                    </div>
-                    <div class="col-md-2 banner-grid">
-                        <select class="sel">
-                            <option value="">Hotel</option>
-                            <option value="">Hilton</option>
-                            <option value="">Holiday Inn</option>
-                            <option value="">Sheraton</option>
-                        </select>
-                    </div>
-                    <div class="col-md-2 banner-grid">
-                        <select class="sel">
-                            <option value="">Type</option>
-                            <option value="">Group</option>
-                            <option value="">Trip</option>
-                        </select>
-                    </div>
-                    <div class="col-md-2 banner-grid">
-                        <select class="sel">
-                            <option value="">Select price</option>
-                            <option value="">$100</option>
-                            <option value="">$500</option>
-                            <option value="">$700</option>
-                            <option value="">$4500</option>
-                        </select>
-                    </div>
-                    <div class="col-md-4 search">
-                        <form action="#" method="post">
-                            <input type="submit" value="Check Availability">
-                        </form>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-
-
-        </div>
-    </div>
-</div>
-
-
-<div class="promotions">
-    <div class="container">
-        <h2 class="tittle">Top Trip Guide</h2>
-        <span>Best Travel Packages Available</span>
-        <div class="promotion-grids">
-            <!--                开始渲染全部Sets          -->
-            {% for set in Sets %}
-            <a set_id={{set.id}} onclick="setID(this)">
-                <div class="col-md-4 promation-grid">
-                    <!--{#                            <img src="../static/images/sample_pic/the_north_Europe.png" class="img-responsive" alt="" />#}-->
-                    <img src="{{ set.image }}" class="img-responsive" alt=""
-                         onerror="javascript:this.src='../static/images/sample_pic/the_north_Europe.png/'"/>
-                    <div class="prom-text">
-                        <h4> {{ set.name }}</h4>
-                        <div class="prom-bottom">
-                            <div class="prom-left">
-                                <h5> Days : {{ set.length }} </h5>
-                            </div>
-                            <div class="prom-right">
-                                <h5> $ {{ set.price }} </h5>
-                            </div>
-                            <div class="clearfix"></div>
+                <form action="{{ url_for('booking.addBooking', combination_id=combination_id) }}" method="post">
+                    <div class="banner-grids">
+                        {#                        <div class="col-md-2 banner-grid form-group">#}
+                        {#                            <select class="sel">#}
+                        {#                                <option value="">Location</option>#}
+                        {#                                <option value="">Czech Republic</option>#}
+                        {#                                <option value="">France</option>#}
+                        {#                                <option value="">Germany</option>#}
+                        {#                                <option value="">Italy</option>#}
+                        {#                            </select>#}
+                        {#                        </div>#}
+                        <div class="form-group col-md-3 banner-grid">
+                            <span class="form-label" style="color: white">Destination</span>
+                            <input class="form-control" type="text" name="Destination"
+                                   placeholder="Destination">
                         </div>
-                        <p>{{ set.intro }}</p>
+                        <div class="form-group col-md-3 banner-grid">
+                            <span class="form-label" style="color: white">Attraction</span>
+                            <input class="form-control" type="text" name="Attraction"
+                                   placeholder="Attraction">
+                        </div>
+                        <div class="form-group col-md-3 banner-grid">
+                            <span class="form-label" style="color: white">Highest limitation</span>
+                            <input class="form-control" type="number" name="Highest"
+                                   placeholder="Highest limitation">
+                        </div>
+                        <div class="form-group col-md-3 banner-grid">
+                            <span class="form-label" style="color: white">Lowest limitation</span>
+                            <input class="form-control" type="number" name="Lowest"
+                                   placeholder="Lowest limitation">
+                        </div>
+                        {#                        <div class="col-md-2 banner-grid">#}
+                        {#                            <select class="sel">#}
+                        {#                                <option value="">Hotel</option>#}
+                        {#                                <option value="">Hilton</option>#}
+                        {#                                <option value="">Holiday Inn</option>#}
+                        {#                                <option value="">Sheraton</option>#}
+                        {#                            </select>#}
+                        {#                        </div>#}
+                        {#                        <div class="col-md-2 banner-grid">#}
+                        {#                            <select class="sel">#}
+                        {#                                <option value="">Type</option>#}
+                        {#                                <option value="">Group</option>#}
+                        {#                                <option value="">Trip</option>#}
+                        {#                            </select>#}
+                        {#                        </div>#}
+                        {#                        <div class="col-md-2 banner-grid">#}
+                        {#                            <select class="sel">#}
+                        {#                                <option value="">Select price</option>#}
+                        {#                                <option value="">$100</option>#}
+                        {#                                <option value="">$500</option>#}
+                        {#                                <option value="">$700</option>#}
+                        {#                                <option value="">$4500</option>#}
+                        {#                            </select>#}
+                        {#                        </div>#}
+                        <div class="form-btn">
+                            <button type="submit" class="btn btn-default" style="background-color: #062f3c; color: white">Check
+                                Availability
+                            </button>
+                        </div>
+                        <div class="clearfix"></div>
                     </div>
-                </div>
-            </a>
-            {% endfor %}
+                </form>
 
-            <div class="clearfix"></div>
+
+            </div>
         </div>
     </div>
-</div>
+
+
+    <div class="promotions">
+        <div class="container">
+            <h2 class="tittle">Top Trip Guide</h2>
+            <span>Best Travel Packages Available</span>
+            <div class="promotion-grids">
+                <!--                开始渲染全部Sets          -->
+                {% for set in Sets %}
+                    <a set_id={{ set.id }} onclick="setID(this)">
+                        <div class="col-md-4 promation-grid">
+                            <!--{#                            <img src="../static/images/sample_pic/the_north_Europe.png" class="img-responsive" alt="" />#}-->
+                            <img src="{{ set.image }}" class="img-responsive" alt=""
+                                 onerror="javascript:this.src='../static/images/sample_pic/the_north_Europe.png/'"/>
+                            <div class="prom-text">
+                                <h4> {{ set.name }}</h4>
+                                <div class="prom-bottom">
+                                    <div class="prom-left">
+                                        <h5> Days : {{ set.length }} </h5>
+                                    </div>
+                                    <div class="prom-right">
+                                        <h5> $ {{ set.price }} </h5>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <p>{{ set.intro }}</p>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
 
 
 {% endblock %}
