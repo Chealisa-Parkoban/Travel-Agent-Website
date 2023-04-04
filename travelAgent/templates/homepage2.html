@@ -1,29 +1,32 @@
 {% extends "base.html" %}
 {% block title %}
-Homepage2
+    Homepage2
 {% endblock %}
 
 {% block head %}
-<link href="../static/css/bootstrap2.css" rel="stylesheet" type="text/css" media="all"/>
-<link href="../static/css/style2.css" rel="stylesheet" type="text/css" media="all"/>
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800|Roboto:400,500,700" rel="stylesheet">
-<!-- Theme CSS -->
-<link type="text/css" href="../static/css/theme.css" rel="stylesheet">
-<!-- Demo CSS - No need to use these in your project -->
-<link type="text/css" href="../static/css/demo.css" rel="stylesheet">
-<link type="text/css" href="../static/css/docs4.6.css" rel="stylesheet">
-<link type="text/css" href="../static/css/index.css" rel="stylesheet">
-<link type="text/css" href="../static/css/style.css" rel="stylesheet">
-<link type="text/css" href="../static/css/book.css" rel="stylesheet">
-<script src="../static/js/ID.js"></script>
-<style>
-    .banner-heder {
-
-        transform: translate(0%, -50%);
-        color: #fff;
-    }
-</style>
+    <link href="../static/css/bootstrap2.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="../static/css/style2.css" rel="stylesheet" type="text/css" media="all"/>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800|Roboto:400,500,700" rel="stylesheet">
+    <!-- Theme CSS -->
+    <link type="text/css" href="../static/css/theme.css" rel="stylesheet">
+    <!-- Demo CSS - No need to use these in your project -->
+    <link type="text/css" href="../static/css/demo.css" rel="stylesheet">
+    <link type="text/css" href="../static/css/docs4.6.css" rel="stylesheet">
+    <link type="text/css" href="../static/css/index.css" rel="stylesheet">
+    <link type="text/css" href="../static/css/style.css" rel="stylesheet">
+    <link type="text/css" href="../static/css/book.css" rel="stylesheet">
+    <style>
+        .banner-heder{
+            {#position: absolute;#}
+            {#top: 50%;#}
+            {#left: 50%;#}
+            transform: translate(0%, -50%);
+            {#text-align: center;#}
+            color: #fff;
+            {#z-index: 1000;#}
+        }
+    </style>
 {% endblock %}
 
 <body>
@@ -31,54 +34,54 @@ Homepage2
 
 {% block body %}
 
-<span class="mask bg-primary alpha-7" style="opacity: 0.6; background-color: #FFFFFF;"></span>
-<div class="banner-section">
-    <div class="container">
+    <span class="mask bg-primary alpha-7" style="opacity: 0.6; background-color: #FFFFFF;"></span>
+    <div class="banner-section">
         <div class="container">
-            <div class="banner-heder">
-                <h3>We Plan Your Trip<span>Best Available Choice in Town</span></h3>
-            </div>
-            <div class="banner-grids">
-                <div class="col-md-2 banner-grid">
-                    <select class="sel">
-                        <option value="">Location</option>
-                        <option value="">Czech Republic</option>
-                        <option value="">France</option>
-                        <option value="">Germany</option>
-                        <option value="">Italy</option>
-                    </select>
+            <div class="container" >
+                <div class="banner-heder">
+                    <h3>We Plan Your Trip<span>Best Available Choice in Town</span></h3>
                 </div>
-                <div class="col-md-2 banner-grid">
-                    <select class="sel">
-                        <option value="">Hotel</option>
-                        <option value="">Hilton</option>
-                        <option value="">Holiday Inn</option>
-                        <option value="">Sheraton</option>
-                    </select>
+                <div class="banner-grids">
+                    <div class="col-md-2 banner-grid">
+                        <select class="sel">
+                            <option value="">Location</option>
+                            <option value="">Czech Republic</option>
+                            <option value="">France</option>
+                            <option value="">Germany</option>
+                            <option value="">Italy</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 banner-grid">
+                        <select class="sel">
+                            <option value="">Hotel</option>
+                            <option value="">Hilton</option>
+                            <option value="">Holiday Inn</option>
+                            <option value="">Sheraton</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 banner-grid">
+                        <select class="sel">
+                            <option value="">Type</option>
+                            <option value="">Group</option>
+                            <option value="">Trip</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 banner-grid">
+                        <select class="sel">
+                            <option value="">Select price</option>
+                            <option value="">$100</option>
+                            <option value="">$500</option>
+                            <option value="">$700</option>
+                            <option value="">$4500</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 search">
+                        <form action="#" method="post">
+                            <input type="submit" value="Check Availability">
+                        </form>
+                    </div>
+                    <div class="clearfix"></div>
                 </div>
-                <div class="col-md-2 banner-grid">
-                    <select class="sel">
-                        <option value="">Type</option>
-                        <option value="">Group</option>
-                        <option value="">Trip</option>
-                    </select>
-                </div>
-                <div class="col-md-2 banner-grid">
-                    <select class="sel">
-                        <option value="">Select price</option>
-                        <option value="">$100</option>
-                        <option value="">$500</option>
-                        <option value="">$700</option>
-                        <option value="">$4500</option>
-                    </select>
-                </div>
-                <div class="col-md-4 search">
-                    <form action="#" method="post">
-                        <input type="submit" value="Check Availability">
-                    </form>
-                </div>
-                <div class="clearfix"></div>
-            </div>
 
 
         </div>
@@ -136,10 +139,7 @@ Homepage2
 <script src="../static/vendor/input-mask/input-mask.min.js"></script>
 <script src="../static/vendor/nouislider/js/nouislider.min.js"></script>
 <script src="../static/vendor/textarea-autosize/textarea-autosize.min.js"></script>
-<script src="../static/cookie.js"></script>
 <!-- Theme JS -->
 <script src="../static/js/theme.js"></script>
-
 </body>
-
 </html>

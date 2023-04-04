@@ -20,7 +20,6 @@ import datetime
 
 import travelAgent
 from travelAgent import db
-from travelAgent import app
 from travelAgent.forms import CommentForm, ImageForm
 from travelAgent.models import CommentC, Comment, Combination, Destination, Day, Target, RecordC
 from travelAgent.views.login_handler import login_blueprint, current_user
