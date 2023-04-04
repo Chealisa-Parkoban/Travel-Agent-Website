@@ -117,25 +117,6 @@
           <form action="{{url_for('staff_site.submit_plan')}}" method="post" novalidate>
           {{ plan_form.csrf_token }}
 
-          <h5>Plan Name</h5>
-          <label>
-            <input name="name">
-          </label>
-
-          <h5>Introduction</h5>
-          <label style="width: 90%">
-            <textarea name="intro" style="width: 100%"> </textarea>
-          </label>
-
-          <h5>price</h5>
-          <label style="margin-bottom: 1%">
-            <input type="number" name="price">
-          </label>
-            <img src="#" alt="" id="img">
-            <br>
-            <input id="file_upload" name="img" type="file" onclick="showImg()"/>
-          <br>
-                  {{ plan_form.csrf_token }}
           <div class="col-md-6 grid-margin stretch-card" style="width: 100%">
               <div class="card" >
                 <div class="card-body" style="margin: 0 1% 0 1%;">

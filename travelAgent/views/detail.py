@@ -1,6 +1,6 @@
 from flask import Blueprint
 
-from travelAgent.app import logger
+# from travelAgent.app import logger
 from travelAgent.config import basedir
 
 detail_blueprint = Blueprint(name="travel_route_detail", import_name=__name__)
@@ -20,7 +20,6 @@ import datetime
 
 import travelAgent
 from travelAgent import db
-from travelAgent import app
 from travelAgent.forms import CommentForm, ImageForm
 from travelAgent.models import CommentC, Comment, Combination, Destination, Day, Target, RecordC
 from travelAgent.views.login_handler import login_blueprint, current_user
@@ -433,7 +432,7 @@ def showSetDetails():
     # Create a unique id for the image
     id = Random_str().create_uuid()
     # print(CommentC.query.all())
-    logger.info('Entered the TRAVEL ROUTE DETAIL page')
+    # logger.info('Entered the TRAVEL ROUTE DETAIL page')
     comment_form = CommentForm(request.form)
     image_form = ImageForm(request.files)
     if request.method == 'POST':
