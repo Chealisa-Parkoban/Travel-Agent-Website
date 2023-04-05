@@ -39,7 +39,7 @@
             /*position: absolute;*/
             /*top: 50%;*/
             /*left: 50%;*/
-            transform: translate(0%, 40%);
+            transform: translate(0, 15%);
         }
 
     </style>
@@ -59,7 +59,7 @@
                     <h3>We Plan Your Trip<span style="margin-top: 0.1em">Best Available Choice in Town</span></h3>
                 </div>
                 <form action="{{ url_for('booking.addBooking', combination_id=combination_id) }}" method="post">
-                    <div class="banner-grids">
+                    <div class="banner-grids" style="padding: 2em 2em 2.5em 2em">
                         {#                        <div class="col-md-2 banner-grid form-group">#}
                         {#                            <select class="sel">#}
                         {#                                <option value="">Location</option>#}
@@ -118,7 +118,7 @@
                                 Availability
                             </button>
                         </div>
-                        <div class="clearfix"></div>
+<!--                        <div class="clearfix"></div>-->
                     </div>
                 </form>
 
