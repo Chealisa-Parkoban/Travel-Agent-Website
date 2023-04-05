@@ -133,7 +133,7 @@ def profile():
 @app.route('/favourites')
 def favourites():
     logger.info('Entered the FAVOURITES page')
-    return render_template("favourites.html")
+    return render_template('favourites.html')
 
 @app.route('/order_list')
 def order_list():
@@ -168,45 +168,45 @@ def transport_setID():
 #     return render_template("./staff_site/pages/ui-features/buttons.html")
 
 
-# @app.route('/travelRoutesDetail', methods=['GET', 'POST'])
-# def travel_routes_detail():
-#     # Create a unique id for the image
-#     id = Random_str().create_uuid()
-#     # print(CommentC.query.all())
-#     logger.info('Entered the TRAVEL ROUTE DETAIL page')
-#     comment_form = CommentForm(request.form)
-#     image_form = ImageForm(request.files)
-#     if request.method == 'POST':
-#         if comment_form.validate_on_submit():
-#
-#             # Images storage path
-#             file_dir = os.path.join(basedir, "static/upload/")
-#             # Getting the data transferred from the front end
-#             files = request.files.getlist('img')  # Gets the value of myfiles from ajax, of type list
-#             path = ""
-#
-#             for img in files:
-#                 # Extract the suffix of the uploaded image and
-#                 # Name the image after the commodity id and store it in the specific path
-#                 check = img.content_type
-#                 # check if upload image
-#                 if str(check) != 'application/octet-stream':
-#                     fname = img.filename
-#                     ext = fname.rsplit('.', 1)[1]
-#                     new_filename = id + '.' + ext
-#                     img.save(os.path.join(file_dir, new_filename))
-#                     path = "../static/upload/" + new_filename
-#
-#             # default: like=0 path=""
-#             comment = CommentC(user_id=current_user.id, username=current_user.get_username(), combination_id=1,score=comment_form.score.data, content=comment_form.comment.data,image = path, time=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
-#             db.session.add(comment)
-#             flash('已评论')
-#             return redirect(url_for('travel_routes_detail'))
-#
-#         return render_template("travelRoutesDetail.html", current_user=current_user, comment_form=comment_form, comments=CommentC.query.all())
-#     if request.method == 'GET':
-#         comments = CommentC.query.all()
-#         return render_template("travelRoutesDetail.html", comments=comments, comment_form=comment_form)
+@app.route('/travelRoutesDetail', methods=['GET', 'POST'])
+def travel_routes_detail():
+    # Create a unique id for the image
+    id = Random_str().create_uuid()
+    # print(CommentC.query.all())
+    logger.info('Entered the TRAVEL ROUTE DETAIL page')
+    comment_form = CommentForm(request.form)
+    image_form = ImageForm(request.files)
+    if request.method == 'POST':
+        if comment_form.validate_on_submit():
+
+            # Images storage path
+            file_dir = os.path.join(basedir, "static/upload/")
+            # Getting the data transferred from the front end
+            files = request.files.getlist('img')  # Gets the value of myfiles from ajax, of type list
+            path = ""
+
+            for img in files:
+                # Extract the suffix of the uploaded image and
+                # Name the image after the commodity id and store it in the specific path
+                check = img.content_type
+                # check if upload image
+                if str(check) != 'application/octet-stream':
+                    fname = img.filename
+                    ext = fname.rsplit('.', 1)[1]
+                    new_filename = id + '.' + ext
+                    img.save(os.path.join(file_dir, new_filename))
+                    path = "../static/upload/" + new_filename
+
+            # default: like=0 path=""
+            comment = CommentC(user_id=current_user.id, username=current_user.get_username(), combination_id=1,score=comment_form.score.data, content=comment_form.comment.data,image = path, time=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+            db.session.add(comment)
+            flash('已评论')
+            return redirect(url_for('travel_routes_detail'))
+
+        return render_template("travelRoutesDetail.html", current_user=current_user, comment_form=comment_form, comments=CommentC.query.all())
+    if request.method == 'GET':
+        comments = CommentC.query.all()
+        return render_template("travelRoutesDetail.html", comments=comments, comment_form=comment_form)
 
 
 # 翻译功能 (auto - 英)

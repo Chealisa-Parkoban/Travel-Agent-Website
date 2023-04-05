@@ -108,8 +108,8 @@ div#bs-example-navbar2-collapse-1 {
     padding: 0px 0px;
 }
 .banner-section {
-  /*background-image: url("../images/backgrounds/bg.jpeg");*/
-    background-image: url('../images/backgrounds/img-1.jpg');
+  background-image: url("../images/backgrounds/bg.jpeg");
+    /*background-image: url('../images/backgrounds/img-1.jpg');*/
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -122,15 +122,15 @@ div#bs-example-navbar2-collapse-1 {
     padding: 4em;
     border-radius: 0.5em;
 }
-.banner-heder {
+.banner-header {
     margin: 17em 0 3em;
 }
-.banner-heder h3 {
+.banner-header h3 {
     font-size: 3em;
     color: #fff;
 	font-weight:600;
 }
-.banner-heder span {
+.banner-header span {
     display: block;
 }
 .sel {
@@ -732,7 +732,7 @@ h3.tittle1 {
 .banner-section {
     min-height: 617px;	
 }
-.banner-heder {
+.banner-header {
     margin: 14em 0 3em;
 }
 }
@@ -745,7 +745,7 @@ h3.tittle1 {
 .banner-section {
     min-height: 700px;
 }
-.banner-heder {
+.banner-header {
     margin: 18em 0 8em;
 }	
 }
@@ -753,7 +753,7 @@ h3.tittle1 {
 .banner-section {
     min-height: 477px;
 }
-.banner-heder {
+.banner-header {
     margin: 8em 0 3em;
 }
 .banner-grid {
@@ -792,7 +792,7 @@ h3.tittle {
     float: left;
     width: 28%;
 }
-.banner-heder h3 {
+.banner-header h3 {
     font-size: 2.8em;
 }
 .sel {
@@ -881,7 +881,7 @@ h3.tittle {
 .banner-section {
     min-height: 343px;
 }
-.banner-heder {
+.banner-header {
     margin: 5em 0 3em;
 }
 }
@@ -904,7 +904,7 @@ div#bs-example-navbar2-collapse-1 {
 .navbar2-default .navbar2-toggle {
     border-color: #062f3c;
 }
-.banner-heder h3 {
+.banner-header h3 {
     font-size: 2.5em;
 }
 .sel {
@@ -1029,7 +1029,7 @@ h2.tittle {
 h3.tittle {
     font-size: 2.5em;
 }
-.banner-heder h3 {
+.banner-header h3 {
     font-size: 2em;
 }
 .contact-grids input[type="text"] {
@@ -1065,7 +1065,7 @@ h3.tittle {
 .navbar2-toggle {
     margin-top: 7px;
 }
-.banner-heder h3 {
+.banner-header h3 {
     line-height: 1.5em;
 }
 .promotion-grids, .about-grids, .gallery-grids, .contact-grids, .news-grids, .team_gds {
@@ -1100,13 +1100,13 @@ h3.tittle {
 }
 }
 @media(max-width:414px){
-.banner-heder h3 {
+.banner-header h3 {
     font-size: 1.8em;
 }
 .banner-grid {
     width: 100%;
 }
-.banner-heder {
+.banner-header {
     margin: 5em 0 1em;
 }
 .search {
@@ -1192,7 +1192,7 @@ h3.tittle1 {
 }
 }
 @media(max-width:384px){
-.banner-heder h3 {
+.banner-header h3 {
     font-size: 1.5em;
 }
 .logo a {
@@ -1201,7 +1201,7 @@ h3.tittle1 {
 .search {
     width: 47%;
 }
-.banner-heder {
+.banner-header {
     margin: 3em 0 1em;
 }
 .promotions span {
@@ -1242,7 +1242,7 @@ h3.tittle1 {
 }	
 }
 @media(max-width:320px){
-.banner-heder h3 {
+.banner-header h3 {
     font-size: 1.4em;
 }
 .logo a {

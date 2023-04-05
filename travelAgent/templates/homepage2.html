@@ -17,31 +17,33 @@
     <link type="text/css" href="../static/css/style.css" rel="stylesheet">
     <link type="text/css" href="../static/css/book.css" rel="stylesheet">
     <script src="../static/js/ID.js"></script>
+
     <style>
-        .banner-heder {
-            /*position: absolute;*/
-            /*top: 50%;*/
-            /*left: 50%;*/
-            transform: translate(0%, -50%);
-            /*
-
-
-
-        {#text-align: center;#}    */
-            color: #fff;
-            /*
-
-
-
-        {#z-index: 1000;#}    */
+        .banner-header{
+            transform: translate(0, 0);
+            margin: 0 0 5em;
+            font-size: 1.15rem !important;
+            margin-top: 35vh !important;
         }
+
+        .filter{
+            border-radius: 0.5em;
+        }
+
+        .banner-grids{
+            border-radius: 0.7em !important;
+            background-color: rgba(6, 47, 60, 0.8) !important;
+        }
+
         .form-btn {
             /*position: absolute;*/
             /*top: 50%;*/
             /*left: 50%;*/
             transform: translate(0%, 40%);
         }
+
     </style>
+
 {% endblock %}
 
 <body>
@@ -49,12 +51,12 @@
 
 {% block body %}
 
-    <span class="mask bg-primary alpha-7" style="opacity: 0.6; background-color: #FFFFFF;"></span>
+    <span class="mask bg-primary alpha-7" style="opacity: 0.1; background-color: #FFFFFF"></span>
     <div class="banner-section">
         <div class="container">
-            <div class="container">
-                <div class="banner-heder">
-                    <h3>We Plan Your Trip<span>Best Available Choice in Town</span></h3>
+            <div class="container" >
+                <div class="banner-header">
+                    <h3>We Plan Your Trip<span style="margin-top: 0.1em">Best Available Choice in Town</span></h3>
                 </div>
                 <form action="{{ url_for('booking.addBooking', combination_id=combination_id) }}" method="post">
                     <div class="banner-grids">
