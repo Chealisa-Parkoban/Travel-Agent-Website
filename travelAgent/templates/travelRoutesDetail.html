@@ -37,7 +37,9 @@
                                 available.
                             </p>
                             {#                            <a href="./article.html" class="btn btn-info">Book Now!</a>#}
-                            <button class="btn btn-info" id="show"><a href="{{ url_for("booking.addBooking", combination_id = combination_id) }}">Book Now!</a></button>
+                            <button class="btn btn-info" id="show"><a
+                                    href="{{ url_for("booking.addBooking", combination_id = combination_id) }}">Book
+                                Now!</a></button>
                         </div>
                         <div class="col-md-6 d-none d-md-block pr-0"
                              style="background-size:cover;background-image:url({{ set.image }});"></div>
@@ -45,83 +47,138 @@
                 </div>
             </div>
         </div>
+    <!--
         <div class="container pt-4 pb-4">
             <div class="row">
-                <div class="col-lg-6">
-                    <div class="card border-0 mb-4 box-shadow h-xl-300">
-                        <div style="background-image: url(../static/images/sample_pic/guilin2.png); height: 150px;    background-size: cover;    background-repeat: no-repeat;"></div>
-                        <div class="card-body px-0 pb-0 d-flex flex-column align-items-start">
-                            <h2 class="h4 font-weight-bold">
-                                <a class="text-dark" href="./article.html">Brain Stimulation Relieves Depression
-                                    Symptoms</a>
-                            </h2>
-                            <p class="card-text">
-                                Researchers have found an effective target in the brain for electrical stimulation to
-                                improve mood in people suffering from depression.
-                            </p>
-                            <div>
-                                <small class="d-block"><a class="text-muted" href="./author.html">Favid Rick</a></small>
-                                <small class="text-muted">Dec 12 &middot; 5 min read</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {#                <div class="col-lg-6">#}
+                {#                    <div class="card border-0 mb-4 box-shadow h-xl-300">#}
+                {#                        <div style="background-image: url(../static/images/sample_pic/guilin2.png); height: 150px;    background-size: cover;    background-repeat: no-repeat;"></div>#}
+                {#                        <div class="card-body px-0 pb-0 d-flex flex-column align-items-start">#}
+                {#                            <h2 class="h4 font-weight-bold">#}
+                {#                                <a class="text-dark" href="./article.html">Brain Stimulation Relieves Depression#}
+                {#                                    Symptoms</a>#}
+                {#                            </h2>#}
+                {#                            <p class="card-text">#}
+                {#                                Researchers have found an effective target in the brain for electrical stimulation to#}
+                {#                                improve mood in people suffering from depression.#}
+                {#                            </p>#}
+                {#                            <div>#}
+                {#                                <small class="d-block"><a class="text-muted" href="./author.html">Favid Rick</a></small>#}
+                {#                                <small class="text-muted">Dec 12 &middot; 5 min read</small>#}
+                {#                            </div>#}
+                {#                        </div>#}
+                {#                    </div>#}
+                {#                </div>#}
                 <div class="col-lg-6">
                     <div class="flex-md-row mb-4 box-shadow h-xl-300">
-{#                        {% for single_set in set %}#}
+                        {#                        {% for single_set in set %}#}
                         {% for i in range(0,accomodations|length) %}
-                        <div class="mb-3 d-flex align-items-center">
+                            <div class="mb-3 d-flex align-items-center">
 
-                            <img height="40" src="../static/images/icons/location-dot-solid.svg">
-                            <div class="pl-3">
-                                <h2 class="mb-2 h6 font-weight-bold">
+                                <img height="40" src="../static/images/icons/location-dot-solid.svg">
+                                <div class="pl-3">
+                                    <h2 class="mb-2 h6 font-weight-bold">
 
-                                    <a class="text-dark" href="./article.html">
-                                        The {{ i }} day
-                                        <div class="text-cyan">{{accomodations[i].name}}</div>
+                                        <a class="text-dark" href="./article.html">
+                                            The {{ i }} day
+                                            <div class="text-cyan">{{ accomodations[i].name }}</div>
 
-                                    </a>
+                                        </a>
 
-                                </h2>
-                                <div class="card-text text-muted small">
-                                    Jake Bittle in LOVE/HATE
+                                    </h2>
+                                    <div class="card-text text-muted small">
+                                        Jake Bittle in LOVE/HATE
+                                    </div>
+                                    <small class="text-muted">Dec 12 &middot; 5 min read</small>accomodations
                                 </div>
-                                <small class="text-muted">Dec 12 &middot; 5 min read</small>accomodations
-                            </div>
 
-                        </div>
+                            </div>
                         {% endfor %}
-{#                        {% endfor %}#}
-{#                        <div class="mb-3 d-flex align-items-center">#}
-{#                            <img height="40" src="../static/images/icons/location-dot-solid.svg">#}
-{#                            <div class="pl-3">#}
-{#                                <h2 class="mb-2 h6 font-weight-bold">#}
-{#                                    <a class="text-dark" href="./article.html">Underwater museum brings hope to Lake#}
-{#                                        Titicaca</a>#}
-{#                                </h2>#}
-{#                                <div class="card-text text-muted small">#}
-{#                                    Jake Bittle in LOVE/HATE#}
-{#                                </div>#}
-{#                                <small class="text-muted">Dec 12 &middot; 5 min read</small>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                        <div class="mb-3 d-flex align-items-center">#}
-{#                            <img height="40" src="../static/images/icons/location-dot-solid.svg">#}
-{#                            <div class="pl-3">#}
-{#                                <h2 class="mb-2 h6 font-weight-bold">#}
-{#                                    <a class="text-dark" href="./article.html">Sun-skimming probe starts calling#}
-{#                                        home</a>#}
-{#                                </h2>#}
-{#                                <div class="card-text text-muted small">#}
-{#                                    Jake Bittle in LOVE/HATE#}
-{#                                </div>#}
-{#                                <small class="text-muted">Dec 12 &middot; 5 min read</small>#}
-{#                            </div>#}
-{#                        </div>#}
+                        {#                        {% endfor %}#}
+                        {#                        <div class="mb-3 d-flex align-items-center">#}
+                        {#                            <img height="40" src="../static/images/icons/location-dot-solid.svg">#}
+                        {#                            <div class="pl-3">#}
+                        {#                                <h2 class="mb-2 h6 font-weight-bold">#}
+                        {#                                    <a class="text-dark" href="./article.html">Underwater museum brings hope to Lake#}
+                        {#                                        Titicaca</a>#}
+                        {#                                </h2>#}
+                        {#                                <div class="card-text text-muted small">#}
+                        {#                                    Jake Bittle in LOVE/HATE#}
+                        {#                                </div>#}
+                        {#                                <small class="text-muted">Dec 12 &middot; 5 min read</small>#}
+                        {#                            </div>#}
+                        {#                        </div>#}
+                        {#                        <div class="mb-3 d-flex align-items-center">#}
+                        {#                            <img height="40" src="../static/images/icons/location-dot-solid.svg">#}
+                        {#                            <div class="pl-3">#}
+                        {#                                <h2 class="mb-2 h6 font-weight-bold">#}
+                        {#                                    <a class="text-dark" href="./article.html">Sun-skimming probe starts calling#}
+                        {#                                        home</a>#}
+                        {#                                </h2>#}
+                        {#                                <div class="card-text text-muted small">#}
+                        {#                                    Jake Bittle in LOVE/HATE#}
+                        {#                                </div>#}
+                        {#                                <small class="text-muted">Dec 12 &middot; 5 min read</small>#}
+                        {#                            </div>#}
+                        {#                        </div>#}
                     </div>
                 </div>
+
             </div>
         </div>
+        -->
+    <div class="container">
+                        <div class="row-wrapper">
+                    <div class="row cols-xs-space cols-sm-space cols-md-space">
+                        {% for i in range(0,accomodations|length) %}
+                            {% if i%2==0 %}
+                        <div class="col-md-6">
+                            <div class="card bg-primary">
+                                <div class="card-body py-5">
+                                    <div class="d-flex align-items-start">
+                                        <div class="icon icon-lg">
+                                            {#                                        <i class="fab fa-twitter text-white"></i>#}
+
+{#                                            <i class="fa-solid fa-landmark" style="color: white">{{ i }}</i>#}
+                                            <i class="" style="color: white">Day {{ i + 1 }}</i>
+
+                                            {#                                        <img src="../static/images/icons/plane.png" alt="plane" height="100%" width="100%">#}
+                                        </div>
+                                        <div class="icon-text">
+{#                                            <h3 class="heading text-white h4"><i class="fa-solid fa-camera-retro"></i> Attraction: {{ attractions[i].name }}</h3>#}
+                                            <h5 class="heading text-white"><i class="fa-solid fa-camera-retro"></i> Attraction: {{ attractions[i].name }}</h5>
+                                            <!--需要修改文字-->
+                                            <h5 class="heading text-white"><i class="fa-solid fa-landmark"></i> Accommodation: {{ accomodations[i].name }}</h5>
+                                            <h5 class="heading text-white"><i class="fa-solid fa-bus"></i> Traffic: {{ traffic[i].name }}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            {% else %}
+                                <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body py-5">
+                                <div class="d-flex align-items-start">
+                                    <div class="icon icon-lg">
+                                        {#                                        <i class="fab fa-sass"></i>#}
+                                        <i class="" style="color: #0b3340">Day {{ i + 1 }}</i>
+                                    </div>
+                                    <div class="icon-text">
+                                            <h5 class="heading"><i class="fa-solid fa-camera-retro" style="color: #0b3340"></i> Attraction: {{ attractions[i].name }}</h5>
+                                            <!--需要修改文字-->
+                                            <h5 class="heading"><i class="fa-solid fa-landmark" style="color: #0b3340"></i> Accommodation: {{ accomodations[i].name }}</h5>
+                                            <h5 class="heading"><i class="fa-solid fa-bus" style="color: #0b3340"></i> Traffic: {{ traffic[i].name }}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+    </div>
 
         <div class="container">
             <div class="row justify-content-between">
@@ -145,7 +202,7 @@
                                         <p> ⭐⭐ </p>
                                     {% elif comment.score  == 1 %}
                                         <p> ⭐ </p>
-                                {% endif %}
+                                    {% endif %}
 
                                 </h4>
                                 <h4 class="mb-3">{{ comment.content }}</h4>
@@ -154,16 +211,16 @@
                                     <strong>{{ comment.username }}</strong> {{ comment.time }}
                                 </p>
 
-                                <img src= {{comment.image}} alt="" id="img" style="width: 30%">
-<!--                                <script>-->
-<!--                                    function changeSrc(){-->
-<!--                                        var mys = document.getElementById("img");-->
-<!--                                        mys.src = comment.setAttribute("src",comment.path);-->
-<!--                                        return comment.path-->
-<!--                                    }-->
+                                <img src={{ comment.image }} alt="" id="img" style="width: 30%">
+                                <!--                                <script>-->
+                                <!--                                    function changeSrc(){-->
+                                <!--                                        var mys = document.getElementById("img");-->
+                                <!--                                        mys.src = comment.setAttribute("src",comment.path);-->
+                                <!--                                        return comment.path-->
+                                <!--                                    }-->
 
 
-<!--                                </script>-->
+                                <!--                                </script>-->
 
 
                                 <hr class="my-4">
@@ -199,12 +256,12 @@
             {% if current_user.is_authenticated %}
                 <div class="row justify-content-between">
                     <div class="col-md-8">
-{#<!--                        <form action="{{ url_for('travel_routes_detail') }}" method="post" novalidate-->#}
-                        <form action="{{ url_for("details.showSetDetails" )}}" method="post" novalidate
+                        <!--                        <form action="{{ url_for('travel_routes_detail') }}" method="post" novalidate-->
+                        <form action="{{ url_for("details.showSetDetails" ) }}" method="post" novalidate
 
                               class="form-primary"
                               enctype="multipart/form-data">
-                            {{ comment_form.csrf_token }}
+                            {#                            {{ comment_form.csrf_token }}#}
 
                             {#                        <div class="container">#}
                             {#                            <h1>Bootstrap Multi-purpose Editor</h1>#}
