@@ -199,12 +199,12 @@
             {% if current_user.is_authenticated %}
                 <div class="row justify-content-between">
                     <div class="col-md-8">
-<!--                        <form action="{{ url_for('travel_routes_detail') }}" method="post" novalidate-->
+{#<!--                        <form action="{{ url_for('travel_routes_detail') }}" method="post" novalidate-->#}
                         <form action="{{ url_for("details.showSetDetails" )}}" method="post" novalidate
 
                               class="form-primary"
                               enctype="multipart/form-data">
-{#                            {{ comment_form.csrf_token }}#}
+                            {{ comment_form.csrf_token }}
 
                             {#                        <div class="container">#}
                             {#                            <h1>Bootstrap Multi-purpose Editor</h1>#}
@@ -241,8 +241,16 @@
                                                    max="5"
                                                    step="1"
                                                    value="5">
-                                            <img src="../static/images/sample_pic/guilin.png" alt="" id="img">
+                                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-2.webp" alt="" id="img">
                                             <input id="file_upload" name="img" type="file" onclick="showImg()"/>
+{#                                             <div class="form-group">#}
+{#                 <img id="pic" src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-2.webp" style="width: 80px;"/>#}
+{#         </div>#}
+{#        <div class="form-group">#}
+{#            <label for="intro_pic" class="col-sm-2">Add image</label>#}
+{#             <input type="file" accept="image/*" class="file" id="intro_pic" name="intro_pic">#}
+{#         </div>#}
+
                                         </div>
                                     </div>
                                     <div class="card-footer text-muted">
