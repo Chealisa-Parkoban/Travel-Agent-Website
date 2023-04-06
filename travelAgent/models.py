@@ -100,12 +100,14 @@ class Destination(db.Model):
     name = db.Column(db.String(64), index=True, unique=True, nullable=False)  # name is String
 
 
+
 class Target(db.Model):
     __table_args__ = {'extend_existing': True}
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
     name = db.Column(db.String(64), index=True, unique=True, nullable=False)  # name is String
     destination_id = db.Column(db.INTEGER, db.ForeignKey('destination.id'))
+    location = db.Column(db.String(120))
     image = db.Column(db.String(120))
     intro = db.Column(db.String(240))
     # time of duration
@@ -116,6 +118,16 @@ class Target(db.Model):
     # traffic: 2
     type = db.Column(db.INTEGER)
     price = db.Column(db.INTEGER)
+
+    def __init__(self, id, name, destination_id, image, intro, type, price):
+        self.id = id
+        self.name = name
+        self.destination_id = destination_id
+        self.location = Destination.query.filter_by(id=destination_id).first().name
+        self.image = image
+        self.intro = intro
+        self.type = type
+        self.price = price
 
 
 class Day(db.Model):

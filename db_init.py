@@ -15,7 +15,8 @@ with app.app_context():
 
     des1 = Destination(id=1, name='Beijing')
     des2 = Destination(id=2, name='Tianjing')
-    db.session.add_all([des1, des2])
+    des3 = Destination(id=3, name='Shanghai')
+    db.session.add_all([des1, des2, des3])
     db.session.commit()
 
     # 暂定 0 为attraction，1 为accommodation， 2 为traffic
@@ -23,9 +24,9 @@ with app.app_context():
     tar2 = Target(id=2, name='家', destination_id=1, image='', intro='家的位置', type='1', price=100)
     tar3 = Target(id=3, name='公交车', destination_id=1, image='', intro='公交车的号码', type='2', price=2)
     tar4 = Target(id=4, name='长城', destination_id=1, image='', intro='长城的简介', type='0', price=10)
-    tar5 = Target(id=5, name='格林豪泰', destination_id=1, image='', intro='格林豪泰大酒店', type='1', price=300)
-    tar6 = Target(id=6, name='地铁', destination_id=1, image='', intro='地铁的线路', type='2', price=6)
+    tar5 = Target(id=5, name='格林豪泰', destination_id=2, image='', intro='格林豪泰大酒店', type='1', price=300)
 
+    tar6 = Target(id=6, name='地铁', destination_id=1, image='', intro='地铁的线路', type='2', price=6)
     tar7 = Target(id=7, name='八达岭', destination_id=1, image='', intro='香山八达岭', type='0', price=6)
     tar8 = Target(id=8, name='环球影城', destination_id=1, image='', intro='北京环球影城度假区', type='0', price=330)
 
@@ -33,9 +34,10 @@ with app.app_context():
     tar10 = Target(id=10, name='打车', destination_id=1, image='', intro='嘀嘀打车', type='2', price=40)
 
     tar11 = Target(id=11, name='希尔顿', destination_id=1, image='', intro='波音737-800', type='1', price=1200)
-    tar12 = Target(id=12, name='丽思卡尔顿', destination_id=1, image='', intro='北京丽思卡尔顿大酒店', type='1', price=3000)
+    tar12 = Target(id=12, name='丽思卡尔顿', destination_id=3, image='', intro='北京丽思卡尔顿大酒店', type='1', price=3000)
+    tar13 = Target(id=13, name='上海迪士尼乐园', destination_id=3, image='', intro='上海迪士尼度假区 Disney Resort', type='0', price=543)
 
-    db.session.add_all([tar1, tar2, tar3, tar4, tar5, tar6, tar7, tar8, tar9, tar10, tar11, tar12])
+    db.session.add_all([tar1, tar2, tar3, tar4, tar5, tar6, tar7, tar8, tar9, tar10, tar11, tar12, tar13])
     db.session.commit()
 
     day1 = Day(id=1, destination_id=1, attraction_id=1, accommodation_id=2, traffic_id=3)

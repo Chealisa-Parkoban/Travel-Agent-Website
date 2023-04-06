@@ -380,7 +380,8 @@
             </a>
           </li>
 
-          <li class="nav-item nav-category">Contents</li>
+          <li class="nav-item nav-category">Travel Plans</li>
+
 
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for("staff_site.contents")}}">
@@ -390,6 +391,7 @@
             </a>
           </li>
 
+
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for("staff_site.new_plan")}}">
               <i class="menu-icon mdi mdi-arrange-send-backward"></i>
@@ -397,42 +399,36 @@
             </a>
           </li>
 
-<!--          <li class="nav-item">-->
-<!--            <a class="nav-link" data-bs-toggle="collapse" href="" aria-expanded="false" aria-controls="ui-basic">-->
-<!--              <i class="menu-icon mdi mdi-floor-plan"></i>-->
-<!--              <span class="menu-title" href="">UI Elements</span>-->
-<!--            </a>-->
-<!--          </li>-->
 
-          <li class="nav-item nav-category">Forms and Datas</li>
+
+          <li class="nav-item nav-category">More Contents</li>
 
           <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
+            <a class="nav-link" href="{{ url_for('staff_site.destinations')}}" >
               <i class="menu-icon mdi mdi-card-text-outline"></i>
-              <span class="menu-title">Form elements</span>
+              <span class="menu-title">Destinations</span>
             </a>
-
           </li>
+
           <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+            <a class="nav-link" href="{{ url_for('staff_site.attractions')}}" >
               <i class="menu-icon mdi mdi-chart-line"></i>
-              <span class="menu-title">Charts</span>
+              <span class="menu-title">Attractions</span>
 
             </a>
 
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
+            <a class="nav-link" href="{{ url_for('staff_site.accommodations')}}">
               <i class="menu-icon mdi mdi-table"></i>
-              <span class="menu-title">Tables</span>
-
+              <span class="menu-title">Hotels</span>
             </a>
 
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
+            <a class="nav-link" href="{{ url_for('staff_site.traffics')}}" >
               <i class="menu-icon mdi mdi-layers-outline"></i>
-              <span class="menu-title">Icons</span>
+              <span class="menu-title">Traffics</span>
 
             </a>
 

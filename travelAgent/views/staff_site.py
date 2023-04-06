@@ -4,7 +4,7 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import LoginManager, login_user, current_user, logout_user
 
 from travelAgent import app, db
-from travelAgent.forms import LoginForm, DayTripForm, PlanForm
+from travelAgent.forms import LoginForm, DayTripForm, PlanForm, DestinationForm, AttractionForm
 from travelAgent.models import User, Destination, Target, Day, Combination
 from travelAgent.views.login_handler import login_manager
 
@@ -65,12 +65,12 @@ def logout():
     return redirect(url_for("staff_site.login"))
 
 
-@staff_blueprint.route('/staff/contents', methods=['GET', 'POST'])
+@staff_blueprint.route('/staff/contents/all_plans', methods=['GET', 'POST'])
 def contents():
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
     plans = Combination.query.all()
-    return render_template('./staff_site/contents.html', plans=plans)
+    return render_template('./staff_site/all_plans.html', plans=plans)
 
 
 @staff_blueprint.route('/staff/contents/new_plan', methods=['GET', 'POST'])
@@ -206,8 +206,84 @@ def plan_detail():
 
 @staff_blueprint.route('/staff/contents/view_plan', methods=['GET', 'POST'])
 def view_plan(plan, days):
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
     return render_template('./staff_site/plan_detail.html', plan=plan, days=days, plan_form=PlanForm(),
                            day_form=DayTripForm())
+
+
+# @staff_blueprint.route('/staff/contents/all_contents', methods=['GET', 'POST'])
+# def all_contents():
+#     if not current_user.is_authenticated:
+#         return redirect(url_for("staff_site.login"))
+#     destinations = Destination.query.all()
+#     attractions = Target.query.filter_by(type="0").all()
+#     accommodations = Target.query.filter_by(type="1").all()
+#     traffics = Target.query.filter_by(type="2").all()
+#     return render_template('./staff_site/destinations.html', destinations=destinations, attractions=attractions,
+#                            hotels=accommodations, traffics=traffics)
+
+
+@staff_blueprint.route('/staff/contents/destinations', methods=['GET', 'POST'])
+def destinations():
+    message = ""
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    destinations = Destination.query.all()
+    form = DestinationForm(request.form)
+    if form.validate_on_submit():
+        destination = form.destination.data
+        print(destination)
+        if Destination.query.filter_by(name=destination).first() is not None:
+            message = 'Destination exist!'
+            return render_template('./staff_site/destinations.html', destinations=destinations, form=form, message=message)
+        destination = Destination(name=destination)
+        db.session.add(destination)
+    db.session.commit()
+    return render_template('./staff_site/destinations.html', destinations=destinations, form=form, message=message)
+
+
+@staff_blueprint.route('/staff/contents/attractions', methods=['GET', 'POST'])
+def attractions():
+    message = ""
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    attractions = Target.query.filter_by(type="0").all()
+    form = AttractionForm(request.form)
+    if form.validate_on_submit():
+        attraction = form.attraction.data
+        if Target.query.filter_by(name=attraction).first() is not None:
+            message = 'Attraction exist!'
+            return render_template('./staff_site/destinations.html', attractions=attractions, form=form,
+                                   message=message)
+        # attraction = Target(name=attraction)
+        # db.session.add(attraction)
+    db.session.commit()
+    return render_template('./staff_site/attractions.html', attractions=attractions)
+
+
+@staff_blueprint.route('/staff/contents/accommodations', methods=['GET', 'POST'])
+def accommodations():
+    message = ""
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    accommodations = Target.query.filter_by(type="1").all()
+    return render_template('./staff_site/accommodations.html', hotels=accommodations)
+
+
+@staff_blueprint.route('/staff/contents/traffics', methods=['GET', 'POST'])
+def traffics():
+    message = ""
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    traffics = Target.query.filter_by(type="2").all()
+    return render_template('./staff_site/traffics.html', traffics=traffics)
+
+
+# @staff_blueprint.route('/staff/contents/add_destination', methods=['GET', 'POST'])
+# def add_destination():
+#
+#     return render_template('./staff_site/destinations.html')
 
 
 @login_manager.user_loader

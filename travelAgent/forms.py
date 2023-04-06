@@ -156,3 +156,23 @@ class BookingForm(FlaskForm):
 
     # submit the form
     submit = SubmitField('')
+
+
+class DestinationForm(FlaskForm):
+    destination = StringField('destination', validators=[DataRequired()])
+    submit = SubmitField('')
+
+
+class AttractionForm(FlaskForm):
+    attraction = StringField('attraction', validators=[DataRequired()])
+    submit = SubmitField('')
+
+
+class AccommodationForm(FlaskForm):
+    accommodation = StringField('accommodation', validators=[DataRequired()])
+    submit = SubmitField('')
+
+
+class TrafficForm(FlaskForm):
+    traffic = StringField('traffic', validators=[DataRequired()])
+    submit = SubmitField('')

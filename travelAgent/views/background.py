@@ -8,7 +8,7 @@
 #
 # @background_blueprint.route('/admin/contents', methods=['GET', 'POST'])
 # def contents():
-#     return render_template('./background/contents.html')
+#     return render_template('./background/all_plans.html')
 #
 #
 # @background_blueprint.route('/admin/dashboard', methods=['GET', 'POST'])

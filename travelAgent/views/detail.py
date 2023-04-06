@@ -27,6 +27,7 @@ from travelAgent.views.number import Random_str
 
 global set_id
 
+
 @detail_blueprint.route("/showSetDetails", methods=['GET', 'POST'])
 def showSetDetails():
     print("调用showdetail函数了！")
