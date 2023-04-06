@@ -41,9 +41,9 @@ def search():
     if (destination is not None) and (attraction is None) and (price_up is None) and (price_low is None):
         # destination = db.session.query(Destination).filter(Destination.name == destination).first()
         # 模糊查询
-        sql1 = "SELECT * from Combination where name like concat( '%' ,denstination, '%' );"
+        sql1 = "select * from  Combination where name like concat( '%' ," + destination + ", '%' );"
         # 所有相关的destination
-        destinations = session.execute(text(sql1))
+        destinations = db.session.execute(text(sql1))
         for destination in destinations:
             destination_id = destination.id
             # 与destination相关的day
@@ -52,14 +52,14 @@ def search():
                 # 与day相关的combination
                 day_id = day.id
                 sql2 = "select * from Combination where day1=" + day_id + " or day2="+ day_id + " or day3=" + day_id + " or day4=" + day_id + " or day5=" + day_id + " or day6=" + day_id + " or day7=" + day_id +";"
-                combinations = session.execute(text(sql2))
+                combinations = db.session.execute(text(sql2))
 
 
 # 只搜索attractions
     elif (attraction is not None) and (destination is None) and (price_up is None) and (price_low is None):
         # 模糊查询所有相关的attraction
         sql1 = "SELECT * from Target where type=1 and like  concat( '%' ,attraction, '%' );"
-        attractions = session.execute(text(sql1))
+        attractions = db.session.execute(text(sql1))
         for attraction in attractions:
             attraction_id = attraction.id
             # 与attraction相关的day
@@ -67,34 +67,33 @@ def search():
             for day in days:
                 day_id = day.id
                 sql2 = "select * from Combination where day1=" + day_id + " or day2=" + day_id + " or day3=" + day_id + " or day4=" + day_id + " or day5=" + day_id + " or day6=" + day_id + " or day7=" + day_id + ";"
-                combinations = session.execute(text(sql2))
+                combinations = db.session.execute(text(sql2))
 
     # 只搜索价格最高区间
     elif (price_up is not None) and (destination is None) and (attraction is None) and (price_low is None):
         # 查询在此价格往下的所有combination
         sql1 = "select * from Combination where price between 0 and " + price_up + ";"
-        combinations = session.execute(text(sql1))
+        combinations = db.session.execute(text(sql1))
 
     # 只搜索价格最低的区间
     elif (price_low is not None) and (destination is None) and (attraction is None) and (price_up is None):
         # 查询在此价格往下的所有combination
         sql1 = "select * from Combination where price between " + price_low + " and 9999999999999999999999";
-        combinations = session.execute(text(sql1))
+        combinations = db.session.execute(text(sql1))
 
     # 搜索价格最低的区间(上下)
     elif (price_low is not None) and (price_up is not None) and (attraction is None) and (destination is None):
         # 查询在此价格往下的所有combination
         sql1 = "select * from Combination where price between " + price_low + " and "+ price_up + ";"
-        combinations = session.execute(text(sql1))
+        combinations = db.session.execute(text(sql1))
 
     #搜索destination和attraction
     elif (destination is not None) and (attraction is not None) and (price_up is None) and (price_low is None):
 
         # 模糊查询地点
         sql1 = "SELECT * from Combination where name like concat( '%' ,denstination, '%' );"
-        destinations = session.execute(text(sql1))
         # 所有相关的destination
-        destinations = session.execute(text(sql1))
+        destinations = db.session.execute(text(sql1))
         for destination in destinations:
             destination_id = destination.id
             # 与destination相关的day
@@ -103,11 +102,11 @@ def search():
                 # 与day相关的combination
                 day_id = day.id
                 sql2 = "select * from Combination where day1=" + day_id + " or day2=" + day_id + " or day3=" + day_id + " or day4=" + day_id + " or day5=" + day_id + " or day6=" + day_id + " or day7=" + day_id + ";"
-                combinations1 = session.execute(text(sql2))
+                combinations1 = db.session.execute(text(sql2))
 
         # 模糊查询attractions
         sql3 = "SELECT * from Target where type=1 and like  concat( '%' ,attraction, '%' );"
-        attractions = session.execute(text(sql3))
+        attractions = db.session.execute(text(sql3))
         for attraction in attractions:
             attraction_id = attraction.id
             # 与attraction相关的day
@@ -115,18 +114,18 @@ def search():
             for day in days:
                 day_id = day.id
                 sql4 = "select * from Combination where day1=" + day_id + " or day2=" + day_id + " or day3=" + day_id + " or day4=" + day_id + " or day5=" + day_id + " or day6=" + day_id + " or day7=" + day_id + ";"
-                combinations2 = session.execute(text(sql4))
+                combinations2 = db.session.execute(text(sql4))
 
         #对比两组数据中重复的数据
         sql5 = "select * from  "+ combinations1 +" inner join "+ combinations2 +" on " + combinations1 +".id=" + combinations2 + ".id;"
-        combination = session.execute(text(sql5))
+        combination = db.session.execute(text(sql5))
 
     #只搜索destination和price上区间
     elif (destination is not None) and (price_up is not None) and (attraction is None) and (price_low is None):
 
         # 模糊查询地点
         sql1 = "SELECT * from Combination where name like concat( '%' ,denstination, '%' );"
-        destinations = session.execute(text(sql1))
+        destinations = db.session.execute(text(sql1))
         # 所有相关的destination
         destinations = session.execute(text(sql1))
         for destination in destinations:
@@ -137,15 +136,15 @@ def search():
                 # 与day相关的combination
                 day_id = day.id
                 sql2 = "select * from Combination where day1=" + day_id + " or day2=" + day_id + " or day3=" + day_id + " or day4=" + day_id + " or day5=" + day_id + " or day6=" + day_id + " or day7=" + day_id + ";"
-                combinations1 = session.execute(text(sql2))
+                combinations1 = db.session.execute(text(sql2))
 
         # 查询在此价格往下的所有combination
         sql3 = "select * from Combination where price between 0 and " + price_up + ";"
-        combinations2 = session.execute(text(sql3))
+        combinations2 = db.session.execute(text(sql3))
 
         # 对比两组数据中重复的数据
         sql4 = "select * from  " + combinations1 + " inner join " + combinations2 + " on " + combinations1 + ".id=" + combinations2 + ".id;"
-        combination = session.execute(text(sql4))
+        combination = db.session.execute(text(sql4))
 
 
 
@@ -154,9 +153,8 @@ def search():
 
         # 模糊查询地点
         sql1 = "SELECT * from Combination where name like concat( '%' ,denstination, '%' );"
-        destinations = session.execute(text(sql1))
         # 所有相关的destination
-        destinations = session.execute(text(sql1))
+        destinations = db.session.execute(text(sql1))
         for destination in destinations:
             destination_id = destination.id
             # 与destination相关的day
@@ -165,15 +163,15 @@ def search():
                 # 与day相关的combination
                 day_id = day.id
                 sql2 = "select * from Combination where day1=" + day_id + " or day2=" + day_id + " or day3=" + day_id + " or day4=" + day_id + " or day5=" + day_id + " or day6=" + day_id + " or day7=" + day_id + ";"
-                combinations1 = session.execute(text(sql2))
+                combinations1 = db.session.execute(text(sql2))
 
         # 查询在此价格往下的所有combination
         sql3 = "select * from Combination where price between " + price_low + " and 9999999999999999999999";
-        combinations2 = session.execute(text(sql3))
+        combinations2 = db.session.execute(text(sql3))
 
         # 对比两组数据中重复的数据
         sql4 = "select * from  " + combinations1 + " inner join " + combinations2 + " on " + combinations1 + ".id=" + combinations2 + ".id;"
-        combination = session.execute(text(sql4))
+        combination = db.session.execute(text(sql4))
 
     # 只搜索destination和price上下区间
 
@@ -181,9 +179,9 @@ def search():
 
         # 模糊查询地点
         sql1 = "SELECT * from Combination where name like concat( '%' ,denstination, '%' );"
-        destinations = session.execute(text(sql1))
+        destinations = db.session.execute(text(sql1))
         # 所有相关的destination
-        destinations = session.execute(text(sql1))
+        destinations = db.session.execute(text(sql1))
         for destination in destinations:
             destination_id = destination.id
             # 与destination相关的day
@@ -192,15 +190,15 @@ def search():
                 # 与day相关的combination
                 day_id = day.id
                 sql2 = "select * from Combination where day1=" + day_id + " or day2=" + day_id + " or day3=" + day_id + " or day4=" + day_id + " or day5=" + day_id + " or day6=" + day_id + " or day7=" + day_id + ";"
-                combinations1 = session.execute(text(sql2))
+                combinations1 = db.session.execute(text(sql2))
 
         # 查询在此价格往下的所有combination
         sql3 = "select * from Combination where price between " + price_low + " and "+ price_up + ";"
-        combinations2 = session.execute(text(sql3))
+        combinations2 = db.session.execute(text(sql3))
 
         # 对比两组数据中重复的数据
         sql4 = "select * from  " + combinations1 + " inner join " + combinations2 + " on " + combinations1 + ".id=" + combinations2 + ".id;"
-        combination = session.execute(text(sql4))
+        combination = db.session.execute(text(sql4))
 
 
 
@@ -209,7 +207,7 @@ def search():
 
         # 模糊查询所有相关的attraction
         sql1 = "SELECT * from Target where type=1 and like  concat( '%' ,attraction, '%' );"
-        attractions = session.execute(text(sql1))
+        attractions = db.session.execute(text(sql1))
         for attraction in attractions:
             attraction_id = attraction.id
             # 与attraction相关的day
@@ -217,15 +215,15 @@ def search():
             for day in days:
                 day_id = day.id
                 sql2 = "select * from Combination where day1=" + day_id + " or day2=" + day_id + " or day3=" + day_id + " or day4=" + day_id + " or day5=" + day_id + " or day6=" + day_id + " or day7=" + day_id + ";"
-                combinations1 = session.execute(text(sql2))
+                combinations1 = db.session.execute(text(sql2))
 
         # 查询在此价格往下的所有combination
         sql3 = "select * from Combination where price between 0 and " + price_up + ";"
-        combinations2 = session.execute(text(sql3))
+        combinations2 = db.session.execute(text(sql3))
 
         # 对比两组数据中重复的数据
         sql4 = "select * from  " + combinations1 + " inner join " + combinations2 + " on " + combinations1 + ".id=" + combinations2 + ".id;"
-        combination = session.execute(text(sql4))
+        combination = db.session.execute(text(sql4))
 
 
     # 只搜索attraction和price下区间
@@ -234,7 +232,7 @@ def search():
 
         # 模糊查询所有相关的attraction
         sql1 = "SELECT * from Target where type=1 and like  concat( '%' ,attraction, '%' );"
-        attractions = session.execute(text(sql1))
+        attractions = db.session.execute(text(sql1))
         for attraction in attractions:
             attraction_id = attraction.id
             # 与attraction相关的day
@@ -242,15 +240,15 @@ def search():
             for day in days:
                 day_id = day.id
                 sql2 = "select * from Combination where day1=" + day_id + " or day2=" + day_id + " or day3=" + day_id + " or day4=" + day_id + " or day5=" + day_id + " or day6=" + day_id + " or day7=" + day_id + ";"
-                combinations1 = session.execute(text(sql2))
+                combinations1 = db.session.execute(text(sql2))
 
         # 查询在此价格往下的所有combination
         sql3 = "select * from Combination where price between " + price_low + " and 9999999999999999999999";
-        combinations2 = session.execute(text(sql3))
+        combinations2 = db.session.execute(text(sql3))
 
         # 对比两组数据中重复的数据
         sql4 = "select * from  " + combinations1 + " inner join " + combinations2 + " on " + combinations1 + ".id=" + combinations2 + ".id;"
-        combination = session.execute(text(sql4))
+        combination = db.session.execute(text(sql4))
 
     # 只搜索attraction和price上下区间
 
@@ -258,7 +256,7 @@ def search():
 
         # 模糊查询所有相关的attraction
         sql1 = "SELECT * from Target where type=1 and like  concat( '%' ,attraction, '%' );"
-        attractions = session.execute(text(sql1))
+        attractions = db.session.execute(text(sql1))
         for attraction in attractions:
             attraction_id = attraction.id
             # 与attraction相关的day
@@ -266,22 +264,22 @@ def search():
             for day in days:
                 day_id = day.id
                 sql2 = "select * from Combination where day1=" + day_id + " or day2=" + day_id + " or day3=" + day_id + " or day4=" + day_id + " or day5=" + day_id + " or day6=" + day_id + " or day7=" + day_id + ";"
-                combinations1 = session.execute(text(sql2))
+                combinations1 = db.session.execute(text(sql2))
 
         # 查询在此价格往下的所有combination
         sql3 = "select * from Combination where price between " + price_low + " and "+ price_up + ";"
-        combinations2 = session.execute(text(sql3))
+        combinations2 = db.session.execute(text(sql3))
 
         # 对比两组数据中重复的数据
         sql4 = "select * from  " + combinations1 + " inner join " + combinations2 + " on " + combinations1 + ".id=" + combinations2 + ".id;"
-        combination = session.execute(text(sql4))
+        combination = db.session.execute(text(sql4))
 
     # 搜索destination和attraction和price上区间
     elif (attraction is not None) and (price_up is not None) and (destination is not None) and (price_low is None):
 
         # 模糊查询所有相关的attraction
         sql1 = "SELECT * from Target where type=1 and like  concat( '%' ,attraction, '%' );"
-        attractions = session.execute(text(sql1))
+        attractions = db.session.execute(text(sql1))
         for attraction in attractions:
             attraction_id = attraction.id
             # 与attraction相关的day
@@ -289,11 +287,11 @@ def search():
             for day in days:
                 day_id = day.id
                 sql2 = "select * from Combination where day1=" + day_id + " or day2=" + day_id + " or day3=" + day_id + " or day4=" + day_id + " or day5=" + day_id + " or day6=" + day_id + " or day7=" + day_id + ";"
-                combinations1 = session.execute(text(sql2))
+                combinations1 = db.session.execute(text(sql2))
 
         # 模糊查询所有相关的attraction
         sql3 = "SELECT * from Target where type=1 and like  concat( '%' ,attraction, '%' );"
-        attractions = session.execute(text(sql3))
+        attractions = db.session.execute(text(sql3))
         for attraction in attractions:
             attraction_id = attraction.id
             # 与attraction相关的day
@@ -301,20 +299,20 @@ def search():
             for day in days:
                 day_id = day.id
                 sql4 = "select * from Combination where day1=" + day_id + " or day2=" + day_id + " or day3=" + day_id + " or day4=" + day_id + " or day5=" + day_id + " or day6=" + day_id + " or day7=" + day_id + ";"
-                combinations2 = session.execute(text(sql4))
+                combinations2 = db.session.execute(text(sql4))
 
 
         # 查询在此价格往下的所有combination
         sql5 = "select * from Combination where price between 0 and " + price_up + ";"
-        combinations3 = session.execute(text(sql5))
+        combinations3 = db.session.execute(text(sql5))
 
 
         # 对比两组数据中重复的数据
         sql6 = "select * from  " + combinations1 + " inner join " + combinations2 + " on " + combinations1 + ".id=" + combinations2 + ".id;"
-        combination_12 = session.execute(text(sql6))
+        combination_12 = db.session.execute(text(sql6))
 
         sql7 = "select * from  " + combination_12 + " inner join " + combinations3 + " on " + combination_12 + ".id=" + combinations3 + ".id;"
-        combination = session.execute(text(sql7))
+        combination = db.session.execute(text(sql7))
 
 
 
@@ -324,7 +322,7 @@ def search():
 
         # 模糊查询所有相关的attraction
         sql1 = "SELECT * from Target where type=1 and like  concat( '%' ,attraction, '%' );"
-        attractions = session.execute(text(sql1))
+        attractions = db.session.execute(text(sql1))
         for attraction in attractions:
             attraction_id = attraction.id
             # 与attraction相关的day
@@ -332,11 +330,11 @@ def search():
             for day in days:
                 day_id = day.id
                 sql2 = "select * from Combination where day1=" + day_id + " or day2=" + day_id + " or day3=" + day_id + " or day4=" + day_id + " or day5=" + day_id + " or day6=" + day_id + " or day7=" + day_id + ";"
-                combinations1 = session.execute(text(sql2))
+                combinations1 = db.session.execute(text(sql2))
 
         # 模糊查询所有相关的attraction
         sql3 = "SELECT * from Target where type=1 and like  concat( '%' ,attraction, '%' );"
-        attractions = session.execute(text(sql3))
+        attractions = db.session.execute(text(sql3))
         for attraction in attractions:
             attraction_id = attraction.id
             # 与attraction相关的day
@@ -344,20 +342,20 @@ def search():
             for day in days:
                 day_id = day.id
                 sql4 = "select * from Combination where day1=" + day_id + " or day2=" + day_id + " or day3=" + day_id + " or day4=" + day_id + " or day5=" + day_id + " or day6=" + day_id + " or day7=" + day_id + ";"
-                combinations2 = session.execute(text(sql4))
+                combinations2 = db.session.execute(text(sql4))
 
 
         # 查询在此价格往下的所有combination
         sql5 = "select * from Combination where price between " + price_low + " and 9999999999999999999999";
-        combinations3 = session.execute(text(sql5))
+        combinations3 = db.session.execute(text(sql5))
 
 
         # 对比两组数据中重复的数据
         sql6 = "select * from  " + combinations1 + " inner join " + combinations2 + " on " + combinations1 + ".id=" + combinations2 + ".id;"
-        combination_12 = session.execute(text(sql6))
+        combination_12 = session.db.execute(text(sql6))
 
         sql7 = "select * from  " + combination_12 + " inner join " + combinations3 + " on " + combination_12 + ".id=" + combinations3 + ".id;"
-        combination = session.execute(text(sql7))
+        combination = session.db.execute(text(sql7))
 
     # 搜索destination和attraction和price上下区间
 
@@ -365,7 +363,7 @@ def search():
 
         # 模糊查询所有相关的attraction
         sql1 = "SELECT * from Target where type=1 and like  concat( '%' ,attraction, '%' );"
-        attractions = session.execute(text(sql1))
+        attractions = db.session.execute(text(sql1))
         for attraction in attractions:
             attraction_id = attraction.id
             # 与attraction相关的day
@@ -373,7 +371,7 @@ def search():
             for day in days:
                 day_id = day.id
                 sql2 = "select * from Combination where day1=" + day_id + " or day2=" + day_id + " or day3=" + day_id + " or day4=" + day_id + " or day5=" + day_id + " or day6=" + day_id + " or day7=" + day_id + ";"
-                combinations1 = session.execute(text(sql2))
+                combinations1 = db.session.execute(text(sql2))
 
         # 模糊查询所有相关的attraction
         sql3 = "SELECT * from Target where type=1 and like  concat( '%' ,attraction, '%' );"
@@ -385,20 +383,20 @@ def search():
             for day in days:
                 day_id = day.id
                 sql4 = "select * from Combination where day1=" + day_id + " or day2=" + day_id + " or day3=" + day_id + " or day4=" + day_id + " or day5=" + day_id + " or day6=" + day_id + " or day7=" + day_id + ";"
-                combinations2 = session.execute(text(sql4))
+                combinations2 = db.session.execute(text(sql4))
 
 
         # 查询在此价格往下的所有combination
         sql5 ="select * from Combination where price between " + price_low + " and "+ price_up + ";"
-        combinations3 = session.execute(text(sql5))
+        combinations3 = db.session.execute(text(sql5))
 
 
         # 对比两组数据中重复的数据
         sql6 = "select * from  " + combinations1 + " inner join " + combinations2 + " on " + combinations1 + ".id=" + combinations2 + ".id;"
-        combination_12 = session.execute(text(sql6))
+        combination_12 = db.session.execute(text(sql6))
 
         sql7 = "select * from  " + combination_12 + " inner join " + combinations3 + " on " + combination_12 + ".id=" + combinations3 + ".id;"
-        combination = session.execute(text(sql7))
+        combination = db.session.execute(text(sql7))
 
 
     return render_template("homepage2.html", combinations=combination)

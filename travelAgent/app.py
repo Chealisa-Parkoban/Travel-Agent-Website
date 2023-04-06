@@ -120,12 +120,6 @@ def profile():
         price.append(combination.price)
         image.append(combination.image)
 
-    # context = {
-    #     "name" : name,
-    #     "introduction" : introduction,
-    #     "price" : price,
-    #     "image" : image
-    # }
     return render_template("profile.html", user=user, book=book, bookings=bookings,
                            name=name, introduction=introduction, price=price, image=image)
 
@@ -138,7 +132,33 @@ def favourites():
 @app.route('/order_list')
 def order_list():
     logger.info('Entered the order_list page')
-    return render_template("order_list.html")
+    if not current_user.is_authenticated:
+        return redirect(url_for('account.login'))
+    else:
+        customer_id = current_user.id
+        # 传递user的个人信息
+        user = db.session.query(User).filter(User.id == customer_id).first()
+        # 传输个人的booking记录
+        # book = db.session.query(RecordC).filter(RecordC.user_id == customer_id).first()
+        bookings = db.session.query(RecordC).filter(RecordC.user_id == customer_id).all()
+        # combination中的信息
+
+        name = []
+        introduction = []
+        price = []
+        image = []
+
+    for book in bookings:
+        combination_id = book.combination_id
+        print(combination_id)
+        combination = db.session.query(Combination).filter(Combination.id == combination_id).first()
+        name.append(combination.name)
+        introduction.append(combination.intro)
+        price.append(combination.price)
+        image.append(combination.image)
+
+    return render_template("order_list.html", bookings=bookings,
+                           name=name, introduction=introduction, price=price, image=image)
 
 @app.route('/transport_setID', methods=['GET', 'POST'])
 def transport_setID():
