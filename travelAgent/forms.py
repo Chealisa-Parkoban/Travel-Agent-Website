@@ -164,7 +164,10 @@ class DestinationForm(FlaskForm):
 
 
 class AttractionForm(FlaskForm):
-    attraction = StringField('attraction', validators=[DataRequired()])
+    name = StringField('attraction', validators=[DataRequired()])
+    location = SelectField('destination', validators=[DataRequired()])
+    intro = StringField('intro', validators=[DataRequired()])
+    price = IntegerField('price', validators=[DataRequired()])
     submit = SubmitField('')
 
 

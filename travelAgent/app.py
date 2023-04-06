@@ -135,6 +135,7 @@ def favourites():
     logger.info('Entered the FAVOURITES page')
     return render_template('favourites.html')
 
+
 @app.route('/order_list')
 def order_list():
     logger.info('Entered the order_list page')
@@ -166,6 +167,7 @@ def order_list():
     return render_template("order_list.html", bookings=bookings,
                            name=name, introduction=introduction, price=price, image=image)
 
+
 @app.route('/transport_setID', methods=['GET', 'POST'])
 def transport_setID():
     print("调用transport_setID函数了！")
@@ -176,6 +178,13 @@ def transport_setID():
     print(set_id)
     return '0'
 
+
+@app.route('/staff/contents/store_plan_id', methods=['GET', 'POST'])
+def store_plan_id():
+    plan_id = request.args.get("plan_id")
+    session['plan_id'] = plan_id
+    print(plan_id)
+    return '0'
 
 
 # @app.route('/staff')

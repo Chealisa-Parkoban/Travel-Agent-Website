@@ -3,91 +3,37 @@
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
-          <h3 style="margin: 0 0 2% 2%">Create a New Travel Plan</h3>
-          <div class="col-md-6 grid-margin stretch-card" style="width: 100%">
-              <div class="card" >
-                <div class="card-body" style="margin: 0 1% 0 1%;">
-                  <form action="{{url_for('staff_site.submit_plan')}}" method="post" novalidate>
-                  {{ plan_form.csrf_token }}
+          <h3 style="margin: 0 0 2% 2%">View Travel Plan</h3>
 
-                  <div class="form-group"style="margin-bottom: 0">
-                    <p>Plan Name</p>
-                    <label style="width: 100%">
-                      <input class="form-control" name="name">
-                    </label>
-                  </div>
-
-                  <div class="form-group" style="margin-bottom: 0">
-                  <p>Introduction</p>
-                  <label style="width: 100%">
-                    <input class="form-control" name="intro" style="width: 100%"/>
-                  </label>
-                  </div>
-
-                  <div>
-                    <input id="file_upload" name="img" type="file" onclick="showImg()"/>
-                  </div>
-
-                  <div class="form-group" style="margin-bottom: 0">
-                  <p>Price</p>
-                  <label style="margin-bottom: 1%">
-                    <input class="form-control" type="number" name="price">
-                  </label>
-                  </div>
-                  </form>
-
-                 </div>
-              </div>
-            </div>
           <div class="row" id="row">
             {% for day in days %}
             <div class="col-md-6 grid-margin stretch-card" >
               <div class="card" >
                 <div class="card-body" style="margin: 0 3% 0 3%;">
-                  <h4 class="card-title">Day {{day.id}}</h4>
+                  <h4 class="card-title">Day {{day[0]}}</h4>
                   <p class="card-description">
                     Day trip information
                   </p>
                   <form class="forms-sample">
                     <div class="form-group">
                       <label for="Destination">Destination</label>
-                      <h4 style="color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%">{{day.destination}}</h4>
+                      <h4 style="color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%">{{day[1]}}</h4>
                     </div>
                     <div class="form-group">
                       <label for="Attraction">Attraction</label>
-                      <h4 style="color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%">{{day.destination}}</h4>
+                      <h4 style="color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%">{{day[2]}}</h4>
                     </div>
                     <div class="form-group">
                       <label for="Accommodation">Accommodation</label>
-                      <h4 style="color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%">{{day.destination}}</h4>
+                      <h4 style="color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%">{{day[3]}}</h4>
                     </div>
                     <div class="form-group">
                       <label for="Traffic">Traffic</label>
-                      <h4 style="color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%">{{day.destination}}</h4>
+                      <h4 style="color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%">{{day[4]}}</h4>
                     </div>
-                      <button class="btn btn-light" onclick="delete_day()">Delete</button>
+                      <button class="btn btn-light" >Delete</button>
                   </form>
-                  <script>
-                    var day = {{ day|tojson() }}
-                    console.log(day[0])
-                    var day_id = day[0]
-                    function delete_day(){
-                      console.log(day_id)
-                      $.get({
-                        url: '/staff/contents/delete_day',
-                        type: 'GET',
-                        data: JSON.stringify(day_id),
-                        // data: JSON.stringify({
-                        //   day_id: day_id
-                        // }),
-                        success: function (data) {
-                          console.log(data)
-                          window.location.reload()
-                        }
-                      })
-                    }
-                  </script>
-<!--                  <script src="../../static/staff_site_static/new_plan.js"></script>-->
+
                 </div>
               </div>
             </div>
@@ -148,10 +94,47 @@
           </div>
 
 
-
-
           <form action="{{url_for('staff_site.submit_plan')}}" method="post" novalidate>
-                  {{ plan_form.csrf_token }}
+          {{ plan_form.csrf_token }}
+
+          <div class="col-md-6 grid-margin stretch-card" style="width: 100%">
+              <div class="card" >
+                <div class="card-body" style="margin: 0 1% 0 1%;">
+
+
+                  <div class="form-group"style="margin-bottom: 0">
+                    <p>Plan Name</p>
+                    <label style="width: 100%">
+                      <input class="form-control" name="name" value={{ plan.name }}>
+                    </label>
+                  </div>
+
+                  <div class="form-group" style="margin-bottom: 0">
+                  <p>Introduction</p>
+                  <label style="width: 100%">
+                    <input class="form-control" name="intro" style="width: 100%" value={{ plan.intro }}>
+                  </label>
+                  </div>
+
+                  <div>
+                    <p>Cover Picture</p>
+<!--                    <img src='../../static/images/sample_pic/disney.png'>-->
+                    <img src={{ plan.image }}>
+                    <input id="" name="img" type="file" onclick="showImg()"/>
+                  </div>
+
+                  <div class="form-group" style="margin-bottom: 0">
+                  <p>Price</p>
+                  <label style="margin-bottom: 1%">
+                    <input class="form-control" type="number" name="price" value={{ plan.price }}>
+                  </label>
+                  </div>
+
+
+                 </div>
+              </div>
+            </div>
+
           <div style="display:flex;justify-content: center; align-items:center;">
             <a href="{{url_for("staff_site.clear_draft")}}">
               <input type="button" class="btn btn-primary me-2" name="clear_all" value="Clear All" >
@@ -163,8 +146,7 @@
               <input type="submit" class="btn btn-primary me-2" name="submit" value="Add Plan">
             </a>
           </div>
-
-            </form>
+          </form>
 
 
         </div>

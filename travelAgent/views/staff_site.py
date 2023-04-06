@@ -1,6 +1,6 @@
 import os
 import uuid
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, session
 from flask_login import LoginManager, login_user, current_user, logout_user
 
 from travelAgent import app, db
@@ -34,7 +34,6 @@ def index():
 
 @staff_blueprint.route('/staff', methods=['GET', 'POST'])
 def login():
-    print('login')
     global emsg
     app.logger.info('Entered STAFF LOGIN page')
     form = LoginForm(request.form)
@@ -131,7 +130,6 @@ def submit_plan():
     intro = request.form.get('intro')
     price = request.form.get('price')
     length = day_trip_draft.__len__()
-    print(name, intro, price, length)
     days = []
 
     uid = uuid.uuid1()
@@ -203,35 +201,48 @@ def delete_day():
     # return redirect(url_for("staff_site.new_plan"))
 
 
-@staff_blueprint.route('/staff/contents/plan_detail', methods=['GET', 'POST'])
-def plan_detail():
-    plan_id = request.args.get("plan_id")
-    plan = Combination.query.filter_by(id=plan_id).first()
-    days = plan.get_days()
-    print("okok")
-    view_plan(plan,days)
-    return 'ok'
-    # return render_template('./staff_site/plan_detail.html', plan=plan, days=days, plan_form=PlanForm(), day_form=DayTripForm())
-
+# @staff_blueprint.route('/staff/contents/store_plan_id', methods=['GET', 'POST'])
+# def store_plan_id():
+#     plan_id = request.args.get("plan_id")
+#     session['plan_id'] = plan_id
+#     # plan = Combination.query.filter_by(id=plan_id).first()
+#     # days = plan.get_days()
+#     # print("okok")
+#     # view_plan(plan,days)
+#     return 'ok'
+#     # return render_template('./staff_site/plan_detail.html', plan=plan, days=days, plan_form=PlanForm(), day_form=DayTripForm())
+#
 
 @staff_blueprint.route('/staff/contents/view_plan', methods=['GET', 'POST'])
-def view_plan(plan, days):
+def view_plan():
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
+    plan_id = session.get('plan_id')
+    print(plan_id, "plan_id")
+    plan = Combination.query.filter_by(id=plan_id).first()
+    days_id = plan.get_days()
+    days = []
+    i = 0
+    for day_id in days_id:
+        if day_id is not None:
+            day = Day.query.filter_by(id=day_id).first()
+            day_des_id = day.destination_id
+            day_att_id = day.attraction_id
+            day_acc_id = day.accommodation_id
+            day_tra_id = day.traffic_id
+
+            day_destination = db.session.query(Destination).filter(Destination.id==day_des_id).first()
+            day_attraction = db.session.query(Target).filter(Target.id == day_att_id).first()
+            day_accommodation = db.session.query(Target).filter(Target.id == day_acc_id).first()
+            day_traffic = db.session.query(Target).filter(Target.id == day_tra_id).first()
+
+            i += 1
+            day = [i, day_destination.name, day_attraction.name, day_accommodation.name, day_traffic.name]
+            days.append(day)
+    print("days", days)
     return render_template('./staff_site/plan_detail.html', plan=plan, days=days, plan_form=PlanForm(),
                            day_form=DayTripForm())
 
-
-# @staff_blueprint.route('/staff/contents/all_contents', methods=['GET', 'POST'])
-# def all_contents():
-#     if not current_user.is_authenticated:
-#         return redirect(url_for("staff_site.login"))
-#     destinations = Destination.query.all()
-#     attractions = Target.query.filter_by(type="0").all()
-#     accommodations = Target.query.filter_by(type="1").all()
-#     traffics = Target.query.filter_by(type="2").all()
-#     return render_template('./staff_site/destinations.html', destinations=destinations, attractions=attractions,
-#                            hotels=accommodations, traffics=traffics)
 
 
 @staff_blueprint.route('/staff/contents/destinations', methods=['GET', 'POST'])
@@ -243,7 +254,6 @@ def destinations():
     form = DestinationForm(request.form)
     if form.validate_on_submit():
         destination = form.destination.data
-        print(destination)
         if Destination.query.filter_by(name=destination).first() is not None:
             message = 'Destination exist!'
             return render_template('./staff_site/destinations.html', destinations=destinations, form=form, message=message)
@@ -258,18 +268,26 @@ def attractions():
     message = ""
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
+
     attractions = Target.query.filter_by(type="0").all()
+    destinations = Destination.query.all()
+
     form = AttractionForm(request.form)
     if form.validate_on_submit():
-        attraction = form.attraction.data
-        if Target.query.filter_by(name=attraction).first() is not None:
+        name = form.name.data
+        location = form.location.data
+        intro = form.intro.data
+        price = form.price.data
+
+        if Target.query.filter_by(name=name).first() is not None:
             message = 'Attraction exist!'
             return render_template('./staff_site/destinations.html', attractions=attractions, form=form,
                                    message=message)
-        # attraction = Target(name=attraction)
-        # db.session.add(attraction)
+        destination = Destination.query.filter_by(name=location).first()
+        attraction = Target(name=name, intro=intro, price=price, type="0", destination_id=destination.id)
+        db.session.add(attraction)
     db.session.commit()
-    return render_template('./staff_site/attractions.html', attractions=attractions)
+    return render_template('./staff_site/attractions.html', attractions=attractions, destinations=destinations, form=form, message=message)
 
 
 @staff_blueprint.route('/staff/contents/accommodations', methods=['GET', 'POST'])
