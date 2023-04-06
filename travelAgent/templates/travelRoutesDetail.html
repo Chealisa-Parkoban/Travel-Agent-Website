@@ -36,9 +36,19 @@
                                 available.
                             </p>
                             {#                            <a href="./article.html" class="btn btn-info">Book Now!</a>#}
-                            <button class="btn btn-info" id="show"><a
-                                    href="{{ url_for("booking.addBooking", combination_id = combination_id) }}">Book
-                                Now!</a></button>
+
+                            <button class="btn btn-primary" style="border-color: transparent">
+                                <i class="fas fa-shopping-cart"></i>
+                                <a href="{{ url_for('booking.addBooking', combination_id = combination_id) }}" style="color: white; text-decoration: none"> Book Now!</a>
+                            </button>
+
+                            <button class="btn btn-outline-primary ml-4">
+                                <i class="fas fa-star"></i>
+                                <a href="#}" style="color: white; text-decoration: none"> Favourite</a>
+                            </button>
+
+
+
                         </div>
                         <div class="col-md-6 d-none d-md-block pr-0"
                              style="background-size:cover;background-image:url({{ set.image }});"></div>
