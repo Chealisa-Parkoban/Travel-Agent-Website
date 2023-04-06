@@ -27,7 +27,6 @@ from travelAgent.views.number import Random_str
 
 global set_id
 
-
 @detail_blueprint.route("/showSetDetails", methods=['GET', 'POST'])
 def showSetDetails():
     print("调用showdetail函数了！")
@@ -1288,7 +1287,6 @@ def showBookingDetail(booking_id):
         traffic.append(day5_traffic)
         traffic.append(day6_traffic)
         traffic.append(day7_traffic)
-
 
 
     return render_template("", length=length, combination=combination, booking=booking,
