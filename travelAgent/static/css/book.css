@@ -26,8 +26,10 @@
 	right: 0;
 	bottom: 0;
 	top: 0;
-	background: rgba(40, 140, 255, 0.7);
+	background: rgba(6, 47, 60, 0.7);
 	/*background: #288cff;*/
+	/*opacity: 0.3;*/
+	/*background-color: #FFFFFF*/
 }
 
 .booking-form {
