@@ -13,12 +13,14 @@ booking_blueprint = Blueprint(name="booking", import_name=__name__)
 
 @booking_blueprint.route('/booking/<combination_id>', methods=['GET', 'POST'])
 def addBooking(combination_id):
+    combination = Combination.query.filter_by(id=combination_id).first()
     form = BookingForm(request.form)
     if request.method == 'GET':
         # bookings = RecordC.query.all()
         # print("Ssdssssssssssss")
-        return render_template('book.html', form=form, combination_id=combination_id)
+        return render_template('book.html', form=form, combination_id=combination_id, combination=combination)
     else:
+
         if form.validate_on_submit():
             start_time = form.time.data
             num = form.num.data
@@ -29,10 +31,10 @@ def addBooking(combination_id):
             db.session.add(booking)
             db.session.commit()
             # print("ffffffffffffffffff")
-            return redirect(url_for("booking.addBooking", combination_id=combination_id))
+            return render_template("order_list.html", combination_id=combination_id)
         else:
             # print("hhhhhhhhhhhh")
-            return render_template('book.html', combination_id=combination_id)
+            return render_template('book.html', combination_id=combination_id, combination=combination)
 
 
 @booking_blueprint.route('/deleteBooking/<booking_id>', methods=['GET', 'POST'])
