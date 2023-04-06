@@ -74,6 +74,16 @@ class User(UserMixin, db.Model):
     def get(cls, userid):
         return User.query.filter_by(id=userid).first()
 
+    # <!--------------chat---------->
+
+    @classmethod
+    def get_all(cls):
+        return User.query.all()
+
+    # <!--------------chat---------->
+
+
+
     def get_by_username(username):
         return User.query.filter_by(username=username).first()
 
@@ -82,6 +92,8 @@ class User(UserMixin, db.Model):
 
     def get_username(self):
         return self.username
+
+
 
 
 class EmailCaptchaModel(db.Model):

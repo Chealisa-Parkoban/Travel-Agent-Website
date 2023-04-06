@@ -26,6 +26,12 @@ from travelAgent.views.favorite import favorite_blueprint
 from travelAgent.views.booking import booking_blueprint
 
 
+#<!--------------------chat------------------->
+from travelAgent.views.chat import chat_blueprint
+from travelAgent.views.chat import socketio, set_logger
+app.register_blueprint(chat_blueprint)
+#<!--------------------chat------------------->
+
 # -------------------------------------register blueprints------------------------------------------
 app.register_blueprint(login_blueprint)
 app.register_blueprint(staff_blueprint)
@@ -269,7 +275,14 @@ def translate(q):
 
 
 
-
+#<!--------------------chat------------------->
+def main():
+    # showSetDetails(1)
+    logger.info('The Website Starts Running!')
+    # app.run(debug=True, port=5000)
+    set_logger(logger)
+    socketio.run(app, allow_unsafe_werkzeug=True,debug=True, port=5001)
+#<!--------------------chat------------------->
 
 
 if __name__ == '__main__':

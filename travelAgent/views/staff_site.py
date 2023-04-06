@@ -14,6 +14,16 @@ staff_blueprint = Blueprint(name="staff_site", import_name=__name__)
 day_trip_draft = []
 save_draft = False
 
+#--------------------chat----------------->
+@staff_blueprint.route('/staff/chat')
+def chat():
+
+    return render_template('./staff_site/pages/chat.html')
+#--------------------chat----------------->
+
+
+
+
 
 @staff_blueprint.route('/staff/index', methods=['GET', 'POST'])
 def index():
