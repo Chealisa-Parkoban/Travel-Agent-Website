@@ -2,13 +2,13 @@ from flask import Blueprint
 from flask_sqlalchemy import session
 from sqlalchemy import text
 
-search_blueprint = Blueprint(name="travel_route_search", import_name=__name__)
+search_blueprint = Blueprint(name="search", import_name=__name__)
 
 import os
 import this
 import time
 
-from flask import Flask, render_template, request, flash, redirect, url_for
+from flask import Flask, render_template, request, flash, redirect, url_for, sessions
 import logging
 import http.client
 import hashlib
@@ -25,12 +25,16 @@ from travelAgent.models import CommentC, Comment, Combination, Destination, Day,
 from travelAgent.views.login_handler import login_blueprint, current_user
 from travelAgent.views.number import Random_str
 
-@search_blueprint.route("/search_for_route")
+@search_blueprint.route("/search_for_route", methods=['GET', 'POST'])
 def search():
-    destination = request.form.get('')
-    attraction = request.form.get('')
-    price_up = request.form.get('')
-    price_low = request.form.get('')
+    destination = request.form.get('Destination')
+    attraction = request.form.get('Attraction')
+    price_up = request.form.get('Highest')
+    price_low = request.form.get('Lowest')
+    print(destination)
+    print(attraction)
+    print(price_up)
+    print(price_low)
 
 
     # 只搜索combination
