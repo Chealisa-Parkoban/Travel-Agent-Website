@@ -1,5 +1,5 @@
 from flask import Blueprint
-from flask_sqlalchemy import session
+from flask import session
 from sqlalchemy import text
 
 search_blueprint = Blueprint(name="search", import_name=__name__)

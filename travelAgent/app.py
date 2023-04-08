@@ -56,7 +56,6 @@ logger.addHandler(fh)
 logger.addHandler(ch)
 global setID
 
-
 @app.route('/')
 def index():  # put application's code here
     logger.info('Entered the HOME page')
