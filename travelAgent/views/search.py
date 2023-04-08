@@ -25,6 +25,8 @@ from travelAgent.models import CommentC, Comment, Combination, Destination, Day,
 from travelAgent.views.login_handler import login_blueprint, current_user
 from travelAgent.views.number import Random_str
 
+# test
+
 @search_blueprint.route("/search_for_route", methods=['GET', 'POST'])
 def search():
     destination = request.form.get('Destination')
