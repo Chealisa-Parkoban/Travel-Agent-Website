@@ -3952,6 +3952,13 @@
 2023-04-06 15:01:11,400 - travelAgent.app - INFO - selina just left the server...
 2023-04-06 15:01:12,421 - travelAgent.app - INFO - selina just connected to the server!
 2023-04-06 15:01:12,441 - travelAgent.app - INFO - selina just left the server...
+2023-04-06 15:57:11,319 - travelAgent.app - INFO - Entered the HOME page
+2023-04-06 15:57:15,297 - travelAgent.app - INFO - Entered the HOME page
+2023-04-06 15:57:56,665 - travelAgent.app - INFO - Entered the HOME page
+2023-04-06 15:59:16,285 - travelAgent.app - INFO - Entered the HOME page
+2023-04-06 15:59:35,525 - travelAgent.app - INFO - Entered the HOME page
+2023-04-06 15:59:38,852 - travelAgent.app - INFO - Entered the HOME page
+2023-04-06 16:00:02,374 - travelAgent.app - INFO - Entered the HOME page
 2023-04-08 12:06:16,178 - __main__ - INFO - The Website Starts Running!
 2023-04-08 12:06:17,201 - __main__ - INFO - The Website Starts Running!
 2023-04-08 12:06:20,713 - __main__ - INFO - Entered the HOME page
@@ -3975,3 +3982,6 @@
 2023-04-08 12:30:56,464 - __main__ - INFO - Entered the HOME page
 2023-04-08 12:30:57,827 - __main__ - INFO - Entered the HOME page
 2023-04-08 12:31:00,455 - __main__ - INFO - Entered the HOME page
+2023-04-08 13:50:15,308 - travelAgent.app - INFO - Entered the HOME page
+2023-04-08 13:50:17,050 - travelAgent.app - INFO - Entered the HOME page
+2023-04-08 14:01:54,534 - travelAgent.app - INFO - Entered the HOME page

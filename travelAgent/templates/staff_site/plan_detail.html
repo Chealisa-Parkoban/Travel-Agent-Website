@@ -139,11 +139,11 @@
             <a href="{{url_for("staff_site.clear_draft")}}">
               <input type="button" class="btn btn-primary me-2" name="clear_all" value="Clear All" >
             </a>
-            <a>
-              <input type="button" class="btn btn-primary me-2" name="save_draft" value="Save Draft">
+            <a href="{{url_for('staff_site.delete_plan')}}">
+              <input type="button" class="btn btn-primary me-2" name="save_draft" value="Delete Plan">
             </a>
-            <a href="{{url_for("staff_site.submit_plan")}}">
-              <input type="submit" class="btn btn-primary me-2" name="submit" value="Add Plan">
+            <a >
+              <input type="submit" class="btn btn-primary me-2" name="submit" value="Update Plan">
             </a>
           </div>
           </form>
