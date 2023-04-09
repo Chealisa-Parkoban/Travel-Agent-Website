@@ -92,10 +92,52 @@
 
                 <div class="row">
 
+
                     <h2 class="mb-5">All</h2>
+                    {% for combination in Combinations %}
+                        <div class="col-md-12 mb-5">
+                        <a href="{{ url_for("details.showSetDetails") }}">
+                            <div class="card">
+                                <div class="row no-gutters">
+                                    <div class="col-md-3 mx-auto mb-auto">
+                                        <img src={{ combination.image }} class="card-img" alt="...">
+                                    </div>
+                                    <div class="col-md-8 mx-auto mb-auto">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ combination.name}}</h5>
+                                            <p class="card-text">{{ combination.intro }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    {% endfor %}
+
+                    {% for target in Targets %}
+                        <div class="col-md-12 mb-5">
+                        <a href="{{ url_for("details.showSetDetails") }}">
+                            <div class="card">
+                                <div class="row no-gutters">
+                                    <div class="col-md-3 mx-auto mb-auto">
+                                        <img src={{ target.image }} class="card-img" alt="...">
+                                    </div>
+                                    <div class="col-md-8 mx-auto mb-auto">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ target.name}}</h5>
+                                            <p class="card-text">{{ target.intro }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    {% endfor %}
 
                     <div class="col-md-12 mb-5">
-                        <a href="{{ url_for("travel_routes_detail") }}">
+                        <a href="{{ url_for("details.showSetDetails") }}">
                             <div class="card">
                                 <div class="row no-gutters">
                                     <div class="col-md-3 mx-auto mb-auto">
@@ -114,7 +156,7 @@
 
 
                     <div class="col-md-12 mb-5">
-                        <a href="{{ url_for("travel_routes_detail") }}">
+                        <a href="{{ url_for("details.showSetDetails") }}">
                             <div class="card">
                                 <div class="row no-gutters">
                                     <div class="col-md-3 mx-auto mb-auto">
@@ -132,7 +174,7 @@
                     </div>
 
                     <div class="col-md-12 mb-5">
-                        <a href="{{ url_for("travel_routes_detail") }}">
+                        <a href="{{ url_for("details.showSetDetails") }}">
                             <div class="card">
                                 <div class="row no-gutters">
                                     <div class="col-md-3 mx-auto mb-auto">
@@ -150,7 +192,7 @@
                     </div>
 
                     <div class="col-md-12 mb-5">
-                        <a href="{{ url_for("travel_routes_detail") }}">
+                        <a href="{{ url_for("details.showSetDetails") }}">
                             <div class="card">
                                 <div class="row no-gutters">
                                     <div class="col-md-3 mx-auto mb-auto">
@@ -168,7 +210,7 @@
                     </div>
 
                     <div class="col-md-12 mb-5">
-                        <a href="{{ url_for("travel_routes_detail") }}">
+                        <a href="{{ url_for("details.showSetDetails") }}">
                             <div class="card">
                                 <div class="row no-gutters">
                                     <div class="col-md-3 mx-auto mb-auto">
@@ -186,7 +228,7 @@
                     </div>
 
                     <div class="col-md-12 mb-5">
-                        <a href="{{ url_for("travel_routes_detail") }}">
+                        <a href="{{ url_for("details.showSetDetails") }}">
                             <div class="card">
                                 <div class="row no-gutters">
                                     <div class="col-md-3 mx-auto mb-auto">
@@ -217,8 +259,29 @@
 
                     <h2 class="mb-5">Travel packages</h2>
 
+                    {% for combination in Combinations %}
+                        <div class="col-md-12 mb-5">
+                        <a href="{{ url_for("details.showSetDetails") }}">
+                            <div class="card">
+                                <div class="row no-gutters">
+                                    <div class="col-md-3 mx-auto mb-auto">
+                                        <img src={{ combination.image }} class="card-img" alt="...">
+                                    </div>
+                                    <div class="col-md-8 mx-auto mb-auto">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ combination.name}}</h5>
+                                            <p class="card-text">{{ combination.intro }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    {% endfor %}
+
                     <div class="col-md-12 mb-5">
-                        <a href="{{ url_for("travel_routes_detail") }}">
+                        <a href="{{ url_for("details.showSetDetails") }}">
                             <div class="card">
                                 <div class="row no-gutters">
                                     <div class="col-md-3 mx-auto mb-auto">
@@ -236,7 +299,7 @@
                     </div>
 
                     <div class="col-md-12 mb-5">
-                        <a href="{{ url_for("travel_routes_detail") }}">
+                        <a href="{{ url_for("details.showSetDetails") }}">
                             <div class="card">
                                 <div class="row no-gutters">
                                     <div class="col-md-3 mx-auto mb-auto">
@@ -267,7 +330,7 @@
                     <h2 class="mb-5">Fly ticket</h2>
 
                     <div class="col-md-12 mb-5">
-                        <a href="{{ url_for("travel_routes_detail") }}">
+                        <a href="{{ url_for("details.showSetDetails") }}">
                             <div class="card">
                                 <div class="row no-gutters">
                                     <div class="col-md-3 mx-auto mb-auto">
@@ -285,7 +348,7 @@
                     </div>
 
                     <div class="col-md-12 mb-5">
-                        <a href="{{ url_for("travel_routes_detail") }}">
+                        <a href="{{ url_for("details.showSetDetails") }}">
                             <div class="card">
                                 <div class="row no-gutters">
                                     <div class="col-md-3 mx-auto mb-auto">
@@ -303,7 +366,7 @@
                     </div>
 
                     <div class="col-md-12 mb-5">
-                        <a href="{{ url_for("travel_routes_detail") }}">
+                        <a href="{{ url_for("details.showSetDetails") }}">
                             <div class="card">
                                 <div class="row no-gutters">
                                     <div class="col-md-3 mx-auto mb-auto">
@@ -321,7 +384,7 @@
                     </div>
 
                     <div class="col-md-12 mb-5">
-                        <a href="{{ url_for("travel_routes_detail") }}">
+                        <a href="{{ url_for("details.showSetDetails") }}">
                             <div class="card">
                                 <div class="row no-gutters">
                                     <div class="col-md-3 mx-auto mb-auto">
@@ -352,7 +415,7 @@
                     <h2 class="mb-5">Hotel</h2>
 
                     <div class="col-md-12 mb-5">
-                        <a href="{{ url_for("travel_routes_detail") }}">
+                        <a href="{{ url_for("details.showSetDetails") }}">
                             <div class="card">
                                 <div class="row no-gutters">
                                     <div class="col-md-3 mx-auto mb-auto">
@@ -383,7 +446,7 @@
                     <h2 class="mb-5">Attraction ticket</h2>
 
                     <div class="col-md-12 mb-5">
-                        <a href="{{ url_for("travel_routes_detail") }}">
+                        <a href="{{ url_for("details.showSetDetails") }}">
                             <div class="card">
                                 <div class="row no-gutters">
                                     <div class="col-md-3 mx-auto mb-auto">
