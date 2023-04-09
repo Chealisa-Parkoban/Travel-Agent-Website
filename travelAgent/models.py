@@ -246,7 +246,7 @@ class Record(db.Model):
     status = db.Column(db.String(120))
 
 
-class CollectC(db.Model):
+class FavoriteC(db.Model):
     __table_args__ = {'extend_existing': True}
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
@@ -257,7 +257,7 @@ class CollectC(db.Model):
 
 
 # personal record of attraction, traffic, and accommodation, customer can operate and store data in this table
-class Collect(db.Model):
+class Favorite(db.Model):
     __table_args__ = {'extend_existing': True}
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)

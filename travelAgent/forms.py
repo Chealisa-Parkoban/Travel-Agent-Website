@@ -143,11 +143,6 @@ class PlanForm(FlaskForm):
     submit = SubmitField('')
 
 
-class FavoriteForm(FlaskForm):
-    name = StringField('name', validators=[DataRequired()])
-    intro = StringField('name', validators=[DataRequired()])
-
-
 class BookingForm(FlaskForm):
     time = StringField('time', validators=[DataRequired()])
     num = StringField('number', validators=[DataRequired()])
