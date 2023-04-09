@@ -4,7 +4,7 @@
       <div class="main-panel">
         <div class="content-wrapper">
 
-          <h3 style="margin: 0 0 2% 2%">Create a New Travel Plan</h3>
+          <h3 style="margin: 0 0 2% 2%">Create a New Travel Package</h3>
 
           <div class="row" id="row">
             {% for day in days %}
@@ -123,7 +123,7 @@
 
 
                   <div class="form-group"style="margin-bottom: 0">
-                    <p>Plan Name</p>
+                    <p>Package Name</p>
                     <label style="width: 100%">
                       <input class="form-control" name="name">
                     </label>
@@ -161,7 +161,7 @@
               <input type="button" class="btn btn-primary me-2" name="save_draft" value="Save Draft">
             </a>
             <a href="{{url_for("staff_site.submit_plan")}}">
-              <input type="submit" class="btn btn-primary me-2" name="submit" value="Add Plan">
+              <input type="submit" class="btn btn-primary me-2" name="submit" value="Add Package">
             </a>
           </div>
           </form>

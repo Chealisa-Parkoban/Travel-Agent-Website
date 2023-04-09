@@ -4,30 +4,7 @@
       <div class="main-panel">
         <div class="content-wrapper">
           <h3 style="margin: 0 0 2% 2%">View Travel Plan</h3>
-          <h3 style="margin: 0 0 2% 2%">Create a New Travel Plan</h3>
-          <div class="col-md-6 grid-margin stretch-card" style="width: 100%">
-              <div class="card" >
-                <div class="card-body" style="margin: 0 1% 0 1%;">
-          <form action="{{url_for('staff_site.submit_plan')}}" method="post" novalidate enctype="multipart/form-data">
-                  {{ plan_form.csrf_token }}
 
-                  <div class="form-group"style="margin-bottom: 0">
-                    <p>Plan Name</p>
-                    <label style="width: 100%">
-                      <input class="form-control" name="name">
-                    </label>
-                  </div>
-
-                  <div class="form-group" style="margin-bottom: 0">
-                  <p>Introduction</p>
-                  <label style="width: 100%">
-                    <input class="form-control" name="intro" style="width: 100%"/>
-                  </label>
-                  </div>
-
-                  <div>
-                    <input id="file_upload" name="img" type="file" onclick="showImg()"/>
-                  </div>
 
           <div class="row" id="row">
             {% for day in days %}
@@ -127,7 +104,7 @@
 
 
                   <div class="form-group"style="margin-bottom: 0">
-                    <p>Plan Name</p>
+                    <p>Package Name</p>
                     <label style="width: 100%">
                       <input class="form-control" name="name" value={{ plan.name }}>
                     </label>
@@ -164,10 +141,10 @@
               <input type="button" class="btn btn-primary me-2" name="clear_all" value="Clear All" >
             </a>
             <a href="{{url_for('staff_site.delete_plan')}}">
-              <input type="button" class="btn btn-primary me-2" name="save_draft" value="Delete Plan">
+              <input type="button" class="btn btn-primary me-2" name="save_draft" value="Delete Package">
             </a>
             <a >
-              <input type="submit" class="btn btn-primary me-2" name="submit" value="Update Plan">
+              <input type="submit" class="btn btn-primary me-2" name="submit" value="Update Package">
             </a>
           </div>
           </form>

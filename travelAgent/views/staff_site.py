@@ -228,6 +228,10 @@ def delete_day():
 def view_plan():
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
+    destinations = Destination.query.all()
+    attractions = Target.query.filter_by(type="0").all()
+    accommodations = Target.query.filter_by(type="1").all()
+    traffics = Target.query.filter_by(type="2").all()
     plan_id = session.get('plan_id')
     print(plan_id, "plan_id")
     plan = Combination.query.filter_by(id=plan_id).first()
@@ -252,7 +256,8 @@ def view_plan():
             days.append(day)
     print("days", days)
     return render_template('./staff_site/plan_detail.html', plan=plan, days=days, plan_form=PlanForm(),
-                           day_form=DayTripForm())
+                           day_form=DayTripForm(), destinations=destinations, attractions=attractions,
+                           accommodations=accommodations, traffics=traffics)
 
 
 @staff_blueprint.route('/staff/contents/delete_plan', methods=['GET', 'POST'])
@@ -285,7 +290,8 @@ def destinations():
             return render_template('./staff_site/destinations.html', destinations=destinations, form=form, message=message)
         destination = Destination(name=destination)
         db.session.add(destination)
-    db.session.commit()
+        db.session.commit()
+        return redirect(url_for("staff_site.destinations"))
     return render_template('./staff_site/destinations.html', destinations=destinations, form=form, message=message)
 
 
@@ -370,10 +376,51 @@ def traffics():
     return render_template('./staff_site/traffics.html', traffics=traffics, destinations=destinations, form=form, message=message)
 
 
-# @staff_blueprint.route('/staff/contents/add_destination', methods=['GET', 'POST'])
-# def add_destination():
-#
-#     return render_template('./staff_site/destinations.html')
+@staff_blueprint.route('/staff/contents/destinations/delete', methods=['GET', 'POST'])
+def delete_destination():
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    des_id = int(session.get('des_id'))
+    print(des_id)
+    destination = Destination.query.filter_by(id=des_id).first()
+    db.session.delete(destination)
+    db.session.commit()
+    return redirect(url_for("staff_site.destinations"))
+
+
+@staff_blueprint.route('/staff/contents/attractions/delete', methods=['GET', 'POST'])
+def delete_attraction():
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    attr_id = int(session.get('attr_id'))
+    print(attr_id)
+    attraction = Target.query.filter_by(id=attr_id).first()
+    db.session.delete(attraction)
+    db.session.commit()
+    return redirect(url_for("staff_site.attractions"))
+
+
+@staff_blueprint.route('/staff/contents/accommodations/delete', methods=['GET', 'POST'])
+def delete_accommodation():
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    acc_id = int(session.get('acc_id'))
+    print(acc_id)
+    accommodation = Target.query.filter_by(id=acc_id).first()
+    db.session.delete(accommodation)
+    db.session.commit()
+    return redirect(url_for("staff_site.accommodations"))
+
+
+@staff_blueprint.route('/staff/contents/traffics/delete', methods=['GET', 'POST'])
+def delete_traffic():
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    traffic_id = int(session.get('tra_id'))
+    traffic = Target.query.filter_by(id=traffic_id).first()
+    db.session.delete(traffic)
+    db.session.commit()
+    return redirect(url_for("staff_site.traffics"))
 
 
 @login_manager.user_loader

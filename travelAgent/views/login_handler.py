@@ -56,7 +56,7 @@ def login():
                     login_user(user, remember=remember_me)
                     emsg = "Login successfully!"
                     app.logger.info('User \'' + username + '\' has successfully logged into the website')
-                    return redirect(url_for("index"))
+                    return redirect(url_for("homepage"))
                 else:
                     emsg = "Wrong password!"
                     app.logger.error('Login failed: Wrong username or password')

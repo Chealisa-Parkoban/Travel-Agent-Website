@@ -25,6 +25,7 @@
                             <th>Location</th>
                             <th>Introduction</th>
                             <th>Price</th>
+                            <th>Delete</th>
                         </tr>
                       </thead>
 
@@ -35,7 +36,19 @@
                             <td>{{attraction.location}}</td>
                             <td>{{attraction.intro}}</td>
                             <td><label class="badge badge-danger">¥ {{attraction.price}}</label></td>
-                        </tr>
+                            <td><input type="submit" class="btn btn-success" style="width: fit-content" value="DELETE" onclick="delete_attr({{attraction.id}})" /></td>
+                            <script>
+                                function delete_attr (id){
+                                  $.get({
+                                    url: '/staff/contents/destinations/store_attr_id',
+                                    type: 'GET',
+                                    data: ({id : id}),
+                                    success: function (data) {
+                                        window.location.href = '/staff/contents/attractions/delete';
+                                    }
+                                  })
+                                }
+                            </script></tr>
                       {% endfor %}
 
                       </tbody>

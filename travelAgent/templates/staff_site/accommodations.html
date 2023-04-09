@@ -25,6 +25,7 @@
                             <th>Location</th>
                             <th>Introduction</th>
                             <th>Price</th>
+                            <th>Delete</th>
                         </tr>
                       </thead>
 
@@ -35,6 +36,19 @@
                             <td>{{hotel.location}}</td>
                             <td>{{hotel.intro}}</td>
                             <td><label class="badge badge-danger">¥ {{hotel.price}}</label></td>
+                            <td><input type="submit" class="btn btn-success" style="width: fit-content" value="DELETE" onclick="delete_acc({{hotel.id}})" /></td>
+                            <script>
+                                function delete_acc (id){
+                                  $.get({
+                                    url: '/staff/contents/destinations/store_acc_id',
+                                    type: 'GET',
+                                    data: ({id : id}),
+                                    success: function (data) {
+                                        window.location.href = '/staff/contents/accommodations/delete';
+                                    }
+                                  })
+                                }
+                            </script>
                         </tr>
                       {% endfor %}
 

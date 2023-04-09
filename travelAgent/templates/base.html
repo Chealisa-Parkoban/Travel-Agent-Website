@@ -59,16 +59,16 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('index') }}">Overview</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbar_1_dropdown_1" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                    <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
-                        <a class="dropdown-item" href="{{ url_for("index") }}">Overview</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li>
+<!--                <li class="nav-item dropdown">-->
+<!--                    <a class="nav-link dropdown-toggle" href="#" id="navbar_1_dropdown_1" role="button"-->
+<!--                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>-->
+<!--                    <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">-->
+<!--                        <a class="dropdown-item" href="{{ url_for("index") }}">Overview</a>-->
+<!--                        <a class="dropdown-item" href="#">Another action</a>-->
+<!--                        <div class="dropdown-divider"></div>-->
+<!--                        <a class="dropdown-item" href="#">Something else here</a>-->
+<!--                    </div>-->
+<!--                </li>-->
 <!--                <li class="nav-item">-->
 <!--                    <a class="nav-link disabled" href="#">Disabled</a>-->
 <!--                </li>-->
@@ -131,31 +131,21 @@
                        data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i></a>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <h6 class="dropdown-header">User menu</h6>
+<!--                        <h6 class="dropdown-header">User menu</h6>-->
+
+
 
                          <!-------------------------chat------------------------->
-
-                         <a class="dropdown-item" href="{{ url_for('account.login') }}">
-                            <i class="fas fa-star text-primary"></i>Sign in
-                        </a>
-                        <a class="dropdown-item" href="{{ url_for('account.sign_up') }}">
-                            <i class="fas fa-sign-out-alt text-primary"></i>Register
-                        </a>
-
+                        {% if current_user.is_authenticated %}
                         <h6 class="dropdown-header">Dear User: {{ current_user.username }}</h6>
+
                         <a class="dropdown-item" href="{{ url_for('chat.chat') }}">
                             <span class="float-right badge badge-primary" id="user_unseen"></span>
-                            <i class="fas fa-envelope text-primary"></i>Chat
+                            <i class="fas fa-envelope text-primary"></i>Messages
                         </a>
 
                         <!-------------------------chat------------------------->
 
-
-
-                        <a class="dropdown-item" href="#">
-                            <span class="float-right badge badge-primary">99+</span>
-                            <i class="fas fa-envelope text-primary"></i>Messages
-                        </a>
                         <a class="dropdown-item" href="{{ url_for("profile") }}">
                             <i class="fas fa-user-circle text-primary"></i>Profile
                         </a>
@@ -167,9 +157,22 @@
                             <i class="fas fa-star text-primary"></i>Favourites
                         </a>
                         <div class="dropdown-divider" role="presentation"></div>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="{{ url_for('account.logout') }}">
                             <i class="fas fa-sign-out-alt text-primary"></i>Sign out
                         </a>
+
+                        {% else %}
+
+                        <a class="dropdown-item" href="{{ url_for('account.login') }}">
+                            <i class="fas fa-star text-primary"></i>Sign in
+                        </a>
+                        <a class="dropdown-item" href="{{ url_for('account.sign_up') }}">
+                            <i class="fas fa-sign-out-alt text-primary"></i>Register
+                        </a>
+
+                        {% endif %}
+
+
                     </div>
                 </li>
             </ul>
