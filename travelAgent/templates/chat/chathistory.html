@@ -1,0 +1,91 @@
+{% extends "chat/chatbase.html" %}
+
+{% block title %}Message History{% endblock %}
+
+{% block head %}
+<style type="text/css">
+/* Chat containers */
+.container {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px auto;
+}
+
+/* Darker chat container */
+.darker {
+  border-color: #ccc;
+  background-color: #ddd;
+}
+
+/* Clear floats */
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Style images */
+.container b {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+/* Style the right image */
+.container b.right {
+  float: right;
+  margin-left: 20px;
+  margin-right:0;
+}
+
+/* Style time text */
+.time-right {
+  float: right;
+  color: #aaa;
+}
+
+/* Style time text */
+.time-left {
+  float: left;
+  color: #999;
+}
+
+.btnTrans{
+    color: red;
+}
+
+.res_translate{
+    margin-left: 5px;
+}
+
+</style>
+{% endblock %}
+
+{% block nav_active %}
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('chat.chat') }}">Chat</a>
+</li>
+<li class="nav-item active">
+    <a class="nav-link" href="{{ url_for('chat.history') }}">History</a>
+</li>
+{% endblock %}
+
+{% block content %}
+
+<div class="row" style="padding-top:10px;" >
+    <div class="col"><hr></div>
+    <div class="col-auto"><p class="h3" align="center">View Message History</p></div>
+    <div class="col"><hr></div>
+</div>
+<div class="container">
+    <div class="overflow-auto" class="msgs" id="messagesHistory" style="overflow-y: scroll; height:500px;">
+        {% for msg in history %}
+            <div class="container darker"><b style="color:#000" class="left">{{msg["name"]}}</b><p> {{msg["message"]}}</p><span class="time-left">{{msg["time"]}}</span></div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

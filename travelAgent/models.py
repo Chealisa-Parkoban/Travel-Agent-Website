@@ -74,6 +74,16 @@ class User(UserMixin, db.Model):
     def get(cls, userid):
         return User.query.filter_by(id=userid).first()
 
+    # <!--------------chat---------->
+
+    @classmethod
+    def get_all(cls):
+        return User.query.all()
+
+    # <!--------------chat---------->
+
+
+
     def get_by_username(username):
         return User.query.filter_by(username=username).first()
 
@@ -82,6 +92,8 @@ class User(UserMixin, db.Model):
 
     def get_username(self):
         return self.username
+
+
 
 
 class EmailCaptchaModel(db.Model):
@@ -119,8 +131,7 @@ class Target(db.Model):
     type = db.Column(db.INTEGER)
     price = db.Column(db.INTEGER)
 
-    def __init__(self, id, name, destination_id, image, intro, type, price):
-        self.id = id
+    def __init__(self, name, destination_id, image, intro, type, price):
         self.name = name
         self.destination_id = destination_id
         self.location = Destination.query.filter_by(id=destination_id).first().name

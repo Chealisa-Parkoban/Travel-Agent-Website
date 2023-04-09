@@ -163,16 +163,9 @@ class DestinationForm(FlaskForm):
     submit = SubmitField('')
 
 
-class AttractionForm(FlaskForm):
-    attraction = StringField('attraction', validators=[DataRequired()])
-    submit = SubmitField('')
-
-
-class AccommodationForm(FlaskForm):
-    accommodation = StringField('accommodation', validators=[DataRequired()])
-    submit = SubmitField('')
-
-
-class TrafficForm(FlaskForm):
-    traffic = StringField('traffic', validators=[DataRequired()])
+class TargetForm(FlaskForm):
+    name = StringField('attraction', validators=[DataRequired()])
+    location = StringField('destination')
+    intro = StringField('intro', validators=[DataRequired()])
+    price = IntegerField('price', validators=[DataRequired()])
     submit = SubmitField('')

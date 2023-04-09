@@ -24,31 +24,27 @@
 
                       <tbody>
                       {% for plan in plans %}
-                        <tr onclick="showPlans()">
+                        <tr onclick="showPlans({{plan.id}})">
                           <td>{{plan.id}}</td>
                           <td>{{plan.name}}</td>
                           <td>{{plan.length}} days</td>
                           <td><label class="badge badge-danger">¥ {{plan.price}}</label></td>
                         </tr>
                       <script>
-                        let plan_id = {{ plan.id }};
-                        function showPlans(){
+                        // let plan_id = {{ plan.id }};
+                        // console.log(plan_id);
+                        function showPlans(plan_id){
                           $.get({
-                            url: '/staff/contents/plan_detail',
+                            url: '/staff/contents/store_plan_id',
                             type: 'GET',
                             data: ({plan_id : plan_id}),
                             success: function (data) {
-                              console.log(data)
+                                window.location.href = '/staff/contents/view_plan';
                             }
                           })
-                          // let plan = {{ plan }};
-                          // console.log(plan);
-                          // url = "./plan_detail.html?plan="+plan;
-                          // window.location.href = url;
                         }
                       </script>
                       {% endfor %}
-
 
                       </tbody>
                     </table>

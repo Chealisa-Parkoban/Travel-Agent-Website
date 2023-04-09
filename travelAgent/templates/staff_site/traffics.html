@@ -1,5 +1,11 @@
 {% extends "staff_site/base.html" %}
       {% block body %}
+<script>
+    var message = {{message|tojson()}};
+    if (message !== ""){
+        alert(message);
+    }
+</script>
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
@@ -36,6 +42,36 @@
                 </div>
               </div>
             </div>
+                <form action="{{ url_for('staff_site.traffics') }}" method="post" novalidate>
+                    {{ form.csrf_token }}
+                      <div class="col-lg-6 grid-margin stretch-card" style="width: 100%">
+                        <div class="card">
+                            <div class="card-body" >
+                                <p>Traffic Name:</p>
+
+                                <input type="text" class="form-control" name="name" />
+
+<!--                                <div class="form-group" style="margin: 1% 0 1% 0">-->
+<!--                                  <label for="Destination">Location:</label>-->
+<!--                                  <select class="form-control" id="Destination" name="location">-->
+<!--                                      {% for location in destinations %}-->
+<!--                                      <option>{{location.name}}</option>-->
+<!--                                      {% endfor %}-->
+<!--                                  </select>-->
+<!--                                </div>-->
+
+                                <p style="margin-top: 1%">Introduction:</p>
+                                <input type="text" class="form-control" name="intro" />
+                                <p style="margin-top: 1%">Price:</p>
+                                <input type="number" class="form-control" name="price" />
+
+                            </div>
+                        </div>
+                      </div>
+                    <div style="display:flex;justify-content: center; align-items:center;">
+                        <input type="submit" class="btn btn-primary me-2" style="width: fit-content; " value="ADD TRAFFIC"  />
+                    </div>
+                  </form>
           </div>
 
         </div>

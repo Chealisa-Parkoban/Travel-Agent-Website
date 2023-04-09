@@ -26,6 +26,12 @@ from travelAgent.views.favorite import favorite_blueprint
 from travelAgent.views.booking import booking_blueprint
 
 
+#<!--------------------chat------------------->
+from travelAgent.views.chat import chat_blueprint
+from travelAgent.views.chat import socketio, set_logger
+app.register_blueprint(chat_blueprint)
+#<!--------------------chat------------------->
+
 # -------------------------------------register blueprints------------------------------------------
 app.register_blueprint(login_blueprint)
 app.register_blueprint(staff_blueprint)
@@ -49,7 +55,6 @@ ch.setFormatter(formatter)
 logger.addHandler(fh)
 logger.addHandler(ch)
 global setID
-
 
 @app.route('/')
 def index():  # put application's code here
@@ -129,6 +134,7 @@ def favourites():
     logger.info('Entered the FAVOURITES page')
     return render_template('favourites.html')
 
+
 @app.route('/order_list')
 def order_list():
     logger.info('Entered the order_list page')
@@ -160,6 +166,7 @@ def order_list():
     return render_template("order_list.html", bookings=bookings,
                            name=name, introduction=introduction, price=price, image=image)
 
+
 @app.route('/transport_setID', methods=['GET', 'POST'])
 def transport_setID():
     print("调用transport_setID函数了！")
@@ -170,6 +177,13 @@ def transport_setID():
     print(set_id)
     return '0'
 
+
+@app.route('/staff/contents/store_plan_id', methods=['GET', 'POST'])
+def store_plan_id():
+    plan_id = request.args.get("plan_id")
+    session['plan_id'] = plan_id
+    print(plan_id)
+    return '0'
 
 
 # @app.route('/staff')
@@ -269,7 +283,14 @@ def translate(q):
 
 
 
-
+#<!--------------------chat------------------->
+def main():
+    # showSetDetails(1)
+    logger.info('The Website Starts Running!')
+    # app.run(debug=True, port=5000)
+    set_logger(logger)
+    socketio.run(app, allow_unsafe_werkzeug=True,debug=True, port=5001)
+#<!--------------------chat------------------->
 
 
 if __name__ == '__main__':
