@@ -23,6 +23,9 @@
     <link type="text/css" href="../static/css/index.css" rel="stylesheet">
     <link type="text/css" href="../static/css/style.css" rel="stylesheet">
 
+    <script src="../static/js/ID.js"></script>
+
+
     <style>
         /*#sideNav {*/
         /*  position: fixed;*/
@@ -96,7 +99,7 @@
                     <h2 class="mb-5">All</h2>
                     {% for combination in Combinations %}
                         <div class="col-md-12 mb-5">
-                        <a href="{{ url_for("details.showSetDetails") }}">
+                        <a set_id={{ combination.id }} onclick="setID(this)">
                             <div class="card">
                                 <div class="row no-gutters">
                                     <div class="col-md-3 mx-auto mb-auto">
@@ -117,7 +120,7 @@
 
                     {% for target in Targets %}
                         <div class="col-md-12 mb-5">
-                        <a href="{{ url_for("details.showSetDetails") }}">
+                        <a set_id={{ combination.id }} onclick="setID(this)">
                             <div class="card">
                                 <div class="row no-gutters">
                                     <div class="col-md-3 mx-auto mb-auto">
