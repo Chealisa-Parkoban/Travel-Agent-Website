@@ -47,7 +47,7 @@
                             </p>
                             {#                            <a href="./article.html" class="btn btn-info">Book Now!</a>#}
 
-                            <a href="{{ url_for('booking.addBooking', combination_id=combination_id) }}">
+                            <a href="{{ url_for('booking.addBooking', combination_id=combination_id) }} " style="text-decoration: none">
                               <button class="btn btn-primary" style="border-color: transparent">
                                 <i class="fas fa-shopping-cart"></i>
                                 <span style="color: white; text-decoration: none;">Book Now!</span>
@@ -55,7 +55,7 @@
                             </a>
 
 
-                            <a href="{{ url_for('favorite.addFavorite', combination_id=combination_id) }}">
+                            <a href="{{ url_for('favorite.addFavorite', combination_id=combination_id) }}" style="text-decoration: none">
                                 <button class="btn btn-outline-primary ml-4 favourite">
                                     <i class="fas fa-star"></i>
                                     <span class="text-color">Favourite</span>
