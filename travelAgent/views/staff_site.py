@@ -9,17 +9,21 @@ from travelAgent.models import User, Destination, Target, Day, Combination
 from travelAgent.views.login_handler import login_manager
 
 from travelAgent.config import basedir
+
 staff_blueprint = Blueprint(name="staff_site", import_name=__name__)
 
 day_trip_draft = []
 save_draft = False
 trip_fees = []
 
-#--------------------chat----------------->
+
+# --------------------chat----------------->
 @staff_blueprint.route('/staff/chat')
 def chat():
     return render_template('./staff_site/pages/chat.html')
-#--------------------chat----------------->
+
+
+# --------------------chat----------------->
 
 @staff_blueprint.route('/staff/index', methods=['GET', 'POST'])
 def index():
@@ -163,7 +167,6 @@ def submit_plan():
             path = "../static/upload/" + new_filename
 
     # default: like=0 path=""
-    print("777777777777777")
     print(path)
 
     for day in day_trip_draft:
@@ -172,12 +175,13 @@ def submit_plan():
         accommodation_id = Target.query.filter_by(name=day[3]).first().id
         traffic_id = Target.query.filter_by(name=day[4]).first().id
 
-        day = Day(destination_id=destination_id, attraction_id=attraction_id, accommodation_id=accommodation_id, traffic_id=traffic_id)
+        day = Day(destination_id=destination_id, attraction_id=attraction_id, accommodation_id=accommodation_id,
+                  traffic_id=traffic_id)
         days.append(day)
         db.session.add(day)
     db.session.commit()
 
-    for i in range(0, 7-len(days)):
+    for i in range(0, 7 - len(days)):
         days.append(None)
 
     days_id = []
@@ -187,7 +191,8 @@ def submit_plan():
         else:
             days_id.append(None)
 
-    combination = Combination(name, intro, price, length, path, days_id[0], days_id[1], days_id[2], days_id[3], days_id[4], days_id[5], days_id[6])
+    combination = Combination(name, intro, price, length, path, days_id[0], days_id[1], days_id[2], days_id[3],
+                              days_id[4], days_id[5], days_id[6])
     db.session.add(combination)
     db.session.commit()
     day_trip_draft.clear()
@@ -206,7 +211,7 @@ def delete_day():
     print(day_id, "delete")
 
     # age = data['age']
-    day_trip_draft.pop(int(day_id)-1)
+    day_trip_draft.pop(int(day_id) - 1)
     print(day_trip_draft)
     return "ok"
     # return redirect(url_for("staff_site.new_plan"))
@@ -246,7 +251,7 @@ def view_plan():
             day_acc_id = day.accommodation_id
             day_tra_id = day.traffic_id
 
-            day_destination = db.session.query(Destination).filter(Destination.id==day_des_id).first()
+            day_destination = db.session.query(Destination).filter(Destination.id == day_des_id).first()
             day_attraction = db.session.query(Target).filter(Target.id == day_att_id).first()
             day_accommodation = db.session.query(Target).filter(Target.id == day_acc_id).first()
             day_traffic = db.session.query(Target).filter(Target.id == day_tra_id).first()
@@ -287,7 +292,8 @@ def destinations():
         destination = form.destination.data
         if Destination.query.filter_by(name=destination).first() is not None:
             message = 'Destination exist!'
-            return render_template('./staff_site/destinations.html', destinations=destinations, form=form, message=message)
+            return render_template('./staff_site/destinations.html', destinations=destinations, form=form,
+                                   message=message)
         destination = Destination(name=destination)
         db.session.add(destination)
         db.session.commit()
@@ -320,7 +326,8 @@ def attractions():
         db.session.add(attraction)
         db.session.commit()
         return redirect(url_for("staff_site.attractions"))
-    return render_template('./staff_site/attractions.html', attractions=attractions, destinations=destinations, form=form, message=message)
+    return render_template('./staff_site/attractions.html', attractions=attractions, destinations=destinations,
+                           form=form, message=message)
 
 
 @staff_blueprint.route('/staff/contents/accommodations', methods=['GET', 'POST'])
@@ -347,7 +354,8 @@ def accommodations():
         db.session.add(accommodation)
         db.session.commit()
         return redirect(url_for("staff_site.accommodations"))
-    return render_template('./staff_site/accommodations.html', hotels=accommodations, destinations=destinations, form=form, message=message)
+    return render_template('./staff_site/accommodations.html', hotels=accommodations, destinations=destinations,
+                           form=form, message=message)
 
 
 @staff_blueprint.route('/staff/contents/traffics', methods=['GET', 'POST'])
@@ -373,7 +381,8 @@ def traffics():
         db.session.add(traffic)
         db.session.commit()
         return redirect(url_for("staff_site.traffics"))
-    return render_template('./staff_site/traffics.html', traffics=traffics, destinations=destinations, form=form, message=message)
+    return render_template('./staff_site/traffics.html', traffics=traffics, destinations=destinations, form=form,
+                           message=message)
 
 
 @staff_blueprint.route('/staff/contents/destinations/delete', methods=['GET', 'POST'])
@@ -426,3 +435,31 @@ def delete_traffic():
 @login_manager.user_loader
 def load_user(id):
     return User.get(int(id))
+
+
+@staff_blueprint.route('/profile7', methods=['GET', 'POST'])
+def update_avatar():
+    uid = uuid.uuid1()
+    # Images storage path
+    file_dir = os.path.join(basedir, "static/upload/")
+    # Getting the data transferred from the front end
+    files = request.files.getlist('img')  # Gets the value of myfiles from ajax, of type list
+    path = ""
+
+    for img in files:
+        # Extract the suffix of the uploaded image and
+        # Name the image after the commodity id and store it in the specific path
+        check = img.content_type
+        # check if upload image
+        if str(check) != 'application/octet-stream':
+            fname = img.filename
+            ext = fname.rsplit('.', 1)[1]
+            new_filename = uid.hex + '.' + ext
+            img.save(os.path.join(file_dir, new_filename))
+            path = "../static/upload/" + new_filename
+
+    # default: like=0 path=""
+    print(path)
+    db.session.query(User).filter(User.id == current_user.id).update({User.avatar_url: path})
+    db.session.commit()
+    return redirect(url_for('profile'))
