@@ -52,7 +52,8 @@ def showAll():
 @favorite_blueprint.route('/favourites/<combination_id>')
 def addFavorite(combination_id):
     check = FavoriteC.query.filter(FavoriteC.user_id == current_user.id, FavoriteC.combination_id == combination_id).scalar() is None
-    if check:
+    check2 = Combination.query.filter(Combination.id == combination_id).scalar is not None
+    if check and check2:
 
         f = FavoriteC(user_id=current_user.id, combination_id=combination_id, time=str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
         db.session.add(f)
