@@ -23,15 +23,18 @@ def addBooking(combination_id):
 
         if form.validate_on_submit():
             start_time = form.time.data
-            num = form.num.data
+            num = int(form.num.data)
             name = form.name.data
             tel = form.tel.data
+            unit_price=int(combination.price)
+            total_price=unit_price*num
             booking = RecordC(user_id=current_user.id, combination_id=combination_id, start_time=start_time, num=num,
-                              name=name, tel=tel, time=str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
+                              name=name, tel=tel, time=str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())), price=total_price)
             db.session.add(booking)
             db.session.commit()
             # print("ffffffffffffffffff")
-            return render_template("order_list.html", combination_id=combination_id)
+            # return render_template("order_list.html", combination_id=combination_id)
+            return redirect(url_for("order_list"))
         else:
             # print("hhhhhhhhhhhh")
             return render_template('book.html', combination_id=combination_id, combination=combination)
