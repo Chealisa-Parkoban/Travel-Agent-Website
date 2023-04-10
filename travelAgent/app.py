@@ -111,22 +111,24 @@ def profile():
         bookings = db.session.query(RecordC).filter(RecordC.user_id == customer_id).all()
         # combination中的信息
 
-        name = []
-        introduction = []
+        combiantion_name = []
+        number = []
+        start_time = []
         price = []
-        image = []
+
 
     for book in bookings:
         combination_id = book.combination_id
         print(combination_id)
         combination = db.session.query(Combination).filter(Combination.id == combination_id).first()
-        name.append(combination.name)
-        introduction.append(combination.intro)
-        price.append(combination.price)
-        image.append(combination.image)
+        number.append(book.num)
+        combiantion_name.append(combination.name)
+        start_time.append(book.start_time)
+        price.append(book.price)
 
-    return render_template("profile.html", user=user, book=book, bookings=bookings,
-                           name=name, introduction=introduction, price=price, image=image)
+
+    return render_template("profile.html", user=user, start_time=start_time, number=number,
+                           combiantion_name=combiantion_name, price=price)
 
 
 @app.route('/favourites')
