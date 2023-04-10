@@ -120,7 +120,7 @@
 
                     {% for target in Targets %}
                         <div class="col-md-12 mb-5">
-                        <a set_id={{ combination.id }} onclick="setID(this)">
+                        <a set_id={{ target.id }} onclick="setID(this)">
                             <div class="card">
                                 <div class="row no-gutters">
                                     <div class="col-md-3 mx-auto mb-auto">
@@ -332,6 +332,27 @@
 
                     <h2 class="mb-5">Fly ticket</h2>
 
+                    {% for traffic in Traffics %}
+                        <div class="col-md-12 mb-5">
+                        <a href="{{ url_for("details.showSetDetails") }}">
+                            <div class="card">
+                                <div class="row no-gutters">
+                                    <div class="col-md-3 mx-auto mb-auto">
+                                        <img src={{ traffic.image }} class="card-img" alt="...">
+                                    </div>
+                                    <div class="col-md-8 mx-auto mb-auto">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ traffic.name}}</h5>
+                                            <p class="card-text">{{ traffic.intro }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    {% endfor %}
+
                     <div class="col-md-12 mb-5">
                         <a href="{{ url_for("details.showSetDetails") }}">
                             <div class="card">
@@ -417,6 +438,27 @@
 
                     <h2 class="mb-5">Hotel</h2>
 
+                    {% for accommodation in Accommodations %}
+                        <div class="col-md-12 mb-5">
+                        <a href="{{ url_for("details.showSetDetails") }}">
+                            <div class="card">
+                                <div class="row no-gutters">
+                                    <div class="col-md-3 mx-auto mb-auto">
+                                        <img src={{ accommodation.image }} class="card-img" alt="...">
+                                    </div>
+                                    <div class="col-md-8 mx-auto mb-auto">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ accommodation.name}}</h5>
+                                            <p class="card-text">{{ accommodation.intro }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    {% endfor %}
+
                     <div class="col-md-12 mb-5">
                         <a href="{{ url_for("details.showSetDetails") }}">
                             <div class="card">
@@ -447,6 +489,27 @@
                 <div class="row">
 
                     <h2 class="mb-5">Attraction ticket</h2>
+
+                    {% for attraction in Attractions %}
+                        <div class="col-md-12 mb-5">
+                        <a href="{{ url_for("details.showSetDetails") }}">
+                            <div class="card">
+                                <div class="row no-gutters">
+                                    <div class="col-md-3 mx-auto mb-auto">
+                                        <img src={{ attraction.image }} class="card-img" alt="...">
+                                    </div>
+                                    <div class="col-md-8 mx-auto mb-auto">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ attraction.name}}</h5>
+                                            <p class="card-text">{{ attraction.intro }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    {% endfor %}
 
                     <div class="col-md-12 mb-5">
                         <a href="{{ url_for("details.showSetDetails") }}">
