@@ -5,6 +5,11 @@ import travelAgent.config
 from travelAgent.config import Config
 from flask_sqlalchemy import SQLAlchemy
 
+import os
+
+if not os.path.exists("./logs"):
+    os.makedirs("./logs")
+
 # create variable app
 app = Flask(__name__)
 app.secret_key = 'BxeE3wJcjYi6yA7y1bjBJ1IAs0'

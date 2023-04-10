@@ -37,9 +37,7 @@
                         <div class="col-md-6 pt-6 pb-6 align-self-center">
                             <h1 class="secondfont mb-3 font-weight-bold"> {{ set.name }}</h1>
                             <p class="mb-3">
-                                Beautifully crafted with the latest technologies, SASS & Bootstrap 4.1.3, Mundana is the
-                                perfect design for your professional blog. Homepage, post article and category layouts
-                                available.
+                                {{ set.intro }}
                             </p>
                             {#                            <a href="./article.html" class="btn btn-info">Book Now!</a>#}
 
@@ -50,7 +48,7 @@
 
                             <button class="btn btn-outline-primary ml-4">
                                 <i class="fas fa-star"></i>
-                                <a href="#}" style="text-decoration: none"> Favourite</a>
+                                <a href="{{ url_for('favorite.addFavorite', combination_id = combination_id) }}" style="text-decoration: none"> Favourite</a>
                             </button>
 
 

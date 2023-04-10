@@ -131,8 +131,7 @@ class Target(db.Model):
     type = db.Column(db.INTEGER)
     price = db.Column(db.INTEGER)
 
-    def __init__(self, id, name, destination_id, image, intro, type, price):
-        self.id = id
+    def __init__(self, name, destination_id, image, intro, type, price):
         self.name = name
         self.destination_id = destination_id
         self.location = Destination.query.filter_by(id=destination_id).first().name
@@ -247,7 +246,7 @@ class Record(db.Model):
     status = db.Column(db.String(120))
 
 
-class CollectC(db.Model):
+class FavoriteC(db.Model):
     __table_args__ = {'extend_existing': True}
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
@@ -258,7 +257,7 @@ class CollectC(db.Model):
 
 
 # personal record of attraction, traffic, and accommodation, customer can operate and store data in this table
-class Collect(db.Model):
+class Favorite(db.Model):
     __table_args__ = {'extend_existing': True}
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)

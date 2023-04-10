@@ -182,24 +182,35 @@ def transport_setID():
 def store_plan_id():
     plan_id = request.args.get("plan_id")
     session['plan_id'] = plan_id
-    print(plan_id)
     return '0'
 
 
-# @app.route('/staff')
-# def staff():
-#     return render_template("./staff_site/base.html")
-#
-#
-# @app.route('/staff1')
-# def staff1():
-#     return render_template("./staff_site/pages/index/index.html")
-#
-#
-# @app.route('/staff2')
-# def staff2():
-#     print("sdfasdf")
-#     return render_template("./staff_site/pages/ui-features/buttons.html")
+@app.route('/staff/contents/destinations/store_des_id', methods=['GET', 'POST'])
+def delete_destination():
+    des_id = request.args.get("id")
+    session['des_id'] = des_id
+    return '0'
+
+
+@app.route('/staff/contents/destinations/store_attr_id', methods=['GET', 'POST'])
+def delete_attraction():
+    attr_id = request.args.get("id")
+    session['attr_id'] = attr_id
+    return '0'
+
+
+@app.route('/staff/contents/destinations/store_acc_id', methods=['GET', 'POST'])
+def delete_accommodation():
+    acc_id = request.args.get("id")
+    session['acc_id'] = acc_id
+    return '0'
+
+
+@app.route('/staff/contents/destinations/store_tra_id', methods=['GET', 'POST'])
+def delete_traffic():
+    tra_id = request.args.get("id")
+    session['tra_id'] = tra_id
+    return '0'
 
 
 # @app.route('/travelRoutesDetail', methods=['GET', 'POST'])

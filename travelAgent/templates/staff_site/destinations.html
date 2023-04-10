@@ -17,6 +17,7 @@
                         <tr>
                           <th>Destination ID</th>
                           <th>Destination</th>
+                          <th>Delete</th>
                         </tr>
                       </thead>
 
@@ -25,6 +26,19 @@
                         <tr>
                           <td>{{destination.id}}</td>
                           <td>{{destination.name}}</td>
+                          <td><input type="submit" class="btn btn-success" style="width: fit-content" value="DELETE" onclick="delete_des({{destination.id}})" /></td>
+                            <script>
+                                function delete_des (id){
+                                  $.get({
+                                    url: '/staff/contents/destinations/store_des_id',
+                                    type: 'GET',
+                                    data: ({id : id}),
+                                    success: function (data) {
+                                        window.location.href = '/staff/contents/destinations/delete';
+                                    }
+                                  })
+                                }
+                            </script>
                         </tr>
                       {% endfor %}
                       </tbody>
@@ -39,7 +53,7 @@
                     <div class="col-lg-6 grid-margin stretch-card" style="width: 100%">
                         <div class="card">
                             <div class="card-body" >
-                                <p>New Destination:</p>
+                                <p>Destination Name:</p>
                                 <label>
                                     <input type="text" class="form-control" name="destination" style='width: 100%'/>
                                 </label>

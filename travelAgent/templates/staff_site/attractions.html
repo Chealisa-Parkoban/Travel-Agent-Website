@@ -1,5 +1,11 @@
 {% extends "staff_site/base.html" %}
       {% block body %}
+<script>
+    var message = {{message|tojson()}};
+    if (message !== ""){
+        alert(message);
+    }
+</script>
       <!-- partial -->
       <div class="main-panel">
           <div class="content-wrapper">
@@ -19,6 +25,7 @@
                             <th>Location</th>
                             <th>Introduction</th>
                             <th>Price</th>
+                            <th>Delete</th>
                         </tr>
                       </thead>
 
@@ -29,7 +36,19 @@
                             <td>{{attraction.location}}</td>
                             <td>{{attraction.intro}}</td>
                             <td><label class="badge badge-danger">¥ {{attraction.price}}</label></td>
-                        </tr>
+                            <td><input type="submit" class="btn btn-success" style="width: fit-content" value="DELETE" onclick="delete_attr({{attraction.id}})" /></td>
+                            <script>
+                                function delete_attr (id){
+                                  $.get({
+                                    url: '/staff/contents/destinations/store_attr_id',
+                                    type: 'GET',
+                                    data: ({id : id}),
+                                    success: function (data) {
+                                        window.location.href = '/staff/contents/attractions/delete';
+                                    }
+                                  })
+                                }
+                            </script></tr>
                       {% endfor %}
 
                       </tbody>
@@ -38,24 +57,36 @@
                 </div>
               </div>
             </div>
+<!--                    {% if message != "" %}-->
+
+<!--                    <div class="alert alert-success" role="alert">-->
+<!--&lt;!&ndash;                      {{message}}&ndash;&gt;-->
+<!--                    </div>-->
+<!--                    {% endif %}-->
+
                   <form action="{{ url_for('staff_site.attractions') }}" method="post" novalidate>
                     {{ form.csrf_token }}
                       <div class="col-lg-6 grid-margin stretch-card" style="width: 100%">
                         <div class="card">
                             <div class="card-body" >
-                                <p>New Attraction:</p>
-                                <label>
-                                    <input type="text" class="form-control" name="name" style='width: 100%'/>
-                                </label>
+                                <p>Attraction Name:</p>
 
-                                <div class="form-group">
-                                  <label for="Destination">Location</label>
-                                  <select class="form-control" id="Destination" name="destination">
+                                <input type="text" class="form-control" name="name" />
+
+                                <div class="form-group" style="margin: 1% 0 1% 0">
+                                  <label for="Destination">Location:</label>
+                                  <select class="form-control" id="Destination" name="location">
                                       {% for location in destinations %}
-                                      <option>{{destination.name}}</option>
+                                      <option>{{location.name}}</option>
                                       {% endfor %}
                                   </select>
                                 </div>
+
+                                <p>Introduction:</p>
+                                <input type="text" class="form-control" name="intro" />
+                                <p style="margin-top: 1%">Ticket Price:</p>
+                                <input type="number" class="form-control" name="price" />
+
                             </div>
                         </div>
                       </div>
