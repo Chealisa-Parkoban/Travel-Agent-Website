@@ -34,7 +34,7 @@ def addBooking(combination_id):
             db.session.commit()
             # print("ffffffffffffffffff")
             # return render_template("order_list.html", combination_id=combination_id)
-            return redirect(url_for("order_list"))
+            return redirect("/order_list")
         else:
             # print("hhhhhhhhhhhh")
             return render_template('book.html', combination_id=combination_id, combination=combination)

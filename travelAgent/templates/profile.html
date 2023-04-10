@@ -84,15 +84,6 @@
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Phone Number</p>
-                            </div>
-                            <div class="col-sm-9">
-                                <p class="text-muted mb-0">{{ book.tel }}</p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
                                 <p class="mb-0">Avatar</p>
                             </div>
                             <div class="col-sm-9">
@@ -140,17 +131,22 @@
                     <div class="col-md-6">
 
                         <div class="card mb-4 mb-md-0">
-                            {% for i in range(0,name|length) %}
+                            {% for i in range(0,price|length) %}
                                 <div class="card-body">
                                 <p class="mb-4"><span class="text-primary font-italic me-1">Set name: </span>
-                                    {{ name[i] }}
+                                    {{ combiantion_name[i] }}
                                 </p>
-                                <p class="mb-1" style="font-size: .77rem;">price : {{ price[i] }}</p>
+                                <p class="mb-1" style="font-size: .77rem;">Total price : {{ price[i] }}</p>
                                 <div class="progress rounded" style="height: 5px;">
                                     <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
                                          aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
-                                <p class="mt-4 mb-1" style="font-size: .77rem;">introduction: {{ introduction[i] }}</p>
+                                <p class="mt-4 mb-1" style="font-size: .77rem;">Number: {{ number[i] }}</p>
+                                <div class="progress rounded" style="height: 5px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72"
+                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <p class="mt-4 mb-1" style="font-size: .77rem;">Start time: {{ start_time[i] }}</p>
                                 <div class="progress rounded" style="height: 5px;">
                                     <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72"
                                          aria-valuemin="0" aria-valuemax="100"></div>
