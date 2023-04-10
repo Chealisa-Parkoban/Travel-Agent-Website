@@ -142,29 +142,36 @@ def order_list():
         return redirect(url_for('account.login'))
     else:
         customer_id = current_user.id
-        # 传递user的个人信息
-        user = db.session.query(User).filter(User.id == customer_id).first()
-        # 传输个人的booking记录
-        # book = db.session.query(RecordC).filter(RecordC.user_id == customer_id).first()
         bookings = db.session.query(RecordC).filter(RecordC.user_id == customer_id).all()
         # combination中的信息
 
-        name = []
+        combination_name = []
+        user_name = []
+        start_time = []
+        number = []
         introduction = []
+        tel = []
         price = []
         image = []
+        price = []
 
     for book in bookings:
         combination_id = book.combination_id
         print(combination_id)
         combination = db.session.query(Combination).filter(Combination.id == combination_id).first()
-        name.append(combination.name)
+        combination_name.append(combination.name)
+        user_name.append(book.name)
+        number.append(book.num)
+        start_time.append(book.start_time)
+        tel.append(book.tel)
         introduction.append(combination.intro)
-        price.append(combination.price)
+        price.append(book.price)
         image.append(combination.image)
 
-    return render_template("order_list.html", bookings=bookings,
-                           name=name, introduction=introduction, price=price, image=image)
+    print(user_name)
+
+    return render_template("order_list.html", bookings=bookings, user_name=user_name, start_time=start_time, number=number, tel=tel,
+                           combination_name=combination_name, introduction=introduction, price=price, image=image)
 
 
 @app.route('/transport_setID', methods=['GET', 'POST'])

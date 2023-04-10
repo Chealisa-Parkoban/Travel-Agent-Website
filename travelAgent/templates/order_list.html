@@ -13,117 +13,67 @@
             <div class="col-md-12 mb-5">
                 <a href="#">
                     <div class="card" style="color: #0a0c0d">
-                        <div class="row">
-                            <div class="col-md-4 mx-auto mb-auto">
-                                <img src="../static/images/sample_pic/guilin.png" class="card-img" alt="...">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title mb-0">Order Detail</h5>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <p class="mb-0">Full Name</p>
+
+                        {% for i in range(0,user_name|length) %}
+
+                            <div class="row">
+                                <div class="col-md-4 mx-auto mb-auto">
+                                    <img src="{{ image[i] }}" class="card-img" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title mb-0">{{ combination_name[i] }}</h5>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">User Name:</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="card-text mb-0">{{ user_name[i] }}</p>
+                                            </div>
                                         </div>
-                                        <div class="col-sm-9">
-                                            <p class="card-text mb-0">Details</p>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">Start Time:</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="card-text mb-0">{{ start_time[i] }}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <p class="mb-0">Start Time</p>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">Number of People:</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="card-text mb-0">{{ number[i] }}</p>
+                                            </div>
                                         </div>
-                                        <div class="col-sm-9">
-                                            <p class="card-text mb-0">Details</p>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">Phone Number:</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="card-text mb-0">{{ tel[i] }}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <p class="mb-0">Number of People</p>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <p class="card-text mb-0">Details</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <p class="mb-0">Phone Number</p>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <p class="card-text mb-0">Details</p>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">Total Price::</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="card-text mb-0">{{ price[i] }}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+
+                        {% endfor %}
+
                     </div>
                 </a>
             </div>
         </div>
-
-
-<!--        <div class="row">-->
-<!--            <div class="col-md-4 d-flex align-items-center">-->
-<!--                <div class="card mb-4" style="width: 100%">-->
-<!--                    <div class="card-body text-center">-->
-<!--                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"-->
-<!--                             alt="avatar"-->
-<!--                             class="img-fluid" style="height: 7rem">-->
-<!--                        <h5 class="my-3">Detail</h5>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        -->
-<!--            <div class="col-md-8 align-items-center" style="min-height: 100%">-->
-<!--                <div class="card mb-4">-->
-<!--                    <div class="card-body">-->
-<!--        -->
-<!--                        <div class="row">-->
-<!--                            <div class="col-sm-6">-->
-<!--                                <h5 class="mb-0">Order Detail</h5>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <hr>-->
-<!--                        <div class="row">-->
-<!--                            <div class="col-sm-3">-->
-<!--                                <p class="mb-0">Full Name</p>-->
-<!--                            </div>-->
-<!--                            <div class="col-sm-9">-->
-<!--                                <p class="text-muted mb-0">Details</p>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--        -->
-<!--                        <div class="row">-->
-<!--                            <div class="col-sm-3">-->
-<!--                                <p class="mb-0">Start Time</p>-->
-<!--                            </div>-->
-<!--                            <div class="col-sm-9">-->
-<!--                                <p class="text-muted mb-0">Details</p>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--        -->
-<!--                        <div class="row">-->
-<!--                            <div class="col-sm-3">-->
-<!--                                <p class="mb-0">Number of People</p>-->
-<!--                            </div>-->
-<!--                            <div class="col-sm-9">-->
-<!--                                <p class="text-muted mb-0">Details</p>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--        -->
-<!--                        <div class="row">-->
-<!--                            <div class="col-sm-3">-->
-<!--                                <p class="mb-0">Phone Number</p>-->
-<!--                            </div>-->
-<!--                            <div class="col-sm-9">-->
-<!--                                <p class="text-muted mb-0">Details</p>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        -->
-<!--        </div>-->
 
 
 
