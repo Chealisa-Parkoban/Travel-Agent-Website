@@ -1,5 +1,7 @@
 {% extends "staff_site/base.html" %}
       {% block body %}
+          <script type="text/javascript" src="../../static/js/add.js"></script>
+
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
@@ -138,7 +140,11 @@
 
                   <div>
                     <p>Cover Picture</p>
-                    <input id="" name="img" type="file" onclick="showImg()"/>
+{#                    <input id="" name="img" type="file" onclick="showImg()"/>#}
+                    <img src="#" alt="" id="img">
+                                    <br>
+                                    <br>
+                    <input id="file_upload" name="img" type="file" onclick="showImg()" />
                   </div>
 
                   <div class="form-group" style="margin-bottom: 0">
