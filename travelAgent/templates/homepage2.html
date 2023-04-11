@@ -32,7 +32,7 @@
 
         .banner-grids{
             border-radius: 0.7em !important;
-            background-color: rgba(6, 47, 60, 0.8) !important;
+            background-color: rgba(6, 47, 60, 0.65) !important;
         }
 
         .form-btn {
@@ -40,6 +40,21 @@
             /*top: 50%;*/
             /*left: 50%;*/
             transform: translate(0, 15%);
+        }
+
+        .input-group-text{
+            background-color: transparent !important;
+            border-color: transparent !important;
+            color: white;
+            font-weight: bold !important;
+            font-size: 0.5rem;
+            user-select: none;
+        }
+
+        .input-group-text:focus {
+            outline: none !important;
+            box-shadow: none !important;
+            text-decoration: none !important;
         }
 
     </style>
@@ -79,16 +94,18 @@
                             <input class="form-control" type="text" name="Attraction"
                                    placeholder="Attraction">
                         </div>
-                        <div class="form-group col-md-3 banner-grid">
-                            <span class="form-label" style="color: white">Highest limitation</span>
-                            <input class="form-control" type="number" name="Highest"
-                                   placeholder="Highest limitation">
+                        <div class="form-group col-md-6 banner-grid">
+                            <span class="form-label" style="color: white">Price range</span>
+                            <div class="input-group">
+                                <input class="form-control" type="number" name="Lowest" placeholder="Lowest limitation">
+                                <div class="input-group-prepend input-group-append">
+                                    <span class="input-group-text">-></span>
+                                </div>
+                                <input class="form-control" type="number" name="Highest" placeholder="Highest limitation">
+                            </div>
                         </div>
-                        <div class="form-group col-md-3 banner-grid">
-                            <span class="form-label" style="color: white">Lowest limitation</span>
-                            <input class="form-control" type="number" name="Lowest"
-                                   placeholder="Lowest limitation">
-                        </div>
+
+
 <!--                        {#                        <div class="col-md-2 banner-grid">#}-->
 <!--                        {#                            <select class="sel">#}-->
 <!--                        {#                                <option value="">Hotel</option>#}-->
@@ -113,8 +130,8 @@
 <!--                        {#                                <option value="">$4500</option>#}-->
 <!--                        {#                            </select>#}-->
 <!--                        {#                        </div>#}-->
-                        <div class="form-btn" style="margin-top: 5%">
-                            <button type="submit" class="btn btn-default" style="background-color: #062f3c; color: white">Check
+                        <div class="form-btn" style="margin-top: 8% !important;">
+                            <button type="submit" class="btn btn-default" style="background-color: #062f3c; color: white; border-color: white">Check
                                 Availability
                             </button>
                         </div>
@@ -136,7 +153,7 @@
                     <a set_id={{ set.id }} onclick="setID(this)">
                         <div class="col-md-4 promation-grid">
                             <!--{#                            <img src="../static/images/sample_pic/the_north_Europe.png" class="img-responsive" alt="" />#}-->
-                            <img src="{{ set.image }}" class="img-responsive" alt=""
+                            <img src="{{ set.image }}" class="img-responsive" alt="" style="width: 100% !important; height: auto !important;"
                                  onerror="javascript:this.src='../static/images/sample_pic/the_north_Europe.png/'"/>
                             <div class="prom-text">
                                 <h4> {{ set.name }}</h4>
