@@ -141,6 +141,7 @@ class Target(db.Model):
         self.price = price
 
 
+
 class Day(db.Model):
     __table_args__ = {'extend_existing': True}
     # id is the primary key and it increments automatically

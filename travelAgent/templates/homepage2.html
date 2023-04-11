@@ -154,7 +154,7 @@
                         <div class="col-md-4 promation-grid">
                             <!--{#                            <img src="../static/images/sample_pic/the_north_Europe.png" class="img-responsive" alt="" />#}-->
                             <img src="{{ set.image }}" class="img-responsive" alt="" style="width: 100% !important; height: auto !important;"
-                                 onerror="javascript:this.src='../static/images/sample_pic/the_north_Europe.png/'"/>
+                                 onerror="javascript:this.src='static/images/sample_pic/the_north_Europe.png/'"/>
                             <div class="prom-text">
                                 <h4> {{ set.name }}</h4>
                                 <div class="prom-bottom">
@@ -162,7 +162,40 @@
                                         <h5> Days : {{ set.length }} </h5>
                                     </div>
                                     <div class="prom-right">
-                                        <h5> $ {{ set.price }} </h5>
+                                        <h5> ¥ {{ set.price }} </h5>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <p>{{ set.intro }}</p>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="promotions">
+        <div class="container">
+            <h2 class="tittle">Top Attractions</h2>
+            <span>Best Travel Packages Available</span>
+            <div class="promotion-grids">
+                <!--                开始渲染全部Sets          -->
+                {% for set in Sets %}
+                    <a set_id={{ set.id }} onclick="setID(this)">
+                        <div class="col-md-4 promation-grid">
+                            <!--{#                            <img src="../static/images/sample_pic/the_north_Europe.png" class="img-responsive" alt="" />#}-->
+                            <img src="{{ set.image }}" class="img-responsive" alt=""
+                                 onerror="javascript:this.src='static/images/sample_pic/the_north_Europe.png/'"/>
+                            <div class="prom-text">
+                                <h4> {{ set.name }}</h4>
+                                <div class="prom-bottom">
+                                    <div class="prom-left">
+                                        <h5> Days : {{ set.length }} </h5>
+                                    </div>
+                                    <div class="prom-right">
+                                        <h5> ¥ {{ set.price }} </h5>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>

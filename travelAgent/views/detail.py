@@ -78,7 +78,7 @@ def showSetDetails():
                                score=comment_form.score.data, content=comment_form.comment.data, image=path,
                                time=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
             db.session.add(comment)
-            flash('已评论')
+
             # return redirect(url_for('showSetDetails', ID=ID))
             # return redirect(url_for('showSetDetails'))
 
