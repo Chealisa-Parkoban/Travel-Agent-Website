@@ -439,6 +439,8 @@ def load_user(id):
 
 @staff_blueprint.route('/profile7', methods=['GET', 'POST'])
 def update_avatar():
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
     uid = uuid.uuid1()
     # Images storage path
     file_dir = os.path.join(basedir, "static/upload/")

@@ -1,20 +1,17 @@
 import time
 
 from travelAgent import app, db
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, redirect, url_for
 from travelAgent.models import FavoriteC, Favorite, Combination, Target
 from travelAgent.views.login_handler import current_user
 
 favorite_blueprint = Blueprint(name="favorite", import_name=__name__)
 
-# global Lc
-# global Lt
-# global La
-# global Lh
-# global Ltr
 
 @favorite_blueprint.route('/favourites')
 def showAll():
+    if not current_user.is_authenticated:
+        return redirect(url_for("account.login"))
     Fc = FavoriteC.query.filter(FavoriteC.user_id == current_user.id).all()
     Ft = Favorite.query.filter(FavoriteC.user_id == current_user.id).all()
     Lc = []
@@ -51,6 +48,8 @@ def showAll():
 
 @favorite_blueprint.route('/favourites/<combination_id>')
 def addFavorite(combination_id):
+    if not current_user.is_authenticated:
+        return redirect(url_for("account.login"))
     check = FavoriteC.query.filter(FavoriteC.user_id == current_user.id, FavoriteC.combination_id == combination_id).scalar() is None
     check2 = Combination.query.filter(Combination.id == combination_id).scalar is not None
     if check and check2:

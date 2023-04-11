@@ -13,6 +13,8 @@ booking_blueprint = Blueprint(name="booking", import_name=__name__)
 
 @booking_blueprint.route('/booking/<combination_id>', methods=['GET', 'POST'])
 def addBooking(combination_id):
+    if not current_user.is_authenticated:
+        return redirect(url_for("account.login"))
     combination = Combination.query.filter_by(id=combination_id).first()
     form = BookingForm(request.form)
     if request.method == 'GET':
@@ -42,6 +44,8 @@ def addBooking(combination_id):
 
 @booking_blueprint.route('/deleteBooking/<booking_id>', methods=['GET', 'POST'])
 def deleteBooking(booking_id):
+    if not current_user.is_authenticated:
+        return redirect(url_for("account.login"))
     # db.session.query(RecordC).filter(RecordC.id == booking_id).delete()
     booking = RecordC.query.filter_by(id=booking_id).first()
     db.session.delete(booking)
@@ -50,6 +54,8 @@ def deleteBooking(booking_id):
 
 @booking_blueprint.route('/changeBooking/<booking_id>', methods=['GET', 'POST'])
 def changeBooking(booking_id):
+    if not current_user.is_authenticated:
+        return redirect(url_for("account.login"))
     form = BookingForm(request.form)
     if request.method == 'GET':
         # bookings = RecordC.query.all()
