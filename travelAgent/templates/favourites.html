@@ -47,6 +47,13 @@
         .card-text { /* text color */
             color: #0a0c0d;
         }
+
+        .card-img {  /* make image stay in the middle of height */
+            height: auto !important;
+            width: 100% !important;
+            object-fit: cover;
+        }
+
     </style>
 
 {% endblock %}
@@ -101,8 +108,8 @@
                         <div class="col-md-12 mb-5">
                         <a set_id={{ combination.id }} onclick="setID(this)">
                             <div class="card">
-                                <div class="row no-gutters">
-                                    <div class="col-md-3 mx-auto mb-auto">
+                                <div class="row align-items-center no-gutters">
+                                    <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
                                         <img src={{ combination.image }} class="card-img" alt="...">
                                     </div>
                                     <div class="col-md-8 mx-auto mb-auto">
@@ -123,7 +130,7 @@
                         <a set_id={{ target.id }} onclick="setID(this)">
                             <div class="card">
                                 <div class="row no-gutters">
-                                    <div class="col-md-3 mx-auto mb-auto">
+                                    <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
                                         <img src={{ target.image }} class="card-img" alt="...">
                                     </div>
                                     <div class="col-md-8 mx-auto mb-auto">
@@ -142,8 +149,8 @@
                     <div class="col-md-12 mb-5">
                         <a href="{{ url_for("details.showSetDetails") }}">
                             <div class="card">
-                                <div class="row no-gutters">
-                                    <div class="col-md-3 mx-auto mb-auto">
+                                <div class="row align-items-center no-gutters">
+                                    <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
                                         <img src="../static/images/sample_pic/guilin.png" class="card-img" alt="...">
                                     </div>
                                     <div class="col-md-8 mx-auto mb-auto">
@@ -162,7 +169,7 @@
                         <a href="{{ url_for("details.showSetDetails") }}">
                             <div class="card">
                                 <div class="row no-gutters">
-                                    <div class="col-md-3 mx-auto mb-auto">
+                                    <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
                                         <img src="../static/images/sample_pic/guilin.png" class="card-img" alt="...">
                                     </div>
                                     <div class="col-md-8 mx-auto mb-auto">
@@ -180,7 +187,7 @@
                         <a href="{{ url_for("details.showSetDetails") }}">
                             <div class="card">
                                 <div class="row no-gutters">
-                                    <div class="col-md-3 mx-auto mb-auto">
+                                    <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
                                         <img src="../static/images/sample_pic/guilin.png" class="card-img" alt="...">
                                     </div>
                                     <div class="col-md-8 mx-auto mb-auto">
@@ -198,7 +205,7 @@
                         <a href="{{ url_for("details.showSetDetails") }}">
                             <div class="card">
                                 <div class="row no-gutters">
-                                    <div class="col-md-3 mx-auto mb-auto">
+                                    <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
                                         <img src="../static/images/sample_pic/guilin.png" class="card-img" alt="...">
                                     </div>
                                     <div class="col-md-8 mx-auto mb-auto">
@@ -216,7 +223,7 @@
                         <a href="{{ url_for("details.showSetDetails") }}">
                             <div class="card">
                                 <div class="row no-gutters">
-                                    <div class="col-md-3 mx-auto mb-auto">
+                                    <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
                                         <img src="../static/images/sample_pic/guilin.png" class="card-img" alt="...">
                                     </div>
                                     <div class="col-md-8 mx-auto mb-auto">
@@ -234,7 +241,7 @@
                         <a href="{{ url_for("details.showSetDetails") }}">
                             <div class="card">
                                 <div class="row no-gutters">
-                                    <div class="col-md-3 mx-auto mb-auto">
+                                    <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
                                         <img src="../static/images/sample_pic/guilin.png" class="card-img" alt="...">
                                     </div>
                                     <div class="col-md-8 mx-auto mb-auto">
@@ -267,7 +274,7 @@
                         <a href="{{ url_for("details.showSetDetails") }}">
                             <div class="card">
                                 <div class="row no-gutters">
-                                    <div class="col-md-3 mx-auto mb-auto">
+                                    <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
                                         <img src={{ combination.image }} class="card-img" alt="...">
                                     </div>
                                     <div class="col-md-8 mx-auto mb-auto">
@@ -287,7 +294,7 @@
                         <a href="{{ url_for("details.showSetDetails") }}">
                             <div class="card">
                                 <div class="row no-gutters">
-                                    <div class="col-md-3 mx-auto mb-auto">
+                                    <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
                                         <img src="../static/images/sample_pic/guilin.png" class="card-img" alt="...">
                                     </div>
                                     <div class="col-md-8 mx-auto mb-auto">
@@ -305,7 +312,7 @@
                         <a href="{{ url_for("details.showSetDetails") }}">
                             <div class="card">
                                 <div class="row no-gutters">
-                                    <div class="col-md-3 mx-auto mb-auto">
+                                    <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
                                         <img src="../static/images/sample_pic/guilin.png" class="card-img" alt="...">
                                     </div>
                                     <div class="col-md-8 mx-auto mb-auto">
@@ -337,7 +344,7 @@
                         <a href="{{ url_for("details.showSetDetails") }}">
                             <div class="card">
                                 <div class="row no-gutters">
-                                    <div class="col-md-3 mx-auto mb-auto">
+                                    <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
                                         <img src={{ traffic.image }} class="card-img" alt="...">
                                     </div>
                                     <div class="col-md-8 mx-auto mb-auto">
@@ -357,7 +364,7 @@
                         <a href="{{ url_for("details.showSetDetails") }}">
                             <div class="card">
                                 <div class="row no-gutters">
-                                    <div class="col-md-3 mx-auto mb-auto">
+                                    <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
                                         <img src="../static/images/sample_pic/guilin.png" class="card-img" alt="...">
                                     </div>
                                     <div class="col-md-8 mx-auto mb-auto">
@@ -375,7 +382,7 @@
                         <a href="{{ url_for("details.showSetDetails") }}">
                             <div class="card">
                                 <div class="row no-gutters">
-                                    <div class="col-md-3 mx-auto mb-auto">
+                                    <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
                                         <img src="../static/images/sample_pic/guilin.png" class="card-img" alt="...">
                                     </div>
                                     <div class="col-md-8 mx-auto mb-auto">
@@ -393,7 +400,7 @@
                         <a href="{{ url_for("details.showSetDetails") }}">
                             <div class="card">
                                 <div class="row no-gutters">
-                                    <div class="col-md-3 mx-auto mb-auto">
+                                    <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
                                         <img src="../static/images/sample_pic/guilin.png" class="card-img" alt="...">
                                     </div>
                                     <div class="col-md-8 mx-auto mb-auto">
@@ -411,7 +418,7 @@
                         <a href="{{ url_for("details.showSetDetails") }}">
                             <div class="card">
                                 <div class="row no-gutters">
-                                    <div class="col-md-3 mx-auto mb-auto">
+                                    <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
                                         <img src="../static/images/sample_pic/guilin.png" class="card-img" alt="...">
                                     </div>
                                     <div class="col-md-8 mx-auto mb-auto">
@@ -443,7 +450,7 @@
                         <a href="{{ url_for("details.showSetDetails") }}">
                             <div class="card">
                                 <div class="row no-gutters">
-                                    <div class="col-md-3 mx-auto mb-auto">
+                                    <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
                                         <img src={{ accommodation.image }} class="card-img" alt="...">
                                     </div>
                                     <div class="col-md-8 mx-auto mb-auto">
@@ -463,7 +470,7 @@
                         <a href="{{ url_for("details.showSetDetails") }}">
                             <div class="card">
                                 <div class="row no-gutters">
-                                    <div class="col-md-3 mx-auto mb-auto">
+                                    <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
                                         <img src="../static/images/sample_pic/guilin.png" class="card-img" alt="...">
                                     </div>
                                     <div class="col-md-8 mx-auto mb-auto">
@@ -495,7 +502,7 @@
                         <a href="{{ url_for("details.showSetDetails") }}">
                             <div class="card">
                                 <div class="row no-gutters">
-                                    <div class="col-md-3 mx-auto mb-auto">
+                                    <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
                                         <img src={{ attraction.image }} class="card-img" alt="...">
                                     </div>
                                     <div class="col-md-8 mx-auto mb-auto">
@@ -515,7 +522,7 @@
                         <a href="{{ url_for("details.showSetDetails") }}">
                             <div class="card">
                                 <div class="row no-gutters">
-                                    <div class="col-md-3 mx-auto mb-auto">
+                                    <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
                                         <img src="../static/images/sample_pic/guilin.png" class="card-img" alt="...">
                                     </div>
                                     <div class="col-md-8 mx-auto mb-auto">
