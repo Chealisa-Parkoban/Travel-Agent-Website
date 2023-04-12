@@ -343,65 +343,109 @@
 
 
 
+{#                            <div class="container">#}
+{#                                <div class="card" style="object-fit: cover; width: 100%">#}
+{#                                    <div class="card-header">Review:</div>#}
+{#                                    <div class="card-body">#}
+{#                                        <div>#}
+{#                                            Rate:#}
+{#                                            <span class="fa fa-star unchecked" onclick="setRating(1)"></span>#}
+{#                                            <span class="fa fa-star unchecked" onclick="setRating(2)"></span>#}
+{#                                            <span class="fa fa-star unchecked" onclick="setRating(3)"></span>#}
+{#                                            <span class="fa fa-star unchecked" onclick="setRating(4)"></span>#}
+{#                                            <span class="fa fa-star unchecked" onclick="setRating(5)"></span>#}
+{#                                            <input type="hidden" name="score" id="score" value="1">#}
+{#                                            <script>#}
+{#                                                function setRating(rating) {#}
+{#                                                    document.getElementById("score").value = rating;#}
+{#                                                    console.log(rating)#}
+{#                                                    for (var i = 1; i <= 5; i++) {#}
+{#                                                        var star = document.getElementById("star-" + i);#}
+{#                                                        if (i <= rating) {#}
+{#                                                            star.classList.remove("unchecked");#}
+{#                                                            star.classList.add("checked");#}
+{#                                                        } else {#}
+{#                                                            star.classList.remove("checked");#}
+{#                                                            star.classList.add("unchecked");#}
+{#                                                        }#}
+{#                                                    }#}
+{#                                                }#}
+{##}
+{#                                                function highlightStars(num) {#}
+{#                                                    let stars = document.querySelectorAll(".fa-star");#}
+{#                                                    for (let i = 1; i <= num; i++) {#}
+{#                                                        stars[i].classList.remove("unchecked");#}
+{#                                                        stars[i].classList.add("checked");#}
+{#                                                    }#}
+{#                                                }#}
+{##}
+{#                                                function resetStars() {#}
+{#                                                    let stars = document.querySelectorAll(".fa-star");#}
+{#                                                    for (let i = 0; i < stars.length; i++) {#}
+{#                                                        stars[i].classList.remove("checked");#}
+{#                                                        stars[i].classList.add("unchecked");#}
+{#                                                    }#}
+{#                                                }#}
+{#                                            </script>#}
+{#                                        </div>#}
+{#                                        <hr>#}
+{#                                        Comment#}
+{#                                        <textarea style="object-fit: cover; width: 100%" name="comment"></textarea>#}
+{#                                        <br>#}
+{#                                        <div>#}
+{#                                            <input type="file" name="image" id="image">#}
+{#                                        </div>#}
+{#                                        <br>#}
+{#                                    </div>#}
+{#                                    <div class="card-footer text-muted" style="text-align: right;">#}
+{#                                        <button type="submit" class="btn btn-primary">Submit</button>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+
+
+
                             <div class="container">
                                 <div class="card" style="object-fit: cover; width: 100%">
                                     <div class="card-header">Review:</div>
                                     <div class="card-body">
                                         <div>
                                             Rate:
-                                            <span class="fa fa-star unchecked" onmouseover="highlightStars(1)" onmouseout="resetStars()" onclick="setRating(1)"></span>
-                                            <span class="fa fa-star unchecked" onmouseover="highlightStars(2)" onmouseout="resetStars()" onclick="setRating(2)"></span>
-                                            <span class="fa fa-star unchecked" onmouseover="highlightStars(3)" onmouseout="resetStars()" onclick="setRating(3)"></span>
-                                            <span class="fa fa-star unchecked" onmouseover="highlightStars(4)" onmouseout="resetStars()" onclick="setRating(4)"></span>
-                                            <span class="fa fa-star unchecked" onmouseover="highlightStars(5)" onmouseout="resetStars()" onclick="setRating(5)"></span>
+                                            <span id="star-1" class="fa fa-star unchecked" onclick="setRating(1)"></span>
+                                            <span id="star-2" class="fa fa-star unchecked" onclick="setRating(2)"></span>
+                                            <span id="star-3" class="fa fa-star unchecked" onclick="setRating(3)"></span>
+                                            <span id="star-4" class="fa fa-star unchecked" onclick="setRating(4)"></span>
+                                            <span id="star-5" class="fa fa-star unchecked" onclick="setRating(5)"></span>
                                             <input type="hidden" name="score" id="score" value="0">
                                             <script>
-                                                    function setRating(rating) {
-                                                        document.getElementById("score").value = rating;
-                                                        console.log(rating)
-                                                        for (var i = 1; i <= 5; i++) {
-                                                            var star = document.getElementById("star-" + i);
-                                                            if (i <= rating) {
-                                                                star.classList.remove("unchecked");
-                                                                star.classList.add("checked");
-                                                            } else {
-                                                                star.classList.remove("checked");
-                                                                star.classList.add("unchecked");
-                                                            }
+                                                function setRating(rating) {
+                                                    document.getElementById("score").value = rating;
+                                                    for (var i = 1; i <= 5; i++) {
+                                                        var star = document.getElementById("star-" + i);
+                                                        if (i <= rating) {
+                                                            star.classList.remove("unchecked");
+                                                            star.classList.add("checked");
+                                                        } else {
+                                                            star.classList.remove("checked");
+                                                            star.classList.add("unchecked");
                                                         }
                                                     }
-
-                                                    function highlightStars(num) {
-                                                        let stars = document.querySelectorAll(".fa-star");
-                                                        for (let i = 1; i <= num; i++) {
-                                                            stars[i].classList.remove("unchecked");
-                                                            stars[i].classList.add("checked");
-                                                        }
-                                                    }
-
-                                                    function resetStars() {
-                                                        let stars = document.querySelectorAll(".fa-star");
-                                                        for (let i = 0; i < stars.length; i++) {
-                                                            stars[i].classList.remove("checked");
-                                                            stars[i].classList.add("unchecked");
-                                                        }
-                                                    }
+                                                }
                                             </script>
-                                            <hr>
-                                            Comment
-                                            <textarea style="object-fit: cover; width: 100%" name="comment"></textarea>
-                                            <br>
-                                            <div>
-                                                <input type="file" name="image" id="image">
-                                            </div>
-                                            <br>
                                         </div>
+                                        <hr>
+                                        Comment: <textarea style="object-fit: cover; width: 100%" name="comment"></textarea>
+                                        <br>
+                                        <div>
+                                            <input type="file" name="image" id="image">
+                                        </div>
+                                        <br>
+                                    </div>
                                     <div class="card-footer text-muted" style="text-align: right;">
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>
                                 </div>
                             </div>
-
 
 
 
