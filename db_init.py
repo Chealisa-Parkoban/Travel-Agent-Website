@@ -27,28 +27,28 @@ with app.app_context():
     # ---------------------------accommodations--------------------------------
 
     # New York
-    acc1 = Target(name='Pestana CR7 Times Square', destination_id=3, image='static/upload/Pestana.png', intro='1 miles from center, Subway Access, Travel Sustainable Level 2, Comfort Room: 1 queen bed', type='1', price=1014)
-    acc2 = Target(name='Grayson Hotel', destination_id=3, image='static/upload/Grayson.png', intro='Grayson Hotel', type='1', price=789)
-    acc3 = Target(name='West Side YMCA', destination_id=3, image='static/upload/YMCA.png', intro='West Side YMCA', type='1', price=666)
-    acc4 = Target(name='Hilton Garden Inn', destination_id=3, image='static/upload/Hilton Garden Inn.png', intro='Hilton Garden Inn New York Central Park South-Midtown West', type='1', price=656)
+    acc1 = Target(name='Royalton New York', destination_id=3, image='static/upload/royalton.png', intro='This New York City hotel is located on 44th Street and is 1056 feet from Times Square. It features guest rooms with flat-screen TVs.', type='1', price=2310)
+    acc2 = Target(name='Hyatt Place Times Square', destination_id=3, image='static/upload/Hyatt.png', intro="Hyatt Place New York City/Times Square features air-conditioned rooms with satellite flat-screen TV in the Hell's Kitchen district of New York City.", type='1', price=1990)
+    acc3 = Target(name='Iroquois New York', destination_id=3, image='static/upload/iro.png', intro='49 West 44th Street, New York, NY 10036, United States of America – Subway Access', type='1', price=2610)
+    acc4 = Target(name='Dylan Hotel NYC', destination_id=3, image='static/upload/dylan.png', intro='52 East 41st Street, Murray Hill, New York, NY 10017, United States of America – Subway Access', type='1', price=1890)
 
     # Dublin
     acc5 = Target(name='Blooms Hotel', destination_id=4, image='static/upload/Blooms.png', intro='Blooms Hotel', type='1', price=539)
     acc6 = Target(name='The Spencer Hotel', destination_id=4, image='static/upload/Spencer.png', intro='The Spencer Hotel', type='1', price=786)
-    acc7 = Target(name='The Shelbourne, Autograph Collection', destination_id=4, image='static/upload/Shelbourne.png', intro='The Shelbourne, Autograph Collection', type='1', price=1343)
+    acc7 = Target(name='The Shelbourne', destination_id=4, image='static/upload/Shelbourne.png', intro='The Shelbourne, Autograph Collection', type='1', price=1343)
 
     # ---------------------------attractions--------------------------------
     # New York
-    att1 = Target(name='SUMMIT One Vanderbilt', destination_id=3, image='static/upload/SUMMIT.png', intro='Digital art installations and views of New York from a skyscraper terrace', type='0', price=130)
-    att2 = Target(name='Statue of Liberty Super Express Cruise', destination_id=3, image='static/upload/Liberty.png', intro='A chance to get up close to the Statue of Liberty during a 50-minute cruise', type='0', price=230)
-    att3 = Target(name='9/11 Memorial & Museum Admission', destination_id=3, image='static/upload/911.png', intro="Chance to visit a memorial and museum that's dedicated to the 9/ 11 tragedy'", type='0', price=30)
-    att4 = Target(name='Broadway Tickets to The Lion King', destination_id=3, image='static/upload/Broadway.png', intro='A chance to watch a musical theater performance in New York', type='0', price=1456)
+    att1 = Target(name='SUMMIT One Vanderbilt', destination_id=3, image='static/upload/SUMMIT2.png', intro='Digital art installations and views of New York from a skyscraper terrace', type='0', price=130)
+    att2 = Target(name='Statue of Liberty', destination_id=3, image='static/upload/Liberty.png', intro='A chance to get up close to the Statue of Liberty during a 50-minute cruise', type='0', price=230)
+    att3 = Target(name='9/11 Memorial & Museum', destination_id=3, image='static/upload/911.png', intro="You’ll visit the 9/11 Memorial and have a chance to learn more about the September 11 attacks", type='0', price=30)
+    att4 = Target(name='Broadway | Lion King', destination_id=3, image='static/upload/Broadway.png', intro='A chance to watch a musical theater performance in New York', type='0', price=1456)
 
     # Dublin
     att5 = Target(name='Cliffs of Moher and Galway', destination_id=4, image='static/upload/Galway.png', intro='Day trip along the Wild Atlantic Way to see the famous cliffs and explore Galway', type='0', price=356)
-    att6 = Target(name='Jameson Distillery Tour', destination_id=4, image='static/upload/Dublin.png', intro='Ticket for guided immersive tour of Jameson Distillery with whiskey tasting', type='0', price=256)
-    att7 = Target(name='Dublin Hop-On Hop-Off Tour', destination_id=4, image='static/upload/Hop.png', intro='A chance to explore Dublin on a hop-on hop-off bus tour', type='0', price=180)
-    att8 = Target(name='Blarney Castle, Rock of Cashel and Cork Tour', destination_id=4, image='static/upload/Blarney.png', intro="A full-day tour of some of Ireland's most famous landmarks", type='0', price=210)
+    att6 = Target(name='Jameson Distillery Tour', destination_id=4, image='static/images/sample_pic/the_north_Europe.png', intro='Ticket for guided immersive tour of Jameson Distillery with whiskey tasting', type='0', price=256)
+    att7 = Target(name='Hop-On Hop-Off Tour', destination_id=4, image='static/upload/Hop.png', intro='A chance to explore Dublin on a hop-on hop-off bus tour', type='0', price=180)
+    att8 = Target(name='Blarney Castle', destination_id=4, image='static/upload/Blarney.png', intro="Blarney Castle, Rock of Cashel and Cork Tour. A full-day tour of some of Ireland's most famous landmarks", type='0', price=210)
 
     # ---------------------------traffic--------------------------------
     tra1 = Target( name='Bus', destination_id=1, image='static/upload/bus.png', intro='Please see the details page for specific routes', type='2', price=2)
@@ -100,7 +100,7 @@ with app.app_context():
     com1 = Combination(name="New York Two-Day Trip", day1=1, day2=3, day3=None, day4=None, day5=None, day6=None, day7=None,
                        intro='New York Four-Day Trip', price=3350, length=2, image='static/upload/Liberty.png')
     com2 = Combination(name='New York Four-Day Trip', day1=4, day2=5, day3=6, day4=7, day5=None, day6=None, day7=None,
-                       intro='test2_introduction', price=5250, length=4, image='static/upload/SUMMIT.png')
+                       intro='test2_introduction', price=5250, length=4, image='static/upload/summit2.png')
     com3 = Combination(name='Dublin Four-Day Trip', day1=8, day2=9, day3=10, day4=11, day5=None, day6=None, day7=None,
                           intro='test3_introduction', price=4250, length=4, image='static/upload/Galway.png')
 
