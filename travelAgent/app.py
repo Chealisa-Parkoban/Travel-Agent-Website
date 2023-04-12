@@ -81,7 +81,7 @@ def homepage():
     logger.info('Entered the HOME page')
     Sets = Combination.query.all()
     attractions = Target.query.filter(Target.type == '0').all()
-    attractions = attractions.inverse()
+    attractions = attractions[::-1]
     hotels = Target.query.filter(Target.type == '1').all()
     print("homepage2")
     return render_template("homepage2.html", Sets=Sets, attractions=attractions, hotels=hotels)

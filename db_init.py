@@ -30,7 +30,7 @@ with app.app_context():
     acc1 = Target(name='Royalton New York', destination_id=3, image='static/upload/royalton.png', intro='This New York City hotel is located on 44th Street and is 1056 feet from Times Square. It features guest rooms with flat-screen TVs.', type='1', price=2310)
     acc2 = Target(name='Hyatt Place Times Square', destination_id=3, image='static/upload/Hyatt.png', intro="Hyatt Place New York City/Times Square features air-conditioned rooms with satellite flat-screen TV in the Hell's Kitchen district of New York City.", type='1', price=1990)
     acc3 = Target(name='Iroquois New York', destination_id=3, image='static/upload/iro.png', intro='49 West 44th Street, New York, NY 10036, United States of America – Subway Access', type='1', price=2610)
-    acc4 = Target(name='Dylan Hotel NYC', destination_id=3, image='static/upload/Hilton Garden Inn.png', intro='52 East 41st Street, Murray Hill, New York, NY 10017, United States of America – Subway Access', type='1', price=1890)
+    acc4 = Target(name='Dylan Hotel NYC', destination_id=3, image='static/upload/dylan.png', intro='52 East 41st Street, Murray Hill, New York, NY 10017, United States of America – Subway Access', type='1', price=1890)
 
     # Dublin
     acc5 = Target(name='Blooms Hotel', destination_id=4, image='static/upload/Blooms.png', intro='Blooms Hotel', type='1', price=539)
