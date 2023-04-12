@@ -192,32 +192,57 @@
     <div class="promotions">
         <div class="container">
             <h2 class="tittle">Top Attractions</h2>
-            <span>Best Travel Packages Available</span>
+            <span>Best Attractions Available</span>
             <div class="promotion-grids">
-                <!--                开始渲染全部Sets          -->
-                {% for set in Sets %}
-                    <a set_id={{ set.id }} onclick="setID(this)">
+                {% for attraction in attractions %}
                         <div class="col-md-4 promation-grid">
                             <!--{#                            <img src="../static/images/sample_pic/the_north_Europe.png" class="img-responsive" alt="" />#}-->
-                            <img src="{{ set.image }}" class="img-responsive" alt="" style="width: 100% !important; height: auto !important;"
+                            <img src="{{ attraction.image }}" class="img-responsive" alt=""  style="width: 100% !important; height: auto !important;"
                                  onerror="javascript:this.src='static/images/sample_pic/the_north_Europe.png/'"/>
                             <div class="prom-text">
-                                <h4> {{ set.name }}</h4>
+                                <h4> {{ attraction.name }}</h4>
                                 <div class="prom-bottom">
                                     <div class="prom-left">
-                                        <h5> Days : {{ set.length }} </h5>
+                                        <h5> {{ attraction.location }} </h5>
                                     </div>
                                     <div class="prom-right">
-                                        <h5> ¥ {{ set.price }} </h5>
+                                        <h5> ¥ {{ attraction.price }} </h5>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
-                                <p>{{ set.intro }}</p>
+                                <p>{{ attraction.intro }}</p>
                             </div>
                         </div>
-                    </a>
                 {% endfor %}
-
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="promotions">
+        <div class="container">
+            <h2 class="tittle">Top Hotels</h2>
+            <span>Best Hotels Available</span>
+            <div class="promotion-grids">
+                {% for hotel in hotels %}
+                        <div class="col-md-4 promation-grid">
+                            <!--{#                            <img src="../static/images/sample_pic/the_north_Europe.png" class="img-responsive" alt="" />#}-->
+                            <img src="{{ hotel.image }}" class="img-responsive" alt=""  style="width: 100% !important; height: auto !important;"
+                                 onerror="javascript:this.src='static/images/sample_pic/the_north_Europe.png/'"/>
+                            <div class="prom-text">
+                                <h4> {{ hotel.name }}</h4>
+                                <div class="prom-bottom">
+                                    <div class="prom-left">
+                                        <h5> {{ hotel.location }} </h5>
+                                    </div>
+                                    <div class="prom-right">
+                                        <h5> ¥ {{ hotel.price }} </h5>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <p>{{ hotel.intro }}</p>
+                            </div>
+                        </div>
+                {% endfor %}
                 <div class="clearfix"></div>
             </div>
         </div>
