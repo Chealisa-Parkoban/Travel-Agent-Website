@@ -33,8 +33,8 @@ with app.app_context():
     acc4 = Target(name='Dylan Hotel NYC', destination_id=3, image='static/upload/dylan.png', intro='52 East 41st Street, Murray Hill, New York, NY 10017, United States of America – Subway Access', type='1', price=1890)
 
     # Dublin
-    acc5 = Target(name='Blooms Hotel', destination_id=4, image='static/upload/Blooms.png', intro='Blooms Hotel', type='1', price=539)
-    acc6 = Target(name='The Spencer Hotel', destination_id=4, image='static/upload/Spencer.png', intro='The Spencer Hotel', type='1', price=786)
+    acc5 = Target(name='Blooms Hotel', destination_id=4, image='static/upload/Blooms.png', intro='Blooms Hotel is located in Dublin’s Temple Bar district, 492 feet from Trinity College and Dublin Castle. It has a traditional Irish pub, a nightclub and rooms with flat-screen TVs.', type='1', price=539)
+    acc6 = Target(name='The Spencer Hotel', destination_id=4, image='static/upload/Spencer.png', intro="Overlooking the River Liffey, The Spencer Hotel is 10 minutes from the famous O'Connell Bridge and 20 minutes from the Temple Bar and Grafton Street.", type='1', price=786)
     acc7 = Target(name='The Shelbourne', destination_id=4, image='static/upload/Shelbourne.png', intro='The Shelbourne, Autograph Collection', type='1', price=1343)
 
     # ---------------------------attractions--------------------------------
