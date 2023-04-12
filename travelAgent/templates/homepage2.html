@@ -57,6 +57,19 @@
             text-decoration: none !important;
         }
 
+        .intro{
+            -webkit-line-clamp: 2 !important;
+            -webkit-box-orient:vertical !important;
+            overflow:hidden !important;
+            text-overflow: ellipsis !important;
+        }
+
+        .title{
+            overflow: hidden !important;
+            white-space: nowrap !important;
+            text-overflow: ellipsis !important;
+        }
+
     </style>
 
 {% endblock %}
@@ -131,7 +144,7 @@
 <!--                        {#                            </select>#}-->
 <!--                        {#                        </div>#}-->
                         <div class="form-btn" style="margin-top: 8% !important;">
-                            <button type="submit" class="btn btn-default" style="background-color: #062f3c; color: white; border-color: white">Check
+                            <button type="submit" class="btn btn-default" style="background-color: #062f3c; color: white;">Check
                                 Availability
                             </button>
                         </div>
@@ -156,7 +169,7 @@
                             <img src="{{ set.image }}" class="img-responsive" alt="" style="width: 100% !important; height: auto !important;"
                                  onerror="javascript:this.src='static/images/sample_pic/the_north_Europe.png/'"/>
                             <div class="prom-text">
-                                <h4> {{ set.name }}</h4>
+                                <h4 class="title"> {{ set.name }}</h4>
                                 <div class="prom-bottom">
                                     <div class="prom-left">
                                         <h5> Days : {{ set.length }} </h5>
@@ -166,7 +179,7 @@
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
-                                <p>{{ set.intro }}</p>
+                                <p class="intro">{{ set.intro }}</p>
                             </div>
                         </div>
                     </a>
