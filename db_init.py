@@ -98,11 +98,11 @@ with app.app_context():
     db.session.commit()
 
     com1 = Combination(name="New York Two-Day Trip", day1=1, day2=3, day3=None, day4=None, day5=None, day6=None, day7=None,
-                       intro='New York Four-Day Trip', price=3350, length=2, image='static/upload/Liberty.png')
+                       intro="Attractions includes the 9/11 Memorial and Museum and the Statue of Liberty. These iconic landmarks represent the city's rich history and culture.", price=3350, length=2, image='static/upload/Liberty.png')
     com2 = Combination(name='New York Four-Day Trip', day1=4, day2=5, day3=6, day4=7, day5=None, day6=None, day7=None,
-                       intro='test2_introduction', price=5250, length=4, image='static/upload/summit2.png')
+                       intro="During this four-day tour, you'll visit iconic landmarks like the 9/11 Memorial and Museum and the Statue of Liberty, as well as attend a Broadway show and climb a skyscraper. Experience the unique charm of New York City on this unforgettable tour.", price=5250, length=4, image='static/upload/summit2.png')
     com3 = Combination(name='Dublin Four-Day Trip', day1=8, day2=9, day3=10, day4=11, day5=None, day6=None, day7=None,
-                          intro='test3_introduction', price=4250, length=4, image='static/upload/Galway.png')
+                          intro='Explore the stunning Cliffs of Moher and vibrant Galway. Tour the iconic Jameson Distillery, hop on a convenient Hop-On Hop-Off tour, and kiss the Blarney Stone at the legendary Blarney Castle. An unforgettable adventure awaits!', price=4250, length=4, image='static/upload/Galway.png')
 
     db.session.add_all([com1, com2, com3])
     db.session.commit()
