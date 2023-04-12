@@ -57,17 +57,27 @@
             text-decoration: none !important;
         }
 
-        .intro{
-            -webkit-line-clamp: 2 !important;
-            -webkit-box-orient:vertical !important;
-            overflow:hidden !important;
-            text-overflow: ellipsis !important;
+        .prom-text .intro {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2; /* number of lines to show */
+            -webkit-box-orient: vertical;
+            line-height: 1.5; /* adjust as needed to set the line height */
+            height: 4em !important; /* height of two lines */
         }
 
         .title{
             overflow: hidden !important;
             white-space: nowrap !important;
             text-overflow: ellipsis !important;
+        }
+
+        .img-responsive{
+            width: 100%;
+            height: auto;
+            {#padding-bottom: 75%;#}
+            position: relative;
         }
 
     </style>
@@ -88,15 +98,7 @@
                 </div>
                 <form action="{{ url_for('search.search' ) }}" method="post">
                     <div class="banner-grids" style="padding: 2em 2em 2.5em 2em">
-<!--                        {#                        <div class="col-md-2 banner-grid form-group">#}-->
-<!--                        {#                            <select class="sel">#}-->
-<!--                        {#                                <option value="">Location</option>#}-->
-<!--                        {#                                <option value="">Czech Republic</option>#}-->
-<!--                        {#                                <option value="">France</option>#}-->
-<!--                        {#                                <option value="">Germany</option>#}-->
-<!--                        {#                                <option value="">Italy</option>#}-->
-<!--                        {#                            </select>#}-->
-<!--                        {#                        </div>#}-->
+
                         <div class="form-group col-md-3 banner-grid">
                             <span class="form-label" style="color: white">Destination</span>
                             <input class="form-control" type="text" name="Destination"
@@ -118,37 +120,11 @@
                             </div>
                         </div>
 
-
-<!--                        {#                        <div class="col-md-2 banner-grid">#}-->
-<!--                        {#                            <select class="sel">#}-->
-<!--                        {#                                <option value="">Hotel</option>#}-->
-<!--                        {#                                <option value="">Hilton</option>#}-->
-<!--                        {#                                <option value="">Holiday Inn</option>#}-->
-<!--                        {#                                <option value="">Sheraton</option>#}-->
-<!--                        {#                            </select>#}-->
-<!--                        {#                        </div>#}-->
-<!--                        {#                        <div class="col-md-2 banner-grid">#}-->
-<!--                        {#                            <select class="sel">#}-->
-<!--                        {#                                <option value="">Type</option>#}-->
-<!--                        {#                                <option value="">Group</option>#}-->
-<!--                        {#                                <option value="">Trip</option>#}-->
-<!--                        {#                            </select>#}-->
-<!--                        {#                        </div>#}-->
-<!--                        {#                        <div class="col-md-2 banner-grid">#}-->
-<!--                        {#                            <select class="sel">#}-->
-<!--                        {#                                <option value="">Select price</option>#}-->
-<!--                        {#                                <option value="">$100</option>#}-->
-<!--                        {#                                <option value="">$500</option>#}-->
-<!--                        {#                                <option value="">$700</option>#}-->
-<!--                        {#                                <option value="">$4500</option>#}-->
-<!--                        {#                            </select>#}-->
-<!--                        {#                        </div>#}-->
                         <div class="form-btn" style="margin-top: 8% !important;">
                             <button type="submit" class="btn btn-default" style="background-color: #062f3c; color: white;">Check
                                 Availability
                             </button>
                         </div>
-<!--                        <div class="clearfix"></div>-->
                     </div>
                 </form>
             </div>
@@ -166,7 +142,7 @@
                     <a set_id={{ set.id }} onclick="setID(this)">
                         <div class="col-md-4 promation-grid">
                             <!--{#                            <img src="../static/images/sample_pic/the_north_Europe.png" class="img-responsive" alt="" />#}-->
-                            <img src="{{ set.image }}" class="img-responsive" alt="" style="width: 100% !important; height: auto !important;"
+                            <img src="{{ set.image }}" class="img-responsive" alt=""
                                  onerror="javascript:this.src='static/images/sample_pic/the_north_Europe.png/'"/>
                             <div class="prom-text">
                                 <h4 class="title"> {{ set.name }}</h4>
@@ -197,10 +173,10 @@
                 {% for attraction in attractions %}
                         <div class="col-md-4 promation-grid">
                             <!--{#                            <img src="../static/images/sample_pic/the_north_Europe.png" class="img-responsive" alt="" />#}-->
-                            <img src="{{ attraction.image }}" class="img-responsive" alt=""  style="width: 100% !important; height: auto !important;"
+                            <img src="{{ attraction.image }}" class="img-responsive" alt=""
                                  onerror="javascript:this.src='static/images/sample_pic/the_north_Europe.png/'"/>
                             <div class="prom-text">
-                                <h4> {{ attraction.name }}</h4>
+                                <h4 class="title"> {{ attraction.name }}</h4>
                                 <div class="prom-bottom">
                                     <div class="prom-left">
                                         <h5> {{ attraction.location }} </h5>
@@ -210,7 +186,7 @@
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
-                                <p>{{ attraction.intro }}</p>
+                                <p class="intro">{{ attraction.intro }}</p>
                             </div>
                         </div>
                 {% endfor %}
@@ -226,10 +202,10 @@
                 {% for hotel in hotels %}
                         <div class="col-md-4 promation-grid">
                             <!--{#                            <img src="../static/images/sample_pic/the_north_Europe.png" class="img-responsive" alt="" />#}-->
-                            <img src="{{ hotel.image }}" class="img-responsive" alt=""  style="width: 100% !important; height: auto !important;"
+                            <img src="{{ hotel.image }}" class="img-responsive" alt=""
                                  onerror="javascript:this.src='static/images/sample_pic/the_north_Europe.png/'"/>
                             <div class="prom-text">
-                                <h4> {{ hotel.name }}</h4>
+                                <h4 class="title"> {{ hotel.name }}</h4>
                                 <div class="prom-bottom">
                                     <div class="prom-left">
                                         <h5> {{ hotel.location }} </h5>
@@ -239,7 +215,7 @@
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
-                                <p>{{ hotel.intro }}</p>
+                                <p class="intro">{{ hotel.intro }}</p>
                             </div>
                         </div>
                 {% endfor %}
