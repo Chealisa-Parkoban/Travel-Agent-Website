@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% block title %}
+    Stays
+{% endblock %}
+
+{% block head %}
+    <link href="../static/css/bootstrap2.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="../static/css/style2.css" rel="stylesheet" type="text/css" media="all"/>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800|Roboto:400,500,700" rel="stylesheet">
+    <!-- Theme CSS -->
+    <link type="text/css" href="../static/css/theme.css" rel="stylesheet">
+    <!-- Demo CSS - No need to use these in your project -->
+    <link type="text/css" href="../static/css/demo.css" rel="stylesheet">
+    <link type="text/css" href="../static/css/docs4.6.css" rel="stylesheet">
+    <link type="text/css" href="../static/css/index.css" rel="stylesheet">
+    <link type="text/css" href="../static/css/style.css" rel="stylesheet">
+    <link type="text/css" href="../static/css/book.css" rel="stylesheet">
+    <script src="../static/js/ID.js"></script>
+
+    <style>
+        .banner-header{
+            transform: translate(0, 0);
+            margin: 0 0 5em;
+            font-size: 1.15rem !important;
+            margin-top: 35vh !important;
+        }
+
+        .filter{
+            border-radius: 0.5em;
+        }
+
+        .banner-grids{
+            border-radius: 0.7em !important;
+            background-color: rgba(6, 47, 60, 0.65) !important;
+        }
+
+        .form-btn {
+            /*position: absolute;*/
+            /*top: 50%;*/
+            /*left: 50%;*/
+            transform: translate(0, 15%);
+        }
+
+        .input-group-text{
+            background-color: transparent !important;
+            border-color: transparent !important;
+            color: white;
+            font-weight: bold !important;
+            font-size: 0.5rem;
+            user-select: none;
+        }
+
+        .input-group-text:focus {
+            outline: none !important;
+            box-shadow: none !important;
+            text-decoration: none !important;
+        }
+
+    </style>
+
+{% endblock %}
+
+<body>
+<!-- navbar start -->
+
+{% block body %}
+
+{#    <span class="mask bg-primary alpha-7" style="opacity: 0.1; background-color: #FFFFFF"></span>#}
+    <div class="promotions" style="padding-top: 10%">
+        <div class="container">
+            <h2 class="tittle">Stays</h2>
+            <span>Best Hotels Available</span>
+            <div class="promotion-grids">
+                {% for hotel in hotels %}
+                        <div class="col-md-4 promation-grid">
+                            <!--{#                            <img src="../static/images/sample_pic/the_north_Europe.png" class="img-responsive" alt="" />#}-->
+                            <img src="{{ hotel.image }}" class="img-responsive" alt=""  style="width: 100% !important; height: auto !important;"
+                                 onerror="javascript:this.src='static/images/sample_pic/the_north_Europe.png/'"/>
+                            <div class="prom-text">
+                                <h4> {{ hotel.name }}</h4>
+                                <div class="prom-bottom">
+                                    <div class="prom-left">
+                                        <h5> {{ hotel.location }} </h5>
+                                    </div>
+                                    <div class="prom-right">
+                                        <h5> ¥ {{ hotel.price }} </h5>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <p>{{ hotel.intro }}</p>
+                            </div>
+                        </div>
+                {% endfor %}
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+
+<!-- Core -->
+<script src="../static/vendor/jquery/jquery.min.js"></script>
+<script src="../static/vendor/popper/popper.min.js"></script>
+<script src="../static/js/bootstrap/bootstrap.min.js"></script>
+<!-- FontAwesome 5 -->
+<script src="../static/vendor/fontawesome/js/fontawesome-all.min.js" defer></script>
+<!-- Page plugins -->
+<script src="../static/vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
+<script src="../static/vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+<script src="../static/vendor/input-mask/input-mask.min.js"></script>
+<script src="../static/vendor/nouislider/js/nouislider.min.js"></script>
+<script src="../static/vendor/textarea-autosize/textarea-autosize.min.js"></script>
+<!-- Theme JS -->
+<script src="../static/js/theme.js"></script>
+</body>
+</html>

@@ -87,6 +87,19 @@ def homepage():
     return render_template("homepage2.html", Sets=Sets, attractions=attractions, hotels=hotels)
 
 
+@app.route('/attractions', methods=['GET', 'POST'])
+def attractions():
+    attractions = Target.query.filter(Target.type == '0').all()
+    return render_template("attractions.html", attractions=attractions)
+
+
+@app.route('/stays', methods=['GET', 'POST'])
+def stays():
+    stays = Target.query.filter(Target.type == '1').all()
+    return render_template("stays.html", hotels=stays)
+
+
+
 # @app.route('/homepage2', methods=['GET', 'POST'])
 # def homepage2():
 #     logger.info('Entered the HOME page')
