@@ -96,7 +96,8 @@
                                     <label for="email">Email</label>
                                 </div>
                                 <div class="col-sm-9">
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" value="{{ user.email }}" required>
+                                    <p class="text-muted mb-0">{{ user.email }}</p>
+{#                                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" value="{{ user.email }}" required>#}
                                 </div>
                             </div>
                             <hr>
@@ -122,6 +123,26 @@
                                     <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" placeholder="Enter date of birth" value="{{ user.date_of_birth }}" required>
                                 </div>
                             </div>
+
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label for="email">Profession</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="profession" name="profession" placeholder="Enter Profession" value="{{ user.email }}" required>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label for="email">Address</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <textarea class="form-control" id="address" name="address" placeholder="Enter Address" required>{{ user.email }}</textarea>
+                                </div>
+                            </div>
+
                             <hr>
                             <div class="row mb-3">
                                 <div class="col-sm-3">
