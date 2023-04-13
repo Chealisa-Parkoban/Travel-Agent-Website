@@ -36,12 +36,20 @@ def showAll():
         accommodation = Target.query.filter(Target.id == tID, Target.type == 1).first()
         traffic = Target.query.filter(Target.id == tID, Target.type == 2).first()
 
-        Lt.append(target)
-        La.append(attraction)
-        Lh.append(accommodation)
-        Ltr.append(traffic)
+        if target is not None:
+            Lt.append(target)
+
+        if attraction is not None:
+            La.append(attraction)
+
+        if accommodation is not None:
+            Lh.append(accommodation)
+
+        if traffic is not None:
+            Ltr.append(traffic)
 
 
+    print(Lc, Lt, La, Lh, Ltr)
     return render_template("favourites.html", Combinations=Lc, Targets=Lt, Attractions=La, Accommodations=Lh,
                            Traffics=Ltr)
 
@@ -86,5 +94,6 @@ def addFavorite(combination_id):
         La.append(attraction)
         Lh.append(accommodation)
         Ltr.append(traffic)
+
     return render_template("favourites.html", Combinations=Lc, Targets=Lt, Attractions=La, Accommodations=Lh,
                            Traffics=Ltr)

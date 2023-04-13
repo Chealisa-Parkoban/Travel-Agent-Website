@@ -251,11 +251,16 @@ def view_plan():
             day_att_id = day.attraction_id
             day_acc_id = day.accommodation_id
             day_tra_id = day.traffic_id
+            print(day_des_id, day_att_id, day_acc_id, day_tra_id)
 
             day_destination = db.session.query(Destination).filter(Destination.id == day_des_id).first()
+            print("destintion",day_destination)
             day_attraction = db.session.query(Target).filter(Target.id == day_att_id).first()
+            print("attraction",day_attraction)
             day_accommodation = db.session.query(Target).filter(Target.id == day_acc_id).first()
+            print("accommodation",day_accommodation)
             day_traffic = db.session.query(Target).filter(Target.id == day_tra_id).first()
+            print("traffic",day_traffic)
 
             i += 1
             day = [i, day_destination.name, day_attraction.name, day_accommodation.name, day_traffic.name]
