@@ -25,10 +25,12 @@ class User(UserMixin, db.Model):
     # website = db.Column(db.String(128))
     # title = db.Column(db.String(120))
     gender = db.Column(db.String(120))
-    birthday = db.Column(db.INTEGER)
+    birthday = db.Column(db.String(120))
     avatar_url = db.Column(db.String(120))
     active = db.Column(db.Boolean, default=True)
     is_admin = db.Column(db.Boolean, default=False)
+    profession = db.Column(db.String(120))
+    address = db.Column(db.String(120))
 
     def __init__(self, username, email, password, is_admin, active=True):
         # self.id = id
