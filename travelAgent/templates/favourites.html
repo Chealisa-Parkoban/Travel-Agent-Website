@@ -88,9 +88,9 @@
                 <ul class="navbar-nav flex-column">
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#All">All</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#Travel packages">Travel packages</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#Fly ticket">Fly ticket</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#Hotel">Hotel</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#Attraction tickets">Attraction tickets</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#Attraction tickets">Attractions</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#Hotel">Stays</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#Fly ticket">Traffics</a></li>
                 </ul>
             </div>
         </nav>
@@ -116,7 +116,7 @@
                             <div class="card">
                                 <div class="row align-items-center no-gutters">
                                     <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
-                                        <img src={{ combination.image }} class="card-img" alt="...">
+                                        <img src="{{ combination.image }}" class="card-img" alt="...">
                                     </div>
                                     <div class="col-md-8 mx-auto mb-auto">
                                         <div class="card-body">
@@ -137,7 +137,7 @@
                             <div class="card">
                                 <div class="row no-gutters">
                                     <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
-                                        <img src={{ target.image }} class="card-img" alt="...">
+                                        <img src="{{ target.image }}" class="card-img" alt="...">
                                     </div>
                                     <div class="col-md-8 mx-auto mb-auto">
                                         <div class="card-body">
@@ -281,7 +281,7 @@
                             <div class="card">
                                 <div class="row no-gutters">
                                     <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
-                                        <img src={{ combination.image }} class="card-img" alt="...">
+                                        <img src="{{ combination.image }}" class="card-img" alt="...">
                                     </div>
                                     <div class="col-md-8 mx-auto mb-auto">
                                         <div class="card-body">
@@ -296,212 +296,18 @@
 
                     {% endfor %}
 
-{#                    <div class="col-md-12 mb-5">#}
-{#                        <a href="{{ url_for("details.showSetDetails") }}">#}
-{#                            <div class="card">#}
-{#                                <div class="row no-gutters">#}
-{#                                    <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">#}
-{#                                        <img src="../static/images/sample_pic/guilin.png" class="card-img" alt="...">#}
-{#                                    </div>#}
-{#                                    <div class="col-md-8 mx-auto mb-auto">#}
-{#                                        <div class="card-body">#}
-{#                                            <h5 class="card-title">title here</h5>#}
-{#                                            <p class="card-text">a long description about anything about the product, it could be anything, this is only to test how long it can be but nothing</p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </a>#}
-{#                    </div>#}
-{##}
-{#                    <div class="col-md-12 mb-5">#}
-{#                        <a href="{{ url_for("details.showSetDetails") }}">#}
-{#                            <div class="card">#}
-{#                                <div class="row no-gutters">#}
-{#                                    <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">#}
-{#                                        <img src="../static/images/sample_pic/guilin.png" class="card-img" alt="...">#}
-{#                                    </div>#}
-{#                                    <div class="col-md-8 mx-auto mb-auto">#}
-{#                                        <div class="card-body">#}
-{#                                            <h5 class="card-title">title here</h5>#}
-{#                                            <p class="card-text">a long description about anything about the product, it could be anything, this is only to test how long it can be but nothing</p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </a>#}
-{#                    </div>#}
 
                 </div>
             </div>
         </section>
 
         <hr class="m-0" />
-
-        <!-- Fly ticket-->
-        <section class="resume-section" id="Fly ticket">
-            <div class="container mt-4">
-                <div class="row">
-
-                    <h2 class="mb-5">Fly ticket</h2>
-
-                    {% for traffic in Traffics %}
-                        <div class="col-md-12 mb-5">
-                        <a href="{{ url_for("details.showSetDetails") }}">
-                            <div class="card">
-                                <div class="row no-gutters">
-                                    <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
-                                        <img src={{ traffic.image }} class="card-img" alt="...">
-                                    </div>
-                                    <div class="col-md-8 mx-auto mb-auto">
-                                        <div class="card-body">
-                                            <h5 class="card-title">{{ traffic.name}}</h5>
-                                            <p class="card-text">{{ traffic.intro }}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    {% endfor %}
-
-{#                    <div class="col-md-12 mb-5">#}
-{#                        <a href="{{ url_for("details.showSetDetails") }}">#}
-{#                            <div class="card">#}
-{#                                <div class="row no-gutters">#}
-{#                                    <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">#}
-{#                                        <img src="../static/images/sample_pic/guilin.png" class="card-img" alt="...">#}
-{#                                    </div>#}
-{#                                    <div class="col-md-8 mx-auto mb-auto">#}
-{#                                        <div class="card-body">#}
-{#                                            <h5 class="card-title">title here</h5>#}
-{#                                            <p class="card-text">a long description about anything about the product, it could be anything, this is only to test how long it can be but nothing</p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </a>#}
-{#                    </div>#}
-{##}
-{#                    <div class="col-md-12 mb-5">#}
-{#                        <a href="{{ url_for("details.showSetDetails") }}">#}
-{#                            <div class="card">#}
-{#                                <div class="row no-gutters">#}
-{#                                    <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">#}
-{#                                        <img src="../static/images/sample_pic/guilin.png" class="card-img" alt="...">#}
-{#                                    </div>#}
-{#                                    <div class="col-md-8 mx-auto mb-auto">#}
-{#                                        <div class="card-body">#}
-{#                                            <h5 class="card-title">title here</h5>#}
-{#                                            <p class="card-text">a long description about anything about the product, it could be anything, this is only to test how long it can be but nothing</p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </a>#}
-{#                    </div>#}
-{##}
-{#                    <div class="col-md-12 mb-5">#}
-{#                        <a href="{{ url_for("details.showSetDetails") }}">#}
-{#                            <div class="card">#}
-{#                                <div class="row no-gutters">#}
-{#                                    <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">#}
-{#                                        <img src="../static/images/sample_pic/guilin.png" class="card-img" alt="...">#}
-{#                                    </div>#}
-{#                                    <div class="col-md-8 mx-auto mb-auto">#}
-{#                                        <div class="card-body">#}
-{#                                            <h5 class="card-title">title here</h5>#}
-{#                                            <p class="card-text">a long description about anything about the product, it could be anything, this is only to test how long it can be but nothing</p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </a>#}
-{#                    </div>#}
-{##}
-{#                    <div class="col-md-12 mb-5">#}
-{#                        <a href="{{ url_for("details.showSetDetails") }}">#}
-{#                            <div class="card">#}
-{#                                <div class="row no-gutters">#}
-{#                                    <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">#}
-{#                                        <img src="../static/images/sample_pic/guilin.png" class="card-img" alt="...">#}
-{#                                    </div>#}
-{#                                    <div class="col-md-8 mx-auto mb-auto">#}
-{#                                        <div class="card-body">#}
-{#                                            <h5 class="card-title">title here</h5>#}
-{#                                            <p class="card-text">a long description about anything about the product, it could be anything, this is only to test how long it can be but nothing</p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </a>#}
-{#                    </div>#}
-
-                </div>
-            </div>
-        </section>
-
-        <hr class="m-0" />
-
-        <!-- Hotel-->
-        <section class="resume-section" id="Hotel">
-            <div class="container mt-4">
-                <div class="row">
-
-                    <h2 class="mb-5">Hotel</h2>
-
-                    {% for accommodation in Accommodations %}
-                        <div class="col-md-12 mb-5">
-                        <a href="{{ url_for("details.showSetDetails") }}">
-                            <div class="card">
-                                <div class="row no-gutters">
-                                    <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
-                                        <img src={{ accommodation.image }} class="card-img" alt="...">
-                                    </div>
-                                    <div class="col-md-8 mx-auto mb-auto">
-                                        <div class="card-body">
-                                            <h5 class="card-title">{{ accommodation.name}}</h5>
-                                            <p class="card-text">{{ accommodation.intro }}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    {% endfor %}
-
-{#                    <div class="col-md-12 mb-5">#}
-{#                        <a href="{{ url_for("details.showSetDetails") }}">#}
-{#                            <div class="card">#}
-{#                                <div class="row no-gutters">#}
-{#                                    <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">#}
-{#                                        <img src="../static/images/sample_pic/guilin.png" class="card-img" alt="...">#}
-{#                                    </div>#}
-{#                                    <div class="col-md-8 mx-auto mb-auto">#}
-{#                                        <div class="card-body">#}
-{#                                            <h5 class="card-title">title here</h5>#}
-{#                                            <p class="card-text">a long description about anything about the product, it could be anything, this is only to test how long it can be but nothing</p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </a>#}
-{#                    </div>#}
-
-                </div>
-            </div>
-        </section>
-
-        <hr class="m-0" />
-
         <!-- Attraction tickets-->
         <section class="resume-section" id="Attraction tickets">
             <div class="container mt-4">
                 <div class="row">
 
-                    <h2 class="mb-5">Attraction ticket</h2>
+                    <h2 class="mb-5">Attractions</h2>
 
                     {% for attraction in Attractions %}
                         <div class="col-md-12 mb-5">
@@ -509,7 +315,7 @@
                             <div class="card">
                                 <div class="row no-gutters">
                                     <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
-                                        <img src={{ attraction.image }} class="card-img" alt="...">
+                                        <img src="{{ attraction.image }}" class="card-img" alt="...">
                                     </div>
                                     <div class="col-md-8 mx-auto mb-auto">
                                         <div class="card-body">
@@ -541,6 +347,74 @@
 {#                            </div>#}
 {#                        </a>#}
 {#                    </div>#}
+
+                </div>
+            </div>
+        </section>
+
+        <hr class="m-0" />
+
+            <!-- Hotel-->
+        <section class="resume-section" id="Hotel">
+            <div class="container mt-4">
+                <div class="row">
+
+                    <h2 class="mb-5">Stays</h2>
+
+                    {% for accommodation in Accommodations %}
+                        <div class="col-md-12 mb-5">
+                        <a href="{{ url_for("details.showSetDetails") }}">
+                            <div class="card">
+                                <div class="row no-gutters">
+                                    <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
+                                        <img src="{{ accommodation.image }}" class="card-img" alt="...">
+                                    </div>
+                                    <div class="col-md-8 mx-auto mb-auto">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ accommodation.name}}</h5>
+                                            <p class="card-text">{{ accommodation.intro }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    {% endfor %}
+
+
+                </div>
+            </div>
+        </section>
+
+        <hr class="m-0" />
+
+        <!-- Traffics-->
+        <section class="resume-section" id="Fly ticket">
+            <div class="container mt-4">
+                <div class="row">
+
+                    <h2 class="mb-5">Traffics</h2>
+
+                    {% for traffic in Traffics %}
+                        <div class="col-md-12 mb-5">
+                        <a href="{{ url_for("details.showSetDetails") }}">
+                            <div class="card">
+                                <div class="row no-gutters">
+                                    <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
+                                        <img src="{{ traffic.image }}" class="card-img" alt="...">
+                                    </div>
+                                    <div class="col-md-8 mx-auto mb-auto">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ traffic.name}}</h5>
+                                            <p class="card-text">{{ traffic.intro }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
 
                 </div>
             </div>

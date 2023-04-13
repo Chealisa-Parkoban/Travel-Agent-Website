@@ -35,7 +35,7 @@ with app.app_context():
     # Dublin
     acc5 = Target(name='Blooms Hotel', destination_id=4, image='static/upload/Blooms.png', intro='Blooms Hotel is located in Dublin’s Temple Bar district, 492 feet from Trinity College and Dublin Castle. It has a traditional Irish pub, a nightclub and rooms with flat-screen TVs.', type='1', price=539)
     acc6 = Target(name='The Spencer Hotel', destination_id=4, image='static/upload/Spencer.png', intro="Overlooking the River Liffey, The Spencer Hotel is 10 minutes from the famous O'Connell Bridge and 20 minutes from the Temple Bar and Grafton Street.", type='1', price=786)
-    # acc7 = Target(name='The Shelbourne', destination_id=4, image='static/upload/Shelbourne.png', intro='The Shelbourne, Autograph Collection', type='1', price=1343)
+    acc7 = Target(name='The Shelbourne', destination_id=4, image='static/upload/Shelbourne.png', intro='The Shelbourne, Autograph Collection', type='1', price=1343)
 
     # ---------------------------attractions--------------------------------
     # New York
@@ -72,7 +72,7 @@ with app.app_context():
     # tar12 = Target( name='丽思卡尔顿', destination_id=1, image='', intro='北京丽思卡尔顿大酒店', type='1', price=3000)
     # tar13 = Target( name='上海迪士尼乐园', destination_id=3, image='', intro='上海迪士尼度假区 Disney Resort', type='0', price=543)
 
-    db.session.add_all([acc1, acc2, acc3, acc4, acc5, acc6,  att1, att2, att3, att4, att5, att6, att7, att8, tra1,
+    db.session.add_all([acc1, acc2, acc3, acc4, acc5, acc6, acc7, att1, att2, att3, att4, att5, att6, att7, att8, tra1,
                         tra2, tra3, tra4, tra5])
     db.session.commit()
 
@@ -106,3 +106,18 @@ with app.app_context():
 
     db.session.add_all([com1, com2, com3])
     db.session.commit()
+
+    fav1 = Favorite(user_id=3, target_id=1, time="2023-04-13 11:07:43")
+    fav2 = Favorite(user_id=3, target_id=5, time="2023-02-13 10:00:33")
+    fav3 = Favorite(user_id=3, target_id=10, time="2023-02-13 10:00:33")
+    fav4 = Favorite(user_id=3, target_id=13, time="2023-02-13 10:00:33")
+    fav5 = Favorite(user_id=3, target_id=14, time="2023-02-13 10:00:33")
+    fav6 = Favorite(user_id=3, target_id=8, time="2023-02-13 10:00:33")
+    fav9 = Favorite(user_id=3, target_id=19, time="2023-02-13 10:00:33")
+
+    fav7 = FavoriteC(user_id=3, combination_id=1, time="2023-02-13 10:00:33")
+    fav8 = FavoriteC(user_id=3, combination_id=2, time="2023-02-13 10:00:33")
+
+    db.session.add_all([fav1, fav2, fav3, fav4, fav5, fav6, fav7, fav8, fav9])
+    db.session.commit()
+
