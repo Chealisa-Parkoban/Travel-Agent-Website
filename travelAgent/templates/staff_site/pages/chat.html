@@ -8,64 +8,69 @@
             <div class="col-sm-4" style="height: 100%; overflow: scroll;">
                 <ul class="list-group" id="user-list">
                     <li class="list-group-item active">User List</li>
-{#                    <li class="list-group-item user-li" onclick="switch_user_chat('selina', 0)"></li>#}
-{#                    <li class="list-group-item user-li" onclick="switch_user_chat('selina', 1)"></li>#}
-{#                    <li class="list-group-item user-li" onclick="switch_user_chat('selina', 2)"></li>#}
-{#                    <li class="list-group-item user-li" onclick="switch_user_chat('selina', 3)"></li>#}
+                    <li class="list-group-item user-li" onclick="switch_user_chat('selina', 0)">免费 Window 空间托管</li>
+                    <li class="list-group-item user-li" onclick="switch_user_chat('selina', 1)">图像的数量</li>
+                    <li class="list-group-item user-li" onclick="switch_user_chat('selina', 2)">24*7 支持</li>
+                    <li class="list-group-item user-li" onclick="switch_user_chat('selina', 3)">每年更新成本</li>
                 </ul>
             </div>
             <div class="col-sm-8" style="height: 100%; overflow: scroll;" id="chat-zone">
-<!--                <div class="row" style="padding-top:10px;" >-->
-<!--                    <div class="col"><hr></div>-->
-<!--                    <div class="col-auto"><p class="h3" align="center" id="chat-zone-title">Chat with {username}</p></div>-->
-<!--                    <div class="col"><hr></div>-->
-<!--                </div>-->
-<!--                <div class="container">-->
-<!--                    <div id="messages" class="overflow-auto msgs"-->
-<!--                         style="overflow-y: scroll; height:500px;border: 5px solid gray;border-radius: 5px;margin: 10px 0">-->
-<!--                    </div>-->
-<!--                    <div class="row">-->
-<!--                        <div class="col-10">-->
-<!--                            <input type="text" class="form-control" placeholder="Message" aria-label="Message" id="msg">-->
-<!--                        </div>-->
-<!--                        <div class="col-2">-->
-<!--                            <button class="btn btn-success" type="button" id="sendBtn">Send</button>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
+                <!--                <div class="row" style="padding-top:10px;" >-->
+                <!--                    <div class="col"><hr></div>-->
+                <!--                    <div class="col-auto"><p class="h3" align="center" id="chat-zone-title">Chat with {username}</p></div>-->
+                <!--                    <div class="col"><hr></div>-->
+                <!--                </div>-->
+                <!--                <div class="container">-->
+                <!--                    <div id="messages" class="overflow-auto msgs"-->
+                <!--                         style="overflow-y: scroll; height:500px;border: 5px solid gray;border-radius: 5px;margin: 10px 0">-->
+                <!--                    </div>-->
+                <!--                    <div class="row">-->
+                <!--                        <div class="col-10">-->
+                <!--                            <input type="text" class="form-control" placeholder="Message" aria-label="Message" id="msg">-->
+                <!--                        </div>-->
+                <!--                        <div class="col-2">-->
+                <!--                            <button class="btn btn-success" type="button" id="sendBtn">Send</button>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+                <!--                </div>-->
             </div>
         </div>
     </div>
-<!-- content-wrapper ends -->
-<!-- partial:partials/_footer.html -->
-<footer class="footer">
-  <div class="d-sm-flex justify-content-center justify-content-sm-between">
-    <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash.</span>
-    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copyright © 2021. All rights reserved.</span>
-  </div>
-</footer>
-<!-- partial -->
+    <!-- content-wrapper ends -->
+    <!-- partial:partials/_footer.html -->
+    <footer class="footer">
+        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Premium <a
+                    href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copyright © 2021. All rights reserved.</span>
+        </div>
+    </footer>
+    <!-- partial -->
 </div>
 {% endblock %}
 <!-- main-panel ends -->
 
 {% block beforeend %}
 <!-- Chat scripts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js" integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js"
+        integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ=="
+        crossorigin="anonymous"></script>
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script>
 <script>
     var cur_username = ''
     var cur_adminname = ''
     var chatting = false
 
-    function init(){
+    function init() {
         // Get all user with unseen
         $.ajax({
             type: 'get',
             url: "/chat/all_user",
             async: true,
-            success: function (data){
+            success: function (data) {
                 fill_users(data)
             }
         })
@@ -74,7 +79,7 @@
             type: 'get',
             url: "/chat/adminname",
             async: false,
-            success: function (data){
+            success: function (data) {
                 console.log(data)
                 cur_adminname = data['adminname']
             }
@@ -84,8 +89,8 @@
         socket.on("connect", async function () {
             if (cur_adminname != "") {
                 socket.emit("event", {
-                  message: cur_adminname + " just connected to the server!",
-                  connect: true,
+                    message: cur_adminname + " just connected to the server!",
+                    connect: true,
                 })
             }
         })
@@ -95,16 +100,16 @@
             })
         })
         socket.on("message response", function (msg) {
-          add_one_message(msg);
+            add_one_message(msg);
         })
     }
 
     init()
 
-    function send(){
+    function send() {
         // get input from message box
         let user_input = $('#msg').val()
-        if(user_input == ""){
+        if (user_input == "") {
             alert("Please input something then send.");
             return false;
         }
@@ -118,7 +123,7 @@
         })
     }
 
-    function fill_users(data){
+    function fill_users(data) {
         console.log(data)
         let str = '<li class="list-group-item active">User List</li>'
         data.forEach((val, idx) => {
@@ -152,18 +157,17 @@
         $('#chat-zone').html(str)
     }
 
-    function switch_user_chat(username, index){
-        if(!chatting){
+    function switch_user_chat(username, index) {
+        if (!chatting) {
             show_chat_zone()
             chatting = true
         }
         let user_list = $('.user-li')
-        user_list.each((idx, val)=>{
-            if(idx == index){
+        user_list.each((idx, val) => {
+            if (idx == index) {
                 $(val).attr('class', 'list-group-item user-li active')
                 $(val).html(`${username}<span class="float-right badge badge-primary">0</span>`)
-            }
-            else{
+            } else {
                 $(val).attr('class', 'list-group-item user-li')
             }
         })
@@ -175,7 +179,7 @@
             type: 'get',
             url: `/chat/get_history_of_user?username=${cur_username}`,
             async: true,
-            success: function (data){
+            success: function (data) {
                 fill_messages(data)
             }
         })
@@ -189,59 +193,82 @@
 
     function fill_messages(data) {
         console.log(data)
-        data.forEach((val, idx)=>{
+        data.forEach((val, idx) => {
             add_one_message(val)
         })
     }
 
-    function add_one_message(msg){
+    function add_one_message(msg) {
         let n = dateNow()
         if (typeof msg.name !== "undefined") {
             let date = dateNow();
             if (typeof msg.time !== "undefined") {
-              n = msg.time;
+                n = msg.time;
             } else {
-              n = date;
+                n = date;
             }
             let color_str = 'color:#734'
-            if(cur_adminname == msg.name){
+            if (cur_adminname == msg.name) {
                 color_str = 'color:#157'
             }
+            let content = "";
+            if (cur_adminname == msg.name) {
+                let content1 =
+                    '<div class="row">' +
+                    // '<div class="container">'
+                    '<div class="col"></div>' +
+                    '<div class="col"></div>' +
+                    '<div class="col-5 alert alert-success alert-shadow" style="margin-top: 2%; margin-right: 3%">' +
+                    `<b style="${color_str}" class="right">` +
+                    msg.name +
+                    '</b><p>' +
+                    msg.message +
+                    '</p>' + `<button class="btn btn-primary btnTrans" onclick=Translate(event)>Translate</button>` + '<span class="res_translate"></span>' + '<span class="time-right">' +
+                    n +
+                    '</span></div></div>';
+                content = content1;
+            } else {
+                let content1 =
+                    '<div class="row">' +
+                    // '<div class="container">'
 
-            let content =
-              '<div class="container">' +
-              `<b style="${color_str}" class="right">` +
-              msg.name +
-              '</b><p>' +
-              msg.message +
-              '</p>'+`<button class="btnTrans" onclick=Translate(event)>翻译</button>` +'<span class="res_translate"></span>'+'<span class="time-right">' +
-                n +
-                '</span></div>';
-
+                    '<div class="col-5 alert alert-info alert-shadow" style="margin-top: 2%; margin-left: 3%">' +
+                    `<b style="${color_str}" class="right">` +
+                    msg.name +
+                    '</b><p>' +
+                    msg.message +
+                    '</p>' + `<button class="btn btn-primary btnTrans" onclick=Translate(event)>Translate</button>` + '<span class="res_translate"></span>' + '<span class="time-right">' +
+                    n +
+                    '</span></div>' +
+                    '<div class="col"></div>' +
+                    '<div class="col"></div>' +
+                    '</div>';
+                content = content1;
+            }
             // update div
             $('#messages').html($('#messages').html() + content)
         }
     }
 
     function dateNow() {
-      let date = new Date();
-      let aaaa = date.getFullYear();
-      let gg = date.getDate();
-      let mm = date.getMonth() + 1;
-      if (gg < 10) gg = "0" + gg;
-      if (mm < 10) mm = "0" + mm;
-      let cur_day = aaaa + "-" + mm + "-" + gg;
-      let hours = date.getHours();
-      let minutes = date.getMinutes();
-      let seconds = date.getSeconds();
-      if (hours < 10) hours = "0" + hours;
-      if (minutes < 10) minutes = "0" + minutes;
-      if (seconds < 10) seconds = "0" + seconds;
-      return cur_day + " " + hours + ":" + minutes;
+        let date = new Date();
+        let aaaa = date.getFullYear();
+        let gg = date.getDate();
+        let mm = date.getMonth() + 1;
+        if (gg < 10) gg = "0" + gg;
+        if (mm < 10) mm = "0" + mm;
+        let cur_day = aaaa + "-" + mm + "-" + gg;
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        let seconds = date.getSeconds();
+        if (hours < 10) hours = "0" + hours;
+        if (minutes < 10) minutes = "0" + minutes;
+        if (seconds < 10) seconds = "0" + seconds;
+        return cur_day + " " + hours + ":" + minutes;
     }
 
     //translate function
-    function Translate(event){
+    function Translate(event) {
         console.log(event.target)
         let previous = event.target.previousElementSibling.innerText
         let next = event.target.nextElementSibling
@@ -251,25 +278,25 @@
         let from = 'auto'
         let to = 'en'
         let query = previous
-        let str1 = appid + query + salt +key
+        let str1 = appid + query + salt + key
         let sign = md5(str1)
         $.ajax({
-              url: 'http://api.fanyi.baidu.com/api/trans/vip/translate',
-              type: 'get',
-              dataType: 'jsonp',
-              data: {
-                   q: query,
-                   appid: appid,
-                   salt: salt,
-                   from: from,
-                   to: to,
-                   sign: sign
-              },
-              success: function (data) {
+            url: 'http://api.fanyi.baidu.com/api/trans/vip/translate',
+            type: 'get',
+            dataType: 'jsonp',
+            data: {
+                q: query,
+                appid: appid,
+                salt: salt,
+                from: from,
+                to: to,
+                sign: sign
+            },
+            success: function (data) {
                 let res = data.trans_result[0].dst
                 console.log(res)
                 event.target.nextElementSibling.innerText = res
-              }
+            }
         })
     }
 

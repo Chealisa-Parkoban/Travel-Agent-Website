@@ -23,4 +23,4 @@ db = SQLAlchemy(app)
 mail = Mail(app)
 
 # Very important!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-# from travelAgent import app, models
+from travelAgent import app, models
