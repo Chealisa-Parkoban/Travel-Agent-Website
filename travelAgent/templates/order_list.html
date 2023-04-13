@@ -11,11 +11,10 @@
 
         <div>
             <div class="col-md-12 mb-5">
-                <a href="#">
-                    <div class="card" style="color: #0a0c0d">
 
-                        {% for i in range(0,user_name|length) %}
-
+                {% for i in range(0,user_name|length) %}
+                    <a href="#">
+                        <div class="card" style="color: #0a0c0d; margin-top: 3%;">
                             <div class="row" style="margin-left: auto !important;">
                                 <div class="col-md-4 mx-auto mb-auto d-flex align-items-center" style="margin: auto;">
                                     <img src="{{ image[i] }}" class="card-img" alt="...">
@@ -26,58 +25,54 @@
                                         <h5 class="card-title mb-0">{{ combination_name[i] }}</h5>
                                         <hr>
                                         <div class="row">
-                                            <div class="col-sm-3">
+                                            <div class="col-sm-4">
                                                 <p class="mb-0">User Name:</p>
                                             </div>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-8">
                                                 <p class="card-text mb-0">{{ user_name[i] }}</p>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-sm-3">
+                                            <div class="col-sm-4">
                                                 <p class="mb-0">Start Time:</p>
                                             </div>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-8">
                                                 <p class="card-text mb-0">{{ start_time[i] }}</p>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-sm-3">
+                                            <div class="col-sm-4">
                                                 <p class="mb-0">Number of People:</p>
                                             </div>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-8">
                                                 <p class="card-text mb-0">{{ number[i] }}</p>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-sm-3">
+                                            <div class="col-sm-4">
                                                 <p class="mb-0">Phone Number:</p>
                                             </div>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-8">
                                                 <p class="card-text mb-0">{{ tel[i] }}</p>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-sm-3">
+                                            <div class="col-sm-4">
                                                 <p class="mb-0">Total Price::</p>
                                             </div>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-8">
                                                 <p class="card-text mb-0">{{ price[i] }}</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </a>
+                {% endfor %}
 
-                        {% endfor %}
-
-                    </div>
-                </a>
             </div>
         </div>
-
-
-
     </div>
 </section>
 {% endblock %}
