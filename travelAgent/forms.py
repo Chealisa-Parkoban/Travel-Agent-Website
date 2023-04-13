@@ -2,7 +2,7 @@ import wtforms
 from flask_wtf import FlaskForm, RecaptchaField
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, DateField, SelectField, IntegerField, FileField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, URL
-from models import EmailCaptchaModel, User
+from travelAgent.models import EmailCaptchaModel, User
 
 
 # Using FlaskForm to collect data from user
