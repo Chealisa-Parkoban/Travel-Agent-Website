@@ -200,6 +200,7 @@ class Combination(db.Model):
             days.append(self.day6)
         if self.day7:
             days.append(self.day7)
+        print(days)
         return days
 
 

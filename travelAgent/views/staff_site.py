@@ -238,7 +238,7 @@ def view_plan():
     accommodations = Target.query.filter_by(type="1").all()
     traffics = Target.query.filter_by(type="2").all()
     plan_id = session.get('plan_id')
-    print(plan_id, "plan_id")
+    # print(plan_id, "plan_id")
     plan = Combination.query.filter_by(id=plan_id).first()
     days_id = plan.get_days()
     days = []
@@ -246,6 +246,7 @@ def view_plan():
     for day_id in days_id:
         if day_id is not None:
             day = Day.query.filter_by(id=day_id).first()
+            print(day.id)
             day_des_id = day.destination_id
             day_att_id = day.attraction_id
             day_acc_id = day.accommodation_id
