@@ -35,7 +35,7 @@ with app.app_context():
     # Dublin
     acc5 = Target(name='Blooms Hotel', destination_id=4, image='static/upload/Blooms.png', intro='Blooms Hotel is located in Dublin’s Temple Bar district, 492 feet from Trinity College and Dublin Castle. It has a traditional Irish pub, a nightclub and rooms with flat-screen TVs.', type='1', price=539)
     acc6 = Target(name='The Spencer Hotel', destination_id=4, image='static/upload/Spencer.png', intro="Overlooking the River Liffey, The Spencer Hotel is 10 minutes from the famous O'Connell Bridge and 20 minutes from the Temple Bar and Grafton Street.", type='1', price=786)
-    acc7 = Target(name='The Shelbourne', destination_id=4, image='static/upload/Shelbourne.png', intro='The Shelbourne, Autograph Collection', type='1', price=1343)
+    # acc7 = Target(name='The Shelbourne', destination_id=4, image='static/upload/Shelbourne.png', intro='The Shelbourne, Autograph Collection', type='1', price=1343)
 
     # ---------------------------attractions--------------------------------
     # New York
@@ -72,7 +72,7 @@ with app.app_context():
     # tar12 = Target( name='丽思卡尔顿', destination_id=1, image='', intro='北京丽思卡尔顿大酒店', type='1', price=3000)
     # tar13 = Target( name='上海迪士尼乐园', destination_id=3, image='', intro='上海迪士尼度假区 Disney Resort', type='0', price=543)
 
-    db.session.add_all([acc1, acc2, acc3, acc4, acc5, acc6, acc7, att1, att2, att3, att4, att5, att6, att7, att8, tra1,
+    db.session.add_all([acc1, acc2, acc3, acc4, acc5, acc6,  att1, att2, att3, att4, att5, att6, att7, att8, tra1,
                         tra2, tra3, tra4, tra5])
     db.session.commit()
 
@@ -91,7 +91,7 @@ with app.app_context():
     day8 = Day(id=8, destination_id=4, attraction_id=12, accommodation_id=5, traffic_id=18)
     day9 = Day(id=9, destination_id=4, attraction_id=13, accommodation_id=6, traffic_id=18)
     day10 = Day(id=10, destination_id=4, attraction_id=14, accommodation_id=6, traffic_id=16)
-    day11 = Day(id=11, destination_id=4, attraction_id=15, accommodation_id=7, traffic_id=17)
+    day11 = Day(id=11, destination_id=4, attraction_id=15, accommodation_id=6, traffic_id=17)
 
 
     db.session.add_all([day1, day2, day3, day4, day5, day6, day7, day8, day9, day10, day11])
