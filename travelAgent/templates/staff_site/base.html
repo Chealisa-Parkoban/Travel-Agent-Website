@@ -43,7 +43,7 @@
           </a>
         </div>
       </div>
-      <div class="navbar-menu-wrapper d-flex align-items-top">
+      <div class="navbar-menu-wrapper d-flex align-items-top"> 
         <ul class="navbar-nav">
           <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
             <h1 class="welcome-text">Good Morning, <span class="text-black fw-bold">{{ user.username }}</span></h1>
@@ -136,7 +136,7 @@
               </a>
             </div>
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown"> 
             <a class="nav-link count-indicator" id="countDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="icon-bell"></i>
               <span class="count"></span>
@@ -380,55 +380,59 @@
             </a>
           </li>
 
-          <li class="nav-item nav-category">Travel Packages</li>
-
+          <li class="nav-item nav-category">Contents</li>
 
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for("staff_site.contents")}}">
               <i class="menu-icon mdi mdi-apps"></i>
 <!--              <i class="menu-icon mdi mdi-table"></i>-->
-              <span class="menu-title">All Packages</span>
+              <span class="menu-title">All Plans</span>
             </a>
           </li>
-
 
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for("staff_site.new_plan")}}">
               <i class="menu-icon mdi mdi-arrange-send-backward"></i>
-              <span class="menu-title">Create New Package</span>
+              <span class="menu-title">Create New Plan</span>
             </a>
           </li>
 
+<!--          <li class="nav-item">-->
+<!--            <a class="nav-link" data-bs-toggle="collapse" href="" aria-expanded="false" aria-controls="ui-basic">-->
+<!--              <i class="menu-icon mdi mdi-floor-plan"></i>-->
+<!--              <span class="menu-title" href="">UI Elements</span>-->
+<!--            </a>-->
+<!--          </li>-->
 
-
-          <li class="nav-item nav-category">More Contents</li>
+          <li class="nav-item nav-category">Forms and Datas</li>
 
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('staff_site.destinations')}}" >
+            <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
               <i class="menu-icon mdi mdi-card-text-outline"></i>
-              <span class="menu-title">Destinations</span>
+              <span class="menu-title">Form elements</span>
             </a>
-          </li>
 
+          </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('staff_site.attractions')}}" >
+            <a class="nav-link" data-bs-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
               <i class="menu-icon mdi mdi-chart-line"></i>
-              <span class="menu-title">Attractions</span>
+              <span class="menu-title">Charts</span>
 
             </a>
 
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('staff_site.accommodations')}}">
+            <a class="nav-link" data-bs-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
               <i class="menu-icon mdi mdi-table"></i>
-              <span class="menu-title">Hotels</span>
+              <span class="menu-title">Tables</span>
+
             </a>
 
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('staff_site.traffics')}}" >
+            <a class="nav-link" data-bs-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
               <i class="menu-icon mdi mdi-layers-outline"></i>
-              <span class="menu-title">Traffics</span>
+              <span class="menu-title">Icons</span>
 
             </a>
 
@@ -440,6 +444,19 @@
               <span class="menu-title">User Pages</span>
 
             </a>
+<!----------------------chat------------------->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('staff_site.chat') }}">
+              <i class="menu-icon mdi mdi-account-circle-outline"></i>
+              <span class="menu-title">User Chats</span>
+
+            </a>
+
+          </li>
+<!----------------------chat------------------->
+
+
 
           </li>
           <li class="nav-item nav-category">help</li>
@@ -483,6 +500,10 @@
   <script src="../../static/staff_site_static/js/dashboard.js"></script>
   <script src="../../static/staff_site_static/js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
+
+ {% block beforeend %}
+  {% endblock %}
+
 </body>
 
 </html>

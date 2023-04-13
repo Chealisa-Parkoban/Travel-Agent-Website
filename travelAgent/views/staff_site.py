@@ -20,7 +20,7 @@ trip_fees = []
 # --------------------chat----------------->
 @staff_blueprint.route('/staff/chat')
 def chat():
-    return render_template('./staff_site/pages/chat.html')
+    return render_template('./staff_site/pages/chat.html', user=current_user)
 
 
 # --------------------chat----------------->
