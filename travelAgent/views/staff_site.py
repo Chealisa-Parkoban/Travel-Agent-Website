@@ -29,7 +29,7 @@ def chat():
 def index():
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
-    return render_template('./staff_site/index.html')
+    return render_template('./staff_site/index.html', user=current_user)
 
 
 @staff_blueprint.route('/staff', methods=['GET', 'POST'])
@@ -79,7 +79,7 @@ def contents():
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
     plans = Combination.query.all()
-    return render_template('./staff_site/all_plans.html', plans=plans)
+    return render_template('./staff_site/all_plans.html', plans=plans, user=current_user)
 
 
 @staff_blueprint.route('/staff/contents/new_plan', methods=['GET', 'POST'])
@@ -100,7 +100,7 @@ def new_plan():
 
     return render_template('./staff_site/new_plan.html', day_form=day_form, plan_form=plan_form, days=day_trip_draft,
                            destinations=destinations, attractions=attractions,
-                           accommodations=accommodations, traffics=traffics, trip_fees=fees)
+                           accommodations=accommodations, traffics=traffics, trip_fees=fees, user=current_user)
 
 
 @staff_blueprint.route('/staff/contents/add', methods=['GET', 'POST'])
@@ -268,7 +268,7 @@ def view_plan():
     print("days", days)
     return render_template('./staff_site/plan_detail.html', plan=plan, days=days, plan_form=PlanForm(),
                            day_form=DayTripForm(), destinations=destinations, attractions=attractions,
-                           accommodations=accommodations, traffics=traffics)
+                           accommodations=accommodations, traffics=traffics, user=current_user)
 
 
 @staff_blueprint.route('/staff/contents/delete_plan', methods=['GET', 'POST'])
@@ -304,7 +304,7 @@ def destinations():
         db.session.add(destination)
         db.session.commit()
         return redirect(url_for("staff_site.destinations"))
-    return render_template('./staff_site/destinations.html', destinations=destinations, form=form, message=message)
+    return render_template('./staff_site/destinations.html', destinations=destinations, form=form, message=message,user=current_user)
 
 
 @staff_blueprint.route('/staff/contents/attractions', methods=['GET', 'POST'])
@@ -333,7 +333,7 @@ def attractions():
         db.session.commit()
         return redirect(url_for("staff_site.attractions"))
     return render_template('./staff_site/attractions.html', attractions=attractions, destinations=destinations,
-                           form=form, message=message)
+                           form=form, message=message, user=current_user)
 
 
 @staff_blueprint.route('/staff/contents/accommodations', methods=['GET', 'POST'])
@@ -361,7 +361,7 @@ def accommodations():
         db.session.commit()
         return redirect(url_for("staff_site.accommodations"))
     return render_template('./staff_site/accommodations.html', hotels=accommodations, destinations=destinations,
-                           form=form, message=message)
+                           form=form, message=message, user=current_user)
 
 
 @staff_blueprint.route('/staff/contents/traffics', methods=['GET', 'POST'])
@@ -388,7 +388,7 @@ def traffics():
         db.session.commit()
         return redirect(url_for("staff_site.traffics"))
     return render_template('./staff_site/traffics.html', traffics=traffics, destinations=destinations, form=form,
-                           message=message)
+                           message=message, user=current_user)
 
 
 @staff_blueprint.route('/staff/contents/destinations/delete', methods=['GET', 'POST'])
