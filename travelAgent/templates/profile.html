@@ -166,7 +166,7 @@
                                     <label for="email">Profession</label>
                                 </div>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="profession" name="profession" placeholder="Enter Profession" value="" required>
+                                    <input type="text" class="form-control" id="profession" name="profession" placeholder="Enter Profession" value="{{ user.email }}" required>
                                 </div>
                             </div>
                             <hr>
@@ -175,7 +175,7 @@
                                     <label for="email">Address</label>
                                 </div>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="address" name="address" placeholder="Enter Address" value="" required>
+                                    <textarea class="form-control" id="address" name="address" placeholder="Enter Address" required>{{ user.email }}</textarea>
                                 </div>
                             </div>
                             <hr>
