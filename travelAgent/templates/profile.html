@@ -1,6 +1,22 @@
 {% extends "base.html" %}
 {% block title %}Profile{% endblock %}
-{% block head %}{% endblock %}
+
+{% block head %}
+<style>
+#image-preview {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.preview-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+</style>
+{% endblock %}
+
 {% block body %}
 <section style="background-color: #eee; " >
 <script type="text/javascript" src="../static/js/add.js"></script>
@@ -22,12 +38,12 @@
                 <div class="card mb-4">
                     <div class="card-body text-center">
                         <img src={{ user.avatar_url }}
-                             alt="Avatar"
+                             alt=""
                              class="rounded-circle img-fluid" style="width: 150px;"
                         onerror="javascript:this.src='static/upload/default_avatar.png/'">
-                        <h5 class="my-3">{{ user.username }}</h5>
-                        <p class="text-muted mb-1">Full Stack Developer</p>
-                        <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
+                        <h3 class="my-3">{{ user.username }}</h3>
+                        <p class="text-muted mb-1">Profession</p>
+                        <p class="text-muted mb-4">Address</p>
 <!--                        <div class="d-flex justify-content-center mb-2">-->
 <!--                            <button type="button" class="btn btn-primary">Follow</button>-->
 <!--                            <button type="button" class="btn btn-outline-primary ms-1">Message</button>-->
@@ -39,23 +55,23 @@
                         <ul class="list-group list-group-flush rounded-3">
                             <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                                 <i class="fas fa-globe fa-lg text-warning"></i>
-                                <p class="mb-0">https://mdbootstrap.com</p>
+                                <p class="mb-0">Personal Website</p>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                                 <i class="fab fa-github fa-lg" style="color: #333333;"></i>
-                                <p class="mb-0">mdbootstrap</p>
+                                <p class="mb-0">GitHub</p>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                                 <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
-                                <p class="mb-0">@mdbootstrap</p>
+                                <p class="mb-0">Twitter</p>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                                 <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
-                                <p class="mb-0">mdbootstrap</p>
+                                <p class="mb-0">Instagram</p>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                                 <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
-                                <p class="mb-0">mdbootstrap</p>
+                                <p class="mb-0">Facebook</p>
                             </li>
                         </ul>
                     </div>
@@ -64,89 +80,95 @@
             <div class="col-lg-8">
                 <div class="card mb-4">
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0">Full Name</p>
-                            </div>
-                            <div class="col-sm-9">
-                                <p class="text-muted mb-0">{{ user.username }}</p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0">Email</p>
-                            </div>
-                            <div class="col-sm-9">
-                                <p class="text-muted mb-0">{{ user.email }}</p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0">Gender</p>
-                            </div>
-                            <div class="col-sm-9">
-                                <p class="text-muted mb-0">Female</p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0">Date of Birth</p>
-                            </div>
-                            <div class="col-sm-9">
-                                <p class="text-muted mb-0">24/11/1998</p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0">Avatar</p>
-                            </div>
-                            <div class="col-sm-9">
-{#                                <input  class="text-muted mb-0" id="" name="img" type="file" onclick="showImg()"/>#}
-
-                            </div>
-
-                        <form  method="POST" action="{{ url_for("staff_site.update_avatar" ) }}" enctype="multipart/form-data">
-                                <div class="modal-body">
-
-                                    <img src="#" alt="" id="img">
-                                    <br>
-                                    <br>
-                                    <input id="file_upload" name="img" type="file" onclick="showImg()"  />
-
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-
-{#                                     <div class="form-group">#}
-{#                                             <img id="pic" src="" style="width: 80px;"/>#}
-{#                                     </div>#}
-{#                                #}
-{#                                #}
-{#                                    <div class="form-group">#}
-{#                                        <label for="intro_pic" class="mb-0">Avatar</label>#}
-{#                                         <input type="file" accept="image/*" class="file" id="intro_pic" name="intro_pic">#}
-{#                                        <button type="submit" class="btn btn-primary">Submit</button>#}
-{#                                    </div>#}
+{#                        <form method="POST" action="{{ url_for('staff_site.update_profile') }}" enctype="multipart/form-data">#}
+                        <form method="POST" action="" enctype="multipart/form-data" style="margin-top: 1rem">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label for="full_name">Full Name</label>
                                 </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">{{ user.username }}</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label for="email">Email</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" value="{{ user.email }}" required>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label for="gender">Gender</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <select class="form-control" id="gender" name="gender" required>
+                                        <option value="" disabled selected>Select gender</option>
+                                        <option value="male" {% if user.gender == 'male' %} selected {% endif %}>Male</option>
+                                        <option value="female" {% if user.gender == 'female' %} selected {% endif %}>Female</option>
+                                        <option value="other" {% if user.gender == 'other' %} selected {% endif %}>Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label for="date_of_birth">Date of Birth</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" placeholder="Enter date of birth" value="{{ user.date_of_birth }}" required>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <label for="avatar-input" class="form-label">Avatar</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input class="form-control" type="file" id="avatar-input" name="avatar-input" onchange="previewImages()" accept="image/*">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-9">
+                                    <div class="row" id="image-preview"></div>
+                                </div>
+                            </div>
+
+                            <script>
+                                function previewImages() {
+                                    const preview = document.getElementById("image-preview");
+                                    preview.innerHTML = "";
+                                    const files = document.getElementById("avatar-input").files;
+                                    for (const file of files) {
+                                        const reader = new FileReader();
+                                        reader.readAsDataURL(file);
+                                        reader.onload = function (e) {
+                                            const img = new Image();
+                                            img.src = e.target.result;
+                                            img.classList.add("preview-image");
+                                            const col = document.createElement("div");
+                                            col.classList.add("col-4");
+                                            col.appendChild(img);
+                                            preview.appendChild(col);
+                                        };
+                                    }
+                                }
+                            </script>
+
+                            <hr>
+                            <div style="text-align: center">
+                                <button type="submit" class="btn btn-primary">Update Profile</button>
+                            </div>
                         </form>
-                        </div>
-
-
-                        <!--                        <hr>-->
-                        <!--                        <div class="row">-->
-                        <!--                            <div class="col-sm-3">-->
-                        <!--                                <p class="mb-0">Address</p>-->
-                        <!--                            </div>-->
-                        <!--                            <div class="col-sm-9">-->
-                        <!--                                <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
+                        {% if combiantion_name != [] %}
 
                         <div class="card mb-4 mb-md-0">
                             {% for i in range(0,price|length) %}
@@ -189,6 +211,7 @@
                             </div>
                             {% endfor %}
                         </div>
+                    {% endif %}
                     </div>
                     <!--                    <div class="col-md-6">-->
                     <!--                        <div class="card mb-4 mb-md-0">-->

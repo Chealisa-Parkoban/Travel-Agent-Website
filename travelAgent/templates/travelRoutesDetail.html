@@ -66,6 +66,12 @@
             color: gold;
         }
 
+        #image-preview img {
+            max-width: 200px;
+            max-height: 200px;
+            margin: 10px;
+        }
+
     </style>
 
 {% endblock %}
@@ -434,11 +440,28 @@
                                             </script>
                                         </div>
                                         <hr>
-                                        Comment: <textarea  style="object-fit: cover; width: 100%" name="comment"></textarea>
+                                        Comment: <textarea style="object-fit: cover; width: 100%" name="comment"></textarea>
                                         <br>
                                         <div>
-                                            <input type="file" name="image" id="image">
+                                            <input type="file" name="image" id="image" onchange="previewImages()" multiple accept="image/*">
                                         </div>
+
+                                        <div>
+                                            <div class="row" id="image-preview"></div>
+                                        </div>
+
+                                        <script>
+                                            function previewImages() {
+                                                var files = document.getElementById("image").files;
+                                                var preview = document.getElementById("image-preview");
+
+                                                for (var i = 0; i < files.length; i++) {
+                                                    var img = document.createElement("img");
+                                                    img.src = URL.createObjectURL(files[i]);
+                                                    preview.appendChild(img);
+                                                }
+                                            }
+                                        </script>
 
                                     </div>
                                     <div style="text-align: center;">
@@ -447,6 +470,7 @@
                                     <br>
                                 </div>
                             </div>
+
 
 
 
