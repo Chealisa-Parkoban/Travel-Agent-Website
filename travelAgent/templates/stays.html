@@ -57,6 +57,17 @@
             text-decoration: none !important;
         }
 
+        .prom-text .intro {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3; /* number of lines to show */
+            -webkit-box-orient: vertical;
+            line-height: 1.5; /* adjust as needed to set the line height */
+            height: 5.1rem !important; /* height of two lines */
+            margin-bottom: 10%;
+        }
+
     </style>
 
 {% endblock %}
@@ -88,7 +99,7 @@
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
-                                <p>{{ hotel.intro }}</p>
+                                <p class="intro">{{ hotel.intro }}</p>
                             </div>
                         </div>
                 {% endfor %}

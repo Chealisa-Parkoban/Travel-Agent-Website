@@ -23,8 +23,8 @@
                     <div class="card-body text-center">
                         <img src={{ user.avatar_url }}
                              alt="Avatar"
-
-                             class="rounded-circle img-fluid" style="width: 150px;">
+                             class="rounded-circle img-fluid" style="width: 150px;"
+                        onerror="javascript:this.src='static/upload/default_avatar.png/'">
                         <h5 class="my-3">{{ user.username }}</h5>
                         <p class="text-muted mb-1">Full Stack Developer</p>
                         <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
@@ -79,6 +79,24 @@
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0">{{ user.email }}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Gender</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">Female</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Date of Birth</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">24/11/1998</p>
                             </div>
                         </div>
                         <hr>
