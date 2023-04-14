@@ -42,8 +42,10 @@
                              class="rounded-circle img-fluid" style="width: 150px;"
                         onerror="javascript:this.src='static/upload/default_avatar.png/'">
                         <h3 class="my-3">{{ user.username }}</h3>
-                        <p class="text-muted mb-1">Profession</p>
-                        <p class="text-muted mb-4">Address</p>
+                        <p class="text-muted mb-1">{{ user.profession }}</p>
+                        <p class="text-muted mb-4">{{ user.address }}</p>
+                        <p class="text-muted mb-4">{{ user.birthday }}</p>
+
 <!--                        <div class="d-flex justify-content-center mb-2">-->
 <!--                            <button type="button" class="btn btn-primary">Follow</button>-->
 <!--                            <button type="button" class="btn btn-outline-primary ms-1">Message</button>-->
@@ -81,7 +83,7 @@
                 <div class="card mb-4">
                     <div class="card-body">
 {#                        <form method="POST" action="{{ url_for('staff_site.update_profile') }}" enctype="multipart/form-data">#}
-                        <form method="POST" action="" enctype="multipart/form-data" style="margin-top: 1rem">
+                        <form method="POST" action="{{ url_for('staff_site.update_profile') }}" enctype="multipart/form-data" style="margin-top: 1rem">
                             <div class="row">
                                 <div class="col-sm-3">
                                     <label for="full_name">Full Name</label>
@@ -130,7 +132,7 @@
                                     <label for="email">Profession</label>
                                 </div>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="profession" name="profession" placeholder="Enter Profession" value="{{ user.email }}" required>
+                                    <input type="text" class="form-control" id="profession" name="profession" placeholder="Enter Profession" value="{{ user.profession }}" required>
                                 </div>
                             </div>
                             <hr>
@@ -139,7 +141,7 @@
                                     <label for="email">Address</label>
                                 </div>
                                 <div class="col-sm-9">
-                                    <textarea class="form-control" id="address" name="address" placeholder="Enter Address" required>{{ user.email }}</textarea>
+                                    <textarea class="form-control" id="address" name="address" placeholder="Enter Address" required>{{ user.address }}</textarea>
                                 </div>
                             </div>
 

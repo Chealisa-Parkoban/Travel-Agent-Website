@@ -48,7 +48,6 @@ def showAll():
         if traffic is not None:
             Ltr.append(traffic)
 
-
     print(Lc, Lt, La, Lh, Ltr)
     return render_template("favourites.html", Combinations=Lc, Targets=Lt, Attractions=La, Accommodations=Lh,
                            Traffics=Ltr)
@@ -58,11 +57,12 @@ def showAll():
 def addFavorite(combination_id):
     if not current_user.is_authenticated:
         return redirect(url_for("account.login"))
-    check = FavoriteC.query.filter(FavoriteC.user_id == current_user.id, FavoriteC.combination_id == combination_id).scalar() is None
+    check = FavoriteC.query.filter(FavoriteC.user_id == current_user.id,
+                                   FavoriteC.combination_id == combination_id).scalar() is None
     check2 = Combination.query.filter(Combination.id == combination_id).scalar is not None
     if check and check2:
-
-        f = FavoriteC(user_id=current_user.id, combination_id=combination_id, time=str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
+        f = FavoriteC(user_id=current_user.id, combination_id=combination_id,
+                      time=str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
         db.session.add(f)
         db.session.commit()
 
@@ -90,10 +90,18 @@ def addFavorite(combination_id):
         accommodation = Target.query.filter(Target.id == tID, Target.type == 1).first()
         traffic = Target.query.filter(Target.id == tID, Target.type == 2).first()
 
-        Lt.append(target)
-        La.append(attraction)
-        Lh.append(accommodation)
-        Ltr.append(traffic)
+        if target is not None:
+            Lt.append(target)
 
-    return render_template("favourites.html", Combinations=Lc, Targets=Lt, Attractions=La, Accommodations=Lh,
-                           Traffics=Ltr)
+        if attraction is not None:
+            La.append(attraction)
+
+        if accommodation is not None:
+            Lh.append(accommodation)
+
+        if traffic is not None:
+            Ltr.append(traffic)
+
+    print(Lc, Lt, La, Lh, Ltr)
+
+    return redirect(url_for("favorite.showAll"))

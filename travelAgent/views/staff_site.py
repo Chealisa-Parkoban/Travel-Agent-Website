@@ -254,13 +254,13 @@ def view_plan():
             print(day_des_id, day_att_id, day_acc_id, day_tra_id)
 
             day_destination = db.session.query(Destination).filter(Destination.id == day_des_id).first()
-            print("destintion",day_destination)
+            print("destintion", day_destination)
             day_attraction = db.session.query(Target).filter(Target.id == day_att_id).first()
-            print("attraction",day_attraction)
+            print("attraction", day_attraction)
             day_accommodation = db.session.query(Target).filter(Target.id == day_acc_id).first()
-            print("accommodation",day_accommodation)
+            print("accommodation", day_accommodation)
             day_traffic = db.session.query(Target).filter(Target.id == day_tra_id).first()
-            print("traffic",day_traffic)
+            print("traffic", day_traffic)
 
             i += 1
             day = [i, day_destination.name, day_attraction.name, day_accommodation.name, day_traffic.name]
@@ -443,16 +443,26 @@ def load_user(id):
     return User.get(int(id))
 
 
-@staff_blueprint.route('/profile7', methods=['GET', 'POST'])
-def update_avatar():
+@staff_blueprint.route('/update_profile', methods=['GET', 'POST'])
+def update_profile():
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
+
+    u = db.session.query(User).filter(User.id == current_user.id).first()
+
+    gender = request.form.get('gender')
+    birth = request.form.get('date_of_birth')
+    profession = request.form.get('profession')
+    address = request.form.get('address')
+
     uid = uuid.uuid1()
     # Images storage path
     file_dir = os.path.join(basedir, "static/upload/")
     # Getting the data transferred from the front end
-    files = request.files.getlist('img')  # Gets the value of myfiles from ajax, of type list
-    path = ""
+    files = request.files.getlist('avatar-input')  # Gets the value of myfiles from ajax, of type list
+    # path = db.session.query(User.avatar_url).filter(User.id == current_user.id).first()
+    path = u.avatar_url
+    print(path)
 
     for img in files:
         # Extract the suffix of the uploaded image and
@@ -468,6 +478,11 @@ def update_avatar():
 
     # default: like=0 path=""
     print(path)
-    db.session.query(User).filter(User.id == current_user.id).update({User.avatar_url: path})
+
+    u.avatar_url = path
+    u.gender = gender
+    u.birthday = birth
+    u.profession = profession
+    u.address = address
     db.session.commit()
     return redirect(url_for('profile'))

@@ -42,7 +42,6 @@ def showSetDetails():
     traffic=[]
 
     comment_form = CommentForm(request.form)
-    image_form = ImageForm(request.files)
     id = Random_str().create_uuid()
 
 
@@ -53,12 +52,10 @@ def showSetDetails():
 
         if comment_form.validate_on_submit():
 
-            print("ok3")
-
             # Images storage path
             file_dir = os.path.join(basedir, "static/upload/")
             # Getting the data transferred from the front end
-            files = request.files.getlist('img')  # Gets the value of myfiles from ajax, of type list
+            files = request.files.getlist('image')  # Gets the value of myfiles from ajax, of type list
             path = ""
 
             for img in files:
@@ -74,15 +71,20 @@ def showSetDetails():
                     path = "../static/upload/" + new_filename
 
             # default: like=0 path=""
-            comment = CommentC(user_id=current_user.id, username=current_user.get_username(), combination_id=set_id,
-                               score=comment_form.score.data, content=comment_form.comment.data, image=path,
-                               time=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
-            db.session.add(comment)
+            check = db.session.query(CommentC).filter(CommentC.user_id == current_user.id, CommentC.combination_id == set_id).scalar() is None
+            # check2 = db.session.query(CommentC).filter(CommentC.combination_id == set_id).scalar() is None
+            print("77777788888")
+            print(check)
+            if check:
+
+                comment = CommentC(user_id=current_user.id, username=current_user.get_username(), combination_id=set_id,
+                                   score=comment_form.score.data, content=comment_form.comment.data, image=path,
+                                   time=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+                db.session.add(comment)
 
             # return redirect(url_for('showSetDetails', ID=ID))
             # return redirect(url_for('showSetDetails'))
 
-        print("ok4")
         if length == 1:
             day1_id = set.day1
             day1 = db.session.query(Day).filter(Day.id == day1_id).first()
@@ -865,18 +867,6 @@ def showSetDetails():
     return render_template("travelRoutesDetail.html", comments=comments, comment_form=comment_form, length=length,
                            set=set, combination_id=ID,
                            accomodations=accomodations, attractions=attractions, traffic=traffic)
-    print("ok1")
-
-    # Create a unique id for the image
-    # print(CommentC.query.all())
-    # logger.info('Entered the TRAVEL ROUTE DETAIL page')
-    # comment_form = CommentForm(request.form)
-    # image_form = ImageForm(request.files)
-
-
-
-    return render_template("travelRoutesDetail.html",comments=comments, comment_form=comment_form, length=length, set=set, combination_id=set_id,
-                               accomodations=accomodations, attractions=attractions, traffic=traffic)
 
 
 # 展示booking细节的函数
