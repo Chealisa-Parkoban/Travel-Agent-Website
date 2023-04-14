@@ -36,6 +36,10 @@ with app.app_context():
     acc5 = Target(name='Blooms Hotel', destination_id=4, image='static/upload/Blooms.png', intro='Blooms Hotel is located in Dublin’s Temple Bar district, 492 feet from Trinity College and Dublin Castle. It has a traditional Irish pub, a nightclub and rooms with flat-screen TVs.', type='1', price=539)
     acc6 = Target(name='The Spencer Hotel', destination_id=4, image='static/upload/Spencer.png', intro="Overlooking the River Liffey, The Spencer Hotel is 10 minutes from the famous O'Connell Bridge and 20 minutes from the Temple Bar and Grafton Street.", type='1', price=786)
     acc7 = Target(name='The Shelbourne', destination_id=4, image='static/upload/Shelbourne.png', intro='The Shelbourne, Autograph Collection', type='1', price=1343)
+    acc8 = Target(name='The Shelbourne2', destination_id=4, image='static/upload/Shelbourne.png',
+                  intro='The Shelbourne, Autograph Collection', type='1', price=1343)
+    acc9 = Target(name='The Shelbourne3', destination_id=4, image='static/upload/Shelbourne.png',
+                  intro='The Shelbourne, Autograph Collection', type='1', price=1343)
 
     # ---------------------------attractions--------------------------------
     # New York
@@ -73,7 +77,7 @@ with app.app_context():
     # tar13 = Target( name='上海迪士尼乐园', destination_id=3, image='', intro='上海迪士尼度假区 Disney Resort', type='0', price=543)
 
     db.session.add_all([acc1, acc2, acc3, acc4, acc5, acc6, acc7, att1, att2, att3, att4, att5, att6, att7, att8, tra1,
-                        tra2, tra3, tra4, tra5])
+                        tra2, tra3, tra4, tra5, acc8, acc9])
     db.session.commit()
 
     # ---------------------------com1--------------------------------#

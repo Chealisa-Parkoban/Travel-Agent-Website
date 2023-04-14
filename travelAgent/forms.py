@@ -101,10 +101,10 @@ class CommentForm(FlaskForm):
     )
     score = IntegerField(
         'SCORE',
-        validators =
-        [
-            DataRequired()
-        ]
+        # validators =
+        # [
+        #     DataRequired()
+        # ]
     )
 
     submit = SubmitField('')

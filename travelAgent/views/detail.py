@@ -71,19 +71,20 @@ def showSetDetails():
                     path = "../static/upload/" + new_filename
 
             # default: like=0 path=""
-            check = db.session.query(CommentC).filter(CommentC.user_id == current_user.id, CommentC.combination_id == set_id).scalar() is None
+            # check = db.session.query(CommentC).filter(CommentC.user_id == current_user.id, CommentC.combination_id == set_id).scalar()
             # check2 = db.session.query(CommentC).filter(CommentC.combination_id == set_id).scalar() is None
             print("77777788888")
-            print(check)
+            # print(check)
+            check = True
+            for comment in CommentC.query.filter(CommentC.combination_id == set_id, CommentC.user_id == current_user.id).all():
+                if comment.content == comment_form.comment.data:
+                    check = False
+                    break
             if check:
-
                 comment = CommentC(user_id=current_user.id, username=current_user.get_username(), combination_id=set_id,
                                    score=comment_form.score.data, content=comment_form.comment.data, image=path,
                                    time=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
                 db.session.add(comment)
-
-            # return redirect(url_for('showSetDetails', ID=ID))
-            # return redirect(url_for('showSetDetails'))
 
         if length == 1:
             day1_id = set.day1
