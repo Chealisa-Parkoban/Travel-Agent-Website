@@ -55,7 +55,7 @@ async function add_messages(msg, scroll) {
 
 
             // '<div class="col-sm">'+
-            '<div class="alert alert-shadow col-5" style="margin-left: 2%">' +
+            '<div class="alert alert-shadow col-5" style="margin-left: 2%; background: rgb(124,168,246, 0.4)">' +
             '<b style="color:#734" class="right">' +
             msg.name +
             '</b><p>' +
@@ -74,7 +74,7 @@ async function add_messages(msg, scroll) {
                 '<div class="col"></div>' +
                 '<div class="col"></div>' +
                 // '<div class="col-sm">'+
-                '<div class="alert alert-success alert-shadow col-5" style="margin-right: 2%">' +
+                '<div class="alert alert-success alert-shadow col-5" style="margin-right: 2%; background: rgba(67,227,203,0.4)">' +
                 '<b style="color:#157" class="left">' +
                 msg.name +
                 '</b><p style="text-align: right; color: black">' +
