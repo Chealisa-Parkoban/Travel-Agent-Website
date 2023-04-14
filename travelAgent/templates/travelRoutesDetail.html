@@ -53,12 +53,12 @@
             padding-bottom: 1rem !important;
         }
 
-        {#.fa-star {#}
+        .fa-star {
         {#    font-size: 2em;#}
         {#    color: #ccc;#}
         {#    cursor: pointer;#}
-        {#    transition: color 0.2s;#}
-        {#}#}
+            transition: color 0.2s;
+        }
         .fa-star.checked {
             color: gold;
         }
@@ -355,11 +355,11 @@
 {#                                    <div class="card-body">#}
 {#                                        <div>#}
 {#                                            Rate:#}
-{#                                            <span class="fa fa-star unchecked" onclick="setRating(1)"></span>#}
-{#                                            <span class="fa fa-star unchecked" onclick="setRating(2)"></span>#}
-{#                                            <span class="fa fa-star unchecked" onclick="setRating(3)"></span>#}
-{#                                            <span class="fa fa-star unchecked" onclick="setRating(4)"></span>#}
-{#                                            <span class="fa fa-star unchecked" onclick="setRating(5)"></span>#}
+{#                                            <span id="star-1" class="fa fa-star unchecked" onclick="setRating(1)"></span>#}
+{#                                            <span id="star-2" class="fa fa-star unchecked" onclick="setRating(2)"></span>#}
+{#                                            <span id="star-3" class="fa fa-star unchecked" onclick="setRating(3)"></span>#}
+{#                                            <span id="star-4" class="fa fa-star unchecked" onclick="setRating(4)"></span>#}
+{#                                            <span id="star-5" class="fa fa-star unchecked" onclick="setRating(5)"></span>#}
 {#                                            <input type="hidden" name="score" id="score" value="1">#}
 {#                                            <script>#}
 {#                                                function setRating(rating) {#}
@@ -392,6 +392,75 @@
 {#                                                        stars[i].classList.add("unchecked");#}
 {#                                                    }#}
 {#                                                }#}
+{#                                                #}
+{#                                                function resetRating() {#}
+{#                                                    rating = document.getElementById("score").value;#}
+{#                                                    let stars = document.querySelectorAll(".fa-star");#}
+{#                                                    for (let i = 1; i <= rating; i++) {#}
+{#                                                        stars[i].classList.remove("unchecked");#}
+{#                                                        stars[i].classList.add("checked");#}
+{#                                                    }#}
+{#                                                }#}
+
+
+                                                {#function setRating(rating) {#}
+                                                {#    document.getElementById("score").value = rating;#}
+                                                {#    for (var i = 1; i <= 5; i++) {#}
+                                                {#        var star = document.getElementById("star-" + i);#}
+                                                {#        if (i <= rating) {#}
+                                                {#            star.classList.remove("unchecked");#}
+                                                {#            star.classList.add("checked");#}
+                                                {#        } else {#}
+                                                {#            star.classList.remove("checked");#}
+                                                {#            star.classList.add("unchecked");#}
+                                                {#        }#}
+                                                {#    }#}
+                                                {#    console.log(rating)#}
+                                                {#}#}
+                                                {##}
+                                                {#function highlightStar(starNumber) {#}
+                                                {#    resetStars()#}
+                                                {#    for (let i = 1; i <= starNumber; i++) {#}
+                                                {#        const star = document.getElementById(`star-${i}`);#}
+                                                {#        star.classList.remove("unchecked");#}
+                                                {#        star.classList.add("checked");#}
+                                                {#    }#}
+                                                {#    console.log(starNumber)#}
+                                                {#}#}
+                                                {##}
+                                                {#function resetStars() {#}
+                                                {#    rating = document.getElementById("score").value;#}
+                                                {#    for (let i = 5; i > rating; i--) {#}
+                                                {#        const star = document.getElementById(`star-${i}`);#}
+                                                {#        star.classList.remove("checked");#}
+                                                {#        star.classList.add("unchecked");#}
+                                                {#    }#}
+                                                {#    console.log("removed")#}
+                                                {#}#}
+
+                                                {#function highlightStar(starNumber) {#}
+                                                {#    for (let i = 1; i <= starNumber; i++) {#}
+                                                {#        const star = document.getElementById(`star-${i}`);#}
+                                                {#        star.classList.remove("unchecked");#}
+                                                {#        star.classList.add("checked");#}
+                                                {#    }#}
+                                                {#}#}
+                                                {##}
+                                                {#function resetStars() {#}
+                                                {#    rating = document.getElementById("score").value;#}
+                                                {#    for (let i = 5; i > rating; i--) {#}
+                                                {#        const star = document.getElementById(`star-${i}`);#}
+                                                {#        star.classList.remove("checked");#}
+                                                {#        star.classList.add("unchecked");#}
+                                                {#    }#}
+                                                {#}#}
+                                                {##}
+                                                {#function setRating(rating) {#}
+                                                {#    document.getElementById("score").value = rating;#}
+                                                {#    highlightStar(rating);#}
+                                                {#}#}
+
+
 {#                                            </script>#}
 {#                                        </div>#}
 {#                                        <hr>#}
@@ -417,15 +486,17 @@
                                     <div class="card-body">
                                         <div>
                                             Rate:
-                                            <span id="star-1" class="fa fa-star unchecked" onclick="setRating(1)"></span>
-                                            <span id="star-2" class="fa fa-star unchecked" onclick="setRating(2)"></span>
-                                            <span id="star-3" class="fa fa-star unchecked" onclick="setRating(3)"></span>
-                                            <span id="star-4" class="fa fa-star unchecked" onclick="setRating(4)"></span>
-                                            <span id="star-5" class="fa fa-star unchecked" onclick="setRating(5)"></span>
+                                            <span id="star-1" class="fa fa-star unchecked" onmouseover="highlightStars(1)" onmouseout="resetStars()" onclick="setRating(1)"></span>
+                                            <span id="star-2" class="fa fa-star unchecked" onmouseover="highlightStars(2)" onmouseout="resetStars()" onclick="setRating(2)"></span>
+                                            <span id="star-3" class="fa fa-star unchecked" onmouseover="highlightStars(3)" onmouseout="resetStars()" onclick="setRating(3)"></span>
+                                            <span id="star-4" class="fa fa-star unchecked" onmouseover="highlightStars(4)" onmouseout="resetStars()" onclick="setRating(4)"></span>
+                                            <span id="star-5" class="fa fa-star unchecked" onmouseover="highlightStars(5)" onmouseout="resetStars()" onclick="setRating(5)"></span>
                                             <input type="hidden" name="score" id="score" value="0">
+
                                             <script>
                                                 function setRating(rating) {
                                                     document.getElementById("score").value = rating;
+                                                    console.log(rating)
                                                     for (var i = 1; i <= 5; i++) {
                                                         var star = document.getElementById("star-" + i);
                                                         if (i <= rating) {
@@ -437,19 +508,37 @@
                                                         }
                                                     }
                                                 }
+
+                                                function highlightStars(num) {
+                                                    let stars = document.querySelectorAll(".fa-star");
+                                                    for (let i = 1; i <= num; i++) {
+                                                        stars[i].classList.remove("unchecked");
+                                                        stars[i].classList.add("checked");
+                                                    }
+                                                 }
+
+                                                function resetStars() {
+                                                    let stars = document.querySelectorAll(".fa-star");
+                                                    for (let i = 0; i < stars.length; i++) {
+                                                        stars[i].classList.remove("checked");
+                                                        stars[i].classList.add("unchecked");
+                                                    }
+                                                    rating = document.getElementById("score").value;
+                                                    setRating(rating);
+                                                 }
+
                                             </script>
                                         </div>
+
                                         <hr>
                                         Comment: <textarea style="object-fit: cover; width: 100%" name="comment"></textarea>
                                         <br>
                                         <div>
                                             <input type="file" name="image" id="image" onchange="previewImages()" multiple accept="image/*">
                                         </div>
-
                                         <div>
                                             <div class="row" id="image-preview"></div>
                                         </div>
-
                                         <script>
                                             function previewImages() {
                                                 var files = document.getElementById("image").files;
@@ -465,7 +554,18 @@
 
                                     </div>
                                     <div style="text-align: center;">
+{#                                        <div id="submit-error" style="display:none;color:red;">请先打分再提交表单。</div>#}
                                         <button type="submit" class="btn btn-primary">Send Comment</button>
+{#                                        <script>#}
+{#                                            function submitForm() {#}
+{#                                                const score = document.getElementById("score").value;#}
+{#                                                if (score === "0") {#}
+{#                                                    document.getElementById("submit-error").style.display = "block";#}
+{#                                                    return false; // 防止表单被提交#}
+{#                                                }#}
+{#                                                return true; // 表单可以被提交#}
+{#                                            }#}
+{#                                        </script>#}
                                     </div>
                                     <br>
                                 </div>
