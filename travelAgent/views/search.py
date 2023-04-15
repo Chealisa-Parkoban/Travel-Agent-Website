@@ -434,7 +434,7 @@ def search():
             # 与attraction相关的day
             days = db.session.query(Day).filter(Day.attraction_id == attraction_id).all()
             for day in days:
-                day_id = day.id1
+                day_id = day.id
                 combinations2 = db.session.query(Combination).filter(
                     or_(Combination.day1 == str(day_id), Combination.day2 == str(day_id),
                         Combination.day3 == str(day_id), Combination.day4 == str(day_id),

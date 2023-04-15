@@ -11,7 +11,8 @@ with app.app_context():
     us2 = User(username='staff2', email='staff2@163.com', password='123456', is_admin=1)
     us3 = User(username='selina', email='selina@163.com', password='1111', is_admin=0)
     us4 = User(username='allen', email='allen@ucd.ie', password='1225', is_admin=0)
-    db.session.add_all([us1, us2, us3, us4])
+    us5 = User(username='chiquita', email='chiquita@ucd.ie', password='2222', is_admin=0)
+    db.session.add_all([us1, us2, us3, us4, us5])
     db.session.commit()
 
     des1 = Destination(id=1, name='Beijing')
@@ -123,5 +124,12 @@ with app.app_context():
     fav8 = FavoriteC(user_id=3, combination_id=2, time="2023-02-13 10:00:33")
 
     db.session.add_all([fav1, fav2, fav3, fav4, fav5, fav6, fav7, fav8, fav9])
+    db.session.commit()
+
+
+    # ---------------------------comment--------------------------------#
+    comment1 = CommentC(user_id=4, username="allen", score=4, combination_id=3, content="This is a good trip! I was with my paarents and they all said they feel very satisfied.", image="static/upload/Blarney.png", time="2023-02-13 10:00:33")
+    comment2 = CommentC(user_id=5, username="chiquita", score=5, combination_id=3, content="Excellent trip! I even want to travel it again!", image="", time="2023-04-13 11:05:33")
+    db.session.add_all([comment1, comment2])
     db.session.commit()
 
