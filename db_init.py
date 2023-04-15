@@ -128,7 +128,7 @@ with app.app_context():
 
 
     # ---------------------------comment--------------------------------#
-    comment1 = CommentC(user_id=4, username="allen", score=4, combination_id=3, content="This is a good trip! I was with my paarents and they all said they feel very satisfied.", image="static/upload/Blarney.png", time="2023-02-13 10:00:33")
+    comment1 = CommentC(user_id=4, username="allen", score=4, combination_id=3, content="This is a good trip! I was with my parents and they all said they feel very satisfied.", image="static/upload/Blarney.png", time="2023-02-13 10:00:33")
     comment2 = CommentC(user_id=5, username="chiquita", score=5, combination_id=3, content="Excellent trip! I even want to travel it again!", image="", time="2023-04-13 11:05:33")
     db.session.add_all([comment1, comment2])
     db.session.commit()
