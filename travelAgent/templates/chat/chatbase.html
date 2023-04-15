@@ -7,6 +7,9 @@
     <meta name="description"
           content="Probably the most complete UI kit out there. Multiple functionalities and controls added,  extended color palette and beautiful typography, designed as its own extended version of Bootstrap at  the highest level of quality.                             ">
     <meta name="author" content="Webpixels">
+    <script src="../static/vendor/jquery/jquery.min.js"></script>
+    <script src="../static/vendor/popper/popper.min.js"></script>
+    <script src="../static/js/bootstrap/bootstrap.min.js"></script>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800|Roboto:400,500,700" rel="stylesheet">
     <!-- Theme CSS -->
@@ -23,23 +26,71 @@
     <link href="../../static/fontawesome-free-6.3.0-web/css/fontawesome.css" rel="stylesheet">
     <link href="../../static/fontawesome-free-6.3.0-web/css/brands.css" rel="stylesheet">
     <link href="../../static/fontawesome-free-6.3.0-web/css/solid.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800|Roboto:400,500,700" rel="stylesheet">
+    <!-- Theme CSS -->
+    <link type="text/css" href="../static/css/theme.css" rel="stylesheet">
 
-{#    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"#}
-{#            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"#}
-{#            crossorigin="anonymous"></script>#}
-{#    <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script>#}
-{#    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"#}
-{#            integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="#}
-{#            crossorigin="anonymous"></script>#}
-{#    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js"#}
-{#            integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ=="#}
-{#            crossorigin="anonymous"></script>#}
-{#    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>#}
+<!--    <link type="text/css" href="../static/css/base.css" rel="stylesheet">-->
+
+    <!-- Demo CSS - No need to use these in your project -->
+    <link type="text/css" href="../static/css/demo.css" rel="stylesheet">
+    <link type="text/css" href="../static/css/docs4.6.css" rel="stylesheet">
+    <link type="text/css" href="../static/css/index.css" rel="stylesheet">
+    <link type="text/css" href="../static/css/style.css" rel="stylesheet">
+
+    <link href="../static/fontawesome-free-6.3.0-web/css/fontawesome.css" rel="stylesheet">
+    <link href="../static/fontawesome-free-6.3.0-web/css/brands.css" rel="stylesheet">
+    <link href="../static/fontawesome-free-6.3.0-web/css/solid.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="../static/images/brand/plane.PNG" type="image/x-icon"/>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+            integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js"
+            integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ=="
+            crossorigin="anonymous"></script>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
     <!--        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
 
-    <title>{% block title %}{% endblock %}</title>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/chatindex.js') }}"></script>
+    <title>{% block title  %}{% endblock %}</title>
     {% block head %} {% endblock %}
+<style>
 
+        .navbar {
+            position:fixed; top: 0;width: 100%; display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:.5rem 1rem
+        }
+        .bg-primary {background-color:#062f3c !important}
+        /*.bg-primary {background-color:#49C2FF !important}*/
+        .bg-primary {opacity: 0.98}
+
+        footer{
+            z-index: 20;
+        }
+
+        .text-muted{
+            color: #adb5bd !important;
+            margin-bottom: 0 !important;
+            padding: 0 !important;
+
+        }
+
+        .h6{
+            font-size: 0.875rem !important;
+        }
+
+    </style>
     <style>
         .navbar {
             position: fixed;
@@ -69,64 +120,8 @@
 
 <body>
 <header class="sticky-top">
-    <!--    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">-->
-    <!--        <a class="navbar-brand" href="#">Digital Beans</a>-->
-    <!--        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_example_1"-->
-    <!--                aria-controls="navbar_example_1" aria-expanded="false" aria-label="Toggle navigation">-->
-    <!--            <span class="navbar-toggler-icon"></span>-->
-    <!--        </button>-->
-    <!--        <div class="collapse navbar-collapse" id="navbar_example_1">-->
-    <!--            <ul class="navbar-nav mr-auto">-->
-    <!--                <li class="nav-item">-->
-    <!--                    <a class="nav-link" href="{{ url_for('homepage') }}">Home</a>-->
-    <!--                </li>-->
-    <!--                    {% block nav_active %}-->
-    <!--                    <li class="nav-item active">-->
-    <!--                        <a class="nav-link" href="{{ url_for('chat.chat') }}">Chat</a>-->
-    <!--                    </li>-->
-    <!--                    <li class="nav-item">-->
-    <!--                        <a class="nav-link" href="{{ url_for('chat.history') }}">History</a>-->
-    <!--                    </li>-->
-    <!--                    {% endblock %}-->
-    <!--            </ul>-->
-    <!--            <ul class="navbar-nav ml-auto">-->
-    <!--                {#-->
-    <!--                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" #}-->
-    <!--                        {# data-bs-target="#offcanvasExample" #}-->
-    <!--                        {# aria-controls="offcanvasExample">#}-->
-    <!--                    {# help#}-->
-    <!--                    {#-->
-    <!--                </button>-->
-    <!--                #}-->
-    <!--                <li class="nav-item dropdown">-->
-    <!--                    <a class="nav-link nav-link-icon" href="#" id="navbar_1_dropdown_3" role="button"-->
-    <!--                       data-toggle="dropdown"-->
-    <!--                       aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i></a>-->
-    <!--                    <div class="dropdown-menu dropdown-menu-right">-->
-    <!--                        <h6 class="dropdown-header">Dear User: {{ current_user.username }}</h6>-->
-    <!--                        <a class="dropdown-item" href="#">-->
-    <!--                            <span class="float-right badge badge-primary"></span>-->
-    <!--                            <i class="fas fa-envelope text-primary"></i>Chat-->
-    <!--                        </a>-->
-    <!--                        <a class="dropdown-item" href="#">-->
-    <!--                            <i class="fas fa-cog text-primary"></i>Settings-->
-    <!--                        </a>-->
-    <!--                        <a class="dropdown-item" href="#">-->
-    <!--                            <i class="fas fa-shopping-cart text-primary"></i>Orders-->
-    <!--                            <herf></herf>-->
-    <!--                        </a>-->
-    <!--                        <a class="dropdown-item" href="#">-->
-    <!--                            <i class="fas fa-star text-primary"></i>Favourites-->
-    <!--                        </a>-->
-    <!--                        <div class="dropdown-divider" role="presentation"></div>-->
-    <!--                        <a class="dropdown-item" href="{{ url_for('account.logout') }}">-->
-    <!--                            <i class="fas fa-sign-out-alt text-primary"></i>Sign out-->
-    <!--                        </a>-->
-    <!--                    </div>-->
-    <!--                </li>-->
-    <!--            </ul>-->
-    <!--        </div>-->
-    <!--    </nav>-->
+
+    {% block navigation %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
         <!--    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">-->
         <a class="navbar-brand" href="{{ url_for('homepage') }}">Digital Beans</a>
@@ -142,16 +137,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('index') }}">Overview</a>
                 </li>
-                <!--                <li class="nav-item dropdown">-->
-                <!--                    <a class="nav-link dropdown-toggle" href="#" id="navbar_1_dropdown_1" role="button"-->
-                <!--                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>-->
-                <!--                    <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">-->
-                <!--                        <a class="dropdown-item" href="{{ url_for("index") }}">Overview</a>-->
-                <!--                        <a class="dropdown-item" href="#">Another action</a>-->
-                <!--                        <div class="dropdown-divider"></div>-->
-                <!--                        <a class="dropdown-item" href="#">Something else here</a>-->
-                <!--                    </div>-->
-                <!--                </li>-->
 
                 <li class="nav-item active">
                     <a class="nav-link" href="{{ url_for('chat.chat') }}">Chat</a>
@@ -160,10 +145,6 @@
                     <a class="nav-link" href="{{ url_for('chat.history') }}">History</a>
                 </li>
 
-
-                <!--                <li class="nav-item">-->
-                <!--                    <a class="nav-link disabled" href="#">Disabled</a>-->
-                <!--                </li>-->
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
@@ -173,6 +154,7 @@
                 <li class="nav-item">
                     <a class="nav-link nav-link-icon" href="#"><i class="fas fa-cogs"></i></a>
                 </li>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link nav-link-icon" href="#" id="navbar_1_dropdown_2" role="button"
                        data-toggle="dropdown"
@@ -218,6 +200,8 @@
                         </div>
                     </div>
                 </li>
+
+
                 <li class="nav-item dropdown">
                     <a class="nav-link nav-link-icon" href="#" id="navbar_1_dropdown_3" role="button"
                        data-toggle="dropdown"
@@ -267,10 +251,15 @@
 
                     </div>
                 </li>
+
+
+
             </ul>
         </div>
     </nav>
+
 </header>
+ {% endblock %}
 
 
 <span id="username" hidden>{{ current_user.username }}</span>
@@ -290,51 +279,18 @@
 {% block content %}
 {% endblock %}
 
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/chatindex.js') }}"></script>
 
-<!-- Core -->
-<script src="../../static/vendor/jquery/jquery.min.js"></script>
-<script src="../../static/vendor/popper/popper.min.js"></script>
-<script src="../../static/js/bootstrap/bootstrap.min.js"></script>
-<!-- FontAwesome 5 -->
-<script src="../../static/vendor/fontawesome/js/fontawesome-all.min.js" defer></script>
-<!-- Page plugins -->
-<script src="../../static/vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
-<script src="../../static/vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
-<script src="../../static/vendor/input-mask/input-mask.min.js"></script>
-<script src="../../static/vendor/nouislider/js/nouislider.min.js"></script>
-<script src="../../static/vendor/textarea-autosize/textarea-autosize.min.js"></script>
-<!-- Theme JS -->
-<script src="../../static/js/theme.js"></script>
-
-<!--Reset unseen number-->
-{% if current_user.is_authenticated %}
-<script>
-    $.ajax({
-        type: 'get',
-        url: "/chat/unseen/reset",
-        async: true,
-    })
-</script>
-{% endif %}
-</body>
+<!--{% block footer %}-->
 <footer class="pt-5 pb-3 footer footer-dark bg-tertiary">
-    <div class="container">
+    <div class="container" style="font-family: 'Nunito',sans-serif !important; font-size: .875rem !important;">
         <div class="row">
             <div class="col-12 col-md-4">
                 <div class="pr-lg-5">
-                    <h1 class="heading h6 text-uppercase font-weight-700 mb-3"><strong>Boomerang</strong> UI Kit
-                    </h1>
-                    <p>Boomerang is a high quality UI Kit built on top of the well known Bootstrap 4 Framework. This
-                        theme was designed as its own extended version of Bootstrap with multiple functionalities
-                        and
-                        controls added, extended color palette and beautiful typography.</p>
+                    <h1 class="heading h6 text-uppercase font-weight-700 mb-3"><strong>Digital Beans</strong> Traveling</h1>
+                    <p style="color: #6c757d !important;"> We're a travel agency that creates personalized travel experiences.
+                        Our team of experts takes care of every detail, from activities to flights and accommodations.
+                        We partner with top-rated suppliers for exclusive deals.
+                        Let us help you plan your next adventure and make unforgettable memories. </p>
                 </div>
             </div>
             <div class="col-6 col-md">
@@ -379,27 +335,73 @@
         <hr>
         <div class="d-flex align-items-center">
         <span class="">
-          &copy; 2018 <a href="https://webpixels.io/" class="footer-link" target="_blank">Webpixels</a>. All rights reserved.
+          &copy; 2023 <a href="#" class="footer-link" target="_blank">Digital Beans</a>. All rights reserved.
         </span>
             <ul class="nav ml-lg-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="https://instagram.com/webpixelsofficial" target="_blank"><i
+                    <a class="nav-link active" href="https://instagram.com" target="_blank"><i
                             class="fab fa-instagram"></i></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://facebook.com/webpixels" target="_blank"><i
+                    <a class="nav-link" href="https://facebook.com" target="_blank"><i
                             class="fab fa-facebook"></i></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://github.com/webpixels" target="_blank"><i
+                    <a class="nav-link" href="https://github.com" target="_blank"><i
                             class="fab fa-github"></i></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://dribbble.com/webpixels" target="_blank"><i
+                    <a class="nav-link" href="https://dribbble.com" target="_blank"><i
                             class="fab fa-dribbble"></i></a>
                 </li>
             </ul>
         </div>
     </div>
 </footer>
+<!--{% endblock %}-->
+
+
+
+
+
+<!-- Core -->
+<script src="../../static/vendor/jquery/jquery.min.js"></script>
+<script src="../../static/vendor/popper/popper.min.js"></script>
+<script src="../../static/js/bootstrap/bootstrap.min.js"></script>
+<!-- FontAwesome 5 -->
+<script src="../../static/vendor/fontawesome/js/fontawesome-all.min.js" defer></script>
+<!-- Page plugins -->
+<script src="../../static/vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
+<script src="../../static/vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+<script src="../../static/vendor/input-mask/input-mask.min.js"></script>
+<script src="../../static/vendor/nouislider/js/nouislider.min.js"></script>
+<script src="../../static/vendor/textarea-autosize/textarea-autosize.min.js"></script>
+<!-- Theme JS -->
+<script src="../../static/js/theme.js"></script>
+
+<!--Reset unseen number-->
+{% if current_user.is_authenticated %}
+<script>
+    $.ajax({
+        type: 'get',
+        url: "/chat/unseen/reset",
+        async: true,
+    })
+</script>
+
+
+    <script>
+    $.ajax({
+        type: 'get',
+        url: "/chat/unseen",
+        async: true,
+        success: function (data){
+            $('#user_unseen').html(data['unseen'])
+        }
+    })
+</script>
+{% endif %}
+
+
+</body>
 </html>
