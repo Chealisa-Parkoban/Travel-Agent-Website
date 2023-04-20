@@ -76,18 +76,21 @@ def index():  # put application's code here
 @app.route('/about')
 def about():
     logger.info('Entered the ABOUT page')
+    changeBookingStatus()
     return render_template("about.html")
 
 
 @app.route('/contactUs')
 def contact_us():
     logger.info('Entered the CONTACT page')
+    changeBookingStatus()
     return render_template("contact.html")
 
 
 @app.route('/homepage', methods=['GET', 'POST'])
 def homepage():
     logger.info('Entered the HOME page')
+    changeBookingStatus()
     Sets = Combination.query.all()
     attractions = Target.query.filter(Target.type == '0').all()
     attractions = attractions[::-1]
@@ -98,12 +101,14 @@ def homepage():
 
 @app.route('/attractions', methods=['GET', 'POST'])
 def attractions():
+    changeBookingStatus()
     attractions = Target.query.filter(Target.type == '0').all()
     return render_template("attractions.html", attractions=attractions)
 
 
 @app.route('/stays', methods=['GET', 'POST'])
 def stays():
+    changeBookingStatus()
     stays = Target.query.filter(Target.type == '1').all()
     return render_template("stays.html", hotels=stays)
 
@@ -118,13 +123,14 @@ def stays():
 
 @app.route('/book', methods=['GET', 'POST'])
 def book():
+    changeBookingStatus()
     logger.info('Entered the BOOK page')
     return render_template("book.html")
 
 
 @app.route('/profile')
 def profile():
-
+    changeBookingStatus()
     if not current_user.is_authenticated:
         return redirect(url_for('account.login'))
     else:
@@ -163,12 +169,14 @@ def profile():
 @app.route('/favourites')
 def favourites():
     logger.info('Entered the FAVOURITES page')
+    changeBookingStatus()
     return render_template('favourites.html')
 
 
 @app.route('/order_list')
 def order_list():
     logger.info('Entered the order_list page')
+    changeBookingStatus()
     if not current_user.is_authenticated:
         return redirect(url_for('account.login'))
     else:
@@ -374,6 +382,7 @@ def openAI():
 def main():
     # showSetDetails(1)
     logger.info('The Website Starts Running!')
+    changeBookingStatus()
     # app.run(debug=True, port=5000)
     set_logger(logger)
     socketio.run(app, allow_unsafe_werkzeug=True,debug=True, port=5001)
