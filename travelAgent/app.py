@@ -305,7 +305,7 @@ def contact_email():
         message = Message(
             subject="【Digital Beans】Feedback Received",
             recipients=[email],
-            body=f"【Digital Beans】We have received your feedback, and we will contact you soon!\n" 
+            body=f"【Digital Beans】We have received your feedback, and we will contact you soon!\n\n" 
                  f" Note: this is an automatic reply!",
         )
         mail.send(message)
