@@ -13,6 +13,8 @@ import json
 import datetime
 import openai
 
+from datetime import datetime, timedelta
+
 import travelAgent
 from travelAgent import db
 from travelAgent import app
@@ -29,7 +31,7 @@ from travelAgent.views.favorite import favorite_blueprint
 from travelAgent.views.booking import booking_blueprint
 from travelAgent import mail
 
-from datetime import datetime
+
 
 
 #<!--------------------chat------------------->
@@ -65,6 +67,7 @@ global setID
 @app.route('/')
 def index():  # put application's code here
     logger.info('Entered the HOME page')
+    changeBookingStatus()
     if current_user.is_authenticated:
         return render_template("index.html", current_user=current_user)
     return render_template("index.html", current_user=None, username=None)
@@ -310,6 +313,31 @@ def contact_email():
         flash("Wrong in sending emails!")
         return redirect(url_for('contact_us'))
 
+def changeBookingStatus():
+    bookings = db.session.query(RecordC).all()
+    for book in bookings:
+        book_id = book.id
+        start_time = book.start_time
+        current_time = datetime.now().strftime('%Y-%m-%d')
+
+        combination_id = book.combination_id
+        combination = db.session.query(Combination).filter_by(id=combination_id).first()
+        length = combination.length
+
+        start_datetime = datetime.strptime(start_time, '%Y-%m-%d')
+        # delta = datetime.timedelta(days=length)
+        length_timedelta = timedelta(days=length)
+        end_datetime = start_datetime + length_timedelta
+        end_time = end_datetime.strftime('%Y-%m-%d')
+
+        print("end_time: ")
+        print(end_time)
+
+        if end_time <= current_time:
+            print("if 时间")
+            record = RecordC.query.filter_by(id=book_id).update({'status': '已完成'})
+            db.session.commit()
+
 
 def openAI():
     # Apply the API key
@@ -343,8 +371,6 @@ def main():
     set_logger(logger)
     socketio.run(app, allow_unsafe_werkzeug=True,debug=True, port=5001)
 #<!--------------------chat------------------->
-
-
 
 
 
@@ -394,3 +420,4 @@ if __name__ == '__main__':
     logger.info('The Website Starts Running!')
     # openAI()
     app.run(debug=True, port=5000)
+

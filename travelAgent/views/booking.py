@@ -1,3 +1,4 @@
+import datetime
 import time
 
 from flask import Blueprint, request, render_template, redirect, url_for
@@ -31,7 +32,7 @@ def addBooking(combination_id):
             unit_price=int(combination.price)
             total_price=unit_price*num
             booking = RecordC(user_id=current_user.id, combination_id=combination_id, start_time=start_time, num=num,
-                              name=name, tel=tel, time=str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())), price=total_price)
+                              name=name, tel=tel, time=str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())), price=total_price, status="未完成")
             db.session.add(booking)
             db.session.commit()
             # print("ffffffffffffffffff")
@@ -74,6 +75,13 @@ def changeBooking(booking_id):
         else:
             # print("hhhhhhhhhhhh")
             return render_template('profile.html')
+
+
+
+
+
+
+
 
 
 
