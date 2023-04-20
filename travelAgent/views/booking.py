@@ -32,7 +32,7 @@ def addBooking(combination_id):
             unit_price=int(combination.price)
             total_price=unit_price*num
             booking = RecordC(user_id=current_user.id, combination_id=combination_id, start_time=start_time, num=num,
-                              name=name, tel=tel, time=str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())), price=total_price, status="Uncompleted")
+                              name=name, tel=tel, time=str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())), price=total_price, status="Uncompleted", status2="No comment")
             db.session.add(booking)
             db.session.commit()
             # print("ffffffffffffffffff")
