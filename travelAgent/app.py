@@ -140,6 +140,8 @@ def profile():
         number = []
         start_time = []
         price = []
+        status_complete = []
+        status_comment = []
 
 
     for book in bookings:
@@ -150,10 +152,12 @@ def profile():
         combiantion_name.append(combination.name)
         start_time.append(book.start_time)
         price.append(book.price)
+        status_complete.append(book.status)
+        status_comment.append(book.status2)
 
 
     return render_template("profile.html", user=user, start_time=start_time, number=number,
-                           combiantion_name=combiantion_name, price=price)
+                           combiantion_name=combiantion_name, price=price, status=status_complete, status_comment=status_comment)
 
 
 @app.route('/favourites')
@@ -178,9 +182,10 @@ def order_list():
         number = []
         introduction = []
         tel = []
-        price = []
         image = []
         price = []
+        status_complete = []
+        status_comment = []
 
     for book in bookings:
         combination_id = book.combination_id
@@ -194,11 +199,13 @@ def order_list():
         introduction.append(combination.intro)
         price.append(book.price)
         image.append(combination.image)
+        status_complete.append(book.status)
+        status_comment.append(book.status2)
 
     print(user_name)
 
     return render_template("order_list.html", bookings=bookings, user_name=user_name, start_time=start_time, number=number, tel=tel,
-                           combination_name=combination_name, introduction=introduction, price=price, image=image)
+                           combination_name=combination_name, introduction=introduction, price=price, image=image, status=status_complete, status_comment=status_comment)
 
 
 @app.route('/transport_setID', methods=['GET', 'POST'])
@@ -335,7 +342,7 @@ def changeBookingStatus():
 
         if end_time <= current_time:
             print("if 时间")
-            record = RecordC.query.filter_by(id=book_id).update({'status': '已完成'})
+            record = RecordC.query.filter_by(id=book_id).update({'status': 'Completed'})
             db.session.commit()
 
 

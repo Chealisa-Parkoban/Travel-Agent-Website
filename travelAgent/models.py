@@ -225,8 +225,9 @@ class RecordC(db.Model):
     name = db.Column(db.String(64))
     # the reservation person's cell phone number
     tel = db.Column(db.String(64))
-    status = db.Column(db.String(120))
     price = db.Column(db.INTEGER)
+    status = db.Column(db.String(120))
+    status2 = db.Column(db.String(120))
 
 
 
