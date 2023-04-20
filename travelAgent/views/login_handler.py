@@ -141,3 +141,5 @@ def get_captcha():
 @login_manager.user_loader
 def load_user(id):
     return User.get(int(id))
+
+
