@@ -10,6 +10,7 @@
     <!-- Main CSS -->
     <link href="../static/css/main.css" rel="stylesheet"/>
     <link href="../static/css/book.css" rel="stylesheet"/>
+    <script type="text/javascript" src="../static/js/image.js"></script>
 
     <style>
         .block{
@@ -278,18 +279,9 @@
 
                                 {% if comment.image != '' %}
                                     <img src={{ comment.image }} alt="" id="image" style="width: 30%">
+                                    <button onclick="improve()" style="background: #b6b1f3"> Improve Image Quality</button>
+                                    <img  alt="" id="image2" style="width: 30%" >
                                 {% endif %}
-                                <!--                                <script>-->
-                                <!--                                    function changeSrc(){-->
-                                <!--                                        var mys = document.getElementById("img");-->
-                                <!--                                        mys.src = comment.setAttribute("src",comment.path);-->
-                                <!--                                        return comment.path-->
-                                <!--                                    }-->
-
-
-                                <!--                                </script>-->
-
-
                                 <hr class="my-4">
                                 <div class="d-flex justify-content-start align-items-center">
                                     <p class="mb-0 text-uppercase block"><i class="fas fa-cog me-2"></i> <span
@@ -687,9 +679,4 @@
             $('form').submit();
         });
     });
-
-
-
-
-
 </script>

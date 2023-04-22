@@ -12,8 +12,12 @@ import random
 import json
 import datetime
 import openai
+import base64
+import numpy as np
+import cv2
 
 from datetime import datetime, timedelta
+from aip import AipImageProcess
 
 import travelAgent
 from travelAgent import db
@@ -352,6 +356,40 @@ def changeBookingStatus():
             print("if 时间")
             record = RecordC.query.filter_by(id=book_id).update({'status': 'Completed'})
             db.session.commit()
+
+
+# 图片
+@app.route("/improveImage", methods=['GET', 'POST'])
+def improveImage():
+    APP_ID = '32717303'
+    API_KEY = 'Tcbc4I8QOGersZaBYUjeMfM6'
+    SECRET_KEY = 'I2QGn6cnrjuqtlSx08xRQfc00sGaWCXl'
+
+    img = request.form.get("img_route")
+    img_route = img[1:]
+
+    request_url = "https://aip.baidubce.com/rest/2.0/image-process/v1/dehaze"
+    # 二进制方式打开图片文件
+    # f = open('./static/upload/2023042217125545.jpg', 'rb')
+    f = open(img_route, 'rb')
+    img = base64.b64encode(f.read())
+
+    params = {"image": img}
+    # get token
+    host = "https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=Tcbc4I8QOGersZaBYUjeMfM6&client_secret=I2QGn6cnrjuqtlSx08xRQfc00sGaWCXl&"
+    response = requests.get(host)
+
+    if response:
+        j = response.json()
+        access_token = j["access_token"]
+        request_url = request_url + "?access_token=" + access_token
+        headers = {'content-type': 'application/x-www-form-urlencoded'}
+        response = requests.post(request_url, data=params, headers=headers)
+
+        if response:
+            print(response.json())
+            json = response.json()
+            return json
 
 
 def openAI():
