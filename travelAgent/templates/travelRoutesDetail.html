@@ -279,8 +279,8 @@
 
                                 {% if comment.image != '' %}
                                     <img src={{ comment.image }} alt="" id="image" style="width: 30%">
-                                    <button onclick="improve()" style="background: #b6b1f3"> Improve Image Quality</button>
-                                    <img  alt="" id="image2" style="width: 30%" >
+                                    <button route={{ comment.image }} i={{ comment.id }} onclick="improve(this)" style="background: #b6b1f3"> Improve Image Quality</button>
+                                    <img alt="" id={{ comment.id }} style="width: 30%" >
                                 {% endif %}
                                 <hr class="my-4">
                                 <div class="d-flex justify-content-start align-items-center">

@@ -361,12 +361,16 @@ def changeBookingStatus():
 # 图片
 @app.route("/improveImage", methods=['GET', 'POST'])
 def improveImage():
+    print("improveimage")
     APP_ID = '32717303'
     API_KEY = 'Tcbc4I8QOGersZaBYUjeMfM6'
     SECRET_KEY = 'I2QGn6cnrjuqtlSx08xRQfc00sGaWCXl'
 
     img = request.form.get("img_route")
+
     img_route = img[1:]
+    print("img = ")
+    print(img)
 
     request_url = "https://aip.baidubce.com/rest/2.0/image-process/v1/dehaze"
     # 二进制方式打开图片文件
