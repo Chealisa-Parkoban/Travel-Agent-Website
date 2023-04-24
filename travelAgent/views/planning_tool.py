@@ -114,7 +114,7 @@ def submit_plan():
     else:
         user_id = current_user.id
 
-    combination = UserCombination(name, user_id, intro, price, length, days_id[0], days_id[1], days_id[2], days_id[3],
+    combination = UserCombination(user_id, name, intro, price, length, days_id[0], days_id[1], days_id[2], days_id[3],
                               days_id[4], days_id[5], days_id[6])
     db.session.add(combination)
     db.session.commit()

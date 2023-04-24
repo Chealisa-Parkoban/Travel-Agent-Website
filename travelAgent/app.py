@@ -13,16 +13,17 @@ import json
 import datetime
 import openai
 import base64
-import numpy as np
-import cv2
+# import numpy as np
+# import cv2
 
 from datetime import datetime, timedelta
-from aip import AipImageProcess
+# from aip import AipImageProcess
 
 import travelAgent
 from travelAgent import db
 from travelAgent import app
 from travelAgent.forms import CommentForm, ImageForm
+from travelAgent.models import CommentC, Comment, Combination, Destination, Day, Target, User, RecordC, UserCombination
 from travelAgent.models import CommentC, Comment, Combination, Destination, Day, Target, User, RecordC, ContactModel
 from flask_mail import Message
 
@@ -120,6 +121,13 @@ def stays():
     stays = Target.query.filter(Target.type == '1').all()
     return render_template("stays.html", hotels=stays)
 
+@app.route('/personal_plan', methods=['GET', 'POST'])
+def personal_plan():
+    if current_user.is_authenticated:
+        personal_plans = UserCombination.query.filter(UserCombination.user_id == current_user.id).all()
+        return render_template("personal_plans.html", plans=personal_plans)
+    else:
+        return redirect(url_for("account.login"))
 
 
 # @app.route('/homepage2', methods=['GET', 'POST'])
