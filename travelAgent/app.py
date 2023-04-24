@@ -372,7 +372,8 @@ def improveImage():
     print("img = ")
     print(img)
 
-    request_url = "https://aip.baidubce.com/rest/2.0/image-process/v1/dehaze"
+    # request_url = "https://aip.baidubce.com/rest/2.0/image-process/v1/dehaze"
+    request_url = "https://aip.baidubce.com/rest/2.0/image-process/v1/image_definition_enhance"
     # 二进制方式打开图片文件
     # f = open('./static/upload/2023042217125545.jpg', 'rb')
     f = open(img_route, 'rb')
