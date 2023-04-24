@@ -2,7 +2,8 @@ import os
 import this
 import time
 
-from flask import Flask, render_template, request, flash, redirect, url_for, session
+import requests
+from flask import Flask, render_template, request, flash, redirect, url_for, session, jsonify
 import logging
 import http.client
 import hashlib
@@ -10,12 +11,20 @@ import urllib
 import random
 import json
 import datetime
+import openai
+import base64
+import numpy as np
+import cv2
+
+from datetime import datetime, timedelta
+from aip import AipImageProcess
 
 import travelAgent
 from travelAgent import db
 from travelAgent import app
 from travelAgent.forms import CommentForm, ImageForm
-from travelAgent.models import CommentC, Comment, Combination, Destination, Day, Target, User, RecordC
+from travelAgent.models import CommentC, Comment, Combination, Destination, Day, Target, User, RecordC, ContactModel
+from flask_mail import Message
 
 from travelAgent.views.login_handler import login_blueprint, current_user
 from travelAgent.views.number import Random_str
@@ -25,6 +34,10 @@ from travelAgent.views.search import search_blueprint
 from travelAgent.views.favorite import favorite_blueprint
 from travelAgent.views.booking import booking_blueprint
 from travelAgent.views.planning_tool import planning_tool_blueprint
+from travelAgent.views.target import target_blueprint
+from travelAgent import mail
+
+
 
 
 #<!--------------------chat------------------->
@@ -40,6 +53,7 @@ app.register_blueprint(detail_blueprint)
 app.register_blueprint(search_blueprint)
 app.register_blueprint(favorite_blueprint)
 app.register_blueprint(booking_blueprint)
+app.register_blueprint(target_blueprint)
 app.register_blueprint(planning_tool_blueprint)
 
 
@@ -61,6 +75,7 @@ global setID
 @app.route('/')
 def index():  # put application's code here
     logger.info('Entered the HOME page')
+    changeBookingStatus()
     if current_user.is_authenticated:
         return render_template("index.html", current_user=current_user)
     return render_template("index.html", current_user=None, username=None)
@@ -69,18 +84,21 @@ def index():  # put application's code here
 @app.route('/about')
 def about():
     logger.info('Entered the ABOUT page')
+    changeBookingStatus()
     return render_template("about.html")
 
 
 @app.route('/contactUs')
 def contact_us():
     logger.info('Entered the CONTACT page')
+    changeBookingStatus()
     return render_template("contact.html")
 
 
 @app.route('/homepage', methods=['GET', 'POST'])
 def homepage():
     logger.info('Entered the HOME page')
+    changeBookingStatus()
     Sets = Combination.query.all()
     attractions = Target.query.filter(Target.type == '0').all()
     attractions = attractions[::-1]
@@ -91,12 +109,14 @@ def homepage():
 
 @app.route('/attractions', methods=['GET', 'POST'])
 def attractions():
+    changeBookingStatus()
     attractions = Target.query.filter(Target.type == '0').all()
     return render_template("attractions.html", attractions=attractions)
 
 
 @app.route('/stays', methods=['GET', 'POST'])
 def stays():
+    changeBookingStatus()
     stays = Target.query.filter(Target.type == '1').all()
     return render_template("stays.html", hotels=stays)
 
@@ -111,13 +131,14 @@ def stays():
 
 @app.route('/book', methods=['GET', 'POST'])
 def book():
+    changeBookingStatus()
     logger.info('Entered the BOOK page')
     return render_template("book.html")
 
 
 @app.route('/profile')
 def profile():
-
+    changeBookingStatus()
     if not current_user.is_authenticated:
         return redirect(url_for('account.login'))
     else:
@@ -133,6 +154,8 @@ def profile():
         number = []
         start_time = []
         price = []
+        status_complete = []
+        status_comment = []
 
 
     for book in bookings:
@@ -143,21 +166,25 @@ def profile():
         combiantion_name.append(combination.name)
         start_time.append(book.start_time)
         price.append(book.price)
+        status_complete.append(book.status)
+        status_comment.append(book.status2)
 
 
     return render_template("profile.html", user=user, start_time=start_time, number=number,
-                           combiantion_name=combiantion_name, price=price)
+                           combiantion_name=combiantion_name, price=price, status=status_complete, status_comment=status_comment)
 
 
 @app.route('/favourites')
 def favourites():
     logger.info('Entered the FAVOURITES page')
+    changeBookingStatus()
     return render_template('favourites.html')
 
 
 @app.route('/order_list')
 def order_list():
     logger.info('Entered the order_list page')
+    changeBookingStatus()
     if not current_user.is_authenticated:
         return redirect(url_for('account.login'))
     else:
@@ -171,9 +198,10 @@ def order_list():
         number = []
         introduction = []
         tel = []
-        price = []
         image = []
         price = []
+        status_complete = []
+        status_comment = []
 
     for book in bookings:
         combination_id = book.combination_id
@@ -187,11 +215,13 @@ def order_list():
         introduction.append(combination.intro)
         price.append(book.price)
         image.append(combination.image)
+        status_complete.append(book.status)
+        status_comment.append(book.status2)
 
     print(user_name)
 
     return render_template("order_list.html", bookings=bookings, user_name=user_name, start_time=start_time, number=number, tel=tel,
-                           combination_name=combination_name, introduction=introduction, price=price, image=image)
+                           combination_name=combination_name, introduction=introduction, price=price, image=image, status=status_complete, status_comment=status_comment)
 
 
 @app.route('/transport_setID', methods=['GET', 'POST'])
@@ -240,48 +270,6 @@ def delete_traffic():
     return '0'
 
 
-# @app.route('/travelRoutesDetail', methods=['GET', 'POST'])
-# def travel_routes_detail():
-#     # Create a unique id for the image
-#     id = Random_str().create_uuid()
-#     # print(CommentC.query.all())
-#     logger.info('Entered the TRAVEL ROUTE DETAIL page')
-#     comment_form = CommentForm(request.form)
-#     image_form = ImageForm(request.files)
-#     if request.method == 'POST':
-#         if comment_form.validate_on_submit():
-#
-#             # Images storage path
-#             file_dir = os.path.join(basedir, "static/upload/")
-#             # Getting the data transferred from the front end
-#             files = request.files.getlist('img')  # Gets the value of myfiles from ajax, of type list
-#             path = ""
-#
-#             for img in files:
-#                 # Extract the suffix of the uploaded image and
-#                 # Name the image after the commodity id and store it in the specific path
-#                 check = img.content_type
-#                 # check if upload image
-#                 if str(check) != 'application/octet-stream':
-#                     fname = img.filename
-#                     ext = fname.rsplit('.', 1)[1]
-#                     new_filename = id + '.' + ext
-#                     img.save(os.path.join(file_dir, new_filename))
-#                     path = "../static/upload/" + new_filename
-#
-#             # default: like=0 path=""
-#             comment = CommentC(user_id=current_user.id, username=current_user.get_username(), combination_id=1,score=comment_form.score.data, content=comment_form.comment.data,image = path, time=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
-#             db.session.add(comment)
-#             flash('已评论')
-#             return redirect(url_for('travel_routes_detail'))
-#
-#         return render_template("travelRoutesDetail.html", current_user=current_user, comment_form=comment_form, comments=CommentC.query.all())
-#     if request.method == 'GET':
-#         comments = CommentC.query.all()
-#         return render_template("travelRoutesDetail.html", comments=comments, comment_form=comment_form)
-
-
-# 翻译功能 (auto - 英)
 def translate(q):
     # 百度appid和密钥需要通过注册百度【翻译开放平台】账号后获得
     appid = '20230228001579285'  # 填写你的appid
@@ -320,18 +308,179 @@ def translate(q):
             httpClient.close()
 
 
+#跟我们联系! 邮箱自动回复
+@app.route("/contact_email", methods=['GET', 'POST'])
+def contact_email():
+    # GET, POST
+    name = request.form.get("name")
+    message_content = request.form.get("message")
+    email = request.form.get("email")
+    print(message_content)
 
-#<!--------------------chat------------------->
+    if email:
+        message = Message(
+            subject="【Digital Beans】Feedback Received",
+            recipients=[email],
+            body=f"【Digital Beans】We have received your feedback, and we will contact you soon!\n\n" 
+                 f" Note: this is an automatic reply!",
+        )
+        mail.send(message)
+        # code:200 成功的正常的请求
+        contact_message = ContactModel(email=email, name=name, message=message_content)
+        db.session.add(contact_message)
+        db.session.commit()
+        flash("Send email successfully!")
+        return redirect(url_for('contact_us'))
+    else:
+        # code: 40 客户端错误
+        flash("Wrong in sending emails!")
+        return redirect(url_for('contact_us'))
+
+def changeBookingStatus():
+    bookings = db.session.query(RecordC).all()
+    for book in bookings:
+        book_id = book.id
+        start_time = book.start_time
+        current_time = datetime.now().strftime('%Y-%m-%d')
+
+        combination_id = book.combination_id
+        combination = db.session.query(Combination).filter_by(id=combination_id).first()
+        length = combination.length
+
+        start_datetime = datetime.strptime(start_time, '%Y-%m-%d')
+        # delta = datetime.timedelta(days=length)
+        length_timedelta = timedelta(days=length)
+        end_datetime = start_datetime + length_timedelta
+        end_time = end_datetime.strftime('%Y-%m-%d')
+
+        print("end_time: ")
+        print(end_time)
+
+        if end_time <= current_time:
+            print("if 时间")
+            record = RecordC.query.filter_by(id=book_id).update({'status': 'Completed'})
+            db.session.commit()
+
+
+# 图片
+@app.route("/improveImage", methods=['GET', 'POST'])
+def improveImage():
+    print("improveimage")
+    APP_ID = '32717303'
+    API_KEY = 'Tcbc4I8QOGersZaBYUjeMfM6'
+    SECRET_KEY = 'I2QGn6cnrjuqtlSx08xRQfc00sGaWCXl'
+
+    img = request.form.get("img_route")
+
+    img_route = img[1:]
+    print("img = ")
+    print(img)
+
+    # request_url = "https://aip.baidubce.com/rest/2.0/image-process/v1/dehaze"
+    request_url = "https://aip.baidubce.com/rest/2.0/image-process/v1/image_definition_enhance"
+    # 二进制方式打开图片文件
+    # f = open('./static/upload/2023042217125545.jpg', 'rb')
+    f = open(img_route, 'rb')
+    img = base64.b64encode(f.read())
+
+    params = {"image": img}
+    # get token
+    host = "https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=Tcbc4I8QOGersZaBYUjeMfM6&client_secret=I2QGn6cnrjuqtlSx08xRQfc00sGaWCXl&"
+    response = requests.get(host)
+
+    if response:
+        j = response.json()
+        access_token = j["access_token"]
+        request_url = request_url + "?access_token=" + access_token
+        headers = {'content-type': 'application/x-www-form-urlencoded'}
+        response = requests.post(request_url, data=params, headers=headers)
+
+        if response:
+            print(response.json())
+            json = response.json()
+            return json
+
+
+def openAI():
+    # Apply the API key
+    openai.api_key = "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"
+
+    # Define the text prompt
+    prompt = "how are u"
+
+    # Generate completions using the API
+    completions = openai.Completion.create(
+        engine="text-davinci-002",
+        prompt=prompt,
+        max_tokens=100,
+        n=1,
+        stop=None,
+        temperature=0.5,
+    )
+
+    # Extract the message from the API response
+    message = completions.choices[0].text
+    print(message)
+    return message
+
+
+
+
 def main():
     # showSetDetails(1)
     logger.info('The Website Starts Running!')
+    changeBookingStatus()
     # app.run(debug=True, port=5000)
     set_logger(logger)
     socketio.run(app, allow_unsafe_werkzeug=True,debug=True, port=5001)
 #<!--------------------chat------------------->
 
 
+
+# trytrytry
+# class OpenAI_Request(object):
+# #
+#     def __init__(self,key,model_name,request_address):
+#         super().__init__()
+#         self.headers = {"Authorization":f"Bearer {key}","Content-Type": "application/json"}
+#         self.model__name = model_name
+#         self.request_address = request_address
+#
+#     def post_request(self,message):
+#
+#         data = {
+#             "model": self.model__name,
+#             "messages":  message
+#         }
+#         data = json.dumps(data)
+#
+#         response = requests.post(self.request_address, headers=self.headers, data=data)
+#
+#         return response
+#
+#
+# if __name__ == '__main__':
+#     keys = "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"
+#     model_name = "gpt-3.5-turbo"
+#     request_address = "https://api.openai.com/v1/chat/completions"
+#     requestor = OpenAI_Request(keys,model_name,request_address)
+#
+#     while 1:
+#         input_s = input('user input: ')
+#         res = requestor.post_request(input_s)
+#
+#         response = res.json()['choices'][0]['message']['content']
+#
+#         if  response:
+#             requestor.context_handler.append_cur_to_context(response,tag=1)
+#
+#         print(f"chatGPT: {response}")
+
+
+
 if __name__ == '__main__':
     # showSetDetails(1)
     logger.info('The Website Starts Running!')
+    # openAI()
     app.run(debug=True, port=5000)
+

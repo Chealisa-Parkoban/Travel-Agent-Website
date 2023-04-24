@@ -92,25 +92,25 @@
             <div class="row align-items-center cols-xs-space cols-sm-space cols-md-space">
                 <div class="col-lg-6">
                     <h3 class="heading h3 mb-4">Send us a message</h3>
-                    <form>
+                    <form action="{{ url_for('contact_email') }}" method="post">
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Name" type="text">
+                                    <input class="form-control" placeholder="Name" name="name" type="text">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Email address" type="email">
+                                    <input class="form-control" placeholder="Email address" name="email" type="email">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
-                                    <textarea class="form-control" rows="5" placeholder="Your message"></textarea>
+                                    <textarea class="form-control" rows="5" name="message" placeholder="Your message"></textarea>
                                 </div>
                             </div>
                         </div>

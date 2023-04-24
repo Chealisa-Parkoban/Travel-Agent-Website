@@ -277,8 +277,9 @@ class RecordC(db.Model):
     name = db.Column(db.String(64))
     # the reservation person's cell phone number
     tel = db.Column(db.String(64))
-    status = db.Column(db.String(120))
     price = db.Column(db.INTEGER)
+    status = db.Column(db.String(120))
+    status2 = db.Column(db.String(120))
 
 
 
@@ -390,4 +391,13 @@ class Reply(db.Model):
     time = db.Column(db.String(120))
     # the number of this post to be liked
     like = db.Column(db.INTEGER, default=0)
+
+class ContactModel(db.Model):
+    __tablename__ = "contact_us"
+    __table_args__ = {'extend_existing': True}
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    email = db.Column(db.String(100), nullable=False)
+    name = db.Column(db.String(100))
+    message = db.Column(db.String(500))
+    create_time = db.Column(db.DateTime, default=datetime.now())
 

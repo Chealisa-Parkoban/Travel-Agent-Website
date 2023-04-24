@@ -180,6 +180,7 @@
             <span>Best Attractions Available</span>
             <div class="promotion-grids">
                 {% for attraction in attractions %}
+                    <a set_id={{ attraction.id }} onclick="setTargetID(this)">
                         <div class="col-md-4 promation-grid">
                             <!--{#                            <img src="../static/images/sample_pic/the_north_Europe.png" class="img-responsive" alt="" />#}-->
                             <img src="{{ attraction.image }}" class="img-responsive" alt=""
@@ -198,6 +199,7 @@
                                 <p class="intro">{{ attraction.intro }}</p>
                             </div>
                         </div>
+                    </a>
                 {% endfor %}
                 <div class="clearfix"></div>
             </div>

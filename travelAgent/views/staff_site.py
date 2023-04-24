@@ -4,6 +4,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, sessio
 from flask_login import LoginManager, login_user, current_user, logout_user
 
 from travelAgent import app, db
+# from travelAgent.app import changeBookingStatus
 from travelAgent.forms import LoginForm, DayTripForm, PlanForm, DestinationForm, TargetForm
 from travelAgent.models import User, Destination, Target, Day, Combination
 from travelAgent.views.login_handler import login_manager
@@ -20,6 +21,7 @@ trip_fees = []
 # --------------------chat----------------->
 @staff_blueprint.route('/staff/chat')
 def chat():
+    # changeBookingStatus()
     return render_template('./staff_site/pages/chat.html', user=current_user)
 
 
@@ -27,6 +29,7 @@ def chat():
 
 @staff_blueprint.route('/staff/index', methods=['GET', 'POST'])
 def index():
+    # changeBookingStatus()
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
     return render_template('./staff_site/index.html', user=current_user)
@@ -34,6 +37,7 @@ def index():
 
 @staff_blueprint.route('/staff', methods=['GET', 'POST'])
 def login():
+    # changeBookingStatus()
     global emsg
     app.logger.info('Entered STAFF LOGIN page')
     form = LoginForm(request.form)
@@ -68,6 +72,7 @@ def login():
 
 @staff_blueprint.route('/staff/logout', methods=['GET', 'POST'])
 def logout():
+    # changeBookingStatus()
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
     logout_user()
@@ -76,6 +81,7 @@ def logout():
 
 @staff_blueprint.route('/staff/contents/all_plans', methods=['GET', 'POST'])
 def contents():
+    # changeBookingStatus()
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
     plans = Combination.query.all()
@@ -84,6 +90,7 @@ def contents():
 
 @staff_blueprint.route('/staff/contents/new_plan', methods=['GET', 'POST'])
 def new_plan():
+    # changeBookingStatus()
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
 
@@ -105,6 +112,7 @@ def new_plan():
 
 @staff_blueprint.route('/staff/contents/add', methods=['GET', 'POST'])
 def add_new_day():
+    # changeBookingStatus()
     form = DayTripForm(request.form)
     if form.validate_on_submit():
         destination = form.destination.data
@@ -139,6 +147,7 @@ def clear_draft():
 
 @staff_blueprint.route('/staff/contents/submit_plan', methods=['GET', 'POST'])
 def submit_plan():
+    # changeBookingStatus()
     name = request.form.get('name')
     intro = request.form.get('intro')
     price = request.form.get('price')
@@ -199,6 +208,7 @@ def submit_plan():
 
 @staff_blueprint.route('/staff/contents/delete_day', methods=['GET', 'POST'])
 def delete_day():
+    # changeBookingStatus()
     # print(request.args.get("day_id"), "delete")
     # data = request.args.get("day_id")
     json = request.json
@@ -229,6 +239,7 @@ def delete_day():
 
 @staff_blueprint.route('/staff/contents/view_plan', methods=['GET', 'POST'])
 def view_plan():
+    # changeBookingStatus()
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
     destinations = Destination.query.all()
@@ -271,6 +282,7 @@ def view_plan():
 
 @staff_blueprint.route('/staff/contents/delete_plan', methods=['GET', 'POST'])
 def delete_plan():
+    # changeBookingStatus()
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
     plan_id = session.get('plan_id')
@@ -287,6 +299,7 @@ def delete_plan():
 
 @staff_blueprint.route('/staff/contents/destinations', methods=['GET', 'POST'])
 def destinations():
+    # changeBookingStatus()
     message = ""
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
@@ -307,6 +320,7 @@ def destinations():
 
 @staff_blueprint.route('/staff/contents/attractions', methods=['GET', 'POST'])
 def attractions():
+    # changeBookingStatus()
     message = ""
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
@@ -336,6 +350,7 @@ def attractions():
 
 @staff_blueprint.route('/staff/contents/accommodations', methods=['GET', 'POST'])
 def accommodations():
+    # changeBookingStatus()
     message = ""
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
@@ -364,6 +379,7 @@ def accommodations():
 
 @staff_blueprint.route('/staff/contents/traffics', methods=['GET', 'POST'])
 def traffics():
+    # changeBookingStatus()
     message = ""
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
