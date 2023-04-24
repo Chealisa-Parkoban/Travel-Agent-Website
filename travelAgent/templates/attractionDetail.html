@@ -107,10 +107,8 @@
                             </a>
 
                         </div>
-                        <div class="col-md-6 d-none d-md-block pr-0"
-                             style="background-size:cover;background-image:url({{ set.image }});">
-                            {#                            travelAgent/static/upload/Pestana.png#}
-                            {#                            {{ set.image }}#}
+                        <div class="col-md-6 d-none d-md-block pr-0" style="overflow: hidden;">
+                            <img src="{{ set.image }}" style="object-fit: cover; width: 100%; height: 100%;">
                         </div>
                     </div>
                 </div>

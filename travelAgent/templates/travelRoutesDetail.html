@@ -73,6 +73,14 @@
             margin: 10px;
         }
 
+        .details p{
+            margin-bottom: 0;
+        }
+
+        .details h5{
+            font-weight: bold;
+        }
+
     </style>
 
 {% endblock %}
@@ -104,11 +112,10 @@
                             </a>
 
                         </div>
-                        <div class="col-md-6 d-none d-md-block pr-0"
-                             style="background-size:cover;background-image:url({{ set.image }});">
-{#                            travelAgent/static/upload/Pestana.png#}
-{#                            {{ set.image }}#}
+                        <div class="col-md-6 d-none d-md-block pr-0" style="overflow: hidden;">
+                            <img src="{{ set.image }}" style="object-fit: cover; width: 100%; height: 100%;">
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -245,6 +252,47 @@
                     </div>
                 </div>
     </div>
+
+
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-md-12 details">
+                    <h2 class="font-weight-bold spanborder" style="margin-top: 1em"><span>Details</span></h2>
+                    <h5>Disclaimer:</h5>
+                    <div style="background: rgb(232,241,255); margin-top: 0.8rem; margin-bottom: 1rem; padding: 1rem; border-radius: 5px">
+                        <p>1. All travel packages are subject to availability at the time of booking.</p>
+                        <p>2. Prices are subject to change without prior notice due to currency fluctuation and availability.</p>
+                        <p>3. The travel agency is not responsible for any changes or cancellations made by the airlines, hotels, or tour operators.</p>
+                        <p>4. The travel agency is not responsible for any personal injury, property damage, or loss during the trip.</p>
+                        <p>5. The travel agency advise clients to purchase travel insurance to protect themselves from unexpected situations.</p>
+                    </div>
+
+                    <br/>
+                    <h5>We promise:</h5>
+                    <div style="background: rgb(232,241,255); margin-top: 0.8rem; margin-bottom: 1rem; padding: 1rem; border-radius: 5px">
+                        <p>We guarantee the best prices and offer flexible payment options to make your dream trip affordable.</p>
+                        <p>Our team of travel experts is available 24/7 for support, and we offer customizable packages to suit your preferences.</p>
+                        <p>We are committed to sustainable tourism and follow safety guidelines for a safe and enjoyable trip.</p>
+                        <p>Read our customer reviews to help make an informed decision.</p>
+                    </div>
+
+                    <br/>
+                    <h5>What can you expect during your trip</h5>
+                    <div style="background: rgb(232,241,255); margin-top: 0.8rem; margin-bottom: 1rem; padding: 1rem; border-radius: 5px">
+                        <p>Experience the beauty and culture of [destination] with our exclusive travel packages.</p>
+                        <p>Discover the best of [destination] with our carefully crafted travel itineraries.</p>
+                        <p>Our travel packages are designed to provide you with a hassle-free and memorable vacation.</p>
+                        <p>Whether you're looking for adventure or relaxation, our travel packages have something for everyone.</p>
+                        <p>With our experienced tour guides, you can explore [destination] like a local and discover hidden gems.</p>
+                        <p>We offer a wide range of travel packages to suit every budget and travel style.</p>
+                        <p>Our travel packages include top-rated accommodations, transportation, and guided tours for a worry-free vacation.</p>
+                        <p>Our travel packages offer flexible schedules and customizable itineraries, so you can travel at your own pace.</p>
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </div>
+
 
         <div class="container">
             <div class="row justify-content-between">
