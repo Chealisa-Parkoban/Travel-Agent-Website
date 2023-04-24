@@ -119,12 +119,10 @@ def add_new_day():
             accommodation = Target.query.filter_by(name=accommodation).first()
             traffic = Target.query.filter_by(name=traffic).first()
 
-            print(attraction.price)
             trip_fees.append(attraction.price)
             trip_fees.append(accommodation.price)
             trip_fees.append(traffic.price)
 
-            print(trip_fees)
     return redirect(url_for("staff_site.new_plan"))
 
 

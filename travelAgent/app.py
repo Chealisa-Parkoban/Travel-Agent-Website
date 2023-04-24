@@ -24,6 +24,7 @@ from travelAgent.views.detail import detail_blueprint, showSetDetails
 from travelAgent.views.search import search_blueprint
 from travelAgent.views.favorite import favorite_blueprint
 from travelAgent.views.booking import booking_blueprint
+from travelAgent.views.planning_tool import planning_tool_blueprint
 
 
 #<!--------------------chat------------------->
@@ -39,6 +40,7 @@ app.register_blueprint(detail_blueprint)
 app.register_blueprint(search_blueprint)
 app.register_blueprint(favorite_blueprint)
 app.register_blueprint(booking_blueprint)
+app.register_blueprint(planning_tool_blueprint)
 
 
 # -------------------------------------create a logger------------------------------------------

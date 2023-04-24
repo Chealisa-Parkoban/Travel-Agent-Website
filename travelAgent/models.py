@@ -205,6 +205,58 @@ class Combination(db.Model):
         print(days)
         return days
 
+class UserCombination(db.Model):
+    __table_args__ = {'extend_existing': True}
+    # id is the primary key and it increments automatically
+    id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
+    user_id = db.Column(db.INTEGER, db.ForeignKey('user.id'))
+    name = db.Column(db.String(120))
+    # max: 7 days
+    day1 = db.Column(db.INTEGER, db.ForeignKey('day.id'))
+    day2 = db.Column(db.INTEGER, db.ForeignKey('day.id'))
+    day3 = db.Column(db.INTEGER, db.ForeignKey('day.id'))
+    day4 = db.Column(db.INTEGER, db.ForeignKey('day.id'))
+    day5 = db.Column(db.INTEGER, db.ForeignKey('day.id'))
+    day6 = db.Column(db.INTEGER, db.ForeignKey('day.id'))
+    day7 = db.Column(db.INTEGER, db.ForeignKey('day.id'))
+    intro = db.Column(db.String(240))
+    price = db.Column(db.INTEGER)
+    length = db.Column(db.INTEGER, nullable=False)
+
+    def __init__(self, user_id, name, intro, price, length, day1, day2, day3, day4, day5, day6, day7):
+        self.user_id = user_id
+        self.name = name
+        self.day1 = day1
+        self.day2 = day2
+        self.day3 = day3
+        self.day4 = day4
+        self.day5 = day5
+        self.day6 = day6
+        self.day7 = day7
+        self.intro = intro
+        self.price = price
+        self.length = length
+
+    def get_days(self):
+        days = []
+        if self.day1:
+            days.append(self.day1)
+        if self.day2:
+            days.append(self.day2)
+        if self.day3:
+            days.append(self.day3)
+        if self.day4:
+            days.append(self.day4)
+        if self.day5:
+            days.append(self.day5)
+        if self.day6:
+            days.append(self.day6)
+        if self.day7:
+            days.append(self.day7)
+        print(days)
+        return days
+
+
 
 # combination record, staff can operate and store data in this table
 class RecordC(db.Model):
