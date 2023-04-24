@@ -2,77 +2,102 @@
 {% block title %}Orders{% endblock %}
 {% block head %}{% endblock %}
 {% block body %}
-<section style="background-color: #eee; " >
-    <div class="container py-5"  >
+    <section style="background-color: #eee; ">
+        <div class="container py-5">
 
-        <div>
-            <h1 class="text-center" style="margin-top: 5%">Order List</h1>
-        </div>
+            <div>
+                <h1 class="text-center" style="margin-top: 5%">Order List</h1>
+            </div>
 
-        <div>
-            <div class="col-md-12 mb-5">
+            <div>
+                <div class="col-md-12 mb-5">
 
-                {% for i in range(0,user_name|length) %}
-                    <a href="#">
-                        <div class="card" style="color: #0a0c0d; margin-top: 3%;">
-                            <div class="row" style="margin-left: auto !important;">
-                                <div class="col-md-4 mx-auto mb-auto d-flex align-items-center" style="margin: auto;">
-                                    <img src="{{ image[i] }}" class="card-img" alt="...">
-                                </div>
+                    {% for i in range(0,user_name|length) %}
+                        <a href="#">
+                            <div class="card" style="color: #0a0c0d; margin-top: 3%;">
+                                <div class="row" style="margin-left: auto !important;">
+                                    <div class="col-md-4 mx-auto mb-auto d-flex align-items-center"
+                                         style="margin: auto;">
+                                        <img src="{{ image[i] }}" class="card-img" alt="...">
+                                    </div>
 
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title mb-0">{{ combination_name[i] }}</h5>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-sm-4">
-                                                <p class="mb-0">User Name:</p>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            {% if status[i] == "Completed" %}
+                                                <h5 class="card-title mb-0">{{ combination_name[i] }}<span
+                                                        style="margin-left: 30%"><i class="fa-regular fa-circle-check"
+                                                                                    style="color: #6459ad;"></i>{{ status[i] }}</span>
+                                                </h5>
+                                            {% else %}
+                                                <h5 class="card-title mb-0">{{ combination_name[i] }}<span
+                                                        style="margin-left: 30%"><i class="fa-solid fa-circle-xmark"
+                                                                                    style="color: #6459ad;"></i>{{ status[i] }}</span>
+                                                </h5>
+                                            {% endif %}
+
+
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <p class="mb-0">User Name:</p>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <p class="card-text mb-0">{{ user_name[i] }}</p>
+                                                </div>
                                             </div>
-                                            <div class="col-sm-8">
-                                                <p class="card-text mb-0">{{ user_name[i] }}</p>
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <p class="mb-0">Start Time:</p>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <p class="card-text mb-0">{{ start_time[i] }}</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-4">
-                                                <p class="mb-0">Start Time:</p>
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <p class="mb-0">Number of People:</p>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <p class="card-text mb-0">{{ number[i] }}</p>
+                                                </div>
                                             </div>
-                                            <div class="col-sm-8">
-                                                <p class="card-text mb-0">{{ start_time[i] }}</p>
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <p class="mb-0">Phone Number:</p>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <p class="card-text mb-0">{{ tel[i] }}</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-4">
-                                                <p class="mb-0">Number of People:</p>
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <p class="mb-0">Total Price::</p>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <p class="card-text mb-0">{{ price[i] }}</p>
+                                                </div>
                                             </div>
-                                            <div class="col-sm-8">
-                                                <p class="card-text mb-0">{{ number[i] }}</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-4">
-                                                <p class="mb-0">Phone Number:</p>
-                                            </div>
-                                            <div class="col-sm-8">
-                                                <p class="card-text mb-0">{{ tel[i] }}</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-4">
-                                                <p class="mb-0">Total Price::</p>
-                                            </div>
-                                            <div class="col-sm-8">
-                                                <p class="card-text mb-0">{{ price[i] }}</p>
+                                            <div class="row">
+                                                <div class="col-sm"></div>
+                                                <div class="col-sm"></div>
+                                                <div class="col-sm">
+{#                                                    <p class="card-text mb-0">{{ price[i] }}</p>#}
+                                                    {% if status_comment[i] == "No comment" %}
+                                                        <i class="fa-solid fa-comment-slash"></i>{{ status_comment[i] }}
+                                                    {% else %}
+                                                        <i class="fa-solid fa-comment-dots"></i>{{ status_comment[i] }}
+                                                    {% endif %}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
-                {% endfor %}
+                        </a>
+                    {% endfor %}
 
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 {% endblock %}
