@@ -1,11 +1,24 @@
 {% extends "staff_site/base.html" %}
       {% block body %}
-<script>
-    var message = {{message|tojson()}};
-    if (message !== ""){
-        alert(message);
-    }
-</script>
+
+      {% if message != "" %}
+          <script>
+              alert("{{message}}");
+              console.log("fasdfasdf");
+          </script>
+      {% endif %}
+
+
+{#<script>#}
+{#    var message = {{message}};#}
+{#    console.log(message);#}
+{#    console.log("message");#}
+{#    if (message !== ""){#}
+{#        alert(message);#}
+{#    }#}
+{#</script>#}
+{#          #}
+
       <!-- partial -->
       <div class="main-panel">
           <div class="content-wrapper">

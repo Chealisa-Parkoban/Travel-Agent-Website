@@ -3,73 +3,104 @@
 {% block head %}{% endblock %}
 {% block body %}
 <div class="main-panel">
-          <div class="content-wrapper">
-            <div class="row">
-                <div class="col-lg-6 grid-margin stretch-card" style="width: 100%">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">Your Personal Plans</h4>
-                  <p class="card-description">
-                    Provided by <code>Digital Beans</code>
-                  </p>
-                  <div class="table-responsive">
-                    <table class="table table-hover">
-                      <thead>
-                        <tr>
-                          <th>Name</th>
-                          <th>Notes</th>
-                          <th>Duration</th>
-                          <th>Price</th>
-                        </tr>
-                      </thead>
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-lg-6 grid-margin stretch-card" style="width: 100%">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Your Personal Plans</h4>
+                        <p class="card-description">
+                            Provided by <code>Digital Beans</code>
+                        </p>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Notes</th>
+                                    <th>Duration</th>
+                                    <th>Price</th>
+                                </tr>
+                                </thead>
 
-                      <tbody>
-                      {% for plan in plans %}
-                        <tr>
-                          <td>{{plan.name}}</td>
-                          <td>{{plan.intro}}</td>
-                          <td>{{plan.length}}</td>
-                          <td>{{plan.price}}</td>
-                          <td><input type="submit" class="btn btn-success" style="width: fit-content" value="Buy Now" onclick="delete_des({{plan.id}})" /></td>
-                            <script>
-                                function delete_des (id){
-                                  $.get({
-                                    url: '',
-                                    type: 'GET',
-                                    data: ({id : id}),
-                                    success: function (data) {
-                                        window.location.href = '';
-                                    }
-                                  })
-                                }
-                            </script>
-                        </tr>
-                      {% endfor %}
-                      </tbody>
-                    </table>
-                  </div>
+                                <tbody>
+                                {% for plan in plans %}
+                                    <tr onclick="showPlans({{plan.id}})">
+                                        <td>{{plan.name}}</td>
+                                        <td>{{plan.intro}}</td>
+                                        <td>{{plan.length}}</td>
+                                        <td>{{plan.price}}</td>
+                                        <td>
+                                            <button onclick="add_to_cart({{plan.id}})" style="background-color: transparent; border: none;">
+                                                <i class="fa fa-credit-card" style="color: black; font-size: 1.5rem"></i>
+                                            </button>
+
+                                            <button onclick="delete_des({{plan.id}})" style="background-color: transparent; border: none;">
+                                                <i class="fa fa-trash" style="color: black; font-size: 1.5rem"></i>
+                                            </button>
+
+                                        </td>
+                                        <script>
+                                            function delete_des (id){
+                                                $.get({
+                                                    url: '',
+                                                    type: 'GET',
+                                                    data: ({id : id}),
+                                                    success: function (data) {
+                                                        window.location.href = '';
+                                                    }
+                                                })
+                                            }
+
+                                            function add_to_cart (id) {
+                                                $.post({
+                                                    url: '',
+                                                    type: 'POST',
+                                                    data: ({id : id}),
+                                                    success: function (data) {
+                                                        // Update cart contents
+                                                    }
+                                                })
+                                            }
+
+                                            function showPlans(plan_id){
+                                                $.get({
+                                                    url: '',
+                                                    type: 'GET',
+                                                    data: ({plan_id : plan_id}),
+                                                    success: function (data) {
+                                                        window.location.href = '';
+                                                    }
+                                                })
+                                            }
+                                        </script>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-
 
             <div style="display:flex;justify-content: center; align-items:center;">
                 <a href="{{ url_for('planning_tool.planning') }}" >
-                <input type="button" class="btn btn-primary me-2" style="width: fit-content; " value="Create New Personal Plan"  />
+                    <input type="button" class="btn btn-primary me-2" style="width: fit-content; " value="Create New Personal Plan"  />
                 </a>
             </div>
 
-            </div>
         </div>
+    </div>
 
         <!-- content-wrapper ends -->
         <!-- partial:../../partials/_footer.html -->
-        <footer class="footer">
-          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+    <footer class="footer">
+        <div class="d-sm-flex justify-content-center justify-content-sm-between">
 <!--            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Premium <a href="" target="_blank">Bootstrap admin template</a> from BootstrapDash.</span>-->
-            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copyright © 2021. All rights reserved.</span>
-          </div>
-        </footer>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copyright © 2023. All rights reserved.</span>
+        </div>
+    </footer>
         <!-- partial -->
-      </div>
+</div>
 {% endblock %}

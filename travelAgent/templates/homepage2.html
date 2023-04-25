@@ -162,16 +162,23 @@
                     </a>
                 {% endfor %}
 
+                <div class="col-md-12 promation-grid" style="background: rgb(232,241,255); border-radius: 5px; padding: 1rem; display: flex; justify-content: center; align-items: center;">
+                    <div style="text-align: center;">
+                        <h3 style="margin-top: 0.5rem">No desired package?</h3>
+                        <p style="padding-top: 0; margin-bottom: 1rem">Customise your own travel plan using the destinations and accommodations we have provided.</p>
+                        <a href="{{ url_for('planning_tool.planning') }}" style="position: relative">
+                            <button type="button" class="btn btn-default" style="background-color: #062f3c; color: white;">Create Your Own Trip</button>
+                        </a>
+                    </div>
+                </div>
+
                 <div class="clearfix"></div>
             </div>
         </div>
     </div>
 
 
-    <a href="{{ url_for("planning_tool.planning") }}">
-        <button type="button" class="btn btn-default" style="background-color: #062f3c; color: white;">Create Your Own Trip
-        </button>
-    </a>
+
 
 
     <div class="promotions">

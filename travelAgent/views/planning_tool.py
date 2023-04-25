@@ -122,6 +122,9 @@ def submit_plan():
     return redirect(url_for("planning_tool.planning"))
 
 
+@planning_tool_blueprint.route('/planning/buy', methods=['GET', 'POST'])
+def buy():
+    return 0
 
 
 

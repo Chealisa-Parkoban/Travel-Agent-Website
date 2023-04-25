@@ -133,3 +133,10 @@ with app.app_context():
     db.session.add_all([comment1, comment2])
     db.session.commit()
 
+
+    # ---------------------------order--------------------------------#
+    order1 = RecordC(user_id=3, combination_id=1, time="2023-02-13 10:00:33", start_time="2023-07-13", num=2, name="Selina", tel=11010801234, price=3350, status="待完成", status2="未评论")
+    order2 = RecordC(user_id=4, combination_id=2, time="2023-03-19 05:18:58", start_time="2023-05-20", num=2, name="Allen", tel=18910191225, price=5250, status="待完成", status2="未评论")
+    db.session.add_all([order1, order2])
+    db.session.commit()
+
