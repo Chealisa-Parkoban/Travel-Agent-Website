@@ -97,7 +97,7 @@
                             </p>
                             {#                            <a href="./article.html" class="btn btn-info">Book Now!</a>#}
 
-                            <a href="{{ url_for('booking.addBooking', combination_id=combination_id) }} "
+                            <a href="{{ url_for('booking.addTargetBooking', target_id=target_id) }} "
                                style="text-decoration: none">
                                 <button class="btn btn-primary" style="border-color: transparent">
                                     <i class="fas fa-shopping-cart"></i>
@@ -105,7 +105,7 @@
                                 </button>
                             </a>
 
-                            <a href="{{ url_for('favorite.addFavorite', combination_id=combination_id) }}"
+                            <a href="{{ url_for('favorite.addTargetFavorite', target_id=target_id) }}"
                                style="text-decoration: none">
                                 <button class="btn btn-outline-primary ml-4 favourite">
                                     <i class="fas fa-star"></i>
@@ -351,7 +351,7 @@
             <div class="row justify-content-between">
                 <div class="col-md-12">
                     {#                        <!--                        <form action="{{ url_for('travel_routes_detail') }}" method="post" novalidate-->#}
-                    <form action="{{ url_for("details.showSetDetails" ) }}" method="post" novalidat
+                    <form action="{{ url_for("targets.showAttraction" ) }}" method="post" novalidat
                           class="form-primary"
                           enctype="multipart/form-data">
                         {{ comment_form.csrf_token }}

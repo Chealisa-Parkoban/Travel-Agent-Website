@@ -356,6 +356,7 @@ class Comment(db.Model):
     # id is the primary key and it increments automatically
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
     user_id = db.Column(db.INTEGER, db.ForeignKey('user.id'))
+    username = db.Column(db.String(120))
     target_id = db.Column(db.INTEGER, db.ForeignKey('target.id'))
     # score: 0-5
     score = db.Column(db.INTEGER, nullable=False)

@@ -33,6 +33,7 @@ def showAttraction():
     # receive id from front end
     set_id = session.get("set_id")
     print(set_id)
+    target_id = set_id
 
     set = db.session.query(Target).filter(Target.id == set_id).first()
 
@@ -67,14 +68,14 @@ def showAttraction():
                     check = False
                     break
             if check:
-                comment = Comment(user_id=current_user.id, username=current_user.get_username(), target_id=set_id,
+                comment = Comment(user_id=current_user.id, username=current_user.get_username(), target_id=target_id,
                                   score=comment_form.score.data, content=comment_form.comment.data, image=path,
                                   time=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
                 db.session.add(comment)
 
         return render_template("attractionDetail.html", current_user=current_user, comment_form=comment_form,
                                comments=db.session.query(Comment).filter(Comment.target_id == set_id).all(), set=set,
-                               target_id=set_id,
+                               target_id=target_id,
                                )
 
     # if request.method == 'GET':
@@ -82,4 +83,4 @@ def showAttraction():
     comments = db.session.query(Comment).filter(Comment.target_id == set_id).all()
 
     return render_template("attractionDetail.html", comments=comments, comment_form=comment_form,
-                           set=set, target_id=set_id)
+                           set=set, target_id=target_id)

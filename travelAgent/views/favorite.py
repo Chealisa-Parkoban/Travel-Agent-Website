@@ -13,7 +13,7 @@ def showAll():
     if not current_user.is_authenticated:
         return redirect(url_for("account.login"))
     Fc = FavoriteC.query.filter(FavoriteC.user_id == current_user.id).all()
-    Ft = Favorite.query.filter(FavoriteC.user_id == current_user.id).all()
+    Ft = Favorite.query.filter(Favorite.user_id == current_user.id).all()
     Lc = []
     Lt = []
     La = []
@@ -48,13 +48,15 @@ def showAll():
         if traffic is not None:
             Ltr.append(traffic)
 
-    print(Lc, Lt, La, Lh, Ltr)
+    # print(Lc, Lt, La, Lh, Ltr)
     return render_template("favourites.html", Combinations=Lc, Targets=Lt, Attractions=La, Accommodations=Lh,
                            Traffics=Ltr)
 
 
 @favorite_blueprint.route('/favourites/<combination_id>')
 def addFavorite(combination_id):
+    print("不知道为什么到组合")
+
     if not current_user.is_authenticated:
         return redirect(url_for("account.login"))
     check = FavoriteC.query.filter(FavoriteC.user_id == current_user.id,
@@ -67,7 +69,7 @@ def addFavorite(combination_id):
         db.session.commit()
 
     Fc = FavoriteC.query.filter(FavoriteC.user_id == current_user.id).all()
-    Ft = Favorite.query.filter(FavoriteC.user_id == current_user.id).all()
+    Ft = Favorite.query.filter(Favorite.user_id == current_user.id).all()
     Lc = []
     Lt = []
     La = []
@@ -102,12 +104,12 @@ def addFavorite(combination_id):
         if traffic is not None:
             Ltr.append(traffic)
 
-    print(Lc, Lt, La, Lh, Ltr)
+    # print(Lc, Lt, La, Lh, Ltr)
 
     return redirect(url_for("favorite.showAll"))
 
 
-@favorite_blueprint.route('/favourites/<target_id>')
+@favorite_blueprint.route('/favorites/<target_id>')
 def addTargetFavorite(target_id):
     if not current_user.is_authenticated:
         return redirect(url_for("account.login"))
@@ -115,13 +117,14 @@ def addTargetFavorite(target_id):
                                    Favorite.target_id == target_id).scalar() is None
     check2 = Target.query.filter(Target.id == target_id).scalar is not None
     if check and check2:
-        f = FavoriteC(user_id=current_user.id, target_id=target_id,
+        f = Favorite(user_id=current_user.id, target_id=target_id,
                       time=str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
+        print(f)
         db.session.add(f)
         db.session.commit()
 
     Fc = FavoriteC.query.filter(FavoriteC.user_id == current_user.id).all()
-    Ft = Favorite.query.filter(FavoriteC.user_id == current_user.id).all()
+    Ft = Favorite.query.filter(Favorite.user_id == current_user.id).all()
     Lc = []
     Lt = []
     La = []
@@ -156,6 +159,6 @@ def addTargetFavorite(target_id):
         if traffic is not None:
             Ltr.append(traffic)
 
-    print(Lc, Lt, La, Lh, Ltr)
+    # print(Lc, Lt, La, Lh, Ltr)
 
     return redirect(url_for("favorite.showAll"))
