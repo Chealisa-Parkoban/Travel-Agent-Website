@@ -427,6 +427,7 @@ def delete_attraction():
     db.session.delete(attraction)
     db.session.commit()
     return redirect(url_for("staff_site.attractions", message="Delete successfully!"))
+    # return redirect(url_for("staff_site.attractions", message="Delete successfully!"))
 
 
 @staff_blueprint.route('/staff/contents/accommodations/delete', methods=['GET', 'POST'])
