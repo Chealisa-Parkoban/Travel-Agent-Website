@@ -23,7 +23,8 @@ import travelAgent
 from travelAgent import db
 from travelAgent import app
 from travelAgent.forms import CommentForm, ImageForm
-from travelAgent.models import CommentC, Comment, Combination, Destination, Day, Target, User, RecordC, UserCombination
+from travelAgent.models import CommentC, Comment, Combination, Destination, Day, Target, User, RecordC, UserCombination, \
+    Record
 from travelAgent.models import CommentC, Comment, Combination, Destination, Day, Target, User, RecordC, ContactModel
 from flask_mail import Message
 
@@ -96,13 +97,67 @@ def contact_us():
     return render_template("contact.html")
 
 
+def popular(sets, records, id_type):
+    dic = {}
+    # default: every combination in db has a value 1
+    for s in sets:
+        dic[s.id] = 1
+
+    # print("basic-----------------")
+    # print(dic)
+
+    # increase value according to the record table
+    # id_type = 0 :combination /
+    # 1:target
+    if id_type == 0:
+        for r in records:
+            temp = dic[r.combination_id]
+            dic[r.combination_id] = temp + 1
+    else:
+        for r in records:
+            temp = dic[r.target_id]
+            dic[r.target_id] = temp + 1
+    # print("update-----------------")
+    # print(dic)
+
+    e = sorted(dic.items(), key=lambda item: item[1], reverse=True)
+    print(e)
+    # e1: sorted keys i.e. combination id
+    e1 = []
+    for i in e:
+        e1.append(i[0])
+    # print("id sorted---------------")
+    # print(e1)
+
+    real_sets = []
+    if id_type == 0:
+        for c_id in e1:
+            element = Combination.query.filter(Combination.id == c_id).first()
+            real_sets.append(element)
+    else:
+        for t_id in e1:
+            element = Target.query.filter(Target.id == t_id).first()
+            real_sets.append(element)
+    # print("final sets-------------------")
+    # print(Sets)
+    return real_sets
+
+
+
 @app.route('/homepage', methods=['GET', 'POST'])
 def homepage():
     logger.info('Entered the HOME page')
     changeBookingStatus()
-    Sets = Combination.query.all()
+    sets1 = Combination.query.all()
     attractions = Target.query.filter(Target.type == '0').all()
-    attractions = attractions[::-1]
+    records_c = RecordC.query.all()
+    records_t = Record.query.all()
+
+    Sets = popular(sets1,records_c,0)
+
+    # attractions = attractions[::-1]
+
+    attractions = popular(attractions,records_t,1)
     hotels = Target.query.filter(Target.type == '1').all()
     print("homepage2")
     return render_template("homepage2.html", Sets=Sets, attractions=attractions, hotels=hotels)
