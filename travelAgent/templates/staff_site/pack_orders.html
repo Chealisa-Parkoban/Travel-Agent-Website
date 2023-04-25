@@ -1,0 +1,83 @@
+{% extends "staff_site/base.html" %}
+      {% block body %}
+<script>
+    var message = {{message|tojson()}};
+    if (message !== ""){
+        alert(message);
+    }
+</script>
+      <!-- partial -->
+      <div class="main-panel">
+          <div class="content-wrapper">
+              <div class="row">
+                  <div class="col-lg-6 grid-margin stretch-card" style="width: 100%">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Travel Package Orders</h4>
+                  <p class="card-description">
+                    All Travel Package Orders in <code>Digital Beans</code>
+                  </p>
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Package ID</th>
+                            <th>Number of People</th>
+                            <th>Price</th>
+                            <th>Tel</th>
+                            <th>Order Time</th>
+                            <th>Start Date</th>
+                            <th>Completion Status</th>
+                            <th>Comment Status</th>
+                            <th>Cancel Order</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                      {% for record in records %}
+                        <tr>
+                            <td>{{record.name}}</td>
+                            <td>{{record.combination_id}}</td>
+                            <td>{{record.num}}</td>
+                            <td><label class="badge badge-danger">¥ {{record.price}}</label></td>
+                            <td>{{record.tel}}</td>
+                            <td>{{record.time}}</td>
+                            <td>{{record.start_time}}</td>
+                            <td>{{record.status}}</td>
+                            <td>{{record.status2}}</td>
+                            <td><input type="submit" class="btn btn-success" style="width: fit-content" value="Cancel Order" onclick="cancel_order({{record.id}})" /></td>
+                            <script>
+                                function cancel_order (id){
+                                  $.get({
+                                    url: '/staff/pack_orders/store_order_id',
+                                    type: 'GET',
+                                    data: ({id : id}),
+                                    success: function (data) {
+                                        window.location.href = '/staff/pack_order/delete';
+                                    }
+                                  })
+                                }
+                            </script></tr>
+                      {% endfor %}
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+              </div>
+          </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:../../partials/_footer.html -->
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+<!--            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Premium <a href="" target="_blank">Bootstrap admin template</a> from BootstrapDash.</span>-->
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copyright © 2021. All rights reserved.</span>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+      {% endblock %}

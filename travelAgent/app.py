@@ -278,6 +278,20 @@ def delete_traffic():
     return '0'
 
 
+@app.route('/staff/pack_orders/store_order_id', methods=['GET', 'POST'])
+def cancel_pack_orders():
+    pack_order_id = request.args.get("id")
+    session['pack_order_id'] = pack_order_id
+    return '0'
+
+
+@app.route('/staff/other_orders/store_order_id', methods=['GET', 'POST'])
+def cancel_other_orders():
+    other_order_id = request.args.get("id")
+    session['other_order_id'] = other_order_id
+    return '0'
+
+
 def translate(q):
     # 百度appid和密钥需要通过注册百度【翻译开放平台】账号后获得
     appid = '20230228001579285'  # 填写你的appid

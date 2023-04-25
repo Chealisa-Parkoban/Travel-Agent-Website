@@ -6,7 +6,7 @@ from flask_login import LoginManager, login_user, current_user, logout_user
 from travelAgent import app, db
 # from travelAgent.app import changeBookingStatus
 from travelAgent.forms import LoginForm, DayTripForm, PlanForm, DestinationForm, TargetForm
-from travelAgent.models import User, Destination, Target, Day, Combination
+from travelAgent.models import User, Destination, Target, Day, Combination, RecordC, Record
 from travelAgent.views.login_handler import login_manager
 
 from travelAgent.config import basedir
@@ -414,7 +414,7 @@ def delete_destination():
     destination = Destination.query.filter_by(id=des_id).first()
     db.session.delete(destination)
     db.session.commit()
-    return redirect(url_for("staff_site.destinations"))
+    return redirect(url_for("staff_site.destinations", message="Delete successfully!"))
 
 
 @staff_blueprint.route('/staff/contents/attractions/delete', methods=['GET', 'POST'])
@@ -426,7 +426,7 @@ def delete_attraction():
     attraction = Target.query.filter_by(id=attr_id).first()
     db.session.delete(attraction)
     db.session.commit()
-    return redirect(url_for("staff_site.attractions"))
+    return redirect(url_for("staff_site.attractions", message="Delete successfully!"))
 
 
 @staff_blueprint.route('/staff/contents/accommodations/delete', methods=['GET', 'POST'])
@@ -438,7 +438,7 @@ def delete_accommodation():
     accommodation = Target.query.filter_by(id=acc_id).first()
     db.session.delete(accommodation)
     db.session.commit()
-    return redirect(url_for("staff_site.accommodations"))
+    return redirect(url_for("staff_site.accommodations", message="Delete successfully!"))
 
 
 @staff_blueprint.route('/staff/contents/traffics/delete', methods=['GET', 'POST'])
@@ -449,7 +449,7 @@ def delete_traffic():
     traffic = Target.query.filter_by(id=traffic_id).first()
     db.session.delete(traffic)
     db.session.commit()
-    return redirect(url_for("staff_site.traffics"))
+    return redirect(url_for("staff_site.traffics", message="Delete successfully!"))
 
 
 @login_manager.user_loader
@@ -500,3 +500,42 @@ def update_profile():
     u.address = address
     db.session.commit()
     return redirect(url_for('profile'))
+
+
+@staff_blueprint.route('/staff/pack_orders', methods=['GET', 'POST'])
+def pack_orders():
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    records = RecordC.query.all()
+    return render_template('./staff_site/pack_orders.html', records=records, user=current_user, message="")
+
+
+@staff_blueprint.route('/staff/other_orders', methods=['GET', 'POST'])
+def other_orders():
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    records = Record.query.all()
+    return render_template('./staff_site/pack_orders.html', records=records, user=current_user, message="")
+
+
+@staff_blueprint.route('/staff/pack_order/delete', methods=['GET', 'POST'])
+def delete_pack_order():
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    pack_order_id = int(session.get('pack_order_id'))
+    pack_order = RecordC.query.filter_by(id=pack_order_id).first()
+    db.session.delete(pack_order)
+    db.session.commit()
+    return redirect(url_for("staff_site.pack_orders", message="Delete successfully!"))
+
+
+@staff_blueprint.route('/staff/other_order/delete', methods=['GET', 'POST'])
+def delete_other_order():
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    other_order_id = int(session.get('other_order_id'))
+    other_order = Record.query.filter_by(id=other_order_id).first()
+    db.session.delete(other_order)
+    db.session.commit()
+    return redirect(url_for("staff_site.other_orders", message="Delete successfully!"))
+
