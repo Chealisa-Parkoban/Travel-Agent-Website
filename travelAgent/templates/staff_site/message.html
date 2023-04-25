@@ -25,13 +25,13 @@
                       </thead>
 
                       <tbody>
-                      {% for message in messages %}
+                      {% for i in range(0,names|length) %}
                         <tr>
-                            <td>{{message.name}}</td>
-                            <td>{{message.email}}</td>
-                            <td>{{message.message}}</td>
-                            <td>{{message.create_time}}</td>
-                            <td><a class="btn btn-success" style="width: fit-content"  href="{{ url_for('staff_site.check_message_details',message_id=message.id) }} "> CHECK</a></td>
+                            <td>{{names[i]}}</td>
+                            <td>{{emails[i]}}</td>
+                            <td>{{contents[i]}}</td>
+                            <td>{{times[i]}}</td>
+                            <td><a class="btn btn-success" style="width: fit-content"  href="{{ url_for('staff_site.check_message_details',message_id=ids[i]) }} "> CHECK</a></td>
                         </tr>
                       {% endfor %}
 

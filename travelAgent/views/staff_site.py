@@ -545,7 +545,29 @@ def check_message():
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
     messages = db.session.query(ContactModel).all()
-    return render_template('./staff_site/message.html', messages=messages, user=current_user)
+    contents = []
+    names = []
+    emails = []
+    times = []
+    ids = []
+    for message in messages:
+        c = message.message
+        co = c[:9]
+        if len(c) <= 10:
+            content = c
+        else:
+            content = co + "......"
+        contents.append(content)
+        name = message.name
+        names.append(name)
+        email = message.email
+        emails.append(email)
+        time = message.create_time
+        times.append(time)
+        id = message.id
+        ids.append(id)
+    return render_template('./staff_site/message.html', user=current_user, contents=contents,
+                           names=names, emails=emails, times=times, ids=ids)
 
 @staff_blueprint.route('/check_message_details/<message_id>', methods=['GET', 'POST'])
 def check_message_details(message_id):
