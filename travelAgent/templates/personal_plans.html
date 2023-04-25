@@ -30,19 +30,22 @@
                           <td>{{plan.intro}}</td>
                           <td>{{plan.length}}</td>
                           <td>{{plan.price}}</td>
-                          <td><input type="submit" class="btn btn-success" style="width: fit-content" value="Buy Now" onclick="delete_des({{plan.id}})" /></td>
+                          <td><input type="button" class="btn btn-success" style="width: fit-content" value="View" onclick="viewPlan({{plan.id}})" /></td>
+                          <td><input type="submit" class="btn btn-success" style="width: fit-content" value="Buy Now" onclick="viewPlan({{plan.id}})" /></td>
                             <script>
-                                function delete_des (id){
+                                // let plan_id = {{ plan.id }};
+                                // console.log(plan_id);
+                                function viewPlan(plan_id){
                                   $.get({
-                                    url: '',
+                                    url: '/planning/store_plan_id',
                                     type: 'GET',
-                                    data: ({id : id}),
+                                    data: ({plan_id : plan_id}),
                                     success: function (data) {
-                                        window.location.href = '';
+                                        window.location.href = '/planning/view_plan';
                                     }
                                   })
                                 }
-                            </script>
+                              </script>
                         </tr>
                       {% endfor %}
                       </tbody>
