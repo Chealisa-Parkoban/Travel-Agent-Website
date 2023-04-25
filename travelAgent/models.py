@@ -398,7 +398,7 @@ class Reply(db.Model):
 class ContactModel(db.Model):
     __tablename__ = "contact_us"
     __table_args__ = {'extend_existing': True}
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
     email = db.Column(db.String(100), nullable=False)
     name = db.Column(db.String(100))
     message = db.Column(db.String(500))

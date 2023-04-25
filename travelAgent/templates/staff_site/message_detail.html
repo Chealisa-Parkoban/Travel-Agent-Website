@@ -1,0 +1,53 @@
+{% extends "staff_site/base.html" %}
+      {% block body %}
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <h3 style="margin: 0 0 2% 2%">Check Message Details</h3>
+
+
+          <div class="row" id="row">
+            <div class="col-md-6 grid-margin stretch-card" >
+              <div class="card" style="margin-left: 50%;">
+                <div class="card-body" style="margin: 0 3% 0 3%;">
+<!--                  <h4 class="card-title"></h4>-->
+                  <p class="card-description" style="font-size: xx-large;margin-bottom: 2%">
+                    Message By {{message.name}}
+                  </p>
+                  <form class="forms-sample" style="margin-top: 5%">
+                    <div class="form-group">
+                      <label for="Email" style="font-size: x-large">Email</label>
+                      <h4 style="color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%">{{message.email}}</h4>
+                    </div>
+                    <div class="form-group">
+                      <label for="Content" style="font-size: x-large">Content</label>
+                      <h4 style="color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%">{{message.message}}</h4>
+                    </div>
+                    <div class="form-group">
+                      <label for="Time" style="font-size: x-large">Time</label>
+                      <h4 style="color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%">{{message.create_time}}</h4>
+                    </div>
+                  </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:../../partials/_footer.html -->
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copyright © 2021. All rights reserved.</span>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+      {% endblock %}

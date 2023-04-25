@@ -6,7 +6,7 @@ from flask_login import LoginManager, login_user, current_user, logout_user
 from travelAgent import app, db
 # from travelAgent.app import changeBookingStatus
 from travelAgent.forms import LoginForm, DayTripForm, PlanForm, DestinationForm, TargetForm
-from travelAgent.models import User, Destination, Target, Day, Combination, RecordC, Record
+from travelAgent.models import User, Destination, Target, Day, Combination, RecordC, Record, ContactModel
 from travelAgent.views.login_handler import login_manager
 
 from travelAgent.config import basedir
@@ -539,4 +539,16 @@ def delete_other_order():
     db.session.delete(other_order)
     db.session.commit()
     return redirect(url_for("staff_site.other_orders", message="Delete successfully!"))
+
+@staff_blueprint.route('/check_message', methods=['GET', 'POST'])
+def check_message():
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    messages = db.session.query(ContactModel).all()
+    return render_template('./staff_site/message.html', messages=messages, user=current_user)
+
+@staff_blueprint.route('/check_message_details/<message_id>', methods=['GET', 'POST'])
+def check_message_details(message_id):
+    message = db.session.query(ContactModel).filter_by(id=message_id).first()
+    return render_template('./staff_site/message_detail.html', message=message, user=current_user)
 
