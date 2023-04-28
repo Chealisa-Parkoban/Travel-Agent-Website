@@ -597,9 +597,9 @@ def data():
     traffics = []
     for day in days:
         start_time = day.start_time
+        # start_t = datetime.strptime(start_time, '%Y-%m-%d')
         start_date = datetime.strptime(start_time, '%Y-%m-%d')
-        # print(type(date))
-        dates.append(start_date)
+        dates.append(start_time)
         combination_id = day.combination_id
         combination = db.session.query(Combination).filter_by(id=combination_id).first()
         day_id = combination.day1
@@ -622,10 +622,12 @@ def data():
         traffics.append(traffic)
 
         length = combination.length
+
         for i in range(0, length - 1):
             length_timedelta = timedelta(days=1)
             following_time = start_date + length_timedelta
-            dates.append(following_time)
+            following_time_string = following_time.strftime('%Y-%m-%d')
+            dates.append(following_time_string)
             start_date = following_time
             # time listtttttttt
             a = i + 1
@@ -649,13 +651,15 @@ def data():
             traffic_id = day.traffic_id
             traffic = db.session.query(Target).filter_by(id=traffic_id).first()
             traffics.append(traffic)
+    print("dates")
+    print(dates)
     return jsonify(dates)
 
-
+# testInfo = []
 # @app.route("/data", methods=['GET', 'POST'])
 # def data():
-#     testInfo['name'] = 'xiaoming'
-#     testInfo['age'] = '28'
+#     # testInfo['name'] = 'xiaoming'
+#     # testInfo['age'] = '28'
 #     # 使用datetime写2023年4月30日
 #     date1 = datetime(2023, 5, 10, 0, 0, 0).strftime('%Y-%m-%d')
 #     date2 = datetime(2023, 5, 11, 0, 0, 0).strftime('%Y-%m-%d')

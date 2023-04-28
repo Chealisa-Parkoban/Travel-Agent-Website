@@ -12,9 +12,15 @@ $.ajax({
             reservation.push(data[i])
             console.log(data[i])
         }
+        let d = new Date()
+        month = d.getMonth()
+        year = d.getFullYear()
+        generateCalendar(month,year)
+
 
     }
 });
+
 // for (let i=0; i < days.length; i++){
 //     console.log(days[i].getDate())
 // }
