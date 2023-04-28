@@ -18,7 +18,7 @@ import base64
 
 from datetime import datetime, timedelta
 # from aip import AipImageProcess
-
+# aip模块叫做baidu-aip，安装的时候pip install baidu-aip
 import travelAgent
 from travelAgent import db
 from travelAgent import app
@@ -507,6 +507,22 @@ def main():
 #         print(f"chatGPT: {response}")
 
 
+testInfo = {}
+@app.route("/calendar", methods=['GET', 'POST'])
+def calendar():
+    return render_template('calendar.html')
+
+@app.route("/data", methods=['GET', 'POST'])
+def data():
+    testInfo['name'] = 'xiaoming'
+    testInfo['age'] = '28'
+    # 使用datetime写2023年4月30日
+    date1 = datetime(2023, 5, 10, 0, 0, 0).strftime('%Y-%m-%d')
+    date2 = datetime(2023, 5, 11, 0, 0, 0).strftime('%Y-%m-%d')
+    date3 = datetime(2023, 5, 12, 0, 0, 0).strftime('%Y-%m-%d')
+    date4 = datetime(2023, 5, 13, 0, 0, 0).strftime('%Y-%m-%d')
+    date = [date1, date2, date3, date4]
+    return jsonify(date)
 
 if __name__ == '__main__':
     # showSetDetails(1)
