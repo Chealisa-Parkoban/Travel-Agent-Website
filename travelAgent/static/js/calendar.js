@@ -1,25 +1,95 @@
 let reservation = [];
+let destinations = [];
+let attractions = [];
+let accommodations = [];
+let traffics = [];
 
 $.ajax({
     url: "data",
     type: "POST",
     dataType: "json",
     success: function (data) {
-        for (let i = 0; i < data.length; i++) {
-            let ary = data[i].split('-')
+        // var data = JSON.parse(data)
+        var dates = data[0].date;
+        var destination = data[1].destination;
+        var attraction = data[2].attraction;
+        var accommodation = data[3].accommodation;
+        var traffic = data[4].traffic;
+
+        //time
+        for (let i = 0; i < dates.length; i++) {
+            let ary = dates[i].split('-')
             console.log(ary)
-            data[i] = new Date(ary[0], ary[1] - 1, ary[2])
-            reservation.push(data[i])
-            console.log(data[i])
+            dates[i] = new Date(ary[0], ary[1] - 1, ary[2])
+            reservation.push(dates[i])
+            // console.log(dates[i])
         }
+    //    detail
+        for (let i = 0; i < destination.length; i++) {
+            destinations.push(destination[i])
+            console.log(destination[i])
+        }
+        for (let i = 0; i < attraction.length; i++) {
+            attractions.push(attraction[i])
+            console.log(attraction[i])
+        }
+        for (let i = 0; i < accommodation.length; i++) {
+            accommodations.push(accommodation[i])
+            console.log(accommodation[i])
+        }
+        for (let i = 0; i < traffic.length; i++) {
+            traffics.push(traffic[i])
+            console.log(traffic[i])
+        }
+
         let d = new Date()
         month = d.getMonth()
         year = d.getFullYear()
         generateCalendar(month,year)
 
-
     }
 });
+
+//找出lst中所有索引的位置
+function indexAll(arr, ele){
+    var indexlist = []
+    for( var i = 0; i < arr.length; i++){
+        console.log("1" + typeof arr[i])
+        if(arr[i].getTime() === ele.getTime()){
+            indexlist.push(i);
+        }
+    }
+    return indexlist;
+}
+
+function checkDetail(d){
+    index_lst = indexAll(reservation, d)
+    if (index_lst.length > 0 ){
+        for(let i = 0; i < index_lst.length; i++){
+            index = index_lst[i]
+            destinaion = destinations[index] //已经是名字了
+            attraction = attractions[index]  //剩下的全是dictionary
+            accommodation = accommodations[index]
+            traffic = traffics[index]
+
+            var html = '<div class="detail_date">\n' +
+            '            Destination: <span class="destination_date">' + destinaion + ' </span> <br/>\n' +
+            '            Attraction: <span class="attraction_date">'  + attraction.name + '</span> <br/>\n' +
+            '                      introduction: <span class="attraction_date">'  + attraction.intro + '</span> <br/>\n' +
+            '            Accommodation: <span class="accommodation_date"> ' + accommodation.name + '</span> <br/>\n' +
+            '                      introduction: <span class="attraction_date">'  + accommodation.intro + '</span> <br/>\n' +
+            '            Traffic: <span class="traffic_date">' + traffic.name + '</span> <br/>\n' +
+            '                      introduction: <span class="attraction_date">'  + traffic.intro + '</span> <br/>\n' +
+            '        </div>'
+
+            $("#calendar_container").html(html);
+            // $("#calendar_container").append(html)
+        }
+    }
+    $("#calendar_container").html();
+
+}
+
 
 // for (let i=0; i < days.length; i++){
 //     console.log(days[i].getDate())
@@ -103,7 +173,7 @@ const generateCalendar = (month, year) => {
             day.innerHTML = i - first_day.getDay() + 1;
 
             if (i - first_day.getDay() + 1 === currentDate.getDate() && year === currentDate.getFullYear() &&
-                month === currentDate.getMonth()) {
+                month === currentDate.getMonth() ) {
                 console.log(currentDate);
                 day.classList.add('current-date');
 
@@ -129,12 +199,29 @@ const generateCalendar = (month, year) => {
                 }
 
             }
-
             calendar_days.appendChild(day);
+            day.onclick = (el) => {
+                let days = el.currentTarget.innerText
+                // console.log(days)
+                clicked_month = month + 1
+                // clicked_year = year
+
+
+                let date_new = year + "-" + clicked_month + "-" + days
+                // console.log(date_new)
+                let d = date_new.split('-')
+                dates_new = new Date(d[0], d[1] - 1, d[2])
+                console.log("dates_new type = " +  typeof dates_new)
+                checkDetail(dates_new)
+            }
         }
+
 
     }
     ;
+//end generateCalendar
+
+
 
     let month_list = calendar.querySelector('.month-list');
     month_names.forEach((e, index) => {
@@ -204,6 +291,8 @@ const generateCalendar = (month, year) => {
         )}: ${`${timer.getSeconds()}`.padStart(2, '0')}`;
         todayShowTime.textContent = formateTimer;
     }, 1000);
+
+
 
 
 

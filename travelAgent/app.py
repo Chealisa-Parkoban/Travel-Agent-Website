@@ -604,22 +604,49 @@ def data():
         combination = db.session.query(Combination).filter_by(id=combination_id).first()
         day_id = combination.day1
         day = db.session.query(Day).filter_by(id=day_id).first()
+
         # destinations
         destination_id = day.destination_id
-        destination = db.session.query(Target).filter_by(id=destination_id).first()
-        destinations.append(destination)
+        destination = db.session.query(Destination).filter_by(id=destination_id).first()
+        destinations.append(destination.name)
+
         # attraction
         attraction_id = day.attraction_id
         attraction = db.session.query(Target).filter_by(id=attraction_id).first()
-        attractions.append(attraction)
+        # attractions.append(attraction)
+        attraction_dict = {
+            "name": attraction.name,
+            "location": attraction.location,
+            "image": attraction.image,
+            "intro": attraction.intro,
+            "price": attraction.price
+        }
+        attractions.append(attraction_dict)
+
         # accommodation
         accommodation_id = day.accommodation_id
         accommodation = db.session.query(Target).filter_by(id=accommodation_id).first()
-        accommodations.append(accommodation)
+        # accommodations.append(accommodation)
+        accommodation_dict = {
+            "name": accommodation.name,
+            "location": accommodation.location,
+            "image": accommodation.image,
+            "intro": accommodation.intro,
+            "price": accommodation.price
+        }
+        accommodations.append(accommodation_dict)
+
         # traffics
         traffic_id = day.traffic_id
         traffic = db.session.query(Target).filter_by(id=traffic_id).first()
-        traffics.append(traffic)
+        traffic_dict = {
+            "name": traffic.name,
+            "location": traffic.location,
+            "image": traffic.image,
+            "intro": traffic.intro,
+            "price": traffic.price
+        }
+        traffics.append(traffic_dict)
 
         length = combination.length
 
@@ -637,23 +664,64 @@ def data():
 
             # destinations
             destination_id = day.destination_id
-            destination = db.session.query(Target).filter_by(id=destination_id).first()
-            destinations.append(destination)
+            destination = db.session.query(Destination).filter_by(id=destination_id).first()
+            destinations.append(destination.name)
             # attraction
             attraction_id = day.attraction_id
             attraction = db.session.query(Target).filter_by(id=attraction_id).first()
-            attractions.append(attraction)
+            # attractions.append(attraction)
+            attraction_dict = {
+                "name": attraction.name,
+                "location": attraction.location,
+                "image": attraction.image,
+                "intro": attraction.intro,
+                "price": attraction.price
+            }
+            attractions.append(attraction_dict)
+
             # accommodation
             accommodation_id = day.accommodation_id
             accommodation = db.session.query(Target).filter_by(id=accommodation_id).first()
-            accommodations.append(accommodation)
+            # accommodations.append(accommodation)
+            accommodation_dict = {
+                "name": accommodation.name,
+                "location": accommodation.location,
+                "image": accommodation.image,
+                "intro": accommodation.intro,
+                "price": accommodation.price
+            }
+            accommodations.append(accommodation_dict)
+
             # traffics
             traffic_id = day.traffic_id
             traffic = db.session.query(Target).filter_by(id=traffic_id).first()
-            traffics.append(traffic)
-    print("dates")
-    print(dates)
-    return jsonify(dates)
+            traffic_dict = {
+                "name": traffic.name,
+                "location": traffic.location,
+                "image": traffic.image,
+                "intro": traffic.intro,
+                "price": traffic.price
+            }
+            traffics.append(traffic_dict)
+
+    json_content = []
+    d = {"date":dates}
+    des = {"destination":destinations}
+    at = {"attraction":attractions}
+    ac = {"accommodation":accommodations}
+    t = {"traffic":traffics}
+
+    # 将其他字典添加到json_content列表中
+    json_content.append(d)
+    json_content.append(des)
+    json_content.append(at)
+    json_content.append(ac)
+    json_content.append(t)
+
+    print("json")
+    print(json_content)
+
+    return json_content
 
 # testInfo = []
 # @app.route("/data", methods=['GET', 'POST'])
