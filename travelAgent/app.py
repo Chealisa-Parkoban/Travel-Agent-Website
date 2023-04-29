@@ -721,7 +721,7 @@ def data():
     print("json")
     print(json_content)
 
-    return json_content
+    return jsonify(json_content)
 
 # testInfo = []
 # @app.route("/data", methods=['GET', 'POST'])

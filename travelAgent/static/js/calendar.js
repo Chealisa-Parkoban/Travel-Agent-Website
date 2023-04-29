@@ -72,14 +72,14 @@ function checkDetail(d){
             accommodation = accommodations[index]
             traffic = traffics[index]
 
-            var html = '<div class="detail_date">\n' +
-            '            Destination: <span class="destination_date">' + destinaion + ' </span> <br/>\n' +
-            '            Attraction: <span class="attraction_date">'  + attraction.name + '</span> <br/>\n' +
-            '                      introduction: <span class="attraction_date">'  + attraction.intro + '</span> <br/>\n' +
-            '            Accommodation: <span class="accommodation_date"> ' + accommodation.name + '</span> <br/>\n' +
-            '                      introduction: <span class="attraction_date">'  + accommodation.intro + '</span> <br/>\n' +
-            '            Traffic: <span class="traffic_date">' + traffic.name + '</span> <br/>\n' +
-            '                      introduction: <span class="attraction_date">'  + traffic.intro + '</span> <br/>\n' +
+            var html = '<div class="detail_date"  style="font-size: larger">\n' +
+            '            Destination: <kbd class="destination_date">' + destinaion + ' </kbd> <br/>\n' +
+            '            Attraction: <kbd class="attraction_date">'  + attraction.name + '</kbd> <br/>\n' +
+            '                      Introduction: <code class="attraction_date">'  + attraction.intro + '</code> <br/>\n' +
+            '            Accommodation: <kbd class="accommodation_date"> ' + accommodation.name + '</kbd> <br/>\n' +
+            '                      Introduction: <code class="attraction_date">'  + accommodation.intro + '</code> <br/>\n' +
+            '            Traffic: <kbd class="traffic_date">' + traffic.name + '</kbd> <br/>\n' +
+            '                      Introduction: <code class="attraction_date">'  + traffic.intro + '</code> <br/>\n' +
             '        </div>'
 
             $("#calendar_container").html(html);
