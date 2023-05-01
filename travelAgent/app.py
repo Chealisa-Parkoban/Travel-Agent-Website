@@ -121,6 +121,12 @@ def stays():
     stays = Target.query.filter(Target.type == '1').all()
     return render_template("stays.html", hotels=stays)
 
+@app.route('/traffics', methods=['GET', 'POST'])
+def traffics():
+    changeBookingStatus()
+    traffics = Target.query.filter(Target.type == '2').all()
+    return render_template("traffics.html", traffics=traffics)
+
 @app.route('/personal_plan', methods=['GET', 'POST'])
 def personal_plan():
     if current_user.is_authenticated:

@@ -218,6 +218,7 @@
             <span>Best Hotels Available</span>
             <div class="promotion-grids">
                 {% for hotel in hotels %}
+                    <a set_id={{ hotel.id }} onclick="setTargetID(this)">
                         <div class="col-md-4 promation-grid">
                             <!--{#                            <img src="../static/images/sample_pic/the_north_Europe.png" class="img-responsive" alt="" />#}-->
                             <img src="{{ hotel.image }}" class="img-responsive" alt=""
@@ -261,4 +262,3 @@
 <!-- Theme JS -->
 <script src="../static/js/theme.js"></script>
 </body>
-</html>

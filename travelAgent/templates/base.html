@@ -90,14 +90,38 @@
                     {#                <li class="nav-item">#}
                     {#                    <a class="nav-link" href="{{ url_for('homepage') }}">All Packages</a>#}
                     {#                </li>#}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('attractions') }}">Attractions</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('stays') }}">Stays</a>
-                    </li>
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link" href="{{ url_for('attractions') }}">Attractions</a>#}
+{#                    </li>#}
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link" href="{{ url_for('stays') }}">Stays</a>#}
+{#                    </li>#}
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link" href="{{ url_for('traffics') }}">Traffics</a>#}
+{#                    </li>#}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('personal_plan') }}">Personal Plan</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link nav-link-icon" href="#" id="navbar_1_dropdown_3" role="button"
+                           data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false"><i class="fas fa-star"></i>May Interests</a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="{{ url_for('attractions') }}">
+                                <span class="float-right badge badge-primary"></span>
+                                <i class="fa-solid fa-mountain-city" style="color: #5d8cfa;"></i>Attractions
+                            </a>
+                            <a class="dropdown-item" href="{{ url_for('stays') }}">
+                                <span class="float-right badge badge-primary"></span>
+{#                                <i class="fas fa-house text-primary"></i>Stays#}
+                                <i class="fa-solid fa-house" style="color: #5d8cfa;"></i>Stays
+                            </a>
+                            <a class="dropdown-item" href="{{ url_for('traffics') }}">
+                                <span class="float-right badge badge-primary"></span>
+                                <i class="fas fa-car text-primary"></i>Traffics
+                            </a>
+                        </div>
                     </li>
                     {#                <li class="nav-item">#}
                     {#                    <a class="nav-link" href="#">Traffics</a>#}

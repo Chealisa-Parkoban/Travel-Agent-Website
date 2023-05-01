@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}
-    Stays
+    Traffics
 {% endblock %}
 
 {% block head %}
@@ -19,18 +19,18 @@
     <script src="../static/js/ID.js"></script>
 
     <style>
-        .banner-header{
+        .banner-header {
             transform: translate(0, 0);
             margin: 0 0 5em;
             font-size: 1.15rem !important;
             margin-top: 35vh !important;
         }
 
-        .filter{
+        .filter {
             border-radius: 0.5em;
         }
 
-        .banner-grids{
+        .banner-grids {
             border-radius: 0.7em !important;
             background-color: rgba(6, 47, 60, 0.65) !important;
         }
@@ -42,7 +42,7 @@
             transform: translate(0, 15%);
         }
 
-        .input-group-text{
+        .input-group-text {
             background-color: transparent !important;
             border-color: transparent !important;
             color: white;
@@ -77,32 +77,34 @@
 
 {% block body %}
 
-{#    <span class="mask bg-primary alpha-7" style="opacity: 0.1; background-color: #FFFFFF"></span>#}
+    {#    <span class="mask bg-primary alpha-7" style="opacity: 0.1; background-color: #FFFFFF"></span>#}
+
     <div class="promotions" style="padding-top: 10%">
         <div class="container">
-            <h2 class="tittle">Stays</h2>
-            <span>Best Hotels Available</span>
+            <h2 class="tittle">Top Traffics</h2>
+            <span>Best Traffics Available</span>
             <div class="promotion-grids">
-                {% for hotel in hotels %}
-                    <a set_id={{ hotel.id }} onclick="setTargetID(this)">
-                        <div class="col-md-4 promation-grid">
-                            <!--{#                            <img src="../static/images/sample_pic/the_north_Europe.png" class="img-responsive" alt="" />#}-->
-                            <img src="{{ hotel.image }}" class="img-responsive" alt=""  style="width: 100% !important; height: auto !important;"
-                                 onerror="javascript:this.src='static/images/sample_pic/the_north_Europe.png/'"/>
-                            <div class="prom-text">
-                                <h4> {{ hotel.name }}</h4>
-                                <div class="prom-bottom">
-                                    <div class="prom-left">
-                                        <h5> {{ hotel.location }} </h5>
-                                    </div>
-                                    <div class="prom-right">
-                                        <h5> ¥ {{ hotel.price }} </h5>
-                                    </div>
-                                    <div class="clearfix"></div>
+                {% for traffic in traffics %}
+                    <a set_id={{ traffic.id }} onclick="setTargetID(this)">
+                    <div class="col-md-4 promation-grid">
+                        <!--{#                            <img src="../static/images/sample_pic/the_north_Europe.png" class="img-responsive" alt="" />#}-->
+                        <img src="{{ traffic.image }}" class="img-responsive" alt=""
+                             style="width: 100% !important; height: auto !important;"
+                             onerror="javascript:this.src='static/images/sample_pic/the_north_Europe.png/'"/>
+                        <div class="prom-text">
+                            <h4> {{ traffic.name }}</h4>
+                            <div class="prom-bottom">
+                                <div class="prom-left">
+                                    <h5> {{ traffic.location }} </h5>
                                 </div>
-                                <p class="intro">{{ hotel.intro }}</p>
+                                <div class="prom-right">
+                                    <h5> ¥ {{ traffic.price }} </h5>
+                                </div>
+                                <div class="clearfix"></div>
                             </div>
+                            <p class="intro">{{ traffic.intro }}</p>
                         </div>
+                    </div>
                 {% endfor %}
                 <div class="clearfix"></div>
             </div>
