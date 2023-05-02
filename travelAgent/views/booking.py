@@ -43,7 +43,7 @@ def addBooking(combination_id):
             return render_template('book.html', combination_id=combination_id, combination=combination)
 
 
-@booking_blueprint.route('/booking/<target_id>', methods=['GET', 'POST'])
+@booking_blueprint.route('/booking_another/<target_id>', methods=['GET', 'POST'])
 def addTargetBooking(target_id):
     if not current_user.is_authenticated:
         return redirect(url_for("account.login"))
@@ -52,7 +52,7 @@ def addTargetBooking(target_id):
     if request.method == 'GET':
         # bookings = RecordC.query.all()
         # print("Ssdssssssssssss")
-        return render_template('book.html', form=form, target_id=target_id, target=target)
+        return render_template('book_target.html', form=form, target_id=target_id, target=target)
     else:
 
         if form.validate_on_submit():
@@ -68,7 +68,7 @@ def addTargetBooking(target_id):
             db.session.commit()
             return redirect("/order_list")
         else:
-            return render_template('book.html', target_id=target_id, target=target)
+            return render_template('book_target.html', target_id=target_id, target=target)
 
 @booking_blueprint.route('/deleteBooking/<booking_id>', methods=['GET', 'POST'])
 def deleteBooking(booking_id):
