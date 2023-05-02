@@ -1,0 +1,115 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Title</title>#}
+{#</head>#}
+{#<body>#}
+{##}
+{#</body>#}
+{#</html>#}
+{% extends "base.html" %}
+{% block head %}
+    {% block title %}
+        <title>Your Calendar</title>
+    {% endblock %}
+    <link rel="stylesheet" href="../static/css/calendar.css">
+    <script src="../static/js/calendar.js" defer></script>
+    <script src="../static/vendor/jquery/jquery.min.js"></script>
+{% endblock %}
+{% block body %}
+
+    {#  <head>#}
+    {#    <meta charset="UTF-8" />#}
+    {#    <meta http-equiv="X-UA-Compatible" content="IE=edge" />#}
+    {#    <meta name="viewport" content="width=device-width, initial-scale=1.0" />#}
+    {#    <title>CALENDAR</title>#}
+    {##}
+    {#  </head>#}
+    <body>
+    <div class="row" style="margin-top: 3%">
+        <div class="container">
+            <div class="col">
+                <div class="calendar">
+                    <div class="calendar-header">
+                        <span class="month-picker" id="month-picker"> May </span>
+                        <div class="year-picker" id="year-picker">
+            <span class="year-change" id="pre-year">
+              <pre><</pre>
+            </span>
+                            <span id="year">2020 </span>
+                            <span class="year-change" id="next-year">
+              <pre>></pre>
+            </span>
+                        </div>
+                    </div>
+
+                    <div class="calendar-body">
+                        <div class="calendar-week-days">
+                            <div>Sun</div>
+                            <div>Mon</div>
+                            <div>Tue</div>
+                            <div>Wed</div>
+                            <div>Thu</div>
+                            <div>Fri</div>
+                            <div>Sat</div>
+                        </div>
+                        <div class="calendar-days">
+                        </div>
+                    </div>
+                    <div class="calendar-footer">
+                    </div>
+                    <div class="date-time-formate">
+                        <div class="day-text-formate">TODAY</div>
+                        <div class="date-time-value">
+                            <div class="time-formate">02:51:20</div>
+                            <div class="date-formate">23 - july - 2022</div>
+                        </div>
+                    </div>
+                    <div class="month-list"></div>
+                </div>
+            </div>
+            <div class="col">
+                {#                <div class="test" id="calendar_container" style="margin-top: 10%; margin-left:5%;#}
+                {#        background-color: rgba(85,117,101,0.94); color: whitesmoke; box-shadow: 0 0 5px 1px #1a3444;">#}
+                {#                </div>#}
+                <div class="col" style="margin-right: 20px">
+                    <div class="booking-cta">
+                        <h1>Your trip today</h1>
+                        <div class="card shadow-lg" style="opacity: 0.5; background-color: #574ecb">
+                            <div class="card-body" id="calendar_container" style="color: white">
+
+                                {#                                <h5 class="card-title" style="color: white">{{ combination.name }}</h5>#}
+                                {#                                <h6 class="card-subtitle mb-2 text-muted">￥ {{ combination.price }}</h6>#}
+                                {#                                <p class="card-text">{{ combination.intro }}</p>#}
+                                <!--                                <a href="#" class="card-link">Card link</a>-->
+                                <!--                                <a href="#" class="card-link">Another link</a>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col" style="margin-right: 20px; margin-top: 3%">
+                    <div class="booking-cta">
+{#                        <h1>Your trip today</h1>#}
+                        <div class="card shadow-lg" style="opacity: 0.3; background-color: #060423">
+                            <div class="card-body" id="calendar_container" style="color: white">
+                                <div><span style="display: inline-block; width: 10px; height: 10px;vertical-align: middle; background: #9796f0; border-radius: 20%;margin-right: 5%"></span>Today</div>
+                                <div><span style="display: inline-block; width: 10px; height: 10px;vertical-align: middle; background: #cc96f0; border-radius: 20%;margin-right: 5%"></span>Your trip day</div>
+                                {#                                <h5 class="card-title" style="color: white">{{ combination.name }}</h5>#}
+                                {#                                <h6 class="card-subtitle mb-2 text-muted">￥ {{ combination.price }}</h6>#}
+                                {#                                <p class="card-text">{{ combination.intro }}</p>#}
+                                <!--                                <a href="#" class="card-link">Card link</a>-->
+                                <!--                                <a href="#" class="card-link">Another link</a>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+    </body>
+{% endblock %}

@@ -18,7 +18,7 @@ import base64
 
 from datetime import datetime, timedelta
 # from aip import AipImageProcess
-
+# aip模块叫做baidu-aip，安装的时候pip install baidu-aip
 import travelAgent
 from travelAgent import db
 from travelAgent import app
@@ -175,6 +175,12 @@ def stays():
     changeBookingStatus()
     stays = Target.query.filter(Target.type == '1').all()
     return render_template("stays.html", hotels=stays)
+
+@app.route('/traffics', methods=['GET', 'POST'])
+def traffics():
+    changeBookingStatus()
+    traffics = Target.query.filter(Target.type == '2').all()
+    return render_template("traffics.html", traffics=traffics)
 
 @app.route('/personal_plan', methods=['GET', 'POST'])
 def personal_plan():
@@ -345,6 +351,14 @@ def cancel_other_orders():
     other_order_id = request.args.get("id")
     session['other_order_id'] = other_order_id
     return '0'
+
+# 查看order details
+# @app.route('/check_booking_details/<booking_id>', methods=['GET', 'POST'])
+# def check_booking_details(booking_id):
+#     booking = db.session.query(RecordC).filter(RecordC.id == booking_id).first()
+#     combination_id = booking.combination_id
+#     combination = db.session.query(Combination).filter(Combination.id == combination_id).first()
+#     return render_template("",booking=booking, combination=combination)
 
 
 def translate(q):
@@ -554,6 +568,234 @@ def main():
 #         print(f"chatGPT: {response}")
 
 
+# testInfo = {}
+# @app.route("/calendar", methods=['GET', 'POST'])
+# def calendar():
+#     if not current_user.is_authenticated:
+#         return redirect(url_for('account.login'))
+#     user_id = current_user.id
+#     days = db.session.query(RecordC).filter_by(user_id=user_id)
+#     dates = []
+#     destinations = []
+#     attractions = []
+#     accommodations = []
+#     traffics = []
+#     for day in days:
+#         start_time = day.start_time
+#         start_date = datetime.strptime(start_time, '%Y-%m-%d')
+#         # print(type(date))
+#         dates.append(start_date)
+#         combination_id = day.combination_id
+#         combination = db.session.query(Combination).filter_by(id=combination_id).first()
+#         day_id = combination.day1
+#         day = db.session.query(Day).filter_by(id=day_id).first()
+#         # destinations
+#         destination_id = day.destination_id
+#         destination = db.session.query(Target).filter_by(id=destination_id).first()
+#         destinations.append(destination)
+#         # attraction
+#         attraction_id = day.attraction_id
+#         attraction = db.session.query(Target).filter_by(id=attraction_id).first()
+#         attractions.append(attraction)
+#         # accommodation
+#         accommodation_id = day.accommodation_id
+#         accommodation = db.session.query(Target).filter_by(id=accommodation_id).first()
+#         accommodations.append(accommodation)
+#         # traffics
+#         traffic_id = day.traffic_id
+#         traffic = db.session.query(Target).filter_by(id=traffic_id).first()
+#         traffics.append(traffic)
+#
+#         length = combination.length
+#         for i in range(0,length-1):
+#             length_timedelta = timedelta(days=1)
+#             following_time = start_date + length_timedelta
+#             dates.append(following_time)
+#             start_date = following_time
+#             # time listtttttttt
+#             a = i + 1
+#             str_day = "day" + str(a)
+#             day_id = getattr(combination, str_day)
+#             day = db.session.query(Day).filter_by(id=day_id).first()
+#
+#             # destinations
+#             destination_id = day.destination_id
+#             destination = db.session.query(Target).filter_by(id=destination_id).first()
+#             destinations.append(destination)
+#             # attraction
+#             attraction_id = day.attraction_id
+#             attraction = db.session.query(Target).filter_by(id=attraction_id).first()
+#             attractions.append(attraction)
+#             # accommodation
+#             accommodation_id = day.accommodation_id
+#             accommodation = db.session.query(Target).filter_by(id=accommodation_id).first()
+#             accommodations.append(accommodation)
+#             # traffics
+#             traffic_id = day.traffic_id
+#             traffic = db.session.query(Target).filter_by(id=traffic_id).first()
+#             traffics.append(traffic)
+#
+#     # print("days")
+#     # print(destinations[0])
+#     # return render_template('calendar.html', dates=dates, destinations=destinations, attractions=attractions,
+#     #                        accommodations=accommodations, traffics=traffics)
+#     return render_template('calendar.html', dates=jsonify(dates))
+
+@app.route("/calendar", methods=['GET', 'POST'])
+def calendar():
+    return render_template('calendar.html')
+
+@app.route("/data", methods=['GET', 'POST'])
+def data():
+    if not current_user.is_authenticated:
+        return redirect(url_for('account.login'))
+    user_id = current_user.id
+    days = db.session.query(RecordC).filter_by(user_id=user_id)
+    dates = []
+    destinations = []
+    attractions = []
+    accommodations = []
+    traffics = []
+    for day in days:
+        start_time = day.start_time
+        # start_t = datetime.strptime(start_time, '%Y-%m-%d')
+        start_date = datetime.strptime(start_time, '%Y-%m-%d')
+        dates.append(start_time)
+        combination_id = day.combination_id
+        combination = db.session.query(Combination).filter_by(id=combination_id).first()
+        day_id = combination.day1
+        day = db.session.query(Day).filter_by(id=day_id).first()
+
+        # destinations
+        destination_id = day.destination_id
+        destination = db.session.query(Destination).filter_by(id=destination_id).first()
+        destinations.append(destination.name)
+
+        # attraction
+        attraction_id = day.attraction_id
+        attraction = db.session.query(Target).filter_by(id=attraction_id).first()
+        # attractions.append(attraction)
+        attraction_dict = {
+            "name": attraction.name,
+            "location": attraction.location,
+            "image": attraction.image,
+            "intro": attraction.intro,
+            "price": attraction.price
+        }
+        attractions.append(attraction_dict)
+
+        # accommodation
+        accommodation_id = day.accommodation_id
+        accommodation = db.session.query(Target).filter_by(id=accommodation_id).first()
+        # accommodations.append(accommodation)
+        accommodation_dict = {
+            "name": accommodation.name,
+            "location": accommodation.location,
+            "image": accommodation.image,
+            "intro": accommodation.intro,
+            "price": accommodation.price
+        }
+        accommodations.append(accommodation_dict)
+
+        # traffics
+        traffic_id = day.traffic_id
+        traffic = db.session.query(Target).filter_by(id=traffic_id).first()
+        traffic_dict = {
+            "name": traffic.name,
+            "location": traffic.location,
+            "image": traffic.image,
+            "intro": traffic.intro,
+            "price": traffic.price
+        }
+        traffics.append(traffic_dict)
+
+        length = combination.length
+
+        for i in range(0, length - 1):
+            length_timedelta = timedelta(days=1)
+            following_time = start_date + length_timedelta
+            following_time_string = following_time.strftime('%Y-%m-%d')
+            dates.append(following_time_string)
+            start_date = following_time
+            # time listtttttttt
+            a = i + 1
+            str_day = "day" + str(a)
+            day_id = getattr(combination, str_day)
+            day = db.session.query(Day).filter_by(id=day_id).first()
+
+            # destinations
+            destination_id = day.destination_id
+            destination = db.session.query(Destination).filter_by(id=destination_id).first()
+            destinations.append(destination.name)
+            # attraction
+            attraction_id = day.attraction_id
+            attraction = db.session.query(Target).filter_by(id=attraction_id).first()
+            # attractions.append(attraction)
+            attraction_dict = {
+                "name": attraction.name,
+                "location": attraction.location,
+                "image": attraction.image,
+                "intro": attraction.intro,
+                "price": attraction.price
+            }
+            attractions.append(attraction_dict)
+
+            # accommodation
+            accommodation_id = day.accommodation_id
+            accommodation = db.session.query(Target).filter_by(id=accommodation_id).first()
+            # accommodations.append(accommodation)
+            accommodation_dict = {
+                "name": accommodation.name,
+                "location": accommodation.location,
+                "image": accommodation.image,
+                "intro": accommodation.intro,
+                "price": accommodation.price
+            }
+            accommodations.append(accommodation_dict)
+
+            # traffics
+            traffic_id = day.traffic_id
+            traffic = db.session.query(Target).filter_by(id=traffic_id).first()
+            traffic_dict = {
+                "name": traffic.name,
+                "location": traffic.location,
+                "image": traffic.image,
+                "intro": traffic.intro,
+                "price": traffic.price
+            }
+            traffics.append(traffic_dict)
+
+    json_content = []
+    d = {"date":dates}
+    des = {"destination":destinations}
+    at = {"attraction":attractions}
+    ac = {"accommodation":accommodations}
+    t = {"traffic":traffics}
+
+    # 将其他字典添加到json_content列表中
+    json_content.append(d)
+    json_content.append(des)
+    json_content.append(at)
+    json_content.append(ac)
+    json_content.append(t)
+
+    print("json")
+    print(json_content)
+
+    return jsonify(json_content)
+
+# testInfo = []
+# @app.route("/data", methods=['GET', 'POST'])
+# def data():
+#     # testInfo['name'] = 'xiaoming'
+#     # testInfo['age'] = '28'
+#     # 使用datetime写2023年4月30日
+#     date1 = datetime(2023, 5, 10, 0, 0, 0).strftime('%Y-%m-%d')
+#     date2 = datetime(2023, 5, 11, 0, 0, 0).strftime('%Y-%m-%d')
+#     date3 = datetime(2023, 5, 12, 0, 0, 0).strftime('%Y-%m-%d')
+#     date4 = datetime(2023, 5, 13, 0, 0, 0).strftime('%Y-%m-%d')
+#     date = [date1, date2, date3, date4]
+#     return jsonify(date)
 
 if __name__ == '__main__':
     # showSetDetails(1)
