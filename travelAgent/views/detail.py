@@ -113,10 +113,6 @@ def showSetDetails():
                     path = "../static/upload/" + new_filename
 
             # default: like=0 path=""
-            # check = db.session.query(CommentC).filter(CommentC.user_id == current_user.id, CommentC.combination_id == set_id).scalar()
-            # check2 = db.session.query(CommentC).filter(CommentC.combination_id == set_id).scalar() is None
-            print("77777788888")
-            # print(check)
             check = True
             for comment in CommentC.query.filter(CommentC.combination_id == set_id, CommentC.user_id == current_user.id).all():
                 if comment.content == comment_form.comment.data:
