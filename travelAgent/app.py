@@ -105,6 +105,8 @@ def popular(sets, records, id_type):
 
     # print("basic-----------------")
     # print(dic)
+    # print("records-----------")
+    # print(records)
 
     # increase value according to the record table
     # id_type = 0 :combination /
@@ -115,8 +117,12 @@ def popular(sets, records, id_type):
             dic[r.combination_id] = temp + 1
     else:
         for r in records:
-            temp = dic[r.target_id]
-            dic[r.target_id] = temp + 1
+            print(r.target_id)
+            # key = r.target_id
+            # check if id exists in original dic( as different types
+            if r.target_id in dic.keys():
+                temp = dic[r.target_id]
+                dic[r.target_id] = temp + 1
     # print("update-----------------")
     # print(dic)
 
@@ -150,17 +156,17 @@ def homepage():
     changeBookingStatus()
     sets1 = Combination.query.all()
     attractions = Target.query.filter(Target.type == '0').all()
+    hotels = Target.query.filter(Target.type == '1').all()
+
     records_c = RecordC.query.all()
     records_t = Record.query.all()
 
-    Sets = popular(sets1,records_c,0)
-
+    Sets = popular(sets1, records_c, 0)
     # attractions = attractions[::-1]
-
-    attractions = popular(attractions,records_t,1)
-    hotels = Target.query.filter(Target.type == '1').all()
+    sorted_attractions = popular(attractions, records_t, 1)
+    sorted_hotels = popular(hotels, records_t, 1)
     print("homepage2")
-    return render_template("homepage2.html", Sets=Sets, attractions=attractions, hotels=hotels)
+    return render_template("homepage2.html", Sets=Sets, attractions=sorted_attractions, hotels=sorted_hotels)
 
 
 @app.route('/attractions', methods=['GET', 'POST'])
