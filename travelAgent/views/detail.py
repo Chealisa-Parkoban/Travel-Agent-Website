@@ -112,17 +112,23 @@ def showSetDetails():
                     img.save(os.path.join(file_dir, new_filename))
                     path = "../static/upload/" + new_filename
 
+            record = RecordC.query.filter(RecordC.combination_id == set_id, RecordC.user_id == current_user.id).first()
             # default: like=0 path=""
             check = True
             for comment in CommentC.query.filter(CommentC.combination_id == set_id, CommentC.user_id == current_user.id).all():
                 if comment.content == comment_form.comment.data:
                     check = False
                     break
+            if record.status == "Uncompleted":
+                # could return message to remind user
+                check = False
             if check:
                 comment = CommentC(user_id=current_user.id, username=current_user.get_username(), combination_id=set_id,
                                    score=comment_form.score.data, content=comment_form.comment.data, image=path,
                                    time=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
                 db.session.add(comment)
+                record.status2 = "Commented"
+                db.session.commit()
 
         if length == 1:
             day1_id = set.day1
