@@ -1,204 +1,178 @@
 {% extends "base.html" %}
 {% block title %}Planning{% endblock %}
-{% block head %}
-
-    <!-- plugins:css -->
-  <link rel="stylesheet" href="../static/staff_site_static/vendors/feather/feather.css">
-  <link rel="stylesheet" href="../static/staff_site_static/vendors/mdi/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="../static/staff_site_static/vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="../static/staff_site_static/vendors/typicons/typicons.css">
-  <link rel="stylesheet" href="../static/staff_site_static/vendors/simple-line-icons/css/simple-line-icons.css">
-  <link rel="stylesheet" href="../static/staff_site_static/vendors/css/vendor.bundle.base.css">
-  <!-- endinject -->
-  <!-- Plugin css for this page -->
-  <link rel="stylesheet" href="../static/staff_site_static/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-  <link rel="stylesheet" href="../static/staff_site_static/js/select.dataTables.min.css">
-  <!-- End plugin css for this page -->
-  <!-- inject:css -->
-  <link rel="stylesheet" href="../static/staff_site_static/css/vertical-layout-light/style.css">
-  <!-- endinject -->
-{#  <link rel="shortcut icon" href="../static/staff_site_static/images/favicon.png" />#}
-
-{% endblock %}
+{% block head %}{% endblock %}
 {% block body %}
 
 {#    <div class="promotions">#}
 {#        <div class="container">#}
 {##}
 {#        <div class="main-panel">#}
-        <div class="content-wrapper" style="padding: 7% 10% 7% 10%">
 
-            <h3 style="margin: 0 0 2% 2%">Create a New Travel Plan</h3>
+    <div class="container" style="margin-top: 7%">
+        <div class="row justify-content-between">
+            <div class="col-md-12 details">
+                <h2 class="font-weight-bold spanborder" style="margin-top: 1em"><span> Create a New Travel Plan </span></h2>
 
-            <h7>You can create a brand-new travel plan for you own!</h7>
-        <br/>
-
-            <h7>You can mix and match as many destinations, attractions, accommodation and transport options as you like with our offer.
-                The total price will be calculated automatically.</h7>
-<br/>
-            <h7> You can save your planned travel packages and view and order them on the personal travel packages page.
-                Start planning your trip now!</h7>
-
-          <div class="row" id="row">
-            {% for day in days %}
-            <div class="col-md-6 grid-margin stretch-card" >
-              <div class="card" >
-                <div class="card-body" style="margin: 0 3% 0 3%;">
-                  <h4 class="card-title">Day {{day[0]}}</h4>
-                  <p class="card-description">
-                    Day trip information
-                  </p>
-                  <form class="forms-sample">
-                    <div class="form-group">
-                      <label for="Destination">Destination</label>
-                      <h4 style="color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%">{{day[1]}}</h4>
-                    </div>
-                    <div class="form-group">
-                      <label for="Attraction">Attraction</label>
-                      <h4 style="color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%">{{day[2]}}</h4>
-                    </div>
-                    <div class="form-group">
-                      <label for="Accommodation">Accommodation</label>
-                      <h4 style="color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%">{{day[3]}}</h4>
-                    </div>
-                    <div class="form-group">
-                      <label for="Traffic">Traffic</label>
-                      <h4 style="color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%">{{day[4]}}</h4>
-                    </div>
-                      <button class="btn btn-light" onclick="delete_day()">Delete</button>
-                  </form>
-                  <script>
-                    var day = {{ day|tojson() }}
-                    console.log(day[0])
-                    var day_id = day[0]
-                    function delete_day(){
-                      console.log(day_id)
-                      $.get({
-                        url: '/planning/delete_day',
-                        type: 'GET',
-                        data: JSON.stringify(day_id),
-                        // data: JSON.stringify({
-                        //   day_id: day_id
-                        // }),
-                        success: function (data) {
-                          console.log(data)
-                          window.location.reload()
-                        }
-                      })
-                    }
-                  </script>
-<!--                  <script src="../../static/staff_site_static/new_plan.js"></script>-->
+                <div style="background: rgb(232,241,255); margin-top: 0.8rem; margin-bottom: 1rem; padding: 1rem; border-radius: 5px">
+                    <p>You can create a brand-new travel plan for you own!</p>
+                    <p>You can mix and match as many destinations, attractions, accommodation and transport options as you like with our offer.
+                        The total price will be calculated automatically.</p>
+                    <p> You can save your planned travel packages and view and order them on the personal travel packages page.
+                        Start planning your trip now!</p>
                 </div>
-              </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+
+    <div class="content-wrapper" style="padding: 0 10% 7% 10%">
+        <div class="row" id="row">
+            {% for day in days %}
+            <div class="col-md-6 grid-margin stretch-card" style="margin: 1% 0">
+                <div class="card" >
+                    <div class="card-body" style="margin: 0 3% 0 3%;">
+                        <h4 class="card-title">Day {{day[0]}}</h4>
+                        <p class="card-description">Day trip information</p>
+                        <form class="forms-sample">
+                            <div class="form-group">
+                                <label for="Destination">Destination</label>
+                                <h4 style="color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%; margin-bottom: 5%">{{day[1]}}</h4>
+                            </div>
+                            <div class="form-group">
+                                <label for="Attraction">Attraction</label>
+                                <h4 style="color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%">{{day[2]}}</h4>
+                            </div>
+                            <div class="form-group">
+                                <label for="Accommodation">Accommodation</label>
+                                <h4 style="color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%">{{day[3]}}</h4>
+                            </div>
+                            <div class="form-group">
+                                <label for="Traffic">Traffic</label>
+                                <h4 style="color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%">{{day[4]}}</h4>
+                            </div>
+                            <button class="btn btn-light" onclick="delete_day()">Delete</button>
+                        </form>
+                        <script>
+                            var day = {{ day|tojson() }}
+                            console.log(day[0])
+                            var day_id = day[0]
+                            function delete_day(){
+                                console.log(day_id)
+                                $.get({
+                                    url: '/planning/delete_day',
+                                    type: 'GET',
+                                    data: JSON.stringify(day_id),
+                                    // data: JSON.stringify({
+                                    //   day_id: day_id
+                                    // }),
+                                    success: function (data) {
+                                    console.log(data)
+                                        window.location.reload()
+                                    }
+                                })
+                            }
+                          </script>
+<!--                  <script src="../../static/staff_site_static/new_plan.js"></script>-->
+                    </div>
+                </div>
             </div>
 
             {% endfor %}
 
-            <div class="col-md-6 grid-margin stretch-card" id="card" >
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">New Day-Trip Draft</h4>
-                  <p class="card-description">
-                    Complete the trip information
-                  </p>
-                  <form action="{{ url_for('planning_tool.add_new_day') }}" method="post" novalidate
-                        class="forms-sample" id="day_trip_form">
-                      {{ day_form.csrf_token }}
-                    <div class="form-group">
-                      <label for="Destination">Destination</label>
-                      <select class="form-control" id="Destination" name="destination">
-                          {% for destination in destinations %}
-                          <option>{{destination.name}}</option>
-                          {% endfor %}
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="Attraction">Attraction</label>
-                      <select class="form-control" id="Attraction" name="attraction">
-                         {% for attraction in attractions %}
-                          <option>{{attraction.name}}</option>
-                          {% endfor %}
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="Accommodation">Accommodation</label>
-                      <select class="form-control" id="Accommodation" name="accommodation">
-                         {% for accommodation in accommodations %}
-                          <option>{{accommodation.name}}</option>
-                          {% endfor %}
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="Traffic">Traffic</label>
-                      <select class="form-control" id="Traffic" name="traffic">
-                         {% for traffic in traffics %}
-                          <option>{{traffic.name}}</option>
-                          {% endfor %}
-                      </select>
-                    </div>
+            <div class="col-md-6 grid-margin stretch-card" id="card" style="margin: 1% 0">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">New Day-Trip Draft</h4>
+                        <p class="card-description">Complete the trip information</p>
 
-                    <button name='submit' type="submit" class="btn btn-primary me-2" id="add">Add</button>
+                        <form action="{{ url_for('planning_tool.add_new_day') }}" method="post" novalidate
+                              class="forms-sample" id="day_trip_form">
+                            {{ day_form.csrf_token }}
+                            <div class="form-group">
+                                <label for="Destination">Destination</label>
+                                <select class="form-control" id="Destination" name="destination">
+                                    {% for destination in destinations %}
+                                        <option>{{destination.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="Attraction">Attraction</label>
+                                <select class="form-control" id="Attraction" name="attraction">
+                                    {% for attraction in attractions %}
+                                        <option>{{attraction.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="Accommodation">Accommodation</label>
+                                <select class="form-control" id="Accommodation" name="accommodation">
+                                    {% for accommodation in accommodations %}
+                                        <option>{{accommodation.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="Traffic">Traffic</label>
+                                <select class="form-control" id="Traffic" name="traffic">
+                                    {% for traffic in traffics %}
+                                        <option>{{traffic.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <button name='submit' type="submit" class="btn btn-primary me-2" id="add">Add</button>
 <!--                    <button class="btn btn-light">Delete</button>-->
-                  </form>
+                        </form>
 
+                    </div>
                 </div>
-              </div>
             </div>
-
-          </div>
-
-          <form action="{{url_for('planning_tool.submit_plan')}}" method="post" novalidate enctype="multipart/form-data">
-          {{ plan_form.csrf_token }}
-
-          <div class="col-md-6 grid-margin stretch-card">
-              <div class="card" >
-                <div class="card-body" >
-
-
-                  <div class="form-group" style="margin-bottom: 0">
-                    <p>Package Name</p>
-                    <label style="width: 100%">
-                      <input class="form-control" name="name">
-                    </label>
-                  </div>
-
-                  <div class="form-group" style="margin-bottom: 0">
-                  <p>Notes</p>
-                  <label style="width: 100%">
-                    <input class="form-control" name="intro" style="width: 100%"/>
-                  </label>
-                  </div>
-
-
-                  <div class="form-group" style="margin-bottom: 0">
-                  <p>Price</p>
-                  <label style="margin-bottom: 1%">
-                    <input class="form-control" type="number" name="price" value={{ trip_fees }}>
-                  </label>
-                  </div>
-
-
-                 </div>
-              </div>
-            </div>
-
-          <div style="display:flex;justify-content: center; align-items:center;">
-            <a href="{{url_for("planning_tool.clear_draft")}}">
-              <input type="button" class="btn btn-primary me-2" name="clear_all" value="Clear All" >
-            </a>
-
-            <a href="{{url_for("planning_tool.submit_plan")}}">
-              <input type="submit" class="btn btn-primary me-2" name="submit" value="Save Plan">
-            </a>
-
-            <a href="{{url_for("planning_tool.buy")}}">
-              <input type="button" class="btn btn-primary me-2" name="buy_now" value="Buy Now">
-            </a>
-          </div>
-          </form>
-
         </div>
-{#        </div>#}
-{#        </div>#}
-{#    </div>#}
+
+        <form action="{{url_for('planning_tool.submit_plan')}}" method="post" novalidate enctype="multipart/form-data" >
+            {{ plan_form.csrf_token }}
+
+            <div class="col-md-8 grid-margin stretch-card">
+                <div class="card" >
+                    <div class="card-body" >
+                        <div class="form-group" style="margin-bottom: 0">
+                            <p>Package Name</p>
+                            <label style="width: 100%">
+                                <input class="form-control" name="name">
+                            </label>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 0">
+                            <p>Notes</p>
+                            <label style="width: 100%">
+                                <input class="form-control" name="intro" style="width: 100%"/>
+                            </label>
+                        </div>
+
+
+                        <div class="form-group" style="margin-bottom: 0">
+                            <p>Price</p>
+                            <label style="margin-bottom: 1%">
+                                <input class="form-control" type="number" name="price" value={{ trip_fees }}>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display:flex; justify-content: center; align-items:center;">
+                <a href="{{url_for("planning_tool.clear_draft")}}">
+                    <input type="button" class="btn btn-primary me-2" name="clear_all" value="Clear All" >
+                </a>
+                <a href="{{url_for("planning_tool.submit_plan")}}">
+                    <input type="submit" class="btn btn-primary me-2" name="submit" value="Save Plan">
+                </a>
+                <a href="{{url_for("planning_tool.buy")}}">
+                    <input type="button" class="btn btn-primary me-2" name="buy_now" value="Buy Now">
+                </a>
+            </div>
+        </form>
+
+    </div>
 {% endblock %}
