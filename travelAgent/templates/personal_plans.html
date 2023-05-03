@@ -65,11 +65,11 @@
 
                                             function showPlans(plan_id){
                                                 $.get({
-                                                    url: '',
+                                                    url: '/planning/store_plan_id',
                                                     type: 'GET',
                                                     data: ({plan_id : plan_id}),
                                                     success: function (data) {
-                                                        window.location.href = '';
+                                                        window.location.href = '/planning/plan_detail';
                                                     }
                                                 })
                                             }
