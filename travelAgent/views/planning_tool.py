@@ -78,8 +78,6 @@ def clear_draft():
     day_trip_draft.clear()
     return redirect(url_for("planning_tool.planning"))
 
-
-@planning_tool_blueprint.route('/planning/submit_plan', methods=['GET', 'POST'])
 def submit_plan():
     name = request.form.get('name')
     intro = request.form.get('intro')
@@ -115,16 +113,23 @@ def submit_plan():
         user_id = current_user.id
 
     combination = UserCombination(user_id, name, intro, price, length, days_id[0], days_id[1], days_id[2], days_id[3],
-                              days_id[4], days_id[5], days_id[6])
+                                  days_id[4], days_id[5], days_id[6])
     db.session.add(combination)
     db.session.commit()
     day_trip_draft.clear()
+    return combination.id
+
+
+@planning_tool_blueprint.route('/planning/save_draft', methods=['GET', 'POST'])
+def save_draft():
+    submit_plan()
     return redirect(url_for("personal_plan"))
 
 
 @planning_tool_blueprint.route('/planning/buy', methods=['GET', 'POST'])
 def buy():
-    return 0
+    plan_id = submit_plan()
+    return redirect(url_for("booking.addPersonalBooking", combination_id=plan_id))
 
 
 @planning_tool_blueprint.route('/planning/back', methods=['GET', 'POST'])

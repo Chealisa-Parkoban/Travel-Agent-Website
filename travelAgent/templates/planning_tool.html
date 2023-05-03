@@ -147,7 +147,7 @@
 
           </div>
 
-          <form action="{{url_for('planning_tool.submit_plan')}}" method="post" novalidate enctype="multipart/form-data">
+          <form action="{{url_for('planning_tool.save_draft')}}" method="post" novalidate enctype="multipart/form-data">
           {{ plan_form.csrf_token }}
 
           <div class="col-md-6 grid-margin stretch-card">
@@ -187,11 +187,11 @@
               <input type="button" class="btn btn-primary me-2" name="clear_all" value="Clear All" >
             </a>
 
-            <a href="{{url_for("planning_tool.submit_plan")}}">
-              <input type="submit" class="btn btn-primary me-2" name="submit" value="Save Plan">
+            <a href="{{url_for("planning_tool.save_draft")}}">
+              <input type="submit" class="btn btn-primary me-2" name="submit" value="Save Draft">
             </a>
 
-            <a href="{{url_for("planning_tool.buy")}}">
+            <a href="{{url_for("planning_tool.buy" )}} ">
               <input type="button" class="btn btn-primary me-2" name="buy_now" value="Buy Now">
             </a>
           </div>

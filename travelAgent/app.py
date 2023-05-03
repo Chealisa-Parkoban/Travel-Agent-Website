@@ -24,7 +24,7 @@ from travelAgent import db
 from travelAgent import app
 from travelAgent.forms import CommentForm, ImageForm
 from travelAgent.models import CommentC, Comment, Combination, Destination, Day, Target, User, RecordC, UserCombination, \
-    Record
+    Record, RecordP
 from travelAgent.models import CommentC, Comment, Combination, Destination, Day, Target, User, RecordC, ContactModel
 from flask_mail import Message
 
@@ -457,6 +457,32 @@ def changeBookingStatus():
             print("if 时间")
             record = RecordC.query.filter_by(id=book_id).update({'status': 'Completed'})
             db.session.commit()
+
+
+    personal_bookings = db.session.query(RecordP).all()
+    for book in personal_bookings:
+        book_id = book.id
+        start_time = book.start_time
+        current_time = datetime.now().strftime('%Y-%m-%d')
+
+        combination_id = book.combination_id
+        combination = db.session.query(UserCombination).filter_by(id=combination_id).first()
+        length = combination.length
+
+        start_datetime = datetime.strptime(start_time, '%Y-%m-%d')
+        # delta = datetime.timedelta(days=length)
+        length_timedelta = timedelta(days=length)
+        end_datetime = start_datetime + length_timedelta
+        end_time = end_datetime.strftime('%Y-%m-%d')
+
+        print("end_time: ")
+        print(end_time)
+
+        if end_time <= current_time:
+            print("if 时间")
+            record = RecordC.query.filter_by(id=book_id).update({'status': 'Completed'})
+            db.session.commit()
+
 
 
 # 图片
