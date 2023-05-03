@@ -23,7 +23,7 @@ import datetime
 import travelAgent
 from travelAgent import db
 from travelAgent.forms import CommentForm, ImageForm
-from travelAgent.models import CommentC, Comment, Combination, Destination, Day, Target, RecordC
+from travelAgent.models import CommentC, Comment, Combination, Destination, Day, Target, Record
 from travelAgent.views.login_handler import login_blueprint, current_user
 from travelAgent.views.number import Random_str
 
@@ -62,16 +62,23 @@ def showAttraction():
                     img.save(os.path.join(file_dir, new_filename))
                     path = "../static/upload/" + new_filename
 
+            record = Record.query.filter(Record.target_id == set_id, Record.user_id == current_user.id).first()
+
             check = True
             for comment in Comment.query.filter(Comment.target_id == set_id, Comment.user_id == current_user.id).all():
                 if comment.content == comment_form.comment.data:
                     check = False
                     break
+            if record.status == "Uncompleted":
+                check = False
+
             if check:
                 comment = Comment(user_id=current_user.id, username=current_user.get_username(), target_id=target_id,
                                   score=comment_form.score.data, content=comment_form.comment.data, image=path,
                                   time=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+                record.status2 = "Commented"
                 db.session.add(comment)
+                db.session.commit()
 
         return render_template("attractionDetail.html", current_user=current_user, comment_form=comment_form,
                                comments=db.session.query(Comment).filter(Comment.target_id == set_id).all(), set=set,
