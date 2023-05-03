@@ -68,6 +68,18 @@
             margin-bottom: 10%;
         }
 
+        .title{
+            overflow: hidden !important;
+            white-space: nowrap !important;
+            text-overflow: ellipsis !important;
+            {#display: -webkit-box;#}
+            {#-webkit-line-clamp: 2; /* number of lines to show */#}
+            {#-webkit-box-orient: vertical;#}
+            {#line-height: 1.5; /* adjust as needed to set the line height */#}
+            {#height: 5.8rem !important; /* height of two lines */#}
+            font-size: 1.2rem !important;
+        }
+
     </style>
 
 {% endblock %}
@@ -90,7 +102,7 @@
                             <img src="{{ hotel.image }}" class="img-responsive" alt=""  style="width: 100% !important; height: auto !important;"
                                  onerror="javascript:this.src='static/images/sample_pic/the_north_Europe.png/'"/>
                             <div class="prom-text">
-                                <h4> {{ hotel.name }}</h4>
+                                <h4 class="title"> {{ hotel.name }}</h4>
                                 <div class="prom-bottom">
                                     <div class="prom-left">
                                         <h5> {{ hotel.location }} </h5>
