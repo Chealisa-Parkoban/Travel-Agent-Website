@@ -359,12 +359,12 @@ def cancel_other_orders():
     return '0'
 
 # 查看order details
-# @app.route('/check_booking_details/<booking_id>', methods=['GET', 'POST'])
-# def check_booking_details(booking_id):
-#     booking = db.session.query(RecordC).filter(RecordC.id == booking_id).first()
-#     combination_id = booking.combination_id
-#     combination = db.session.query(Combination).filter(Combination.id == combination_id).first()
-#     return render_template("",booking=booking, combination=combination)
+@app.route('/check_booking_details/<booking_id>', methods=['GET', 'POST'])
+def check_booking_details(booking_id):
+    booking = db.session.query(RecordC).filter(RecordC.id == booking_id).first()
+    combination_id = booking.combination_id
+    combination = db.session.query(Combination).filter(Combination.id == combination_id).first()
+    return render_template("orderDetail.html",booking=booking, combination=combination)
 
 
 def translate(q):
