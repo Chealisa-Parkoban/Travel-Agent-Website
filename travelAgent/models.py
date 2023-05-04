@@ -315,7 +315,7 @@ class Record(db.Model):
     time = db.Column(db.String(120))
     # This scheduled start and end time
     start_time = db.Column(db.String(120))
-    # end_time = db.Column(db.String(120))
+    end_time = db.Column(db.String(120))
     # the number of reserved persons
     num = db.Column(db.INTEGER,nullable=False, default =1)
     # the reservation person's name
