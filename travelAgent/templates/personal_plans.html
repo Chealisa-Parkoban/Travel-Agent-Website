@@ -1,18 +1,28 @@
 {% extends "base.html" %}
 {% block title %}Persoanl Plans{% endblock %}
-{% block head %}{% endblock %}
+{% block head %}
+<style>
+    .fa-trash:hover{
+        color: red;
+    }
+
+    .fa-credit-card:hover{
+        color: dodgerblue;
+    }
+</style>
+{% endblock %}
 {% block body %}
-<div class="main-panel" style="margin: 4% 10%">
+<div class="main-panel" style="margin: 7% 10% 4% 10%">
     <div class="content-wrapper">
 
         <div class="row">
             <div class="col-lg-8 grid-margin stretch-card" style="width: 100%">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Your Personal Plans</h4>
-                        <p class="card-description">
-                            Provided by <code>Digital Beans</code>
-                        </p >
+                        <h4 class="card-title" style="margin: 3% 0 2% 0">Your Personal Plans</h4>
+{#                        <p class="card-description">#}
+{#                            Provided by <code>Digital Beans</code>#}
+{#                        </p >#}
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead>
@@ -33,11 +43,11 @@
                                         <td>{{plan.price}}</td>
                                         <td>
                                             <button onclick="add_to_cart({{plan.id}})" style="background-color: transparent; border: none;">
-                                                <i class="fa fa-credit-card" style="color: black; font-size: 1.5rem"></i>
+                                                <i class="fa fa-credit-card" style="font-size: 1.5rem"></i>
                                             </button>
 
                                             <button onclick="delete_des({{plan.id}})" style="background-color: transparent; border: none;">
-                                                <i class="fa fa-trash" style="color: black; font-size: 1.5rem"></i>
+                                                <i class="fa fa-trash" style="font-size: 1.5rem"></i>
                                             </button>
 
                                         </td>
@@ -83,10 +93,16 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 grid-margin stretch-card" style="background-color: #f9f9f9; display: flex; align-items: center; justify-content: center;">
-                <a href=" 'planning_tool.planning' %}">
-                    <input type="button" class="btn btn-primary me-2" style="width: fit-content;" value="Create New Personal Plan" />
-                </a >
+            <div class="col-lg-4 grid-margin stretch-card" style="background-color: rgb(232,241,255); display: flex; align-items: center; justify-content: center;">
+                <div class="col-md-12 promation-grid" style="background: rgb(232,241,255); border-radius: 5px; padding: 1rem; display: flex; justify-content: center; align-items: center;">
+                    <div style="text-align: center;">
+                        <h3 style="margin-top: 0.5rem">Customise more package?</h3>
+                        <p style="padding-top: 0; margin-bottom: 1rem">Customise your own travel plan using the destinations and accommodations we have provided.</p>
+                        <a href="{{ url_for('planning_tool.planning') }}" style="position: relative">
+                            <button type="button" class="btn btn-default" style="background-color: #062f3c; color: white;">Create New Personal Plan</button>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
