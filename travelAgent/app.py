@@ -348,9 +348,6 @@ def order_list():
             user_combination_ids.append(user_combination.id)
 
 
-
-    # print(user_name)
-
     return render_template("order_list.html", user_name=user_name,
                            ids=ids, start_time=start_time, number=number, tel=tel,
                            combination_name=combination_name, introduction=introduction, price=price, image=image,
@@ -431,7 +428,19 @@ def check_booking_details(booking_id):
     booking = db.session.query(RecordC).filter(RecordC.id == booking_id).first()
     combination_id = booking.combination_id
     combination = db.session.query(Combination).filter(Combination.id == combination_id).first()
-    return render_template("orderDetail.html",booking=booking, combination=combination)
+    return render_template("orderDetail.html", booking=booking, combination=combination)
+
+@app.route('/check_booking_target_details/<target_id>', methods=['GET', 'POST'])
+def check_booking_target_details(target_id):
+    target = db.session.query(Target).filter(Target.id == target_id).first()
+    return render_template("orderDetail.html", target=target)
+
+@app.route('/check_booking_combination_details/<combination_id>', methods=['GET', 'POST'])
+def check_booking_combination_details(combination_id):
+    booking = db.session.query(RecordP).filter(RecordP.id == combination_id).first()
+    combination_id = booking.combination_id
+    combination = db.session.query(Combination).filter(Combination.id == combination_id).first()
+    return render_template("orderDetail.html", booking=booking, combination=combination)
 
 
 def translate(q):
