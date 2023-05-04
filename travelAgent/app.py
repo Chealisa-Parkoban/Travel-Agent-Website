@@ -298,6 +298,7 @@ def order_list():
         targets = db.session.query(Record).filter(Record.user_id == customer_id).all()
         # targets中的信息
         target_ids = []
+        target_user_name = []
         target_name = []
         target_start_time = []
         target_number = []
@@ -309,16 +310,19 @@ def order_list():
         target_status_comment = []
 
         for target in targets:
-            target_name.append(target.name)
+            id = target.target_id
+            t = db.session.query(Target).filter(Target.id == id).first()
+            target_name.append(t.name)
             target_number.append(target.num)
             target_start_time.append(target.start_time)
             target_tel.append(target.tel)
-            target_introduction.append(target.intro)
+            target_introduction.append(t.intro)
             target_price.append(target.price)
-            target_image.append(target.image)
+            target_image.append(t.image)
             target_status_complete.append(target.status)
             target_status_comment.append(target.status2)
-            target_ids.append(target.id)
+            target_ids.append(t.id)
+            target_user_name.append(target.name)
 
         user_combinations = db.session.query(RecordP).filter(RecordP.user_id == customer_id).all()
         # 客制化组合
@@ -332,6 +336,7 @@ def order_list():
         user_combination_price = []
         user_combination_status_complete = []
         user_combination_status_comment = []
+        user_combination_user_name = []
 
         for user_combination in user_combinations:
             combination = db.session.query(Combination).filter(Combination.id == combination_id).first()
@@ -346,21 +351,25 @@ def order_list():
             user_combination_status_complete.append(user_combination.status)
             user_combination_status_comment.append(user_combination.status2)
             user_combination_ids.append(user_combination.id)
+            user_combination_user_name.append(user_combination.name)
 
 
-    return render_template("order_list.html", user_name=user_name,
-                           ids=ids, start_time=start_time, number=number, tel=tel,
+    return render_template("order_list.html",
+                           user_name=user_name, ids=ids, start_time=start_time, number=number, tel=tel,
                            combination_name=combination_name, introduction=introduction, price=price, image=image,
                            status=status_complete, status_comment=status_comment,
-                           target_ids=target_ids, target_name=target_name, target_start_time=target_start_time,
+
+                           target_user_name=target_user_name, target_ids=target_ids, target_name=target_name, target_start_time=target_start_time,
                            target_number=target_number, target_introduction=target_introduction, target_tel=target_tel,
                            target_image=target_image, target_price=target_price, target_status_complete=target_status_complete,
                            target_status_comment=target_status_comment,
+
                            user_combination_ids=user_combination_ids, user_combination_name=user_combination_name,
                            user_combination_start_time=user_combination_start_time, user_combination_number=user_combination_number,
                            user_combination_introduction=user_combination_introduction, user_combination_tel=user_combination_tel,
                            user_combination_image=user_combination_image, user_combination_price=user_combination_price,
-                           user_combination_status_complete=user_combination_status_complete, user_combination_status_comment=user_combination_status_comment)
+                           user_combination_status_complete=user_combination_status_complete, user_combination_status_comment=user_combination_status_comment,
+                           user_combination_user_name=user_combination_user_name)
 
 
 @app.route('/transport_setID', methods=['GET', 'POST'])
@@ -510,6 +519,7 @@ def contact_email():
         return redirect(url_for('contact_us'))
 
 def changeBookingStatus():
+    # 本身的combination
     bookings = db.session.query(RecordC).all()
     for book in bookings:
         book_id = book.id
@@ -521,20 +531,16 @@ def changeBookingStatus():
         length = combination.length
 
         start_datetime = datetime.strptime(start_time, '%Y-%m-%d')
-        # delta = datetime.timedelta(days=length)
         length_timedelta = timedelta(days=length)
         end_datetime = start_datetime + length_timedelta
         end_time = end_datetime.strftime('%Y-%m-%d')
 
-        print("end_time: ")
-        print(end_time)
-
         if end_time <= current_time:
-            print("if 时间")
+
             record = RecordC.query.filter_by(id=book_id).update({'status': 'Completed'})
             db.session.commit()
 
-
+    # 客制化定制
     personal_bookings = db.session.query(RecordP).all()
     for book in personal_bookings:
         book_id = book.id
@@ -546,18 +552,35 @@ def changeBookingStatus():
         length = combination.length
 
         start_datetime = datetime.strptime(start_time, '%Y-%m-%d')
-        # delta = datetime.timedelta(days=length)
         length_timedelta = timedelta(days=length)
         end_datetime = start_datetime + length_timedelta
         end_time = end_datetime.strftime('%Y-%m-%d')
 
-        print("end_time: ")
-        print(end_time)
-
         if end_time <= current_time:
-            print("if 时间")
             record = RecordC.query.filter_by(id=book_id).update({'status': 'Completed'})
             db.session.commit()
+
+    # target
+    targets = db.session.query(Record).all()
+    for book in targets:
+        book_id = book.id
+        start_time = book.start_time
+        end_time = book.end_time
+        current_time = datetime.now().strftime('%Y-%m-%d')
+
+        target_id = book.target_id
+        target = db.session.query(Target).filter_by(id=target_id).first()
+        type = target.type
+        if type == '1':
+            # 住宿分天数
+            if end_time <= current_time:
+                record = Record.query.filter_by(id=book_id).update({'status': 'Completed'})
+                db.session.commit()
+        else:
+            if start_time <= current_time:
+                record = Record.query.filter_by(id=book_id).update({'status': 'Completed'})
+                db.session.commit()
+
 
 
 
