@@ -63,22 +63,29 @@ def showAttraction():
                     path = "../static/upload/" + new_filename
 
             record = Record.query.filter(Record.target_id == set_id, Record.user_id == current_user.id).first()
+            comment_check = True
+            if record is not None:
+                if record.status == "Uncompleted":
+                    comment_check = False
+                    flash("You have not completed this order yet and cannot comment")
+                    # return redirect(url_for("showAttraction"))
+                for comment in Comment.query.filter(Comment.target_id == set_id,
+                                                    Comment.user_id == current_user.id).all():
+                    if comment.content == comment_form.comment.data:
+                        comment_check = False
+                        flash("You have already commented on the same content")
+                        break
 
-            check = True
-            for comment in Comment.query.filter(Comment.target_id == set_id, Comment.user_id == current_user.id).all():
-                if comment.content == comment_form.comment.data:
-                    check = False
-                    break
-            if record.status == "Uncompleted":
-                check = False
+                if comment_check:
+                    comment = Comment(user_id=current_user.id, username=current_user.get_username(), target_id=target_id,
+                                      score=comment_form.score.data, content=comment_form.comment.data, image=path,
+                                      time=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+                    record.status2 = "Commented"
+                    db.session.add(comment)
+                    db.session.commit()
 
-            if check:
-                comment = Comment(user_id=current_user.id, username=current_user.get_username(), target_id=target_id,
-                                  score=comment_form.score.data, content=comment_form.comment.data, image=path,
-                                  time=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
-                record.status2 = "Commented"
-                db.session.add(comment)
-                db.session.commit()
+            else:
+                flash("You have not booked this order yet and cannot comment")
 
         return render_template("attractionDetail.html", current_user=current_user, comment_form=comment_form,
                                comments=db.session.query(Comment).filter(Comment.target_id == set_id).all(), set=set,

@@ -69,6 +69,7 @@ def improveImage(img):
             # route = "data:image/jpg;base64," + img_r
             return json
 
+
 @detail_blueprint.route("/showSetDetails", methods=['GET', 'POST'])
 def showSetDetails():
     print("调用showdetail函数了！")
@@ -79,13 +80,12 @@ def showSetDetails():
     ID = set_id
     length = set.length
     print(length)
-    attractions=[]
-    accomodations=[]
-    traffic=[]
+    attractions = []
+    accomodations = []
+    traffic = []
 
     comment_form = CommentForm(request.form)
     id = Random_str().create_uuid()
-
 
     if request.method == 'POST':
 
@@ -113,22 +113,32 @@ def showSetDetails():
                     path = "../static/upload/" + new_filename
 
             record = RecordC.query.filter(RecordC.combination_id == set_id, RecordC.user_id == current_user.id).first()
-            # default: like=0 path=""
-            check = True
-            for comment in CommentC.query.filter(CommentC.combination_id == set_id, CommentC.user_id == current_user.id).all():
-                if comment.content == comment_form.comment.data:
-                    check = False
-                    break
-            if record.status == "Uncompleted":
-                # could return message to remind user
-                check = False
-            if check:
-                comment = CommentC(user_id=current_user.id, username=current_user.get_username(), combination_id=set_id,
-                                   score=comment_form.score.data, content=comment_form.comment.data, image=path,
-                                   time=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
-                db.session.add(comment)
-                record.status2 = "Commented"
-                db.session.commit()
+            comment_check = True
+            if record is not None:
+
+                if record.status == "Uncompleted":
+                    comment_check = False
+                    flash("You have not completed this order yet and cannot comment")
+
+                for comment in CommentC.query.filter(CommentC.combination_id == set_id,
+                                                     CommentC.user_id == current_user.id).all():
+                    if comment.content == comment_form.comment.data:
+                        comment_check = False
+                        flash("You have already commented on the same content")
+                        break
+
+                if comment_check:
+                    comment = CommentC(user_id=current_user.id, username=current_user.get_username(),
+                                       combination_id=set_id,
+                                       score=comment_form.score.data, content=comment_form.comment.data, image=path,
+                                       time=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+                    record.status2 = "Commented"
+                    db.session.add(comment)
+                    db.session.commit()
+
+            else:
+                flash("You have not booked this order yet and cannot comment")
+
 
         if length == 1:
             day1_id = set.day1
@@ -511,12 +521,13 @@ def showSetDetails():
             traffic.append(day7_traffic)
 
         return render_template("travelRoutesDetail.html", current_user=current_user, comment_form=comment_form,
-                               comments=db.session.query(CommentC).filter(CommentC.combination_id==set_id).all(), length=length, set=set, combination_id=set_id,
+                               comments=db.session.query(CommentC).filter(CommentC.combination_id == set_id).all(),
+                               length=length, set=set, combination_id=set_id,
                                accomodations=accomodations, attractions=attractions, traffic=traffic)
 
     # if request.method == 'GET':
 
-    comments = db.session.query(CommentC).filter(CommentC.combination_id==set_id).all()
+    comments = db.session.query(CommentC).filter(CommentC.combination_id == set_id).all()
     # comments = CommentC.query.filter.(CommentC.combination_id == set_id).all()
     # return render_template("travelRoutesDetail.html", comments=comments, comment_form=comment_form, length=length, set=set, combination_id=ID,
     #                        accomodations=accomodations, attractions=attractions, traffic=traffic)
@@ -532,9 +543,7 @@ def showSetDetails():
 
         attractions.append(day1_attraction)
 
-
         accomodations.append(day1_accommodation)
-
 
         traffic.append(day1_traffic)
 
@@ -561,10 +570,8 @@ def showSetDetails():
         attractions.append(day1_attraction)
         attractions.append(day2_attraction)
 
-
         accomodations.append(day1_accommodation)
         accomodations.append(day2_accommodation)
-
 
         traffic.append(day1_traffic)
         traffic.append(day2_traffic)
@@ -655,12 +662,10 @@ def showSetDetails():
         attractions.append(day3_attraction)
         attractions.append(day4_attraction)
 
-
         accomodations.append(day1_accommodation)
         accomodations.append(day2_accommodation)
         accomodations.append(day3_accommodation)
         accomodations.append(day4_accommodation)
-
 
         traffic.append(day1_traffic)
         traffic.append(day2_traffic)
@@ -721,7 +726,6 @@ def showSetDetails():
         attractions.append(day3_attraction)
         attractions.append(day4_attraction)
         attractions.append(day5_attraction)
-
 
         accomodations.append(day1_accommodation)
         accomodations.append(day2_accommodation)
@@ -827,7 +831,6 @@ def showSetDetails():
         day1_accommodation = db.session.query(Target).filter(Target.id == day1_acc_id).first()
         day1_traffic = db.session.query(Target).filter(Target.id == day1_tra_id).first()
 
-
         # day2的各种数据
         day2_id = set.day2
         day2 = db.session.query(Day).filter(Day.id == day2_id).first()
@@ -837,7 +840,6 @@ def showSetDetails():
         day2_attraction = db.session.query(Target).filter(Target.id == day2_att_id).first()
         day2_accommodation = db.session.query(Target).filter(Target.id == day2_acc_id).first()
         day2_traffic = db.session.query(Target).filter(Target.id == day2_tra_id).first()
-
 
         # day3的各种数据
         day3_id = set.day3
@@ -923,9 +925,9 @@ def showBookingDetail(booking_id):
     combination = db.session.query(Combination).filter(Combination.id == combination_id).first()
     length = combination.length
 
-    attractions=[]
-    accomodations=[]
-    traffic=[]
+    attractions = []
+    accomodations = []
+    traffic = []
 
     if length == 1:
         day1_id = set.day1
@@ -939,9 +941,7 @@ def showBookingDetail(booking_id):
 
         attractions.append(day1_attraction)
 
-
         accomodations.append(day1_accommodation)
-
 
         traffic.append(day1_traffic)
 
@@ -969,10 +969,8 @@ def showBookingDetail(booking_id):
         attractions.append(day1_attraction)
         attractions.append(day2_attraction)
 
-
         accomodations.append(day1_accommodation)
         accomodations.append(day2_accommodation)
-
 
         traffic.append(day1_traffic)
         traffic.append(day2_traffic)
@@ -1065,12 +1063,10 @@ def showBookingDetail(booking_id):
         attractions.append(day3_attraction)
         attractions.append(day4_attraction)
 
-
         accomodations.append(day1_accommodation)
         accomodations.append(day2_accommodation)
         accomodations.append(day3_accommodation)
         accomodations.append(day4_accommodation)
-
 
         traffic.append(day1_traffic)
         traffic.append(day2_traffic)
@@ -1131,7 +1127,6 @@ def showBookingDetail(booking_id):
         attractions.append(day3_attraction)
         attractions.append(day4_attraction)
         attractions.append(day5_attraction)
-
 
         accomodations.append(day1_accommodation)
         accomodations.append(day2_accommodation)
@@ -1241,7 +1236,6 @@ def showBookingDetail(booking_id):
         day1_accommodation = db.session.query(Target).filter(Target.id == day1_acc_id).first()
         day1_traffic = db.session.query(Target).filter(Target.id == day1_tra_id).first()
 
-
         # day2的各种数据
         day2_id = set.day2
         day2 = db.session.query(Day).filter(Day.id == day2_id).first()
@@ -1251,7 +1245,6 @@ def showBookingDetail(booking_id):
         day2_attraction = db.session.query(Target).filter(Target.id == day2_att_id).first()
         day2_accommodation = db.session.query(Target).filter(Target.id == day2_acc_id).first()
         day2_traffic = db.session.query(Target).filter(Target.id == day2_tra_id).first()
-
 
         # day3的各种数据
         day3_id = set.day3
@@ -1323,9 +1316,5 @@ def showBookingDetail(booking_id):
         traffic.append(day6_traffic)
         traffic.append(day7_traffic)
 
-
     return render_template("", length=length, combination=combination, booking=booking,
-                               accomodations=accomodations, attractions=attractions, traffic=traffic)
-
-
-
+                           accomodations=accomodations, attractions=attractions, traffic=traffic)
