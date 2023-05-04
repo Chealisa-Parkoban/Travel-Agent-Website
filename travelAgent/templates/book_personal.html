@@ -1,0 +1,133 @@
+
+{% extends "base.html" %}
+{% block title %}
+    Homepage2
+{% endblock %}
+
+{% block head %}
+    {#    <link href="../static/css/bootstrap2.css" rel="stylesheet" type="text/css" media="all"/>#}
+    {#    <link href="../static/css/style2.css" rel="stylesheet" type="text/css" media="all"/>#}
+    {#    <!-- Fonts -->#}
+    {#    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800|Roboto:400,500,700" rel="stylesheet">#}
+    {#    <!-- Theme CSS -->#}
+    {#    <link type="text/css" href="../static/css/theme.css" rel="stylesheet">#}
+    {#    <!-- Demo CSS - No need to use these in your project -->#}
+    {#    <link type="text/css" href="../static/css/demo.css" rel="stylesheet">#}
+    {#    <link type="text/css" href="../static/css/docs4.6.css" rel="stylesheet">#}
+    {#    <link type="text/css" href="../static/css/index.css" rel="stylesheet">#}
+    {#    <link type="text/css" href="../static/css/style.css" rel="stylesheet">#}
+    <link type="text/css" href="../static/css/book.css" rel="stylesheet">
+{% endblock %}
+{% block body %}
+    <div id="booking" class="section">
+        <div class="section-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-md-push-5" style="margin-right: 20px">
+                        <div class="booking-cta">
+                            <h1>Make your reservation</h1>
+                        <div class="card" style="opacity: 0.5; background-color: black">
+                            <div class="card-body">
+                                <h5 class="card-title" style="color: white">{{ combination.name }}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">￥ {{ combination.price }}</h6>
+                                <p class="card-text">{{ combination.intro }}</p>
+<!--                                <a href="#" class="card-link">Card link</a>-->
+<!--                                <a href="#" class="card-link">Another link</a>-->
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7 col-md-pull-7">
+                        <div class="booking-form">
+                            <form action="{{ url_for('booking.addPersonalBooking', combination_id=combination_id) }}" method="post">
+                                {{ form.csrf_token }}
+                                <div class="form-group">
+                                    <span class="form-label">Your Name</span>
+                                    <input class="form-control" type="text" name="name"
+                                           placeholder="Enter Your Real Full Name">
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <span class="form-label">Start Time</span>
+                                            <input class="form-control" name="time" type="date" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <span class="form-label">Number of people</span>
+                                            <select class="form-control" name="num">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                                <option>6</option>
+                                            </select>
+                                            <span class="select-arrow"></span>
+                                        </div>
+                                    </div>
+                                </div>
+{#                                <div class="row">#}
+{#                                    <div class="col-sm-4">#}
+{#                                        <div class="form-group">#}
+{#                                            <span class="form-label">Number of people</span>#}
+{#                                            <select class="form-control">#}
+{#                                                <option>1</option>#}
+{#                                                <option>2</option>#}
+{#                                                <option>3</option>#}
+{#                                                <option>4</option>#}
+{#                                                <option>5</option>#}
+{#                                                <option>6</option>#}
+{#                                            </select>#}
+{#                                            <span class="select-arrow"></span>#}
+{#                                        </div>#}
+{#                                    </div>#}
+                                    {#									<div class="col-sm-4">#}
+                                    {#										<div class="form-group">#}
+                                    {#											<span class="form-label">Adults</span>#}
+                                    {#											<select class="form-control">#}
+                                    {#												<option>1</option>#}
+                                    {#												<option>2</option>#}
+                                    {#												<option>3</option>#}
+                                    {#											</select>#}
+                                    {#											<span class="select-arrow"></span>#}
+                                    {#										</div>#}
+                                    {#									</div>#}
+                                    {#									<div class="col-sm-4">#}
+                                    {#										<div class="form-group">#}
+                                    {#											<span class="form-label">Children</span>#}
+                                    {#											<select class="form-control">#}
+                                    {#												<option>0</option>#}
+                                    {#												<option>1</option>#}
+                                    {#												<option>2</option>#}
+                                    {#											</select>#}
+                                    {#											<span class="select-arrow"></span>#}
+                                    {#										</div>#}
+                                    {#									</div>#}
+{#                                </div>#}
+                                <div class="form-group">
+                                    <span class="form-label">Your Phone Number</span>
+                                    <input class="form-control" type="text" name="tel"
+                                           placeholder="Enter Your Real Telephone Number">
+                                </div>
+                                <div class="form-group">
+                                    <span class="form-label">Price:￥{{ combination.price }}/person</span>
+                                </div>
+                                <div class="form-btn">
+                                    <script>
+                                        function submitSuccessfully() {
+                                            alert("Your order has been submitted successfully!");
+                                        }
+                                    </script>
+                                    <button type="submit" class="btn btn-primary btn-block btn-lg mt-4" onclick="submitSuccessfully()">Submit Your Order</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+</html>

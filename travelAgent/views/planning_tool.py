@@ -19,7 +19,7 @@ trip_fees = []
 
 
 @planning_tool_blueprint.route('/planning', methods=['GET', 'POST'])
-def planning(save_draft=False):
+def planning(save_draft=True):
     if not current_user.is_authenticated:
         return redirect(url_for("account.login"))
 
@@ -78,8 +78,6 @@ def clear_draft():
     day_trip_draft.clear()
     return redirect(url_for("planning_tool.planning"))
 
-
-@planning_tool_blueprint.route('/planning/submit_plan', methods=['GET', 'POST'])
 def submit_plan():
     name = request.form.get('name')
     intro = request.form.get('intro')
@@ -115,16 +113,55 @@ def submit_plan():
         user_id = current_user.id
 
     combination = UserCombination(user_id, name, intro, price, length, days_id[0], days_id[1], days_id[2], days_id[3],
-                              days_id[4], days_id[5], days_id[6])
+                                  days_id[4], days_id[5], days_id[6])
     db.session.add(combination)
     db.session.commit()
     day_trip_draft.clear()
-    return redirect(url_for("planning_tool.planning"))
+    return combination.id
+
+
+@planning_tool_blueprint.route('/planning/save_draft', methods=['GET', 'POST'])
+def save_draft():
+    submit_plan()
+    return redirect(url_for("personal_plan"))
 
 
 @planning_tool_blueprint.route('/planning/buy', methods=['GET', 'POST'])
 def buy():
-    return 0
+    plan_id = submit_plan()
+    return redirect(url_for("booking.addPersonalBooking", combination_id=plan_id))
+
+
+@planning_tool_blueprint.route('/planning/back', methods=['GET', 'POST'])
+def back():
+    return redirect(url_for("personal_plan"))
+
+
+@planning_tool_blueprint.route('/planning/store_plan_id', methods=['GET', 'POST'])
+def store_plan_id():
+    plan_id = request.args.get("plan_id")
+    session['personal_plan_id'] = plan_id
+    return '0'
+
+
+@planning_tool_blueprint.route('/planning/plan_detail', methods=['GET', 'POST'])
+def plan_detail():
+    plan_id = session['personal_plan_id']
+    plan = UserCombination.query.filter_by(id=plan_id).first()
+    days = []
+    for i in range(1, 8):
+        day = Day.query.filter_by(id=getattr(plan, "day" + str(i))).first()
+        if day is None:
+            continue
+        destination = Destination.query.filter_by(id=day.destination_id).first()
+        attraction = Target.query.filter_by(id=day.attraction_id).first()
+        accommodation = Target.query.filter_by(id=day.accommodation_id).first()
+        traffic = Target.query.filter_by(id=day.traffic_id).first()
+        day = [i, destination.name, attraction.name, accommodation.name, traffic.name]
+        days.append(day)
+    return render_template('personal_plan_detail.html', plan=plan, days=days)
+
+
 
 
 

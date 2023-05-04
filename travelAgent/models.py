@@ -281,6 +281,27 @@ class RecordC(db.Model):
     status = db.Column(db.String(120))
     status2 = db.Column(db.String(120))
 
+class RecordP(db.Model):
+    __tablename__ = "record_p"
+    __table_args__ = {'extend_existing': True}
+    # id is the primary key and it increments automatically
+    id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
+    user_id = db.Column(db.INTEGER, db.ForeignKey('user.id'))
+    combination_id = db.Column(db.INTEGER, db.ForeignKey('combination.id'))
+    # record constructed time
+    time = db.Column(db.String(120))
+    # This scheduled start and end time
+    start_time = db.Column(db.String(120))
+    # end_time = db.Column(db.String(120))
+    # the number of reserved persons
+    num = db.Column(db.INTEGER, nullable=False, default=1)
+    # the reservation person's name
+    name = db.Column(db.String(64))
+    # the reservation person's cell phone number
+    tel = db.Column(db.String(64))
+    price = db.Column(db.INTEGER)
+    status = db.Column(db.String(120))
+    status2 = db.Column(db.String(120))
 
 
 # personal record of attraction, traffic, and accommodation, customer can operate and store data in this table

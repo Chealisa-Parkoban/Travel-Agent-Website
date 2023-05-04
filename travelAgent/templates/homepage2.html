@@ -72,6 +72,12 @@
             overflow: hidden !important;
             white-space: nowrap !important;
             text-overflow: ellipsis !important;
+            {#display: -webkit-box;#}
+            {#-webkit-line-clamp: 2; /* number of lines to show */#}
+            {#-webkit-box-orient: vertical;#}
+            {#line-height: 1.5; /* adjust as needed to set the line height */#}
+            {#height: 5.8rem !important; /* height of two lines */#}
+            font-size: 1.2rem !important;
         }
 
         .img-responsive{
@@ -79,6 +85,10 @@
             height: auto;
             {#padding-bottom: 75%;#}
             position: relative;
+        }
+
+        h5{
+            margin-bottom: 0 !important;
         }
 
     </style>
