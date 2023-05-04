@@ -265,8 +265,9 @@ def order_list():
     else:
         customer_id = current_user.id
         bookings = db.session.query(RecordC).filter(RecordC.user_id == customer_id).all()
-        # combination中的信息
 
+        # combination中的信息
+        ids = []
         combination_name = []
         user_name = []
         start_time = []
@@ -278,25 +279,91 @@ def order_list():
         status_complete = []
         status_comment = []
 
-    for book in bookings:
-        combination_id = book.combination_id
-        print(combination_id)
-        combination = db.session.query(Combination).filter(Combination.id == combination_id).first()
-        combination_name.append(combination.name)
-        user_name.append(book.name)
-        number.append(book.num)
-        start_time.append(book.start_time)
-        tel.append(book.tel)
-        introduction.append(combination.intro)
-        price.append(book.price)
-        image.append(combination.image)
-        status_complete.append(book.status)
-        status_comment.append(book.status2)
+        for book in bookings:
+            combination_id = book.combination_id
+            print(combination_id)
+            combination = db.session.query(Combination).filter(Combination.id == combination_id).first()
+            combination_name.append(combination.name)
+            user_name.append(book.name)
+            number.append(book.num)
+            start_time.append(book.start_time)
+            tel.append(book.tel)
+            introduction.append(combination.intro)
+            price.append(book.price)
+            image.append(combination.image)
+            status_complete.append(book.status)
+            status_comment.append(book.status2)
+            ids.append(book.id)
 
-    print(user_name)
+        targets = db.session.query(Record).filter(Record.user_id == customer_id).all()
+        # targets中的信息
+        target_ids = []
+        target_name = []
+        target_start_time = []
+        target_number = []
+        target_introduction = []
+        target_tel = []
+        target_image = []
+        target_price = []
+        target_status_complete = []
+        target_status_comment = []
 
-    return render_template("order_list.html", bookings=bookings, user_name=user_name, start_time=start_time, number=number, tel=tel,
-                           combination_name=combination_name, introduction=introduction, price=price, image=image, status=status_complete, status_comment=status_comment)
+        for target in targets:
+            target_name.append(target.name)
+            target_number.append(target.num)
+            target_start_time.append(target.start_time)
+            target_tel.append(target.tel)
+            target_introduction.append(target.intro)
+            target_price.append(target.price)
+            target_image.append(target.image)
+            target_status_complete.append(target.status)
+            target_status_comment.append(target.status2)
+            target_ids.append(target.id)
+
+        user_combinations = db.session.query(RecordP).filter(RecordP.user_id == customer_id).all()
+        # 客制化组合
+        user_combination_ids = []
+        user_combination_name = []
+        user_combination_start_time = []
+        user_combination_number = []
+        user_combination_introduction = []
+        user_combination_tel = []
+        user_combination_image = []
+        user_combination_price = []
+        user_combination_status_complete = []
+        user_combination_status_comment = []
+
+        for user_combination in user_combinations:
+            combination = db.session.query(Combination).filter(Combination.id == combination_id).first()
+            user_combination_name.append(combination.name)
+            user_combination_name.append(user_combination.name)
+            user_combination_number.append(user_combination.num)
+            user_combination_start_time.append(user_combination.start_time)
+            user_combination_tel.append(user_combination.tel)
+            user_combination_introduction.append(combination.intro)
+            user_combination_price.append(user_combination.price)
+            user_combination_image.append(combination.image)
+            user_combination_status_complete.append(user_combination.status)
+            user_combination_status_comment.append(user_combination.status2)
+            user_combination_ids.append(user_combination.id)
+
+
+
+    # print(user_name)
+
+    return render_template("order_list.html", user_name=user_name,
+                           ids=ids, start_time=start_time, number=number, tel=tel,
+                           combination_name=combination_name, introduction=introduction, price=price, image=image,
+                           status=status_complete, status_comment=status_comment,
+                           target_ids=target_ids, target_name=target_name, target_start_time=target_start_time,
+                           target_number=target_number, target_introduction=target_introduction, target_tel=target_tel,
+                           target_image=target_image, target_price=target_price, target_status_complete=target_status_complete,
+                           target_status_comment=target_status_comment,
+                           user_combination_ids=user_combination_ids, user_combination_name=user_combination_name,
+                           user_combination_start_time=user_combination_start_time, user_combination_number=user_combination_number,
+                           user_combination_introduction=user_combination_introduction, user_combination_tel=user_combination_tel,
+                           user_combination_image=user_combination_image, user_combination_price=user_combination_price,
+                           user_combination_status_complete=user_combination_status_complete, user_combination_status_comment=user_combination_status_comment)
 
 
 @app.route('/transport_setID', methods=['GET', 'POST'])
