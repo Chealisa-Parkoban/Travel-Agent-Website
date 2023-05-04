@@ -534,7 +534,7 @@
 
                                             function highlightStars(num) {
                                                 let stars = document.querySelectorAll(".fa-star");
-                                                for (let i = 1; i <= num; i++) {
+                                                for (let i = 0; i < num; i++) {
                                                     stars[i].classList.remove("unchecked");
                                                     stars[i].classList.add("checked");
                                                 }
@@ -548,7 +548,7 @@
                                                 }
                                                 rating = document.getElementById("score").value;
                                                 setRating(rating);
-                                             }
+                                            }
 
                                         </script>
                                     </div>
