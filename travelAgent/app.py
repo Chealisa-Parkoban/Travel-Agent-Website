@@ -571,7 +571,7 @@ def changeBookingStatus():
         target_id = book.target_id
         target = db.session.query(Target).filter_by(id=target_id).first()
         type = target.type
-        if type == '1':
+        if type == 1:
             # 住宿分天数
             if end_time <= current_time:
                 record = Record.query.filter_by(id=book_id).update({'status': 'Completed'})
@@ -623,31 +623,6 @@ def improveImage():
             return json
 
 
-def openAI():
-    # Apply the API key
-    openai.api_key = "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"
-
-    # Define the text prompt
-    prompt = "how are u"
-
-    # Generate completions using the API
-    completions = openai.Completion.create(
-        engine="text-davinci-002",
-        prompt=prompt,
-        max_tokens=100,
-        n=1,
-        stop=None,
-        temperature=0.5,
-    )
-
-    # Extract the message from the API response
-    message = completions.choices[0].text
-    print(message)
-    return message
-
-
-
-
 def main():
     # showSetDetails(1)
     logger.info('The Website Starts Running!')
@@ -658,120 +633,6 @@ def main():
 #<!--------------------chat------------------->
 
 
-
-# trytrytry
-# class OpenAI_Request(object):
-# #
-#     def __init__(self,key,model_name,request_address):
-#         super().__init__()
-#         self.headers = {"Authorization":f"Bearer {key}","Content-Type": "application/json"}
-#         self.model__name = model_name
-#         self.request_address = request_address
-#
-#     def post_request(self,message):
-#
-#         data = {
-#             "model": self.model__name,
-#             "messages":  message
-#         }
-#         data = json.dumps(data)
-#
-#         response = requests.post(self.request_address, headers=self.headers, data=data)
-#
-#         return response
-#
-#
-# if __name__ == '__main__':
-#     keys = "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"
-#     model_name = "gpt-3.5-turbo"
-#     request_address = "https://api.openai.com/v1/chat/completions"
-#     requestor = OpenAI_Request(keys,model_name,request_address)
-#
-#     while 1:
-#         input_s = input('user input: ')
-#         res = requestor.post_request(input_s)
-#
-#         response = res.json()['choices'][0]['message']['content']
-#
-#         if  response:
-#             requestor.context_handler.append_cur_to_context(response,tag=1)
-#
-#         print(f"chatGPT: {response}")
-
-
-# testInfo = {}
-# @app.route("/calendar", methods=['GET', 'POST'])
-# def calendar():
-#     if not current_user.is_authenticated:
-#         return redirect(url_for('account.login'))
-#     user_id = current_user.id
-#     days = db.session.query(RecordC).filter_by(user_id=user_id)
-#     dates = []
-#     destinations = []
-#     attractions = []
-#     accommodations = []
-#     traffics = []
-#     for day in days:
-#         start_time = day.start_time
-#         start_date = datetime.strptime(start_time, '%Y-%m-%d')
-#         # print(type(date))
-#         dates.append(start_date)
-#         combination_id = day.combination_id
-#         combination = db.session.query(Combination).filter_by(id=combination_id).first()
-#         day_id = combination.day1
-#         day = db.session.query(Day).filter_by(id=day_id).first()
-#         # destinations
-#         destination_id = day.destination_id
-#         destination = db.session.query(Target).filter_by(id=destination_id).first()
-#         destinations.append(destination)
-#         # attraction
-#         attraction_id = day.attraction_id
-#         attraction = db.session.query(Target).filter_by(id=attraction_id).first()
-#         attractions.append(attraction)
-#         # accommodation
-#         accommodation_id = day.accommodation_id
-#         accommodation = db.session.query(Target).filter_by(id=accommodation_id).first()
-#         accommodations.append(accommodation)
-#         # traffics
-#         traffic_id = day.traffic_id
-#         traffic = db.session.query(Target).filter_by(id=traffic_id).first()
-#         traffics.append(traffic)
-#
-#         length = combination.length
-#         for i in range(0,length-1):
-#             length_timedelta = timedelta(days=1)
-#             following_time = start_date + length_timedelta
-#             dates.append(following_time)
-#             start_date = following_time
-#             # time listtttttttt
-#             a = i + 1
-#             str_day = "day" + str(a)
-#             day_id = getattr(combination, str_day)
-#             day = db.session.query(Day).filter_by(id=day_id).first()
-#
-#             # destinations
-#             destination_id = day.destination_id
-#             destination = db.session.query(Target).filter_by(id=destination_id).first()
-#             destinations.append(destination)
-#             # attraction
-#             attraction_id = day.attraction_id
-#             attraction = db.session.query(Target).filter_by(id=attraction_id).first()
-#             attractions.append(attraction)
-#             # accommodation
-#             accommodation_id = day.accommodation_id
-#             accommodation = db.session.query(Target).filter_by(id=accommodation_id).first()
-#             accommodations.append(accommodation)
-#             # traffics
-#             traffic_id = day.traffic_id
-#             traffic = db.session.query(Target).filter_by(id=traffic_id).first()
-#             traffics.append(traffic)
-#
-#     # print("days")
-#     # print(destinations[0])
-#     # return render_template('calendar.html', dates=dates, destinations=destinations, attractions=attractions,
-#     #                        accommodations=accommodations, traffics=traffics)
-#     return render_template('calendar.html', dates=jsonify(dates))
-
 @app.route("/calendar", methods=['GET', 'POST'])
 def calendar():
     return render_template('calendar.html')
@@ -781,6 +642,7 @@ def data():
     if not current_user.is_authenticated:
         return redirect(url_for('account.login'))
     user_id = current_user.id
+    # 展示预定的combination
     days = db.session.query(RecordC).filter_by(user_id=user_id)
     dates = []
     destinations = []
@@ -896,6 +758,201 @@ def data():
             }
             traffics.append(traffic_dict)
 
+    #展示客制化combination
+    days = db.session.query(RecordP).filter_by(user_id=user_id)
+    for day in days:
+        start_time = day.start_time
+        # start_t = datetime.strptime(start_time, '%Y-%m-%d')
+        start_date = datetime.strptime(start_time, '%Y-%m-%d')
+        dates.append(start_time)
+        combination_id = day.combination_id
+        combination = db.session.query(Combination).filter_by(id=combination_id).first()
+        day_id = combination.day1
+        day = db.session.query(Day).filter_by(id=day_id).first()
+
+        # destinations
+        destination_id = day.destination_id
+        destination = db.session.query(Destination).filter_by(id=destination_id).first()
+        destinations.append(destination.name)
+
+        # attraction
+        attraction_id = day.attraction_id
+        attraction = db.session.query(Target).filter_by(id=attraction_id).first()
+        # attractions.append(attraction)
+        attraction_dict = {
+            "name": attraction.name,
+            "location": attraction.location,
+            "image": attraction.image,
+            "intro": attraction.intro,
+            "price": attraction.price
+        }
+        attractions.append(attraction_dict)
+
+        # accommodation
+        accommodation_id = day.accommodation_id
+        accommodation = db.session.query(Target).filter_by(id=accommodation_id).first()
+        # accommodations.append(accommodation)
+        accommodation_dict = {
+            "name": accommodation.name,
+            "location": accommodation.location,
+            "image": accommodation.image,
+            "intro": accommodation.intro,
+            "price": accommodation.price
+        }
+        accommodations.append(accommodation_dict)
+
+        # traffics
+        traffic_id = day.traffic_id
+        traffic = db.session.query(Target).filter_by(id=traffic_id).first()
+        traffic_dict = {
+            "name": traffic.name,
+            "location": traffic.location,
+            "image": traffic.image,
+            "intro": traffic.intro,
+            "price": traffic.price
+        }
+        traffics.append(traffic_dict)
+
+        length = combination.length
+
+        for i in range(0, length - 1):
+            length_timedelta = timedelta(days=1)
+            following_time = start_date + length_timedelta
+            following_time_string = following_time.strftime('%Y-%m-%d')
+            dates.append(following_time_string)
+            start_date = following_time
+            # time listtttttttt
+            a = i + 1
+            str_day = "day" + str(a)
+            day_id = getattr(combination, str_day)
+            day = db.session.query(Day).filter_by(id=day_id).first()
+
+            # destinations
+            destination_id = day.destination_id
+            destination = db.session.query(Destination).filter_by(id=destination_id).first()
+            destinations.append(destination.name)
+            # attraction
+            attraction_id = day.attraction_id
+            attraction = db.session.query(Target).filter_by(id=attraction_id).first()
+            # attractions.append(attraction)
+            attraction_dict = {
+                "name": attraction.name,
+                "location": attraction.location,
+                "image": attraction.image,
+                "intro": attraction.intro,
+                "price": attraction.price
+            }
+            attractions.append(attraction_dict)
+
+            # accommodation
+            accommodation_id = day.accommodation_id
+            accommodation = db.session.query(Target).filter_by(id=accommodation_id).first()
+            # accommodations.append(accommodation)
+            accommodation_dict = {
+                "name": accommodation.name,
+                "location": accommodation.location,
+                "image": accommodation.image,
+                "intro": accommodation.intro,
+                "price": accommodation.price
+            }
+            accommodations.append(accommodation_dict)
+
+            # traffics
+            traffic_id = day.traffic_id
+            traffic = db.session.query(Target).filter_by(id=traffic_id).first()
+            traffic_dict = {
+                "name": traffic.name,
+                "location": traffic.location,
+                "image": traffic.image,
+                "intro": traffic.intro,
+                "price": traffic.price
+            }
+            traffics.append(traffic_dict)
+
+    #展示单独预定target
+    days = db.session.query(Record).filter_by(user_id=user_id)
+    for day in days:
+        start_time = day.start_time
+        start_date = datetime.strptime(start_time, '%Y-%m-%d')
+        day_id = day.target_id
+
+        target = db.session.query(Target).filter_by(id=day_id).first()
+        t = target.type
+        print("target type")
+        print(type(t))
+        # 预定的是住宿
+        if t == 1:
+            end_time = day.end_time
+            end_date = datetime.strptime(end_time, '%Y-%m-%d')
+            delta = end_date - start_date  # 计算日期差
+            length = delta.days  # 获取日期差中的天数
+            dates.append(start_time)
+
+            for i in range(0, length - 1):
+                length_timedelta = timedelta(days=1)
+                following_time = start_date + length_timedelta
+                following_time_string = following_time.strftime('%Y-%m-%d')
+                dates.append(following_time_string)
+                start_date = following_time
+
+                accommodation_dict = {
+                    "name": target.name,
+                    "location": target.location,
+                    "image": target.image,
+                    "intro": target.intro,
+                    "price": target.price
+                }
+                accommodations.append(accommodation_dict)
+
+                attraction_dict = {
+                    "name": 0,
+                    "location": 0,
+                    "image": 0,
+                    "intro": 0,
+                    "price": 0
+                }
+                attractions.append(attraction_dict)
+
+                traffic_dict = {
+                    "name": 0,
+                    "location":0,
+                    "image": 0,
+                    "intro": 0,
+                    "price": 0
+                }
+                traffics.append(traffic_dict)
+
+        #预定的是景点
+        elif t == 0:
+            print("单独预定景点")
+            dates.append(start_time)
+
+            attraction_dict = {
+                "name": target.name,
+                "location": target.location,
+                "image": target.image,
+                "intro": target.intro,
+                "price": target.price
+            }
+            attractions.append(attraction_dict)
+            accommodation_dict = {
+                "name": 0,
+                "location": 0,
+                "image": 0,
+                "intro": 0,
+                "price": 0
+            }
+            accommodations.append(accommodation_dict)
+
+            traffic_dict = {
+                "name": 0,
+                "location": 0,
+                "image": 0,
+                "intro": 0,
+                "price": 0
+            }
+            traffics.append(traffic_dict)
+
     json_content = []
     d = {"date":dates}
     des = {"destination":destinations}
@@ -909,9 +966,6 @@ def data():
     json_content.append(at)
     json_content.append(ac)
     json_content.append(t)
-
-    print("json")
-    print(json_content)
 
     return jsonify(json_content)
 
