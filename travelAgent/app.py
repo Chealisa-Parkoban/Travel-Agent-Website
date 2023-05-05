@@ -940,6 +940,7 @@ def data():
         t = target.type
         print("target type")
         print(type(t))
+        destinations.append("")
         # 预定的是住宿
         if t == 1:
             end_time = day.end_time
@@ -965,20 +966,20 @@ def data():
                 accommodations.append(accommodation_dict)
 
                 attraction_dict = {
-                    "name": 0,
-                    "location": 0,
-                    "image": 0,
-                    "intro": 0,
-                    "price": 0
+                    "name": "",
+                    "location": "",
+                    "image": "",
+                    "intro": "",
+                    "price": ""
                 }
                 attractions.append(attraction_dict)
 
                 traffic_dict = {
-                    "name": 0,
-                    "location": 0,
-                    "image": 0,
-                    "intro": 0,
-                    "price": 0
+                    "name": "",
+                    "location":"",
+                    "image": "",
+                    "intro": "",
+                    "price": ""
                 }
                 traffics.append(traffic_dict)
 
@@ -996,20 +997,20 @@ def data():
             }
             attractions.append(attraction_dict)
             accommodation_dict = {
-                "name": 0,
-                "location": 0,
-                "image": 0,
-                "intro": 0,
-                "price": 0
+                "name": "",
+                "location": "",
+                "image": "",
+                "intro": "",
+                "price": ""
             }
             accommodations.append(accommodation_dict)
 
             traffic_dict = {
-                "name": 0,
-                "location": 0,
-                "image": 0,
-                "intro": 0,
-                "price": 0
+                "name": "",
+                "location": "",
+                "image": "",
+                "intro": "",
+                "price": ""
             }
             traffics.append(traffic_dict)
 
