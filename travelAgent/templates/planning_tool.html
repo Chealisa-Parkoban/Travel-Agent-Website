@@ -17,6 +17,7 @@
 
         .card{
             border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
         }
     </style>
 {% endblock %}
@@ -32,7 +33,7 @@
             <div class="col-md-12 details">
                 <h2 class="font-weight-bold spanborder" style="margin-top: 1em"><span> Create a New Travel Plan </span></h2>
 
-                <div style="background: rgb(232,241,255); margin-top: 0.8rem; margin-bottom: 1rem; padding: 1rem; border-radius: 5px">
+                <div style="box-shadow: 0 0 10px rgba(0,0,0,0.2); background: rgb(232,241,255); margin-top: 0.8rem; margin-bottom: 1rem; padding: 1rem; border-radius: 5px">
                     <p>You can create a brand-new travel plan for you own!</p>
                     <p>You can mix and match as many destinations, attractions, accommodation and transport options as you like with our offer.
                         The total price will be calculated automatically.</p>
@@ -171,8 +172,8 @@
 
                             <div class="form-group" style="margin-bottom: 0">
                                 <p>Price</p>
-                                <label style="margin-bottom: 1%">
-                                    <input class="form-control" type="number" name="price" value={{ trip_fees }}>
+                                <label style="margin-bottom: 1%;">
+                                    <input readonly="readonly" class="form-control" type="number" name="price" value={{ trip_fees }}>
                                 </label>
                             </div>
                         </div>
