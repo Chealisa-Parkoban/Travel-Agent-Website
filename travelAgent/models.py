@@ -177,7 +177,7 @@ class Combination(db.Model):
     image = db.Column(db.String(120))
     num_orders = db.Column(db.INTEGER, default=0)
     num_favorite = db.Column(db.INTEGER, default=0)
-    avg_score = db.Column(db.String(120), default="Not evaluated, no score")
+    avg_score = db.Column(db.String(120), default="No score")
 
     def __init__(self, name, intro, price, length, image, day1, day2, day3, day4, day5, day6, day7):
         self.name = name
