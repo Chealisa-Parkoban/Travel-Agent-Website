@@ -73,8 +73,10 @@ def addTargetBooking(target_id):
                               name=name, tel=tel, time=str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())), price=total_price, status="Uncompleted", status2="No comment")
             elif target_type == 1:
                 end_time = form.time2.data
-                # days = end_time - start_time
-                # print(days,"day======================")
+                time1 = datetime.datetime.strptime(start_time,'%Y-%m-%d')
+                time2 = datetime.datetime.strptime(end_time,'%Y-%m-%d')
+                duration = time2 - time1
+                total_price = total_price * duration.days
                 booking = Record(user_id=current_user.id, target_id=target_id, start_time=start_time, end_time=end_time, num=num,
                                  name=name, tel=tel, time=str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())),
                                  price=total_price, status="Uncompleted", status2="No comment")
