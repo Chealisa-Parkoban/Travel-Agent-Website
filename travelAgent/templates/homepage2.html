@@ -156,7 +156,13 @@
                             <img src="{{ set.image }}" class="img-responsive" alt=""
                                  onerror="javascript:this.src='static/images/sample_pic/the_north_Europe.png/'"/>
                             <div class="prom-text">
-                                <h4 class="title"> {{ set.name }}</h4>
+                                <h4 class="title" style="display: flex; align-items: center">
+                                    <div style="display: flex; align-items: center; font-size: 1rem; background: whitesmoke; border-radius: 5px; padding: 0.15rem 0.3em 0.15rem 0.2rem; margin-right: 0.5rem; color: #1B4367">
+                                        <i class="fas fa-star" style="margin-right: 0.2rem; font-size: 0.85rem"></i> {{ set.avg_score }}
+                                    </div>
+                                    {{ set.name }}
+                                </h4>
+
                                 <div class="prom-bottom">
                                     <div class="prom-left">
                                         <h5> Days : {{ set.length }} </h5>
@@ -203,7 +209,13 @@
                             <img src="{{ attraction.image }}" class="img-responsive" alt=""
                                  onerror="javascript:this.src='static/images/sample_pic/the_north_Europe.png/'"/>
                             <div class="prom-text">
-                                <h4 class="title"> {{ attraction.name }}</h4>
+                                 <h4 class="title" style="display: flex; align-items: center">
+                                    <div style="display: flex; align-items: center; font-size: 1rem; background: whitesmoke; border-radius: 5px; padding: 0.15rem 0.3em 0.15rem 0.2rem; margin-right: 0.5rem; color: #1B4367">
+                                        <i class="fas fa-star" style="margin-right: 0.2rem; font-size: 0.85rem"></i> 4.2
+                                    </div>
+                                    {{ attraction.name }}
+                                </h4>
+
                                 <div class="prom-bottom">
                                     <div class="prom-left">
                                         <h5> {{ attraction.location }} </h5>
@@ -234,7 +246,13 @@
                             <img src="{{ hotel.image }}" class="img-responsive" alt=""
                                  onerror="javascript:this.src='static/images/sample_pic/the_north_Europe.png/'"/>
                             <div class="prom-text">
-                                <h4 class="title"> {{ hotel.name }}</h4>
+                                 <h4 class="title" style="display: flex; align-items: center">
+                                    <div style="display: flex; align-items: center; font-size: 1rem; background: whitesmoke; border-radius: 5px; padding: 0.15rem 0.3em 0.15rem 0.2rem; margin-right: 0.5rem; color: #1B4367">
+                                        <i class="fas fa-star" style="margin-right: 0.2rem; font-size: 0.85rem"></i> 4.2
+                                    </div>
+                                    {{ hotel.name }}
+                                </h4>
+
                                 <div class="prom-bottom">
                                     <div class="prom-left">
                                         <h5> {{ hotel.location }} </h5>
