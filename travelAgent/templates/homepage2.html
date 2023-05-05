@@ -158,7 +158,10 @@
                             <div class="prom-text">
                                 <h4 class="title" style="display: flex; align-items: center">
                                     <div style="display: flex; align-items: center; font-size: 1rem; background: whitesmoke; border-radius: 5px; padding: 0.15rem 0.3em 0.15rem 0.2rem; margin-right: 0.5rem; color: #1B4367">
-                                        <i class="fas fa-star" style="margin-right: 0.2rem; font-size: 0.85rem"></i> {{ set.avg_score }}
+                                        {%  if set.avg_score != 'No score' %}
+                                            <i class="fas fa-star" style="margin-right: 0.2rem; font-size: 0.85rem"></i>
+                                        {% endif %}
+                                        {{ set.avg_score }}
                                     </div>
                                     {{ set.name }}
                                 </h4>
@@ -211,7 +214,10 @@
                             <div class="prom-text">
                                  <h4 class="title" style="display: flex; align-items: center">
                                     <div style="display: flex; align-items: center; font-size: 1rem; background: whitesmoke; border-radius: 5px; padding: 0.15rem 0.3em 0.15rem 0.2rem; margin-right: 0.5rem; color: #1B4367">
-                                        <i class="fas fa-star" style="margin-right: 0.2rem; font-size: 0.85rem"></i> 4.2
+                                        {%  if attraction.avg_score != 'No score' %}
+                                            <i class="fas fa-star" style="margin-right: 0.2rem; font-size: 0.85rem"></i>
+                                        {% endif %}
+                                        {{ attraction.avg_score }}
                                     </div>
                                     {{ attraction.name }}
                                 </h4>
@@ -248,7 +254,10 @@
                             <div class="prom-text">
                                  <h4 class="title" style="display: flex; align-items: center">
                                     <div style="display: flex; align-items: center; font-size: 1rem; background: whitesmoke; border-radius: 5px; padding: 0.15rem 0.3em 0.15rem 0.2rem; margin-right: 0.5rem; color: #1B4367">
-                                        <i class="fas fa-star" style="margin-right: 0.2rem; font-size: 0.85rem"></i> 4.2
+                                        {%  if hotel.avg_score != 'No score' %}
+                                            <i class="fas fa-star" style="margin-right: 0.2rem; font-size: 0.85rem"></i>
+                                        {% endif %}
+                                        {{ hotel.avg_score }}
                                     </div>
                                     {{ hotel.name }}
                                 </h4>
@@ -267,6 +276,7 @@
                         </div>
                 {% endfor %}
                 <div class="clearfix"></div>
+                </a>
             </div>
         </div>
     </div>

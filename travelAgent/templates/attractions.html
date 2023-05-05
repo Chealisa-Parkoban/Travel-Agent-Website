@@ -80,6 +80,17 @@
             font-size: 1.2rem !important;
         }
 
+        .img-responsive{
+            width: 100%;
+            height: auto;
+            {#padding-bottom: 75%;#}
+            position: relative;
+        }
+
+        h5{
+            margin-bottom: 0 !important;
+        }
+
     </style>
 
 {% endblock %}
@@ -100,10 +111,19 @@
                     <a set_id={{ attraction.id }} onclick="setTargetID(this)">
                         <div class="col-md-4 promation-grid">
                             <!--{#                            <img src="../static/images/sample_pic/the_north_Europe.png" class="img-responsive" alt="" />#}-->
-                            <img src="{{ attraction.image }}" class="img-responsive" alt=""  style="width: 100% !important; height: auto !important;"
+                            <img src="{{ attraction.image }}" class="img-responsive" alt=""
                                  onerror="javascript:this.src='static/images/sample_pic/the_north_Europe.png/'"/>
                             <div class="prom-text">
-                                <h4 class="title"> {{ attraction.name }}</h4>
+                                 <h4 class="title" style="display: flex; align-items: center">
+                                    <div style="display: flex; align-items: center; font-size: 1rem; background: whitesmoke; border-radius: 5px; padding: 0.15rem 0.3em 0.15rem 0.2rem; margin-right: 0.5rem; color: #1B4367">
+                                        {%  if attraction.avg_score != 'No score' %}
+                                            <i class="fas fa-star" style="margin-right: 0.2rem; font-size: 0.85rem"></i>
+                                        {% endif %}
+                                        {{ attraction.avg_score }}
+                                    </div>
+                                    {{ attraction.name }}
+                                </h4>
+
                                 <div class="prom-bottom">
                                     <div class="prom-left">
                                         <h5> {{ attraction.location }} </h5>
@@ -116,6 +136,7 @@
                                 <p class="intro">{{ attraction.intro }}</p>
                             </div>
                         </div>
+                    </a>
                 {% endfor %}
                 <div class="clearfix"></div>
             </div>
