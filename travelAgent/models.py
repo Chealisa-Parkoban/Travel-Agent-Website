@@ -132,6 +132,10 @@ class Target(db.Model):
     # traffic: 2
     type = db.Column(db.INTEGER)
     price = db.Column(db.INTEGER)
+    num_orders = db.Column(db.INTEGER, default=0)
+    num_favorite = db.Column(db.INTEGER, default=0)
+    avg_score = db.Column(db.String(120), default="Not evaluated, no score")
+
 
     def __init__(self, name, destination_id, image, intro, type, price):
         self.name = name
@@ -171,6 +175,9 @@ class Combination(db.Model):
     price = db.Column(db.INTEGER)
     length = db.Column(db.INTEGER, nullable=False)
     image = db.Column(db.String(120))
+    num_orders = db.Column(db.INTEGER, default=0)
+    num_favorite = db.Column(db.INTEGER, default=0)
+    avg_score = db.Column(db.String(120), default="Not evaluated, no score")
 
     def __init__(self, name, intro, price, length, image, day1, day2, day3, day4, day5, day6, day7):
         self.name = name
