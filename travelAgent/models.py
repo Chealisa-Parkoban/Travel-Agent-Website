@@ -134,7 +134,7 @@ class Target(db.Model):
     price = db.Column(db.INTEGER)
     num_orders = db.Column(db.INTEGER, default=0)
     num_favorite = db.Column(db.INTEGER, default=0)
-    avg_score = db.Column(db.String(120), default="Not evaluated, no score")
+    avg_score = db.Column(db.String(120), default="No score")
 
 
     def __init__(self, name, destination_id, image, intro, type, price):

@@ -171,7 +171,7 @@ def update_score(sets, comments, id_type):
     for s in sets:
         # multi dic [0]:the count [1]: the total value
         dic.setdefault(s.id, []).append(0)
-        dic.setdefault(s.id, []).append('Not evaluated, no score')
+        dic.setdefault(s.id, []).append('No score')
 
     # increase value according to the comment table
     # id_type = 0 :combination /
