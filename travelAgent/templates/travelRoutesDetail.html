@@ -13,7 +13,7 @@
     <script type="text/javascript" src="../static/js/image.js"></script>
 
     <style>
-        .block{
+        .block {
             margin-right: 0.5em;
         }
 
@@ -55,14 +55,13 @@
         }
 
         .fa-star {
-        {#    font-size: 2em;#}
-        {#    color: #ccc;#}
-        {#    cursor: pointer;#}
-            transition: color 0.2s;
+        {#    font-size: 2em;#}{#    color: #ccc;#}{#    cursor: pointer;#} transition: color 0.2s;
         }
+
         .fa-star.checked {
             color: gold;
         }
+
         .fa-star.unchecked:hover {
             color: gold;
         }
@@ -73,11 +72,11 @@
             margin: 10px;
         }
 
-        .details p{
+        .details p {
             margin-bottom: 0;
         }
 
-        .details h5{
+        .details h5 {
             font-weight: bold;
         }
 
@@ -87,40 +86,30 @@
 
 {% block body %}
     <div class="container-fluid" style="margin-top: 7%">
-        <div class="container" >
+        {#        <div class="flash-message alert-danger">#}
+
+        <div class="container">
             <div class="jumbotron jumbotron-fluid mb-3 pt-0 pb-0 bg-lightblue position-relative">
                 <div class="pl-4 pr-0 h-100 tofront">
                     <div class="row justify-content-between">
                         <div class="col-md-6 pt-6 pb-6 align-self-center">
-                            <div class="flash-message">
-                                {% with messages = get_flashed_messages() %}
-                                    {% if messages %}
-                                        <ul>
-                                            {% for message in messages %}
-                                                {% for message in messages %}
-                                                    <li style="text-align: center; font-size: larger; color: red; list-style: none;margin-left: 1%;">
-                                                        <div class="alert alert-info" role="alert" id="message" >{{ message }}</div>
-                                                    </li>
-                                            {% endfor %}
-                                            {% endfor %}
-                                        </ul>
-                                    {% endif %}
-                                {% endwith %}
-                            </div>
+
                             <h1 class="secondfont mb-3 font-weight-bold"> {{ set.name }}</h1>
                             <p class="mb-3 intro">
                                 {{ set.intro }}
                             </p>
                             {#                            <a href="./article.html" class="btn btn-info">Book Now!</a>#}
 
-                            <a href="{{ url_for('booking.addBooking', combination_id=combination_id) }} " style="text-decoration: none">
-                              <button class="btn btn-primary" style="border-color: transparent">
-                                <i class="fas fa-shopping-cart"></i>
-                                <span style="color: white; text-decoration: none;">Book Now!</span>
-                              </button>
+                            <a href="{{ url_for('booking.addBooking', combination_id=combination_id) }} "
+                               style="text-decoration: none">
+                                <button class="btn btn-primary" style="border-color: transparent">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <span style="color: white; text-decoration: none;">Book Now!</span>
+                                </button>
                             </a>
 
-                            <a href="{{ url_for('favorite.addFavorite', combination_id=combination_id) }}" style="text-decoration: none">
+                            <a href="{{ url_for('favorite.addFavorite', combination_id=combination_id) }}"
+                               style="text-decoration: none">
                                 <button class="btn btn-outline-primary ml-4 favourite">
                                     <i class="fas fa-star"></i>
                                     <span class="text-color">Favourite</span>
@@ -210,17 +199,20 @@
                                         <div class="icon icon-lg">
                                             {#                                        <i class="fab fa-twitter text-white"></i>#}
 
-{#                                            <i class="fa-solid fa-landmark" style="color: white">{{ i }}</i>#}
+                                            {#                                            <i class="fa-solid fa-landmark" style="color: white">{{ i }}</i>#}
                                             <i class="" style="color: white; font-size: 1.5rem">Day {{ i + 1 }}</i>
 
                                             {#                                        <img src="../static/images/icons/plane.png" alt="plane" height="100%" width="100%">#}
                                         </div>
                                         <div class="icon-text">
-{#                                            <h3 class="heading text-white h4"><i class="fa-solid fa-camera-retro"></i> Attraction: {{ attractions[i].name }}</h3>#}
-                                            <h5 class="heading text-white"><i class="fa-solid fa-camera-retro"></i> Attraction: {{ attractions[i].name }}</h5>
+                                            {#                                            <h3 class="heading text-white h4"><i class="fa-solid fa-camera-retro"></i> Attraction: {{ attractions[i].name }}</h3>#}
+                                            <h5 class="heading text-white"><i class="fa-solid fa-camera-retro"></i>
+                                                Attraction: {{ attractions[i].name }}</h5>
                                             <!--需要修改文字-->
-                                            <h5 class="heading text-white"><i class="fa-solid fa-landmark"></i> Accommodation: {{ accomodations[i].name }}</h5>
-                                            <h5 class="heading text-white"><i class="fa-solid fa-bus"></i> Traffic: {{ traffic[i].name }}</h5>
+                                            <h5 class="heading text-white"><i class="fa-solid fa-landmark"></i>
+                                                Accommodation: {{ accomodations[i].name }}</h5>
+                                            <h5 class="heading text-white"><i class="fa-solid fa-bus"></i>
+                                                Traffic: {{ traffic[i].name }}</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -236,10 +228,15 @@
                                             <i class="" style="color: #0b3340; font-size: 1.5rem">Day {{ i + 1 }}</i>
                                         </div>
                                         <div class="icon-text">
-                                                <h5 class="heading"><i class="fa-solid fa-camera-retro" style="color: #0b3340"></i> Attraction: {{ attractions[i].name }}</h5>
-                                                <!--需要修改文字-->
-                                                <h5 class="heading"><i class="fa-solid fa-landmark" style="color: #0b3340"></i> Accommodation: {{ accomodations[i].name }}</h5>
-                                                <h5 class="heading"><i class="fa-solid fa-bus" style="color: #0b3340"></i> Traffic: {{ traffic[i].name }}</h5>
+                                            <h5 class="heading"><i class="fa-solid fa-camera-retro"
+                                                                   style="color: #0b3340"></i>
+                                                Attraction: {{ attractions[i].name }}</h5>
+                                            <!--需要修改文字-->
+                                            <h5 class="heading"><i class="fa-solid fa-landmark"
+                                                                   style="color: #0b3340"></i>
+                                                Accommodation: {{ accomodations[i].name }}</h5>
+                                            <h5 class="heading"><i class="fa-solid fa-bus" style="color: #0b3340"></i>
+                                                Traffic: {{ traffic[i].name }}</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -259,18 +256,25 @@
                 <h5>Disclaimer:</h5>
                 <div style="background: rgb(232,241,255); margin-top: 0.8rem; margin-bottom: 1rem; padding: 1rem; border-radius: 5px">
                     <p>1. All travel packages are subject to availability at the time of booking.</p>
-                    <p>2. Prices are subject to change without prior notice due to currency fluctuation and availability.</p>
-                    <p>3. The travel agency is not responsible for any changes or cancellations made by the airlines, hotels, or tour operators.</p>
-                    <p>4. The travel agency is not responsible for any personal injury, property damage, or loss during the trip.</p>
-                    <p>5. The travel agency advise clients to purchase travel insurance to protect themselves from unexpected situations.</p>
+                    <p>2. Prices are subject to change without prior notice due to currency fluctuation and
+                        availability.</p>
+                    <p>3. The travel agency is not responsible for any changes or cancellations made by the airlines,
+                        hotels, or tour operators.</p>
+                    <p>4. The travel agency is not responsible for any personal injury, property damage, or loss during
+                        the trip.</p>
+                    <p>5. The travel agency advise clients to purchase travel insurance to protect themselves from
+                        unexpected situations.</p>
                 </div>
 
                 <br/>
                 <h5>We promise:</h5>
                 <div style="background: rgb(232,241,255); margin-top: 0.8rem; margin-bottom: 1rem; padding: 1rem; border-radius: 5px">
-                    <p>We guarantee the best prices and offer flexible payment options to make your dream trip affordable.</p>
-                    <p>Our team of travel experts is available 24/7 for support, and we offer customizable packages to suit your preferences.</p>
-                    <p>We are committed to sustainable tourism and follow safety guidelines for a safe and enjoyable trip.</p>
+                    <p>We guarantee the best prices and offer flexible payment options to make your dream trip
+                        affordable.</p>
+                    <p>Our team of travel experts is available 24/7 for support, and we offer customizable packages to
+                        suit your preferences.</p>
+                    <p>We are committed to sustainable tourism and follow safety guidelines for a safe and enjoyable
+                        trip.</p>
                     <p>Read our customer reviews to help make an informed decision.</p>
                 </div>
 
@@ -280,11 +284,15 @@
                     <p>Experience the beauty and culture of [destination] with our exclusive travel packages.</p>
                     <p>Discover the best of [destination] with our carefully crafted travel itineraries.</p>
                     <p>Our travel packages are designed to provide you with a hassle-free and memorable vacation.</p>
-                    <p>Whether you're looking for adventure or relaxation, our travel packages have something for everyone.</p>
-                    <p>With our experienced tour guides, you can explore [destination] like a local and discover hidden gems.</p>
+                    <p>Whether you're looking for adventure or relaxation, our travel packages have something for
+                        everyone.</p>
+                    <p>With our experienced tour guides, you can explore [destination] like a local and discover hidden
+                        gems.</p>
                     <p>We offer a wide range of travel packages to suit every budget and travel style.</p>
-                    <p>Our travel packages include top-rated accommodations, transportation, and guided tours for a worry-free vacation.</p>
-                    <p>Our travel packages offer flexible schedules and customizable itineraries, so you can travel at your own pace.</p>
+                    <p>Our travel packages include top-rated accommodations, transportation, and guided tours for a
+                        worry-free vacation.</p>
+                    <p>Our travel packages offer flexible schedules and customizable itineraries, so you can travel at
+                        your own pace.</p>
                 </div>
             </div>
         </div>
@@ -295,8 +303,9 @@
     <div class="container">
         <div class="row justify-content-between">
             <div class="col-md-8">
-                <h2 class="font-weight-bold spanborder" style="margin-top: 1em"><span>Posts from other visitors</span></h2>
-{#                    <hr style="border: solid">#}
+                <h2 class="font-weight-bold spanborder" style="margin-top: 1em"><span>Posts from other visitors</span>
+                </h2>
+                {#                    <hr style="border: solid">#}
 
                 {% for comment in comments %}
 
@@ -325,8 +334,10 @@
 
                             {% if comment.image != '' %}
                                 <img src={{ comment.image }} alt="" id="image" style="width: 30%">
-                                <button route={{ comment.image }} i={{ comment.id }} onclick="improve(this)" style="background: #b6b1f3"> Improve Image Quality</button>
-                                <img alt="" id={{ comment.id }} style="width: 30%" >
+                                <button route={{ comment.image }} i={{ comment.id }} onclick="improve(this)"
+                                        style="background: #b6b1f3"> Improve Image Quality
+                                </button>
+                                <img alt="" id="{{ comment.id }}" style="width: 30%">
                             {% endif %}
                             <hr class="my-4">
                             <div class="d-flex justify-content-start align-items-center">
@@ -339,7 +350,7 @@
                                     <span class="ms-3 me-4">|</span></p>
                                 <a href="#!" class="block">
                                     <img src={{ current_user.avatar_url }}
-                                         alt=""
+                                                 alt=""
                                          class="img-fluid rounded-circle me-3" width="35">
                                 </a>
                                 <button type="button" class="btn btn-outline-dark btn-sm btn-floating block">
@@ -349,17 +360,33 @@
                         </div>
                     </div>
                 {% endfor %}
-{#                    <hr style="border: solid">#}
+                {#                    <hr style="border: solid">#}
             </div>
         </div>
         <hr>
     </div>
 
     <div class="container">
+        <div class="flash-message">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                            {% for message in messages %}
+                                <li style="text-align: center; font-size: larger; color: red; list-style: none">
+                                    <div class="alert alert-danger" role="alert" id="message"
+                                         style="opacity: 0.6;">{{ message }}</div>
+                                </li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+        </div>
         {% if current_user.is_authenticated %}
             <div class="row justify-content-between">
                 <div class="col-md-12">
-{#                        <!--                        <form action="{{ url_for('travel_routes_detail') }}" method="post" novalidate-->#}
+                    {#                        <!--                        <form action="{{ url_for('travel_routes_detail') }}" method="post" novalidate-->#}
                     <form action="{{ url_for("details.showSetDetails" ) }}" method="post" novalidat
                           class="form-primary"
                           enctype="multipart/form-data">
@@ -385,137 +412,134 @@
                         {#                        </div>#}
 
 
+                        {#                            <div class="container">#}
+                        {#                                <div class="card" style="object-fit: cover; width: 100%">#}
+                        {#                                    <div class="card-header">Review:</div>#}
+                        {#                                    <div class="card-body">#}
+                        {#                                        <div>#}
+                        {#                                            Rate:#}
+                        {#                                            <span id="star-1" class="fa fa-star unchecked" onclick="setRating(1)"></span>#}
+                        {#                                            <span id="star-2" class="fa fa-star unchecked" onclick="setRating(2)"></span>#}
+                        {#                                            <span id="star-3" class="fa fa-star unchecked" onclick="setRating(3)"></span>#}
+                        {#                                            <span id="star-4" class="fa fa-star unchecked" onclick="setRating(4)"></span>#}
+                        {#                                            <span id="star-5" class="fa fa-star unchecked" onclick="setRating(5)"></span>#}
+                        {#                                            <input type="hidden" name="score" id="score" value="1">#}
+                        {#                                            <script>#}
+                        {#                                                function setRating(rating) {#}
+                        {#                                                    document.getElementById("score").value = rating;#}
+                        {#                                                    console.log(rating)#}
+                        {#                                                    for (var i = 1; i <= 5; i++) {#}
+                        {#                                                        var star = document.getElementById("star-" + i);#}
+                        {#                                                        if (i <= rating) {#}
+                        {#                                                            star.classList.remove("unchecked");#}
+                        {#                                                            star.classList.add("checked");#}
+                        {#                                                        } else {#}
+                        {#                                                            star.classList.remove("checked");#}
+                        {#                                                            star.classList.add("unchecked");#}
+                        {#                                                        }#}
+                        {#                                                    }#}
+                        {#                                                }#}
+                        {##}
+                        {#                                                function highlightStars(num) {#}
+                        {#                                                    let stars = document.querySelectorAll(".fa-star");#}
+                        {#                                                    for (let i = 1; i <= num; i++) {#}
+                        {#                                                        stars[i].classList.remove("unchecked");#}
+                        {#                                                        stars[i].classList.add("checked");#}
+                        {#                                                    }#}
+                        {#                                                }#}
+                        {##}
+                        {#                                                function resetStars() {#}
+                        {#                                                    let stars = document.querySelectorAll(".fa-star");#}
+                        {#                                                    for (let i = 0; i < stars.length; i++) {#}
+                        {#                                                        stars[i].classList.remove("checked");#}
+                        {#                                                        stars[i].classList.add("unchecked");#}
+                        {#                                                    }#}
+                        {#                                                }#}
+                        {#                                                #}
+                        {#                                                function resetRating() {#}
+                        {#                                                    rating = document.getElementById("score").value;#}
+                        {#                                                    let stars = document.querySelectorAll(".fa-star");#}
+                        {#                                                    for (let i = 1; i <= rating; i++) {#}
+                        {#                                                        stars[i].classList.remove("unchecked");#}
+                        {#                                                        stars[i].classList.add("checked");#}
+                        {#                                                    }#}
+                        {#                                                }#}
 
 
-{#                            <div class="container">#}
-{#                                <div class="card" style="object-fit: cover; width: 100%">#}
-{#                                    <div class="card-header">Review:</div>#}
-{#                                    <div class="card-body">#}
-{#                                        <div>#}
-{#                                            Rate:#}
-{#                                            <span id="star-1" class="fa fa-star unchecked" onclick="setRating(1)"></span>#}
-{#                                            <span id="star-2" class="fa fa-star unchecked" onclick="setRating(2)"></span>#}
-{#                                            <span id="star-3" class="fa fa-star unchecked" onclick="setRating(3)"></span>#}
-{#                                            <span id="star-4" class="fa fa-star unchecked" onclick="setRating(4)"></span>#}
-{#                                            <span id="star-5" class="fa fa-star unchecked" onclick="setRating(5)"></span>#}
-{#                                            <input type="hidden" name="score" id="score" value="1">#}
-{#                                            <script>#}
-{#                                                function setRating(rating) {#}
-{#                                                    document.getElementById("score").value = rating;#}
-{#                                                    console.log(rating)#}
-{#                                                    for (var i = 1; i <= 5; i++) {#}
-{#                                                        var star = document.getElementById("star-" + i);#}
-{#                                                        if (i <= rating) {#}
-{#                                                            star.classList.remove("unchecked");#}
-{#                                                            star.classList.add("checked");#}
-{#                                                        } else {#}
-{#                                                            star.classList.remove("checked");#}
-{#                                                            star.classList.add("unchecked");#}
-{#                                                        }#}
-{#                                                    }#}
-{#                                                }#}
-{##}
-{#                                                function highlightStars(num) {#}
-{#                                                    let stars = document.querySelectorAll(".fa-star");#}
-{#                                                    for (let i = 1; i <= num; i++) {#}
-{#                                                        stars[i].classList.remove("unchecked");#}
-{#                                                        stars[i].classList.add("checked");#}
-{#                                                    }#}
-{#                                                }#}
-{##}
-{#                                                function resetStars() {#}
-{#                                                    let stars = document.querySelectorAll(".fa-star");#}
-{#                                                    for (let i = 0; i < stars.length; i++) {#}
-{#                                                        stars[i].classList.remove("checked");#}
-{#                                                        stars[i].classList.add("unchecked");#}
-{#                                                    }#}
-{#                                                }#}
-{#                                                #}
-{#                                                function resetRating() {#}
-{#                                                    rating = document.getElementById("score").value;#}
-{#                                                    let stars = document.querySelectorAll(".fa-star");#}
-{#                                                    for (let i = 1; i <= rating; i++) {#}
-{#                                                        stars[i].classList.remove("unchecked");#}
-{#                                                        stars[i].classList.add("checked");#}
-{#                                                    }#}
-{#                                                }#}
+                        {#function setRating(rating) {#}
+                        {#    document.getElementById("score").value = rating;#}
+                        {#    for (var i = 1; i <= 5; i++) {#}
+                        {#        var star = document.getElementById("star-" + i);#}
+                        {#        if (i <= rating) {#}
+                        {#            star.classList.remove("unchecked");#}
+                        {#            star.classList.add("checked");#}
+                        {#        } else {#}
+                        {#            star.classList.remove("checked");#}
+                        {#            star.classList.add("unchecked");#}
+                        {#        }#}
+                        {#    }#}
+                        {#    console.log(rating)#}
+                        {#}#}
+                        {##}
+                        {#function highlightStar(starNumber) {#}
+                        {#    resetStars()#}
+                        {#    for (let i = 1; i <= starNumber; i++) {#}
+                        {#        const star = document.getElementById(`star-${i}`);#}
+                        {#        star.classList.remove("unchecked");#}
+                        {#        star.classList.add("checked");#}
+                        {#    }#}
+                        {#    console.log(starNumber)#}
+                        {#}#}
+                        {##}
+                        {#function resetStars() {#}
+                        {#    rating = document.getElementById("score").value;#}
+                        {#    for (let i = 5; i > rating; i--) {#}
+                        {#        const star = document.getElementById(`star-${i}`);#}
+                        {#        star.classList.remove("checked");#}
+                        {#        star.classList.add("unchecked");#}
+                        {#    }#}
+                        {#    console.log("removed")#}
+                        {#}#}
+
+                        {#function highlightStar(starNumber) {#}
+                        {#    for (let i = 1; i <= starNumber; i++) {#}
+                        {#        const star = document.getElementById(`star-${i}`);#}
+                        {#        star.classList.remove("unchecked");#}
+                        {#        star.classList.add("checked");#}
+                        {#    }#}
+                        {#}#}
+                        {##}
+                        {#function resetStars() {#}
+                        {#    rating = document.getElementById("score").value;#}
+                        {#    for (let i = 5; i > rating; i--) {#}
+                        {#        const star = document.getElementById(`star-${i}`);#}
+                        {#        star.classList.remove("checked");#}
+                        {#        star.classList.add("unchecked");#}
+                        {#    }#}
+                        {#}#}
+                        {##}
+                        {#function setRating(rating) {#}
+                        {#    document.getElementById("score").value = rating;#}
+                        {#    highlightStar(rating);#}
+                        {#}#}
 
 
-                                            {#function setRating(rating) {#}
-                                            {#    document.getElementById("score").value = rating;#}
-                                            {#    for (var i = 1; i <= 5; i++) {#}
-                                            {#        var star = document.getElementById("star-" + i);#}
-                                            {#        if (i <= rating) {#}
-                                            {#            star.classList.remove("unchecked");#}
-                                            {#            star.classList.add("checked");#}
-                                            {#        } else {#}
-                                            {#            star.classList.remove("checked");#}
-                                            {#            star.classList.add("unchecked");#}
-                                            {#        }#}
-                                            {#    }#}
-                                            {#    console.log(rating)#}
-                                            {#}#}
-                                            {##}
-                                            {#function highlightStar(starNumber) {#}
-                                            {#    resetStars()#}
-                                            {#    for (let i = 1; i <= starNumber; i++) {#}
-                                            {#        const star = document.getElementById(`star-${i}`);#}
-                                            {#        star.classList.remove("unchecked");#}
-                                            {#        star.classList.add("checked");#}
-                                            {#    }#}
-                                            {#    console.log(starNumber)#}
-                                            {#}#}
-                                            {##}
-                                            {#function resetStars() {#}
-                                            {#    rating = document.getElementById("score").value;#}
-                                            {#    for (let i = 5; i > rating; i--) {#}
-                                            {#        const star = document.getElementById(`star-${i}`);#}
-                                            {#        star.classList.remove("checked");#}
-                                            {#        star.classList.add("unchecked");#}
-                                            {#    }#}
-                                            {#    console.log("removed")#}
-                                            {#}#}
-
-                                            {#function highlightStar(starNumber) {#}
-                                            {#    for (let i = 1; i <= starNumber; i++) {#}
-                                            {#        const star = document.getElementById(`star-${i}`);#}
-                                            {#        star.classList.remove("unchecked");#}
-                                            {#        star.classList.add("checked");#}
-                                            {#    }#}
-                                            {#}#}
-                                            {##}
-                                            {#function resetStars() {#}
-                                            {#    rating = document.getElementById("score").value;#}
-                                            {#    for (let i = 5; i > rating; i--) {#}
-                                            {#        const star = document.getElementById(`star-${i}`);#}
-                                            {#        star.classList.remove("checked");#}
-                                            {#        star.classList.add("unchecked");#}
-                                            {#    }#}
-                                            {#}#}
-                                            {##}
-                                            {#function setRating(rating) {#}
-                                            {#    document.getElementById("score").value = rating;#}
-                                            {#    highlightStar(rating);#}
-                                            {#}#}
-
-
-{#                                            </script>#}
-{#                                        </div>#}
-{#                                        <hr>#}
-{#                                        Comment#}
-{#                                        <textarea style="object-fit: cover; width: 100%" name="comment"></textarea>#}
-{#                                        <br>#}
-{#                                        <div>#}
-{#                                            <input type="file" name="image" id="image">#}
-{#                                        </div>#}
-{#                                        <br>#}
-{#                                    </div>#}
-{#                                    <div class="card-footer text-muted" style="text-align: right;">#}
-{#                                        <button type="submit" class="btn btn-primary">Submit</button>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-
+                        {#                                            </script>#}
+                        {#                                        </div>#}
+                        {#                                        <hr>#}
+                        {#                                        Comment#}
+                        {#                                        <textarea style="object-fit: cover; width: 100%" name="comment"></textarea>#}
+                        {#                                        <br>#}
+                        {#                                        <div>#}
+                        {#                                            <input type="file" name="image" id="image">#}
+                        {#                                        </div>#}
+                        {#                                        <br>#}
+                        {#                                    </div>#}
+                        {#                                    <div class="card-footer text-muted" style="text-align: right;">#}
+                        {#                                        <button type="submit" class="btn btn-primary">Submit</button>#}
+                        {#                                    </div>#}
+                        {#                                </div>#}
+                        {#                            </div>#}
 
 
                         <div class="container" style="margin-bottom: 5%">
@@ -524,11 +548,16 @@
                                 <div class="card-body">
                                     <div>
                                         Rate:
-                                        <span id="star-1" class="fa fa-star unchecked" onmouseover="highlightStars(1)" onmouseout="resetStars()" onclick="setRating(1)"></span>
-                                        <span id="star-2" class="fa fa-star unchecked" onmouseover="highlightStars(2)" onmouseout="resetStars()" onclick="setRating(2)"></span>
-                                        <span id="star-3" class="fa fa-star unchecked" onmouseover="highlightStars(3)" onmouseout="resetStars()" onclick="setRating(3)"></span>
-                                        <span id="star-4" class="fa fa-star unchecked" onmouseover="highlightStars(4)" onmouseout="resetStars()" onclick="setRating(4)"></span>
-                                        <span id="star-5" class="fa fa-star unchecked" onmouseover="highlightStars(5)" onmouseout="resetStars()" onclick="setRating(5)"></span>
+                                        <span id="star-1" class="fa fa-star unchecked" onmouseover="highlightStars(1)"
+                                              onmouseout="resetStars()" onclick="setRating(1)"></span>
+                                        <span id="star-2" class="fa fa-star unchecked" onmouseover="highlightStars(2)"
+                                              onmouseout="resetStars()" onclick="setRating(2)"></span>
+                                        <span id="star-3" class="fa fa-star unchecked" onmouseover="highlightStars(3)"
+                                              onmouseout="resetStars()" onclick="setRating(3)"></span>
+                                        <span id="star-4" class="fa fa-star unchecked" onmouseover="highlightStars(4)"
+                                              onmouseout="resetStars()" onclick="setRating(4)"></span>
+                                        <span id="star-5" class="fa fa-star unchecked" onmouseover="highlightStars(5)"
+                                              onmouseout="resetStars()" onclick="setRating(5)"></span>
                                         <input type="hidden" name="score" id="score" value="0">
 
                                         <script>
@@ -549,11 +578,11 @@
 
                                             function highlightStars(num) {
                                                 let stars = document.querySelectorAll(".fa-star");
-                                                for (let i = 0; i <= num+1; i++) {
+                                                for (let i = 0; i <= num + 1; i++) {
                                                     stars[i].classList.remove("unchecked");
                                                     stars[i].classList.add("checked");
                                                 }
-                                             }
+                                            }
 
                                             function resetStars() {
                                                 let stars = document.querySelectorAll(".fa-star");
@@ -572,7 +601,8 @@
                                     Comment: <textarea style="object-fit: cover; width: 100%" name="comment"></textarea>
                                     <br>
                                     <div>
-                                        <input type="file" name="image" id="image" onchange="previewImages()" multiple accept="image/*">
+                                        <input type="file" name="image" id="image" onchange="previewImages()" multiple
+                                               accept="image/*">
                                     </div>
                                     <div>
                                         <div class="row" id="image-preview"></div>
@@ -592,85 +622,83 @@
 
                                 </div>
                                 <div style="text-align: center;">
-{#                                        <div id="submit-error" style="display:none;color:red;">请先打分再提交表单。</div>#}
+                                    {#                                        <div id="submit-error" style="display:none;color:red;">请先打分再提交表单。</div>#}
                                     <button type="submit" class="btn btn-primary">Send Comment</button>
-{#                                        <script>#}
-{#                                            function submitForm() {#}
-{#                                                const score = document.getElementById("score").value;#}
-{#                                                if (score === "0") {#}
-{#                                                    document.getElementById("submit-error").style.display = "block";#}
-{#                                                    return false; // 防止表单被提交#}
-{#                                                }#}
-{#                                                return true; // 表单可以被提交#}
-{#                                            }#}
-{#                                        </script>#}
+                                    {#                                        <script>#}
+                                    {#                                            function submitForm() {#}
+                                    {#                                                const score = document.getElementById("score").value;#}
+                                    {#                                                if (score === "0") {#}
+                                    {#                                                    document.getElementById("submit-error").style.display = "block";#}
+                                    {#                                                    return false; // 防止表单被提交#}
+                                    {#                                                }#}
+                                    {#                                                return true; // 表单可以被提交#}
+                                    {#                                            }#}
+                                    {#                                        </script>#}
                                 </div>
                                 <br>
                             </div>
                         </div>
 
 
+                        {#                            <div class="container">#}
+                        {##}
+                        {#                                <div class="card text-center" style="object-fit: cover; width: 100%">#}
+                        {#                                    <div class="card-header">Comments:</div>#}
+                        {#                                    <div class="card-body">#}
+                        {#                                    <h5 class="card-title">Special title treatment</h5>#}
+                        {#                                    <p class="card-text">With supporting text below as a natural lead-in to additional#}
+                        {#                                        content.</p>#}
+                        {#                                    <a href="#" class="btn btn-primary">Button</a>#}
+                        {#                                        <textarea style="object-fit: cover; width: 100%" name="comment"></textarea>#}
+                        {#                                        <div>#}
+                        {#                                            Rate: <input type="number" name="score"#}
+                        {#                                                   min="0"#}
+                        {#                                                   max="5"#}
+                        {#                                                   step="1"#}
+                        {#                                                   value="5">#}
+                        {#                                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-2.webp" alt="" id="img">#}
+                        {#                                            <input id="file_upload" name="img" type="file" onclick="showImg()"/>#}
+                        {#                                            <img src="#" alt="" id="img">#}
+                        {#                                    <br>#}
+                        {#                                    <br>#}
+                        {#                                    <input id="file_upload" name="img" type="file" onclick="showImg()"  />#}
+                        {#                                             <div class="form-group">#}
+                        {#                 <img id="pic" src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-2.webp" style="width: 80px;"/>#}
+                        {#         </div>#}
+                        {#        <div class="form-group">#}
+                        {#            <label for="intro_pic" class="col-sm-2">Add image</label>#}
+                        {#             <input type="file" accept="image/*" class="file" id="intro_pic" name="intro_pic">#}
+                        {#         </div>#}
+                        {##}
+                        {#                                        </div>#}
+                        {#                                    </div>#}
+                        {#                                    <div class="card-footer text-muted">#}
+                        {#                                        <button type="submit" class="btn btn-primary">Submit</button>#}
+                        {#                                    </div>#}
+                        {#                                </div>#}
 
 
-{#                            <div class="container">#}
-{##}
-{#                                <div class="card text-center" style="object-fit: cover; width: 100%">#}
-{#                                    <div class="card-header">Comments:</div>#}
-{#                                    <div class="card-body">#}
-                                    {#                                    <h5 class="card-title">Special title treatment</h5>#}
-                                    {#                                    <p class="card-text">With supporting text below as a natural lead-in to additional#}
-                                    {#                                        content.</p>#}
-                                    {#                                    <a href="#" class="btn btn-primary">Button</a>#}
-{#                                        <textarea style="object-fit: cover; width: 100%" name="comment"></textarea>#}
-{#                                        <div>#}
-{#                                            Rate: <input type="number" name="score"#}
-{#                                                   min="0"#}
-{#                                                   max="5"#}
-{#                                                   step="1"#}
-{#                                                   value="5">#}
-{#                                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-2.webp" alt="" id="img">#}
-{#                                            <input id="file_upload" name="img" type="file" onclick="showImg()"/>#}
-{#                                            <img src="#" alt="" id="img">#}
-{#                                    <br>#}
-{#                                    <br>#}
-{#                                    <input id="file_upload" name="img" type="file" onclick="showImg()"  />#}
-{#                                             <div class="form-group">#}
-{#                 <img id="pic" src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-2.webp" style="width: 80px;"/>#}
-{#         </div>#}
-{#        <div class="form-group">#}
-{#            <label for="intro_pic" class="col-sm-2">Add image</label>#}
-{#             <input type="file" accept="image/*" class="file" id="intro_pic" name="intro_pic">#}
-{#         </div>#}
-{##}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                    <div class="card-footer text-muted">#}
-{#                                        <button type="submit" class="btn btn-primary">Submit</button>#}
-{#                                    </div>#}
-{#                                </div>#}
-
-
-                            {#                            <label>Comment: </label>#}
-                            {#                            <br>#}
-                            {#                            <textarea class="shadow" name="comment"></textarea>#}
-                            {#                            <br>#}
-                            {#                            <input type="number" name="score"#}
-                            {#                                   min="0"#}
-                            {#                                   max="5"#}
-                            {#                                   step="1"#}
-                            {#                                   value="5">#}
-                            {#                            <img src="#" alt="" id="img">#}
-                            {#                            <input id="file_upload" name="img" type="file" onclick="showImg()"/>#}
-                            {##}
-                            {#                            <button type="submit" class="btn btn-primary">Submit</button>#}
-{#                            </div>#}
+                        {#                            <label>Comment: </label>#}
+                        {#                            <br>#}
+                        {#                            <textarea class="shadow" name="comment"></textarea>#}
+                        {#                            <br>#}
+                        {#                            <input type="number" name="score"#}
+                        {#                                   min="0"#}
+                        {#                                   max="5"#}
+                        {#                                   step="1"#}
+                        {#                                   value="5">#}
+                        {#                            <img src="#" alt="" id="img">#}
+                        {#                            <input id="file_upload" name="img" type="file" onclick="showImg()"/>#}
+                        {##}
+                        {#                            <button type="submit" class="btn btn-primary">Submit</button>#}
+                        {#                            </div>#}
                     </form>
                 </div>
             </div>
         {% endif %}
     </div>
     </div>
-<script type="text/javascript" src="../static/js/add.js"></script>
+    <script type="text/javascript" src="../static/js/add.js"></script>
 
 {% endblock %}
 
