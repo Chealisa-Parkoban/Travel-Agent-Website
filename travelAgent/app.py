@@ -15,6 +15,8 @@ import openai
 import base64
 # import numpy as np
 # import cv2
+from collections import defaultdict
+
 
 from datetime import datetime, timedelta
 # from aip import AipImageProcess
@@ -115,7 +117,6 @@ def popular(sets, records, id_type):
             dic[r.combination_id] = temp + 1
     else:
         for r in records:
-            print(r.target_id)
             # key = r.target_id
             # check if id exists in original dic( as different types
             if r.target_id in dic.keys():
@@ -140,7 +141,6 @@ def sorted_set(lst, id_type):
             target = Target.query.filter(Target.id == unit[0]).first()
             real_sets.append(target)
 
-    print(real_sets)
     return real_sets
 
 
@@ -165,19 +165,55 @@ def update_num(lst, id_type, num_type):
             db.session.commit()
 
 
-# def update_score(list, id_type):
-#     #
-#     if id_type == 0:
-#         for unit in list:
-#             combination = Combination.query.filter(Combination.id == unit[0]).first()
-#
-#             db.session.commit()
-#
-#     else:
-#         for unit in list:
-#             target = Target.query.filter(Target.id == unit[0]).first()
-#
-#             db.session.commit()
+def update_score(sets, comments, id_type):
+    dic = {}
+    # default: every element in db no scores
+    for s in sets:
+        # multi dic [0]:the count [1]: the total value
+        dic.setdefault(s.id, []).append(0)
+        dic.setdefault(s.id, []).append('Not evaluated, no score')
+
+    # increase value according to the comment table
+    # id_type = 0 :combination /
+    # 1:target
+    if id_type == 0:
+        for r in comments:
+            # print("Start------------comment combination id: ",r.combination_id)
+            # print("count: ", dic[r.combination_id][0])
+            # print("total", dic[r.combination_id][1])
+            dic[r.combination_id][0] = dic[r.combination_id][0] + 1
+            if dic[r.combination_id][0] == 1:
+                dic[r.combination_id][1] = r.score
+            else:
+                dic[r.combination_id][1] = r.score + dic[r.combination_id][1]
+            # print("after----------------", r.combination_id)
+            # print("count: ", dic[r.combination_id][0])
+            # print("total", dic[r.combination_id][1])
+    else:
+        for r in comments:
+            if r.target_id in dic.keys():
+                dic[r.target_id][0] = dic[r.target_id][0] + 1
+                if dic[r.target_id][0] == 1:
+                    dic[r.target_id][1] = r.score
+                else:
+                    dic[r.target_id][1] = r.score + dic[r.target_id][1]
+
+
+    if id_type == 0:
+        for c_id in dic.keys():
+            combination = Combination.query.filter(Combination.id == c_id).first()
+            if dic[c_id][0] != 0 and type(dic[c_id][0]) is not str:
+                avg = dic[c_id][1]/dic[c_id][0]
+                combination.avg_score = avg
+                db.session.commit()
+
+    else:
+        for t_id in dic.keys():
+            target = Target.query.filter(Target.id == t_id).first()
+            if dic[t_id][0] != 0 and type(dic[t_id][0]) is not str:
+                avg = dic[t_id][1]/dic[t_id][0]
+                target.avg_score = avg
+                db.session.commit()
 
 
 @app.route('/homepage', methods=['GET', 'POST'])
@@ -192,6 +228,8 @@ def homepage():
     records_t = Record.query.all()
     fav_c = FavoriteC.query.all()
     fav_t = Favorite.query.all()
+    comment_c = CommentC.query.all()
+    comment_t = Comment.query.all()
 
     # list containing the num of orders
     l_combination = popular(sets1, records_c, 0)
@@ -216,6 +254,10 @@ def homepage():
     update_num(l_hotel, 1, 0)
     update_num(l_hotel2, 1, 1)
 
+    # update average score for each item
+    update_score(sets1, comment_c, 0)
+    update_score(attractions, comment_t, 1)
+    update_score(hotels, comment_t, 1)
     print("homepage2")
     return render_template("homepage2.html", Sets=Sets, attractions=sorted_attractions, hotels=sorted_hotels)
 
