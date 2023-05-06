@@ -27,9 +27,9 @@
                             <h1>Make your reservation</h1>
                         <div class="card" style="opacity: 0.5; background-color: black">
                             <div class="card-body">
-                                <h5 class="card-title" style="color: white">{{ combination.name }}</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">￥ {{ combination.price }}</h6>
-                                <p class="card-text">{{ combination.intro }}</p>
+                                <h5 class="card-title" style="color: white">{{ target.name }}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">￥ {{ target.price }}</h6>
+                                <p class="card-text">{{ target.intro }}</p>
 <!--                                <a href="#" class="card-link">Card link</a>-->
 <!--                                <a href="#" class="card-link">Another link</a>-->
                             </div>
@@ -37,8 +37,24 @@
                         </div>
                     </div>
                     <div class="col-md-7 col-md-pull-7">
+                        <div class="flash-message">
+                            {% with messages = get_flashed_messages() %}
+                                {% if messages %}
+                                    <ul>
+                                        {% for message in messages %}
+                                            {% for message in messages %}
+                                                <li style="text-align: center; font-size: larger; color: red; list-style: none;margin-left: 1%;">
+                                                    <div class="alert alert-danger" role="alert" id="message" style="opacity: 0.6;">{{ message }}</div>
+                                                </li>
+                                            {% endfor %}
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            {% endwith %}
+                        </div>
+
                         <div class="booking-form">
-                            <form action="{{ url_for('booking.addBooking', combination_id=combination_id) }}" method="post">
+                            <form action="{{ url_for('booking.addTargetBooking', target_id=target_id) }}" method="post">
                                 {{ form.csrf_token }}
                                 <div class="form-group">
                                     <span class="form-label">Your Name</span>
@@ -48,8 +64,14 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <span class="form-label">Start Time</span>
+                                            <span class="form-label">Check in Date</span>
                                             <input class="form-control" name="time" type="date" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <span class="form-label">Check out Date</span>
+                                            <input class="form-control" name="time2" type="date" required>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
@@ -67,51 +89,13 @@
                                         </div>
                                     </div>
                                 </div>
-{#                                <div class="row">#}
-{#                                    <div class="col-sm-4">#}
-{#                                        <div class="form-group">#}
-{#                                            <span class="form-label">Number of people</span>#}
-{#                                            <select class="form-control">#}
-{#                                                <option>1</option>#}
-{#                                                <option>2</option>#}
-{#                                                <option>3</option>#}
-{#                                                <option>4</option>#}
-{#                                                <option>5</option>#}
-{#                                                <option>6</option>#}
-{#                                            </select>#}
-{#                                            <span class="select-arrow"></span>#}
-{#                                        </div>#}
-{#                                    </div>#}
-                                    {#									<div class="col-sm-4">#}
-                                    {#										<div class="form-group">#}
-                                    {#											<span class="form-label">Adults</span>#}
-                                    {#											<select class="form-control">#}
-                                    {#												<option>1</option>#}
-                                    {#												<option>2</option>#}
-                                    {#												<option>3</option>#}
-                                    {#											</select>#}
-                                    {#											<span class="select-arrow"></span>#}
-                                    {#										</div>#}
-                                    {#									</div>#}
-                                    {#									<div class="col-sm-4">#}
-                                    {#										<div class="form-group">#}
-                                    {#											<span class="form-label">Children</span>#}
-                                    {#											<select class="form-control">#}
-                                    {#												<option>0</option>#}
-                                    {#												<option>1</option>#}
-                                    {#												<option>2</option>#}
-                                    {#											</select>#}
-                                    {#											<span class="select-arrow"></span>#}
-                                    {#										</div>#}
-                                    {#									</div>#}
-{#                                </div>#}
                                 <div class="form-group">
                                     <span class="form-label">Your Phone Number</span>
                                     <input class="form-control" type="text" name="tel" required
                                            placeholder="Enter Your Real Telephone Number">
                                 </div>
                                 <div class="form-group">
-                                    <span class="form-label">Price:￥{{ combination.price }}/person</span>
+                                    <span class="form-label">Price:￥{{ target.price }}/person/night</span>
                                 </div>
                                 <div class="form-btn">
                                     <script>
@@ -119,11 +103,14 @@
                                             alert("Your order has been submitted successfully!");
                                         }
                                     </script>
-                                    <button type="submit" class="btn btn-primary btn-block btn-lg mt-4" onclick="submitSuccessfully()">Submit Your Order</button>
+                                    <button type="submit" class="btn btn-primary btn-block btn-lg mt-4">Submit Your Order</button>
                                 </div>
                             </form>
                         </div>
                     </div>
+
+
+
                 </div>
             </div>
         </div>

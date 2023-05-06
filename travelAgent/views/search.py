@@ -38,10 +38,16 @@ def search():
     combination = []
 
     # 条件判断
-    if (price_low > price_up) or (price_low < 0 ) or ( price_up < 0):
-        flash('Wrong input! Please enter again')
-        # redirect to the login page, for user to login
-        return redirect(url_for("app.homepage"))
+    if price_up != '' or price_low != '':
+        if (int(price_low) < 0) or (int(price_up) < 0):
+            flash('Wrong input! Please enter again')
+            return redirect(url_for("homepage"))
+    if price_up != '' and price_low != '':
+        if int(price_low) > int(price_up):
+            flash('Wrong input! Please enter again')
+            return redirect(url_for("homepage"))
+
+
 
     else:
 

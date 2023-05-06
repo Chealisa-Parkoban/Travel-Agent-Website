@@ -1,13 +1,13 @@
 import datetime
 import time
 
-from flask import Blueprint, request, render_template, redirect, url_for
+from flask import Blueprint, request, render_template, redirect, url_for, flash
 from flask_login import current_user
 
 from travelAgent import db
 from travelAgent import app
 from travelAgent.models import Combination, RecordC, Target, Record, UserCombination, RecordP
-from travelAgent.forms import BookingForm
+from travelAgent.forms import BookingForm, BookingHotelForm
 
 booking_blueprint = Blueprint(name="booking", import_name=__name__)
 
@@ -48,11 +48,17 @@ def addTargetBooking(target_id):
     if not current_user.is_authenticated:
         return redirect(url_for("account.login"))
     target = Target.query.filter_by(id=target_id).first()
-    form = BookingForm(request.form)
+    target_type = target.type
+    if target_type == 0:
+        form = BookingForm(request.form)
+    else:
+        form = BookingHotelForm(request.form)
     if request.method == 'GET':
-        # bookings = RecordC.query.all()
-        # print("Ssdssssssssssss")
-        return render_template('book_target.html', form=form, target_id=target_id, target=target)
+        if target_type == 0:
+            return render_template('book_attraction.html', form=form, target_id=target_id, target=target)
+        elif target_type == 1:
+            return render_template('book_hotel.html', form=form, target_id=target_id, target=target)
+
     else:
 
         if form.validate_on_submit():
@@ -62,13 +68,31 @@ def addTargetBooking(target_id):
             tel = form.tel.data
             unit_price=int(target.price)
             total_price=unit_price*num
-            booking = Record(user_id=current_user.id, target_id=target_id, start_time=start_time, num=num,
+            if target_type == 0:
+                booking = Record(user_id=current_user.id, target_id=target_id, start_time=start_time, end_time=start_time, num=num,
                               name=name, tel=tel, time=str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())), price=total_price, status="Uncompleted", status2="No comment")
-            db.session.add(booking)
-            db.session.commit()
-            return redirect("/order_list")
+            elif target_type == 1:
+                end_time = form.time2.data
+                time1 = datetime.datetime.strptime(start_time,'%Y-%m-%d')
+                time2 = datetime.datetime.strptime(end_time,'%Y-%m-%d')
+                duration = time2 - time1
+                total_price = total_price * duration.days
+                booking = Record(user_id=current_user.id, target_id=target_id, start_time=start_time, end_time=end_time, num=num,
+                                 name=name, tel=tel, time=str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())),
+                                 price=total_price, status="Uncompleted", status2="No comment")
+
+            if booking.price>0:
+                db.session.add(booking)
+                db.session.commit()
+                return redirect("/order_list")
+            else:
+                flash("The date you selected is incorrect Please fill in again")
+                return render_template('book_hotel.html', form=form, target_id=target_id, target=target)
         else:
-            return render_template('book_target.html', target_id=target_id, target=target)
+            if target_type == 0:
+                return render_template('book_attraction.html', form=form, target_id=target_id, target=target)
+            elif target_type == 1:
+                return render_template('book_hotel.html', form=form, target_id=target_id, target=target)
 
 
 @booking_blueprint.route('/personal_booking/<combination_id>', methods=['GET', 'POST'])

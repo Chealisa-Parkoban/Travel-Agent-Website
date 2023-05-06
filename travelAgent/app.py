@@ -15,6 +15,8 @@ import openai
 import base64
 # import numpy as np
 # import cv2
+from collections import defaultdict
+
 
 from datetime import datetime, timedelta
 # from aip import AipImageProcess
@@ -24,7 +26,7 @@ from travelAgent import db
 from travelAgent import app
 from travelAgent.forms import CommentForm, ImageForm
 from travelAgent.models import CommentC, Comment, Combination, Destination, Day, Target, User, RecordC, UserCombination, \
-    Record, RecordP
+    Record, RecordP, FavoriteC, Favorite
 from travelAgent.models import CommentC, Comment, Combination, Destination, Day, Target, User, RecordC, ContactModel
 from flask_mail import Message
 
@@ -39,14 +41,12 @@ from travelAgent.views.planning_tool import planning_tool_blueprint
 from travelAgent.views.target import target_blueprint
 from travelAgent import mail
 
-
-
-
-#<!--------------------chat------------------->
+# <!--------------------chat------------------->
 from travelAgent.views.chat import chat_blueprint
 from travelAgent.views.chat import socketio, set_logger
+
 app.register_blueprint(chat_blueprint)
-#<!--------------------chat------------------->
+# <!--------------------chat------------------->
 
 # -------------------------------------register blueprints------------------------------------------
 app.register_blueprint(login_blueprint)
@@ -57,7 +57,6 @@ app.register_blueprint(favorite_blueprint)
 app.register_blueprint(booking_blueprint)
 app.register_blueprint(target_blueprint)
 app.register_blueprint(planning_tool_blueprint)
-
 
 # -------------------------------------create a logger------------------------------------------
 logger = logging.getLogger(__name__)  # create a logger
@@ -73,6 +72,7 @@ ch.setFormatter(formatter)
 logger.addHandler(fh)
 logger.addHandler(ch)
 global setID
+
 
 @app.route('/')
 def index():  # put application's code here
@@ -101,7 +101,7 @@ def popular(sets, records, id_type):
     dic = {}
     # default: every combination in db has a value 1
     for s in sets:
-        dic[s.id] = 1
+        dic[s.id] = 0
 
     # print("basic-----------------")
     # print(dic)
@@ -117,7 +117,6 @@ def popular(sets, records, id_type):
             dic[r.combination_id] = temp + 1
     else:
         for r in records:
-            print(r.target_id)
             # key = r.target_id
             # check if id exists in original dic( as different types
             if r.target_id in dic.keys():
@@ -127,27 +126,94 @@ def popular(sets, records, id_type):
     # print(dic)
 
     e = sorted(dic.items(), key=lambda item: item[1], reverse=True)
-    print(e)
-    # e1: sorted keys i.e. combination id
-    e1 = []
-    for i in e:
-        e1.append(i[0])
-    # print("id sorted---------------")
-    # print(e1)
+    return e
 
+def sorted_set(lst, id_type):
     real_sets = []
+    #
     if id_type == 0:
-        for c_id in e1:
-            element = Combination.query.filter(Combination.id == c_id).first()
-            real_sets.append(element)
+        for unit in lst:
+            combination = Combination.query.filter(Combination.id == unit[0]).first()
+            real_sets.append(combination)
+
     else:
-        for t_id in e1:
-            element = Target.query.filter(Target.id == t_id).first()
-            real_sets.append(element)
-    # print("final sets-------------------")
-    # print(Sets)
+        for unit in lst:
+            target = Target.query.filter(Target.id == unit[0]).first()
+            real_sets.append(target)
+
     return real_sets
 
+
+def update_num(lst, id_type, num_type):
+    #
+    if id_type == 0:
+        for unit in lst:
+            combination = Combination.query.filter(Combination.id == unit[0]).first()
+            if num_type == 0:
+                combination.num_orders = unit[1]
+            else:
+                combination.num_favorite = unit[1]
+            db.session.commit()
+
+    else:
+        for unit in lst:
+            target = Target.query.filter(Target.id == unit[0]).first()
+            if num_type == 0:
+                target.num_orders = unit[1]
+            else:
+                target.num_favorite = unit[1]
+            db.session.commit()
+
+
+def update_score(sets, comments, id_type):
+    dic = {}
+    # default: every element in db no scores
+    for s in sets:
+        # multi dic [0]:the count [1]: the total value
+        dic.setdefault(s.id, []).append(0)
+        dic.setdefault(s.id, []).append('No score')
+
+    # increase value according to the comment table
+    # id_type = 0 :combination /
+    # 1:target
+    if id_type == 0:
+        for r in comments:
+            # print("Start------------comment combination id: ",r.combination_id)
+            # print("count: ", dic[r.combination_id][0])
+            # print("total", dic[r.combination_id][1])
+            dic[r.combination_id][0] = dic[r.combination_id][0] + 1
+            if dic[r.combination_id][0] == 1:
+                dic[r.combination_id][1] = r.score
+            else:
+                dic[r.combination_id][1] = r.score + dic[r.combination_id][1]
+            # print("after----------------", r.combination_id)
+            # print("count: ", dic[r.combination_id][0])
+            # print("total", dic[r.combination_id][1])
+    else:
+        for r in comments:
+            if r.target_id in dic.keys():
+                dic[r.target_id][0] = dic[r.target_id][0] + 1
+                if dic[r.target_id][0] == 1:
+                    dic[r.target_id][1] = r.score
+                else:
+                    dic[r.target_id][1] = r.score + dic[r.target_id][1]
+
+
+    if id_type == 0:
+        for c_id in dic.keys():
+            combination = Combination.query.filter(Combination.id == c_id).first()
+            if dic[c_id][0] != 0 and type(dic[c_id][0]) is not str:
+                avg = dic[c_id][1]/dic[c_id][0]
+                combination.avg_score = avg
+                db.session.commit()
+
+    else:
+        for t_id in dic.keys():
+            target = Target.query.filter(Target.id == t_id).first()
+            if dic[t_id][0] != 0 and type(dic[t_id][0]) is not str:
+                avg = dic[t_id][1]/dic[t_id][0]
+                target.avg_score = avg
+                db.session.commit()
 
 
 @app.route('/homepage', methods=['GET', 'POST'])
@@ -160,11 +226,38 @@ def homepage():
 
     records_c = RecordC.query.all()
     records_t = Record.query.all()
+    fav_c = FavoriteC.query.all()
+    fav_t = Favorite.query.all()
+    comment_c = CommentC.query.all()
+    comment_t = Comment.query.all()
 
-    Sets = popular(sets1, records_c, 0)
-    # attractions = attractions[::-1]
-    sorted_attractions = popular(attractions, records_t, 1)
-    sorted_hotels = popular(hotels, records_t, 1)
+    # list containing the num of orders
+    l_combination = popular(sets1, records_c, 0)
+    l_attraction = popular(attractions, records_t, 1)
+    l_hotel = popular(hotels, records_t, 1)
+
+    # list containing the num of favorite
+    l_combination2 = popular(sets1, fav_c, 0)
+    l_attraction2 = popular(attractions, fav_t, 1)
+    l_hotel2 = popular(hotels, fav_t, 1)
+
+    # sorted by order num
+    Sets = sorted_set(l_combination, 0)
+    sorted_attractions = sorted_set(l_attraction, 1)
+    sorted_hotels = sorted_set(l_hotel, 1)
+
+    # update the num of orders and favorites for each item
+    update_num(l_combination, 0, 0)
+    update_num(l_combination2, 0, 1)
+    update_num(l_attraction, 1, 0)
+    update_num(l_attraction2, 1, 1)
+    update_num(l_hotel, 1, 0)
+    update_num(l_hotel2, 1, 1)
+
+    # update average score for each item
+    update_score(sets1, comment_c, 0)
+    update_score(attractions, comment_t, 1)
+    update_score(hotels, comment_t, 1)
     print("homepage2")
     return render_template("homepage2.html", Sets=Sets, attractions=sorted_attractions, hotels=sorted_hotels)
 
@@ -182,11 +275,13 @@ def stays():
     stays = Target.query.filter(Target.type == '1').all()
     return render_template("stays.html", hotels=stays)
 
+
 @app.route('/traffics', methods=['GET', 'POST'])
 def traffics():
     changeBookingStatus()
     traffics = Target.query.filter(Target.type == '2').all()
     return render_template("traffics.html", traffics=traffics)
+
 
 @app.route('/personal_plan', methods=['GET', 'POST'])
 def personal_plan():
@@ -232,7 +327,6 @@ def profile():
         status_complete = []
         status_comment = []
 
-
     for book in bookings:
         combination_id = book.combination_id
         print(combination_id)
@@ -244,9 +338,9 @@ def profile():
         status_complete.append(book.status)
         status_comment.append(book.status2)
 
-
     return render_template("profile.html", user=user, start_time=start_time, number=number,
-                           combiantion_name=combiantion_name, price=price, status=status_complete, status_comment=status_comment)
+                           combiantion_name=combiantion_name, price=price, status=status_complete,
+                           status_comment=status_comment)
 
 
 @app.route('/favourites')
@@ -353,22 +447,26 @@ def order_list():
             user_combination_ids.append(user_combination.id)
             user_combination_user_name.append(user_combination.name)
 
-
     return render_template("order_list.html",
                            user_name=user_name, ids=ids, start_time=start_time, number=number, tel=tel,
                            combination_name=combination_name, introduction=introduction, price=price, image=image,
                            status=status_complete, status_comment=status_comment,
 
-                           target_user_name=target_user_name, target_ids=target_ids, target_name=target_name, target_start_time=target_start_time,
+                           target_user_name=target_user_name, target_ids=target_ids, target_name=target_name,
+                           target_start_time=target_start_time,
                            target_number=target_number, target_introduction=target_introduction, target_tel=target_tel,
-                           target_image=target_image, target_price=target_price, target_status_complete=target_status_complete,
+                           target_image=target_image, target_price=target_price,
+                           target_status_complete=target_status_complete,
                            target_status_comment=target_status_comment,
 
                            user_combination_ids=user_combination_ids, user_combination_name=user_combination_name,
-                           user_combination_start_time=user_combination_start_time, user_combination_number=user_combination_number,
-                           user_combination_introduction=user_combination_introduction, user_combination_tel=user_combination_tel,
+                           user_combination_start_time=user_combination_start_time,
+                           user_combination_number=user_combination_number,
+                           user_combination_introduction=user_combination_introduction,
+                           user_combination_tel=user_combination_tel,
                            user_combination_image=user_combination_image, user_combination_price=user_combination_price,
-                           user_combination_status_complete=user_combination_status_complete, user_combination_status_comment=user_combination_status_comment,
+                           user_combination_status_complete=user_combination_status_complete,
+                           user_combination_status_comment=user_combination_status_comment,
                            user_combination_user_name=user_combination_user_name)
 
 
@@ -431,6 +529,7 @@ def cancel_other_orders():
     session['other_order_id'] = other_order_id
     return '0'
 
+
 # 查看order details
 @app.route('/check_booking_details/<booking_id>', methods=['GET', 'POST'])
 def check_booking_details(booking_id):
@@ -439,10 +538,14 @@ def check_booking_details(booking_id):
     combination = db.session.query(Combination).filter(Combination.id == combination_id).first()
     return render_template("orderDetail.html", booking=booking, combination=combination)
 
+
 @app.route('/check_booking_target_details/<target_id>', methods=['GET', 'POST'])
-def check_booking_target_details(target_id):
+def check_booking_target_details(booking_id):
+    booking = db.session.query(RecordC).filter(Record.id == booking_id).first()
+    target_id = booking.target_id
     target = db.session.query(Target).filter(Target.id == target_id).first()
     return render_template("orderDetail.html", target=target)
+
 
 @app.route('/check_booking_combination_details/<combination_id>', methods=['GET', 'POST'])
 def check_booking_combination_details(combination_id):
@@ -490,7 +593,7 @@ def translate(q):
             httpClient.close()
 
 
-#跟我们联系! 邮箱自动回复
+# 跟我们联系! 邮箱自动回复
 @app.route("/contact_email", methods=['GET', 'POST'])
 def contact_email():
     # GET, POST
@@ -503,7 +606,7 @@ def contact_email():
         message = Message(
             subject="【Digital Beans】Feedback Received",
             recipients=[email],
-            body=f"【Digital Beans】We have received your feedback, and we will contact you soon!\n\n" 
+            body=f"【Digital Beans】We have received your feedback, and we will contact you soon!\n\n"
                  f" Note: this is an automatic reply!",
         )
         mail.send(message)
@@ -517,6 +620,7 @@ def contact_email():
         # code: 40 客户端错误
         flash("Wrong in sending emails!")
         return redirect(url_for('contact_us'))
+
 
 def changeBookingStatus():
     # 本身的combination
@@ -536,7 +640,6 @@ def changeBookingStatus():
         end_time = end_datetime.strftime('%Y-%m-%d')
 
         if end_time <= current_time:
-
             record = RecordC.query.filter_by(id=book_id).update({'status': 'Completed'})
             db.session.commit()
 
@@ -580,8 +683,6 @@ def changeBookingStatus():
             if start_time <= current_time:
                 record = Record.query.filter_by(id=book_id).update({'status': 'Completed'})
                 db.session.commit()
-
-
 
 
 # 图片
@@ -629,13 +730,16 @@ def main():
     changeBookingStatus()
     # app.run(debug=True, port=5000)
     set_logger(logger)
-    socketio.run(app, allow_unsafe_werkzeug=True,debug=True, port=5001)
-#<!--------------------chat------------------->
+    socketio.run(app, allow_unsafe_werkzeug=True, debug=True, port=5001)
+
+
+# <!--------------------chat------------------->
 
 
 @app.route("/calendar", methods=['GET', 'POST'])
 def calendar():
     return render_template('calendar.html')
+
 
 @app.route("/data", methods=['GET', 'POST'])
 def data():
@@ -758,7 +862,7 @@ def data():
             }
             traffics.append(traffic_dict)
 
-    #展示客制化combination
+    # 展示客制化combination
     days = db.session.query(RecordP).filter_by(user_id=user_id)
     for day in days:
         start_time = day.start_time
@@ -869,7 +973,7 @@ def data():
             }
             traffics.append(traffic_dict)
 
-    #展示单独预定target
+    # 展示单独预定target
     days = db.session.query(Record).filter_by(user_id=user_id)
     for day in days:
         start_time = day.start_time
@@ -923,7 +1027,7 @@ def data():
                 }
                 traffics.append(traffic_dict)
 
-        #预定的是景点
+        # 预定的是景点
         elif t == 0:
             print("单独预定景点")
             dates.append(start_time)
@@ -955,11 +1059,11 @@ def data():
             traffics.append(traffic_dict)
 
     json_content = []
-    d = {"date":dates}
-    des = {"destination":destinations}
-    at = {"attraction":attractions}
-    ac = {"accommodation":accommodations}
-    t = {"traffic":traffics}
+    d = {"date": dates}
+    des = {"destination": destinations}
+    at = {"attraction": attractions}
+    ac = {"accommodation": accommodations}
+    t = {"traffic": traffics}
 
     # 将其他字典添加到json_content列表中
     json_content.append(d)
@@ -969,6 +1073,7 @@ def data():
     json_content.append(t)
 
     return jsonify(json_content)
+
 
 # testInfo = []
 # @app.route("/data", methods=['GET', 'POST'])
@@ -988,4 +1093,3 @@ if __name__ == '__main__':
     logger.info('The Website Starts Running!')
     # openAI()
     app.run(debug=True, port=5000)
-

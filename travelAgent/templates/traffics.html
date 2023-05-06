@@ -19,18 +19,18 @@
     <script src="../static/js/ID.js"></script>
 
     <style>
-        .banner-header {
+        .banner-header{
             transform: translate(0, 0);
             margin: 0 0 5em;
             font-size: 1.15rem !important;
             margin-top: 35vh !important;
         }
 
-        .filter {
+        .filter{
             border-radius: 0.5em;
         }
 
-        .banner-grids {
+        .banner-grids{
             border-radius: 0.7em !important;
             background-color: rgba(6, 47, 60, 0.65) !important;
         }
@@ -42,7 +42,7 @@
             transform: translate(0, 15%);
         }
 
-        .input-group-text {
+        .input-group-text{
             background-color: transparent !important;
             border-color: transparent !important;
             color: white;
@@ -80,6 +80,17 @@
             font-size: 1.2rem !important;
         }
 
+        .img-responsive{
+            width: 100%;
+            height: auto;
+            {#padding-bottom: 75%;#}
+            position: relative;
+        }
+
+        h5{
+            margin-bottom: 0 !important;
+        }
+
     </style>
 
 {% endblock %}
@@ -104,7 +115,15 @@
                              style="width: 100% !important; height: auto !important;"
                              onerror="javascript:this.src='static/images/sample_pic/the_north_Europe.png/'"/>
                         <div class="prom-text">
-                            <h4 class="title"> {{ traffic.name }}</h4>
+                            <h4 class="title" style="display: flex; align-items: center">
+                                <div style="display: flex; align-items: center; font-size: 1rem; background: whitesmoke; border-radius: 5px; padding: 0.15rem 0.3em 0.15rem 0.2rem; margin-right: 0.5rem; color: #1B4367">
+                                    {%  if traffic.avg_score != 'No score' %}
+                                        <i class="fas fa-star" style="margin-right: 0.2rem; font-size: 0.85rem"></i>
+                                    {% endif %}
+                                    {{ traffic.avg_score }}
+                                </div>
+                                {{ traffic.name }}
+                            </h4>
                             <div class="prom-bottom">
                                 <div class="prom-left">
                                     <h5> {{ traffic.location }} </h5>

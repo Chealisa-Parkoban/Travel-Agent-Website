@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+<script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+<script>
+    Weglot.initialize({
+        api_key: 'wg_991d5991daaf78aac7e8fa18f31205397'
+    });
+</script>
 <head>
     <meta charset="UTF-8">
     <meta charset="utf-8">
@@ -106,7 +112,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link nav-link-icon" href="#" id="navbar_1_dropdown_3" role="button"
                            data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false"><i class="fas fa-star"></i>May Interests</a>
+                           aria-haspopup="true" aria-expanded="false">May Interests<i class="fas fa-angle-down"></i></a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="{{ url_for('attractions') }}">
                                 <span class="float-right badge badge-primary"></span>
@@ -221,10 +227,10 @@
                                     <herf></herf>
                                 </a>
                                 <a class="dropdown-item" href="{{ url_for("favourites") }}">
-                                    <i class="fas fa-star text-primary"></i>Favourites
+                                    <i class="fas fa-heart text-primary"></i>Favourites
                                 </a>
                                 <a class="dropdown-item" href="{{ url_for("calendar") }}">
-                                    <i class="fas fa-star text-primary"></i>Travel Calendar
+                                    <i class="fas fa-calendar text-primary"></i>Travel Calendar
                                 </a>
                                 <div class="dropdown-divider" role="presentation"></div>
                                 <a class="dropdown-item" href="{{ url_for('account.logout') }}">

@@ -80,6 +80,17 @@
             font-size: 1.2rem !important;
         }
 
+        .img-responsive{
+            width: 100%;
+            height: auto;
+            {#padding-bottom: 75%;#}
+            position: relative;
+        }
+
+        h5{
+            margin-bottom: 0 !important;
+        }
+
     </style>
 
 {% endblock %}
@@ -89,7 +100,6 @@
 
 {% block body %}
 
-{#    <span class="mask bg-primary alpha-7" style="opacity: 0.1; background-color: #FFFFFF"></span>#}
     <div class="promotions" style="padding-top: 10%">
         <div class="container">
             <h2 class="tittle">Stays</h2>
@@ -99,10 +109,19 @@
                     <a set_id={{ hotel.id }} onclick="setTargetID(this)">
                         <div class="col-md-4 promation-grid">
                             <!--{#                            <img src="../static/images/sample_pic/the_north_Europe.png" class="img-responsive" alt="" />#}-->
-                            <img src="{{ hotel.image }}" class="img-responsive" alt=""  style="width: 100% !important; height: auto !important;"
+                            <img src="{{ hotel.image }}" class="img-responsive" alt=""
                                  onerror="javascript:this.src='static/images/sample_pic/the_north_Europe.png/'"/>
                             <div class="prom-text">
-                                <h4 class="title"> {{ hotel.name }}</h4>
+                                 <h4 class="title" style="display: flex; align-items: center">
+                                    <div style="display: flex; align-items: center; font-size: 1rem; background: whitesmoke; border-radius: 5px; padding: 0.15rem 0.3em 0.15rem 0.2rem; margin-right: 0.5rem; color: #1B4367">
+                                        {%  if hotel.avg_score != 'No score' %}
+                                            <i class="fas fa-star" style="margin-right: 0.2rem; font-size: 0.85rem"></i>
+                                        {% endif %}
+                                        {{ hotel.avg_score }}
+                                    </div>
+                                    {{ hotel.name }}
+                                </h4>
+
                                 <div class="prom-bottom">
                                     <div class="prom-left">
                                         <h5> {{ hotel.location }} </h5>
@@ -117,6 +136,7 @@
                         </div>
                 {% endfor %}
                 <div class="clearfix"></div>
+                </a>
             </div>
         </div>
     </div>

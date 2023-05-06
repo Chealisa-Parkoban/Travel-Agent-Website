@@ -1,5 +1,11 @@
 <!doctype html>
 <html lang="en">
+<script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+<script>
+    Weglot.initialize({
+        api_key: 'wg_991d5991daaf78aac7e8fa18f31205397'
+    });
+</script>
 <head>
     <meta charset="UTF-8">
     <meta charset="utf-8">
@@ -67,13 +73,21 @@
     <title>{% block title  %}{% endblock %}</title>
     {% block head %} {% endblock %}
 <style>
-
         .navbar {
-            position:fixed; top: 0;width: 100%; display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:.5rem 1rem
+            position:fixed;
+            top: 0;
+            width: 100%;
+            display:flex;
+            flex-wrap:wrap;
+            align-items:center;
+            justify-content:space-between;
+            padding:.5rem 1rem;
         }
-        .bg-primary {background-color:#062f3c !important}
-        /*.bg-primary {background-color:#49C2FF !important}*/
-        .bg-primary {opacity: 0.98}
+
+        .bg-primary {
+            background-color:#062f3c !important;
+            opacity: 0.98
+        }
 
         footer{
             z-index: 20;
@@ -83,38 +97,12 @@
             color: #adb5bd !important;
             margin-bottom: 0 !important;
             padding: 0 !important;
-
         }
 
         .h6{
             font-size: 0.875rem !important;
         }
 
-    </style>
-    <style>
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            padding: .5rem 1rem
-        }
-
-        .bg-primary {
-            background-color: #062f3c !important
-        }
-
-        /*.bg-primary {background-color:#49C2FF !important}*/
-        .bg-primary {
-            opacity: 0.98
-        }
-
-        footer {
-            z-index: 20;
-        }
     </style>
 </head>
 
