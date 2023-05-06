@@ -8,10 +8,7 @@
             <div class="col-sm-4" style="height: 100%; overflow: scroll;">
                 <ul class="list-group" id="user-list">
                     <li class="list-group-item active">User List</li>
-                    <li class="list-group-item user-li" onclick="switch_user_chat('selina', 0)">免费 Window 空间托管</li>
-                    <li class="list-group-item user-li" onclick="switch_user_chat('selina', 1)">图像的数量</li>
-                    <li class="list-group-item user-li" onclick="switch_user_chat('selina', 2)">24*7 支持</li>
-                    <li class="list-group-item user-li" onclick="switch_user_chat('selina', 3)">每年更新成本</li>
+
                 </ul>
             </div>
             <div class="col-sm-8" style="height: 100%; overflow: scroll;" id="chat-zone">
@@ -207,42 +204,85 @@
             } else {
                 n = date;
             }
-            let color_str = 'color:#734'
+            let color_str = 'color:rgba(2,141,21,0.87)'
             if (cur_adminname == msg.name) {
-                color_str = 'color:#157'
+                color_str = 'color:rgb(9,52,87)'
             }
             let content = "";
             if (cur_adminname == msg.name) {
                 let content1 =
-                    '<div class="row">' +
-                    // '<div class="container">'
+                {#    '<div class="row">' +#}
+                {#    '<div class="col"></div>' +#}
+                {#    '<div class="col"></div>' +#}
+                {#    '<div class="col-5 alert alert-success alert-shadow" style="margin-top: 2%; margin-right: 3%">' +#}
+                {#    `<b style="${color_str} " class="right">` +#}
+                {#    msg.name +#}
+                {#    '</b><p>' +#}
+                {#    msg.message +#}
+                {#    '</p>' + `<button class="btn btn-primary btnTrans" onclick=Translate(event)>Translate</button>` + '<span class="res_translate"></span>' + '<span class="time-right">' +#}
+                {#    n +#}
+                {#    '</span></div></div>';#}
+                {#content = content1;#}
+                '<div class="row">' +
+
+                '<div class="alert alert-shadow col-5" style="margin-left: 2%; background: rgb(196,229,234)">' +
+            '<b style="color:rgb(9,52,87) ; font-size:25px" class="right">' +
+            msg.name +
+            '<hr />'+
+            '</b><b><p style="text-align: left;color: black; font-size:15px">' +
+                msg.message +
+                '</p></b>'
+            + ////////////////
+              '<p>' +
+                 `<button class="btn btn-primary"  onclick=Translate(event)>TRANSLATE</button>` + '<span class="res_translate" style="font-weight: bold "></span>' + '<span class="time-right">' +
+             '</p>' +
+            '<hr />'+
+                 '<p style="color: #115577">'+
+                  n +
+                 '</p>'+
+                 /////////////////
+                '</span></div>' +
                     '<div class="col"></div>' +
-                    '<div class="col"></div>' +
-                    '<div class="col-5 alert alert-success alert-shadow" style="margin-top: 2%; margin-right: 3%">' +
-                    `<b style="${color_str}" class="right">` +
-                    msg.name +
-                    '</b><p>' +
-                    msg.message +
-                    '</p>' + `<button class="btn btn-primary btnTrans" onclick=Translate(event)>Translate</button>` + '<span class="res_translate"></span>' + '<span class="time-right">' +
-                    n +
-                    '</span></div></div>';
+            '<div class="col"></div>' +
+                '</div></div>' ;
                 content = content1;
             } else {
                 let content1 =
-                    '<div class="row">' +
-                    // '<div class="container">'
+                    //'<div class="row">' +
+                    {#'<div class="col-5 alert alert-info alert-shadow" style="margin-top: 2%; margin-left: 3%">' +#}
+                    {#`<b style="${color_str}" class="right">` +#}
+                    {#msg.name +#}
+                    {#'</b><p>' +#}
+                    {#msg.message +#}
+                    {#'</p>' + `<button class="btn btn-primary btnTrans" onclick=Translate(event)>Translate</button>` + '<span class="res_translate"></span>' + '<span class="time-right">' +#}
+                    {#n +#}
+                    {#'</span></div>' +#}
+                    {#'<div class="col"></div>' +#}
+                    {#'<div class="col"></div>' +#}
+                    {#'</div>';#}
+                      '<div class="row">' +
 
-                    '<div class="col-5 alert alert-info alert-shadow" style="margin-top: 2%; margin-left: 3%">' +
-                    `<b style="${color_str}" class="right">` +
-                    msg.name +
-                    '</b><p>' +
-                    msg.message +
-                    '</p>' + `<button class="btn btn-primary btnTrans" onclick=Translate(event)>Translate</button>` + '<span class="res_translate"></span>' + '<span class="time-right">' +
-                    n +
-                    '</span></div>' +
-                    '<div class="col"></div>' +
-                    '<div class="col"></div>' +
-                    '</div>';
+                '<div class="col"></div>' +
+                '<div class="col"></div>' +
+
+                '<div class="alert alert-success alert-shadow col-5" style="margin-right: 2%; background: rgba(197,225,192,0.4)">' +
+                '<p style="color:rgba(2,141,21,0.87); text-align: right; font-size:25px"><b>' +
+                msg.name +
+                 '</b><hr />'+
+                '</p><p style="text-align: right"> <b style="color: black ">' +
+                msg.message +
+                '</b></p>'
+               /////////////////
+                 + '<p style="text-align: right">'
+                 +'<button class="btn btn-primary" style="background-color:" onclick=Translate(event)>TRANSLATE</button>' + '<span class="res_translate" style="color: black; font-weight: bold"></span>' + '<span class="time-right">' +
+               '</p>' +
+                 '<hr />'
+             + '<p style="text-align: right; color:rgba(34,72,25,0.89)" >'
+                 +n+
+                 '</p>' +
+                 /////////////////
+                '</span></div>' +
+                '</div></div>';
                 content = content1;
             }
             // update div
@@ -270,7 +310,7 @@
     //translate function
     function Translate(event) {
         console.log(event.target)
-        let previous = event.target.previousElementSibling.innerText
+        let previous = event.target.parentNode.previousElementSibling.innerText
         let next = event.target.nextElementSibling
         let appid = '20230228001579285'
         let key = 'i_i50GKeYlqZOVY7Q8HS'
