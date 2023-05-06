@@ -7,42 +7,48 @@
               <div class="col-lg-6 grid-margin stretch-card" style="width: 100%">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">All Packages</h4>
+                  <h4 class="card-title">All Customised Packages</h4>
                   <p class="card-description">
-                    All travel Packages in <code>Digital Beans</code>
+                    All customised travel Packages in <code>Digital Beans</code>
                   </p>
                   <div class="table-responsive">
                     <table class="table table-hover">
                       <thead>
                         <tr>
-                          <th>Package ID</th>
+                          <th>Customer ID</th>
                           <th>Package Name</th>
                           <th>Duration</th>
                           <th>Price</th>
+                          <th>Delete</th>
                         </tr>
                       </thead>
 
                       <tbody>
                       {% for plan in plans %}
+{#                        <a href="{{ url_for("staff_site.customised_detail", plan_id=plan.id) }}">#}
                         <tr onclick="showPlans({{plan.id}})">
-                          <td>{{plan.id}}</td>
+                          <td>{{plan.user_id}}</td>
                           <td>{{plan.name}}</td>
                           <td>{{plan.length}} days</td>
                           <td><label class="badge badge-danger">¥ {{plan.price}}</label></td>
+                          <td>
+                              <a href="{{ url_for("staff_site.delete_customised", plan_id=plan.id) }}">
+                              <input type="button" class="btn btn-success" style="width: fit-content" value="DELETE" />
+                              </a>
+                          </td>
                         </tr>
-                      <script>
-                        function showPlans(plan_id_res=null){
-                            {#window.location.href = "/staff/contents/view_plan/"#}
-                          $.get({
-                            url: '/staff/pack_load_detail',
-                            type: 'GET',
-                            data: ({plan_id_res : plan_id_res}),
-                            success: function (data) {
-                                window.location.href = "/staff/view_plan/" + plan_id_res;
-                            }
-                          })
-                        }
-                      </script>
+                          <script>
+                              function showPlans(plan_id_res=null){
+                                  $.get({
+                                        url: '/staff/load_detail',
+                                        type: 'GET',
+                                        data: ({plan_id_res : plan_id_res}),
+                                        success: function (data) {
+                                            window.location = "/staff/customised_detail/" + plan_id_res;
+                                        }
+                                    });
+                              }
+                          </script>
                       {% endfor %}
 
                       </tbody>
@@ -52,7 +58,7 @@
               </div>
             </div>
             <div style="display:flex;justify-content: center; align-items:center;">
-            <a href="{{ url_for('staff_site.view_plan') }}" >
+            <a href="{{ url_for('staff_site.customised_detail' ) }}" >
               <input  type="button" class="btn btn-primary me-2" style="width: fit-content" value="ADD A NEW PACKAGE" onclick="showPlans(null)" />
             </a>
             </div>
