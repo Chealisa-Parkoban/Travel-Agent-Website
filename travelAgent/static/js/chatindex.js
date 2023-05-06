@@ -6,7 +6,7 @@
 //translate function
 function Translate(event) {
     console.log(event.target)
-    var previous = event.target.previousElementSibling.innerText
+    var previous = event.target.parentNode.previousElementSibling.innerText
     var next = event.target.nextElementSibling
 
     var appid = '20230228001579285';
