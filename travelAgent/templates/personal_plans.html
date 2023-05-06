@@ -24,7 +24,7 @@
 {#                            Provided by <code>Digital Beans</code>#}
 {#                        </p >#}
                         <div class="table-responsive">
-                            <table class="table table-hover">
+                            <table class="table table-hover" style="margin: 3% 0 15% 0">
                                 <thead>
                                 <tr>
                                     <th>Name</th>
@@ -37,6 +37,12 @@
                                 </thead>
 
                                 <tbody>
+                                {% if plans == [] %}
+                                    <tr>
+                                        <td colspan="6" style="text-align: center">No plans yet</td>
+                                    </tr>
+                                {% endif %}
+
                                 {% for plan in plans %}
                                     <tr onclick="showPlans({{plan.id}})">
                                         <td>{{plan.name}}</td>
