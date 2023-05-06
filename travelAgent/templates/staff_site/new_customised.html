@@ -107,7 +107,7 @@
           </div>
 
 
-          <form action="{{url_for('staff_site.customised_update_plan')}}" method="post" novalidate>
+          <form action="{{url_for('staff_site.customised_submit_plan')}}" method="post" novalidate>
           {{ plan_form.csrf_token }}
 
           <div class="col-md-6 grid-margin stretch-card" style="width: 100%">
@@ -151,32 +151,29 @@
             <a href="{{url_for("staff_site.customised_clear_draft" )}}">
               <input type="button" class="btn btn-primary me-2" name="clear_all" value="Clear All" >
             </a>
-            <a href="{{url_for('staff_site.customised_delete_plan')}}">
-              <input type="button" class="btn btn-primary me-2" name="save_draft" value="Delete Package">
-            </a>
             <a >
-              <input type="submit" class="btn btn-primary me-2" name="submit" value="Update Package">
+              <input type="submit" class="btn btn-primary me-2" name="submit" value="Submit Package">
             </a>
           </div>
           </form>
-            <script>
-                if (window.localStorage) {
-                    var idList = ["user-id", "pack-name", "pack-intro"];
-                    var i = 0;
-                    function doLocalStorage(id){
-                        document.getElementById(id).addEventListener("input", function(){
-                            localStorage.setItem(id, document.getElementById(id).value);
-                        })
-                        document.getElementById(id).value = localStorage.getItem(id);
-                    }
-                    while (idList[i]) {
-                        doLocalStorage(idList[i]);
-                        i++;
-                    }
-                } else {
-                    window.alert("The browser you are using does not support localStorage, please use the latest version of Google or Firefox or IE.");
-                }
-            </script>
+{#            <script>#}
+{#                if (window.localStorage) {#}
+{#                    var idList = ["user-id", "pack-name", "pack-intro"];#}
+{#                    var i = 0;#}
+{#                    function doLocalStorage(id){#}
+{#                        document.getElementById(id).addEventListener("input", function(){#}
+{#                            localStorage.setItem(id, document.getElementById(id).value);#}
+{#                        })#}
+{#                        document.getElementById(id).value = localStorage.getItem(id);#}
+{#                    }#}
+{#                    while (idList[i]) {#}
+{#                        doLocalStorage(idList[i]);#}
+{#                        i++;#}
+{#                    }#}
+{#                } else {#}
+{#                    window.alert("The browser you are using does not support localStorage, please use the latest version of Google or Firefox or IE.");#}
+{#                }#}
+{#            </script>#}
         </div>
 
         <!-- content-wrapper ends -->

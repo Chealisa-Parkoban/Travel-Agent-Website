@@ -132,7 +132,7 @@
 
                   <div>
                     <p>Cover Picture</p>
-                    <img src="#" alt="" id="img">
+                    <img src="#" alt="Please upload" id="img">
                                     <br>
                                     <br>
                     <input id="file_upload" name="img" type="file" onclick="showImg()" />
@@ -153,9 +153,6 @@
           <div style="display:flex;justify-content: center; align-items:center;">
             <a href="{{url_for("staff_site.clear_draft")}}">
               <input type="button" class="btn btn-primary me-2" name="clear_all" value="Clear All" >
-            </a>
-            <a>
-              <input type="button" class="btn btn-primary me-2" name="save_draft" value="Save Draft">
             </a>
             <a href="{{url_for("staff_site.submit_plan")}}">
               <input type="submit" class="btn btn-primary me-2" name="submit" value="Add Package">

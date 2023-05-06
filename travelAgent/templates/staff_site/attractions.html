@@ -2,7 +2,7 @@
       {% block body %}
 
       {% if message != "" %}
-          <script>
+          <script xmlns="http://www.w3.org/1999/html">
               alert("{{message}}");
               console.log("fasdfasdf");
           </script>
@@ -100,13 +100,15 @@
                                 <input type="text" class="form-control" name="intro" />
                                 <p style="margin-top: 1%">Ticket Price:</p>
                                 <input type="number" class="form-control" name="price" />
+                                <br/>
+                                <div style="display:flex;justify-content: center; align-items:center;">
+                                    <input type="submit" class="btn btn-primary me-2" style="width: fit-content; " value="Submit"  />
+                                </div>
 
                             </div>
                         </div>
                       </div>
-                    <div style="display:flex;justify-content: center; align-items:center;">
-                        <input type="submit" class="btn btn-primary me-2" style="width: fit-content; " value="Submit"  />
-                    </div>
+
                   </form>
               </div>
           </div>
