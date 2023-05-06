@@ -23,7 +23,8 @@ html,
 body {
     place-items: center;
     font-family: var(--font-family);
-    background: linear-gradient(to right, #9796f0, #464662);
+    /*background: linear-gradient(to right, #e9e9f1, #dadaf1);*/
+    background-color: #F6F9FD;
     /*overflow: hidden;*/
 }
 
