@@ -1,7 +1,7 @@
 import datetime
 import time
 
-from flask import Blueprint, request, render_template, redirect, url_for
+from flask import Blueprint, request, render_template, redirect, url_for, flash
 from flask_login import current_user
 
 from travelAgent import db
@@ -81,9 +81,13 @@ def addTargetBooking(target_id):
                                  name=name, tel=tel, time=str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())),
                                  price=total_price, status="Uncompleted", status2="No comment")
 
-            db.session.add(booking)
-            db.session.commit()
-            return redirect("/order_list")
+            if booking.price>0:
+                db.session.add(booking)
+                db.session.commit()
+                return redirect("/order_list")
+            else:
+                flash("The date you selected is incorrect Please fill in again")
+                return render_template('book_hotel.html', form=form, target_id=target_id, target=target)
         else:
             if target_type == 0:
                 return render_template('book_attraction.html', form=form, target_id=target_id, target=target)
