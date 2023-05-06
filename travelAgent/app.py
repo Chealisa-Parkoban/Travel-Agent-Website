@@ -540,7 +540,9 @@ def check_booking_details(booking_id):
 
 
 @app.route('/check_booking_target_details/<target_id>', methods=['GET', 'POST'])
-def check_booking_target_details(target_id):
+def check_booking_target_details(booking_id):
+    booking = db.session.query(RecordC).filter(Record.id == booking_id).first()
+    target_id = booking.target_id
     target = db.session.query(Target).filter(Target.id == target_id).first()
     return render_template("orderDetail.html", target=target)
 
