@@ -93,18 +93,6 @@ def contents():
     return render_template('./staff_site/all_plans.html', plans=plans, user=current_user)
 
 
-@staff_blueprint.route('/staff/contents/delete_plan', methods=['GET', 'POST'])
-def delete_plan():
-    # changeBookingStatus()
-    if not current_user.is_authenticated:
-        return redirect(url_for("staff_site.login"))
-    plan_id = session.get('plan_id')
-    plan = Combination.query.filter_by(id=plan_id).first()
-    db.session.delete(plan)
-    db.session.commit()
-    return redirect(url_for("staff_site.contents"))
-
-
 @staff_blueprint.route('/staff/pack_load_detail', methods=['GET', 'POST'])
 def pack_load_detail():
     if not current_user.is_authenticated:
@@ -131,8 +119,8 @@ def pack_load_detail():
     return "success"
 
 
-@staff_blueprint.route('/staff/contents/view_plan/<plan_id>', methods=['GET', 'POST'])
-@staff_blueprint.route('/staff/contents/view_plan', methods=['GET', 'POST'])
+@staff_blueprint.route('/staff/view_plan/<plan_id>', methods=['GET', 'POST'])
+@staff_blueprint.route('/staff/view_plan', methods=['GET', 'POST'])
 def view_plan(plan_id=None):
     # changeBookingStatus()
     if not current_user.is_authenticated:
@@ -163,6 +151,7 @@ def view_plan(plan_id=None):
 
 @staff_blueprint.route('/staff/contents/add/<plan_id>', methods=['GET', 'POST'])
 @staff_blueprint.route('/staff/contents/add', methods=['GET', 'POST'])
+@staff_blueprint.route('/staff/contents/add/', methods=['GET', 'POST'])
 def add_new_day(plan_id=None):
     # changeBookingStatus()
     form = DayTripForm(request.form)
@@ -249,6 +238,26 @@ def update_plan(plan_id):
     length = day_trip_draft.__len__()
     days = []
 
+    uid = uuid.uuid1()
+    # Images storage path
+    file_dir = os.path.join(basedir, "static/upload/")
+    # Getting the data transferred from the front end
+    files = request.files.getlist('img')  # Gets the value of myfiles from ajax, of type list
+    path = ""
+
+    for img in files:
+        # Extract the suffix of the uploaded image and
+        # Name the image after the commodity id and store it in the specific path
+        check = img.content_type
+        # check if upload image
+        if str(check) != 'application/octet-stream':
+            fname = img.filename
+            ext = fname.rsplit('.', 1)[1]
+            new_filename = uid.hex + '.' + ext
+            img.save(os.path.join(file_dir, new_filename))
+            path = "../static/upload/" + new_filename
+
+
     for day in day_trip_draft:
         destination_id = Destination.query.filter_by(name=day[1]).first().id
         attraction_id = Target.query.filter_by(name=day[2]).first().id
@@ -276,6 +285,7 @@ def update_plan(plan_id):
     plan.intro = intro
     plan.price = price
     plan.length = length
+    plan.path = path
     plan.day1 = days_id[0]
     plan.day2 = days_id[1]
     plan.day3 = days_id[2]
@@ -355,8 +365,8 @@ def clear_draft():
     return redirect(url_for("staff_site.view_plan"))
 
 
-@staff_blueprint.route('/staff/customised_delete_plan/<plan_id>', methods=['GET', 'POST'])
-def customised_delete_plan(plan_id):
+@staff_blueprint.route('/staff/delete_plan/<plan_id>', methods=['GET', 'POST'])
+def delete_plan(plan_id):
     # changeBookingStatus()
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))

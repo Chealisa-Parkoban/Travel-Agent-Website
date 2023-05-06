@@ -1,5 +1,6 @@
 {% extends "staff_site/base.html" %}
       {% block body %}
+          <script type="text/javascript" src="../../static/js/add.js"></script>
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
@@ -61,7 +62,7 @@
                   <p class="card-description">
                     Complete the trip information
                   </p>
-                  <form action="{{ url_for('staff_site.add_new_day') }}" method="post" novalidate
+                  <form action="{{ url_for('staff_site.add_new_day', plan_id=plan.id) }}" method="post" novalidate
                         class="forms-sample" id="day_trip_form">
                       {{ day_form.csrf_token }}
                     <div class="form-group">
@@ -107,37 +108,41 @@
           </div>
 
 
-          <form action="{{url_for('staff_site.update_plan')}}" method="post" novalidate>
+          <form action="{{url_for('staff_site.update_plan', plan_id=plan.id)}}" method="post" novalidate>
           {{ plan_form.csrf_token }}
 
           <div class="col-md-6 grid-margin stretch-card" style="width: 100%">
               <div class="card" >
                 <div class="card-body" style="margin: 0 1% 0 1%;">
 
-                  <div class="form-group"style="margin-bottom: 0">
+                  <div class="form-group" style="margin-bottom: 0">
                     <p>Package Name</p>
                     <label style="width: 100%">
-                      <input class="form-control" name="name" value={{ plan.name }}>
+                      <input class="form-control" name="name" value="{{ plan.name }}">
                     </label>
                   </div>
 
                   <div class="form-group" style="margin-bottom: 0">
                   <p>Introduction</p>
                   <label style="width: 100%">
-                    <input class="form-control" name="intro" style="width: 100%" value={{ plan.intro }}>
+                    <input type="text" class="form-control" name="intro" style="width: 100%" value="{{ plan.intro }}">
                   </label>
                   </div>
 
                   <div>
                     <p>Cover Picture</p>
-                    <img src="{{ plan.image }}" alt="Please upload">
+                      <img src="../../{{ plan.image }}" alt="Please upload" id="img" width="50%">
+
+                                    <br>
+                                    <br>
+
                     <input id="" name="img" type="file" onclick="showImg()"/>
                   </div>
 
                   <div class="form-group" style="margin-bottom: 0">
                   <p>Price</p>
                   <label style="margin-bottom: 1%">
-                    <input class="form-control" type="number" name="price" value={{ plan.price }}>
+                    <input class="form-control" type="number" name="price" value={{ fees }}>
                   </label>
                   </div>
 

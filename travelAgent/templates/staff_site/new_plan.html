@@ -1,5 +1,6 @@
 {% extends "staff_site/base.html" %}
       {% block body %}
+
           <script type="text/javascript" src="../../static/js/add.js"></script>
 
       <!-- partial -->
@@ -132,7 +133,7 @@
 
                   <div>
                     <p>Cover Picture</p>
-                    <img src="#" alt="Please upload" id="img">
+                    <img src="#" alt="Please upload" id="img" width="50%">
                                     <br>
                                     <br>
                     <input id="file_upload" name="img" type="file" onclick="showImg()" />
@@ -141,7 +142,7 @@
                   <div class="form-group" style="margin-bottom: 0">
                   <p>Price</p>
                   <label style="margin-bottom: 1%">
-                    <input class="form-control" type="number" name="price" value={{ trip_fees }}>
+                    <input class="form-control" type="number" name="price" value={{ fees }}>
                   </label>
                   </div>
 
@@ -173,5 +174,6 @@
         </footer>
         <!-- partial -->
       </div>
-      <!-- main-panel ends -->
+
+
       {% endblock %}

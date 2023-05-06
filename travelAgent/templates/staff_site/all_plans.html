@@ -32,10 +32,11 @@
                         </tr>
                       <script>
                         function showPlans(plan_id_res=null){
+                            {#window.location.href = "/staff/contents/view_plan/"#}
                           $.get({
                             url: '/staff/pack_load_detail',
                             type: 'GET',
-                            data: ({plan_id : plan_id_res}),
+                            data: ({plan_id_res : plan_id_res}),
                             success: function (data) {
                                 window.location.href = "/staff/view_plan/" + plan_id_res;
                             }
