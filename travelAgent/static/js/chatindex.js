@@ -6,7 +6,7 @@
 //translate function
 function Translate(event) {
     console.log(event.target)
-    var previous = event.target.previousElementSibling.innerText
+    var previous = event.target.parentNode.previousElementSibling.innerText
     var next = event.target.nextElementSibling
 
     var appid = '20230228001579285';
@@ -63,18 +63,20 @@ async function add_messages(msg, scroll) {
         //staff侧人工回复
         var content =
             '<div class="row">' +
-            // '<div class="col-sm">'+
-            '<div class="alert alert-shadow col-5" style="margin-left: 2%; background: rgb(124,168,246, 0.4)">' +
-            '<b style="color:#734" class="right">' +
+
+            '<div class="alert alert-shadow col-5" style="margin-left: 2%; background: rgb(196,229,234)">' +
+            '<b style="color:rgb(9,52,87) ; font-size:25px" class="right">' +
             msg.name +
-            '</b><p>' +
-            msg.message +
-            '</p>'
+            '<hr />'+
+            '</b><b><p style="text-align: left;color: black; font-size:15px">' +
+                msg.message +
+                '</p></b>'
             + ////////////////
               '<p>' +
-                 `<button class="btn btn-primary"  onclick=Translate(event)>Translate</button>` + '<span class="res_translate"></span>' + '<span class="time-right">' +
+                 `<button class="btn btn-primary"  onclick=Translate(event)>TRANSLATE</button>` + '<span class="res_translate" style="font-weight: bold "></span>' + '<span class="time-right">' +
              '</p>' +
-                 '<p style="color: grey">'+
+            '<hr />'+
+                 '<p style="color: #115577">'+
                   n +
                  '</p>'+
                  /////////////////
@@ -90,18 +92,20 @@ async function add_messages(msg, scroll) {
 
                 '<div class="col"></div>' +
                 '<div class="col"></div>' +
-                // '<div class="col-sm">'+
-                '<div class="alert alert-success alert-shadow col-5" style="margin-right: 2%; background: rgba(67,227,203,0.4)">' +
-                '<b style="color:#157" class="left">' +
+
+                '<div class="alert alert-success alert-shadow col-5" style="margin-right: 2%; background: rgba(197,225,192,0.4)">' +
+                '<p style="color:rgba(2,141,21,0.87); text-align: right; font-size:25px"><b>' +
                 msg.name +
-                '</b><p style="text-align: right; color: black">' +
+                 '</b><hr />'+
+                '</p><p style="text-align: right"> <b style="color: black ">' +
                 msg.message +
-                '</p>'
+                '</b></p>'
                /////////////////
                  + '<p style="text-align: right">'
-                 +'<button class="btn btn-primary"  onclick=Translate(event)>Translate</button>' + '<span class="res_translate"></span>' + '<span class="time-right">' +
-               '</p>'
-             + '<p style="text-align: right; color: grey" >'
+                 +'<button class="btn btn-primary" style="background-color:" onclick=Translate(event)>TRANSLATE</button>' + '<span class="res_translate" style="color: black; font-weight: bold"></span>' + '<span class="time-right">' +
+               '</p>' +
+                 '<hr />'
+             + '<p style="text-align: right; color:rgba(34,72,25,0.89)" >'
                  +n+
                  '</p>' +
                  /////////////////
@@ -120,18 +124,19 @@ async function add_messages(msg, scroll) {
 
                 '<div class="col"></div>' +
                 '<div class="col"></div>' +
-                // '<div class="col-sm">'+
-                '<div class="alert alert-success alert-shadow col-5" style="margin-right: 2%; background: rgba(67,227,203,0.4)">' +
-                '<b style="color:#157" class="left">' +
+                '<div class="alert alert-success alert-shadow col-5" style="margin-right: 2%; background: rgba(197,225,192,0.4)">' +
+                '<p style="color:rgba(2,141,21,0.87); text-align: right; font-size:25px"><b>' +
                 msg.name +
-                '</b><p style="text-align: right; color: black">' +
+                 '</b><hr />'+
+                '</p><p style="text-align: right"> <b style="color: black ">' +
                 msg.message +
-                '</p>'
-                 /////////////////
+                '</b></p>'
+               /////////////////
                  + '<p style="text-align: right">'
-                 +'<button class="btn btn-primary"  onclick=Translate(event)>Translate</button>' + '<span class="res_translate"></span>' + '<span class="time-right">' +
-               '</p>'
-             + '<p style="text-align: right; color: grey" >'
+                 +'<button class="btn btn-primary" style="background-color:" onclick=Translate(event)>TRANSLATE</button>' + '<span class="res_translate" style="color: black; font-weight: bold"></span>' + '<span class="time-right">' +
+               '</p>' +
+                 '<hr />'
+             + '<p style="text-align: right; color:rgba(34,72,25,0.89)" >'
                  +n+
                  '</p>' +
                  /////////////////
@@ -140,17 +145,19 @@ async function add_messages(msg, scroll) {
 
             '<div class="row">' +
             // '<div class="col-sm">'+
-            '<div class="alert alert-shadow col-5" style="margin-left: 2%; background: rgb(124,168,246, 0.4)">' +
-            '<b style="color:#734" class="right">' +
+            '<div class="alert alert-shadow col-5" style="margin-left: 2%; background: rgb(196,229,234)">' +
+                '<b style="color:rgb(9,52,87); font-size:25px" class="right">' +
             'Auto Reply' +
-            '</b><p>' +
-            'Staff work between 9am-10pm' +
-            '</p>' +
-                 ////////////////
+            '<hr />'+
+            '</b><b><p style="text-align: left; color: black; font-size:15px">' +
+               'Staff will work between 9am-10pm' +
+                '</p></b>'
+            + ////////////////
               '<p>' +
-                 `<button class="btn btn-primary"  onclick=Translate(event)>Translate</button>` + '<span class="res_translate"></span>' + '<span class="time-right">' +
+                 `<button class="btn btn-primary"  onclick=Translate(event)>TRANSLATE</button>` + '<span class="res_translate" style="font-weight: bold "></span>' + '<span class="time-right">' +
              '</p>' +
-                 '<p style="color: grey">'+
+            '<hr />'+
+                 '<p style="color: #115577">'+
                   n +
                  '</p>'+
                  /////////////////
@@ -168,18 +175,19 @@ async function add_messages(msg, scroll) {
 
                 '<div class="col"></div>' +
                 '<div class="col"></div>' +
-                // '<div class="col-sm">'+
-                '<div class="alert alert-success alert-shadow col-5" style="margin-right: 2%; background: rgba(67,227,203,0.4)">' +
-                '<b style="color:#157" class="left">' +
+               '<div class="alert alert-success alert-shadow col-5" style="margin-right: 2%; background: rgba(197,225,192,0.4)">' +
+                '<p style="color:rgba(2,141,21,0.87); text-align: right; font-size:25px"><b>' +
                 msg.name +
-                '</b><p style="text-align: right; color: black">' +
+                 '</b><hr />'+
+                '</p><p style="text-align: right"> <b style="color: black ">' +
                 msg.message +
-                '</p>'
-              /////////////////
+                '</b></p>'
+               /////////////////
                  + '<p style="text-align: right">'
-                 +'<button class="btn btn-primary"  onclick=Translate(event)>Translate</button>' + '<span class="res_translate"></span>' + '<span class="time-right">' +
-               '</p>'
-             + '<p style="text-align: right; color: grey" >'
+                 +'<button class="btn btn-primary" style="background-color:" onclick=Translate(event)>TRANSLATE</button>' + '<span class="res_translate" style="color: black; font-weight: bold"></span>' + '<span class="time-right">' +
+               '</p>' +
+                 '<hr />'
+             + '<p style="text-align: right; color:rgba(34,72,25,0.89)" >'
                  +n+
                  '</p>' +
                  /////////////////
@@ -187,23 +195,23 @@ async function add_messages(msg, scroll) {
                 '</div></div>' +
 
             '<div class="row">' +
-            // '<div class="col-sm">'+
-            '<div class="alert alert-shadow col-5" style="margin-left: 2%; background: rgb(124,168,246, 0.4)">' +
-            '<b style="color:#734" class="right">' +
+            '<div class="alert alert-shadow col-5" style="margin-left: 2%; background: rgb(196,229,234)">' +
+            '<b style="color:rgb(9,52,87) ; font-size:25px" class="right">' +
             'Auto Reply' +
-            '</b><p>' +
-            'You can check order status inside ' +
-                 '<a href="http://127.0.0.1:5000/order_list">ORDERS</a>'+
-                 ' page' +
-            '</p>' +
-           ////////////////
+            '<hr />'+
+            '</b><b><p style="text-align: left;color: black; font-size:15px">' +
+                'You can check order status inside ' +
+                  '<a href="http://127.0.0.1:5000/order_list">ORDERS</a>'+
+                  ' page' +
+                '</p></b>'
+            + ////////////////
               '<p>' +
-                 `<button class="btn btn-primary"  onclick=Translate(event)>Translate</button>` + '<span class="res_translate"></span>' + '<span class="time-right">' +
+                 `<button class="btn btn-primary"  onclick=Translate(event)>TRANSLATE</button>` + '<span class="res_translate" style="font-weight: bold "></span>' + '<span class="time-right">' +
              '</p>' +
-                 '<p style="color: grey">'+
+            '<hr />'+
+                 '<p style="color: #115577">'+
                   n +
                  '</p>'+
-                 /////////////////
             '</span></div>' +
             '<div class="col"></div>' +
             '<div class="col"></div>' +
@@ -211,24 +219,25 @@ async function add_messages(msg, scroll) {
         }
 
          //超出时间 staff have go home
-          if (username == msg.name && (((n.split(' '))[1]).split(':')[0] < 9  ) && 'When staff work?' != msg.message && 'How to check order status?' != msg.message && 'Where to check my Favorites?' != msg.message &&  'How to contact Digital Beans for further cooperation?' != msg.message) {
+          if (username == msg.name && (((n.split(' '))[1]).split(':')[0] < 9  || ((n.split(' '))[1]).split(':')[0] > 22)  && 'When staff work?' != msg.message && 'How to check order status?' != msg.message && 'Where to check my Favorites?' != msg.message &&  'How to contact Digital Beans for further cooperation?' != msg.message) {
              var content =
              '<div class="row">' +
 
                 '<div class="col"></div>' +
                 '<div class="col"></div>' +
-                // '<div class="col-sm">'+
-                '<div class="alert alert-success alert-shadow col-5" style="margin-right: 2%; background: rgba(67,227,203,0.4)">' +
-                '<b style="color:#157" class="left">' +
+               '<div class="alert alert-success alert-shadow col-5" style="margin-right: 2%; background: rgba(197,225,192,0.4)">' +
+                '<p style="color:rgba(2,141,21,0.87); text-align: right; font-size:25px"><b>' +
                 msg.name +
-                '</b><p style="text-align: right; color: black">' +
+                 '</b><hr />'+
+                '</p><p style="text-align: right"> <b style="color: black ">' +
                 msg.message +
-                '</p>'
-                 /////////////////
+                '</b></p>'
+               /////////////////
                  + '<p style="text-align: right">'
-                 +'<button class="btn btn-primary"  onclick=Translate(event)>Translate</button>' + '<span class="res_translate"></span>' + '<span class="time-right">' +
-               '</p>'
-             + '<p style="text-align: right; color: grey" >'
+                 +'<button class="btn btn-primary" style="background-color:" onclick=Translate(event)>TRANSLATE</button>' + '<span class="res_translate" style="color: black; font-weight: bold"></span>' + '<span class="time-right">' +
+               '</p>' +
+                 '<hr />'
+             + '<p style="text-align: right; color:rgba(34,72,25,0.89)" >'
                  +n+
                  '</p>' +
                  /////////////////
@@ -236,26 +245,37 @@ async function add_messages(msg, scroll) {
                 '</div></div>' +
 
             '<div class="row">' +
-            // '<div class="col-sm">'+
-            '<div class="alert alert-shadow col-5" style="margin-left: 2%; background: rgb(124,168,246, 0.4)">' +
-            '<b style="color:#734" class="right">' +
+             '<div class="alert alert-shadow col-5" style="margin-left: 2%; background: rgb(196,229,234)">' +
+            '<b style="color:rgb(9,52,87) ; font-size:25px" class="right">' +
             'Auto Reply' +
-            '</b><p>' +
-            'Staff work during 9am-10pm' +
-            '</p>'+ '<p>'+
+            '<hr />'+
+            '</b><b><p style="text-align: left;color: black; font-size:15px">' +
+                'Staff work during 9am-10pm' +
+            '</p></b>'+ '<b><p>'+
                  'Our staff will contact you ASAP later'
-                 + '</p>'+ '<p>'+
-                 'Auto Reply is available for particular quations:' +
-
+                 + '</p></b>'+ '<b><p>'+
+                 'Auto Reply is available for following quations:'
+                 + '</p></b>'+ '<b><p>'+
+                 '1. How to check my order status?'
+                 + '</p></b>'+ '<b><p>'+
+                 '2. When staff work?'
+                 + '</p></b>'+ '<b><p>'+
+                 '3. Where to check my Favorites?'
+                 + '</p></b>'+ '<b><p>'+
+                 '4. How to contact Digital Beans for further cooperation?'
+                 + '</p></b>'+ '<b><p>'+
             '</p>' +
-                 ////////////////
+                '</p></b>'
+            + ////////////////
               '<p>' +
-                 `<button class="btn btn-primary"  onclick=Translate(event)>Translate</button>` + '<span class="res_translate"></span>' + '<span class="time-right">' +
+                 `<button class="btn btn-primary"  onclick=Translate(event)>TRANSLATE</button>` + '<span class="res_translate" style="font-weight: bold "></span>' + '<span class="time-right">' +
              '</p>' +
-                 '<p style="color: grey">'+
+            '<hr />'+
+                 '<p style="color: #115577">'+
                   n +
                  '</p>'+
                  /////////////////
+
             '</span></div>' +
             '<div class="col"></div>' +
             '<div class="col"></div>' +
@@ -270,18 +290,19 @@ async function add_messages(msg, scroll) {
 
                 '<div class="col"></div>' +
                 '<div class="col"></div>' +
-                // '<div class="col-sm">'+
-                '<div class="alert alert-success alert-shadow col-5" style="margin-right: 2%; background: rgba(67,227,203,0.4)">' +
-                '<b style="color:#157" class="left">' +
+               '<div class="alert alert-success alert-shadow col-5" style="margin-right: 2%; background: rgba(197,225,192,0.4)">' +
+                '<p style="color:rgba(2,141,21,0.87); text-align: right; font-size:25px"><b>' +
                 msg.name +
-                '</b>' + '<p style="text-align: right; color: black">' +
+                 '</b><hr />'+
+                '</p><p style="text-align: right"> <b style="color: black ">' +
                 msg.message +
-                '</p>'
-                 /////////////////
+                '</b></p>'
+               /////////////////
                  + '<p style="text-align: right">'
-                 +'<button class="btn btn-primary"  onclick=Translate(event)>Translate</button>' + '<span class="res_translate"></span>' + '<span class="time-right">' +
-               '</p>'
-             + '<p style="text-align: right; color: grey" >'
+                 +'<button class="btn btn-primary" style="background-color:" onclick=Translate(event)>TRANSLATE</button>' + '<span class="res_translate" style="color: black; font-weight: bold"></span>' + '<span class="time-right">' +
+               '</p>' +
+                 '<hr />'
+             + '<p style="text-align: right; color:rgba(34,72,25,0.89)" >'
                  +n+
                  '</p>' +
                  /////////////////
@@ -289,24 +310,42 @@ async function add_messages(msg, scroll) {
                 '</div></div>' +
 
             '<div class="row">' +
-            // '<div class="col-sm">'+
-            '<div class="alert alert-shadow col-5" style="margin-left: 2%; background: rgb(124,168,246, 0.4)">' +
-            '<b style="color:#734" class="right">' +
+                 '<div class="alert alert-shadow col-5" style="margin-left: 2%; background: rgb(196,229,234)">' +
+            '<b style="color:rgb(9,52,87) ; font-size:25px" class="right">' +
             'Auto Reply' +
-            '</b><p>' +
-                 'You can check your Favorites inside '+
+            '<hr />'+
+            '</b><b><p style="text-align: left;color: black; font-size:15px">' +
+                  'You can check your Favorites inside '+
                  '<a href="http://127.0.0.1:5000/favourites">FAVORITES</a>'+
                  ' page' +
-             //  '<button onclink="mylink(this)" value="http://127.0.0.1:5000/favourites">Favoritesss</button>'
-            '</p>' +
-                 ////////////////
+
+                '</p></b>'
+            + ////////////////
               '<p>' +
-                 `<button class="btn btn-primary"  onclick=Translate(event)>Translate</button>` + '<span class="res_translate"></span>' + '<span class="time-right">' +
+                 `<button class="btn btn-primary"  onclick=Translate(event)>TRANSLATE</button>` + '<span class="res_translate" style="font-weight: bold "></span>' + '<span class="time-right">' +
              '</p>' +
-                 '<p style="color: grey">'+
+            '<hr />'+
+                 '<p style="color: #115577">'+
                   n +
                  '</p>'+
                  /////////////////
+            // '<div class="alert alert-shadow col-5" style="margin-left: 2%; background: rgb(124,168,246, 0.4)">' +
+            // '<b style="color:#734" class="right">' +
+            // 'Auto Reply' +
+            // '</b><p>' +
+            //      'You can check your Favorites inside '+
+            //      '<a href="http://127.0.0.1:5000/favourites">FAVORITES</a>'+
+            //      ' page' +
+            //  //  '<button onclink="mylink(this)" value="http://127.0.0.1:5000/favourites">Favoritesss</button>'
+            // '</p>' +
+            //      ////////////////
+            //   '<p>' +
+            //      `<button class="btn btn-primary"  onclick=Translate(event)>Translate</button>` + '<span class="res_translate"></span>' + '<span class="time-right">' +
+            //  '</p>' +
+            //      '<p style="color: grey">'+
+            //       n +
+            //      '</p>'+
+            //      /////////////////
             '</span></div>' +
             '<div class="col"></div>' +
             '<div class="col"></div>' +
@@ -321,43 +360,45 @@ async function add_messages(msg, scroll) {
 
                 '<div class="col"></div>' +
                 '<div class="col"></div>' +
-                // '<div class="col-sm">'+
-                '<div class="alert alert-success alert-shadow col-5" style="margin-right: 2%; background: rgba(67,227,203,0.4)">' +
-                '<b style="color:#157" class="left">' +
+
+               '<div class="alert alert-success alert-shadow col-5" style="margin-right: 2%; background: rgba(197,225,192,0.4)">' +
+                '<p style="color:rgba(2,141,21,0.87); text-align: right; font-size:25px"><b>' +
                 msg.name +
-                '</b><p style="text-align: right; color: black">' +
+                 '</b><hr />'+
+                '</p><p style="text-align: right"> <b style="color: black ">' +
                 msg.message +
-                '</p>'
-                 /////////////
-                  + '<p style="text-align: right">'
-                 +'<button class="btn btn-primary"  onclick=Translate(event)>Translate</button>' + '<span class="res_translate"></span>' + '<span class="time-right">' +
-               '</p>'
-             + '<p style="text-align: right; color: grey" >'
-                 + n +
+                '</b></p>'
+               /////////////////
+                 + '<p style="text-align: right">'
+                 +'<button class="btn btn-primary" style="background-color:" onclick=Translate(event)>TRANSLATE</button>' + '<span class="res_translate" style="color: black; font-weight: bold"></span>' + '<span class="time-right">' +
+               '</p>' +
+                 '<hr />'
+             + '<p style="text-align: right; color:rgba(34,72,25,0.89)" >'
+                 +n+
                  '</p>' +
-                 /////////////
+                 /////////////////
                 '</span></div>' +
                 '</div></div>' +
 
             '<div class="row">' +
-            // '<div class="col-sm">'+
-            '<div class="alert alert-shadow col-5" style="margin-left: 2%; background: rgb(124,168,246, 0.4)">' +
-            '<b style="color:#734" class="right">' +
+             '<div class="alert alert-shadow col-5" style="margin-left: 2%; background: rgb(196,229,234)">' +
+            '<b style="color:rgb(9,52,87); font-size:25px" class="right">' +
             'Auto Reply' +
-            '</b><p>' +
+            '<hr />'+
+            '</b><b><p style="text-align: left;color: black; font-size:15px">' +
                  'You can contact with Digital Beans for further cooperation inside '+
                  '<a href="http://127.0.0.1:5000/contactUs">CONTACT US</a>'+
                  ' page' +
-             //  '<button onclink="mylink(this)" value="http://127.0.0.1:5000/favourites">Favoritesss</button>'
-            '</p>' +
-                 ////////////////
+                '</p></b>'
+            + ////////////////
               '<p>' +
-                 `<button class="btn btn-primary"  onclick=Translate(event)>Translate</button>` + '<span class="res_translate"></span>' + '<span class="time-right">' +
+                 `<button class="btn btn-primary"  onclick=Translate(event)>TRANSLATE</button>` + '<span class="res_translate" style="font-weight: bold "></span>' + '<span class="time-right">' +
              '</p>' +
-                 '<p style="color: grey">'+
+            '<hr />'+
+                 '<p style="color: #115577">'+
                   n +
                  '</p>'+
-                 /////////////////
+
             '</span></div>' +
             '<div class="col"></div>' +
             '<div class="col"></div>' +
