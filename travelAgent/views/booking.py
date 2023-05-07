@@ -34,16 +34,15 @@ def addBooking(combination_id):
             booking = RecordC(user_id=current_user.id, combination_id=combination_id, start_time=start_time, num=num,
                               name=name, tel=tel, time=str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())), price=total_price, status="Uncompleted", status2="No comment")
 
-            if len(tel) == 11 and type(tel) is int:
+            if len(tel) == 11:
                 db.session.add(booking)
                 db.session.commit()
                 return redirect("/order_list")
 
             else:
                 flash("Wrong phone number, please enter a phone number consisting of 11 digits only")
-                return render_template('book.html', combination_id=combination_id, combination=combination)
+                return render_template('book.html', form=form, combination_id=combination_id, combination=combination)
         else:
-            # print("hhhhhhhhhhhh")
             return render_template('book.html', combination_id=combination_id, combination=combination)
 
 
@@ -85,14 +84,14 @@ def addTargetBooking(target_id):
                                  name=name, tel=tel, time=str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())),
                                  price=total_price, status="Uncompleted", status2="No comment")
 
-            if booking.price>0 and len(tel)==11 and type(tel) is int:
+            if booking.price > 0 and len(tel) == 11:
                 db.session.add(booking)
                 db.session.commit()
                 return redirect("/order_list")
-            elif booking.price<=0:
+            elif booking.price <= 0:
                 flash("The date you selected is incorrect Please fill in again")
                 return render_template('book_hotel.html', form=form, target_id=target_id, target=target)
-            elif len(tel) != 11 or type(tel) is str:
+            elif len(tel) != 11:
                 flash("Wrong phone number, please enter a phone number consisting of 11 digits only")
                 if target_type == 0:
                     return render_template('book_attraction.html', form=form, target_id=target_id, target=target)
@@ -126,14 +125,14 @@ def addPersonalBooking(combination_id):
                               name=name, tel=tel, time=str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())), price=total_price, status="Uncompleted", status2="No comment")
             db.session.add(booking)
             db.session.commit()
-            if len(tel) == 11 and type(tel) is int:
+            if len(tel) == 11:
                 db.session.add(booking)
                 db.session.commit()
                 return redirect("/order_list")
 
             else:
                 flash("Wrong phone number, please enter a phone number consisting of 11 digits only")
-                return render_template('book.html', combination_id=combination_id, combination=combination)
+                return render_template('book.html', form=form, combination_id=combination_id, combination=combination)
 
         else:
             return render_template('book_personal.html', combination_id=combination_id, combination=combination)
