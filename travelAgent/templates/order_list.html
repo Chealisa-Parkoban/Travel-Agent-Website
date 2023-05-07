@@ -11,13 +11,16 @@
             <hr>
             <div>
                 <div class="col-md-12 mb-5">
+                    {% if user_name|length == 0 %}
+                        <h1 class="text-center" style="margin: 30% 0 50% 0"> No Order</h1>
 
-                    {% for i in range(0,user_name|length) %}
-                        <a href="#">
-                            <div class="card" style="color: #0a0c0d; margin-top: 3%;">
-                                <div class="row" style="margin-left: auto !important;">
-                                    <div class="col-md-4 mx-auto mb-auto d-flex align-items-center"
-                                         style="margin: auto;">
+                    {% else %}
+                        {% for i in range(0,user_name|length) %}
+                            <a href="#">
+                                <div class="card" style="color: #0a0c0d; margin-top: 3%;">
+                                    <div class="row" style="margin-left: auto !important;">
+                                        <div class="col-md-4 mx-auto mb-auto d-flex align-items-center"
+                                             style="margin: auto;">
 
                                         <a href="{{ url_for("check_booking_details", booking_id=ids[i]) }}"><img
                                                 src="{{ image[i] }}" class="card-img" alt="..."></a>
