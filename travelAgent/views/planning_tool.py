@@ -30,7 +30,7 @@ def load_detail():
 
     if plan is not None:
         for day in plan.get_days():
-            if day != None:
+            if day is not None:
                 day = Day.query.filter_by(id=day).first()
                 destination = Destination.query.filter_by(id=day.destination_id).first()
                 attraction = Target.query.filter_by(id=day.attraction_id).first()
@@ -41,6 +41,7 @@ def load_detail():
                 trip_fees.append(attraction.price)
                 trip_fees.append(accommodation.price)
                 trip_fees.append(traffic.price)
+    print(day_trip_draft)
     return "success"
 
 
@@ -99,12 +100,12 @@ def add_new_day(plan_id=None):
     return redirect(url_for('planning_tool.planning', plan_id=plan_id))
 
 
-@planning_tool_blueprint.route('/planning/move_early/<index>,<plan_id>', methods=['GET', 'POST'])
-@planning_tool_blueprint.route('/planning/move_early/<index>', methods=['GET', 'POST'])
+@planning_tool_blueprint.route('/planning_move_early/<index>,<plan_id>', methods=['GET', 'POST'])
+@planning_tool_blueprint.route('/planning_move_early/<index>', methods=['GET', 'POST'])
 def move_early(index, plan_id=None):
     index = int(index)
     if index > 0:
-        # move fees positions in trip_fees, skip the first one, which is the total price
+        # move fees positions in trip_fees
         trip_fees.insert((index - 1) * 3, trip_fees.pop(index * 3))
         trip_fees.insert((index - 1) * 3, trip_fees.pop(index * 3))
         trip_fees.insert((index - 1) * 3, trip_fees.pop(index * 3))
@@ -115,11 +116,11 @@ def move_early(index, plan_id=None):
     return planning(plan_id)
 
 
-@planning_tool_blueprint.route('/staff/move_later/<index>,<plan_id>', methods=['GET', 'POST'])
-@planning_tool_blueprint.route('/staff/move_later/<index>', methods=['GET', 'POST'])
+@planning_tool_blueprint.route('/planning_move_later/<index>,<plan_id>', methods=['GET', 'POST'])
+@planning_tool_blueprint.route('/planning_move_later/<index>', methods=['GET', 'POST'])
 def move_later(index, plan_id=None):
     index = int(index)
-    if index < day_trip_draft.__len__() - 1:
+    if index < day_trip_draft.__len__() - 1 and index >= 0 and day_trip_draft.__len__() > 1:
         # move fees positions in trip_fees, skip the first one, which is the total price
         trip_fees.insert((index + 1) * 3, trip_fees.pop(index * 3))
         trip_fees.insert((index + 1) * 3, trip_fees.pop(index * 3))
@@ -131,16 +132,18 @@ def move_later(index, plan_id=None):
     return planning(plan_id)
 
 
-@planning_tool_blueprint.route('/staff/delete_day/<index>, <plan_id>', methods=['GET', 'POST'])
-@planning_tool_blueprint.route('/staff/delete_day/<index>', methods=['GET', 'POST'])
+@planning_tool_blueprint.route('/planning_delete_day/<index>, <plan_id>', methods=['GET', 'POST'])
+@planning_tool_blueprint.route('/planning_delete_day/<index>', methods=['GET', 'POST'])
 def delete_day(index, plan_id=None):
     index = int(index)
-    day_trip_draft.pop(index)
+    if day_trip_draft.__len__() > 1:
+        day_trip_draft.pop(index)
     for i in range(index, day_trip_draft.__len__()):
         day_trip_draft[i][0] = i + 1
-    trip_fees.pop(index * 3)
-    trip_fees.pop(index * 3)
-    trip_fees.pop(index * 3)
+    if trip_fees.__len__() > 3:
+        trip_fees.pop(index * 3)
+        trip_fees.pop(index * 3)
+        trip_fees.pop(index * 3)
     return planning(plan_id)
 
 
