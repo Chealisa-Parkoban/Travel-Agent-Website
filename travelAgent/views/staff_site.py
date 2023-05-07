@@ -6,8 +6,7 @@ from flask_login import LoginManager, login_user, current_user, logout_user
 from travelAgent import app, db
 # from travelAgent.app import changeBookingStatus
 from travelAgent.forms import LoginForm, DayTripForm, PlanForm, DestinationForm, TargetForm
-from travelAgent.models import User, Destination, Target, Day, Combination, RecordC, Record, ContactModel, \
-    UserCombination
+from travelAgent.models import User, Destination, Target, Day, Combination, RecordC, Record, ContactModel
 from travelAgent.views.login_handler import login_manager
 
 from travelAgent.config import basedir
@@ -15,12 +14,8 @@ from travelAgent.config import basedir
 staff_blueprint = Blueprint(name="staff_site", import_name=__name__)
 
 day_trip_draft = []
-customised_day_trip_draft = []
-customised_update_trip_draft = []
 save_draft = False
-customised_save_draft = False
 trip_fees = []
-customised_trip_fees = []
 
 
 # --------------------chat----------------->
@@ -93,66 +88,30 @@ def contents():
     return render_template('./staff_site/all_plans.html', plans=plans, user=current_user)
 
 
-@staff_blueprint.route('/staff/pack_load_detail', methods=['GET', 'POST'])
-def pack_load_detail():
-    if not current_user.is_authenticated:
-        return redirect(url_for("staff_site.login"))
-    plan_id_res = request.args.get("plan_id_res")
-
-    plan = db.session.query(Combination).filter_by(id=plan_id_res).first()
-    day_trip_draft.clear()
-    trip_fees.clear()
-
-    if plan is not None:
-        for day in plan.get_days():
-            if day != None:
-                day = Day.query.filter_by(id=day).first()
-                destination = Destination.query.filter_by(id=day.destination_id).first()
-                attraction = Target.query.filter_by(id=day.attraction_id).first()
-                accommodation = Target.query.filter_by(id=day.accommodation_id).first()
-                traffic = Target.query.filter_by(id=day.traffic_id).first()
-                day = [len(day_trip_draft) + 1, destination.name, attraction.name, accommodation.name, traffic.name]
-                day_trip_draft.append(day)
-                trip_fees.append(attraction.price)
-                trip_fees.append(accommodation.price)
-                trip_fees.append(traffic.price)
-    return "success"
-
-
-@staff_blueprint.route('/staff/view_plan/<plan_id>', methods=['GET', 'POST'])
-@staff_blueprint.route('/staff/view_plan', methods=['GET', 'POST'])
-def view_plan(plan_id=None):
+@staff_blueprint.route('/staff/contents/new_plan', methods=['GET', 'POST'])
+def new_plan():
     # changeBookingStatus()
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
 
-    plan_form = PlanForm()
-    day_form = DayTripForm()
-
+    day_form = DayTripForm(request.form)
+    plan_form = PlanForm(request.form)
     destinations = Destination.query.all()
     attractions = Target.query.filter_by(type="0").all()
     accommodations = Target.query.filter_by(type="1").all()
     traffics = Target.query.filter_by(type="2").all()
 
-    total = 0
+    fees = 0
     for fee in trip_fees:
-        total += fee
+        fees += fee
 
-    if plan_id is None:
-        return render_template('./staff_site/new_plan.html', days=day_trip_draft, fees=total,
-                           plan_form=plan_form, day_form=day_form, destinations=destinations, attractions=attractions,
-                           accommodations=accommodations, traffics=traffics, user=current_user)
-    else:
-        plan = db.session.query(Combination).filter_by(id=plan_id).first()
-        return render_template('./staff_site/plan_detail.html', plan=plan, days=day_trip_draft, fees=total,
-                           plan_form=plan_form, day_form=day_form, destinations=destinations, attractions=attractions,
-                           accommodations=accommodations, traffics=traffics, user=current_user)
+    return render_template('./staff_site/new_plan.html', day_form=day_form, plan_form=plan_form, days=day_trip_draft,
+                           destinations=destinations, attractions=attractions,
+                           accommodations=accommodations, traffics=traffics, trip_fees=fees, user=current_user)
 
 
-@staff_blueprint.route('/staff/contents/add/<plan_id>', methods=['GET', 'POST'])
 @staff_blueprint.route('/staff/contents/add', methods=['GET', 'POST'])
-@staff_blueprint.route('/staff/contents/add/', methods=['GET', 'POST'])
-def add_new_day(plan_id=None):
+def add_new_day():
     # changeBookingStatus()
     form = DayTripForm(request.form)
     if form.validate_on_submit():
@@ -172,130 +131,18 @@ def add_new_day(plan_id=None):
             trip_fees.append(accommodation.price)
             trip_fees.append(traffic.price)
 
-    return redirect(url_for("staff_site.view_plan", plan_id=plan_id))
+    return redirect(url_for("staff_site.new_plan"))
 
 
-@staff_blueprint.route('/staff/move_early/<index>,<plan_id>', methods=['GET', 'POST'])
-@staff_blueprint.route('/staff/move_early/<index>', methods=['GET', 'POST'])
-def move_early(index, plan_id=None):
-    index = int(index)
-    if index > 0:
-        # move fees positions in trip_fees, skip the first one, which is the total price
-        trip_fees.insert((index - 1) * 3, trip_fees.pop(index * 3))
-        trip_fees.insert((index - 1) * 3, trip_fees.pop(index * 3))
-        trip_fees.insert((index - 1) * 3, trip_fees.pop(index * 3))
-        # move day trip positions in day_trip_draft
-        day_trip_draft.insert(index - 1, day_trip_draft.pop(index))
-        for i in range(index - 1, day_trip_draft.__len__()):
-            day_trip_draft[i][0] = i + 1
-    return redirect(url_for("staff_site.view_plan", plan_id=plan_id))
+@staff_blueprint.route('/staff/contents/get_day_num', methods=['GET', 'POST'])
+def get_day_num():
+    return str(day_trip_draft.__len__())
 
 
-@staff_blueprint.route('/staff/move_later/<index>,<plan_id>', methods=['GET', 'POST'])
-@staff_blueprint.route('/staff/move_later/<index>', methods=['GET', 'POST'])
-def move_later(index, plan_id=None):
-    index = int(index)
-    if index < customised_day_trip_draft.__len__() - 1:
-        # move fees positions in trip_fees, skip the first one, which is the total price
-        trip_fees.insert((index + 1) * 3, trip_fees.pop(index * 3))
-        trip_fees.insert((index + 1) * 3, trip_fees.pop(index * 3))
-        trip_fees.insert((index + 1) * 3, trip_fees.pop(index * 3))
-        # move day trip positions in day_trip_draft
-        day_trip_draft.insert(index + 1, day_trip_draft.pop(index))
-        for i in range(index, day_trip_draft.__len__()):
-            day_trip_draft[i][0] = i + 1
-    return redirect(url_for("staff_site.view_plan", plan_id=plan_id))
-
-
-@staff_blueprint.route('/staff/delete_day/<index>, <plan_id>', methods=['GET', 'POST'])
-@staff_blueprint.route('/staff/delete_day/<index>', methods=['GET', 'POST'])
-def delete_day(index, plan_id=None):
-    index = int(index)
-    day_trip_draft.pop(index)
-    for i in range(index, day_trip_draft.__len__()):
-        day_trip_draft[i][0] = i + 1
-    trip_fees.pop(index * 3)
-    trip_fees.pop(index * 3)
-    trip_fees.pop(index * 3)
-    return redirect(url_for("staff_site.view_plan", plan_id=plan_id))
-
-
-@staff_blueprint.route('/staff/contents/update_plan/<plan_id>', methods=['GET', 'POST'])
-def update_plan(plan_id):
-    plan = Combination.query.filter_by(id=plan_id).first()
-
-    for day in plan.get_days():
-        day = Day.query.filter_by(id=day).first()
-        if day is not None:
-            db.session.delete(day)
-            db.session.commit()
-
-    plan.price = 0
-
-    name = request.form.get('name')
-    intro = request.form.get('intro')
-    price = request.form.get('price')
-    length = day_trip_draft.__len__()
-    days = []
-
-    uid = uuid.uuid1()
-    # Images storage path
-    file_dir = os.path.join(basedir, "static/upload/")
-    # Getting the data transferred from the front end
-    files = request.files.getlist('img')  # Gets the value of myfiles from ajax, of type list
-    path = ""
-
-    for img in files:
-        # Extract the suffix of the uploaded image and
-        # Name the image after the commodity id and store it in the specific path
-        check = img.content_type
-        # check if upload image
-        if str(check) != 'application/octet-stream':
-            fname = img.filename
-            ext = fname.rsplit('.', 1)[1]
-            new_filename = uid.hex + '.' + ext
-            img.save(os.path.join(file_dir, new_filename))
-            path = "../static/upload/" + new_filename
-
-
-    for day in day_trip_draft:
-        destination_id = Destination.query.filter_by(name=day[1]).first().id
-        attraction_id = Target.query.filter_by(name=day[2]).first().id
-        accommodation_id = Target.query.filter_by(name=day[3]).first().id
-        traffic_id = Target.query.filter_by(name=day[4]).first().id
-
-        day = Day(destination_id=destination_id, attraction_id=attraction_id, accommodation_id=accommodation_id,
-                  traffic_id=traffic_id)
-        days.append(day)
-        db.session.add(day)
-    db.session.commit()
-
-    for i in range(0, 7 - len(days)):
-        days.append(None)
-
-    days_id = []
-    for day in days:
-        if day is not None:
-            days_id.append(day.id)
-        else:
-            days_id.append(None)
-
-    # self, name, intro, price, length, day1, day2, day3, day4, day5, day6, day7
-    plan.name = name
-    plan.intro = intro
-    plan.price = price
-    plan.length = length
-    plan.path = path
-    plan.day1 = days_id[0]
-    plan.day2 = days_id[1]
-    plan.day3 = days_id[2]
-    plan.day4 = days_id[3]
-    plan.day5 = days_id[4]
-    plan.day6 = days_id[5]
-    plan.day7 = days_id[6]
-    db.session.commit()
-
-    return redirect(url_for("staff_site.contents", message="Update successfully!"))
+@staff_blueprint.route('/staff/contents/clear', methods=['GET', 'POST'])
+def clear_draft():
+    day_trip_draft.clear()
+    return redirect(url_for("staff_site.new_plan"))
 
 
 @staff_blueprint.route('/staff/contents/submit_plan', methods=['GET', 'POST'])
@@ -327,6 +174,7 @@ def submit_plan():
             path = "../static/upload/" + new_filename
 
     # default: like=0 path=""
+    print(path)
 
     for day in day_trip_draft:
         destination_id = Destination.query.filter_by(name=day[1]).first().id
@@ -355,26 +203,98 @@ def submit_plan():
     db.session.add(combination)
     db.session.commit()
     day_trip_draft.clear()
-    return redirect(url_for("staff_site.contents", message="Submit successfully!"))
+    return redirect(url_for("staff_site.contents"))
 
 
-@staff_blueprint.route('/staff/contents/clear', methods=['GET', 'POST'])
-def clear_draft():
-    day_trip_draft.clear()
-    trip_fees.clear()
-    return redirect(url_for("staff_site.view_plan"))
+@staff_blueprint.route('/staff/contents/delete_day', methods=['GET', 'POST'])
+def delete_day():
+    # changeBookingStatus()
+    # print(request.args.get("day_id"), "delete")
+    # data = request.args.get("day_id")
+    json = request.json
+    print(json)
+    print("ddd")
+    data = request.get_json()
+    day_id = data['day_id']
+    print(day_id, "delete")
+
+    # age = data['age']
+    day_trip_draft.pop(int(day_id) - 1)
+    print(day_trip_draft)
+    return "ok"
+    # return redirect(url_for("staff_site.new_plan"))
 
 
-@staff_blueprint.route('/staff/delete_plan/<plan_id>', methods=['GET', 'POST'])
-def delete_plan(plan_id):
+# @staff_blueprint.route('/staff/contents/store_plan_id', methods=['GET', 'POST'])
+# def store_plan_id():
+#     plan_id = request.args.get("plan_id")
+#     session['plan_id'] = plan_id
+#     # plan = Combination.query.filter_by(id=plan_id).first()
+#     # days = plan.get_days()
+#     # print("okok")
+#     # view_plan(plan,days)
+#     return 'ok'
+#     # return render_template('./staff_site/plan_detail.html', plan=plan, days=days, plan_form=PlanForm(), day_form=DayTripForm())
+#
+
+@staff_blueprint.route('/staff/contents/view_plan', methods=['GET', 'POST'])
+def view_plan():
     # changeBookingStatus()
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
+    destinations = Destination.query.all()
+    attractions = Target.query.filter_by(type="0").all()
+    accommodations = Target.query.filter_by(type="1").all()
+    traffics = Target.query.filter_by(type="2").all()
+    plan_id = session.get('plan_id')
+    # print(plan_id, "plan_id")
     plan = Combination.query.filter_by(id=plan_id).first()
+    days_id = plan.get_days()
+    days = []
+    i = 0
+    for day_id in days_id:
+        if day_id is not None:
+            day = Day.query.filter_by(id=day_id).first()
+            print(day.id)
+            day_des_id = day.destination_id
+            day_att_id = day.attraction_id
+            day_acc_id = day.accommodation_id
+            day_tra_id = day.traffic_id
+            print(day_des_id, day_att_id, day_acc_id, day_tra_id)
 
+            day_destination = db.session.query(Destination).filter(Destination.id == day_des_id).first()
+            print("destintion", day_destination)
+            day_attraction = db.session.query(Target).filter(Target.id == day_att_id).first()
+            print("attraction", day_attraction)
+            day_accommodation = db.session.query(Target).filter(Target.id == day_acc_id).first()
+            print("accommodation", day_accommodation)
+            day_traffic = db.session.query(Target).filter(Target.id == day_tra_id).first()
+            print("traffic", day_traffic)
+
+            i += 1
+            day = [i, day_destination.name, day_attraction.name, day_accommodation.name, day_traffic.name]
+            days.append(day)
+    print("days", days)
+    return render_template('./staff_site/plan_detail.html', plan=plan, days=days, plan_form=PlanForm(),
+                           day_form=DayTripForm(), destinations=destinations, attractions=attractions,
+                           accommodations=accommodations, traffics=traffics, user=current_user)
+
+
+@staff_blueprint.route('/staff/contents/delete_plan', methods=['GET', 'POST'])
+def delete_plan():
+    # changeBookingStatus()
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    plan_id = session.get('plan_id')
+    plan = Combination.query.filter_by(id=plan_id).first()
+    # days_id = plan.get_days()
+    # for day_id in days_id:
+    #     if day_id is not None:
+    #         day = Day.query.filter_by(id=day_id).first()
+    #         db.session.delete(day)
     db.session.delete(plan)
     db.session.commit()
-    return redirect(url_for("staff_site.contents", message="Delete successfully!"))
+    return redirect(url_for("staff_site.contents"))
 
 
 @staff_blueprint.route('/staff/contents/destinations', methods=['GET', 'POST'])
@@ -490,6 +410,7 @@ def delete_destination():
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
     des_id = int(session.get('des_id'))
+    print(des_id)
     destination = Destination.query.filter_by(id=des_id).first()
     db.session.delete(destination)
     db.session.commit()
@@ -501,6 +422,7 @@ def delete_attraction():
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
     attr_id = int(session.get('attr_id'))
+    print(attr_id)
     attraction = Target.query.filter_by(id=attr_id).first()
     db.session.delete(attraction)
     db.session.commit()
@@ -513,6 +435,7 @@ def delete_accommodation():
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
     acc_id = int(session.get('acc_id'))
+    print(acc_id)
     accommodation = Target.query.filter_by(id=acc_id).first()
     db.session.delete(accommodation)
     db.session.commit()
@@ -554,6 +477,7 @@ def update_profile():
     files = request.files.getlist('avatar-input')  # Gets the value of myfiles from ajax, of type list
     # path = db.session.query(User.avatar_url).filter(User.id == current_user.id).first()
     path = u.avatar_url
+    print(path)
 
     for img in files:
         # Extract the suffix of the uploaded image and
@@ -568,6 +492,7 @@ def update_profile():
             path = "../static/upload/" + new_filename
 
     # default: like=0 path=""
+    print(path)
 
     u.avatar_url = path
     u.gender = gender
@@ -615,7 +540,6 @@ def delete_other_order():
     db.session.commit()
     return redirect(url_for("staff_site.other_orders", message="Delete successfully!"))
 
-
 @staff_blueprint.route('/check_message', methods=['GET', 'POST'])
 def check_message():
     if not current_user.is_authenticated:
@@ -645,291 +569,8 @@ def check_message():
     return render_template('./staff_site/message.html', user=current_user, contents=contents,
                            names=names, emails=emails, times=times, ids=ids)
 
-
 @staff_blueprint.route('/check_message_details/<message_id>', methods=['GET', 'POST'])
 def check_message_details(message_id):
-    if not current_user.is_authenticated:
-        return redirect(url_for("staff_site.login"))
     message = db.session.query(ContactModel).filter_by(id=message_id).first()
     return render_template('./staff_site/message_detail.html', message=message, user=current_user)
-
-
-@staff_blueprint.route('/staff/customised_packages', methods=['GET', 'POST'])
-def customised_packages():
-    if not current_user.is_authenticated:
-        return redirect(url_for("staff_site.login"))
-    plans = db.session.query(UserCombination).all()
-    return render_template('./staff_site/customised_packages.html', plans=plans, user=current_user)
-
-
-@staff_blueprint.route('/staff/delete_customised/<plan_id>', methods=['GET', 'POST'])
-def delete_customised(plan_id):
-    if not current_user.is_authenticated:
-        return redirect(url_for("staff_site.login"))
-    plan = db.session.query(UserCombination).filter_by(id=plan_id).first()
-    db.session.delete(plan)
-    db.session.commit()
-    return redirect(url_for("staff_site.customised_packages", message="Delete successfully!"))
-
-
-@staff_blueprint.route('/staff/load_detail', methods=['GET', 'POST'])
-def load_detail():
-    if not current_user.is_authenticated:
-        return redirect(url_for("staff_site.login"))
-    plan_id_res = request.args.get("plan_id_res")
-
-    plan = db.session.query(UserCombination).filter_by(id=plan_id_res).first()
-    customised_day_trip_draft.clear()
-    customised_trip_fees.clear()
-
-    if plan is not None:
-        for day in plan.get_days():
-            if day != None:
-                day = Day.query.filter_by(id=day).first()
-                destination = Destination.query.filter_by(id=day.destination_id).first()
-                attraction = Target.query.filter_by(id=day.attraction_id).first()
-                accommodation = Target.query.filter_by(id=day.accommodation_id).first()
-                traffic = Target.query.filter_by(id=day.traffic_id).first()
-                day = [len(customised_day_trip_draft) + 1, destination.name, attraction.name, accommodation.name, traffic.name]
-                customised_day_trip_draft.append(day)
-                customised_trip_fees.append(attraction.price)
-                customised_trip_fees.append(accommodation.price)
-                customised_trip_fees.append(traffic.price)
-    return "success"
-
-
-# @staff_blueprint.route('/staff/customised_detail/<plan_id>/<data>', methods=['GET', 'POST'])
-@staff_blueprint.route('/staff/customised_detail/<plan_id>', methods=['GET', 'POST'])
-@staff_blueprint.route('/staff/customised_detail', methods=['GET', 'POST'])
-def customised_detail(plan_id=None, data=None):
-    if not current_user.is_authenticated:
-        return redirect(url_for("staff_site.login"))
-
-    plan_form = PlanForm()
-    day_form = DayTripForm()
-
-    destinations = Destination.query.all()
-    attractions = Target.query.filter_by(type="0").all()
-    accommodations = Target.query.filter_by(type="1").all()
-    traffics = Target.query.filter_by(type="2").all()
-
-    total = 0
-    for fee in customised_trip_fees:
-        total += fee
-
-    if plan_id is None:
-        return render_template('./staff_site/new_customised.html', data=data, days=customised_day_trip_draft, fees=total,
-                           plan_form=plan_form, day_form=day_form, destinations=destinations, attractions=attractions,
-                           accommodations=accommodations, traffics=traffics, user=current_user)
-    else:
-        plan = db.session.query(UserCombination).filter_by(id=plan_id).first()
-        return render_template('./staff_site/customised_detail.html', data=data, plan=plan, days=customised_day_trip_draft, fees=total,
-                           plan_form=plan_form, day_form=day_form, destinations=destinations, attractions=attractions,
-                           accommodations=accommodations, traffics=traffics, user=current_user)
-
-
-@staff_blueprint.route('/staff/customised_add_new_day/<plan_id>', methods=['GET', 'POST'])
-@staff_blueprint.route('/staff/customised_add_new_day', methods=['GET', 'POST'])
-def customised_add_new_day(plan_id=None):
-    # changeBookingStatus()
-    form = DayTripForm(request.form)
-    if form.validate_on_submit() and customised_day_trip_draft.__len__() < 7:
-        destination = form.destination.data
-        attraction = form.attraction.data
-        accommodation = form.accommodation.data
-        traffic = form.traffic.data
-        customised_day_trip_draft.append([len(customised_day_trip_draft) + 1,
-                                          destination, attraction, accommodation, traffic])
-
-        attraction = Target.query.filter_by(name=attraction).first()
-        accommodation = Target.query.filter_by(name=accommodation).first()
-        traffic = Target.query.filter_by(name=traffic).first()
-
-        customised_trip_fees.append(attraction.price)
-        customised_trip_fees.append(accommodation.price)
-        customised_trip_fees.append(traffic.price)
-
-    return redirect(url_for("staff_site.customised_detail", plan_id=plan_id))
-
-
-@staff_blueprint.route('/staff/customised_move_early/<index>,<plan_id>', methods=['GET', 'POST'])
-@staff_blueprint.route('/staff/customised_move_early/<index>', methods=['GET', 'POST'])
-def customised_move_early(index, plan_id=None):
-    index = int(index)
-    if index > 0:
-        # move fees positions in customised_trip_fees, skip the first one, which is the total price
-        customised_trip_fees.insert((index - 1) * 3, customised_trip_fees.pop(index * 3))
-        customised_trip_fees.insert((index - 1) * 3, customised_trip_fees.pop(index * 3))
-        customised_trip_fees.insert((index - 1) * 3, customised_trip_fees.pop(index * 3))
-        # move day trip positions in customised_day_trip_draft
-        customised_day_trip_draft.insert(index - 1, customised_day_trip_draft.pop(index))
-        for i in range(index - 1, customised_day_trip_draft.__len__()):
-            customised_day_trip_draft[i][0] = i + 1
-    return redirect(url_for("staff_site.customised_detail", plan_id=plan_id))
-
-
-@staff_blueprint.route('/staff/customised_move_later/<index>,<plan_id>', methods=['GET', 'POST'])
-@staff_blueprint.route('/staff/customised_move_later/<index>', methods=['GET', 'POST'])
-def customised_move_later(index, plan_id=None):
-    index = int(index)
-    if index < customised_day_trip_draft.__len__() - 1:
-        # move fees positions in customised_trip_fees, skip the first one, which is the total price
-        customised_trip_fees.insert((index + 1) * 3, customised_trip_fees.pop(index * 3))
-        customised_trip_fees.insert((index + 1) * 3, customised_trip_fees.pop(index * 3))
-        customised_trip_fees.insert((index + 1) * 3, customised_trip_fees.pop(index * 3))
-        # move day trip positions in customised_day_trip_draft
-        customised_day_trip_draft.insert(index + 1, customised_day_trip_draft.pop(index))
-        for i in range(index, customised_day_trip_draft.__len__()):
-            customised_day_trip_draft[i][0] = i + 1
-    return redirect(url_for("staff_site.customised_detail", plan_id=plan_id))
-
-
-@staff_blueprint.route('/staff/customised_delete_day/<index>, <plan_id>', methods=['GET', 'POST'])
-@staff_blueprint.route('/staff/customised_delete_day/<index>', methods=['GET', 'POST'])
-def customised_delete_day(index, plan_id=None):
-    index = int(index)
-    customised_day_trip_draft.pop(index)
-    for i in range(index, customised_day_trip_draft.__len__()):
-        customised_day_trip_draft[i][0] = i + 1
-    customised_trip_fees.pop(index * 3)
-    customised_trip_fees.pop(index * 3)
-    customised_trip_fees.pop(index * 3)
-    return redirect(url_for("staff_site.customised_detail", plan_id=plan_id))
-
-
-@staff_blueprint.route('/staff/contents/customised_update_plan/<plan_id>', methods=['GET', 'POST'])
-def customised_update_plan(plan_id):
-    plan = UserCombination.query.filter_by(id=plan_id).first()
-
-    for day in plan.get_days():
-        day = Day.query.filter_by(id=day).first()
-        if day is not None:
-            db.session.delete(day)
-            db.session.commit()
-
-    plan.price = 0
-
-    user_id = request.form.get('user_id')
-    name = request.form.get('name')
-    intro = request.form.get('intro')
-    price = request.form.get('price')
-    length = customised_day_trip_draft.__len__()
-    days = []
-
-    for day in customised_day_trip_draft:
-        destination_id = Destination.query.filter_by(name=day[1]).first().id
-        attraction_id = Target.query.filter_by(name=day[2]).first().id
-        accommodation_id = Target.query.filter_by(name=day[3]).first().id
-        traffic_id = Target.query.filter_by(name=day[4]).first().id
-
-        day = Day(destination_id=destination_id, attraction_id=attraction_id, accommodation_id=accommodation_id,
-                  traffic_id=traffic_id)
-        days.append(day)
-        db.session.add(day)
-    db.session.commit()
-
-    for i in range(0, 7 - len(days)):
-        days.append(None)
-
-    days_id = []
-    for day in days:
-        if day is not None:
-            days_id.append(day.id)
-        else:
-            days_id.append(None)
-
-    # self, user_id, name, intro, price, length, day1, day2, day3, day4, day5, day6, day7
-    plan.user_id = user_id
-    plan.name = name
-    plan.intro = intro
-    plan.price = price
-    plan.length = length
-    plan.day1 = days_id[0]
-    plan.day2 = days_id[1]
-    plan.day3 = days_id[2]
-    plan.day4 = days_id[3]
-    plan.day5 = days_id[4]
-    plan.day6 = days_id[5]
-    plan.day7 = days_id[6]
-    db.session.commit()
-
-    return redirect(url_for("staff_site.customised_packages", message="Update successfully!"))
-
-
-@staff_blueprint.route('/staff/customised_update_clear_draft/<plan_id>', methods=['GET', 'POST'])
-@staff_blueprint.route('/staff/customised_update_clear_draft', methods=['GET', 'POST'])
-def customised_clear_draft(plan_id=None):
-    customised_day_trip_draft.clear()
-    customised_trip_fees.clear()
-    return redirect(url_for("staff_site.customised_detail", plan_id=plan_id))
-
-
-@staff_blueprint.route('/staff/contents/customised_submit_plan', methods=['GET', 'POST'])
-def customised_submit_plan():
-    # changeBookingStatus()
-    user_id = request.form.get('user_id')
-    name = request.form.get('name')
-    intro = request.form.get('intro')
-    price = request.form.get('price')
-    length = customised_day_trip_draft.__len__()
-    days = []
-
-
-    for day in customised_day_trip_draft:
-        destination_id = Destination.query.filter_by(name=day[1]).first().id
-        attraction_id = Target.query.filter_by(name=day[2]).first().id
-        accommodation_id = Target.query.filter_by(name=day[3]).first().id
-        traffic_id = Target.query.filter_by(name=day[4]).first().id
-
-        day = Day(destination_id=destination_id, attraction_id=attraction_id, accommodation_id=accommodation_id,
-                  traffic_id=traffic_id)
-        days.append(day)
-        db.session.add(day)
-    db.session.commit()
-
-    for i in range(0, 7 - len(days)):
-        days.append(None)
-
-    days_id = []
-    for day in days:
-        if day is not None:
-            days_id.append(day.id)
-        else:
-            days_id.append(None)
-
-    # self, user_id, name, intro, price, length, day1, day2, day3, day4, day5, day6, day7
-    combination = UserCombination(user_id, name, intro, price, length, days_id[0], days_id[1], days_id[2], days_id[3],
-                              days_id[4], days_id[5], days_id[6])
-    db.session.add(combination)
-    db.session.commit()
-    customised_day_trip_draft.clear()
-    return redirect(url_for("staff_site.customised_packages", message="Submit successfully!"))
-
-
-@staff_blueprint.route('/staff/clear_res', methods=['GET', 'POST'])
-def clear_res():
-    if not current_user.is_authenticated:
-        return redirect(url_for("staff_site.login"))
-    customised_day_trip_draft.clear()
-    customised_trip_fees.clear()
-    return "success"
-
-
-@staff_blueprint.route('/staff/customised_delete_plan/<plan_id>', methods=['GET', 'POST'])
-def customised_delete_plan(plan_id):
-    # changeBookingStatus()
-    if not current_user.is_authenticated:
-        return redirect(url_for("staff_site.login"))
-    plan = UserCombination.query.filter_by(id=plan_id).first()
-
-    db.session.delete(plan)
-    db.session.commit()
-    return redirect(url_for("staff_site.customised_packages", message="Delete successfully!"))
-
-
-
-
-
-
-
 

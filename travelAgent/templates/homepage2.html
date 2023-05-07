@@ -69,17 +69,16 @@
         }
 
         .title{
+            overflow: hidden !important;
             white-space: nowrap !important;
-        }
-
-        .title span {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
+            text-overflow: ellipsis !important;
+            {#display: -webkit-box;#}
+            {#-webkit-line-clamp: 2; /* number of lines to show */#}
+            {#-webkit-box-orient: vertical;#}
+            {#line-height: 1.5; /* adjust as needed to set the line height */#}
+            {#height: 5.8rem !important; /* height of two lines */#}
             font-size: 1.2rem !important;
-            color: whitesmoke;
-            margin-top: 0;
-}
+        }
 
         .img-responsive{
             width: 100%;
@@ -158,13 +157,13 @@
                                  onerror="javascript:this.src='static/images/sample_pic/the_north_Europe.png/'"/>
                             <div class="prom-text">
                                 <h4 class="title" style="display: flex; align-items: center">
-                                    <div style="display: flex; align-items: center; font-size: 0.8rem; background: whitesmoke; border-radius: 5px; padding: 0.15rem 0.3em 0.15rem 0.2rem; margin-right: 0.5rem; color: #1B4367">
+                                    <div style="display: flex; align-items: center; font-size: 1rem; background: whitesmoke; border-radius: 5px; padding: 0.15rem 0.3em 0.15rem 0.2rem; margin-right: 0.5rem; color: #1B4367">
                                         {%  if set.avg_score != 'No score' %}
-                                            <i class="fas fa-star" style="margin-right: 0.2rem; font-size: 0.8rem"></i>
+                                            <i class="fas fa-star" style="margin-right: 0.2rem; font-size: 0.85rem"></i>
                                         {% endif %}
                                         {{ set.avg_score }}
                                     </div>
-                                    <span>{{ set.name }}</span>
+                                    {{ set.name }}
                                 </h4>
 
                                 <div class="prom-bottom">
@@ -209,14 +208,14 @@
                             <img src="{{ attraction.image }}" class="img-responsive" alt=""
                                  onerror="javascript:this.src='static/images/sample_pic/the_north_Europe.png/'"/>
                             <div class="prom-text">
-                                <h4 class="title" style="display: flex; align-items: center">
-                                    <div style="display: flex; align-items: center; font-size: 0.8rem; background: whitesmoke; border-radius: 5px; padding: 0.15rem 0.3em 0.15rem 0.2rem; margin-right: 0.5rem; color: #1B4367">
+                                 <h4 class="title" style="display: flex; align-items: center">
+                                    <div style="display: flex; align-items: center; font-size: 1rem; background: whitesmoke; border-radius: 5px; padding: 0.15rem 0.3em 0.15rem 0.2rem; margin-right: 0.5rem; color: #1B4367">
                                         {%  if attraction.avg_score != 'No score' %}
-                                            <i class="fas fa-star" style="margin-right: 0.2rem; font-size: 0.8rem"></i>
+                                            <i class="fas fa-star" style="margin-right: 0.2rem; font-size: 0.85rem"></i>
                                         {% endif %}
                                         {{ attraction.avg_score }}
                                     </div>
-                                    <span>{{ attraction.name }}</span>
+                                    {{ attraction.name }}
                                 </h4>
 
                                 <div class="prom-bottom">
@@ -250,14 +249,14 @@
                             <img src="{{ hotel.image }}" class="img-responsive" alt=""
                                  onerror="javascript:this.src='static/images/sample_pic/the_north_Europe.png/'"/>
                             <div class="prom-text">
-                                <h4 class="title" style="display: flex; align-items: center">
-                                    <div style="display: flex; align-items: center; font-size: 0.8rem; background: whitesmoke; border-radius: 5px; padding: 0.15rem 0.3em 0.15rem 0.2rem; margin-right: 0.5rem; color: #1B4367">
+                                 <h4 class="title" style="display: flex; align-items: center">
+                                    <div style="display: flex; align-items: center; font-size: 1rem; background: whitesmoke; border-radius: 5px; padding: 0.15rem 0.3em 0.15rem 0.2rem; margin-right: 0.5rem; color: #1B4367">
                                         {%  if hotel.avg_score != 'No score' %}
-                                            <i class="fas fa-star" style="margin-right: 0.2rem; font-size: 0.8rem"></i>
+                                            <i class="fas fa-star" style="margin-right: 0.2rem; font-size: 0.85rem"></i>
                                         {% endif %}
                                         {{ hotel.avg_score }}
                                     </div>
-                                    <span>{{ hotel.name }}</span>
+                                    {{ hotel.name }}
                                 </h4>
 
                                 <div class="prom-bottom">

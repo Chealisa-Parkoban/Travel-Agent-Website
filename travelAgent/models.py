@@ -246,7 +246,6 @@ class UserCombination(db.Model):
 
     def get_days(self):
         days = []
-        print(self.day1)
         if self.day1:
             days.append(self.day1)
         if self.day2:
@@ -261,6 +260,7 @@ class UserCombination(db.Model):
             days.append(self.day6)
         if self.day7:
             days.append(self.day7)
+        print(days)
         return days
 
 

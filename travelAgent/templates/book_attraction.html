@@ -37,28 +37,12 @@
                         </div>
                     </div>
                     <div class="col-md-7 col-md-pull-7">
-                        <div class="flash-message">
-                            {% with messages = get_flashed_messages() %}
-                                {% if messages %}
-                                    <ul>
-                                        {% for message in messages %}
-                                            {% for message in messages %}
-                                                <li style="text-align: center; font-size: larger; color: red; list-style: none;margin-left: 1%;">
-                                                    <div class="alert alert-danger" role="alert" id="message" style="opacity: 0.6;">{{ message }}</div>
-                                                </li>
-                                            {% endfor %}
-                                        {% endfor %}
-                                    </ul>
-                                {% endif %}
-                            {% endwith %}
-                        </div>
-
                         <div class="booking-form">
                             <form action="{{ url_for('booking.addTargetBooking', target_id=target_id) }}" method="post">
                                 {{ form.csrf_token }}
                                 <div class="form-group">
                                     <span class="form-label">Your Name</span>
-                                    <input class="form-control" type="text" name="name" required
+                                    <input class="form-control" type="text" name="name"
                                            placeholder="Enter Your Real Full Name">
                                 </div>
                                 <div class="row">
@@ -71,7 +55,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <span class="form-label">Number of people</span>
-                                            <select class="form-control" name="num" >
+                                            <select class="form-control" name="num">
                                                 <option>1</option>
                                                 <option>2</option>
                                                 <option>3</option>
@@ -123,7 +107,7 @@
 {#                                </div>#}
                                 <div class="form-group">
                                     <span class="form-label">Your Phone Number</span>
-                                    <input class="form-control" type="text" name="tel" required
+                                    <input class="form-control" type="text" name="tel"
                                            placeholder="Enter Your Real Telephone Number">
                                 </div>
                                 <div class="form-group">
@@ -135,9 +119,7 @@
                                             alert("Your order has been submitted successfully!");
                                         }
                                     </script>
-{#                                    <button type="submit" class="btn btn-primary btn-block btn-lg mt-4" onclick="submitSuccessfully()">Submit Your Order</button>#}
-                                    <button type="submit" class="btn btn-primary btn-block btn-lg mt-4" >Submit Your Order</button>
-
+                                    <button type="submit" class="btn btn-primary btn-block btn-lg mt-4" onclick="submitSuccessfully()">Submit Your Order</button>
                                 </div>
                             </form>
                         </div>

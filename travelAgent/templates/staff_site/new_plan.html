@@ -1,6 +1,5 @@
 {% extends "staff_site/base.html" %}
       {% block body %}
-
           <script type="text/javascript" src="../../static/js/add.js"></script>
 
       <!-- partial -->
@@ -35,21 +34,29 @@
                       <label for="Traffic">Traffic</label>
                       <h4 style="color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%">{{day[4]}}</h4>
                     </div>
-                      <a href="{{ url_for("staff_site.move_early", index=days.index(day)) }}">
-                      <div class="btn btn-light">
-                          <i class="menu-icon mdi mdi-arrow-left"></i>
-                      </div>
-                      </a>
-                      <a href="{{ url_for("staff_site.move_later", index=days.index(day)) }}">
-                      <div class="btn btn-light">
-                          <i class="menu-icon mdi mdi-arrow-right"></i>
-                      </div>
-                      </a>
-                      <a href="{{ url_for("staff_site.delete_day", index=days.index(day)) }}">
-                      <div class="btn btn-light" style="float: right">Delete</div>
-                      </a>
+                      <button class="btn btn-light" onclick="delete_day()">Delete</button>
                   </form>
-
+                  <script>
+                    var day = {{ day|tojson() }}
+                    console.log(day[0])
+                    var day_id = day[0]
+                    function delete_day(){
+                      console.log(day_id)
+                      $.get({
+                        url: '/staff/contents/delete_day',
+                        type: 'GET',
+                        data: JSON.stringify(day_id),
+                        // data: JSON.stringify({
+                        //   day_id: day_id
+                        // }),
+                        success: function (data) {
+                          console.log(data)
+                          window.location.reload()
+                        }
+                      })
+                    }
+                  </script>
+<!--                  <script src="../../static/staff_site_static/new_plan.js"></script>-->
                 </div>
               </div>
             </div>
@@ -133,7 +140,8 @@
 
                   <div>
                     <p>Cover Picture</p>
-                    <img src="#" alt="Please upload" id="img" width="50%">
+{#                    <input id="" name="img" type="file" onclick="showImg()"/>#}
+                    <img src="#" alt="" id="img">
                                     <br>
                                     <br>
                     <input id="file_upload" name="img" type="file" onclick="showImg()" />
@@ -142,7 +150,7 @@
                   <div class="form-group" style="margin-bottom: 0">
                   <p>Price</p>
                   <label style="margin-bottom: 1%">
-                    <input class="form-control" type="number" name="price" value={{ fees }}>
+                    <input class="form-control" type="number" name="price" value={{ trip_fees }}>
                   </label>
                   </div>
 
@@ -155,11 +163,13 @@
             <a href="{{url_for("staff_site.clear_draft")}}">
               <input type="button" class="btn btn-primary me-2" name="clear_all" value="Clear All" >
             </a>
+            <a>
+              <input type="button" class="btn btn-primary me-2" name="save_draft" value="Save Draft">
+            </a>
             <a href="{{url_for("staff_site.submit_plan")}}">
               <input type="submit" class="btn btn-primary me-2" name="submit" value="Add Package">
             </a>
           </div>
-
           </form>
 
 
@@ -174,6 +184,5 @@
         </footer>
         <!-- partial -->
       </div>
-
-
+      <!-- main-panel ends -->
       {% endblock %}

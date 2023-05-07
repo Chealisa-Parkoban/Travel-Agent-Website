@@ -100,195 +100,185 @@
     <!-- Page Content-->
     <div class="container-fluid p-0">
 
-        {% if Combinations == [] and Targets == [] %}
-            <h1 class="mb-5" style="margin: 35% 0 0 10%">No favourites yet</h1>
-        {% else %}
-            <!-- All-->
-            <section class="resume-section" id="All">
-                <div class="container mt-4">
-                    <div class="row">
 
-                        <h2 class="mb-5">All</h2>
-                        {% for combination in Combinations %}
-                            <div class="col-md-12 mb-5">
-                                <a set_id={{ combination.id }} onclick="setID(this)">
-                                    <div class="card">
-                                        <div class="row align-items-center no-gutters">
-                                            <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
-                                                <img src="{{ combination.image }}" class="card-img" alt="...">
-                                            </div>
-                                            <div class="col-md-8 mx-auto mb-auto">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">{{ combination.name}}</h5>
-                                                    <p class="card-text">{{ combination.intro }}</p>
-                                                </div>
+
+        <!-- All-->
+        <section class="resume-section" id="All">
+            <div class="container mt-4">
+                <div class="row">
+                    <h2 class="mb-5">All</h2>
+
+                    {% for combination in Combinations %}
+                        <div class="col-md-12 mb-5">
+                            <a set_id={{ combination.id }} onclick="setID(this)">
+                                <div class="card">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
+                                            <img src="{{ combination.image }}" class="card-img" alt="...">
+                                        </div>
+                                        <div class="col-md-8 mx-auto mb-auto">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ combination.name}}</h5>
+                                                <p class="card-text">{{ combination.intro }}</p>
                                             </div>
                                         </div>
                                     </div>
-                                </a>
-                            </div>
-                        {% endfor %}
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
 
-                        {% for target in Targets %}
-                            <div class="col-md-12 mb-5">
-                                <a set_id={{ target.id }} onclick="setTargetID(this)">
-                                    <div class="card">
-                                        <div class="row no-gutters">
-                                            <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
-                                                <img src="{{ target.image }}" class="card-img" alt="...">
-                                            </div>
-                                            <div class="col-md-8 mx-auto mb-auto">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">{{ target.name}}</h5>
-                                                    <p class="card-text">{{ target.intro }}</p>
-                                                </div>
+                    {% for target in Targets %}
+                        <div class="col-md-12 mb-5">
+                            <a set_id={{ target.id }} onclick="setID(this)">
+                                <div class="card">
+                                    <div class="row no-gutters">
+                                        <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
+                                            <img src="{{ target.image }}" class="card-img" alt="...">
+                                        </div>
+                                        <div class="col-md-8 mx-auto mb-auto">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ target.name}}</h5>
+                                                <p class="card-text">{{ target.intro }}</p>
                                             </div>
                                         </div>
                                     </div>
-                                </a>
-                            </div>
-                        {% endfor %}
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
 
-                    </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <hr class="m-0" />
+        <hr class="m-0" />
 
-            <!-- Travel packages-->
-            <section class="resume-section" id="Travel packages">
-                <div class="container mt-4">
-                    <div class="row">
-                        <h2 class="mb-5">Travel packages</h2>
-                        {% if Combinations == [] %}
-                            <h4 class="mb-5">No favourite travel packages yet</h4>
-                        {% else %}
-                            {% for combination in Combinations %}
-                                <div class="col-md-12 mb-5">
-                                    <a href="{{ url_for("details.showSetDetails") }}">
-                                        <div class="card">
-                                            <div class="row no-gutters">
-                                                <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
-                                                    <img src="{{ combination.image }}" class="card-img" alt="...">
-                                                </div>
-                                                <div class="col-md-8 mx-auto mb-auto">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">{{ combination.name}}</h5>
-                                                        <p class="card-text">{{ combination.intro }}</p>
-                                                    </div>
-                                                </div>
+        <!-- Travel packages-->
+        <section class="resume-section" id="Travel packages">
+            <div class="container mt-4">
+                <div class="row">
+                    <h2 class="mb-5">Travel packages</h2>
+
+                    {% for combination in Combinations %}
+                        <div class="col-md-12 mb-5">
+                            <a href="{{ url_for("details.showSetDetails") }}">
+                                <div class="card">
+                                    <div class="row no-gutters">
+                                        <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
+                                            <img src="{{ combination.image }}" class="card-img" alt="...">
+                                        </div>
+                                        <div class="col-md-8 mx-auto mb-auto">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ combination.name}}</h5>
+                                                <p class="card-text">{{ combination.intro }}</p>
                                             </div>
                                         </div>
-                                    </a>
+                                    </div>
                                 </div>
-                            {% endfor %}
-                        {% endif %}
-                    </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <hr class="m-0" />
+        <hr class="m-0" />
 
-            <!-- Attraction tickets-->
-            <section class="resume-section" id="Attraction tickets">
-                <div class="container mt-4">
-                    <div class="row">
-                        <h2 class="mb-5">Attractions</h2>
-                        {% if Attractions == [] %}
-                            <h4 class="mb-5">No favourite attractions yet</h4>
-                        {% else %}
-                            {% for attraction in Attractions %}
-                                <div class="col-md-12 mb-5">
-                                    <a set_id={{ attraction.id }} onclick="setTargetID(this)">
-                                        <div class="card">
-                                            <div class="row no-gutters">
-                                                <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
-                                                    <img src="{{ attraction.image }}" class="card-img" alt="...">
-                                                </div>
-                                                <div class="col-md-8 mx-auto mb-auto">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">{{ attraction.name}}</h5>
-                                                        <p class="card-text">{{ attraction.intro }}</p>
-                                                    </div>
-                                                </div>
+        <!-- Attraction tickets-->
+        <section class="resume-section" id="Attraction tickets">
+            <div class="container mt-4">
+                <div class="row">
+                    <h2 class="mb-5">Attractions</h2>
+
+                    {% for attraction in Attractions %}
+                        <div class="col-md-12 mb-5">
+                            <a href="{{ url_for("details.showSetDetails") }}">
+                                <div class="card">
+                                    <div class="row no-gutters">
+                                        <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
+                                            <img src="{{ attraction.image }}" class="card-img" alt="...">
+                                        </div>
+                                        <div class="col-md-8 mx-auto mb-auto">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ attraction.name}}</h5>
+                                                <p class="card-text">{{ attraction.intro }}</p>
                                             </div>
                                         </div>
-                                    </a>
+                                    </div>
                                 </div>
-                            {% endfor %}
-                        {% endif %}
-                    </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <hr class="m-0" />
+        <hr class="m-0" />
 
-            <!-- Hotel-->
-            <section class="resume-section" id="Hotel">
-                <div class="container mt-4">
-                    <div class="row">
-                        <h2 class="mb-5">Stays</h2>
-                        {% if Accommodations == [] %}
-                            <h4 class="mb-5">No favourite accommodations yet</h4>
-                        {% else %}
-                            {% for accommodation in Accommodations %}
-                                <div class="col-md-12 mb-5">
-                                    <a set_id={{ accommodation.id }} onclick="setTargetID(this)">
-                                        <div class="card">
-                                            <div class="row no-gutters">
-                                                <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
-                                                    <img src="{{ accommodation.image }}" class="card-img" alt="...">
-                                                </div>
-                                                <div class="col-md-8 mx-auto mb-auto">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">{{ accommodation.name}}</h5>
-                                                        <p class="card-text">{{ accommodation.intro }}</p>
-                                                    </div>
-                                                </div>
+        <!-- Hotel-->
+        <section class="resume-section" id="Hotel">
+            <div class="container mt-4">
+                <div class="row">
+                    <h2 class="mb-5">Stays</h2>
+
+                    {% for accommodation in Accommodations %}
+                        <div class="col-md-12 mb-5">
+                            <a href="{{ url_for("details.showSetDetails") }}">
+                                <div class="card">
+                                    <div class="row no-gutters">
+                                        <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
+                                            <img src="{{ accommodation.image }}" class="card-img" alt="...">
+                                        </div>
+                                        <div class="col-md-8 mx-auto mb-auto">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ accommodation.name}}</h5>
+                                                <p class="card-text">{{ accommodation.intro }}</p>
                                             </div>
                                         </div>
-                                    </a>
+                                    </div>
                                 </div>
-                            {% endfor %}
-                        {% endif %}
-                    </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <hr class="m-0" />
+        <hr class="m-0" />
 
-            <!-- Traffics-->
-            <section class="resume-section" id="Fly ticket">
-                <div class="container mt-4">
-                    <div class="row">
-                        <h2 class="mb-5">Traffics</h2>
-                        {% if Traffics == [] %}
-                            <h4 class="mb-5">No favourite traffics yet</h4>
-                        {% else %}
-                            {% for traffic in Traffics %}
-                                <div class="col-md-12 mb-5">
-                                    <a set_id={{ traffic.id }} onclick="setTargetID(this)">
-                                        <div class="card">
-                                            <div class="row no-gutters">
-                                                <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
-                                                    <img src="{{ traffic.image }}" class="card-img" alt="...">
-                                                </div>
-                                                <div class="col-md-8 mx-auto mb-auto">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">{{ traffic.name}}</h5>
-                                                        <p class="card-text">{{ traffic.intro }}</p>
-                                                    </div>
-                                                </div>
+        <!-- Traffics-->
+        <section class="resume-section" id="Fly ticket">
+            <div class="container mt-4">
+                <div class="row">
+                    <h2 class="mb-5">Traffics</h2>
+
+                    {% for traffic in Traffics %}
+                        <div class="col-md-12 mb-5">
+                            <a href="{{ url_for("details.showSetDetails") }}">
+                                <div class="card">
+                                    <div class="row no-gutters">
+                                        <div class="col-md-3 mx-auto mb-auto" style="margin-top: auto; margin-right: 0 !important;">
+                                            <img src="{{ traffic.image }}" class="card-img" alt="...">
+                                        </div>
+                                        <div class="col-md-8 mx-auto mb-auto">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ traffic.name}}</h5>
+                                                <p class="card-text">{{ traffic.intro }}</p>
                                             </div>
                                         </div>
-                                    </a>
+                                    </div>
                                 </div>
-                            {% endfor %}
-                        {% endif %}
-                    </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+
                 </div>
-            </section>
-        {% endif %}
+            </div>
+        </section>
     </div>
 
 {% block footer %}

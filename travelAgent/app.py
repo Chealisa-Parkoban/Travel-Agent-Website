@@ -481,11 +481,11 @@ def transport_setID():
     return '0'
 
 
-# @app.route('/staff/contents/store_plan_id', methods=['GET', 'POST'])
-# def store_plan_id():
-#     plan_id = request.args.get("plan_id")
-#     session['plan_id'] = plan_id
-#     return '0'
+@app.route('/staff/contents/store_plan_id', methods=['GET', 'POST'])
+def store_plan_id():
+    plan_id = request.args.get("plan_id")
+    session['plan_id'] = plan_id
+    return '0'
 
 
 @app.route('/staff/contents/destinations/store_des_id', methods=['GET', 'POST'])

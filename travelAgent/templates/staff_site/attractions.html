@@ -2,7 +2,7 @@
       {% block body %}
 
       {% if message != "" %}
-          <script xmlns="http://www.w3.org/1999/html">
+          <script>
               alert("{{message}}");
               console.log("fasdfasdf");
           </script>
@@ -82,7 +82,6 @@
                       <div class="col-lg-6 grid-margin stretch-card" style="width: 100%">
                         <div class="card">
                             <div class="card-body" >
-                            <h4 class="card-title">Add New Attraction</h4>
                                 <p>Attraction Name:</p>
 
                                 <input type="text" class="form-control" name="name" />
@@ -100,15 +99,13 @@
                                 <input type="text" class="form-control" name="intro" />
                                 <p style="margin-top: 1%">Ticket Price:</p>
                                 <input type="number" class="form-control" name="price" />
-                                <br/>
-                                <div style="display:flex;justify-content: center; align-items:center;">
-                                    <input type="submit" class="btn btn-primary me-2" style="width: fit-content; " value="Submit"  />
-                                </div>
 
                             </div>
                         </div>
                       </div>
-
+                    <div style="display:flex;justify-content: center; align-items:center;">
+                        <input type="submit" class="btn btn-primary me-2" style="width: fit-content; " value="ADD DESTINATION"  />
+                    </div>
                   </form>
               </div>
           </div>

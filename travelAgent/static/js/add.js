@@ -1,6 +1,7 @@
 //
 // show the image
 function showImg() {
+    console.log("111111")
     var fileInput = document.querySelector('input[type=file]'),
         previewImg = document.querySelector('#img');
         console.log(previewImg)

@@ -137,7 +137,6 @@ class DayTripForm(FlaskForm):
 
 
 class PlanForm(FlaskForm):
-    user_id = IntegerField('user_id')
     name = StringField('name', validators=[DataRequired()])
     intro = StringField('name', validators=[DataRequired()])
     price = IntegerField('price', validators=[DataRequired()])
