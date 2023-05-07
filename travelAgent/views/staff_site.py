@@ -37,7 +37,31 @@ def index():
     # changeBookingStatus()
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
-    return render_template('./staff_site/index.html', user=current_user)
+    combinations = Combination.query.all()
+    targets = Target.query.all()
+    # merge two list combinations and targets into one list items
+    items = []
+    for combination in combinations:
+        items.append(combination)
+    for target in targets:
+        items.append(target)
+    return render_template('./staff_site/index.html', user=current_user, items=items)
+
+
+@staff_blueprint.route('/staff/get_data', methods=['GET', 'POST'])
+def get_data():
+    # changeBookingStatus()
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    combinations = Combination.query.all()
+    targets = Target.query.all()
+    # merge two list combinations and targets into one list items
+    items = []
+    for combination in combinations:
+        items.append(combination)
+    for target in targets:
+        items.append(target)
+    return items
 
 
 @staff_blueprint.route('/staff', methods=['GET', 'POST'])
@@ -925,10 +949,6 @@ def customised_delete_plan(plan_id):
     db.session.delete(plan)
     db.session.commit()
     return redirect(url_for("staff_site.customised_packages", message="Delete successfully!"))
-
-
-
-
 
 
 

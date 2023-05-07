@@ -1,3 +1,4 @@
+function go(items){
 (function($) {
   'use strict';
   $(function() {
@@ -42,7 +43,7 @@
               pointBorderColor: ['#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff',],
         }]
       };
-  
+
       var salesTopOptions = {
         responsive: true,
         maintainAspectRatio: false,
@@ -90,7 +91,7 @@
             text.push('</ul></div>');
             return text.join("");
           },
-          
+
           elements: {
               line: {
                   tension: 0.4,
@@ -148,7 +149,7 @@
               pointBorderColor: ['#222437','#222437','#222437','#222437','#222437','#222437','#222437','#222437','#222437','#222437','#222437','#222437','#222437',],
         }]
       };
-  
+
       var salesTopOptionsDark = {
         responsive: true,
         maintainAspectRatio: false,
@@ -196,7 +197,7 @@
             text.push('</ul></div>');
             return text.join("");
           },
-          
+
           elements: {
               line: {
                   tension: 0.4,
@@ -238,7 +239,7 @@
               pointHoverRadius: [0, 0, 0, 0, 0, 0],
           }]
       };
-  
+
       var statusOptions = {
         responsive: true,
         maintainAspectRatio: false,
@@ -274,7 +275,7 @@
             }],
           },
           legend:false,
-          
+
           elements: {
               line: {
                   tension: 0.4,
@@ -296,7 +297,7 @@
         // This has to be the same size as the maximum width to
         // prevent clipping
         strokeWidth: 15,
-        trailWidth: 15, 
+        trailWidth: 15,
         easing: 'easeInOut',
         duration: 1400,
         text: {
@@ -314,17 +315,17 @@
         step: function(state, circle) {
           circle.path.setAttribute('stroke', state.color);
           circle.path.setAttribute('stroke-width', state.width);
-  
+
           var value = Math.round(circle.value() * 100);
           if (value === 0) {
             circle.setText('');
           } else {
             circle.setText(value);
           }
-  
+
         }
       });
-  
+
       bar.text.style.fontSize = '0rem';
       bar.animate(.64); // Number from 0.0 to 1.0
     }
@@ -352,37 +353,38 @@
         step: function(state, circle) {
           circle.path.setAttribute('stroke', state.color);
           circle.path.setAttribute('stroke-width', state.width);
-  
+
           var value = Math.round(circle.value() * 100);
           if (value === 0) {
             circle.setText('');
           } else {
             circle.setText(value);
           }
-  
+
         }
       });
-  
+
       bar.text.style.fontSize = '0rem';
       bar.animate(.34); // Number from 0.0 to 1.0
     }
+    // get the items rendered from the backend
     if ($("#marketingOverview").length) {
       var marketingOverviewChart = document.getElementById("marketingOverview").getContext('2d');
-      var marketingOverviewData = {
-          labels: ["JAN","FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
+        var marketingOverviewData = {
+          labels: [items[0].name,items[1].name,items[2].name,items[3].name,items[4].name,items[5].name,items[6].name,items[7].name,items[8].name,items[9].name,items[10].name,items[11].name],
           datasets: [{
-              label: 'Last week',
-              data: [110, 220, 200, 190, 220, 110, 210, 110, 205, 202, 201, 150],
+              label: 'Orders',
+              data: [items[0].num_orders, items[1].num_orders, items[2].num_orders, items[3].num_orders, items[4].num_orders, items[5].num_orders, items[6].num_orders, items[7].num_orders, items[8].num_orders, items[9].num_orders, items[10].num_orders, items[11].num_orders],
               backgroundColor: "#52CDFF",
               borderColor: [
                   '#52CDFF',
               ],
               borderWidth: 0,
               fill: true, // 3: no fill
-              
+
           },{
             label: 'This week',
-            data: [215, 290, 210, 250, 290, 230, 290, 210, 280, 220, 190, 300],
+            data: [items[0].num_favorite, items[1].num_favorite, items[2].num_favorite, items[3].num_favorite, items[4].num_favorite, items[5].num_favorite, items[6].num_favorite, items[7].num_favorite, items[8].num_favorite, items[9].num_favorite, items[10].num_favorite, items[11].num_favorite],
             backgroundColor: "#1F3BB3",
             borderColor: [
                 '#1F3BB3',
@@ -391,7 +393,7 @@
             fill: true, // 3: no fill
         }]
       };
-  
+
       var marketingOverviewOptions = {
         responsive: true,
         maintainAspectRatio: false,
@@ -441,7 +443,7 @@
             text.push('</ul></div>');
             return text.join("");
           },
-          
+
           elements: {
               line: {
                   tension: 0.4,
@@ -460,6 +462,7 @@
     }
     if ($("#marketingOverview-dark").length) {
       var marketingOverviewChartDark = document.getElementById("marketingOverview-dark").getContext('2d');
+
       var marketingOverviewDataDark = {
           labels: ["JAN","FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
           datasets: [{
@@ -471,7 +474,7 @@
               ],
               borderWidth: 0,
               fill: true, // 3: no fill
-              
+
           },{
             label: 'This week',
             data: [215, 290, 210, 250, 290, 230, 290, 210, 280, 220, 190, 300],
@@ -483,7 +486,7 @@
             fill: true, // 3: no fill
         }]
       };
-  
+
       var marketingOverviewOptionsDark = {
         responsive: true,
         maintainAspectRatio: false,
@@ -533,7 +536,7 @@
             text.push('</ul></div>');
             return text.join("");
           },
-          
+
           elements: {
               line: {
                   tension: 0.4,
@@ -568,7 +571,7 @@
             "#81DADA"
           ],
         }],
-  
+
         // These labels appear in the legend and in the tooltips when hovering different arcs
         labels: [
           'Total',
@@ -600,7 +603,7 @@
           text.push('</div></ul>');
           return text.join("");
         },
-        
+
         layout: {
           padding: {
             left: 0,
@@ -618,7 +621,7 @@
               return data['datasets'][0]['data'][tooltipItem['index']];
             }
           },
-            
+
           backgroundColor: '#fff',
           titleFontSize: 14,
           titleFontColor: '#0B0F32',
@@ -647,10 +650,10 @@
               ],
               borderWidth: 0,
               fill: true, // 3: no fill
-              
+
           }]
       };
-  
+
       var leaveReportOptions = {
         responsive: true,
         maintainAspectRatio: false,
@@ -686,7 +689,7 @@
             }],
           },
           legend:false,
-          
+
           elements: {
               line: {
                   tension: 0.4,
@@ -715,10 +718,10 @@
               ],
               borderWidth: 0,
               fill: true, // 3: no fill
-              
+
           }]
       };
-  
+
       var leaveReportOptionsDark = {
         responsive: true,
         maintainAspectRatio: false,
@@ -754,7 +757,7 @@
             }],
           },
           legend:false,
-          
+
           elements: {
               line: {
                   tension: 0.4,
@@ -770,6 +773,7 @@
           options: leaveReportOptionsDark
       });
     }
-  
+
   });
 })(jQuery);
+}
