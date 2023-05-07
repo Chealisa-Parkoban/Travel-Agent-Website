@@ -69,29 +69,20 @@
                                     <label for="Traffic">Traffic</label>
                                     <h4 style="color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%">{{day[4]}}</h4>
                                 </div>
-                                <button class="btn  delete" onclick="delete_day()">Delete</button>
+                                <a href="{{ url_for("planning_tool.move_early", index=days.index(day)) }}">
+                                  <div class="btn btn-light">
+                                      <i class="menu-icon mdi mdi-arrow-left"></i>
+                                  </div>
+                                  </a>
+                                  <a href="{{ url_for("planning_tool.move_later", index=days.index(day)) }}">
+                                  <div class="btn btn-light">
+                                      <i class="menu-icon mdi mdi-arrow-right"></i>
+                                  </div>
+                                  </a>
+                                  <a href="{{ url_for("planning_tool.delete_day", index=days.index(day)) }}">
+                                  <div class="btn btn-light" style="float: right">Delete</div>
+                                  </a>
                             </form>
-                            <script>
-                                var day = {{ day|tojson() }}
-                                console.log(day[0])
-                                var day_id = day[0]
-                                function delete_day(){
-                                    console.log(day_id)
-                                    $.get({
-                                        url: '/planning/delete_day',
-                                        type: 'GET',
-                                        data: JSON.stringify(day_id),
-                                        // data: JSON.stringify({
-                                        //   day_id: day_id
-                                        // }),
-                                        success: function (data) {
-                                        console.log(data)
-                                            window.location.reload()
-                                        }
-                                    })
-                                }
-                              </script>
-    <!--                  <script src="../../static/staff_site_static/new_plan.js"></script>-->
                         </div>
                     </div>
                 </div>
@@ -173,7 +164,7 @@
                             <div class="form-group" style="margin-bottom: 0">
                                 <p>Price</p>
                                 <label style="margin-bottom: 1%;">
-                                    <input readonly="readonly" class="form-control" type="number" name="price" value={{ trip_fees }}>
+                                    <input readonly="readonly" class="form-control" type="number" name="price" value={{ fees }}>
                                 </label>
                             </div>
                         </div>

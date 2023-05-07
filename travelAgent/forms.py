@@ -1,7 +1,7 @@
 import wtforms
 from flask_wtf import FlaskForm, RecaptchaField
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, DateField, SelectField, IntegerField, FileField
-from wtforms.validators import DataRequired, Length, Email, EqualTo, URL
+from wtforms.validators import DataRequired, Length, Email, EqualTo, URL, NumberRange
 from travelAgent.models import EmailCaptchaModel, User
 
 
@@ -136,11 +136,15 @@ class DayTripForm(FlaskForm):
     submit = SubmitField('')
 
 
+def PositiveInteger():
+    pass
+
+
 class PlanForm(FlaskForm):
     user_id = IntegerField('user_id')
     name = StringField('name', validators=[DataRequired()])
     intro = StringField('name', validators=[DataRequired()])
-    price = IntegerField('price', validators=[DataRequired()])
+    price = IntegerField('price', validators=[DataRequired(), NumberRange(min=0, max=1000000)])
     submit = SubmitField('')
 
 
@@ -148,7 +152,7 @@ class BookingForm(FlaskForm):
     time = StringField('time', validators=[DataRequired()])
     num = StringField('number', validators=[DataRequired()])
     name = StringField('name', validators=[DataRequired()])
-    tel = StringField('telephone', validators=[DataRequired()])
+    tel = IntegerField('telephone', validators=[DataRequired(), Length(min=11, max=11)])
 
     # submit the form
     submit = SubmitField('')
@@ -158,7 +162,7 @@ class BookingHotelForm(FlaskForm):
     time2 = StringField('time', validators=[DataRequired()])
     num = StringField('number', validators=[DataRequired()])
     name = StringField('name', validators=[DataRequired()])
-    tel = StringField('telephone', validators=[DataRequired()])
+    tel = IntegerField('telephone', validators=[DataRequired(), Length(min=11, max=11)])
 
     # submit the form
     submit = SubmitField('')
@@ -173,5 +177,5 @@ class TargetForm(FlaskForm):
     name = StringField('attraction', validators=[DataRequired()])
     location = StringField('destination')
     intro = StringField('intro', validators=[DataRequired()])
-    price = IntegerField('price', validators=[DataRequired()])
+    price = IntegerField('price', validators=[DataRequired(), NumberRange(min=0, max=1000000)])
     submit = SubmitField('')

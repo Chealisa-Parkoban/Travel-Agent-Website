@@ -74,7 +74,6 @@ def improveImage(img):
 def showSetDetails():
     print("调用showdetail函数了！")
     set_id = session.get("set_id")
-    print(set_id)
 
     set = db.session.query(Combination).filter(Combination.id == set_id).first()
     ID = set_id

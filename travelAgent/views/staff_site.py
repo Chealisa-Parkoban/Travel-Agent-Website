@@ -195,7 +195,7 @@ def move_early(index, plan_id=None):
 @staff_blueprint.route('/staff/move_later/<index>', methods=['GET', 'POST'])
 def move_later(index, plan_id=None):
     index = int(index)
-    if index < customised_day_trip_draft.__len__() - 1:
+    if index < day_trip_draft.__len__() - 1:
         # move fees positions in trip_fees, skip the first one, which is the total price
         trip_fees.insert((index + 1) * 3, trip_fees.pop(index * 3))
         trip_fees.insert((index + 1) * 3, trip_fees.pop(index * 3))
