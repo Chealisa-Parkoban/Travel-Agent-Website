@@ -88,7 +88,9 @@ def about():
     logger.info('Entered the ABOUT page')
     changeBookingStatus()
     return render_template("about.html")
-
+@app.route('/help')
+def help():
+    return render_template("help.html")
 
 @app.route('/contactUs')
 def contact_us():
