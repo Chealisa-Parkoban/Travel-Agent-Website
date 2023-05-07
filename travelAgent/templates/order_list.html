@@ -11,8 +11,8 @@
             <hr>
             <div>
                 <div class="col-md-12 mb-5">
-                    {% if user_name|length == 0 %}
-                        <h4 class="text-center"> No Order</h4>
+                    {% if user_name|length == 0 and target_user_name|length == 0 and user_combination_name|length == 0 %}
+                        <h4 class="text-center" style="margin: 30% 0 50% 0"> No Order</h4>
 
                     {% else %}
                         {% for i in range(0,user_name|length) %}
@@ -109,18 +109,15 @@
         </div>
 
         <div class="container py-5">
-
-            <div>
-                <h1 class="text-center">Attraction Order List</h1>
-            </div>
             {% if target_user_name|length == 0 %}
-                <h4 class="text-center"> No Attraction/Hotel Order</h4>
+{#                <h4 class="text-center"> No Attraction/Hotel Order</h4>#}
 
             {% else %}
-                <hr>
                 <div>
+                    <h1 class="text-center">Attraction Orders</h1>
+                </div>
+                <hr>
                 <div class="col-md-12 mb-5">
-
                     {% for i in range(0,target_user_name|length) %}
                         <a href="#">
                             <div class="card" style="color: #0a0c0d; margin-top: 3%;">
@@ -145,7 +142,6 @@
                                                                                     style="color: #6459ad;"></i>{{ target_status_complete[i] }}</span>
                                                 </h5>
                                             {% endif %}
-
 
                                             <hr>
                                             <div class="row">
@@ -208,22 +204,19 @@
                             </div>
                         </a>
                     {% endfor %}
-
                 </div>
             {% endif %}
-            </div>
         </div>
 
         <div class="container py-5">
-
-            <div>
-                <h1 class="text-center">Self Routes Order List</h1>
-            </div>
             {% if user_combination_name|length == 0 %}
-                <h4 class="text-center"> No Self Routes Order</h4>
+{#                <h4 class="text-center"> No Self Routes Order</h4>#}
+
             {% else %}
-                <hr>
                 <div>
+                    <h1 class="text-center">Self Routes Order List</h1>
+                </div>
+                <hr>
                 <div class="col-md-12 mb-5">
 
                     {% for i in range(0,user_combination_name|length) %}
@@ -297,14 +290,13 @@
                                                 <div class="col-sm"></div>
                                                 <div class="col-sm"></div>
                                                 <div class="col-sm">
-                                                    {#                                                    <p class="card-text mb-0">{{ price[i] }}</p>#}
-                                                    {% if user_combination_status_comment[i] == "No comment" %}
-                                                        <i class="fa-solid fa-comment-slash"></i>
-                                                        {{ user_combination_status_comment[i] }}
-                                                    {% else %}
-                                                        <i class="fa-solid fa-comment-dots"></i>
-                                                        {{ user_combination_status_comment[i] }}
-                                                    {% endif %}
+{#                                                    {% if user_combination_status_comment[i] == "No comment" %}#}
+{#                                                        <i class="fa-solid fa-comment-slash"></i>#}
+{#                                                        {{ user_combination_status_comment[i] }}#}
+{#                                                    {% else %}#}
+{#                                                        <i class="fa-solid fa-comment-dots"></i>#}
+{#                                                        {{ user_combination_status_comment[i] }}#}
+{#                                                    {% endif %}#}
                                                 </div>
                                             </div>
                                         </div>
@@ -313,10 +305,8 @@
                             </div>
                         </a>
                     {% endfor %}
-
                 </div>
             {% endif %}
-            </div>
         </div>
 
     </section>

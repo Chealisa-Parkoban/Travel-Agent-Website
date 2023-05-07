@@ -423,6 +423,7 @@ def order_list():
             target_user_name.append(target.name)
 
         user_combinations = db.session.query(RecordP).filter(RecordP.user_id == customer_id).all()
+
         # 客制化组合
         user_combination_ids = []
         user_combination_name = []
@@ -437,15 +438,22 @@ def order_list():
         user_combination_user_name = []
 
         for user_combination in user_combinations:
-            combination = db.session.query(Combination).filter(Combination.id == combination_id).first()
+            combination = db.session.query(UserCombination).filter(UserCombination.id == user_combination.combination_id).first()
+            day = combination.day1
+            if day is not None:
+                day = db.session.query(Day).filter(Day.id == day).first()
+                if day is not None:
+                    att = db.session.query(Target).filter(Target.id == day.attraction_id).first()
+                    if att is not None:
+                        user_combination_image.append(att.image)
             user_combination_name.append(combination.name)
-            user_combination_name.append(user_combination.name)
+            # user_combination_name.append(user_combination.name)
             user_combination_number.append(user_combination.num)
             user_combination_start_time.append(user_combination.start_time)
             user_combination_tel.append(user_combination.tel)
             user_combination_introduction.append(combination.intro)
             user_combination_price.append(user_combination.price)
-            user_combination_image.append(combination.image)
+            # user_combination_image.append(combination.image)
             user_combination_status_complete.append(user_combination.status)
             user_combination_status_comment.append(user_combination.status2)
             user_combination_ids.append(user_combination.id)
