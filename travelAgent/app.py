@@ -389,6 +389,7 @@ def order_list():
             status_comment.append(book.status2)
             ids.append(book.id)
 
+
         targets = db.session.query(Record).filter(Record.user_id == customer_id).all()
         # targets中的信息
         target_ids = []
@@ -402,8 +403,11 @@ def order_list():
         target_price = []
         target_status_complete = []
         target_status_comment = []
+        booking_target_ids = []
 
         for target in targets:
+            i = target.id
+            booking_target_ids.append(i)
             id = target.target_id
             t = db.session.query(Target).filter(Target.id == id).first()
             target_name.append(t.name)
@@ -452,7 +456,7 @@ def order_list():
                            combination_name=combination_name, introduction=introduction, price=price, image=image,
                            status=status_complete, status_comment=status_comment,
 
-                           target_user_name=target_user_name, target_ids=target_ids, target_name=target_name,
+                           booking_target_ids=booking_target_ids, target_user_name=target_user_name, target_ids=target_ids, target_name=target_name,
                            target_start_time=target_start_time,
                            target_number=target_number, target_introduction=target_introduction, target_tel=target_tel,
                            target_image=target_image, target_price=target_price,
@@ -539,9 +543,9 @@ def check_booking_details(booking_id):
     return render_template("orderDetail.html", booking=booking, combination=combination)
 
 
-@app.route('/check_booking_target_details/<target_id>', methods=['GET', 'POST'])
-def check_booking_target_details(target_id):
-    booking = db.session.query(Record).filter(Record.id == target_id).first()
+@app.route('/check_booking_target_details/<booking_id>', methods=['GET', 'POST'])
+def check_booking_target_details(booking_id):
+    booking = db.session.query(Record).filter(Record.id == booking_id).first()
     target_id = booking.target_id
     target = db.session.query(Target).filter(Target.id == target_id).first()
     return render_template("targetOrderDetail.html", booking=booking, target=target)
