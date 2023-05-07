@@ -138,7 +138,7 @@ def view_plan(plan_id=None):
     for fee in trip_fees:
         total += fee
 
-    if plan_id is None:
+    if plan_id is None or plan_id == "null":
         return render_template('./staff_site/new_plan.html', days=day_trip_draft, fees=total,
                            plan_form=plan_form, day_form=day_form, destinations=destinations, attractions=attractions,
                            accommodations=accommodations, traffics=traffics, user=current_user)
@@ -717,7 +717,7 @@ def customised_detail(plan_id=None, data=None):
     for fee in customised_trip_fees:
         total += fee
 
-    if plan_id is None:
+    if plan_id is None or plan_id == "null":
         return render_template('./staff_site/new_customised.html', data=data, days=customised_day_trip_draft, fees=total,
                            plan_form=plan_form, day_form=day_form, destinations=destinations, attractions=attractions,
                            accommodations=accommodations, traffics=traffics, user=current_user)

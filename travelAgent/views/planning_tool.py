@@ -41,7 +41,6 @@ def load_detail():
                 trip_fees.append(attraction.price)
                 trip_fees.append(accommodation.price)
                 trip_fees.append(traffic.price)
-    print(day_trip_draft)
     return "success"
 
 
@@ -63,7 +62,7 @@ def planning(plan_id=None):
     for fee in trip_fees:
         total += fee
 
-    if plan_id is None:
+    if plan_id is None or plan_id == "null":
         return render_template('planning_tool.html', day_form=day_form, plan_form=plan_form, days=day_trip_draft,
                            destinations=destinations, attractions=attractions,
                            accommodations=accommodations, traffics=traffics, fees=total, user=current_user)
