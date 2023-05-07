@@ -112,7 +112,8 @@ def addFavorite(combination_id):
 
     # print(Lc, Lt, La, Lh, Ltr)
 
-    return redirect(url_for("favorite.showAll"))
+    # return redirect(url_for("favorite.showAll"))
+    return redirect(url_for("details.showSetDetails"))
 
 
 @favorite_blueprint.route('/favorites/<target_id>')
@@ -176,4 +177,5 @@ def addTargetFavorite(target_id):
 
     # print(Lc, Lt, La, Lh, Ltr)
 
-    return redirect(url_for("favorite.showAll"))
+    # return redirect(url_for("favorite.showAll"))
+    return redirect(url_for("targets.showAttraction"))
