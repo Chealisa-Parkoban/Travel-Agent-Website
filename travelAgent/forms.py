@@ -152,7 +152,7 @@ class BookingForm(FlaskForm):
     time = StringField('time', validators=[DataRequired()])
     num = StringField('number', validators=[DataRequired()])
     name = StringField('name', validators=[DataRequired()])
-    tel = IntegerField('telephone', validators=[DataRequired(), Length(min=11, max=11)])
+    tel = StringField('telephone', validators=[DataRequired()])
 
     # submit the form
     submit = SubmitField('')
@@ -162,7 +162,7 @@ class BookingHotelForm(FlaskForm):
     time2 = StringField('time', validators=[DataRequired()])
     num = StringField('number', validators=[DataRequired()])
     name = StringField('name', validators=[DataRequired()])
-    tel = IntegerField('telephone', validators=[DataRequired(), Length(min=11, max=11)])
+    tel = StringField('telephone', validators=[DataRequired(), Length(min=11, max=11)])
 
     # submit the form
     submit = SubmitField('')

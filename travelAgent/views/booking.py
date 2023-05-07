@@ -33,13 +33,16 @@ def addBooking(combination_id):
             total_price=unit_price*num
             booking = RecordC(user_id=current_user.id, combination_id=combination_id, start_time=start_time, num=num,
                               name=name, tel=tel, time=str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())), price=total_price, status="Uncompleted", status2="No comment")
-            db.session.add(booking)
-            db.session.commit()
-            # print("ffffffffffffffffff")
-            # return render_template("order_list.html", combination_id=combination_id)
-            return redirect("/order_list")
+
+            if len(tel) == 11:
+                db.session.add(booking)
+                db.session.commit()
+                return redirect("/order_list")
+
+            else:
+                flash("Wrong phone number, please enter a phone number consisting of 11 digits only")
+                return render_template('book.html', form=form, combination_id=combination_id, combination=combination)
         else:
-            # print("hhhhhhhhhhhh")
             return render_template('book.html', combination_id=combination_id, combination=combination)
 
 
@@ -81,13 +84,20 @@ def addTargetBooking(target_id):
                                  name=name, tel=tel, time=str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())),
                                  price=total_price, status="Uncompleted", status2="No comment")
 
-            if booking.price>0:
+            if booking.price > 0 and len(tel) == 11:
                 db.session.add(booking)
                 db.session.commit()
                 return redirect("/order_list")
-            else:
+            elif booking.price <= 0:
                 flash("The date you selected is incorrect Please fill in again")
                 return render_template('book_hotel.html', form=form, target_id=target_id, target=target)
+            elif len(tel) != 11:
+                flash("Wrong phone number, please enter a phone number consisting of 11 digits only")
+                if target_type == 0:
+                    return render_template('book_attraction.html', form=form, target_id=target_id, target=target)
+                elif target_type == 1:
+                    return render_template('book_hotel.html', form=form, target_id=target_id, target=target)
+
         else:
             if target_type == 0:
                 return render_template('book_attraction.html', form=form, target_id=target_id, target=target)
@@ -115,7 +125,15 @@ def addPersonalBooking(combination_id):
                               name=name, tel=tel, time=str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())), price=total_price, status="Uncompleted", status2="No comment")
             db.session.add(booking)
             db.session.commit()
-            return redirect("/order_list")
+            if len(tel) == 11:
+                db.session.add(booking)
+                db.session.commit()
+                return redirect("/order_list")
+
+            else:
+                flash("Wrong phone number, please enter a phone number consisting of 11 digits only")
+                return render_template('book.html', form=form, combination_id=combination_id, combination=combination)
+
         else:
             return render_template('book_personal.html', combination_id=combination_id, combination=combination)
 
