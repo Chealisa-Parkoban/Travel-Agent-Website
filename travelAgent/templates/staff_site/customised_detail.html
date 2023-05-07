@@ -1,20 +1,18 @@
 {% extends "staff_site/base.html" %}
       {% block body %}
-
           <script type="text/javascript" src="../../static/js/add.js"></script>
-
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
+          <h3 style="margin: 0 0 2% 2%">View Customised Travel Package</h3>
 
-          <h3 style="margin: 0 0 2% 2%">Create a New Travel Package</h3>
 
           <div class="row" id="row">
             {% for day in days %}
             <div class="col-md-6 grid-margin stretch-card" >
               <div class="card" >
                 <div class="card-body" style="margin: 0 3% 0 3%;">
-                  <h4 class="card-title">Day {{day[0]}}</h4>
+                  <h4 class="card-title">Day {{ day[0] }}</h4>
                   <p class="card-description">
                     Day trip information
                   </p>
@@ -35,19 +33,20 @@
                       <label for="Traffic">Traffic</label>
                       <h4 style="color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%">{{day[4]}}</h4>
                     </div>
-                      <a href="{{ url_for("staff_site.move_early", index=days.index(day)) }}">
+                      <a href="{{ url_for("staff_site.customised_move_early", index=days.index(day), plan_id=plan.id) }}">
                       <div class="btn btn-light">
                           <i class="menu-icon mdi mdi-arrow-left"></i>
                       </div>
                       </a>
-                      <a href="{{ url_for("staff_site.move_later", index=days.index(day)) }}">
+                      <a href="{{ url_for("staff_site.customised_move_later", index=days.index(day), plan_id=plan.id) }}">
                       <div class="btn btn-light">
                           <i class="menu-icon mdi mdi-arrow-right"></i>
                       </div>
                       </a>
-                      <a href="{{ url_for("staff_site.delete_day", index=days.index(day)) }}">
+                      <a href="{{ url_for("staff_site.customised_delete_day", index=days.index(day), plan_id=plan.id) }}">
                       <div class="btn btn-light" style="float: right">Delete</div>
                       </a>
+
                   </form>
 
                 </div>
@@ -56,6 +55,7 @@
 
             {% endfor %}
 
+
             <div class="col-md-6 grid-margin stretch-card" id="card">
               <div class="card">
                 <div class="card-body">
@@ -63,7 +63,7 @@
                   <p class="card-description">
                     Complete the trip information
                   </p>
-                  <form action="{{ url_for('staff_site.add_new_day') }}" method="post" novalidate
+                  <form action="{{ url_for('staff_site.customised_add_new_day', plan_id=plan.id) }}" method="post" novalidate
                         class="forms-sample" id="day_trip_form">
                       {{ day_form.csrf_token }}
                     <div class="form-group">
@@ -100,7 +100,6 @@
                     </div>
 
                     <button name='submit' type="submit" class="btn btn-primary me-2" id="add">Add</button>
-<!--                    <button class="btn btn-light">Delete</button>-->
                   </form>
 
                 </div>
@@ -109,34 +108,32 @@
           </div>
 
 
-          <form action="{{url_for('staff_site.submit_plan')}}" method="post" novalidate enctype="multipart/form-data">
+          <form action="{{url_for('staff_site.customised_update_plan', plan_id=plan.id)}}" method="post" novalidate>
           {{ plan_form.csrf_token }}
 
           <div class="col-md-6 grid-margin stretch-card" style="width: 100%">
               <div class="card" >
                 <div class="card-body" style="margin: 0 1% 0 1%;">
 
+                  <div class="form-group" style="margin-bottom: 0">
+                    <p>Customer User ID</p>
+                    <label style="width: 100%">
+                      <input class="form-control" name="user_id" id="load-user-id" value={{ plan.user_id }} >
+                    </label>
+                  </div>
 
-                  <div class="form-group"style="margin-bottom: 0">
+                  <div class="form-group" style="margin-bottom: 0">
                     <p>Package Name</p>
                     <label style="width: 100%">
-                      <input class="form-control" name="name">
+                      <input class="form-control" name="name" id="load-pack-name" value={{ plan.name }} >
                     </label>
                   </div>
 
                   <div class="form-group" style="margin-bottom: 0">
                   <p>Introduction</p>
                   <label style="width: 100%">
-                    <input class="form-control" name="intro" style="width: 100%"/>
+                    <input class="form-control" name="intro" style="width: 100%" id="load-pack-intro" value={{ plan.intro }}>
                   </label>
-                  </div>
-
-                  <div>
-                    <p>Cover Picture</p>
-                    <img src="#" alt="Please upload" id="img" width="50%">
-                                    <br>
-                                    <br>
-                    <input id="file_upload" name="img" type="file" onclick="showImg()" />
                   </div>
 
                   <div class="form-group" style="margin-bottom: 0">
@@ -145,22 +142,45 @@
                     <input class="form-control" type="number" name="price" value={{ fees }}>
                   </label>
                   </div>
-
-
                  </div>
               </div>
             </div>
 
           <div style="display:flex;justify-content: center; align-items:center;">
-            <a href="{{url_for("staff_site.clear_draft")}}">
+            <a href="{{url_for("staff_site.customised_clear_draft", plan_id=plan.id )}}">
               <input type="button" class="btn btn-primary me-2" name="clear_all" value="Clear All" >
             </a>
-            <a href="{{url_for("staff_site.submit_plan")}}">
-              <input type="submit" class="btn btn-primary me-2" name="submit" value="Add Package">
+            <a href="{{url_for('staff_site.customised_delete_plan', plan_id=plan.id)}}">
+              <input type="button" class="btn btn-primary me-2" name="save_draft" value="Delete Package">
+            </a>
+            <a>
+              <input type="submit" class="btn btn-primary me-2" name="submit" value="Update Package">
             </a>
           </div>
-
           </form>
+{#            <script>#}
+{#                var data = {{ data }};#}
+{#                if (window.localStorage) {#}
+{#                    var idList = ["load-user-id", "load-pack-name", "load-pack-intro"];#}
+{#                    var i = 0;#}
+{#                    function doLocalStorage(id){#}
+{#                        document.getElementById(id).addEventListener("input", function(){#}
+{#                            if (data === "success"){#}
+{#                                localStorage.setItem(id, "");#}
+{#                            }else {#}
+{#                                localStorage.setItem(id, document.getElementById(id).value);#}
+{#                            }#}
+{#                        })#}
+{#                        document.getElementById(id).value = localStorage.getItem(id);#}
+{#                    }#}
+{#                    while (idList[i]) {#}
+{#                        doLocalStorage(idList[i]);#}
+{#                        i++;#}
+{#                    }#}
+{#                } else {#}
+{#                    window.alert("The browser you are using does not support localStorage, please use the latest version of Google or Firefox or IE.");#}
+{#                }#}
+{#            </script>#}
 
 
         </div>
@@ -174,6 +194,5 @@
         </footer>
         <!-- partial -->
       </div>
-
-
+      <!-- main-panel ends -->
       {% endblock %}

@@ -24,17 +24,25 @@
 {#                            Provided by <code>Digital Beans</code>#}
 {#                        </p >#}
                         <div class="table-responsive">
-                            <table class="table table-hover">
+                            <table class="table table-hover" style="margin: 3% 0 15% 0">
                                 <thead>
                                 <tr>
                                     <th>Name</th>
                                     <th>Notes</th>
                                     <th>Duration</th>
                                     <th>Price</th>
+                                    <th>Buy</th>
+                                    <th>Delete</th>
                                 </tr>
                                 </thead>
 
                                 <tbody>
+                                {% if plans == [] %}
+                                    <tr>
+                                        <td colspan="6" style="text-align: center">No plans yet</td>
+                                    </tr>
+                                {% endif %}
+
                                 {% for plan in plans %}
                                     <tr onclick="showPlans({{plan.id}})">
                                         <td>{{plan.name}}</td>
@@ -45,7 +53,8 @@
                                             <button onclick="add_to_cart({{plan.id}})" style="background-color: transparent; border: none;">
                                                 <i class="fa fa-credit-card" style="font-size: 1.5rem"></i>
                                             </button>
-
+                                        </td>
+                                        <td>
                                             <button onclick="delete_des({{plan.id}})" style="background-color: transparent; border: none;">
                                                 <i class="fa fa-trash" style="font-size: 1.5rem"></i>
                                             </button>

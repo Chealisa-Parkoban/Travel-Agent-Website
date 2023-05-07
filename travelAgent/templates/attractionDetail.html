@@ -91,8 +91,13 @@
                 <div class="pl-4 pr-0 h-100 tofront">
                     <div class="row justify-content-between">
                         <div class="col-md-6 pt-6 pb-6 align-self-center">
-
                             <h1 class="secondfont mb-3 font-weight-bold"> {{ set.name }}</h1>
+                            <h3 style="display: flex; align-items: center">
+                                {%  if set.avg_score != 'No score' %}
+                                    <i class="fas fa-star" style="margin: 0 0.3rem; font-size: 1rem"></i>
+                                {% endif %}
+                                {{ set.avg_score }}
+                            </h3>
                             <p class="mb-3 intro">
                                 {{ set.intro }}
                             </p>
@@ -106,13 +111,23 @@
                                 </button>
                             </a>
 
-                            <a href="{{ url_for('favorite.addTargetFavorite', target_id=target_id) }}"
-                               style="text-decoration: none">
-                                <button class="btn btn-outline-primary ml-4 favourite">
-                                    <i class="fas fa-star"></i>
-                                    <span class="text-color">Favourite</span>
-                                </button>
-                            </a>
+                            {# 这里判断是否已经在收藏列表中，如果在就显示取消收藏按钮 #}
+{#                            {% if %}#}
+                                <a href="{{ url_for('favorite.addFavorite', combination_id=combination_id) }}"
+                                   style="text-decoration: none">
+                                    <button class="btn btn-outline-primary ml-4 favourite">
+                                        <i class="fas fa-heart"></i>
+                                        <span class="text-color">Favourite</span>
+                                    </button>
+                                </a>
+{#                            {% else %}#}
+{#                                <a href="" style="text-decoration: none">#}
+{#                                    <button class="btn btn-outline-primary ml-4 favourite">#}
+{#                                        <i class="fas fa-heart-o"></i>#}
+{#                                        <span class="text-color">Remove</span>#}
+{#                                    </button>#}
+{#                                </a>#}
+{#                            {% endif %}#}
 
                         </div>
                         <div class="col-md-6 d-none d-md-block pr-0" style="overflow: hidden;">
@@ -586,23 +601,23 @@
                                                     }
                                                 }
 
-                                                function highlightStars(num) {
-                                                    let stars = document.querySelectorAll(".fa-star");
-                                                    for (let i = 1; i <= num; i++) {
-                                                        stars[i].classList.remove("unchecked");
-                                                        stars[i].classList.add("checked");
-                                                    }
-                                                }
-
-                                                function resetStars() {
-                                                    let stars = document.querySelectorAll(".fa-star");
-                                                    for (let i = 0; i < stars.length; i++) {
-                                                        stars[i].classList.remove("checked");
-                                                        stars[i].classList.add("unchecked");
-                                                    }
-                                                    rating = document.getElementById("score").value;
-                                                    setRating(rating);
-                                                }
+                                                {#function highlightStars(num) {#}
+                                                {#    let stars = document.querySelectorAll(".fa-star");#}
+                                                {#    for (let i = 0; i < num; i++) {#}
+                                                {#        stars[i].classList.remove("unchecked");#}
+                                                {#        stars[i].classList.add("checked");#}
+                                                {#    }#}
+                                                {#}#}
+                                                {##}
+                                                {#function resetStars() {#}
+                                                {#    let stars = document.querySelectorAll(".fa-star");#}
+                                                {#    for (let i = 0; i < stars.length; i++) {#}
+                                                {#        stars[i].classList.remove("checked");#}
+                                                {#        stars[i].classList.add("unchecked");#}
+                                                {#    }#}
+                                                {#    rating = document.getElementById("score").value;#}
+                                                {#    setRating(rating);#}
+                                                {#}#}
 
                                             </script>
                                         </div>
