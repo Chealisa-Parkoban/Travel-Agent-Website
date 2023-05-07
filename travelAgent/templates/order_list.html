@@ -108,11 +108,8 @@
             </div>
         </div>
 
-        <div class="container py-5">
-            {% if target_user_name|length == 0 %}
-{#                <h4 class="text-center"> No Attraction/Hotel Order</h4>#}
-
-            {% else %}
+        {% if target_user_name|length != 0 %}
+            <div class="container py-5">
                 <div>
                     <h1 class="text-center">Attraction Orders</h1>
                 </div>
@@ -207,20 +204,16 @@
                         </a>
                     {% endfor %}
                 </div>
-            {% endif %}
-        </div>
+            </div>
+        {% endif %}
 
-        <div class="container py-5">
-            {% if user_combination_name|length == 0 %}
-{#                <h4 class="text-center"> No Self Routes Order</h4>#}
-
-            {% else %}
+        {% if user_combination_name|length != 0 %}
+            <div class="container py-5">
                 <div>
                     <h1 class="text-center">Self Routes Order List</h1>
                 </div>
                 <hr>
                 <div class="col-md-12 mb-5">
-
                     {% for i in range(0,user_combination_name|length) %}
                         <a href="#">
                             <div class="card" style="color: #0a0c0d; margin-top: 3%;">
@@ -310,8 +303,8 @@
                         </a>
                     {% endfor %}
                 </div>
-            {% endif %}
-        </div>
+            </div>
+        {% endif %}
 
     </section>
 {% endblock %}
