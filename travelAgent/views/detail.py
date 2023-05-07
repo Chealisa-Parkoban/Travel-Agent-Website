@@ -23,7 +23,7 @@ import datetime
 import travelAgent
 from travelAgent import db
 from travelAgent.forms import CommentForm, ImageForm
-from travelAgent.models import CommentC, Comment, Combination, Destination, Day, Target, RecordC
+from travelAgent.models import CommentC, Comment, Combination, Destination, Day, Target, RecordC, FavoriteC
 from travelAgent.views.login_handler import login_blueprint, current_user
 from travelAgent.views.number import Random_str
 
@@ -83,6 +83,11 @@ def showSetDetails():
     attractions = []
     accomodations = []
     traffic = []
+
+    Fc = FavoriteC.query.filter(FavoriteC.user_id == current_user.id, FavoriteC.combination_id == set_id).first()
+    status_fav = True
+    if Fc is not None:
+        status_fav = False
 
     comment_form = CommentForm(request.form)
     id = Random_str().create_uuid()
@@ -523,7 +528,7 @@ def showSetDetails():
         return render_template("travelRoutesDetail.html", current_user=current_user, comment_form=comment_form,
                                comments=db.session.query(CommentC).filter(CommentC.combination_id == set_id).all(),
                                length=length, set=set, combination_id=set_id,
-                               accomodations=accomodations, attractions=attractions, traffic=traffic)
+                               accomodations=accomodations, attractions=attractions, traffic=traffic, status_fav=status_fav)
 
     # if request.method == 'GET':
 
@@ -913,7 +918,7 @@ def showSetDetails():
 
     return render_template("travelRoutesDetail.html", comments=comments, comment_form=comment_form, length=length,
                            set=set, combination_id=ID,
-                           accomodations=accomodations, attractions=attractions, traffic=traffic)
+                           accomodations=accomodations, attractions=attractions, traffic=traffic, status_fav=status_fav)
 
 
 # 展示booking细节的函数

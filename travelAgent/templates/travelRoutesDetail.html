@@ -115,7 +115,7 @@
 
 
                             {# 这里判断是否已经在收藏列表中，如果在就显示取消收藏按钮 #}
-{#                            {% if %}#}
+                            {% if status_fav%}
                                 <a href="{{ url_for('favorite.addFavorite', combination_id=combination_id) }}"
                                    style="text-decoration: none">
                                     <button class="btn btn-outline-primary ml-4 favourite">
@@ -123,14 +123,14 @@
                                         <span class="text-color">Favourite</span>
                                     </button>
                                 </a>
-{#                            {% else %}#}
-{#                                <a href="" style="text-decoration: none">#}
-{#                                    <button class="btn btn-outline-primary ml-4 favourite">#}
-{#                                        <i class="fas fa-heart-o"></i>#}
-{#                                        <span class="text-color">Remove</span>#}
-{#                                    </button>#}
-{#                                </a>#}
-{#                            {% endif %}#}
+                            {% else %}
+                                <a href="" style="text-decoration: none">
+                                    <button class="btn btn-outline-primary ml-4 favourite">
+                                        <i class="fas fa-heart-o"></i>
+                                        <span class="text-color">Remove</span>
+                                    </button>
+                                </a>
+                            {% endif %}
 
                         </div>
                         <div class="col-md-6 d-none d-md-block pr-0" style="overflow: hidden;">

@@ -23,7 +23,7 @@ import datetime
 import travelAgent
 from travelAgent import db
 from travelAgent.forms import CommentForm, ImageForm
-from travelAgent.models import CommentC, Comment, Combination, Destination, Day, Target, Record
+from travelAgent.models import CommentC, Comment, Combination, Destination, Day, Target, Record, Favorite
 from travelAgent.views.login_handler import login_blueprint, current_user
 from travelAgent.views.number import Random_str
 
@@ -39,6 +39,13 @@ def showAttraction():
 
     comment_form = CommentForm(request.form)
     id = Random_str().create_uuid()
+
+    Ft = Favorite.query.filter(Favorite.user_id == current_user.id, Favorite.target_id == target_id).first()
+    # default status: true, not favorite
+    status_fav = True
+    if Ft is not None:
+        # false, can be cancel favorite
+        status_fav = False
 
     if request.method == 'POST':
 
@@ -89,7 +96,7 @@ def showAttraction():
 
         return render_template("attractionDetail.html", current_user=current_user, comment_form=comment_form,
                                comments=db.session.query(Comment).filter(Comment.target_id == set_id).all(), set=set,
-                               target_id=target_id,
+                               target_id=target_id, status_fav=status_fav
                                )
 
     # if request.method == 'GET':
@@ -97,4 +104,4 @@ def showAttraction():
     comments = db.session.query(Comment).filter(Comment.target_id == set_id).all()
 
     return render_template("attractionDetail.html", comments=comments, comment_form=comment_form,
-                           set=set, target_id=target_id)
+                           set=set, target_id=target_id, status_fav=status_fav)

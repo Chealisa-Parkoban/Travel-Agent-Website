@@ -55,8 +55,6 @@ def showAll():
 
 @favorite_blueprint.route('/favourites/<combination_id>')
 def addFavorite(combination_id):
-    print("不知道为什么到组合")
-
     if not current_user.is_authenticated:
         return redirect(url_for("account.login"))
     check = FavoriteC.query.filter(FavoriteC.user_id == current_user.id,
