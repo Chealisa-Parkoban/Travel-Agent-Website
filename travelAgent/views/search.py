@@ -53,8 +53,6 @@ def search():
             flash('Wrong input! Please enter again')
             return redirect(url_for("homepage"))
 
-
-
     else:
         if (destination == "") and (attraction == "") and (price_up == "") and (price_low == ""):
             return redirect(url_for("homepage"))
@@ -88,7 +86,7 @@ def search():
                 # 与attraction相关的day
                 days = db.session.query(Day).filter(Day.attraction_id == attraction_id).all()
                 for day in days:
-                    day_id = day.id1
+                    day_id = day.id
                     combination = db.session.query(Combination).filter(or_(Combination.day1 == str(day_id), Combination.day2 == str(day_id), Combination.day3 == str(day_id), Combination.day4 == str(day_id), Combination.day5 == str(day_id), Combination.day6 == str(day_id), Combination.day7 == str(day_id))).all()
 
             return render_template("homepage2.html", Sets=combination)
@@ -109,6 +107,7 @@ def search():
 
         # 搜索价格最低的区间(上下)
         elif (price_low is not None) and (price_up is not None) and (attraction == "") and (destination == ""):
+            print("price 的 else")
             # 查询在此价格往下的所有combination
             combination = db.session.query(Combination).filter((
                 Combination.price >= str(price_low)), and_(Combination.price <= str(price_up))).all()
