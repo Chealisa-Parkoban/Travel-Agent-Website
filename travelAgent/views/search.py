@@ -38,10 +38,16 @@ def search():
     combination = []
 
     # 条件判断
-    if price_up != '' or price_low != '':
-        if (int(price_low) < 0) or (int(price_up) < 0):
+    if price_low != '':
+        if int(price_low) < 0:
             flash('Wrong input! Please enter again')
             return redirect(url_for("homepage"))
+
+    if price_up != '' :
+        if int(price_up) < 0:
+            flash('Wrong input! Please enter again')
+            return redirect(url_for("homepage"))
+
     if price_up != '' and price_low != '':
         if int(price_low) > int(price_up):
             flash('Wrong input! Please enter again')
@@ -50,6 +56,8 @@ def search():
 
 
     else:
+        if (destination == "") and (attraction == "") and (price_up == "") and (price_low == ""):
+            return redirect(url_for("homepage"))
 
         # 只搜索combination
         if (destination is not None) and (attraction == "") and (price_up == "") and (price_low == ""):
