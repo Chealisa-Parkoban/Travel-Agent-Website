@@ -556,7 +556,7 @@ def check_booking_combination_details(combination_id):
     booking = db.session.query(RecordP).filter(RecordP.id == combination_id).first()
     combination_id = booking.combination_id
     combination = db.session.query(Combination).filter(Combination.id == combination_id).first()
-    return render_template("orderDetail.html", booking=booking, combination=combination)
+    return render_template("selfCombinationDetail.html", booking=booking, combination=combination)
 
 
 def translate(q):

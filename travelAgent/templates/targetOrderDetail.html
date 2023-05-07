@@ -77,11 +77,11 @@
                             style="background: linear-gradient(#1c303d, #0b2e13); color: white; border-radius: 1rem; text-align: center">
                             Your reservation</h2>
                         {#                        <p class="mb-5"></p>#}
-                        <kbd class="mb-5">User Name: {{ booking.name }}</kbd>
-                        <kbd class="mb-5">Telephone: {{ booking.tel }}</kbd>
-                        <kbd class="mb-5">Price: {{ booking.price*booking.num }} ({{ booking.price }}/person)</kbd>
-                        <kbd class="mb-5">Start Time: {{ booking.start_time }}</kbd>
-                        <p class="mb-5 text-right">Create Time: {{ booking.start_time }}</p>
+                        <p><kbd class="mb-5" style="margin-right: 5%">User Name: {{ booking.name }}</kbd>
+                        <kbd class="mb-5">Telephone: {{ booking.tel }}</kbd></p>
+                        <p><kbd class="mb-5">Price: {{ booking.price*booking.num }} ({{ booking.price }}/person)</kbd></p>
+                        <p><kbd class="mb-5" style="margin-right: 5%">Check in Time: {{ booking.start_time }}</kbd><kbd class="mb-5">Check out Time: {{ booking.end_time }}</kbd></p>
+                        <p class="mb-5 text-right">Create Time: {{ booking.time }}</p>
                         <hr class="mb-5">
 
                         {#                        <a href="about.html" class="btn btn-primary">Continue...</a>#}
