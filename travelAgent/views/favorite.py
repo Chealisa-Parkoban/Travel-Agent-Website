@@ -60,11 +60,19 @@ def addFavorite(combination_id):
     check = FavoriteC.query.filter(FavoriteC.user_id == current_user.id,
                                    FavoriteC.combination_id == combination_id).scalar() is None
     check2 = Combination.query.filter(Combination.id == combination_id).scalar is not None
-    if check and check2:
-        f = FavoriteC(user_id=current_user.id, combination_id=combination_id,
-                      time=str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
-        db.session.add(f)
-        db.session.commit()
+    # specific type
+    if check2:
+        # have no records
+        if check:
+            f = FavoriteC(user_id=current_user.id, combination_id=combination_id,
+                          time=str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
+            db.session.add(f)
+            db.session.commit()
+        # record existed
+        else:
+            record = FavoriteC.query.filter(FavoriteC.user_id == current_user.id, FavoriteC.combination_id == combination_id).first()
+            db.session.delete(record)
+            db.session.commit()
 
     Fc = FavoriteC.query.filter(FavoriteC.user_id == current_user.id).all()
     Ft = Favorite.query.filter(Favorite.user_id == current_user.id).all()
@@ -114,12 +122,21 @@ def addTargetFavorite(target_id):
     check = Favorite.query.filter(Favorite.user_id == current_user.id,
                                    Favorite.target_id == target_id).scalar() is None
     check2 = Target.query.filter(Target.id == target_id).scalar is not None
-    if check and check2:
-        f = Favorite(user_id=current_user.id, target_id=target_id,
-                      time=str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
-        print(f)
-        db.session.add(f)
-        db.session.commit()
+
+    # specific type
+    if check2:
+        # have no records in db
+        if check:
+            f = Favorite(user_id=current_user.id, target_id=target_id,
+                          time=str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
+            db.session.add(f)
+            db.session.commit()
+
+        # records have existed
+        else:
+            record = Favorite.query.filter(Favorite.user_id == current_user.id, Favorite.target_id == target_id).first()
+            db.session.delete(record)
+            db.session.commit()
 
     Fc = FavoriteC.query.filter(FavoriteC.user_id == current_user.id).all()
     Ft = Favorite.query.filter(Favorite.user_id == current_user.id).all()

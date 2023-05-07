@@ -124,7 +124,7 @@
                                     </button>
                                 </a>
                             {% else %}
-                                <a href="" style="text-decoration: none">
+                                <a href="{{ url_for('favorite.addFavorite', combination_id=combination_id) }}" style="text-decoration: none">
                                     <button class="btn btn-outline-primary ml-4 favourite">
                                         <i class="fas fa-heart-o"></i>
                                         <span class="text-color">Remove</span>
