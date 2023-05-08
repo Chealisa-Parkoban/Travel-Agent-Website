@@ -2,26 +2,23 @@
 {% block title %}Orders{% endblock %}
 {% block head %}{% endblock %}
 {% block body %}
-    <section style="background-color: #eee; ">
+    <section style="background-color: #eee;">
         <div class="container py-5">
-
             <div>
                 <h1 class="text-center" style="margin-top: 5%">Order List</h1>
             </div>
             <hr>
             <div>
                 <div class="col-md-12 mb-5">
-                    {% if user_name|length == 0 %}
-                        <h4 class="text-center"> No Order</h4>
+                    {% if user_name|length == 0 and target_user_name|length == 0 and user_combination_name|length == 0 %}
+                        <h4 class="text-center" style="margin: 30% 0 50% 0"> No Order</h4>
 
                     {% else %}
                         {% for i in range(0,user_name|length) %}
                             <a href="#">
                                 <div class="card" style="color: #0a0c0d; margin-top: 3%;">
                                     <div class="row" style="margin-left: auto !important;">
-                                        <div class="col-md-4 mx-auto mb-auto d-flex align-items-center"
-                                             style="margin: auto;">
-
+                                        <div class="col-md-4 mx-auto mb-auto d-flex align-items-center" style="margin: auto;">
                                             <a href="{{ url_for("check_booking_details", booking_id=ids[i]) }}"><img
                                                     src="{{ image[i] }}" class="card-img" alt="..."></a>
                                         </div>
@@ -29,15 +26,18 @@
                                         <div class="col-md-8">
                                             <div class="card-body">
                                                 {% if status[i] == "Completed" %}
-                                                    <h5 class="card-title mb-0">{{ combination_name[i] }}<span
-                                                            style="margin-left: 30%"><i
-                                                            class="fa-regular fa-circle-check"
-                                                            style="color: #6459ad;"></i>{{ status[i] }}</span>
+                                                    <h5 class="card-title mb-0" style="display: flex; justify-content: space-between;">
+                                                        {{ combination_name[i] }}
+                                                        <span style="align-items: end">
+                                                            <i class="fa-regular fa-circle-check" style="color: #6459ad;"></i>{{ status[i] }}
+                                                        </span>
                                                     </h5>
                                                 {% else %}
-                                                    <h5 class="card-title mb-0">{{ combination_name[i] }}<span
-                                                            style="margin-left: 30%"><i class="fa-solid fa-circle-xmark"
-                                                                                        style="color: #6459ad;"></i>{{ status[i] }}</span>
+                                                    <h5 class="card-title mb-0" style="display: flex; justify-content: space-between;">
+                                                        {{ combination_name[i] }}
+                                                        <span style="align-items: end">
+                                                            <i class="fa-regular fa-circle-xmark" style="color: #6459ad;"></i>{{ status[i] }}
+                                                        </span>
                                                     </h5>
                                                 {% endif %}
 
@@ -108,26 +108,18 @@
             </div>
         </div>
 
-        <div class="container py-5">
-
-            <div>
-                <h1 class="text-center">Attraction Order List</h1>
-            </div>
-            {% if target_user_name|length == 0 %}
-                <h4 class="text-center"> No Attraction/Hotel Order</h4>
-
-            {% else %}
-                <hr>
+        {% if target_user_name|length != 0 %}
+            <div class="container py-5">
                 <div>
+                    <h1 class="text-center">Attraction Orders</h1>
+                </div>
+                <hr>
                 <div class="col-md-12 mb-5">
-
                     {% for i in range(0,target_user_name|length) %}
                         <a href="#">
                             <div class="card" style="color: #0a0c0d; margin-top: 3%;">
                                 <div class="row" style="margin-left: auto !important;">
-                                    <div class="col-md-4 mx-auto mb-auto d-flex align-items-center"
-                                         style="margin: auto;">
-
+                                    <div class="col-md-4 mx-auto mb-auto d-flex align-items-center" style="margin: auto;">
                                         <a href="{{ url_for("check_booking_target_details", booking_id=booking_target_ids[i]) }}"><img
                                                 src="{{ target_image[i] }}" class="card-img" alt="..."></a>
                                     </div>
@@ -135,17 +127,20 @@
                                     <div class="col-md-8">
                                         <div class="card-body">
                                             {% if target_status_complete[i] == "Completed" %}
-                                                <h5 class="card-title mb-0">{{ target_name[i] }}<span
-                                                        style="margin-left: 30%"><i class="fa-regular fa-circle-check"
-                                                                                    style="color: #6459ad;"></i>{{ target_status_complete[i] }}</span>
+                                                <h5 class="card-title mb-0" style="display: flex; justify-content: space-between;">
+                                                    {{ target_name[i] }}
+                                                    <span style="align-items: end">
+                                                        <i class="fa-regular fa-circle-check" style="color: #6459ad;"></i>{{ target_status_complete[i] }}
+                                                    </span>
                                                 </h5>
                                             {% else %}
-                                                <h5 class="card-title mb-0">{{ target_name[i] }}<span
-                                                        style="margin-left: 30%"><i class="fa-solid fa-circle-xmark"
-                                                                                    style="color: #6459ad;"></i>{{ target_status_complete[i] }}</span>
+                                                <h5 class="card-title mb-0" style="display: flex; justify-content: space-between;">
+                                                    {{ target_name[i] }}
+                                                    <span style="align-items: end">
+                                                        <i class="fa-regular fa-circle-xmark" style="color: #6459ad;"></i>{{ target_status_complete[i] }}
+                                                    </span>
                                                 </h5>
                                             {% endif %}
-
 
                                             <hr>
                                             <div class="row">
@@ -208,46 +203,41 @@
                             </div>
                         </a>
                     {% endfor %}
-
                 </div>
-            {% endif %}
             </div>
-        </div>
+        {% endif %}
 
-        <div class="container py-5">
-
-            <div>
-                <h1 class="text-center">Self Routes Order List</h1>
-            </div>
-            {% if user_combination_name|length == 0 %}
-                <h4 class="text-center"> No Self Routes Order</h4>
-            {% else %}
-                <hr>
+        {% if user_combination_name|length != 0 %}
+            <div class="container py-5">
                 <div>
+                    <h1 class="text-center">Self Routes Order List</h1>
+                </div>
+                <hr>
                 <div class="col-md-12 mb-5">
-
                     {% for i in range(0,user_combination_name|length) %}
                         <a href="#">
                             <div class="card" style="color: #0a0c0d; margin-top: 3%;">
                                 <div class="row" style="margin-left: auto !important;">
-                                    <div class="col-md-4 mx-auto mb-auto d-flex align-items-center"
-                                         style="margin: auto;">
-
+                                    <div class="col-md-4 mx-auto mb-auto d-flex align-items-center" style="margin: auto;">
                                         <a href="{{ url_for("check_booking_combination_details", combination_id=user_combination_ids[i]) }}"><img
                                                 src="{{ user_combination_image[i] }}" class="card-img" alt="..."></a>
                                     </div>
 
                                     <div class="col-md-8">
                                         <div class="card-body">
-                                            {% if user_combination_status_complete[i] == "Completed" %}
-                                                <h5 class="card-title mb-0">{{ user_combination_name[i] }}<span
-                                                        style="margin-left: 30%"><i class="fa-regular fa-circle-check"
-                                                                                    style="color: #6459ad;"></i>{{ user_combination_status_complete[i] }}</span>
+                                            {% if user_combination_status_complete[i] == "Completed" %}\
+                                                <h5 class="card-title mb-0" style="display: flex; justify-content: space-between;">
+                                                    {{ user_combination_name[i] }}
+                                                    <span style="align-items: end">
+                                                        <i class="fa-regular fa-circle-check" style="color: #6459ad;"></i>{{ user_combination_status_complete[i] }}
+                                                    </span>
                                                 </h5>
                                             {% else %}
-                                                <h5 class="card-title mb-0">{{ user_combination_name[i] }}<span
-                                                        style="margin-left: 30%"><i class="fa-solid fa-circle-xmark"
-                                                                                    style="color: #6459ad;"></i>{{ user_combination_status_complete[i] }}</span>
+                                                <h5 class="card-title mb-0" style="display: flex; justify-content: space-between;">
+                                                    {{ user_combination_name[i] }}
+                                                    <span style="align-items: end">
+                                                        <i class="fa-regular fa-circle-xmark" style="color: #6459ad;"></i>{{ user_combination_status_complete[i] }}
+                                                    </span>
                                                 </h5>
                                             {% endif %}
 
@@ -297,14 +287,13 @@
                                                 <div class="col-sm"></div>
                                                 <div class="col-sm"></div>
                                                 <div class="col-sm">
-                                                    {#                                                    <p class="card-text mb-0">{{ price[i] }}</p>#}
-                                                    {% if user_combination_status_comment[i] == "No comment" %}
-                                                        <i class="fa-solid fa-comment-slash"></i>
-                                                        {{ user_combination_status_comment[i] }}
-                                                    {% else %}
-                                                        <i class="fa-solid fa-comment-dots"></i>
-                                                        {{ user_combination_status_comment[i] }}
-                                                    {% endif %}
+{#                                                    {% if user_combination_status_comment[i] == "No comment" %}#}
+{#                                                        <i class="fa-solid fa-comment-slash"></i>#}
+{#                                                        {{ user_combination_status_comment[i] }}#}
+{#                                                    {% else %}#}
+{#                                                        <i class="fa-solid fa-comment-dots"></i>#}
+{#                                                        {{ user_combination_status_comment[i] }}#}
+{#                                                    {% endif %}#}
                                                 </div>
                                             </div>
                                         </div>
@@ -313,11 +302,9 @@
                             </div>
                         </a>
                     {% endfor %}
-
                 </div>
-            {% endif %}
             </div>
-        </div>
+        {% endif %}
 
     </section>
 {% endblock %}

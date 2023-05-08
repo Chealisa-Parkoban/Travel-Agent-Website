@@ -7,7 +7,7 @@ from travelAgent import app, db
 # from travelAgent.app import changeBookingStatus
 from travelAgent.forms import LoginForm, DayTripForm, PlanForm, DestinationForm, TargetForm
 from travelAgent.models import User, Destination, Target, Day, Combination, RecordC, Record, ContactModel, \
-    UserCombination
+    UserCombination, CommentC, FavoriteC
 from travelAgent.views.login_handler import login_manager
 
 from travelAgent.config import basedir
@@ -37,7 +37,31 @@ def index():
     # changeBookingStatus()
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
-    return render_template('./staff_site/index.html', user=current_user)
+    combinations = Combination.query.all()
+    targets = Target.query.all()
+    # merge two list combinations and targets into one list items
+    items = []
+    for combination in combinations:
+        items.append(combination)
+    for target in targets:
+        items.append(target)
+    return render_template('./staff_site/index.html', user=current_user, items=items)
+
+
+@staff_blueprint.route('/staff/get_data', methods=['GET', 'POST'])
+def get_data():
+    # changeBookingStatus()
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    combinations = Combination.query.all()
+    targets = Target.query.all()
+    # merge two list combinations and targets into one list items
+    items = []
+    for combination in combinations:
+        items.append(combination)
+    for target in targets:
+        items.append(target)
+    return items
 
 
 @staff_blueprint.route('/staff', methods=['GET', 'POST'])
@@ -138,7 +162,7 @@ def view_plan(plan_id=None):
     for fee in trip_fees:
         total += fee
 
-    if plan_id is None:
+    if plan_id is None or plan_id == "null":
         return render_template('./staff_site/new_plan.html', days=day_trip_draft, fees=total,
                            plan_form=plan_form, day_form=day_form, destinations=destinations, attractions=attractions,
                            accommodations=accommodations, traffics=traffics, user=current_user)
@@ -195,7 +219,7 @@ def move_early(index, plan_id=None):
 @staff_blueprint.route('/staff/move_later/<index>', methods=['GET', 'POST'])
 def move_later(index, plan_id=None):
     index = int(index)
-    if index < customised_day_trip_draft.__len__() - 1:
+    if index < day_trip_draft.__len__() - 1:
         # move fees positions in trip_fees, skip the first one, which is the total price
         trip_fees.insert((index + 1) * 3, trip_fees.pop(index * 3))
         trip_fees.insert((index + 1) * 3, trip_fees.pop(index * 3))
@@ -492,6 +516,23 @@ def delete_destination():
     des_id = int(session.get('des_id'))
     destination = Destination.query.filter_by(id=des_id).first()
     db.session.delete(destination)
+    for day in Day.query.filter_by(destination_id=des_id).all():
+        db.session.delete(day)
+        for combination in Combination.query.filter(Combination.day1==day.id or
+                                                    Combination.day2==day.id or
+                                                    Combination.day3==day.id or
+                                                    Combination.day4==day.id or
+                                                    Combination.day5==day.id or
+                                                    Combination.day6==day.id or
+                                                    Combination.day7==day.id).all():
+            db.session.delete(combination)
+            for booking in RecordC.query.filter_by(combination_id=combination.id).all():
+                db.session.delete(booking)
+            for comment in CommentC.query.filter_by(combination_id=combination.id).all():
+                db.session.delete(comment)
+            for favourite in FavoriteC.query.filter_by(combination_id=combination.id).all():
+                db.session.delete(favourite)
+
     db.session.commit()
     return redirect(url_for("staff_site.destinations", message="Delete successfully!"))
 
@@ -717,7 +758,7 @@ def customised_detail(plan_id=None, data=None):
     for fee in customised_trip_fees:
         total += fee
 
-    if plan_id is None:
+    if plan_id is None or plan_id == "null":
         return render_template('./staff_site/new_customised.html', data=data, days=customised_day_trip_draft, fees=total,
                            plan_form=plan_form, day_form=day_form, destinations=destinations, attractions=attractions,
                            accommodations=accommodations, traffics=traffics, user=current_user)
@@ -925,10 +966,6 @@ def customised_delete_plan(plan_id):
     db.session.delete(plan)
     db.session.commit()
     return redirect(url_for("staff_site.customised_packages", message="Delete successfully!"))
-
-
-
-
 
 
 

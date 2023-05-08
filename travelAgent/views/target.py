@@ -39,13 +39,14 @@ def showAttraction():
 
     comment_form = CommentForm(request.form)
     id = Random_str().create_uuid()
-
-    Ft = Favorite.query.filter(Favorite.user_id == current_user.id, Favorite.target_id == target_id).first()
-    # default status: true, not favorite
     status_fav = True
-    if Ft is not None:
-        # false, can be cancel favorite
-        status_fav = False
+
+    if current_user.is_authenticated:
+        Ft = Favorite.query.filter(Favorite.user_id == current_user.id, Favorite.target_id == target_id).first()
+    # default status: true, not favorite
+        if Ft is not None:
+            # false, can be cancel favorite
+            status_fav = False
 
     if request.method == 'POST':
 

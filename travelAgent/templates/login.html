@@ -92,15 +92,11 @@
 <!--                                        </label>-->
 <!--                                    </div>-->
                                     <button type="submit" class="btn btn-block btn-lg bg-white mt-4">Sign in</button>
-                                <div class="mt-4">
-                                    <a href="{{ url_for("account.sign_up") }}" class="text-white text-left">Dont have account？Sign up</a>
-                                    <a href="#" class="text-white text-right">Forgot password?</a>
-                                </div>
-{#                                <div class="text-left mt-4"><a href="{{ url_for("account.sign_up") }}" class="text-white">Dont have account？Sign up</a></div>#}
-{#                                    <div class="text-right mt-4"><a href="#" class="text-white">Forgot password?</a>#}
-{#                                    </div>#}
+                                    <div class="mt-4" style="text-align: center;">
+                                        <a href="{{ url_for('account.sign_up') }}" class="text-white" style="display: block; margin-top: 10px">Do not have an account？Sign up</a>
+                                        <a href="#" class="text-white" style="display: block; margin-top: 10px">Forgot your password?</a>
+                                    </div>
                                 </form>
-
                             </div>
                         </div>
                     </div>

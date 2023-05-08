@@ -74,7 +74,6 @@ def improveImage(img):
 def showSetDetails():
     print("调用showdetail函数了！")
     set_id = session.get("set_id")
-    print(set_id)
 
     set = db.session.query(Combination).filter(Combination.id == set_id).first()
     ID = set_id
@@ -84,10 +83,11 @@ def showSetDetails():
     accomodations = []
     traffic = []
 
-    Fc = FavoriteC.query.filter(FavoriteC.user_id == current_user.id, FavoriteC.combination_id == set_id).first()
     status_fav = True
-    if Fc is not None:
-        status_fav = False
+    if current_user.is_authenticated:
+        Fc = FavoriteC.query.filter(FavoriteC.user_id == current_user.id, FavoriteC.combination_id == set_id).first()
+        if Fc is not None:
+            status_fav = False
 
     comment_form = CommentForm(request.form)
     id = Random_str().create_uuid()

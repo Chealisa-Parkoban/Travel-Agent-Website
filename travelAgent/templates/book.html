@@ -107,8 +107,8 @@
 {#                                </div>#}
                                 <div class="form-group">
                                     <span class="form-label">Your Phone Number</span>
-                                    <input class="form-control" type="text" name="tel" required
-                                           placeholder="Enter Your Real Telephone Number">
+                                    <input class="form-control" type="text" name="tel" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"
+                                     required placeholder="Enter Your Real Telephone Number (11 digits)">
                                 </div>
                                 <div class="form-group">
                                     <span class="form-label">Price:￥{{ combination.price }}/person</span>
@@ -119,7 +119,7 @@
                                             alert("Your order has been submitted successfully!");
                                         }
                                     </script>
-                                    <button type="submit" class="btn btn-primary btn-block btn-lg mt-4" onclick="submitSuccessfully()">Submit Your Order</button>
+                                    <button type="submit" class="btn btn-primary btn-block btn-lg mt-4" >Submit Your Order</button>
                                 </div>
                             </form>
                         </div>
