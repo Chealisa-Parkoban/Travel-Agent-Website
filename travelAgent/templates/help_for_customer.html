@@ -1,4 +1,3 @@
-{#<!DOCTYPE html>#}
 {% extends "base.html" %}
 {#<html lang="en">#}
 {#<head>#}
@@ -26,25 +25,25 @@
                 <hr>
                 <nav class="bd-links list-group" aria-label="Main navigation">
 
-                    <div class="bd-toc-item active">
+                    <div class="bd-toc-item">
                         <a class="bd-toc-link" href="{{ url_for('help') }}">
                             Overview
                         </a>
                     </div>
-{##}
-{#                    <div class="bd-toc-item">#}
-{#                        <a class="bd-toc-link" href="/docs/4.6/layout/overview/">#}
-{##}
-{#                        </a>#}
-{#                    </div>#}
-{##}
-{#                    <div class="bd-toc-item">#}
-{#                        <a class="bd-toc-link" href="/docs/4.6/content/reboot/">#}
-{#                            Content#}
-{#                        </a>#}
-{#                    </div>#}
+                    {##}
+                    {#                    <div class="bd-toc-item">#}
+                    {#                        <a class="bd-toc-link" href="/docs/4.6/layout/overview/">#}
+                    {##}
+                    {#                        </a>#}
+                    {#                    </div>#}
+                    {##}
+                    {#                    <div class="bd-toc-item">#}
+                    {#                        <a class="bd-toc-link" href="/docs/4.6/content/reboot/">#}
+                    {#                            Content#}
+                    {#                        </a>#}
+                    {#                    </div>#}
 
-                    <div class="bd-toc-item">
+                    <div class="bd-toc-item active">
                         <a class="bd-toc-link" href="{{ url_for('help_for_customer') }}">
                             For Customer
                         </a>
@@ -54,10 +53,10 @@
                                 <a href="#C1">Sign Up and Log in</a>
                             </li>
                             <li>
-                                <a href="/docs/4.6/components/badge/">View and Search Travel Packages</a>
+                                <a href="#C2">View and Search Travel Packages</a>
                             </li>
                             <li>
-                                <a href="/docs/4.6/components/breadcrumb/">Add to Favorites</a>
+                                <a href="#C3">Add/Remove to Favorites</a>
                             </li>
                             <li>
                                 <a href="/docs/4.6/components/buttons/">Book Packages</a>
@@ -105,39 +104,43 @@
                 </nav>
             </div>
             <div class="col-sm-8">
-                <embed src="../static/upload/user file.pdf" type="application/pdf" width=800 height=800 class="container">
+                <h1>
+                    For Customer
+                </h1>
+                <h2>
+                    <a name="C1"></a>
+                    Register
+                </h2>
+                <p>1. Click "Links" drop-down. Click Register</p>
+                <p>2. Enter username, email address. Click "Get Verification Code".</p>
+                <p>3. Go to your mailbox to check your verification code. Enter it into the registration form.</p>
+                <p>4. Enter and Reenter the password.</p>
+                <p>5. Click "Register Now!"</p>
+                <h2>Log in</h2>
+                <p>1. Enter the given account's username and password.</p>
+                <p>2. Select "Remember me" if you want the website to remember you.</p>
+                <p>3. Click "Sign in"</p>
+                <h2><a name="C2"></a>View and Search Travel Packages</h2>
+                <p>1. item Enter the Overview page and click Start button</p>
+                <p>2. Input the name of the destination or attraction or the price range. </p>
+                <p>3. Click Check Availability button. </p>
+                <p>4. Check each journey. </p>
+                <p>5. Click every journey or attractions or accommodations.</p>
+                <p>6. Check the detail of this journey.</p>
+                <p>User can view all available attractions, hotels and trip guides. Digital Beans also will display the
+                    'top attractions', 'Top travel guide' and 'Top stay' to provide some inspiration to users about
+                    their dream journey. If the 'top recommendation' not match the user's wants? Our powerful searching
+                    function can allow user to search for any desirable attractions, destinations and the acceptable
+                    price range. User can fuzzy or precise search for travel journey.
+                </p>
+                <h2><a name="C3"></a>Add to Favorites</h2>
+                <p>1. Click on your preferred tour content on the home page to view details</p>
+                <p>2. Click the "Favourite" button to add this travel information to your favorites</p>
+                <h2>Remove favorites</h2>
+                <p>1. Click the travel content you want to remove from your favorites (already existed in your favourite list) on the home page</p>
+                <p>2. Click the "Remove" button to remove this travel information form your favorites</p>
             </div>
         </div>
 
     </div>
-
 {% endblock %}
-{#</body>#}
-{#</html>#}
-{#<embed src="static/upload/user file.pdf" type="application/pdf" width=800 height=800 class="container">#}
-{#<a href="system file.pdf">Download PDF</a>#}
-{#<p></p>#}
-{#<div id="example1"></div>#}
-{#<style>#}
-{#.pdfobject-container { width: 936px; height: 902px; }#}
-{#</style>#}
-{#<script>#}
-{#var options = {#}
-{#      pdfOpenParams: {#}
-{#        page: 1, // 第几页，没有则默认缓存上次打开的页数#}
-{#        toolbar: 0,  // 关闭第几栏#}
-{#        navpanes: 0, // 关闭导航#}
-{#        statusbar: 0, // 关闭状态栏#}
-{#        view: "FitH", // 视图顶对齐#}
-{#        scrollbars: "0" // 滚动条关闭#}
-{#      }#}
-{#    };#}
-{##}
-{#    PDFObject.embed("test.pdf", "#example1", options);#}
-{#</script>#}
-{##}
-{##}
-{#<script src="../static/pdfobject.js"></script>#}
-{#<script>PDFObject.embed("'static/upload/system file.pdf/'", "#example1");</script>#}
-{#</body>#}
-{#</html>#}
