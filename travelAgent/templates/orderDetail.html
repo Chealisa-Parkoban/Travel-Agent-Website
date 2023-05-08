@@ -29,8 +29,8 @@
                         {#                        <i class="fas fa-umbrella-beach fa-3x mt-1 tm-logo"></i>#}
                         <i class="fas fa-plane fa-3x " style="rotate: -30deg"></i>
                         <div class="media-body">
-                            <h1 class="tm-sitename text-uppercase" style="color: #2a2336">Digital Beans</h1>
-                            <p class="tm-slogon dark_color">Your travel agent</p>
+                            <h1 class="tm-sitename text-uppercase" style="color: white">Digital Beans</h1>
+                            <p class="tm-slogon" style="color: white">Your travel agent</p>
                         </div>
                     </div>
                 </div>
@@ -65,17 +65,19 @@
                 <div class="tm-col-left"></div>
                 <main class="tm-col-right">
                     <section class="tm-content">
-                        <h2 class="mb-5 tm-content-title"
-                            style="background: linear-gradient(#1c303d, #0b2e13); color: white; border-radius: 1rem; text-align: center">{{ combination.name }}</h2>
-                        <p class="mb-5">{{ combination.intro }}</p>
+                        <h1 class="mb-5 tm-content-title"
+                            style="background: linear-gradient(#4b82a6, #3275cc); color: white; border-radius: 0.5rem; text-align: center">{{ combination.name }}</h1>
+                        <div class="card" style="opacity: 0.7; background-color: black">
+                            <p class="mb-5 card-body" style="color: white; margin-right: 2%; margin-left: 2%">{{ combination.intro }}</p>
+                        </div>
                         <hr class="mb-5">
                         {#                        <p class="mb-5">Diagoona is Bootstrap v4.4.1 layout. This BG is 50% transparent. You can set the background images auto play settings (true or false in line number 33) in templatemo-script.js file in js folder.</p>#}
                         {#                        <a href="about.html" class="btn btn-primary">Continue...</a>#}
                     </section>
                     <section class="tm-content">
-                        <h2 class="mb-5 tm-content-title"
+                        <h1 class="mb-5 tm-content-title"
                             style="background: linear-gradient(#1c303d, #0b2e13); color: white; border-radius: 1rem; text-align: center">
-                            Your reservation</h2>
+                            Your reservation</h1>
                         {#                        <p class="mb-5"></p>#}
                         <kbd class="mb-5">User Name: {{ booking.name }}</kbd>
                         <kbd class="mb-5">Telephone: {{ booking.tel }}</kbd>

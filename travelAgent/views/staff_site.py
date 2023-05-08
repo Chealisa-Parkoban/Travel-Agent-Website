@@ -7,7 +7,7 @@ from travelAgent import app, db
 # from travelAgent.app import changeBookingStatus
 from travelAgent.forms import LoginForm, DayTripForm, PlanForm, DestinationForm, TargetForm
 from travelAgent.models import User, Destination, Target, Day, Combination, RecordC, Record, ContactModel, \
-    UserCombination
+    UserCombination, CommentC, FavoriteC
 from travelAgent.views.login_handler import login_manager
 
 from travelAgent.config import basedir
@@ -516,6 +516,23 @@ def delete_destination():
     des_id = int(session.get('des_id'))
     destination = Destination.query.filter_by(id=des_id).first()
     db.session.delete(destination)
+    for day in Day.query.filter_by(destination_id=des_id).all():
+        db.session.delete(day)
+        for combination in Combination.query.filter(Combination.day1==day.id or
+                                                    Combination.day2==day.id or
+                                                    Combination.day3==day.id or
+                                                    Combination.day4==day.id or
+                                                    Combination.day5==day.id or
+                                                    Combination.day6==day.id or
+                                                    Combination.day7==day.id).all():
+            db.session.delete(combination)
+            for booking in RecordC.query.filter_by(combination_id=combination.id).all():
+                db.session.delete(booking)
+            for comment in CommentC.query.filter_by(combination_id=combination.id).all():
+                db.session.delete(comment)
+            for favourite in FavoriteC.query.filter_by(combination_id=combination.id).all():
+                db.session.delete(favourite)
+
     db.session.commit()
     return redirect(url_for("staff_site.destinations", message="Delete successfully!"))
 
