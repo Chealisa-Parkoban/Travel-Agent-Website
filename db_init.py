@@ -13,6 +13,7 @@ with app.app_context():
     us4 = User(username='allen', email='allen@ucd.ie', password='1225', is_admin=0)
     us5 = User(username='chiquita', email='chiquita@ucd.ie', password='2222', is_admin=0)
     us6 = User(username='Lily', email='Lily@ucd.ie', password='1111', is_admin=0)
+    us7 = User(username='Jenny', email='Jenny@ucd.ie', password='1111', is_admin=0)
     db.session.add_all([us1, us2, us3, us4, us5,us6])
     db.session.commit()
 
@@ -140,19 +141,24 @@ with app.app_context():
     comment2 = CommentC(user_id=5, username="chiquita", score=5, combination_id=3, content="Excellent trip! I even want to travel it again!", image="static/upload/Blarney.png", time="2023-04-13 11:05:33")
     comment3 = CommentC(user_id=6, username="Lily", score=5, combination_id=2,
                         content="Nice Trip! New York is so attractive! I will come again!", image="static/upload/New.png", time="2023-05-01 15:02:03")
-    comment4 = CommentC(user_id=4, username="chiquita", score=5, combination_id=2,
+    comment4 = CommentC(user_id=5, username="chiquita", score=5, combination_id=2,
                         content="The hotel can be better, else is nice", image="",
                         time="2023-05-03 13:19:30")
-    comment5 = CommentC(user_id=5, username="Lily", score=5, combination_id=1,
+    comment5 = CommentC(user_id=6, username="Lily", score=5, combination_id=1,
                         content="Excellent trip! Nice hotel!", image="static/upload/New.png",
                         time="2023-04-13 11:05:33")
-    db.session.add_all([comment1, comment2,comment3,comment4,comment5])
+    comment6 = CommentC(user_id=7, username="jenny", score=4, combination_id=1,
+                        content="Not perfect, but worthy to come!", image="static/upload/New.png",
+                        time="2023-04-23 11:15:33")
+    db.session.add_all([comment1, comment2,comment3,comment4,comment5,comment6])
     db.session.commit()
 
 
     # ---------------------------order--------------------------------#
     order1 = RecordC(user_id=3, combination_id=1, time="2023-02-13 10:00:33", start_time="2023-07-13", num=2, name="Selina", tel=11010801234, price=3350, status="Uncompleted", status2="No comment")
     order2 = RecordC(user_id=4, combination_id=2, time="2023-03-19 05:18:58", start_time="2023-05-20", num=2, name="Allen", tel=18910191225, price=5250, status="Uncompleted", status2="No comment")
-    db.session.add_all([order1, order2])
+    order3 = RecordC(user_id=5, combination_id=1, time="2023-03-09 05:18:58", start_time="2023-05-12", num=2,
+                     name="chiquita", tel=18932523251, price=3250, status="Uncompleted", status2="No comment")
+    db.session.add_all([order1, order2,order3])
     db.session.commit()
 
