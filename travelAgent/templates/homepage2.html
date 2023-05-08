@@ -137,6 +137,23 @@
                                 Availability
                             </button>
                         </div>
+                        <div>
+                            <div class="flash-message" style="margin-top: 3%">
+                            {% with messages = get_flashed_messages() %}
+                                {% if messages %}
+                                    <ul>
+                                        {% for message in messages %}
+                                            {% for message in messages %}
+                                                <li style="text-align: center; font-size: larger; color: red; list-style: none;margin-left: 1%;">
+                                                    <div class="alert alert-danger" role="alert" id="message" style="opacity: 0.6;">{{ message }}</div>
+                                                </li>
+                                            {% endfor %}
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            {% endwith %}
+                        </div>
+                        </div>
                     </div>
                 </form>
             </div>
