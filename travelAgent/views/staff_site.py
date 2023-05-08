@@ -970,6 +970,22 @@ def customised_delete_plan(plan_id):
     return redirect(url_for("staff_site.customised_packages", message="Delete successfully!"))
 
 
+@staff_blueprint.route('/staff/customer_accounts', methods=['GET', 'POST'])
+def customer_accounts():
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    users = User.query.filter_by(is_admin=0).all()
+    return render_template("./staff_site/customers.html", users=users, user=current_user)
+
+
+@staff_blueprint.route('/staff/staff_accounts', methods=['GET', 'POST'])
+def staff_accounts():
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    users = User.query.filter_by(is_admin=1).all()
+    return render_template("./staff_site/staffs.html", users=users, user=current_user)
+
+
 def delete_combination_relate(combination_id):
     for record in RecordC.query.filter_by(combination_id=combination_id).all():
         db.session.delete(record)

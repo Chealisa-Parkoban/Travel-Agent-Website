@@ -1,0 +1,69 @@
+{% extends "staff_site/base.html" %}
+      {% block body %}
+
+{#      {% if message != "" %}#}
+{#          <script xmlns="http://www.w3.org/1999/html">#}
+{#              alert("{{message}}");#}
+{#          </script>#}
+{#      {% endif %}#}
+
+
+      <!-- partial -->
+      <div class="main-panel">
+          <div class="content-wrapper">
+              <div class="row">
+                  <div class="col-lg-6 grid-margin stretch-card" style="width: 100%">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">All Customer Accounts</h4>
+                  <p class="card-description">
+                    All Customer Accounts in <code>Digital Beans</code>
+                  </p>
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                            <th>User ID</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Active</th>
+                            <th>Delete</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                      {% for user in users %}
+                        <tr>
+                            <td>{{user.id}}</td>
+                            <td>{{user.username}}</td>
+                            <td>{{user.email}}</td>
+                            <td>{{user.active}}</td>
+                            <td>
+                            <a href="">
+                                <input type="submit" class="btn btn-success" style="width: fit-content" value="DELETE" />
+                            </a>
+                            </td>
+                        </tr>
+                      {% endfor %}
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+              </div>
+          </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:../../partials/_footer.html -->
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+<!--            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Premium <a href="" target="_blank">Bootstrap admin template</a> from BootstrapDash.</span>-->
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copyright © 2021. All rights reserved.</span>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+      {% endblock %}
