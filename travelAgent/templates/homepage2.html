@@ -197,6 +197,7 @@
         </div>
     </div>
 
+    {% if attractions == [] %}
     <div class="promotions">
         <div class="container">
             <h2 class="tittle">Top Attractions</h2>
@@ -237,7 +238,9 @@
             </div>
         </div>
     </div>
+    {% endif %}
 
+    {% if hotels == [] %}
     <div class="promotions">
         <div class="container">
             <h2 class="tittle">Stays</h2>
@@ -278,7 +281,7 @@
             </div>
         </div>
     </div>
-
+    {% endif %}
 
 {% endblock %}
 
