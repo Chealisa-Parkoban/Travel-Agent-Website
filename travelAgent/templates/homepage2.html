@@ -197,7 +197,7 @@
         </div>
     </div>
 
-    {% if attractions == [] %}
+    {% if attractions != null %}
     <div class="promotions">
         <div class="container">
             <h2 class="tittle">Top Attractions</h2>
@@ -240,7 +240,7 @@
     </div>
     {% endif %}
 
-    {% if hotels == [] %}
+    {% if hotels != null %}
     <div class="promotions">
         <div class="container">
             <h2 class="tittle">Stays</h2>
