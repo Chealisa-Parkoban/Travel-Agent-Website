@@ -502,21 +502,21 @@ def delete_destination():
     return '0'
 
 
-@app.route('/staff/contents/destinations/store_attr_id', methods=['GET', 'POST'])
+@app.route('/staff/contents/attractions/store_attr_id', methods=['GET', 'POST'])
 def delete_attraction():
     attr_id = request.args.get("id")
     session['attr_id'] = attr_id
     return '0'
 
 
-@app.route('/staff/contents/destinations/store_acc_id', methods=['GET', 'POST'])
+@app.route('/staff/contents/accommodations/store_acc_id', methods=['GET', 'POST'])
 def delete_accommodation():
     acc_id = request.args.get("id")
     session['acc_id'] = acc_id
     return '0'
 
 
-@app.route('/staff/contents/destinations/store_tra_id', methods=['GET', 'POST'])
+@app.route('/staff/contents/traffics/store_tra_id', methods=['GET', 'POST'])
 def delete_traffic():
     tra_id = request.args.get("id")
     session['tra_id'] = tra_id

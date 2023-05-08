@@ -129,7 +129,6 @@ def addPersonalBooking(combination_id):
                 db.session.add(booking)
                 db.session.commit()
                 return redirect("/order_list")
-
             else:
                 flash("Wrong phone number, please enter a phone number consisting of 11 digits only")
                 return render_template('book.html', form=form, combination_id=combination_id, combination=combination)
