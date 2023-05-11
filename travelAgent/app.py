@@ -92,6 +92,10 @@ def about():
 def help():
     return render_template("help.html")
 
+@app.route('/help_for_customer')
+def help_for_customer():
+    return render_template("help_for_customer.html")
+
 @app.route('/contactUs')
 def contact_us():
     logger.info('Entered the CONTACT page')
