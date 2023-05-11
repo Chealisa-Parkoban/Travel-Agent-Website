@@ -39,7 +39,7 @@
                             <td>{{user.email}}</td>
                             <td>{{user.active}}</td>
                             <td>
-                            <a href="">
+                            <a href="{{ url_for("staff_site.delete_user", id=user.id) }}">
                                 <input type="submit" class="btn btn-success" style="width: fit-content" value="DELETE" />
                             </a>
                             </td>

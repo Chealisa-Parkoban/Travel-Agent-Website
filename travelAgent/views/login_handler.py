@@ -86,6 +86,11 @@ def sign_up():
             app.logger.info('Sign up form information get')
             # get user's information
             newname = form.username.data
+
+            if User.get_by_username(username=newname) is not None:
+                flash("Username Exist! Please choose another one.")
+                return redirect(url_for("account.sign_up"))
+
             email = form.email.data
             # captcha = form.email_verification_code.data
             password = form.password.data
@@ -109,6 +114,7 @@ def sign_up():
 
 @login_blueprint.route("/captcha", methods=['POST'])
 def get_captcha():
+    print("get_captcha")
     # GET, POST
     email = request.form.get("email")
     # captcha_source = string.ascii_letters + string.digits

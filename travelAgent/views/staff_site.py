@@ -7,7 +7,7 @@ from travelAgent import app, db
 # from travelAgent.app import changeBookingStatus
 from travelAgent.forms import LoginForm, DayTripForm, PlanForm, DestinationForm, TargetForm
 from travelAgent.models import User, Destination, Target, Day, Combination, RecordC, Record, ContactModel, \
-    UserCombination, CommentC, FavoriteC, RecordP
+    UserCombination, CommentC, FavoriteC, RecordP, Comment, Favorite
 from travelAgent.views.login_handler import login_manager
 
 from travelAgent.config import basedir
@@ -985,6 +985,33 @@ def staff_accounts():
     users = User.query.filter_by(is_admin=1).all()
     return render_template("./staff_site/staffs.html", users=users, user=current_user)
 
+
+@staff_blueprint.route('/staff/delete_user/<id>', methods=['GET', 'POST'])
+def delete_user(id):
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    user = User.query.filter_by(id=id).first()
+    if user is not None:
+        for record in Record.query.filter_by(user_id=id).all():
+            db.session.delete(record)
+        for record in RecordC.query.filter_by(user_id=id).all():
+            db.session.delete(record)
+        for record in RecordP.query.filter_by(user_id=id).all():
+            db.session.delete(record)
+        for comment in Comment.query.filter_by(user_id=id).all():
+            db.session.delete(comment)
+        for comment in CommentC.query.filter_by(user_id=id).all():
+            db.session.delete(comment)
+        for favorite in Favorite.query.filter_by(user_id=id).all():
+            db.session.delete(favorite)
+        for favorite in FavoriteC.query.filter_by(user_id=id).all():
+            db.session.delete(favorite)
+        for combination in UserCombination.query.filter_by(user_id=id).all():
+            delete_combination_relate(combination.id)
+            db.session.delete(combination)
+        db.session.delete(user)
+        db.session.commit()
+    return redirect(url_for("staff_site.customer_accounts"))
 
 def delete_combination_relate(combination_id):
     for record in RecordC.query.filter_by(combination_id=combination_id).all():
