@@ -18,6 +18,7 @@
                             <th>Traffic</th>
                             <th>Introduction</th>
                             <th>Price</th>
+                            <th>Delete</th>
                         </tr>
                       </thead>
 
@@ -27,6 +28,20 @@
                             <td>{{traffic.name}}</td>
                             <td>{{traffic.intro}}</td>
                             <td><label class="badge badge-danger">¥ {{traffic.price}}</label></td>
+                            <td><input type="submit" class="btn btn-success" style="width: fit-content" value="DELETE" onclick="delete_tra({{traffic.id}})" /></td>
+                            <script>
+                                function delete_tra (id){
+                                  $.get({
+                                    url: '/staff/contents/traffics/store_tra_id',
+                                    type: 'GET',
+                                    data: ({id : id}),
+                                    success: function (data) {
+                                        window.location.href = '/staff/contents/traffics/delete';
+                                    }
+                                  })
+                                }
+                            </script>
+
                         </tr>
                       {% endfor %}
 

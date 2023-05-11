@@ -12,7 +12,9 @@ with app.app_context():
     us3 = User(username='selina', email='selina@163.com', password='1111', is_admin=0)
     us4 = User(username='allen', email='allen@ucd.ie', password='1225', is_admin=0)
     us5 = User(username='chiquita', email='chiquita@ucd.ie', password='2222', is_admin=0)
-    db.session.add_all([us1, us2, us3, us4, us5])
+    us6 = User(username='Lily', email='Lily@ucd.ie', password='1111', is_admin=0)
+    us7 = User(username='Jenny', email='Jenny@ucd.ie', password='1111', is_admin=0)
+    db.session.add_all([us1, us2, us3, us4, us5,us6])
     db.session.commit()
 
     des1 = Destination(id=1, name='Beijing')
@@ -21,7 +23,12 @@ with app.app_context():
     des4 = Destination(id=4, name='Dublin')
     des5 = Destination(id=5, name='Paris')
     des6 = Destination(id=6, name='London')
-    db.session.add_all([des1, des2, des3, des4, des5, des6])
+    des7 = Destination(id=7, name='Chengdu')
+    des8 = Destination(id=8, name='Sydney')
+    des9 = Destination(id=9, name='Copenhagen')
+    des10 = Destination(id=10, name='Roma')
+    des11 = Destination(id=11, name='Florence')
+    db.session.add_all([des1, des2, des3, des4, des5, des6,des7,des8,des9,des10,des11])
     db.session.commit()
 
     # 暂定 0 为attraction，1 为accommodation， 2 为traffic
@@ -108,6 +115,9 @@ with app.app_context():
                        intro="During this four-day tour, you'll visit iconic landmarks like the 9/11 Memorial and Museum and the Statue of Liberty, as well as attend a Broadway show and climb a skyscraper. Experience the unique charm of New York City on this unforgettable tour.", price=5250, length=4, image='static/upload/summit2.png')
     com3 = Combination(name='Dublin Four-Day Trip', day1=8, day2=9, day3=10, day4=11, day5=None, day6=None, day7=None,
                           intro='Explore the stunning Cliffs of Moher and vibrant Galway. Tour the iconic Jameson Distillery, hop on a convenient Hop-On Hop-Off tour, and kiss the Blarney Stone at the legendary Blarney Castle. An unforgettable adventure awaits!', price=4250, length=4, image='static/upload/Galway.png')
+    # com4 = Combination(name='Dublin Two-Day Trip', day1=8, day2=10, day3=None, day4=None, day5=None, day6=None, day7=None,
+    #                    intro='Explore the stunning Cliffs of Moher and vibrant Galway. Tour the iconic Jameson Distillery, hop on a convenient Hop-On Hop-Off tour, and kiss the Blarney Stone at the legendary Blarney Castle. An unforgettable adventure awaits!',
+    #                    price=4250, length=4, image='static/upload/Galway.png')
 
     db.session.add_all([com1, com2, com3])
     db.session.commit()
@@ -119,7 +129,6 @@ with app.app_context():
     fav5 = Favorite(user_id=3, target_id=14, time="2023-02-13 10:00:33")
     fav6 = Favorite(user_id=3, target_id=8, time="2023-02-13 10:00:33")
     fav9 = Favorite(user_id=3, target_id=19, time="2023-02-13 10:00:33")
-
     fav7 = FavoriteC(user_id=3, combination_id=1, time="2023-02-13 10:00:33")
     fav8 = FavoriteC(user_id=3, combination_id=2, time="2023-02-13 10:00:33")
 
@@ -129,14 +138,30 @@ with app.app_context():
 
     # ---------------------------comment--------------------------------#
     comment1 = CommentC(user_id=4, username="allen", score=4, combination_id=3, content="This is a good trip! I was with my parents and they all said they feel very satisfied.", image="static/upload/Blarney.png", time="2023-02-13 10:00:33")
-    comment2 = CommentC(user_id=5, username="chiquita", score=5, combination_id=3, content="Excellent trip! I even want to travel it again!", image="", time="2023-04-13 11:05:33")
-    db.session.add_all([comment1, comment2])
+    comment2 = CommentC(user_id=5, username="chiquita", score=5, combination_id=3, content="Excellent trip! I even want to travel it again!", image="static/upload/Blarney.png", time="2023-04-13 11:05:33")
+    comment3 = CommentC(user_id=6, username="Lily", score=5, combination_id=2,
+                        content="Nice Trip! New York is so attractive! I will come again!", image="static/upload/New.png", time="2023-05-01 15:02:03")
+    comment4 = CommentC(user_id=5, username="chiquita", score=5, combination_id=2,
+                        content="The hotel can be better, else is nice", image="",
+                        time="2023-05-03 13:19:30")
+    comment5 = CommentC(user_id=6, username="Lily", score=5, combination_id=1,
+                        content="Excellent trip! Nice hotel!", image="static/upload/New.png",
+                        time="2023-04-13 11:05:33")
+    comment6 = CommentC(user_id=7, username="jenny", score=4, combination_id=1,
+                        content="Not perfect, but worthy to come!", image="static/upload/New.png",
+                        time="2023-04-23 11:15:33")
+    db.session.add_all([comment1, comment2,comment3,comment4,comment5,comment6])
     db.session.commit()
 
 
     # ---------------------------order--------------------------------#
     order1 = RecordC(user_id=3, combination_id=1, time="2023-02-13 10:00:33", start_time="2023-07-13", num=2, name="Selina", tel=11010801234, price=3350, status="Uncompleted", status2="No comment")
     order2 = RecordC(user_id=4, combination_id=2, time="2023-03-19 05:18:58", start_time="2023-05-20", num=2, name="Allen", tel=18910191225, price=5250, status="Uncompleted", status2="No comment")
-    db.session.add_all([order1, order2])
+    order3 = RecordC(user_id=5, combination_id=1, time="2023-03-09 05:18:58", start_time="2023-05-12", num=2,
+                     name="chiquita", tel=18932523251, price=3250, status="Uncompleted", status2="No comment")
+    db.session.add_all([order1, order2,order3])
     db.session.commit()
+
+
+    # ---------------------------customised package--------------------------------#
 
