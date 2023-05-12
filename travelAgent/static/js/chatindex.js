@@ -201,7 +201,7 @@ async function add_messages(msg, scroll) {
             '<hr />'+
             '</b><b><p style="text-align: left;color: black; font-size:15px">' +
                 'You can check order status inside ' +
-                  '<a href="http://127.0.0.1:5000/order_list">ORDERS</a>'+
+                  '<a href="http://csi420-01-vm3.ucd.ie/order_list">ORDERS</a>'+
                   ' page' +
                 '</p></b>'
             + ////////////////
@@ -316,7 +316,7 @@ async function add_messages(msg, scroll) {
             '<hr />'+
             '</b><b><p style="text-align: left;color: black; font-size:15px">' +
                   'You can check your Favorites inside '+
-                 '<a href="http://127.0.0.1:5000/favourites">FAVORITES</a>'+
+                 '<a href="http://csi420-01-vm3.ucd.ie/favourites">FAVORITES</a>'+
                  ' page' +
 
                 '</p></b>'
@@ -387,7 +387,7 @@ async function add_messages(msg, scroll) {
             '<hr />'+
             '</b><b><p style="text-align: left;color: black; font-size:15px">' +
                  'You can contact with Digital Beans for further cooperation inside '+
-                 '<a href="http://127.0.0.1:5000/contactUs">CONTACT US</a>'+
+                 '<a href="http://csi420-01-vm3.ucd.ie/contactUs">CONTACT US</a>'+
                  ' page' +
                 '</p></b>'
             + ////////////////
@@ -414,10 +414,7 @@ async function add_messages(msg, scroll) {
         scrollSmoothToBottom("messages");
     }
 }
-function mylink(link) {
-    window.location.href="http://127.0.0.1:5000/favourites";
-    console.log(link.value);
-}
+
 
 function load_username() {
     return $('#username').html()
