@@ -1,4 +1,5 @@
 function bindCaptchaBtnClick(){
+    console.log("bindCaptchaBtnClick");
     // 这个dollar函数可以获取对应button的信息，如果是获取id，则是在双引号内加上#加id
     $("#captcha-btn").on("click", function (event){
         // this 表示的是当前函数，但是套上$() 就变成了jQuery

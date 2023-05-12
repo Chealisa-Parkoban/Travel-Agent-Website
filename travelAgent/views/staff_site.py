@@ -7,7 +7,7 @@ from travelAgent import app, db
 # from travelAgent.app import changeBookingStatus
 from travelAgent.forms import LoginForm, DayTripForm, PlanForm, DestinationForm, TargetForm
 from travelAgent.models import User, Destination, Target, Day, Combination, RecordC, Record, ContactModel, \
-    UserCombination, CommentC, FavoriteC
+    UserCombination, CommentC, FavoriteC, RecordP, Comment, Favorite
 from travelAgent.views.login_handler import login_manager
 
 from travelAgent.config import basedir
@@ -396,7 +396,10 @@ def delete_plan(plan_id):
         return redirect(url_for("staff_site.login"))
     plan = Combination.query.filter_by(id=plan_id).first()
 
-    db.session.delete(plan)
+    day_ids = plan.get_days()
+    for day_id in day_ids:
+        delete_day_relate(day_id)
+
     db.session.commit()
     return redirect(url_for("staff_site.contents", message="Delete successfully!"))
 
@@ -517,21 +520,7 @@ def delete_destination():
     destination = Destination.query.filter_by(id=des_id).first()
     db.session.delete(destination)
     for day in Day.query.filter_by(destination_id=des_id).all():
-        db.session.delete(day)
-        for combination in Combination.query.filter(Combination.day1==day.id or
-                                                    Combination.day2==day.id or
-                                                    Combination.day3==day.id or
-                                                    Combination.day4==day.id or
-                                                    Combination.day5==day.id or
-                                                    Combination.day6==day.id or
-                                                    Combination.day7==day.id).all():
-            db.session.delete(combination)
-            for booking in RecordC.query.filter_by(combination_id=combination.id).all():
-                db.session.delete(booking)
-            for comment in CommentC.query.filter_by(combination_id=combination.id).all():
-                db.session.delete(comment)
-            for favourite in FavoriteC.query.filter_by(combination_id=combination.id).all():
-                db.session.delete(favourite)
+        delete_day_relate(day.id)
 
     db.session.commit()
     return redirect(url_for("staff_site.destinations", message="Delete successfully!"))
@@ -544,6 +533,9 @@ def delete_attraction():
     attr_id = int(session.get('attr_id'))
     attraction = Target.query.filter_by(id=attr_id).first()
     db.session.delete(attraction)
+    for day in Day.query.filter_by(attraction_id=attr_id).all():
+        delete_day_relate(day.id)
+
     db.session.commit()
     return redirect(url_for("staff_site.attractions", message="Delete successfully!"))
     # return redirect(url_for("staff_site.attractions", message="Delete successfully!"))
@@ -556,6 +548,8 @@ def delete_accommodation():
     acc_id = int(session.get('acc_id'))
     accommodation = Target.query.filter_by(id=acc_id).first()
     db.session.delete(accommodation)
+    for day in Day.query.filter_by(accommodation_id=acc_id).all():
+        delete_day_relate(day.id)
     db.session.commit()
     return redirect(url_for("staff_site.accommodations", message="Delete successfully!"))
 
@@ -567,6 +561,8 @@ def delete_traffic():
     traffic_id = int(session.get('tra_id'))
     traffic = Target.query.filter_by(id=traffic_id).first()
     db.session.delete(traffic)
+    for day in Day.query.filter_by(traffic_id=traffic_id).all():
+        delete_day_relate(day.id)
     db.session.commit()
     return redirect(url_for("staff_site.traffics", message="Delete successfully!"))
 
@@ -708,6 +704,9 @@ def delete_customised(plan_id):
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
     plan = db.session.query(UserCombination).filter_by(id=plan_id).first()
+    day_ids = plan.get_days()
+    for day_id in day_ids:
+        delete_day_relate(day_id)
     db.session.delete(plan)
     db.session.commit()
     return redirect(url_for("staff_site.customised_packages", message="Delete successfully!"))
@@ -724,9 +723,9 @@ def load_detail():
     customised_trip_fees.clear()
 
     if plan is not None:
-        for day in plan.get_days():
+        for day_id in plan.get_days():
+            day = Day.query.filter_by(id=day_id).first()
             if day != None:
-                day = Day.query.filter_by(id=day).first()
                 destination = Destination.query.filter_by(id=day.destination_id).first()
                 attraction = Target.query.filter_by(id=day.attraction_id).first()
                 accommodation = Target.query.filter_by(id=day.accommodation_id).first()
@@ -963,10 +962,123 @@ def customised_delete_plan(plan_id):
         return redirect(url_for("staff_site.login"))
     plan = UserCombination.query.filter_by(id=plan_id).first()
 
+    day_ids = plan.get_days()
+    for day_id in day_ids:
+        delete_day_relate(day_id)
     db.session.delete(plan)
     db.session.commit()
     return redirect(url_for("staff_site.customised_packages", message="Delete successfully!"))
 
 
+@staff_blueprint.route('/staff/customer_accounts', methods=['GET', 'POST'])
+def customer_accounts():
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    users = User.query.filter_by(is_admin=0).all()
+    return render_template("./staff_site/customers.html", users=users, user=current_user)
 
+
+@staff_blueprint.route('/staff/staff_accounts', methods=['GET', 'POST'])
+def staff_accounts():
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    users = User.query.filter_by(is_admin=1).all()
+    return render_template("./staff_site/staffs.html", users=users, user=current_user)
+
+
+@staff_blueprint.route('/staff/delete_user/<id>', methods=['GET', 'POST'])
+def delete_user(id):
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    user = User.query.filter_by(id=id).first()
+    if user is not None:
+        for record in Record.query.filter_by(user_id=id).all():
+            db.session.delete(record)
+        for record in RecordC.query.filter_by(user_id=id).all():
+            db.session.delete(record)
+        for record in RecordP.query.filter_by(user_id=id).all():
+            db.session.delete(record)
+        for comment in Comment.query.filter_by(user_id=id).all():
+            db.session.delete(comment)
+        for comment in CommentC.query.filter_by(user_id=id).all():
+            db.session.delete(comment)
+        for favorite in Favorite.query.filter_by(user_id=id).all():
+            db.session.delete(favorite)
+        for favorite in FavoriteC.query.filter_by(user_id=id).all():
+            db.session.delete(favorite)
+        for combination in UserCombination.query.filter_by(user_id=id).all():
+            delete_combination_relate(combination.id)
+            db.session.delete(combination)
+        db.session.delete(user)
+        db.session.commit()
+    return redirect(url_for("staff_site.customer_accounts"))
+
+def delete_combination_relate(combination_id):
+    for record in RecordC.query.filter_by(combination_id=combination_id).all():
+        db.session.delete(record)
+    for comment in CommentC.query.filter_by(combination_id=combination_id).all():
+        db.session.delete(comment)
+    for favorite in FavoriteC.query.filter_by(combination_id=combination_id).all():
+        db.session.delete(favorite)
+    db.session.commit()
+
+
+def delete_day_relate(day_id):
+    day = Day.query.filter_by(id=day_id).first()
+    if day is not None:
+        db.session.delete(day)
+
+    for combination in Combination.query.all():
+        if combination.day1 == day_id:
+            delete_combination_relate(combination.id)
+            db.session.delete(combination)
+        elif combination.day2 == day_id:
+            delete_combination_relate(combination.id)
+            db.session.delete(combination)
+        elif combination.day3 == day_id:
+            delete_combination_relate(combination.id)
+            db.session.delete(combination)
+        elif combination.day4 == day_id:
+            delete_combination_relate(combination.id)
+            db.session.delete(combination)
+        elif combination.day5 == day_id:
+            delete_combination_relate(combination.id)
+            db.session.delete(combination)
+        elif combination.day6 == day_id:
+            delete_combination_relate(combination.id)
+            db.session.delete(combination)
+        elif combination.day7 == day_id:
+            delete_combination_relate(combination.id)
+            db.session.delete(combination)
+
+    for combination in UserCombination.query.all():
+        # print("ok", day_id)
+        # print(combination.day1, combination.day2, combination.day3, combination.day4, combination.day5, combination.day6, combination.day7)
+        if combination.day1 == day_id:
+            for record in RecordP.query.filter_by(combination_id=combination.id).all():
+                db.session.delete(record)
+            db.session.delete(combination)
+        elif combination.day2 == day_id:
+            for record in RecordP.query.filter_by(combination_id=combination.id).all():
+                db.session.delete(record)
+            db.session.delete(combination)
+        elif combination.day3 == day_id:
+            for record in RecordP.query.filter_by(combination_id=combination.id).all():
+                db.session.delete(record)
+            db.session.delete(combination)
+        elif combination.day4 == day_id:
+            for record in RecordP.query.filter_by(combination_id=combination.id).all():
+                db.session.delete(record)
+            db.session.delete(combination)
+        elif combination.day5 == day_id:
+            db.session.delete(combination)
+        elif combination.day6 == day_id:
+            for record in RecordP.query.filter_by(combination_id=combination.id).all():
+                db.session.delete(record)
+            db.session.delete(combination)
+        elif combination.day7 == day_id:
+            for record in RecordP.query.filter_by(combination_id=combination.id).all():
+                db.session.delete(record)
+            db.session.delete(combination)
+    db.session.commit()
 
