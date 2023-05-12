@@ -414,7 +414,7 @@ async function add_messages(msg, scroll) {
         scrollSmoothToBottom("messages");
     }
 }
-
+//
 
 function load_username() {
     return $('#username').html()
