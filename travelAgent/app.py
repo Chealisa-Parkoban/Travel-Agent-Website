@@ -766,12 +766,12 @@ def data():
     attractions = []
     accommodations = []
     traffics = []
-    for day in days:
-        start_time = day.start_time
+    for day_ in days:
+        start_time = day_.start_time
         # start_t = datetime.strptime(start_time, '%Y-%m-%d')
         start_date = datetime.strptime(start_time, '%Y-%m-%d')
         dates.append(start_time)
-        combination_id = day.combination_id
+        combination_id = day_.combination_id
         combination = db.session.query(Combination).filter_by(id=combination_id).first()
         day_id = combination.day1
         day = db.session.query(Day).filter_by(id=day_id).first()
@@ -821,7 +821,7 @@ def data():
 
         length = combination.length
 
-        for i in range(0, length - 1):
+        for i in range(1, length):
             length_timedelta = timedelta(days=1)
             following_time = start_date + length_timedelta
             following_time_string = following_time.strftime('%Y-%m-%d')
@@ -932,7 +932,7 @@ def data():
 
         length = combination.length
 
-        for i in range(0, length - 1):
+        for i in range(1, length):
             length_timedelta = timedelta(days=1)
             following_time = start_date + length_timedelta
             following_time_string = following_time.strftime('%Y-%m-%d')
@@ -1006,7 +1006,7 @@ def data():
             length = delta.days  # 获取日期差中的天数
             dates.append(start_time)
 
-            for i in range(0, length - 1):
+            for i in range(1, length):
                 length_timedelta = timedelta(days=1)
                 following_time = start_date + length_timedelta
                 following_time_string = following_time.strftime('%Y-%m-%d')
