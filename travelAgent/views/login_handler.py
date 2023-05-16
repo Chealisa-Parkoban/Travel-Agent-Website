@@ -103,7 +103,7 @@ def sign_up():
             app.logger.info('User \'' + newname + '\' has successfully signed up')
 
             # flash the message
-            flash('Signup requested for user {}'.format(form.username.data))
+            # flash('Signup requested for user {}'.format(form.username.data))
             # redirect to the login page, for user to login
             return redirect(url_for("account.login"))
         else:

@@ -73,6 +73,7 @@ def get_data():
 
 
 @staff_blueprint.route('/staff', methods=['GET', 'POST'])
+@staff_blueprint.route('/staff/', methods=['GET', 'POST'])
 def login():
     # changeBookingStatus()
     global emsg
