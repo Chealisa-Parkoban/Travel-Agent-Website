@@ -217,6 +217,7 @@ def submit_plan():
     price = request.form.get('price')
     length = day_trip_draft.__len__()
     days = []
+    print(name, intro, price, length, day_trip_draft.__len__() )
 
     for day in day_trip_draft:
         destination_id = Destination.query.filter_by(name=day[1]).first().id
