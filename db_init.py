@@ -44,10 +44,15 @@ with app.app_context():
     acc5 = Target(name='Blooms Hotel', destination_id=4, image='static/upload/Blooms.png', intro='Blooms Hotel is located in Dublin’s Temple Bar district, 492 feet from Trinity College and Dublin Castle. It has a traditional Irish pub, a nightclub and rooms with flat-screen TVs.', type='1', price=539)
     acc6 = Target(name='The Spencer Hotel', destination_id=4, image='static/upload/Spencer.png', intro="Overlooking the River Liffey, The Spencer Hotel is 10 minutes from the famous O'Connell Bridge and 20 minutes from the Temple Bar and Grafton Street.", type='1', price=786)
     acc7 = Target(name='The Shelbourne', destination_id=4, image='static/upload/Shelbourne.png', intro='The Shelbourne, Autograph Collection', type='1', price=1343)
-    # acc8 = Target(name='The Shelbourne2', destination_id=4, image='static/upload/Shelbourne.png',
-    #               intro='The Shelbourne, Autograph Collection', type='1', price=1343)
-    # acc9 = Target(name='The Shelbourne3', destination_id=4, image='static/upload/Shelbourne.png',
-    #               intro='The Shelbourne, Autograph Collection', type='1', price=1343)
+
+    # Beijing
+    acc8 = Target(name='Waldorf Astoria Beijing', destination_id=1, image='static/upload/waldorf.jpg',
+                  intro='Expansive and contemporary with a Chinese flavour, rooms. Located at No.5-15, Jingyu Hutong, Dongcheng District, Beijin. ', type='1', price=2888)
+    acc9 = Target(name='Tianlun Dynasty Hotel', destination_id=1, image='static/upload/tianlun.jpg',
+                  intro='Ideally located in the heart of the bustling Wangfujing Commercial Area, Sunworld Dynasty Hotel Beijing is surrounded by plenty of popular shopping malls and stylish restaurants.', type='1', price=960)
+
+    # Shanghai
+    acc10 = Target(name='Hotel Equatorial', destination_id=2, image='static/upload/equatorial.jpg', intro='Hotel Equatorial Shanghai is conveniently situated about a 4-minute drive from Shanghai Exhibition Centre and Nanjing Road shopping street. ', type='1', price=1600)
 
     # ---------------------------attractions--------------------------------
     # New York
@@ -61,6 +66,18 @@ with app.app_context():
     att6 = Target(name='Jameson Distillery Tour', destination_id=4, image='static/images/sample_pic/the_north_Europe.png', intro='Ticket for guided immersive tour of Jameson Distillery with whiskey tasting', type='0', price=256)
     att7 = Target(name='Hop-On Hop-Off Tour', destination_id=4, image='static/upload/Hop.png', intro='A chance to explore Dublin on a hop-on hop-off bus tour', type='0', price=180)
     att8 = Target(name='Blarney Castle', destination_id=4, image='static/upload/Blarney.png', intro="Blarney Castle, Rock of Cashel and Cork Tour. A full-day tour of some of Ireland's most famous landmarks", type='0', price=210)
+
+    # Beijing
+    att9 = Target(name='Forbidden City-The Palace Museum', destination_id=1, image='static/upload/forbidden.jpg', intro='The Forbidden City in Beijing is a royal palace of the Ming and Qing dynasties of China, formerly known as the Forbidden City.', type='0', price=60)
+    att10 = Target(name='The Great Wall', destination_id=1, image='static/upload/great_wall.jpg', intro='The Great Wall is an ancient Chinese military fortification, a long, tall, strong and continuous wall.', type='0', price=40)
+    att11 = Target(name='National Museum of China', destination_id=1, image='static/upload/museum.jpg', intro='National Museum of China is the highest historical and cultural art hall and cultural living room of the country.', type='0', price=120)
+    att12 = Target(name='Temple of Heaven', destination_id=1, image='static/upload/temple.jpg', intro='The Temple of Heaven is the largest surviving ancient sacrificial complex in China.', type='0', price=30)
+
+
+    # Shanghai
+    att13 = Target(name='Shanghai Disney Resort', destination_id=2, image='static/upload/Disney.jpg', intro='Shanghai Disneyland not only retains the classic fairy tale style, but also incorporates more Chinese elements.', type='0', price=399)
+    att14 = Target(name='Oriental Pearl Tower', destination_id=2, image='static/upload/tower.jpg', intro="The Oriental Pearl, adjacent to the Huangpu River and across the river from the Bund, is one of Shanghai's iconic cultural landscapes.", type='0', price=368)
+    att15 = Target(name='The Bund', destination_id=2, image='static/upload/bund.jpg', intro='The Bund is the starting point of the modern city of Shanghai, and contains the essence of the whole city.', type='0', price=10)
 
     # ---------------------------traffic--------------------------------
     tra1 = Target( name='Bus', destination_id=1, image='static/upload/bus.png', intro='Please see the details page for specific routes', type='2', price=2)
@@ -85,7 +102,7 @@ with app.app_context():
     # tar13 = Target( name='上海迪士尼乐园', destination_id=3, image='', intro='上海迪士尼度假区 Disney Resort', type='0', price=543)
 
     db.session.add_all([acc1, acc2, acc3, acc4, acc5, acc6, acc7, att1, att2, att3, att4, att5, att6, att7, att8, tra1,
-                        tra2, tra3, tra4, tra5])
+                        tra2, tra3, tra4, tra5, att9, att10, att11, att12, att13, att14, att15, acc8, acc9, acc10])
     db.session.commit()
 
     # ---------------------------com1--------------------------------#
@@ -105,8 +122,18 @@ with app.app_context():
     day10 = Day(id=10, destination_id=4, attraction_id=14, accommodation_id=6, traffic_id=16)
     day11 = Day(id=11, destination_id=4, attraction_id=15, accommodation_id=6, traffic_id=17)
 
+    # ---------------------------com4/5--------------------------------#
+    day12 = Day(destination_id=1, attraction_id=21, accommodation_id=28, traffic_id=18)
+    day13 = Day(destination_id=1, attraction_id=22, accommodation_id=28, traffic_id=18)
+    day14 = Day(destination_id=1, attraction_id=23, accommodation_id=29, traffic_id=16)
+    day15 = Day(destination_id=1, attraction_id=24, accommodation_id=29, traffic_id=17)
 
-    db.session.add_all([day1, day2, day3, day4, day5, day6, day7, day8, day9, day10, day11])
+    # ---------------------------com6--------------------------------#
+    day16 = Day(destination_id=2, attraction_id=25, accommodation_id=30, traffic_id=17)
+    day17 = Day(destination_id=2, attraction_id=26, accommodation_id=30, traffic_id=20)
+    day18 = Day(destination_id=2, attraction_id=27, accommodation_id=30, traffic_id=20)
+
+    db.session.add_all([day1, day2, day3, day4, day5, day6, day7, day8, day9, day10, day11, day12, day13, day14, day15, day16, day17, day18])
     db.session.commit()
 
     com1 = Combination(name="New York Two-Day Trip", day1=1, day2=3, day3=None, day4=None, day5=None, day6=None, day7=None,
@@ -115,11 +142,18 @@ with app.app_context():
                        intro="During this four-day tour, you'll visit iconic landmarks like the 9/11 Memorial and Museum and the Statue of Liberty, as well as attend a Broadway show and climb a skyscraper. Experience the unique charm of New York City on this unforgettable tour.", price=5250, length=4, image='static/upload/summit2.png')
     com3 = Combination(name='Dublin Four-Day Trip', day1=8, day2=9, day3=10, day4=11, day5=None, day6=None, day7=None,
                           intro='Explore the stunning Cliffs of Moher and vibrant Galway. Tour the iconic Jameson Distillery, hop on a convenient Hop-On Hop-Off tour, and kiss the Blarney Stone at the legendary Blarney Castle. An unforgettable adventure awaits!', price=4250, length=4, image='static/upload/Galway.png')
-    # com4 = Combination(name='Dublin Two-Day Trip', day1=8, day2=10, day3=None, day4=None, day5=None, day6=None, day7=None,
-    #                    intro='Explore the stunning Cliffs of Moher and vibrant Galway. Tour the iconic Jameson Distillery, hop on a convenient Hop-On Hop-Off tour, and kiss the Blarney Stone at the legendary Blarney Castle. An unforgettable adventure awaits!',
-    #                    price=4250, length=4, image='static/upload/Galway.png')
+    com4 = Combination(name="Beijing Two-Day Trip", day1=13, day2=14, day3=None, day4=None, day5=None, day6=None,
+                       day7=None,
+                       intro="Attractions include the Great Wall and the National Museum of China, which gives visitors a glimpse of Beijing's cultural heritage, from military defenses to displays of treasures.",
+                       price=2000, length=2, image='static/upload/great_wall.jpg')
+    com5 = Combination(name='Beijing Four-Day Trip', day1=12, day2=13, day3=14, day4=15, day5=None, day6=None, day7=None,
+                       intro='Beijing is a charming city with both classical charm and fashionable atmosphere. Explore the fascinating city of Beijing, on this tour we will visit the Forbidden City, the National Museum, the Great Wall and the Temple of Heaven.',
+                       price=4300, length=4, image='static/upload/forbidden.jpg')
+    com6 = Combination(name='Shanghai Three-Day Trip', day1=16, day2=17, day3=18, day4=None, day5=None, day6=None, day7=None,
+                       intro='In the past, the prosperous "Ten Mile Square" told the old dream of the old Shanghai Beach. Shanghai, a commercial center where wealth converges, a magical metropolis with the name of "Paris of the East". During this trip, we will visit the interesting Disneyland, the landmark Oriental Pearl, and the bustling Bund.',
+                       price=3100, length=3, image='static/upload/Disney.jpg')
 
-    db.session.add_all([com1, com2, com3])
+    db.session.add_all([com1, com2, com3, com4, com5, com6])
     db.session.commit()
 
     fav1 = Favorite(user_id=3, target_id=1, time="2023-04-13 11:07:43")
@@ -131,8 +165,17 @@ with app.app_context():
     fav9 = Favorite(user_id=3, target_id=19, time="2023-02-13 10:00:33")
     fav7 = FavoriteC(user_id=3, combination_id=1, time="2023-02-13 10:00:33")
     fav8 = FavoriteC(user_id=3, combination_id=2, time="2023-02-13 10:00:33")
+    fav17 = Favorite(user_id=4, target_id=8, time="2023-02-13 10:00:33")
+    fav10 = Favorite(user_id=4, target_id=11, time="2023-02-13 10:00:33")
+    fav11 = Favorite(user_id=4, target_id=14, time="2023-02-13 10:00:33")
+    fav12 = Favorite(user_id=4, target_id=29, time="2023-02-13 10:00:33")
+    fav13 = Favorite(user_id=5, target_id=12, time="2023-02-13 10:00:33")
+    fav14 = Favorite(user_id=5, target_id=26, time="2023-02-13 10:00:33")
+    fav15 = Favorite(user_id=5, target_id=26, time="2023-02-13 10:00:33")
+    fav16 = Favorite(user_id=6, target_id=15, time="2023-02-13 10:00:33")
 
-    db.session.add_all([fav1, fav2, fav3, fav4, fav5, fav6, fav7, fav8, fav9])
+
+    db.session.add_all([fav1, fav2, fav3, fav4, fav5, fav6, fav7, fav8, fav9, fav10, fav11, fav12, fav13, fav14, fav15, fav16, fav17])
     db.session.commit()
 
 
@@ -150,7 +193,44 @@ with app.app_context():
     comment6 = CommentC(user_id=7, username="jenny", score=4, combination_id=1,
                         content="Not perfect, but worthy to come!", image="static/upload/New.png",
                         time="2023-04-23 11:15:33")
-    db.session.add_all([comment1, comment2,comment3,comment4,comment5,comment6])
+    comment7 = CommentC(user_id=4, username="allen", score=4, combination_id=5,
+                        content="This is a good trip! I was with my parents and they all said they feel very satisfied.",
+                        image="static/upload/comment_bj.jpg", time="2023-02-13 10:00:33")
+    comment8 = CommentC(user_id=5, username="chiquita", score=5, combination_id=5,
+                        content="Excellent trip! I even want to travel it again!", image="static/upload/comment_bj2.jpg",
+                        time="2023-04-13 11:05:33")
+    comment9 = CommentC(user_id=6, username="Lily", score=5, combination_id=5,
+                        content="Nice Trip! Beijing is so attractive! I will come again!",
+                         time="2023-05-01 15:02:03")
+    comment10 = CommentC(user_id=5, username="chiquita", score=4, combination_id=6,
+                        content="The hotel can be better, else is nice", image="",
+                        time="2023-05-03 13:19:30")
+    comment11 = CommentC(user_id=6, username="Lily", score=5, combination_id=6,
+                        content="Excellent trip! Nice hotel!", image="static/upload/New.png",
+                        time="2023-04-13 11:05:33")
+    comment12 = CommentC(user_id=7, username="jenny", score=4, combination_id=6,
+                        content="Not perfect, but worthy to come!", image="static/upload/New.png",
+                        time="2023-04-23 11:15:33")
+    comment13 = Comment(user_id=4, username="allen", score=4, target_id=1, content="It's worth a visit", time="2023-04-23 11:15:33")
+    comment14 = Comment(user_id=4, username="allen", score=4, target_id=2, content="It's worth a visit", time="2023-04-23 11:15:33")
+    comment15 = Comment(user_id=4, username="allen", score=4, target_id=3, content="It's worth a visit", time="2023-04-23 11:15:33")
+    comment16 = Comment(user_id=4, username="allen", score=4, target_id=8, content="It's worth a visit", time="2023-04-23 11:15:33")
+    comment17 = Comment(user_id=4, username="allen", score=4, target_id=9, content="It's worth a visit", time="2023-04-23 11:15:33")
+    comment18 = Comment(user_id=4, username="allen", score=4, target_id=10, content="It's worth a visit", time="2023-04-23 11:15:33")
+    comment19 = Comment(user_id=4, username="allen", score=4, target_id=11, content="It's worth a visit", time="2023-04-23 11:15:33")
+    comment20 = Comment(user_id=5, username="chiquita", score=5, target_id=1, content='It was very nice and touched me deeply, I hope to have the opportunity to visit again', time="2023-05-01 15:02:03")
+    comment21 = Comment(user_id=5, username="chiquita", score=5, target_id=2, content='It was very nice and touched me deeply, I hope to have the opportunity to visit again', time="2023-05-01 15:02:03")
+    comment22 = Comment(user_id=5, username="chiquita", score=4, target_id=12, content='It was very nice and touched me deeply, I hope to have the opportunity to visit again', time="2023-05-01 15:02:03")
+    comment23 = Comment(user_id=5, username="chiquita", score=5, target_id=13, content='It was very nice and touched me deeply, I hope to have the opportunity to visit again', time="2023-05-01 15:02:03")
+    comment24 = Comment(user_id=5, username="chiquita", score=4, target_id=14, content='It was very nice and touched me deeply, I hope to have the opportunity to visit again', time="2023-05-01 15:02:03")
+    comment25 = Comment(user_id=5, username="chiquita", score=5, target_id=8, content='It was very nice and touched me deeply, I hope to have the opportunity to visit again', time="2023-05-01 15:02:03")
+    comment26 = Comment(user_id=6, username="Lily", score=5, target_id=21, content='nice, I was blown away by the beauty of the scenery', time="2023-05-07 17:17:03")
+    comment27 = Comment(user_id=6, username="Lily", score=5, target_id=22, content='nice, I was blown away by the beauty of the scenery', time="2023-05-07 17:17:03")
+    comment28 = Comment(user_id=6, username="Lily", score=5, target_id=23, content='nice, I was blown away by the beauty of the scenery', time="2023-05-07 17:17:03")
+    comment29 = Comment(user_id=6, username="Lily", score=5, target_id=8, content='nice, I was blown away by the beauty of the scenery', time="2023-05-07 17:17:03")
+    comment30 = Comment(user_id=6, username="Lily", score=5, target_id=12, content='nice, I was blown away by the beauty of the scenery', time="2023-05-07 17:17:03")
+
+    db.session.add_all([comment1, comment2,comment3,comment4,comment5,comment6, comment7, comment8, comment9, comment10, comment11, comment12, comment13,comment14,comment15,comment16,comment17,comment18,comment19,comment20,comment21,comment22,comment23,comment24,comment25,comment26,comment27,comment28,comment29,comment30])
     db.session.commit()
 
 
@@ -159,9 +239,17 @@ with app.app_context():
     order2 = RecordC(user_id=4, combination_id=2, time="2023-03-19 05:18:58", start_time="2023-05-20", num=2, name="Allen", tel=18910191225, price=5250, status="Uncompleted", status2="No comment")
     order3 = RecordC(user_id=5, combination_id=1, time="2023-03-09 05:18:58", start_time="2023-05-12", num=2,
                      name="chiquita", tel=18932523251, price=3250, status="Uncompleted", status2="No comment")
-    db.session.add_all([order1, order2,order3])
+    order4 = RecordC(user_id=3, combination_id=5, time="2023-02-15 17:17:33", start_time="2023-04-13", num=2, name="Selina", tel=11010801234, price=3350, status="Completed", status2="No comment")
+
+    db.session.add_all([order1, order2,order3,order4])
     db.session.commit()
 
 
     # ---------------------------customised package--------------------------------#
+    package1 = UserCombination(3,'selina','Take a tour around the Bund and see the Oriental Pearl',400,2,17,18,None,None,None,None,None)
+    package2 = UserCombination(3,'selina','A short trip in beautiful Dublin',570,2,9,10,None,None,None,None,None)
 
+    db.session.add_all([package1,package2])
+    db.session.commit()
+
+    # ---------------------------contact us-------------------------------#
