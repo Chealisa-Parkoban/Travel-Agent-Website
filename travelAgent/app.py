@@ -210,7 +210,8 @@ def update_score(sets, comments, id_type):
             combination = Combination.query.filter(Combination.id == c_id).first()
             if dic[c_id][0] != 0 and type(dic[c_id][0]) is not str:
                 avg = dic[c_id][1]/dic[c_id][0]
-                combination.avg_score = avg
+                avg2 = '{:.2f}'.format(avg)
+                combination.avg_score = avg2
                 db.session.commit()
 
     else:
@@ -218,7 +219,8 @@ def update_score(sets, comments, id_type):
             target = Target.query.filter(Target.id == t_id).first()
             if dic[t_id][0] != 0 and type(dic[t_id][0]) is not str:
                 avg = dic[t_id][1]/dic[t_id][0]
-                target.avg_score = avg
+                avg2 = '{:.2f}'.format(avg)
+                target.avg_score = avg2
                 db.session.commit()
 
 

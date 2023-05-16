@@ -533,10 +533,9 @@ def search():
         flash('Wrong input! Please enter again')
         return redirect(url_for("homepage"))
 
-    if price_up != '' and price_low != '':
-        if int(price_low) > int(price_up):
-            flash('Wrong input! Please enter again')
-            return redirect(url_for("homepage"))
+    if price_up != '' and price_low != '' and (int(price_low) > int(price_up)):
+        flash('Wrong input! Please enter again')
+        return redirect(url_for("homepage"))
 
     else:
         if (destination == "") and (attraction == "") and (price_up == "") and (price_low == ""):
@@ -591,7 +590,8 @@ def search():
             return render_template("homepage2.html", Sets=combination)
 
         # 搜索价格最低的区间(上下)
-        elif (price_low != "") and (price_up != "") and (attraction is None ) and (destination is None):
+        elif (price_low != '') and (price_up != '') and (attraction is None ) and (destination is None):
+            print("3333333333333")
             # 查询在此价格往下的所有combination
             combination = db.session.query(Combination).filter((
                 Combination.price >= str(price_low)), and_(Combination.price <= str(price_up))).all()

@@ -157,6 +157,7 @@ class BookingForm(FlaskForm):
     # submit the form
     submit = SubmitField('')
 
+
 class BookingHotelForm(FlaskForm):
     time = StringField('time', validators=[DataRequired()])
     time2 = StringField('time', validators=[DataRequired()])

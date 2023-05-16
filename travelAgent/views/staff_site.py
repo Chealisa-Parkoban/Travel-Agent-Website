@@ -7,7 +7,7 @@ from travelAgent import app, db
 # from travelAgent.app import changeBookingStatus
 from travelAgent.forms import LoginForm, DayTripForm, PlanForm, DestinationForm, TargetForm
 from travelAgent.models import User, Destination, Target, Day, Combination, RecordC, Record, ContactModel, \
-    UserCombination, CommentC, FavoriteC, RecordP
+    UserCombination, CommentC, FavoriteC, RecordP, Comment, Favorite
 from travelAgent.views.login_handler import login_manager
 
 from travelAgent.config import basedir
@@ -26,6 +26,10 @@ customised_trip_fees = []
 # --------------------chat----------------->
 @staff_blueprint.route('/staff/chat')
 def chat():
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
     # changeBookingStatus()
     return render_template('./staff_site/pages/chat.html', user=current_user)
 
@@ -36,6 +40,8 @@ def chat():
 def index():
     # changeBookingStatus()
     if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
         return redirect(url_for("staff_site.login"))
     combinations = Combination.query.all()
     targets = Target.query.all()
@@ -52,6 +58,8 @@ def index():
 def get_data():
     # changeBookingStatus()
     if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
         return redirect(url_for("staff_site.login"))
     combinations = Combination.query.all()
     targets = Target.query.all()
@@ -104,6 +112,8 @@ def logout():
     # changeBookingStatus()
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
     logout_user()
     return redirect(url_for("staff_site.login"))
 
@@ -113,6 +123,8 @@ def contents():
     # changeBookingStatus()
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
     plans = Combination.query.all()
     return render_template('./staff_site/all_plans.html', plans=plans, user=current_user)
 
@@ -120,6 +132,8 @@ def contents():
 @staff_blueprint.route('/staff/pack_load_detail', methods=['GET', 'POST'])
 def pack_load_detail():
     if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
         return redirect(url_for("staff_site.login"))
     plan_id_res = request.args.get("plan_id_res")
 
@@ -149,6 +163,8 @@ def view_plan(plan_id=None):
     # changeBookingStatus()
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
 
     plan_form = PlanForm()
     day_form = DayTripForm()
@@ -177,6 +193,10 @@ def view_plan(plan_id=None):
 @staff_blueprint.route('/staff/contents/add', methods=['GET', 'POST'])
 @staff_blueprint.route('/staff/contents/add/', methods=['GET', 'POST'])
 def add_new_day(plan_id=None):
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
     # changeBookingStatus()
     form = DayTripForm(request.form)
     if form.validate_on_submit():
@@ -202,6 +222,10 @@ def add_new_day(plan_id=None):
 @staff_blueprint.route('/staff/move_early/<index>,<plan_id>', methods=['GET', 'POST'])
 @staff_blueprint.route('/staff/move_early/<index>', methods=['GET', 'POST'])
 def move_early(index, plan_id=None):
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
     index = int(index)
     if index > 0:
         # move fees positions in trip_fees, skip the first one, which is the total price
@@ -218,6 +242,10 @@ def move_early(index, plan_id=None):
 @staff_blueprint.route('/staff/move_later/<index>,<plan_id>', methods=['GET', 'POST'])
 @staff_blueprint.route('/staff/move_later/<index>', methods=['GET', 'POST'])
 def move_later(index, plan_id=None):
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
     index = int(index)
     if index < day_trip_draft.__len__() - 1:
         # move fees positions in trip_fees, skip the first one, which is the total price
@@ -234,6 +262,10 @@ def move_later(index, plan_id=None):
 @staff_blueprint.route('/staff/delete_day/<index>, <plan_id>', methods=['GET', 'POST'])
 @staff_blueprint.route('/staff/delete_day/<index>', methods=['GET', 'POST'])
 def delete_day(index, plan_id=None):
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
     index = int(index)
     day_trip_draft.pop(index)
     for i in range(index, day_trip_draft.__len__()):
@@ -246,6 +278,10 @@ def delete_day(index, plan_id=None):
 
 @staff_blueprint.route('/staff/contents/update_plan/<plan_id>', methods=['GET', 'POST'])
 def update_plan(plan_id):
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
     plan = Combination.query.filter_by(id=plan_id).first()
 
     for day in plan.get_days():
@@ -324,6 +360,10 @@ def update_plan(plan_id):
 
 @staff_blueprint.route('/staff/contents/submit_plan', methods=['GET', 'POST'])
 def submit_plan():
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
     # changeBookingStatus()
     name = request.form.get('name')
     intro = request.form.get('intro')
@@ -384,6 +424,10 @@ def submit_plan():
 
 @staff_blueprint.route('/staff/contents/clear', methods=['GET', 'POST'])
 def clear_draft():
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
     day_trip_draft.clear()
     trip_fees.clear()
     return redirect(url_for("staff_site.view_plan"))
@@ -391,6 +435,10 @@ def clear_draft():
 
 @staff_blueprint.route('/staff/delete_plan/<plan_id>', methods=['GET', 'POST'])
 def delete_plan(plan_id):
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
     # changeBookingStatus()
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
@@ -406,6 +454,10 @@ def delete_plan(plan_id):
 
 @staff_blueprint.route('/staff/contents/destinations', methods=['GET', 'POST'])
 def destinations():
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
     # changeBookingStatus()
     message = ""
     if not current_user.is_authenticated:
@@ -427,6 +479,10 @@ def destinations():
 
 @staff_blueprint.route('/staff/contents/attractions', methods=['GET', 'POST'])
 def attractions():
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
     # changeBookingStatus()
     message = ""
     if not current_user.is_authenticated:
@@ -457,6 +513,10 @@ def attractions():
 
 @staff_blueprint.route('/staff/contents/accommodations', methods=['GET', 'POST'])
 def accommodations():
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
     # changeBookingStatus()
     message = ""
     if not current_user.is_authenticated:
@@ -486,6 +546,10 @@ def accommodations():
 
 @staff_blueprint.route('/staff/contents/traffics', methods=['GET', 'POST'])
 def traffics():
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
     # changeBookingStatus()
     message = ""
     if not current_user.is_authenticated:
@@ -516,6 +580,10 @@ def traffics():
 def delete_destination():
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
     des_id = int(session.get('des_id'))
     destination = Destination.query.filter_by(id=des_id).first()
     db.session.delete(destination)
@@ -528,6 +596,10 @@ def delete_destination():
 
 @staff_blueprint.route('/staff/contents/attractions/delete', methods=['GET', 'POST'])
 def delete_attraction():
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
     attr_id = int(session.get('attr_id'))
@@ -545,6 +617,10 @@ def delete_attraction():
 def delete_accommodation():
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
     acc_id = int(session.get('acc_id'))
     accommodation = Target.query.filter_by(id=acc_id).first()
     db.session.delete(accommodation)
@@ -556,6 +632,10 @@ def delete_accommodation():
 
 @staff_blueprint.route('/staff/contents/traffics/delete', methods=['GET', 'POST'])
 def delete_traffic():
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
     traffic_id = int(session.get('tra_id'))
@@ -575,6 +655,8 @@ def load_user(id):
 @staff_blueprint.route('/update_profile', methods=['GET', 'POST'])
 def update_profile():
     if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
         return redirect(url_for("staff_site.login"))
 
     u = db.session.query(User).filter(User.id == current_user.id).first()
@@ -619,6 +701,8 @@ def update_profile():
 def pack_orders():
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
     records = RecordC.query.all()
     return render_template('./staff_site/pack_orders.html', records=records, user=current_user, message="")
 
@@ -627,6 +711,8 @@ def pack_orders():
 def other_orders():
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
     records = Record.query.all()
     return render_template('./staff_site/pack_orders.html', records=records, user=current_user, message="")
 
@@ -634,6 +720,8 @@ def other_orders():
 @staff_blueprint.route('/staff/pack_order/delete', methods=['GET', 'POST'])
 def delete_pack_order():
     if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
         return redirect(url_for("staff_site.login"))
     pack_order_id = int(session.get('pack_order_id'))
     pack_order = RecordC.query.filter_by(id=pack_order_id).first()
@@ -646,6 +734,8 @@ def delete_pack_order():
 def delete_other_order():
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
     other_order_id = int(session.get('other_order_id'))
     other_order = Record.query.filter_by(id=other_order_id).first()
     db.session.delete(other_order)
@@ -656,6 +746,8 @@ def delete_other_order():
 @staff_blueprint.route('/check_message', methods=['GET', 'POST'])
 def check_message():
     if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
         return redirect(url_for("staff_site.login"))
     messages = db.session.query(ContactModel).all()
     contents = []
@@ -687,6 +779,8 @@ def check_message():
 def check_message_details(message_id):
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
     message = db.session.query(ContactModel).filter_by(id=message_id).first()
     return render_template('./staff_site/message_detail.html', message=message, user=current_user)
 
@@ -695,6 +789,8 @@ def check_message_details(message_id):
 def customised_packages():
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
     plans = db.session.query(UserCombination).all()
     return render_template('./staff_site/customised_packages.html', plans=plans, user=current_user)
 
@@ -702,6 +798,8 @@ def customised_packages():
 @staff_blueprint.route('/staff/delete_customised/<plan_id>', methods=['GET', 'POST'])
 def delete_customised(plan_id):
     if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
         return redirect(url_for("staff_site.login"))
     plan = db.session.query(UserCombination).filter_by(id=plan_id).first()
     day_ids = plan.get_days()
@@ -715,6 +813,8 @@ def delete_customised(plan_id):
 @staff_blueprint.route('/staff/load_detail', methods=['GET', 'POST'])
 def load_detail():
     if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
         return redirect(url_for("staff_site.login"))
     plan_id_res = request.args.get("plan_id_res")
 
@@ -744,6 +844,8 @@ def load_detail():
 def customised_detail(plan_id=None, data=None):
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
 
     plan_form = PlanForm()
     day_form = DayTripForm()
@@ -771,6 +873,10 @@ def customised_detail(plan_id=None, data=None):
 @staff_blueprint.route('/staff/customised_add_new_day/<plan_id>', methods=['GET', 'POST'])
 @staff_blueprint.route('/staff/customised_add_new_day', methods=['GET', 'POST'])
 def customised_add_new_day(plan_id=None):
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
     # changeBookingStatus()
     form = DayTripForm(request.form)
     if form.validate_on_submit() and customised_day_trip_draft.__len__() < 7:
@@ -795,6 +901,10 @@ def customised_add_new_day(plan_id=None):
 @staff_blueprint.route('/staff/customised_move_early/<index>,<plan_id>', methods=['GET', 'POST'])
 @staff_blueprint.route('/staff/customised_move_early/<index>', methods=['GET', 'POST'])
 def customised_move_early(index, plan_id=None):
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
     index = int(index)
     if index > 0:
         # move fees positions in customised_trip_fees, skip the first one, which is the total price
@@ -811,6 +921,10 @@ def customised_move_early(index, plan_id=None):
 @staff_blueprint.route('/staff/customised_move_later/<index>,<plan_id>', methods=['GET', 'POST'])
 @staff_blueprint.route('/staff/customised_move_later/<index>', methods=['GET', 'POST'])
 def customised_move_later(index, plan_id=None):
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
     index = int(index)
     if index < customised_day_trip_draft.__len__() - 1:
         # move fees positions in customised_trip_fees, skip the first one, which is the total price
@@ -827,6 +941,10 @@ def customised_move_later(index, plan_id=None):
 @staff_blueprint.route('/staff/customised_delete_day/<index>, <plan_id>', methods=['GET', 'POST'])
 @staff_blueprint.route('/staff/customised_delete_day/<index>', methods=['GET', 'POST'])
 def customised_delete_day(index, plan_id=None):
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
     index = int(index)
     customised_day_trip_draft.pop(index)
     for i in range(index, customised_day_trip_draft.__len__()):
@@ -839,6 +957,10 @@ def customised_delete_day(index, plan_id=None):
 
 @staff_blueprint.route('/staff/contents/customised_update_plan/<plan_id>', methods=['GET', 'POST'])
 def customised_update_plan(plan_id):
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
     plan = UserCombination.query.filter_by(id=plan_id).first()
 
     for day in plan.get_days():
@@ -899,6 +1021,10 @@ def customised_update_plan(plan_id):
 @staff_blueprint.route('/staff/customised_update_clear_draft/<plan_id>', methods=['GET', 'POST'])
 @staff_blueprint.route('/staff/customised_update_clear_draft', methods=['GET', 'POST'])
 def customised_clear_draft(plan_id=None):
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
     customised_day_trip_draft.clear()
     customised_trip_fees.clear()
     return redirect(url_for("staff_site.customised_detail", plan_id=plan_id))
@@ -906,6 +1032,10 @@ def customised_clear_draft(plan_id=None):
 
 @staff_blueprint.route('/staff/contents/customised_submit_plan', methods=['GET', 'POST'])
 def customised_submit_plan():
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
     # changeBookingStatus()
     user_id = request.form.get('user_id')
     name = request.form.get('name')
@@ -950,6 +1080,8 @@ def customised_submit_plan():
 def clear_res():
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
     customised_day_trip_draft.clear()
     customised_trip_fees.clear()
     return "success"
@@ -957,6 +1089,10 @@ def clear_res():
 
 @staff_blueprint.route('/staff/customised_delete_plan/<plan_id>', methods=['GET', 'POST'])
 def customised_delete_plan(plan_id):
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
     # changeBookingStatus()
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
@@ -974,6 +1110,8 @@ def customised_delete_plan(plan_id):
 def customer_accounts():
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
     users = User.query.filter_by(is_admin=0).all()
     return render_template("./staff_site/customers.html", users=users, user=current_user)
 
@@ -982,11 +1120,46 @@ def customer_accounts():
 def staff_accounts():
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
     users = User.query.filter_by(is_admin=1).all()
     return render_template("./staff_site/staffs.html", users=users, user=current_user)
 
 
+@staff_blueprint.route('/staff/delete_user/<id>', methods=['GET', 'POST'])
+def delete_user(id):
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
+    user = User.query.filter_by(id=id).first()
+    if user is not None:
+        for record in Record.query.filter_by(user_id=id).all():
+            db.session.delete(record)
+        for record in RecordC.query.filter_by(user_id=id).all():
+            db.session.delete(record)
+        for record in RecordP.query.filter_by(user_id=id).all():
+            db.session.delete(record)
+        for comment in Comment.query.filter_by(user_id=id).all():
+            db.session.delete(comment)
+        for comment in CommentC.query.filter_by(user_id=id).all():
+            db.session.delete(comment)
+        for favorite in Favorite.query.filter_by(user_id=id).all():
+            db.session.delete(favorite)
+        for favorite in FavoriteC.query.filter_by(user_id=id).all():
+            db.session.delete(favorite)
+        for combination in UserCombination.query.filter_by(user_id=id).all():
+            delete_combination_relate(combination.id)
+            db.session.delete(combination)
+        db.session.delete(user)
+        db.session.commit()
+    return redirect(url_for("staff_site.customer_accounts"))
+
 def delete_combination_relate(combination_id):
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
     for record in RecordC.query.filter_by(combination_id=combination_id).all():
         db.session.delete(record)
     for comment in CommentC.query.filter_by(combination_id=combination_id).all():
@@ -997,6 +1170,10 @@ def delete_combination_relate(combination_id):
 
 
 def delete_day_relate(day_id):
+    if not current_user.is_authenticated:
+        return redirect(url_for("staff_site.login"))
+    if not current_user.is_admin == 1:
+        return redirect(url_for("staff_site.login"))
     day = Day.query.filter_by(id=day_id).first()
     if day is not None:
         db.session.delete(day)
