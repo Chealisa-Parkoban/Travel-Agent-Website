@@ -17,6 +17,21 @@
 <main class="main">
     <section class="slice slice-xl">
         <div class="container">
+            <div class="">
+                            {% with messages = get_flashed_messages() %}
+                                {% if messages %}
+                                    <ul>
+                                        {% for message in messages %}
+                                            {% for message in messages %}
+                                                <li style="text-align: center; font-size: larger; color: red; list-style: none">
+                                                    <div class="alert alert-info" role="alert" id="message" style="opacity: 0.6;">{{ message }}</div>
+                                                </li>
+                                            {% endfor %}
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            {% endwith %}
+                        </div>
             <div class="row justify-content-center">
                 <div class="col-lg-7">
                     <div class="text-center pt-lg-xl">
@@ -35,6 +50,7 @@
              style="background-image: url('../static/images/backgrounds/img-1.jpg')">
         <span class="mask bg-tertiary alpha-9"></span>
         <div class="container">
+
             <div class="row cols-xs-space cols-sm-space cols-md-space">
                 <div class="col-lg-6">
                     <div class="card bg-dark alpha-container text-white border-0 overflow-hidden">
