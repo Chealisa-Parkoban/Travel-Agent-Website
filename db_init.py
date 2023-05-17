@@ -236,12 +236,38 @@ with app.app_context():
 
     # ---------------------------order--------------------------------#
     order1 = RecordC(user_id=3, combination_id=1, time="2023-02-13 10:00:33", start_time="2023-07-13", num=2, name="Selina", tel=11010801234, price=3350, status="Uncompleted", status2="No comment")
-    order2 = RecordC(user_id=4, combination_id=2, time="2023-03-19 05:18:58", start_time="2023-05-20", num=2, name="Allen", tel=18910191225, price=5250, status="Uncompleted", status2="No comment")
-    order3 = RecordC(user_id=5, combination_id=1, time="2023-03-09 05:18:58", start_time="2023-05-12", num=2,
-                     name="chiquita", tel=18932523251, price=3250, status="Uncompleted", status2="No comment")
-    order4 = RecordC(user_id=3, combination_id=5, time="2023-02-15 17:17:33", start_time="2023-04-13", num=2, name="Selina", tel=11010801234, price=3350, status="Completed", status2="No comment")
+    order2 = RecordC(user_id=6, combination_id=1, time="2023-03-09 05:18:58", start_time="2023-05-12", num=2,
+                     name="Lily", tel=18932523251, price=3250, status="Completed", status2="Commented")
+    order3 = RecordC(user_id=7, combination_id=1, time="2023-03-09 05:18:58", start_time="2023-05-12", num=2,
+                     name="jenny", tel=18932523251, price=3250, status="Completed", status2="Commented")
 
-    db.session.add_all([order1, order2,order3,order4])
+    order4 = RecordC(user_id=5, combination_id=2, time="2023-03-19 05:18:58", start_time="2023-05-20", num=2, name="chiquita", tel=18910191225, price=5250, status="Completed", status2="Commented")
+    order5 = RecordC(user_id=6, combination_id=2, time="2023-03-19 05:18:58", start_time="2023-05-20", num=2,
+                     name="Lily", tel=18910191225, price=5250, status="Completed", status2="Commented")
+
+    order6 = RecordC(user_id=5, combination_id=3, time="2023-03-09 05:18:58", start_time="2023-05-12", num=2,
+                     name="chiquita", tel=18932523251, price=3250, status="Completed", status2="Commented")
+    order7 = RecordC(user_id=4, combination_id=3, time="2023-03-09 05:18:58", start_time="2023-05-12", num=2,
+                     name="allen", tel=18932523251, price=3250, status="Completed", status2="Commented")
+
+    order8 = RecordC(user_id=3, combination_id=5, time="2023-02-15 17:17:33", start_time="2023-04-13", num=2, name="Selina", tel=11010801234, price=3350, status="Completed", status2="No comment")
+    order9 = RecordC(user_id=6, combination_id=5, time="2023-03-19 05:18:58", start_time="2023-05-20", num=2,
+                     name="Lily", tel=18910191225, price=5250, status="Completed", status2="Commented")
+
+    order10 = RecordC(user_id=5, combination_id=5, time="2023-03-09 05:18:58", start_time="2023-05-12", num=2,
+                     name="chiquita", tel=18932523251, price=3250, status="Completed", status2="Commented")
+    order11 = RecordC(user_id=4, combination_id=5, time="2023-03-09 05:18:58", start_time="2023-05-12", num=2,
+                     name="allen", tel=18932523251, price=3250, status="Uncompleted", status2="No comment")
+
+    order12 = RecordC(user_id=7, combination_id=6, time="2023-03-09 05:18:58", start_time="2023-05-12", num=2,
+                     name="jenny", tel=18932523251, price=3250, status="Uncompleted", status2="No comment")
+    order13 = RecordC(user_id=6, combination_id=6, time="2023-03-19 05:18:58", start_time="2023-05-20", num=2,
+                     name="Lily", tel=18910191225, price=5250, status="Completed", status2="Commented")
+
+    order14 = RecordC(user_id=5, combination_id=6, time="2023-03-09 05:18:58", start_time="2023-05-12", num=2,
+                      name="chiquita", tel=18932523251, price=3250, status="Completed", status2="Commented")
+
+    db.session.add_all([order1, order2,order3,order4,order5,order6,order7,order8,order9,order10,order11,order12,order13,order14])
     db.session.commit()
 
 
