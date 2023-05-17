@@ -1,4 +1,4 @@
-from travelAgent.models import User, Destination, Target, Day, Combination, UserCombination, Reply, ReplyC,Record, RecordC, CommentC, Comment, FavoriteC, Favorite,EmailCaptchaModel
+from travelAgent.models import User, Destination, Target, Day, Combination, UserCombination, Reply, ReplyC,Record, RecordC, CommentC, Comment, FavoriteC, Favorite,EmailCaptchaModel, ContactModel
 # from travelAgent.models import User
 from travelAgent import db
 from travelAgent import app
@@ -279,3 +279,8 @@ with app.app_context():
     db.session.commit()
 
     # ---------------------------contact us-------------------------------#
+    contact1 = ContactModel(email='1587986524@163.com',name='Yudu',message='Thank you for your website! Very convenient operation that has made for many perfect trips for my family, which has made our family bond even better! I will continue to support you in the future, thanks again!')
+    contact2 = ContactModel(email='Runningwheel@rnw.com', name='Hans', message='Hello, I am a member of the Drive Wheel staff and would like to ask if we have the opportunity to discuss the possibility of business cooperation with your company. Looking forward to hearing from you.')
+    contact3 = ContactModel(email='Lily@ucd.ie', name='Lily', message='Your site made it easy for me to book a trip, but I wish you had a more aesthetically pleasing home page, it might help your site attract more users.')
+    db.session.add_all([contact1, contact2,contact3])
+    db.session.commit()
