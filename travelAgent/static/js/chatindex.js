@@ -2,7 +2,44 @@
 // from fuzzywuzzy import fuzz
 //import fuzzywuzzy from './chat'
 
+function Translate_CN(event) {
+    console.log(event.target)
+    var previous = event.target.parentNode.previousElementSibling.innerText
+    var next = event.target.nextElementSibling
 
+    var appid = '20230228001579285';
+    var key = 'i_i50GKeYlqZOVY7Q8HS';
+    var salt = (new Date).getTime();
+    var from = 'auto';
+    var to = 'zh';
+
+    //翻译
+    // $("#goTran").click(function(){
+    var query = previous;
+    var str1 = appid + query + salt + key;
+    var sign = md5(str1);
+    $.ajax({
+        url: 'http://api.fanyi.baidu.com/api/trans/vip/translate',
+        type: 'get',
+        dataType: 'jsonp',
+        data: {
+            q: query,
+            appid: appid,
+            salt: salt,
+            from: from,
+            to: to,
+            sign: sign
+        },
+        success: function (data) {
+            console.log("data: " + data)
+            var res = data.trans_result[0].dst;
+            // $("#result")[0].innerHTML=res;
+            console.log(res);
+            event.target.nextElementSibling.innerText = res
+
+        }
+    });
+}
 //translate function
 function Translate(event) {
     console.log(event.target)
@@ -36,7 +73,7 @@ function Translate(event) {
             var res = data.trans_result[0].dst;
             // $("#result")[0].innerHTML=res;
             console.log(res);
-            event.target.nextElementSibling.innerText = res
+            event.target.nextElementSibling.nextElementSibling.innerText = res
 
         }
     });
@@ -71,9 +108,10 @@ async function add_messages(msg, scroll) {
             '</b><b><p style="text-align: left;color: black; font-size:15px">' +
                 msg.message +
                 '</p></b>'
-            + ////////////////
-              '<p>' +
-                 `<button class="btn btn-primary"  onclick=Translate(event)>TRANSLATE</button>` + '<span class="res_translate" style="font-weight: bold "></span>' + '<span class="time-right">' +
+            + '<p style="text-align: right">'
+                 + `<button class="btn btn-primary"  onclick=Translate(event)>TRANSLATE_EN</button>` +
+                    `<button class="btn btn-primary"  onclick=Translate_CN(event)>TRANSLATE_CN</button>`+
+                '<span class="res_translate" style="font-weight: bold "></span>' + '<span class="time-right">' +
              '</p>' +
             '<hr />'+
                  '<p style="color: #115577">'+
@@ -101,8 +139,10 @@ async function add_messages(msg, scroll) {
                 msg.message +
                 '</b></p>'
                /////////////////
-                 + '<p style="text-align: right">'
-                 +'<button class="btn btn-primary" style="background-color:" onclick=Translate(event)>TRANSLATE</button>' + '<span class="res_translate" style="color: black; font-weight: bold"></span>' + '<span class="time-right">' +
+                 + '<p style="text-align: right">' +
+                    `<button class="btn btn-primary"  onclick=Translate(event)>TRANSLATE_EN</button>` +
+                    `<button class="btn btn-primary"  onclick=Translate_CN(event)>TRANSLATE_CN</button>`
+                    + '<span class="res_translate" style="color: black; font-weight: bold"></span>' + '<span class="time-right">' +
                '</p>' +
                  '<hr />'
              + '<p style="text-align: right; color:rgba(34,72,25,0.89)" >'
@@ -131,9 +171,11 @@ async function add_messages(msg, scroll) {
                 '</p><p style="text-align: right"> <b style="color: black ">' +
                 msg.message +
                 '</b></p>'
-               /////////////////
-                 + '<p style="text-align: right">'
-                 +'<button class="btn btn-primary" style="background-color:" onclick=Translate(event)>TRANSLATE</button>' + '<span class="res_translate" style="color: black; font-weight: bold"></span>' + '<span class="time-right">' +
+                /////////////////
+                 + '<p style="text-align: right">'+
+                `<button class="btn btn-primary"  onclick=Translate(event)>TRANSLATE_EN</button>` +
+                    `<button class="btn btn-primary"  onclick=Translate_CN(event)>TRANSLATE_CN</button>`+
+                  '<span class="res_translate" style="color: black; font-weight: bold"></span>' + '<span class="time-right">' +
                '</p>' +
                  '<hr />'
              + '<p style="text-align: right; color:rgba(34,72,25,0.89)" >'
@@ -154,7 +196,9 @@ async function add_messages(msg, scroll) {
                 '</p></b>'
             + ////////////////
               '<p>' +
-                 `<button class="btn btn-primary"  onclick=Translate(event)>TRANSLATE</button>` + '<span class="res_translate" style="font-weight: bold "></span>' + '<span class="time-right">' +
+                 `<button class="btn btn-primary"  onclick=Translate(event)>TRANSLATE_EN</button>` +
+                 `<button class="btn btn-primary"  onclick=Translate_CN(event)>TRANSLATE_CN</button>`+
+                 '<span class="res_translate" style="font-weight: bold "></span>' + '<span class="time-right">' +
              '</p>' +
             '<hr />'+
                  '<p style="color: #115577">'+
@@ -183,8 +227,10 @@ async function add_messages(msg, scroll) {
                 msg.message +
                 '</b></p>'
                /////////////////
-                 + '<p style="text-align: right">'
-                 +'<button class="btn btn-primary" style="background-color:" onclick=Translate(event)>TRANSLATE</button>' + '<span class="res_translate" style="color: black; font-weight: bold"></span>' + '<span class="time-right">' +
+                 + '<p style="text-align: right">'+
+                `<button class="btn btn-primary"  onclick=Translate(event)>TRANSLATE_EN</button>` +
+                    `<button class="btn btn-primary"  onclick=Translate_CN(event)>TRANSLATE_CN</button>`+
+                  '<span class="res_translate" style="color: black; font-weight: bold"></span>' + '<span class="time-right">' +
                '</p>' +
                  '<hr />'
              + '<p style="text-align: right; color:rgba(34,72,25,0.89)" >'
@@ -206,7 +252,9 @@ async function add_messages(msg, scroll) {
                 '</p></b>'
             + ////////////////
               '<p>' +
-                 `<button class="btn btn-primary"  onclick=Translate(event)>TRANSLATE</button>` + '<span class="res_translate" style="font-weight: bold "></span>' + '<span class="time-right">' +
+                 `<button class="btn btn-primary"  onclick=Translate(event)>TRANSLATE_EN</button>` +
+                  `<button class="btn btn-primary"  onclick=Translate_CN(event)>TRANSLATE_CN</button>`+
+                 '<span class="res_translate" style="font-weight: bold "></span>' + '<span class="time-right">' +
              '</p>' +
             '<hr />'+
                  '<p style="color: #115577">'+
@@ -233,8 +281,10 @@ async function add_messages(msg, scroll) {
                 msg.message +
                 '</b></p>'
                /////////////////
-                 + '<p style="text-align: right">'
-                 +'<button class="btn btn-primary" style="background-color:" onclick=Translate(event)>TRANSLATE</button>' + '<span class="res_translate" style="color: black; font-weight: bold"></span>' + '<span class="time-right">' +
+                 + '<p style="text-align: right">'+
+                  `<button class="btn btn-primary"  onclick=Translate(event)>TRANSLATE_EN</button>` +
+                    `<button class="btn btn-primary"  onclick=Translate_CN(event)>TRANSLATE_CN</button>`
+                 + '<span class="res_translate" style="color: black; font-weight: bold"></span>' + '<span class="time-right">' +
                '</p>' +
                  '<hr />'
              + '<p style="text-align: right; color:rgba(34,72,25,0.89)" >'
@@ -268,7 +318,9 @@ async function add_messages(msg, scroll) {
                 '</p></b>'
             + ////////////////
               '<p>' +
-                 `<button class="btn btn-primary"  onclick=Translate(event)>TRANSLATE</button>` + '<span class="res_translate" style="font-weight: bold "></span>' + '<span class="time-right">' +
+                 `<button class="btn btn-primary"  onclick=Translate(event)>TRANSLATE_EN</button>` +
+                  `<button class="btn btn-primary"  onclick=Translate_CN(event)>TRANSLATE_CN</button>`+
+                 '<span class="res_translate" style="font-weight: bold "></span>' + '<span class="time-right">' +
              '</p>' +
             '<hr />'+
                  '<p style="color: #115577">'+
@@ -298,8 +350,10 @@ async function add_messages(msg, scroll) {
                 msg.message +
                 '</b></p>'
                /////////////////
-                 + '<p style="text-align: right">'
-                 +'<button class="btn btn-primary" style="background-color:" onclick=Translate(event)>TRANSLATE</button>' + '<span class="res_translate" style="color: black; font-weight: bold"></span>' + '<span class="time-right">' +
+                 + '<p style="text-align: right">'+
+                 `<button class="btn btn-primary"  onclick=Translate(event)>TRANSLATE_EN</button>` +
+                    `<button class="btn btn-primary"  onclick=Translate_CN(event)>TRANSLATE_CN</button>`+
+                  '<span class="res_translate" style="color: black; font-weight: bold"></span>' + '<span class="time-right">' +
                '</p>' +
                  '<hr />'
              + '<p style="text-align: right; color:rgba(34,72,25,0.89)" >'
@@ -322,7 +376,9 @@ async function add_messages(msg, scroll) {
                 '</p></b>'
             + ////////////////
               '<p>' +
-                 `<button class="btn btn-primary"  onclick=Translate(event)>TRANSLATE</button>` + '<span class="res_translate" style="font-weight: bold "></span>' + '<span class="time-right">' +
+                 `<button class="btn btn-primary"  onclick=Translate(event)>TRANSLATE_EN</button>` +
+                 `<button class="btn btn-primary"  onclick=Translate_CN(event)>TRANSLATE_CN</button>`+
+                 '<span class="res_translate" style="font-weight: bold "></span>' + '<span class="time-right">' +
              '</p>' +
             '<hr />'+
                  '<p style="color: #115577">'+
@@ -369,8 +425,10 @@ async function add_messages(msg, scroll) {
                 msg.message +
                 '</b></p>'
                /////////////////
-                 + '<p style="text-align: right">'
-                 +'<button class="btn btn-primary" style="background-color:" onclick=Translate(event)>TRANSLATE</button>' + '<span class="res_translate" style="color: black; font-weight: bold"></span>' + '<span class="time-right">' +
+                 + '<p style="text-align: right">'+
+                    `<button class="btn btn-primary"  onclick=Translate(event)>TRANSLATE_EN</button>` +
+                    `<button class="btn btn-primary"  onclick=Translate_CN(event)>TRANSLATE_CN</button>`+
+                 '<span class="res_translate" style="color: black; font-weight: bold"></span>' + '<span class="time-right">' +
                '</p>' +
                  '<hr />'
              + '<p style="text-align: right; color:rgba(34,72,25,0.89)" >'
@@ -392,7 +450,9 @@ async function add_messages(msg, scroll) {
                 '</p></b>'
             + ////////////////
               '<p>' +
-                 `<button class="btn btn-primary"  onclick=Translate(event)>TRANSLATE</button>` + '<span class="res_translate" style="font-weight: bold "></span>' + '<span class="time-right">' +
+                 `<button class="btn btn-primary"  onclick=Translate(event)>TRANSLATE_EN</button>` +
+                 `<button class="btn btn-primary"  onclick=Translate_CN(event)>TRANSLATE_CN</button>`+
+                 '<span class="res_translate" style="font-weight: bold "></span>' + '<span class="time-right">' +
              '</p>' +
             '<hr />'+
                  '<p style="color: #115577">'+
