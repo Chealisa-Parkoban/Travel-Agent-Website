@@ -653,7 +653,7 @@ def load_user(id):
     return User.get(int(id))
 
 
-@staff_blueprint.route('/update_profile', methods=['GET', 'POST'])
+@staff_blueprint.route('/staff/update_profile', methods=['GET', 'POST'])
 def update_profile():
     if not current_user.is_authenticated:
         return redirect(url_for("staff_site.login"))
