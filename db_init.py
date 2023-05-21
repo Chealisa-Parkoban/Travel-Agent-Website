@@ -9,7 +9,7 @@ with app.app_context():
 
     us1 = User(username='staff1', email='staff1@163.com', password='123456', is_admin=1)
     us2 = User(username='staff2', email='staff2@163.com', password='123456', is_admin=1)
-    us3 = User(username='selina', email='selina@163.com', password='1111', is_admin=0)
+    us3 = User(username='Selina', email='selina@163.com', password='1111', is_admin=0)
     us4 = User(username='allen', email='allen@ucd.ie', password='1225', is_admin=0)
     us5 = User(username='chiquita', email='chiquita@ucd.ie', password='2222', is_admin=0)
     us6 = User(username='Lily', email='Lily@ucd.ie', password='1111', is_admin=0)

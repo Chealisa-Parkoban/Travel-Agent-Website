@@ -192,7 +192,7 @@ async function add_messages(msg, scroll) {
             'Auto Reply' +
             '<hr />'+
             '</b><b><p style="text-align: left; color: black; font-size:15px">' +
-               'Staff will work between 9am-10pm' +
+               'Customer service online between 9am-10pm workdays'+
                 '</p></b>'
             + ////////////////
               '<p>' +
@@ -300,9 +300,9 @@ async function add_messages(msg, scroll) {
             'Auto Reply' +
             '<hr />'+
             '</b><b><p style="text-align: left;color: black; font-size:15px">' +
-                'Staff work during 9am-10pm' +
+                'Customer Serivice online during 9am-10pm workdays' +
             '</p></b>'+ '<b><p>'+
-                 'Our staff will contact you ASAP later'
+                 'Our staff will contact you ASAP when they are back to work'
                  + '</p></b>'+ '<b><p>'+
                  'Auto Reply is available for following quations:'
                  + '</p></b>'+ '<b><p>'+
@@ -555,10 +555,10 @@ socket.on("connect", async function () {
         // get input from message box
         let msg_input = document.getElementById("msg");
         let user_input = msg_input.value;
-        if (user_input == "") {
-            alert("Please input something then send.");
-            return false;
-        }
+        // if (user_input == "") {
+        //     alert("Please input something then send.");
+        //     return false;
+        // }
         let user_name = load_username();
         let name = load_name();
         console.log(msg_input)
