@@ -75,11 +75,11 @@ function checkDetail(d){
             var html = '<div class="detail_date"  style="font-size: larger">\n' +
             '            Destination: <kbd class="destination_date">' + destinaion + ' </kbd> <br/>\n' +
             '            Attraction: <kbd class="attraction_date">'  + attraction.name + '</kbd> <br/>\n' +
-            '                      Introduction: <code class="attraction_date">'  + attraction.intro + '</code> <br/>\n' +
+            '                      Introduction: <code class="attraction_date" style="color: #000000; font: bolder">'  + attraction.intro + '</code> <br/>\n' +
             '            Accommodation: <kbd class="accommodation_date"> ' + accommodation.name + '</kbd> <br/>\n' +
-            '                      Introduction: <code class="attraction_date">'  + accommodation.intro + '</code> <br/>\n' +
+            '                      Introduction: <code class="attraction_date" style="color: black; font: bolder">'  + accommodation.intro + '</code> <br/>\n' +
             '            Traffic: <kbd class="traffic_date">' + traffic.name + '</kbd> <br/>\n' +
-            '                      Introduction: <code class="attraction_date">'  + traffic.intro + '</code> <br/>\n' +
+            '                      Introduction: <code class="attraction_date" style="color: black; font: bolder">'  + traffic.intro + '</code> <br/>\n' +
             '        </div>'
 
             $("#calendar_container").html(html);
