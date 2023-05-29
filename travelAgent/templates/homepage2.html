@@ -166,12 +166,17 @@
             <h2 class="tittle">Top Trip Guide</h2>
             <span>Best Travel Packages Available</span>
             <div class="promotion-grids">
+                {% if Sets == [] %}
+                    <div style="text-align: center">
+                        <p style="margin: 2rem 0 4rem 0; font-size: 1.2rem">No travel package found for your search</p>
+                    </div>
+                {% endif %}
                 <!--                开始渲染全部Sets          -->
                 {% for set in Sets %}
                     <a set_id={{ set.id }} onclick="setID(this)">
-                        <div class="col-md-4 promation-grid">
+                        <div class="col-md-4 promation-grid" style="overflow: hidden">
                             <!--{#                            <img src="../static/images/sample_pic/the_north_Europe.png" class="img-responsive" alt="" />#}-->
-                            <img src="{{ set.image }}" class="img-responsive" alt=""
+                            <img src="{{ set.image }}" class="img-responsive" style="object-fit: cover; width: 100%; height: 100%;" alt=""
                                  onerror="javascript:this.src='static/images/sample_pic/the_north_Europe.png/'"/>
                             <div class="prom-text">
                                 <h4 class="title" style="display: flex; align-items: center">
@@ -214,12 +219,19 @@
         </div>
     </div>
 
-    {% if attractions != null %}
+{#    {% if attractions != null %}#}
     <div class="promotions">
         <div class="container">
-            <h2 class="tittle">Top Attractions</h2>
+            <hr/>
+            <h2 class="tittle" style="margin-top: 4rem">Top Attractions</h2>
             <span>Best Attractions Available</span>
             <div class="promotion-grids">
+                {% if attractions == [] %}
+                    <div style="text-align: center">
+                        <p style="margin: 2rem 0 4rem 0; font-size: 1.2rem">No attraction found for your search</p>
+                    </div>
+                {% endif %}
+
                 {% for attraction in attractions %}
                     <a set_id={{ attraction.id }} onclick="setTargetID(this)">
                         <div class="col-md-4 promation-grid">
@@ -255,14 +267,21 @@
             </div>
         </div>
     </div>
-    {% endif %}
+{#    {% endif %}#}
 
-    {% if hotels != null %}
+{#    {% if hotels != null %}#}
     <div class="promotions">
         <div class="container">
-            <h2 class="tittle">Stays</h2>
+            <hr/>
+            <h2 class="tittle" style="margin-top: 4rem">Stays</h2>
             <span>Best Hotels Available</span>
             <div class="promotion-grids">
+                {% if hotels == [] %}
+                    <div style="text-align: center">
+                        <p style="margin: 2rem 0 4rem 0; font-size: 1.2rem">No hotel found for your search</p>
+                    </div>
+                {% endif %}
+
                 {% for hotel in hotels %}
                     <a set_id={{ hotel.id }} onclick="setTargetID(this)">
                         <div class="col-md-4 promation-grid">
@@ -298,7 +317,7 @@
             </div>
         </div>
     </div>
-    {% endif %}
+{#    {% endif %}#}
 
 {% endblock %}
 
