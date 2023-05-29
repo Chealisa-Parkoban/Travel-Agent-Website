@@ -150,7 +150,7 @@ with app.app_context():
                        intro='Beijing is a charming city with both classical charm and fashionable atmosphere. Explore the fascinating city of Beijing, on this tour we will visit the Forbidden City, the National Museum, the Great Wall and the Temple of Heaven.',
                        price=4300, length=4, image='static/upload/forbidden.jpg')
     com6 = Combination(name='Shanghai Three-Day Trip', day1=16, day2=17, day3=18, day4=None, day5=None, day6=None, day7=None,
-                       intro='In the past, the prosperous "Ten Mile Square" told the old dream of the old Shanghai Beach. Shanghai, a commercial center where wealth converges, a magical metropolis with the name of "Paris of the East". During this trip, we will visit the interesting Disneyland, the landmark Oriental Pearl, and the bustling Bund.',
+                       intro='Shanghai, a commercial center where wealth converges, a magical metropolis with the name of "Paris of the East". During this trip, we will visit the interesting Disneyland, the landmark Oriental Pearl, and the bustling Bund.',
                        price=3100, length=3, image='static/upload/Disney.jpg')
 
     db.session.add_all([com1, com2, com3, com4, com5, com6])
