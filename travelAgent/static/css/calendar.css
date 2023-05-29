@@ -57,7 +57,8 @@ body {
 }
 
 .calendar-header {
-    background: #9796f0;
+    background: #72baf5;
+    /*background: #9796f0;*/
     display: flex;
     justify-content: space-between;
     align-items: center;
