@@ -1,6 +1,7 @@
 import os
 import this
 import time
+import uuid
 
 import requests
 from flask import Flask, render_template, request, flash, redirect, url_for, session, jsonify
@@ -344,6 +345,49 @@ def profile():
                            status_comment=status_comment)
 
 
+@app.route('/update_profile', methods=['GET', 'POST'])
+def update_profile():
+    if not current_user.is_authenticated:
+        return redirect(url_for("account.login"))
+
+    u = db.session.query(User).filter(User.id == current_user.id).first()
+
+    gender = request.form.get('gender')
+    birth = request.form.get('date_of_birth')
+    profession = request.form.get('profession')
+    address = request.form.get('address')
+
+    uid = uuid.uuid1()
+    # Images storage path
+    file_dir = os.path.join(basedir, "static/upload/")
+    # Getting the data transferred from the front end
+    files = request.files.getlist('avatar-input')  # Gets the value of myfiles from ajax, of type list
+    # path = db.session.query(User.avatar_url).filter(User.id == current_user.id).first()
+    path = u.avatar_url
+
+    for img in files:
+        # Extract the suffix of the uploaded image and
+        # Name the image after the commodity id and store it in the specific path
+        check = img.content_type
+        # check if upload image
+        if str(check) != 'application/octet-stream':
+            fname = img.filename
+            ext = fname.rsplit('.', 1)[1]
+            new_filename = uid.hex + '.' + ext
+            img.save(os.path.join(file_dir, new_filename))
+            path = "../static/upload/" + new_filename
+
+    # default: like=0 path=""
+
+    u.avatar_url = path
+    u.gender = gender
+    u.birthday = birth
+    u.profession = profession
+    u.address = address
+    db.session.commit()
+    return redirect(url_for('profile'))
+
+
 @app.route('/favourites')
 def favourites():
     logger.info('Entered the FAVOURITES page')
@@ -564,8 +608,13 @@ def check_booking_target_details(booking_id):
 def check_booking_combination_details(combination_id):
     booking = db.session.query(RecordP).filter(RecordP.id == combination_id).first()
     combination_id = booking.combination_id
-    combination = db.session.query(Combination).filter(Combination.id == combination_id).first()
-    return render_template("selfCombinationDetail.html", booking=booking, combination=combination)
+    combination = db.session.query(UserCombination).filter(UserCombination.id == combination_id).first()
+    day = db.session.query(Day).filter(Day.id == combination.day1).first()
+    att = db.session.query(Target).filter(Target.id == day.attraction_id).first()
+    image = att.image
+    image_url = '../'+image
+
+    return render_template("selfCombinationDetail.html", booking=booking, combination=combination, image_url=image_url)
 
 
 def translate(q):
@@ -617,9 +666,9 @@ def contact_email():
 
     if email:
         message = Message(
-            subject="【Digital Beans】Feedback Received",
+            subject="【Digital Beans】Message Received",
             recipients=[email],
-            body=f"【Digital Beans】We have received your feedback, and we will contact you soon!\n\n"
+            body=f"【Digital Beans】We have received your message, and we will contact you soon!\n\n"
                  f" Note: this is an automatic reply!",
         )
         mail.send(message)
@@ -766,12 +815,12 @@ def data():
     attractions = []
     accommodations = []
     traffics = []
-    for day in days:
-        start_time = day.start_time
+    for day_ in days:
+        start_time = day_.start_time
         # start_t = datetime.strptime(start_time, '%Y-%m-%d')
         start_date = datetime.strptime(start_time, '%Y-%m-%d')
         dates.append(start_time)
-        combination_id = day.combination_id
+        combination_id = day_.combination_id
         combination = db.session.query(Combination).filter_by(id=combination_id).first()
         day_id = combination.day1
         day = db.session.query(Day).filter_by(id=day_id).first()
@@ -821,7 +870,7 @@ def data():
 
         length = combination.length
 
-        for i in range(0, length - 1):
+        for i in range(1, length):
             length_timedelta = timedelta(days=1)
             following_time = start_date + length_timedelta
             following_time_string = following_time.strftime('%Y-%m-%d')
@@ -932,7 +981,7 @@ def data():
 
         length = combination.length
 
-        for i in range(0, length - 1):
+        for i in range(1, length):
             length_timedelta = timedelta(days=1)
             following_time = start_date + length_timedelta
             following_time_string = following_time.strftime('%Y-%m-%d')
@@ -1006,7 +1055,7 @@ def data():
             length = delta.days  # 获取日期差中的天数
             dates.append(start_time)
 
-            for i in range(0, length - 1):
+            for i in range(1, length):
                 length_timedelta = timedelta(days=1)
                 following_time = start_date + length_timedelta
                 following_time_string = following_time.strftime('%Y-%m-%d')

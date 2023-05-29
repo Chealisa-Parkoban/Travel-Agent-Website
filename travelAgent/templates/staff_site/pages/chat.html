@@ -224,7 +224,10 @@
                 {#    '</span></div></div>';#}
                 {#content = content1;#}
                 '<div class="row">' +
-
+                    //add
+    '<div class="col"></div>' +
+                    '<div class="col"></div>' +
+                    //
                 '<div class="alert alert-shadow col-5" style="margin-left: 2%; background: rgb(196,229,234)">' +
             '<b style="color:rgb(9,52,87) ; font-size:25px" class="right">' +
             msg.name +
@@ -242,8 +245,10 @@
                  '</p>'+
                  /////////////////
                 '</span></div>' +
-                    '<div class="col"></div>' +
-            '<div class="col"></div>' +
+                    //delete
+            {#        '<div class="col"></div>' +#}
+            {#'<div class="col"></div>' +#}
+                    //
                 '</div></div>' ;
                 content = content1;
             } else {
@@ -262,8 +267,8 @@
                     {#'</div>';#}
                       '<div class="row">' +
 
-                '<div class="col"></div>' +
-                '<div class="col"></div>' +
+                {#'<div class="col"></div>' +#}
+                {#'<div class="col"></div>' +#}
 
                 '<div class="alert alert-success alert-shadow col-5" style="margin-right: 2%; background: rgba(197,225,192,0.4)">' +
                 '<p style="color:rgba(2,141,21,0.87); text-align: right; font-size:25px"><b>' +
