@@ -16,11 +16,19 @@ staff_blueprint = Blueprint(name="staff_site", import_name=__name__)
 
 day_trip_draft = []
 customised_day_trip_draft = []
-customised_update_trip_draft = []
+
+# customised_update_trip_draft = []
 save_draft = False
 customised_save_draft = False
+
 trip_fees = []
 customised_trip_fees = []
+
+last_draft = []
+last_draft_fees = []
+
+last_draft_customised = []
+last_draft_customised_fees = []
 
 
 # --------------------chat----------------->
@@ -51,7 +59,7 @@ def index():
         items.append(combination)
     for target in targets:
         items.append(target)
-    return render_template('./staff_site/index.html', user=current_user, items=items)
+    return render_template('./staff_site/all_plans.html', user=current_user, items=items)
 
 
 @staff_blueprint.route('/staff/get_data', methods=['GET', 'POST'])
@@ -100,7 +108,7 @@ def login():
                     login_user(user, remember=remember_me)
                     emsg = "STAFF Login successfully!"
                     app.logger.info('Staff \'' + username + '\' has successfully logged into the website')
-                    return redirect(url_for("staff_site.index"))
+                    return redirect(url_for("staff_site.contents"))
         else:
             emsg = "Wrong password!"
             app.logger.error('Login failed: Wrong username or password')
@@ -180,6 +188,11 @@ def view_plan(plan_id=None):
         total += fee
 
     if plan_id is None or plan_id == "null":
+        last_draft.clear()
+        last_draft.extend(day_trip_draft)
+        last_draft_fees.clear()
+        last_draft_fees.extend(trip_fees)
+
         return render_template('./staff_site/new_plan.html', days=day_trip_draft, fees=total,
                            plan_form=plan_form, day_form=day_form, destinations=destinations, attractions=attractions,
                            accommodations=accommodations, traffics=traffics, user=current_user)
