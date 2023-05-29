@@ -609,7 +609,13 @@ def check_booking_combination_details(combination_id):
     booking = db.session.query(RecordP).filter(RecordP.id == combination_id).first()
     combination_id = booking.combination_id
     combination = db.session.query(UserCombination).filter(UserCombination.id == combination_id).first()
-    return render_template("selfCombinationDetail.html", booking=booking, combination=combination)
+    day = db.session.query(Day).filter(Day.id == combination.day1).first()
+    att = db.session.query(Target).filter(Target.id == day.attraction_id).first()
+    image = att.image
+    image_url = '../'+image
+    print(image_url)
+
+    return render_template("selfCombinationDetail.html", booking=booking, combination=combination, image_url=image_url)
 
 
 def translate(q):

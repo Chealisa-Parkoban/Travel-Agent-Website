@@ -222,7 +222,7 @@
 {#                                        <a href="{{ url_for("check_booking_combination_details", combination_id=user_combination_ids[i]) }}"><img#}
 {#                                                src="{{ user_combination_image[i] }}" class="card-img" alt="..."></a>#}
                                         <a href="{{ url_for("check_booking_combination_details", combination_id=user_combination_ids[i]) }}"><img
-                                                src="../static/upload/personal%20order.png" class="card-img" alt="..."></a>
+                                                src="{{ user_combination_image[i] }}" class="card-img" alt="..."></a>
                                     </div>
 
                                     <div class="col-md-8">
