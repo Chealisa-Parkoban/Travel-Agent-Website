@@ -36,25 +36,29 @@ def search():
     price_up = request.form.get('Highest')
     price_low = request.form.get('Lowest')
     combination = []
+    hotels = []
+    attractions = []
 
     print("destination", destination)
     print("attraction", attraction)
     print("price up", price_up)
     print("price low", price_low)
     # 条件判断
-    if price_low != '' and int(price_low) < 0:
-        flash('Wrong input! Please enter again')
-        return redirect(url_for("homepage"))
-            # return render_template("homepage")
+    if price_low != '' and price_low != None:
+        if int(price_low) < 0:
+            flash('Wrong input! Please enter again')
+            return redirect(url_for("homepage"))
+                # return render_template("homepage")
 
-    if price_up != '' and int(price_up) < 0 :
+    if price_up != '' and price_low != None:
+        if int(price_up) < 0 :
+            flash('Wrong input! Please enter again')
+            return redirect(url_for("homepage"))
 
-        flash('Wrong input! Please enter again')
-        return redirect(url_for("homepage"))
-
-    if price_up != '' and price_low != '' and (int(price_low) > int(price_up)):
-        flash('Wrong input! Please enter again')
-        return redirect(url_for("homepage"))
+    if price_up != '' and price_low != '' and price_low != None and price_up != None:
+        if (int(price_low) > int(price_up)):
+            flash('Wrong input! Please enter again')
+            return redirect(url_for("homepage"))
 
     else:
 
