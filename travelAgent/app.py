@@ -613,7 +613,6 @@ def check_booking_combination_details(combination_id):
     att = db.session.query(Target).filter(Target.id == day.attraction_id).first()
     image = att.image
     image_url = '../'+image
-    print(image_url)
 
     return render_template("selfCombinationDetail.html", booking=booking, combination=combination, image_url=image_url)
 
