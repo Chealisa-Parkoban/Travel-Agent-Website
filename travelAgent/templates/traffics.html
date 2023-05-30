@@ -91,6 +91,9 @@
             margin-bottom: 0 !important;
         }
 
+        :root {
+            --aspect-ratio: 0.75;
+        }
     </style>
 
 {% endblock %}
@@ -109,9 +112,9 @@
             <div class="promotion-grids">
                 {% for traffic in traffics %}
                     <a set_id={{ traffic.id }} onclick="setTargetID(this)">
-                    <div class="col-md-4 promation-grid">
+                    <div class="col-md-4 promation-grid" style="overflow: hidden">
                         <!--{#                            <img src="../static/images/sample_pic/the_north_Europe.png" class="img-responsive" alt="" />#}-->
-                        <img src="{{ traffic.image }}" class="img-responsive" alt=""
+                        <img src="{{ traffic.image }}" class="img-responsive" style="object-fit: cover; width: 100%; height: calc(100% * var(--aspect-ratio));" alt=""
                              style="width: 100% !important; height: auto !important;"
                              onerror="javascript:this.src='static/images/sample_pic/the_north_Europe.png/'"/>
                         <div class="prom-text">
