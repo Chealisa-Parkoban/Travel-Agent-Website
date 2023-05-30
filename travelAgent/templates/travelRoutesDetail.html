@@ -371,9 +371,14 @@
                                         class="text-muted small">program link</span>
                                     <span class="ms-3 me-4">|</span></p>
                                 <a href="#!" class="block">
-                                    <img src={{ current_user.avatar_url }}
-                                                 alt=""
-                                         class="img-fluid rounded-circle me-3" width="35">
+                                    {% for user in comment_users %}
+                                            {% if comment.user_id == user.id %}
+                                            <img src={{ user.avatar_url }}
+                                                         alt=""
+                                                 class="img-fluid rounded-circle me-3" width="35">
+
+                                            {% endif %}
+                                        {% endfor %}
                                 </a>
                                 <button type="button" class="btn btn-outline-dark btn-sm btn-floating block">
                                     <i class="fas fa-plus"></i> Reply

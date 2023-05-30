@@ -23,7 +23,7 @@ import datetime
 import travelAgent
 from travelAgent import db
 from travelAgent.forms import CommentForm, ImageForm
-from travelAgent.models import CommentC, Comment, Combination, Destination, Day, Target, Record, Favorite
+from travelAgent.models import CommentC, Comment, Combination, Destination, Day, Target, Record, Favorite, User
 from travelAgent.views.login_handler import login_blueprint, current_user
 from travelAgent.views.number import Random_str
 
@@ -95,14 +95,26 @@ def showAttraction():
             else:
                 flash("You have not booked this order yet and cannot comment")
 
+        comment_users = []
+        comments = db.session.query(Comment).filter(Comment.target_id == set_id).all()
+        for comment in comments:
+            user_id = comment.user_id
+            comment_user = User.query.filter(User.id == user_id).first()
+            comment_users.append(comment_user)
+
         return render_template("attractionDetail.html", current_user=current_user, comment_form=comment_form,
                                comments=db.session.query(Comment).filter(Comment.target_id == set_id).all(), set=set,
-                               target_id=target_id, status_fav=status_fav
+                               target_id=target_id, status_fav=status_fav, comment_users=comment_users
                                )
 
     # if request.method == 'GET':
-
+    comment_users = []
     comments = db.session.query(Comment).filter(Comment.target_id == set_id).all()
+    for comment in comments:
+        user_id = comment.user_id
+        comment_user = User.query.filter(User.id == user_id).first()
+        comment_users.append(comment_user)
+
 
     return render_template("attractionDetail.html", comments=comments, comment_form=comment_form,
-                           set=set, target_id=target_id, status_fav=status_fav)
+                           set=set, target_id=target_id, status_fav=status_fav, comment_users=comment_users)
