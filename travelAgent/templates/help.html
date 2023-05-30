@@ -5,6 +5,14 @@
 {% block head %}
     <meta charset="UTF-8">
     <title>Help</title>
+    <!-- 新 Bootstrap5 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
+
+    <!--  popper.min.js 用于弹窗、提示、下拉菜单 -->
+    <script src="https://cdn.staticfile.org/popper.js/2.9.3/umd/popper.min.js"></script>
+
+    <!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
 {% endblock %}
 {#</head>#}
 {#<body>#}
@@ -24,88 +32,149 @@
                 {#                    </button>#}
                 {#                </form>#}
                 <hr>
-                <nav class="bd-links list-group" aria-label="Main navigation">
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Content
+                </button>
 
-                    <div class="bd-toc-item active">
+                <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+                     aria-labelledby="offcanvasWithBothOptionsLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Chapter</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                                            <div class="bd-toc-item active">
                         <a class="bd-toc-link" href="{{ url_for('help') }}">
                             Overview
                         </a>
                     </div>
-{##}
-{#                    <div class="bd-toc-item">#}
-{#                        <a class="bd-toc-link" href="/docs/4.6/layout/overview/">#}
-{##}
-{#                        </a>#}
-{#                    </div>#}
-{##}
-{#                    <div class="bd-toc-item">#}
-{#                        <a class="bd-toc-link" href="/docs/4.6/content/reboot/">#}
-{#                            Content#}
-{#                        </a>#}
-{#                    </div>#}
-
-                    <div class="bd-toc-item">
+                                            <div class="bd-toc-item">
                         <a class="bd-toc-link" href="{{ url_for('help_for_customer') }}">
                             For Customer
                         </a>
-                        <ul class="nav bd-sidenav">
-
-                            <li>
-                                <a href="#C1">Sign Up and Log in</a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.6/components/badge/">View and Search Travel Packages</a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.6/components/breadcrumb/">Add to Favorites</a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.6/components/buttons/">Book Packages</a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.6/components/button-group/">Check Orders</a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.6/components/card/">Customer Service</a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.6/components/carousel/">Comments</a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.6/components/collapse/">Check Company Profile</a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.6/components/dropdowns/">Contact to the Company</a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.6/components/forms/">Whole Page Translation</a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.6/components/input-group/">For Staff - Staff Porta</a>
-                            </li>
-                        </ul>
+{#                        <ul class="nav bd-sidenav">#}
+{##}
+{#                            <li>#}
+{#                                <a href="#C1">Sign Up and Log in</a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="/docs/4.6/components/badge/">View and Search Travel Packages</a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="/docs/4.6/components/breadcrumb/">Add to Favorites</a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="/docs/4.6/components/buttons/">Book Packages</a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="/docs/4.6/components/button-group/">Check Orders</a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="/docs/4.6/components/card/">Customer Service</a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="/docs/4.6/components/carousel/">Comments</a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="/docs/4.6/components/collapse/">Check Company Profile</a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="/docs/4.6/components/dropdowns/">Contact to the Company</a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="/docs/4.6/components/forms/">Whole Page Translation</a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="/docs/4.6/components/input-group/">For Staff - Staff Porta</a>#}
+{#                            </li>#}
+{#                        </ul>#}
                     </div>
-
-                    <div class="bd-toc-item">
-                        <a class="bd-toc-link" href="/docs/4.6/components/alerts/">
-                            For Staff
-                        </a>
-                        <ul class="nav bd-sidenav">
-                            <li>
-                                <a href="/docs/4.6/components/jumbotron/">Sign Up and Log in</a>
-                            </li>
-                            <li class="active bd-sidenav-active">
-                                <a href="/docs/4.6/components/list-group/">Manage All Contents</a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.6/components/media-object/">Contact Customer</a>
-                            </li>
-                        </ul>
+{#                        <p>Try scrolling the rest of the page to see this option in action.</p>#}
                     </div>
-                </nav>
+                </div>
+{#                <nav class="bd-links list-group" aria-label="Main navigation">#}
+{##}
+{#                    <div class="bd-toc-item active">#}
+{#                        <a class="bd-toc-link" href="{{ url_for('help') }}">#}
+{#                            Overview#}
+{#                        </a>#}
+{#                    </div>#}
+                    {##}
+                    {#                    <div class="bd-toc-item">#}
+                    {#                        <a class="bd-toc-link" href="/docs/4.6/layout/overview/">#}
+                    {##}
+                    {#                        </a>#}
+                    {#                    </div>#}
+                    {##}
+                    {#                    <div class="bd-toc-item">#}
+                    {#                        <a class="bd-toc-link" href="/docs/4.6/content/reboot/">#}
+                    {#                            Content#}
+                    {#                        </a>#}
+                    {#                    </div>#}
+{##}
+{#                    <div class="bd-toc-item">#}
+{#                        <a class="bd-toc-link" href="{{ url_for('help_for_customer') }}">#}
+{#                            For Customer#}
+{#                        </a>#}
+{#                        <ul class="nav bd-sidenav">#}
+{##}
+{#                            <li>#}
+{#                                <a href="#C1">Sign Up and Log in</a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="/docs/4.6/components/badge/">View and Search Travel Packages</a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="/docs/4.6/components/breadcrumb/">Add to Favorites</a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="/docs/4.6/components/buttons/">Book Packages</a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="/docs/4.6/components/button-group/">Check Orders</a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="/docs/4.6/components/card/">Customer Service</a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="/docs/4.6/components/carousel/">Comments</a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="/docs/4.6/components/collapse/">Check Company Profile</a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="/docs/4.6/components/dropdowns/">Contact to the Company</a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="/docs/4.6/components/forms/">Whole Page Translation</a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="/docs/4.6/components/input-group/">For Staff - Staff Porta</a>#}
+{#                            </li>#}
+{#                        </ul>#}
+{#                    </div>#}
+{##}
+{#                    <div class="bd-toc-item">#}
+{#                        <a class="bd-toc-link" href="/docs/4.6/components/alerts/">#}
+{#                            For Staff#}
+{#                        </a>#}
+{#                        <ul class="nav bd-sidenav">#}
+{#                            <li>#}
+{#                                <a href="/docs/4.6/components/jumbotron/">Sign Up and Log in</a>#}
+{#                            </li>#}
+{#                            <li class="active bd-sidenav-active">#}
+{#                                <a href="/docs/4.6/components/list-group/">Manage All Contents</a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="/docs/4.6/components/media-object/">Contact Customer</a>#}
+{#                            </li>#}
+{#                        </ul>#}
+{#                    </div>#}
+{#                </nav>#}
             </div>
             <div class="col-sm-8">
-                <embed src="../static/upload/user file.pdf" type="application/pdf" width=800 height=800 class="container">
+                <embed src="../static/upload/user file.pdf" type="application/pdf" width=800 height=800
+                       class="container">
             </div>
         </div>
 
