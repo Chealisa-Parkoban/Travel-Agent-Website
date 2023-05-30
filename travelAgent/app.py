@@ -932,7 +932,7 @@ def data():
         start_date = datetime.strptime(start_time, '%Y-%m-%d')
         dates.append(start_time)
         combination_id = day.combination_id
-        combination = db.session.query(Combination).filter_by(id=combination_id).first()
+        combination = db.session.query(UserCombination).filter_by(id=combination_id).first()
         day_id = combination.day1
         day = db.session.query(Day).filter_by(id=day_id).first()
 

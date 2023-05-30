@@ -6,7 +6,7 @@ from flask_login import LoginManager, login_user, current_user, logout_user
 
 from travelAgent import app, db
 from travelAgent.forms import LoginForm, DayTripForm, PlanForm, DestinationForm, TargetForm
-from travelAgent.models import User, Destination, Target, Day, Combination, UserCombination
+from travelAgent.models import User, Destination, Target, Day, Combination, UserCombination, RecordP
 from travelAgent.views.login_handler import login_manager
 
 from travelAgent.config import basedir
@@ -135,7 +135,7 @@ def move_later(index, plan_id=None):
 @planning_tool_blueprint.route('/planning_delete_day/<index>', methods=['GET', 'POST'])
 def delete_day(index, plan_id=None):
     index = int(index)
-    if day_trip_draft.__len__() > 1:
+    if day_trip_draft.__len__() >= 1:
         day_trip_draft.pop(index)
     for i in range(index, day_trip_draft.__len__()):
         day_trip_draft[i][0] = i + 1
@@ -147,7 +147,7 @@ def delete_day(index, plan_id=None):
 
 
 @planning_tool_blueprint.route('/planning/update_plan/<plan_id>', methods=['GET', 'POST'])
-def update_plan(plan_id):
+def update_plan(plan_id, buy_now=False):
     plan = UserCombination.query.filter_by(id=plan_id).first()
 
     for day in plan.get_days():
@@ -201,6 +201,9 @@ def update_plan(plan_id):
     plan.day7 = days_id[6]
     db.session.commit()
 
+    if buy_now:
+        return redirect(url_for("booking.addPersonalBooking", combination_id=plan_id))
+
     return redirect(url_for("personal_plan", plan_id=plan_id))
 
 
@@ -217,7 +220,7 @@ def submit_plan():
     price = request.form.get('price')
     length = day_trip_draft.__len__()
     days = []
-    print(name, intro, price, length, day_trip_draft.__len__() )
+    # print(name, intro, price, length, day_trip_draft.__len__() )
 
     for day in day_trip_draft:
         destination_id = Destination.query.filter_by(name=day[1]).first().id
@@ -260,15 +263,26 @@ def save_draft():
     return redirect(url_for("personal_plan"))
 
 
-@planning_tool_blueprint.route('/planning/buy', methods=['GET', 'POST'])
-def buy():
-    plan_id = submit_plan()
-    return redirect(url_for("booking.addPersonalBooking", combination_id=plan_id))
+# @planning_tool_blueprint.route('/planning/buy/<plan_id>', methods=['GET', 'POST'])
+# def buy(plan_id):
+#     # return update_plan(plan_id, True)
+#     return redirect(url_for("booking.addPersonalBooking", combination_id=plan_id))
 
 
 @planning_tool_blueprint.route('/planning/back', methods=['GET', 'POST'])
 def back():
     return redirect(url_for("personal_plan"))
+
+
+@planning_tool_blueprint.route('/planning/delete_pack/<plan_id>', methods=['GET', 'POST'])
+def delete_pack(plan_id):
+    plan = UserCombination.query.filter_by(id=plan_id).first()
+    db.session.delete(plan)
+    for record in RecordP.query.filter_by(combination_id=plan_id).all():
+        db.session.delete(record)
+    db.session.commit()
+    return redirect(url_for("personal_plan"))
+
 
 
 # @planning_tool_blueprint.route('/planning/plan_detail', methods=['GET', 'POST'])

@@ -91,22 +91,21 @@
                 <div class="pl-4 pr-0 h-100 tofront">
                     <div class="row justify-content-between">
                         <div class="col-md-6 pt-6 pb-6 align-self-center">
-{#                            {% for message in get_flashed_messages() %}#}
-{#                                <div class="alert">{{ message }}</div>#}
-{#                            {% endfor %}#}
-{#                        {% block content %}{% endblock %}#}
-
                             <h1 class="secondfont mb-3 font-weight-bold"> {{ set.name }}</h1>
-                            <h3 style="display: flex; align-items: center">
+
+                            <h3 style="margin-left: 0.1rem">
+                                ¥ {{ set.price }}
+                            </h3>
+                            <h4 style="display: flex; align-items: center">
                                 {%  if set.avg_score != 'No score' %}
-                                    <i class="fas fa-star" style="margin: 0 0.3rem; font-size: 1rem"></i>
+                                    <i class="fas fa-star" style="margin-right: 0.3rem; font-size: 1rem"></i>
                                 {% endif %}
                                 {{ set.avg_score }}
-                            </h3>
+                            </h4>
+
                             <p class="mb-3 intro">
                                 {{ set.intro }}
                             </p>
-                            {#                            <a href="./article.html" class="btn btn-info">Book Now!</a>#}
 
                             <a href="{{ url_for('booking.addTargetBooking', target_id=target_id) }} "
                                style="text-decoration: none">
@@ -136,7 +135,7 @@
 
                         </div>
                         <div class="col-md-6 d-none d-md-block pr-0" style="overflow: hidden;">
-                            <img src="{{ set.image }}" style="object-fit: cover; width: 100%; height: 100%;">
+                            <img src="{{ set.image }}" style="object-fit: cover; width: 100%; height: 100%;" onerror="javascript:this.src='static/images/prv/default_pic.png/'">
                         </div>
                     </div>
                 </div>
@@ -304,15 +303,15 @@
                     <br/>
                     <h5>What can you expect from the attraction:</h5>
                     <div style="background: rgb(232,241,255); margin-top: 0.8rem; margin-bottom: 1rem; padding: 1rem; border-radius: 5px">
-                        <p>Experience the thrill and excitement of [attraction] in [destination] with our exclusive
+                        <p>Experience the thrill and excitement of {{ set.name }} in {{ set.location }} with our exclusive
                             tickets.</p>
-                        <p>Explore the rich history and culture of [destination] with our guided tours to top
+                        <p>Explore the rich history and culture of {{ set.location }} with our guided tours to top
                             attractions.</p>
                         <p>Our attraction packages are designed to provide you with an unforgettable experience.</p>
                         <p>Whether you're interested in nature, history, or entertainment, our attraction packages have
                             something for everyone.</p>
                         <p>With our experienced tour guides, you can learn about the attractions and their significance
-                            in [destination]'s history and culture.</p>
+                            in {{ set.location }}'s history and culture.</p>
                         <p>We offer a wide range of attraction packages to suit every interest and budget.</p>
                         <p>Our attraction packages include skip-the-line tickets, transportation, and guided tours for a
                             hassle-free experience.</p>
