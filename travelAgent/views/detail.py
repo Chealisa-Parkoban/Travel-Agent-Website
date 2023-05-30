@@ -23,7 +23,7 @@ import datetime
 import travelAgent
 from travelAgent import db
 from travelAgent.forms import CommentForm, ImageForm
-from travelAgent.models import CommentC, Comment, Combination, Destination, Day, Target, RecordC, FavoriteC
+from travelAgent.models import CommentC, Comment, Combination, Destination, Day, Target, RecordC, FavoriteC, User
 from travelAgent.views.login_handler import login_blueprint, current_user
 from travelAgent.views.number import Random_str
 
@@ -72,6 +72,7 @@ def improveImage(img):
 
 @detail_blueprint.route("/showSetDetails", methods=['GET', 'POST'])
 def showSetDetails():
+    global comment_user
     print("调用showdetail函数了！")
     set_id = session.get("set_id")
 
@@ -525,10 +526,17 @@ def showSetDetails():
             traffic.append(day6_traffic)
             traffic.append(day7_traffic)
 
+        comment_users = []
+        comments = db.session.query(CommentC).filter(CommentC.combination_id == set_id).all()
+        for comment in comments:
+            user_id = comment.user_id
+            comment_user = User.query.filter(User.id == user_id).first()
+            comment_users.append(comment_user)
+
         return render_template("travelRoutesDetail.html", current_user=current_user, comment_form=comment_form,
                                comments=db.session.query(CommentC).filter(CommentC.combination_id == set_id).all(),
                                length=length, set=set, combination_id=set_id,
-                               accomodations=accomodations, attractions=attractions, traffic=traffic, status_fav=status_fav)
+                               accomodations=accomodations, attractions=attractions, traffic=traffic, status_fav=status_fav, comment_users=comment_users)
 
     # if request.method == 'GET':
 
@@ -916,9 +924,15 @@ def showSetDetails():
         traffic.append(day6_traffic)
         traffic.append(day7_traffic)
 
+    comment_users = []
+    for comment in comments:
+        user_id = comment.user_id
+        comment_user = User.query.filter(User.id == user_id).first()
+        comment_users.append(comment_user)
+
     return render_template("travelRoutesDetail.html", comments=comments, comment_form=comment_form, length=length,
                            set=set, combination_id=ID,
-                           accomodations=accomodations, attractions=attractions, traffic=traffic, status_fav=status_fav)
+                           accomodations=accomodations, attractions=attractions, traffic=traffic, status_fav=status_fav, comment_users=comment_users)
 
 
 # 展示booking细节的函数
