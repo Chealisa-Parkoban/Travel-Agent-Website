@@ -4,6 +4,14 @@
 {% block head %}
     <meta charset="UTF-8">
     <title>Help</title>
+    <!-- 新 Bootstrap5 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
+
+    <!--  popper.min.js 用于弹窗、提示、下拉菜单 -->
+    <script src="https://cdn.staticfile.org/popper.js/2.9.3/umd/popper.min.js"></script>
+
+    <!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
 {% endblock %}
 {#</head>#}
 {#<body>#}
@@ -30,6 +38,118 @@
                             Overview
                         </a>
                     </div>
+                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Details
+                    </button>
+
+                    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1"
+                         id="offcanvasWithBothOptions"
+                         aria-labelledby="offcanvasWithBothOptionsLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Chapter</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            {#                            <div class="bd-toc-item active">#}
+                            {#                                <a class="bd-toc-link" href="{{ url_for('help') }}">#}
+                            {#                                    Overview#}
+                            {#                                </a>#}
+                            {#                            </div>#}
+                            {#                            <div class="bd-toc-item">#}
+                            {#                                <a class="bd-toc-link" href="{{ url_for('help_for_customer') }}">#}
+                            {#                                    For Customer#}
+                            {#                                </a>#}
+                            {#                            </div>#}
+                            <div class="bd-toc-item">
+                                <a class="bd-toc-link" href="#C1">
+                                    Sign Up and Log in
+                                </a>
+                            </div>
+                            <div class="bd-toc-item">
+                                <a class="bd-toc-link" href="#C2">
+                                    View and Search Travel Packages
+                                </a>
+                            </div>
+                            <div class="bd-toc-item">
+                                <a class="bd-toc-link" href="#C3">
+                                    Add to Favorites
+                                </a>
+                            </div>
+                            <div class="bd-toc-item">
+                                <a class="bd-toc-link" href="#C4">
+                                    Remove from Favorites
+                                </a>
+                            </div>
+                            <div class="bd-toc-item">
+                                <a class="bd-toc-link" href="#C5">
+                                    View Favorites
+                                </a>
+                            </div>
+                            <div class="bd-toc-item">
+                                <a class="bd-toc-link" href="#C6">
+                                    Book Packages/ Attraction/ Hotel
+                                </a>
+                            </div>
+
+                            <div class="bd-toc-item">
+                                <a class="bd-toc-link" href="#C7">
+                                    Check Orders
+                                </a>
+                            </div>
+                            <div class="bd-toc-item">
+                                <a class="bd-toc-link" href="#C8">
+                                    DIY Travel Packages
+                                </a>
+                            </div>
+
+
+                            <div class="bd-toc-item">
+                                <a class="bd-toc-link" href="#C9">
+                                    Calendar
+                                </a>
+                            </div>
+                            <div class="bd-toc-item">
+                                <a class="bd-toc-link" href="#C10">
+                                    Customer Service
+                                </a>
+                            </div>
+                            <div class="bd-toc-item">
+                                <a class="bd-toc-link" href="#C11">
+                                    Comments
+                                </a>
+                            </div>
+
+                            <div class="bd-toc-item">
+                                <a class="bd-toc-link" href="#C12">
+                                    Check and Update Personal Profile
+                                </a>
+                            </div>
+                            <div class="bd-toc-item">
+                                <a class="bd-toc-link" href="#C13">
+                                    Check Company Profile
+                                </a>
+                            </div>
+                            <div class="bd-toc-item">
+                                <a class="bd-toc-link" href="#C14">
+                                    Contact to the Company
+                                </a>
+                            </div>
+                            <div class="bd-toc-item">
+                                <a class="bd-toc-link" href="#C15">
+                                    Whole Page Translation
+                                </a>
+                            </div>
+
+
+                            <div class="bd-toc-item">
+                                <a class="bd-toc-link" href="#C15">
+                                    Help for detailed instructions
+                                </a>
+                            </div>
+                            {#                        <p>Try scrolling the rest of the page to see this option in action.</p>#}
+                        </div>
+                    </div>
                     {##}
                     {#                    <div class="bd-toc-item">#}
                     {#                        <a class="bd-toc-link" href="/docs/4.6/layout/overview/">#}
@@ -43,67 +163,9 @@
                     {#                        </a>#}
                     {#                    </div>#}
 
-                    <div class="bd-toc-item active">
-                        <a class="bd-toc-link" href="{{ url_for('help_for_customer') }}">
-                            For Customer
-                        </a>
-                        <ul class="nav bd-sidenav">
-
-                            <li>
-                                <a href="#C1">Sign Up and Log in</a>
-                            </li>
-                            <li>
-                                <a href="#C2">View and Search Travel Packages</a>
-                            </li>
-                            <li>
-                                <a href="#C3">Add/Remove to Favorites</a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.6/components/buttons/">Book Packages</a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.6/components/button-group/">Check Orders</a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.6/components/card/">Customer Service</a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.6/components/carousel/">Comments</a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.6/components/collapse/">Check Company Profile</a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.6/components/dropdowns/">Contact to the Company</a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.6/components/forms/">Whole Page Translation</a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.6/components/input-group/">For Staff - Staff Porta</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="bd-toc-item">
-                        <a class="bd-toc-link" href="/docs/4.6/components/alerts/">
-                            For Staff
-                        </a>
-                        <ul class="nav bd-sidenav">
-                            <li>
-                                <a href="/docs/4.6/components/jumbotron/">Sign Up and Log in</a>
-                            </li>
-                            <li class="active bd-sidenav-active">
-                                <a href="/docs/4.6/components/list-group/">Manage All Contents</a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.6/components/media-object/">Contact Customer</a>
-                            </li>
-                        </ul>
-                    </div>
                 </nav>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-8" style=" overflow:scroll;height:800px;">
                 <h1>
                     For Customer
                 </h1>
@@ -121,7 +183,7 @@
                 <p>2. Select "Remember me" if you want the website to remember you.</p>
                 <p>3. Click "Sign in"</p>
                 <h2><a name="C2"></a>View and Search Travel Packages</h2>
-                <p>1. item Enter the Overview page and click Start button</p>
+                <p>1. Enter the Overview page and click Start button</p>
                 <p>2. Input the name of the destination or attraction or the price range. </p>
                 <p>3. Click Check Availability button. </p>
                 <p>4. Check each journey. </p>
@@ -136,9 +198,120 @@
                 <h2><a name="C3"></a>Add to Favorites</h2>
                 <p>1. Click on your preferred tour content on the home page to view details</p>
                 <p>2. Click the "Favourite" button to add this travel information to your favorites</p>
-                <h2>Remove favorites</h2>
-                <p>1. Click the travel content you want to remove from your favorites (already existed in your favourite list) on the home page</p>
-                <p>2. Click the "Remove" button to remove this travel information form your favorites</p>
+                <h2><a name="C4">Remove from Favorites</a></h2>
+                <p>1. Click the travel content you want to remove from your favorites (already existed in your favourite
+                    list) on the home page.</p>
+                <p>2. Click the "Remove" button to remove this travel information form your favorites.</p>
+                <h2><a name="C5">View Favorites</a></h2>
+                <p>1. Click on the little man avatar on the far right in the top navigation bar.</p>
+                <p>2. Click the "Favourites" button.</p>
+                <p>3. Page jumps to the user's favorites list, users can browse all favorites on this page.</p>
+                <p>4. Click on the different items in the side navigation bar to jump to a specific category.</p>
+                <h2><a name="C6">Book Packages/ Attraction/ Hotel</a></h2>
+                <p>1. Click on your preferred tour content on the home page to view details.</p>
+                <p>2. Click the "Book now!" button to jump to the reservation page.</p>
+                <p>3. Fill in the information as required, including real name, real contact number, start date of the
+                    trip and the number of people on the tour (if it is a hotel booking you need to fill in the check-in
+                    date and check-out date).</p>
+                <p>4. Click "Submit Your Order" button.</p>
+                <p>5. The order is successfully submitted and jumps to the order view page.</p>
+                <h2><a name="C7">Check Orders</a></h2>
+                <p>1. Click the user icon on the right hand side of the top bar and then click orders.</p>
+                <p>2. Check the detail of previous orders and the status of the order (completeness and
+                    commenting). </p>
+                <p>3. Click the image of each order.</p>
+                <p>4. Check the detail of the order and some detail of the journey.</p>
+                <p>Our website allows user to check their order status in user's 'Order Page', detailed information of
+                    this journey will all be displayed.</p>
+                <h2><a name="C8">DIY Travel Packages</a></h2>
+                <h4>Create New Packages</h4>
+                <p>1. Go to the homepage. Slide to Top Trip Guide. Click "Create Your Own Trip".</p>
+                <p>2. Like modifying a package, you can add new days, order days and delete days.</p>
+                <p>3. Slide to see "New Day-Trip Draft" card. Select some information and click "ADD" to add a new day
+                    to
+                    the trip. The maximum duration is seven days.</p>
+                <p>4. Click left arrow or right arrow on the day card to move it earlier or later.</p>
+                <p>5. Click "Delete" to delete the day.</p>
+                <p>6. Slide to the bottom you can enter package information including name and notes.</p>
+                <p>7. The total price for the trip is calculated automatically according to attraction's ticket price,
+                    hotel price and traffic cost.</p>
+                <p>8. Click "Clear All" if you want to clear all the information.</p>
+                <p>9. Click "Save Draft" to save the package.</p>
+                <h4>View and Update Customised Packages</h4>
+                <p>1. Go to homepage. Click "Personal Plans" to see all your packages.</p>
+                <p>2. Click one of them to check details.</p>
+                <p>3. Slide to see "New Day-Trip Draft" card. Select some information and click "ADD" to add a new day
+                    to
+                    the trip. The maximum duration is seven days. </p>
+                <p>4. Click left arrow or right arrow on the day card to move it earlier or later.</p>
+                <p>5. Click "Delete" to delete the day.</p>
+                <p>6. Slide to the bottom you can change package information including name, introduction, cover
+                    picture.</p>
+                <p>7. The total price for the trip is calculated automatically according to attraction's ticket price,
+                    hotel price and traffic cost. </p>
+                <p>8. Click "Update Package" to update the package.</p>
+                <p>9. You can click the trash can icon to delete the package.</p>
+                <h4>Buy Customised Packages</h4>
+                <p>1. Go to homepage. Click "Personal Plans" to see all your packages.</p>
+                <p>2. Click one of them to check details.</p>
+                <p>3. Click "Buy Now"</p>
+                <p>4. Perform the booking procedure given before.</p>
+                <h2><a name="C9">Calendar</a></h2>
+                <p>1. Go to homepage. Click person icon on the right of the bar</p>
+                <p>2. Click 'Travel Calendar'.</p>
+                <p>3. Click month on the left to change the month.</p>
+                <p>4. Click the year adjustment to change the year.</p>
+                <h2><a name="C10">Customer Service</a></h2>
+                <p>1. User can input message into 'Message' bar below the page. </p>
+                <p>2. Then click 'Send' to send it. </p>
+                <p>3. Staff will receive them, and their reply will represent to user as well. </p>
+                <p>4. Auto reply is available, user can click 'Message' bar and drop-down bar will appear with preset
+                    common questions. </p>
+                <p>5. Choose one of them and send, the auto-reply will represent automatically.</p>
+                <p>6. Staff will be available between 9am-10pm, other time user can only receive auto reply. </p>
+                <p>7. User can also check their chat history by clicking 'History' in navigation bar. </p>
+                <p>8. User can point translate button to translate coming message. </p>
+                <p>9. User can be alarmed when there are new messages coming from staff from the 'Messages'， which
+                    inside
+                    the drop-down bar of a human figure in the top of navigation bar.</p>
+                <h2><a name="C11">Comments</a></h2>
+                <p>1. Select the tour you want to comment on in the completed order.</p>
+                <p>2. Slide the page until you see the comment section below.</p>
+                <p>3. Click on one of the 1-5 stars to rate this order, enter the content of the evaluation in the text
+                    box and select the file you want to upload.</p>
+                <p>4. Click "Send Comment" button to submit.</p>
+                <p>5. The page is refreshed and you can now view the comments you just sent.</p>
+                <p>6. Click on the "Improve Image Quality" button and the images that have been improved in quality will
+                    be displayed on the right side.</p>
+                <h2><a name="C12">Check and Update Personal Profile</a></h2>
+                <p>1. Click on the little man avatar on the far right in the top navigation bar.</p>
+                <p>2. Click the "Profile" button.</p>
+                <p>3. The page jumps to the personal profile page, where users can browse their information.</p>
+                <p>4. Select to enter the information to be modified.</p>
+                <p>5. Click "Update Profile" button.</p>
+                <p>6. Information will be submitted and the user profile will be updated.</p>
+                <h2><a name="C13">Check Company Profile</a></h2>
+                <p>User can check company profiles to get known the company more deeply. </p>
+                <h2><a name="C14">Contact to the Company</a></h2>
+                <p>1. Go to the overview page (Click Overview button on the top bar).</p>
+                <p>2. Click links on the top.</p>
+                <p>3. Click Contact us button.</p>
+                <p>4. Go to the bottom of the page.</p>
+                <p>5. Input the name, email address and message in the box.</p>
+                <p>6. Click Send message, now, the message has sent successfully.</p>
+                <p>User can go to Contact-Us page to send messages to the Company. Thus, users can give advice to
+                    them.</p>
+                <h2><a name="C15">Whole Page Translation</a></h2>
+                <p>User can translate language whole website between English and Chinese.</p>
+                <p>1. Clicking the language translation mark in right bottom place of every page.</p>
+                <p>2. User choose which language to translate to between English and Chinese.</p>
+                <h2><a name="C16">Help for detailed instructions</a></h2>
+                <p>1. If user need to view detailed operation steps 1. user can point the 'Help' bottom in navigation
+                    bar.</p>
+                <p>2. The user document will represent in another page.</p>
+                <p>3. Allow user to download, zoom in or zoom out.</p>
+
+
             </div>
         </div>
 
