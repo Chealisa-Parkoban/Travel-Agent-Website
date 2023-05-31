@@ -1,5 +1,10 @@
 {% extends "staff_site/base.html" %}
-
+<script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+<script>
+    Weglot.initialize({
+        api_key: 'wg_991d5991daaf78aac7e8fa18f31205397'
+    });
+</script>
 <!-- partial -->
 {% block body %}
 <div class="main-panel" style="height: 100vh;">
@@ -123,12 +128,15 @@
     function fill_users(data) {
         console.log(data)
         let str = '<li class="list-group-item active">User List</li>'
+        let str2 = 0
         data.forEach((val, idx) => {
             str += `<li class="list-group-item user-li" onclick="switch_user_chat('${val['username']}', ${idx})">
                     ${val['username']}
                     <span class="float-right badge badge-primary">${val['unseen']}</span></li>`
+             str2  += val['unseen']
         })
         console.log(str)
+         $('#user-list2').html(str2)
         $('#user-list').html(str)
     }
 
