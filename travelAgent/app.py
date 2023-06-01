@@ -89,13 +89,22 @@ def about():
     logger.info('Entered the ABOUT page')
     changeBookingStatus()
     return render_template("about.html")
+
+
 @app.route('/help')
 def help():
     return render_template("help.html")
 
+
+@app.route('/help2')
+def help2():
+    return render_template("help2.html")
+
+
 @app.route('/help_for_customer')
 def help_for_customer():
     return render_template("help_for_customer.html")
+
 
 @app.route('/contactUs')
 def contact_us():

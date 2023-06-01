@@ -1,42 +1,39 @@
-{#<!DOCTYPE html>#}
 {% extends "base.html" %}
-{#<html lang="en">#}
-{#<head>#}
+
 {% block head %}
     <meta charset="UTF-8">
     <title>Help</title>
-    <!-- 新 Bootstrap5 核心 CSS 文件 -->
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
-
-    <!--  popper.min.js 用于弹窗、提示、下拉菜单 -->
-    <script src="https://cdn.staticfile.org/popper.js/2.9.3/umd/popper.min.js"></script>
-
-    <!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
+{#    <!-- 新 Bootstrap5 核心 CSS 文件 -->#}
+{#    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">#}
+{##}
+{#    <!--  popper.min.js 用于弹窗、提示、下拉菜单 -->#}
+{#    <script src="https://cdn.staticfile.org/popper.js/2.9.3/umd/popper.min.js"></script>#}
+{##}
+{#    <!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->#}
+{#    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>#}
 {% endblock %}
-{#</head>#}
-{#<body>#}
+
 {% block body %}
     <div class="container-fluid">
         <div class="row" style="margin-top: 5%; margin-bottom: 3%">
-            <div class="col-sm-2">
-                <hr>
+{#            <div class="col-sm-2">#}
+{#                <hr>#}
 {#                <button class="btn btn-info w-100"><a href="{{ 'help_for_customer' }} " style="color: white">Details</a>#}
 {#                </button>#}
-
-                <div class="card text-center">
-                    <div class="card-header">
-                        You may want to know
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Details about what users can do?</h5>
-                        <p class="card-text">Click Following button and move to the file page</p>
-                        <a href="{{ 'help_for_customer' }}" class="btn btn-primary" style="width: 60%">Go Details</a>
-                    </div>
-                    <div class="card-footer text-muted">
-                        From Developer Group
-                    </div>
-                </div>
+{##}
+{#                <div class="card text-center">#}
+{#                    <div class="card-header">#}
+{#                        You may want to know#}
+{#                    </div>#}
+{#                    <div class="card-body">#}
+{#                        <h5 class="card-title">Details about what users can do?</h5>#}
+{#                        <p class="card-text">Click Following button and move to the file page</p>#}
+{#                        <a href="{{ 'help_for_customer' }}" class="btn btn-primary" style="width: 60%">Go Details</a>#}
+{#                    </div>#}
+{#                    <div class="card-footer text-muted">#}
+{#                        From Developer Group#}
+{#                    </div>#}
+{#                </div>#}
 
                 {#                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"#}
                 {#                        data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Content#}
@@ -98,12 +95,12 @@
                 {#                        <p>Try scrolling the rest of the page to see this option in action.</p>#}
                 {#                    </div>#}
                 {#                </div>#}
+{#            </div>#}
+            <div class="col-md-12" style="display: flex; justify-content: center; align-items: center; margin: 2% 0">
+                <embed src="../static/upload/user file.pdf" type="application/pdf" width="800" height="800" class="container">
             </div>
-            <div class="col-sm-8">
-                <embed src="../static/upload/user file.pdf" type="application/pdf" width=800 height=800
-                       class="container">
-            </div>
-            <div class="col-sm-2"></div>
+
+{#            <div class="col-sm-2"></div>#}
         </div>
 
     </div>
