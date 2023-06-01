@@ -38,10 +38,10 @@
           </button>
         </div>
         <div>
-          <a class="navbar-brand brand-logo" href="base.html">
+          <a class="navbar-brand brand-logo" >
             <h3 style="color: #1F3BB3; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif">Digital Beans</h3>
           </a>
-          <a class="navbar-brand brand-logo-mini" href="base.html">
+          <a class="navbar-brand brand-logo-mini" >
             <img src="../../static/staff_site_static/images/logo-mini.svg" alt="logo" />
           </a>
         </div>
@@ -54,55 +54,13 @@
           </li>
         </ul>
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item dropdown"> 
-            <a class="nav-link count-indicator" id="countDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="icon-bell"></i>
-              <span class="count"></span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="countDropdown">
-              <a class="dropdown-item py-3">
-                <p class="mb-0 font-weight-medium float-left">You have 7 unread mails </p>
-                <span class="badge badge-pill badge-primary float-right">View all</span>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                  <img src="../../static/staff_site_static/images/faces/face10.jpg" alt="image" class="img-sm profile-pic">
-                </div>
-                <div class="preview-item-content flex-grow py-2">
-                  <p class="preview-subject ellipsis font-weight-medium text-dark">Marian Garner </p>
-                  <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
-                </div>
-              </a>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                  <img src="../../static/staff_site_static/images/faces/face12.jpg" alt="image" class="img-sm profile-pic">
-                </div>
-                <div class="preview-item-content flex-grow py-2">
-                  <p class="preview-subject ellipsis font-weight-medium text-dark">David Grey </p>
-                  <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
-                </div>
-              </a>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                  <img src="../../static/staff_site_static/images/faces/face1.jpg" alt="image" class="img-sm profile-pic">
-                </div>
-                <div class="preview-item-content flex-grow py-2">
-                  <p class="preview-subject ellipsis font-weight-medium text-dark">Travis Jenkins </p>
-                  <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
-                </div>
-              </a>
-            </div>
-          </li>
-
-
 
           <li class="nav-item dropdown d-none d-lg-block user-dropdown">
             <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-              <img class="img-xs rounded-circle" src="../../static/staff_site_static/images/faces/face8.jpg" alt="Profile image"> </a>
+              <img class="img-xs rounded-circle" src="../../static/upload/default_avatar.png" alt="Profile image"> </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
               <div class="dropdown-header text-center">
-                <img class="img-md rounded-circle" src="../../static/staff_site_static/images/faces/face8.jpg" alt="Profile image">
+                <img class="img-md rounded-circle" src="../../static/upload/default_avatar.png" alt="Profile image">
                 <p class="mb-1 mt-3 font-weight-semibold">{{ user.username }}</p>
                 <p class="fw-light text-muted mb-0">{{ user.email}}</p>
               </div>
@@ -161,12 +119,12 @@
             </a>
           </li>
 
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for("staff_site.view_plan")}}">
-              <i class="menu-icon mdi mdi-arrange-send-backward"></i>
-              <span class="menu-title">Last Draft</span>
-            </a>
-          </li>
+{#          <li class="nav-item">#}
+{#            <a class="nav-link" href="{{ url_for("staff_site.view_plan")}}">#}
+{#              <i class="menu-icon mdi mdi-arrange-send-backward"></i>#}
+{#              <span class="menu-title">Last Draft</span>#}
+{#            </a>#}
+{#          </li>#}
 
           <li class="nav-item nav-category">More Contents</li>
 
@@ -319,7 +277,7 @@
   <!-- End custom js for this page-->
 
  {% block beforeend %}
-/////////////////////////////////////5.30
+
   <script>
 // Get all user with unseen
 $.ajax({
@@ -344,7 +302,6 @@ $.ajax({
         $('#user-list2').html(str2)
     }
   </script>
-/////////////////////////////////////5.30
 
   {% endblock %}
 
