@@ -14,7 +14,7 @@ with app.app_context():
     us5 = User(username='chiquita', email='chiquita@ucd.ie', password='2222', is_admin=0)
     us6 = User(username='Lily', email='Lily@ucd.ie', password='1111', is_admin=0)
     us7 = User(username='Jenny', email='Jenny@ucd.ie', password='1111', is_admin=0)
-    db.session.add_all([us1, us2, us3, us4, us5,us6])
+    db.session.add_all([us1, us2, us3, us4, us5, us6, us7])
     db.session.commit()
 
     des1 = Destination(id=1, name='Beijing')
