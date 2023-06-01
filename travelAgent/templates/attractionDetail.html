@@ -353,7 +353,15 @@
                                 <h4 class="mb-3">{{ comment.content }}</h4>
                                 <p class="small mb-0"><i class="far fa-envelope fa-lg"></i> <span class="mx-2">|</span>
                                     Created by
-                                    <strong>{{ comment.username }}</strong> {{ comment.time }}
+                                    <strong>{{ comment.username }}</strong>
+                                    {% for user in comment_users %}
+                                    {% if comment.user_id == user.id %}
+                                        <img src={{ user.avatar_url }} alt=""
+                                             onerror="this.src='static/upload/default_avatar.png/'"
+                                             class="img-fluid rounded-circle me-3" style="width: 2rem; height: 2rem; margin: 0 1rem 1rem 0">
+                                    {% endif %}
+                                {% endfor %}
+                                    {{ comment.time }}
                                 </p>
 
                                 {% if comment.image != '' %}
@@ -373,16 +381,7 @@
                                         <span
                                                 class="text-muted small">program link</span>
                                         <span class="ms-3 me-4">|</span></p>
-                                    <a href="#!" class="block">
-                                        {% for user in comment_users %}
-                                            {% if comment.user_id == user.id %}
-                                            <img src={{ user.avatar_url }}
-                                                         alt=""
-                                                 class="img-fluid rounded-circle me-3" width="35">
 
-                                            {% endif %}
-                                        {% endfor %}
-                                    </a>
                                     <button type="button" class="btn btn-outline-dark btn-sm btn-floating block">
                                         <i class="fas fa-plus"></i> Reply
                                     </button>
