@@ -18,7 +18,7 @@
 {% block body %}
     <div class="container-fluid">
         <div class="row" style="margin-top: 5%; margin-bottom: 3%">
-            <div class="col-sm-4">
+            <div class="col-sm-2">
                 {#                <form role="search" class="bd-search d-flex align-items-center">#}
                 {#                    <button class="btn bd-search-docs-toggle d-md-none p-0 ml-3" type="button" data-toggle="collapse"#}
                 {#                            data-target="#bd-docs-nav" aria-controls="bd-docs-nav" aria-expanded="false"#}
@@ -33,14 +33,30 @@
                 <hr>
                 <nav class="bd-links list-group" aria-label="Main navigation">
 
-                    <div class="bd-toc-item">
-                        <a class="bd-toc-link" href="{{ url_for('help') }}">
-                            Overview
-                        </a>
+                    <div class="card text-center">
+                        <div class="card-header">
+                            You may want to know
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Details about what users can do?</h5>
+                            <p class="card-text">Click Following button to download user document</p>
+                            <a href="{{ 'help' }}" class="btn btn-primary" style="width: 60%">User Document</a>
+                            <p class="card-text">Click this to check all chapters</p>
+                            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                                    style="width: 60%"
+                                    data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+                                Chapters
+                            </button>
+                        </div>
+                        <div class="card-footer text-muted">
+                            From Developer Group
+                        </div>
                     </div>
-                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
-                            data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Details
-                    </button>
+
+
+                    {#                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" style="margin-top: 5px"#}
+                    {#                            data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Details#}
+                    {#                    </button>#}
 
                     <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1"
                          id="offcanvasWithBothOptions"
@@ -313,6 +329,7 @@
 
 
             </div>
+            <div class="col-sm-2"></div>
         </div>
 
     </div>
