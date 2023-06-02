@@ -246,7 +246,9 @@
                 '</p></b>'
             + ////////////////
               '<p>' +
-                 `<button class="btn btn-primary"  onclick=Translate(event)>TRANSLATE</button>` + '<span class="res_translate" style="font-weight: bold "></span>' + '<span class="time-right">' +
+                 `<button class="btn btn-primary"  onclick=Translate(event)>TRANSLATE</button>` +
+                    `<button class="btn btn-primary"  onclick=Translate_CN(event)>TRANSLATE_CN</button>`+
+                    '<span class="res_translate" style="font-weight: bold "></span>' + '<span class="time-right">' +
              '</p>' +
             '<hr />'+
                  '<p style="color: #115577">'+
@@ -288,7 +290,9 @@
                 '</b></p>'
                /////////////////
                  + '<p style="text-align: right">'
-                 +'<button class="btn btn-primary" style="background-color:" onclick=Translate(event)>TRANSLATE</button>' + '<span class="res_translate" style="color: black; font-weight: bold"></span>' + '<span class="time-right">' +
+                    +'<button class="btn btn-primary" style="background-color:" onclick=Translate(event)>TRANSLATE</button>' +
+                     `<button class="btn btn-primary"  onclick=Translate_CN(event)>TRANSLATE_CN</button>`+
+                    '<span class="res_translate" style="color: black; font-weight: bold"></span>' + '<span class="time-right">' +
                '</p>' +
                  '<hr />'
              + '<p style="text-align: right; color:rgba(34,72,25,0.89)" >'
@@ -322,37 +326,82 @@
     }
 
     //translate function
+    function Translate_CN(event) {
+    console.log(event.target)
+    var previous = event.target.parentNode.previousElementSibling.innerText
+    var next = event.target.nextElementSibling
+
+    var appid = '20230228001579285';
+    var key = 'i_i50GKeYlqZOVY7Q8HS';
+    var salt = (new Date).getTime();
+    var from = 'auto';
+    var to = 'zh';
+
+    //翻译
+    // $("#goTran").click(function(){
+    var query = previous;
+    var str1 = appid + query + salt + key;
+    var sign = md5(str1);
+    $.ajax({
+        url: 'http://api.fanyi.baidu.com/api/trans/vip/translate',
+        type: 'get',
+        dataType: 'jsonp',
+        data: {
+            q: query,
+            appid: appid,
+            salt: salt,
+            from: from,
+            to: to,
+            sign: sign
+        },
+        success: function (data) {
+            console.log("data: " + data)
+            var res = data.trans_result[0].dst;
+            // $("#result")[0].innerHTML=res;
+            console.log(res);
+            event.target.nextElementSibling.innerText = res
+
+        }
+    });
+}
+    //translate function
     function Translate(event) {
-        console.log(event.target)
-        let previous = event.target.parentNode.previousElementSibling.innerText
-        let next = event.target.nextElementSibling
-        let appid = '20230228001579285'
-        let key = 'i_i50GKeYlqZOVY7Q8HS'
-        let salt = (new Date).getTime()
-        let from = 'auto'
-        let to = 'en'
-        let query = previous
-        let str1 = appid + query + salt + key
-        let sign = md5(str1)
-        $.ajax({
-            url: 'http://api.fanyi.baidu.com/api/trans/vip/translate',
-            type: 'get',
-            dataType: 'jsonp',
-            data: {
-                q: query,
-                appid: appid,
-                salt: salt,
-                from: from,
-                to: to,
-                sign: sign
-            },
-            success: function (data) {
-                let res = data.trans_result[0].dst
-                console.log(res)
-                event.target.nextElementSibling.innerText = res
-            }
-        })
-    }
+    console.log(event.target)
+    var previous = event.target.parentNode.previousElementSibling.innerText
+    var next = event.target.nextElementSibling
+
+    var appid = '20230228001579285';
+    var key = 'i_i50GKeYlqZOVY7Q8HS';
+    var salt = (new Date).getTime();
+    var from = 'auto';
+    var to = 'en';
+
+    //翻译
+    // $("#goTran").click(function(){
+    var query = previous;
+    var str1 = appid + query + salt + key;
+    var sign = md5(str1);
+    $.ajax({
+        url: 'http://api.fanyi.baidu.com/api/trans/vip/translate',
+        type: 'get',
+        dataType: 'jsonp',
+        data: {
+            q: query,
+            appid: appid,
+            salt: salt,
+            from: from,
+            to: to,
+            sign: sign
+        },
+        success: function (data) {
+            var res = data.trans_result[0].dst;
+            // $("#result")[0].innerHTML=res;
+            console.log(res);
+            event.target.nextElementSibling.nextElementSibling.innerText = res
+
+        }
+    });
+}
 
 </script>
 
