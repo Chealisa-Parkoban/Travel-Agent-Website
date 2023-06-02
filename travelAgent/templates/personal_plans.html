@@ -48,11 +48,11 @@
                                 {% endif %}
 
                                 {% for plan in plans %}
-                                    <tr onclick="showPlans({{plan.id}})">
-                                        <td>{{plan.name}}</td>
-                                        <td>{{plan.intro}}</td>
-                                        <td>{{plan.length}}</td>
-                                        <td>{{plan.price}}</td>
+                                    <tr>
+                                        <td onclick="showPlans({{plan.id}})" >{{plan.name}}</td>
+                                        <td onclick="showPlans({{plan.id}})" >{{plan.intro}}</td>
+                                        <td onclick="showPlans({{plan.id}})" >{{plan.length}}</td>
+                                        <td onclick="showPlans({{plan.id}})" >{{plan.price}}</td>
 
                                         <td>
                                             <a href="{{url_for("booking.addPersonalBooking", combination_id=plan.id )}} ">
@@ -70,27 +70,6 @@
                                             </a>
                                         </td>
                                         <script>
-                                            {#function delete_pack (id){#}
-                                            {#    $.get({#}
-                                            {#        url: '',#}
-                                            {#        type: 'GET',#}
-                                            {#        data: ({id : id}),#}
-                                            {#        success: function (data) {#}
-                                            {#            window.location.href = '';#}
-                                            {#        }#}
-                                            {#    })#}
-                                            {#}#}
-                                            {##}
-                                            {#function buy (id) {#}
-                                            {#    $.post({#}
-                                            {#        url: '',#}
-                                            {#        type: 'POST',#}
-                                            {#        data: ({id : id}),#}
-                                            {#        success: function (data) {#}
-                                            {#            // Update cart contents#}
-                                            {#        }#}
-                                            {#    })#}
-                                            {#}#}
 
                                             function showPlans(plan_id_res){
                                                 $.get({
