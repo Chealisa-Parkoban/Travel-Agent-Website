@@ -84,7 +84,7 @@ def get_data():
 @staff_blueprint.route('/staff/', methods=['GET', 'POST'])
 def login():
     # changeBookingStatus()
-    global emsg
+    emsg = ""
     app.logger.info('Entered STAFF LOGIN page')
     form = LoginForm(request.form)
     if request.method == 'GET':
@@ -98,22 +98,22 @@ def login():
             user = User.get_by_username(username)
             if user is None:
                 emsg = "Username not exist!"
-                return redirect(url_for("staff_site.login", form=form, message=emsg))
+                return render_template('./staff_site/pages/login.html', form=form, message=emsg)
             elif not user.isAdmin():
+                print(user.isAdmin())
                 emsg = "You are not a staff!"
                 app.logger.error('Login failed: You are not a staff!')
-                return redirect(url_for("staff_site.login", form=form, message=emsg))
+                return render_template('./staff_site/pages/login.html', form=form, message=emsg)
+            elif user.verify_password(password):
+                login_user(user, remember=remember_me)
+                # emsg = "STAFF Login successfully!"
+                app.logger.info('Staff \'' + username + '\' has successfully logged into the website')
+                return redirect(url_for("staff_site.contents"))
             else:
-                if user.verify_password(password):
-                    login_user(user, remember=remember_me)
-                    emsg = "STAFF Login successfully!"
-                    app.logger.info('Staff \'' + username + '\' has successfully logged into the website')
-                    return redirect(url_for("staff_site.contents"))
-        else:
-            emsg = "Wrong password!"
-            app.logger.error('Login failed: Wrong username or password')
+                emsg = "Wrong password!"
+                app.logger.error('Login failed: Wrong password')
 
-    return render_template('./staff_site/pages/login.html', form=form)
+    return render_template('./staff_site/pages/login.html', form=form, message=emsg)
 
 
 @staff_blueprint.route('/staff/logout', methods=['GET', 'POST'])
