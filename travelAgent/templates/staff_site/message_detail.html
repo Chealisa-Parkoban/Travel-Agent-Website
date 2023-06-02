@@ -7,18 +7,26 @@
 
 
           <div class="row" id="row">
-            <div class="col-md-6 grid-margin stretch-card" >
-              <div class="card" style="margin-left: 50%;">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card" style="">
                 <div class="card-body" style="margin: 0 3% 0 3%;">
 <!--                  <h4 class="card-title"></h4>-->
-                  <p class="card-description" style="font-size: xx-large;margin-bottom: 2%">
-                    Message By {{message.name}}
+                  <p class="card-description" style="font-size: xx-large; margin: 2% 0; color: black">
+                    Customer Message Details
                   </p>
                   <form class="forms-sample" style="margin-top: 5%">
-                    <div class="form-group">
-                      <label for="Email" style="font-size: x-large">Email</label>
-                      <h4 style="color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%">{{message.email}}</h4>
-                    </div>
+                      <div class="form-group" style="display: flex; flex-direction: row;">
+                          <div class="col-md-5">
+                              <label for="Name" style="font-size: x-large">Message From</label>
+                              <h4 style="color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%">{{message.name}}</h4>
+                          </div>
+                          <div class="col-md-1"></div>
+                          <div class="col-md-6">
+                              <label for="Email" style="font-size: x-large">Email</label>
+                              <h4 style="color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%">{{message.email}}</h4>
+                          </div>
+                      </div>
+
                     <div class="form-group">
                       <label for="Content" style="font-size: x-large">Content</label>
                       <h4 style="color:#76838f; border-bottom: 1px solid #dbdbdb; padding-bottom: 1%; margin-top: 2%">{{message.message}}</h4>
