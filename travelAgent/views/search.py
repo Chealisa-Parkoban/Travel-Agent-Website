@@ -43,6 +43,7 @@ def search():
     print("attraction", attraction)
     print("price up", price_up)
     print("price low", price_low)
+
     # 条件判断
     if price_low != '' and price_low != None:
         if int(price_low) < 0:
