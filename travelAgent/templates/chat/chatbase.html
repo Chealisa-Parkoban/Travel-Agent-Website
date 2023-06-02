@@ -120,14 +120,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbar_example_1">
             <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('index') }}">Overview</a>
+                </li>
                 <li class="nav-item ">
                     <a class="nav-link" href="{{ url_for('homepage') }}">Home<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('index') }}">Overview</a>
-                </li>
-
-                <li class="nav-item active">
                     <a class="nav-link" href="{{ url_for('chat.chat') }}">Chat</a>
                 </li>
                 <li class="nav-item">
@@ -140,8 +139,17 @@
                     <a class="nav-link" href="{{ url_for('help') }}">Help</a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link nav-link-icon" href="#"><i class="fas fa-cogs"></i></a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link nav-link-icon" href="#" id="navbar_1_dropdown_1" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-info-circle"></i></a>
+                    <div class="dropdown-menu dropdown-menu-right" style="min-width: 10rem">
+                        <a class="dropdown-item" href="{{ url_for('about') }}">
+                            <i class="fas fa-info-circle text-primary"></i>About us
+                        </a>
+                        <a class="dropdown-item" href="{{ url_for('contact_us') }}">
+                            <i class="fas fa-phone text-primary"></i>Contact us
+                        </a>
+                    </div>
                 </li>
 
                 <li class="nav-item dropdown">

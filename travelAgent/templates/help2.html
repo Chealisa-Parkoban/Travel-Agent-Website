@@ -1,9 +1,9 @@
 {% extends "base.html" %}
-{#<html lang="en">#}
-{#<head>#}
+
 {% block head %}
     <meta charset="UTF-8">
     <title>Help</title>
+
     <!-- 新 Bootstrap5 核心 CSS 文件 -->
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
 
@@ -13,70 +13,35 @@
     <!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
     <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
 {% endblock %}
-{#</head>#}
-{#<body>#}
-{% block body %}
-    <div class="container-fluid">
-        <div class="row" style="margin-top: 5%; margin-bottom: 3%">
-            <div class="col-sm-2">
-                {#                <form role="search" class="bd-search d-flex align-items-center">#}
-                {#                    <button class="btn bd-search-docs-toggle d-md-none p-0 ml-3" type="button" data-toggle="collapse"#}
-                {#                            data-target="#bd-docs-nav" aria-controls="bd-docs-nav" aria-expanded="false"#}
-                {#                            aria-label="Toggle docs navigation">#}
-                {#                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" role="img"#}
-                {#                             focusable="false"><title>Menu</title>#}
-                {#                            <path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"#}
-                {#                                  d="M4 7h22M4 15h22M4 23h22"></path>#}
-                {#                        </svg>#}
-                {#                    </button>#}
-                {#                </form>#}
-                <hr>
-                <nav class="bd-links list-group" aria-label="Main navigation">
 
-                    <div class="card text-center">
-                        <div class="card-header">
-                            You may want to know
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Details about what users can do?</h5>
-                            <p class="card-text">Click Following button to download user document</p>
-                            <a href="{{ 'help' }}" class="btn btn-primary" style="width: 60%">User Document</a>
-                            <p class="card-text">Click this to check all chapters</p>
-                            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
-                                    style="width: 60%"
-                                    data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
-                                Chapters
-                            </button>
-                        </div>
-                        <div class="card-footer text-muted">
-                            From Developer Group
+{% block body %}
+    <div class="container-fluid" style="background: #eee;">
+        <div class="row" style="padding-top: 5%;">
+            <div class="col-sm-2">
+                <nav class=" list-group" aria-label="Main navigation">
+                    <div class="card position-fixed top-0" style="padding-top: 5.5%; background: transparent; border: 0;">
+                        <div class="card-body d-flex justify-content-end">
+                            <div class="w-50 text-end">
+                                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                                        data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"
+                                        style="background: transparent; border: 0;">
+                                    <i class="fa fa-chevron-right" style="background: transparent; color: grey;"></i>
+                                    <span style="color: grey;"> Menu </span>
+                                </button>
+                            </div>
                         </div>
                     </div>
 
-
-                    {#                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" style="margin-top: 5px"#}
-                    {#                            data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Details#}
-                    {#                    </button>#}
 
                     <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1"
                          id="offcanvasWithBothOptions"
                          aria-labelledby="offcanvasWithBothOptionsLabel">
                         <div class="offcanvas-header">
-                            <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Chapter</h5>
+                            <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Navigation</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
                                     aria-label="Close"></button>
                         </div>
                         <div class="offcanvas-body">
-                            {#                            <div class="bd-toc-item active">#}
-                            {#                                <a class="bd-toc-link" href="{{ url_for('help') }}">#}
-                            {#                                    Overview#}
-                            {#                                </a>#}
-                            {#                            </div>#}
-                            {#                            <div class="bd-toc-item">#}
-                            {#                                <a class="bd-toc-link" href="{{ url_for('help_for_customer') }}">#}
-                            {#                                    For Customer#}
-                            {#                                </a>#}
-                            {#                            </div>#}
                             <div class="bd-toc-item">
                                 <a class="bd-toc-link" href="#C1">
                                     Sign Up and Log in
@@ -158,27 +123,54 @@
                                     Help for detailed instructions
                                 </a>
                             </div>
-                            {#                        <p>Try scrolling the rest of the page to see this option in action.</p>#}
+                            <div class="bd-toc-item">
+                                <a class="bd-toc-link" href="{{ url_for('help') }}">
+                                    Download User Document
+                                </a>
+                            </div>
+
                         </div>
                     </div>
-                    {##}
-                    {#                    <div class="bd-toc-item">#}
-                    {#                        <a class="bd-toc-link" href="/docs/4.6/layout/overview/">#}
-                    {##}
-                    {#                        </a>#}
-                    {#                    </div>#}
-                    {##}
-                    {#                    <div class="bd-toc-item">#}
-                    {#                        <a class="bd-toc-link" href="/docs/4.6/content/reboot/">#}
-                    {#                            Content#}
-                    {#                        </a>#}
-                    {#                    </div>#}
-
                 </nav>
+
+{#                <nav class="bd-links list-group" aria-label="Main navigation">#}
+{##}
+{#                    <div class="card text-center">#}
+{#                        <div class="card-header" style="height: 2rem; text-align: center">#}
+{#                            Navigation#}
+{#                        </div>#}
+{#                        <div class="card-body">#}
+{#                            <nav style="font-size: 0.9rem">#}
+{#                                <ul style="padding: 0; text-decoration: none; list-style: none">#}
+{#                                    <li><a href="#C1" style="color: black;">Sign Up and Log in</a></li>#}
+{#                                    <li><a href="#C2" style="color: black;">View and Search Travel Packages</a></li>#}
+{#                                    <li><a href="#C3" style="color: black;">Add to Favorites</a></li>#}
+{#                                    <li><a href="#C4" style="color: black;">Remove from Favorites</a></li>#}
+{#                                    <li><a href="#C5" style="color: black;">View Favorites</a></li>#}
+{#                                    <li><a href="#C6" style="color: black;">Book Packages/ Attraction/ Hotel</a></li>#}
+{#                                    <li><a href="#C7" style="color: black;">Check Orders</a></li>#}
+{#                                    <li><a href="#C8" style="color: black;">DIY Travel Packages</a></li>#}
+{#                                    <li><a href="#C9" style="color: black;">Calendar</a></li>#}
+{#                                    <li><a href="#C10" style="color: black;">Customer Service</a></li>#}
+{#                                    <li><a href="#C11" style="color: black;">Comments</a></li>#}
+{#                                    <li><a href="#C12" style="color: black;">Check and Update Personal Profile</a></li>#}
+{#                                    <li><a href="#C13" style="color: black;">Check Company Profile</a></li>#}
+{#                                    <li><a href="#C14" style="color: black;">Contact the Company</a></li>#}
+{#                                    <li><a href="#C15" style="color: black;">Whole Page Translation</a></li>#}
+{#                                    <li><a href="#C16" style="color: black;">Help for detailed instructions</a></li>#}
+{#                                    <li><a href="{{ url_for('help') }}" style="color: black;">Download User Document</a></li>#}
+{#                                </ul>#}
+{#                            </nav>#}
+{#                        </div>#}
+{##}
+{#                    </div>#}
+{##}
+{#                </nav>#}
             </div>
-            <div class="col-sm-8" style=" overflow:scroll;height:800px;">
+            <div class="col-sm-8" style="overflow: scroll; height: 800px; padding: 1.5% 0 1.5% 2rem; margin-top: 1.5%;
+                    margin-bottom: 2.5%; background: white; border-radius: 10px">
                 <h1>
-                    For Customer
+                    F.A.Q
                 </h1>
                 <h2>
                     <a name="C1"></a>
@@ -324,7 +316,8 @@
 
 
             </div>
-            <div class="col-sm-2"></div>
+            <div class="col-sm-2">
+            </div>
         </div>
 
     </div>
